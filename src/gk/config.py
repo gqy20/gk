@@ -53,3 +53,37 @@ def match_universities(
                 matched.append(u)
                 break
     return matched
+
+
+def filter_completed(
+    universities: list[dict],
+    output_dir: Path,
+) -> list[dict]:
+    """跳过 output 目录中已存在的高校，实现断点续跑.
+
+    匹配规则：CSV 学校名 → output 中 {学校名}.json 文件。
+    名称不一致的会保留在结果中（不会被误跳过）。
+    """
+    if not output_dir.exists():
+        return universities
+
+    done_names = {f.stem for f in output_dir.glob("*.json")}
+
+    remaining = []
+    skipped = []
+    for u in universities:
+        if u["name"] in done_names:
+            skipped.append(u["name"])
+        else:
+            remaining.append(u)
+
+    if skipped:
+        logger = __import__("logging").getLogger("gk.config")
+        logger.info(
+            "断点续跑: 跳过 %d 所已完成高校，剩余 %d 所",
+            len(skipped), len(remaining),
+        )
+        if len(skipped) <= 20:
+            logger.debug("已跳过: %s", ", ".join(skipped))
+
+    return remaining
