@@ -1,0 +1,412 @@
+{
+  "university": "山西大学",
+  "official_url": "https://www.sxu.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "山西大学2025年本科招生章程",
+      "url": "https://bkzs.sxu.edu.cn/zsjz/dc9ba00311f44ed697f69a26ad95da71.htm",
+      "summary": "山西大学2025年普通本科招生章程，涵盖招生原则、录取规则、收费标准等",
+      "attachments": [],
+      "publish_date": "2025-05-16",
+      "source_department": "山西大学招生就业处"
+    },
+    {
+      "title": "山西大学2024年本科招生章程",
+      "url": "https://bkzs.sxu.edu.cn/zsjz/84b891d5706a45a0a95de43ffc9745cd.htm",
+      "summary": "山西大学2024年普通本科招生章程",
+      "attachments": [],
+      "publish_date": "2024-05-24",
+      "source_department": "山西大学招生就业处"
+    },
+    {
+      "title": "山西大学2026年运动训练、武术与民族传统体育专业招生简章",
+      "url": "https://bkzs.sxu.edu.cn/zsjz/1acefd08f2ea4228a4d9b661a69f10f5.htm",
+      "summary": "山西大学2026年运动训练、武术与民族传统体育专业招生简章",
+      "attachments": [],
+      "publish_date": "2026-01-22",
+      "source_department": "山西大学招生就业处"
+    },
+    {
+      "title": "山西大学2026年硕士研究生招生简章",
+      "url": "https://yjszsw.sxu.edu.cn/docs/2025-10/4fa0011ca31a4917b4ac2b1774038df8.pdf",
+      "summary": "山西大学2026年硕士研究生招生简章PDF文件",
+      "attachments": [
+        "https://yjszsw.sxu.edu.cn/docs/2025-10/4fa0011ca31a4917b4ac2b1774038df8.pdf"
+      ],
+      "publish_date": "2025-10",
+      "source_department": "山西大学研究生院"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "山西大学2025年本科招生计划查询",
+      "url": "https://bkzsfw.sxu.edu.cn/static/front/sxu/basic/html_web/zsjh.html",
+      "summary": "山西大学本科招生计划查询系统，支持按省份、年份、科类、校区等条件查询各专业招生计划数",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "山西大学招生就业处"
+    },
+    {
+      "title": "山西大学2026年硕士研究生招生目录",
+      "url": "https://yjszsw.sxu.edu.cn/docs/2025-09/18ff16914dc441f5bae48f9121587144.pdf",
+      "summary": "山西大学2026年硕士研究生招生专业目录PDF",
+      "attachments": [
+        "https://yjszsw.sxu.edu.cn/docs/2025-09/18ff16914dc441f5bae48f9121587144.pdf"
+      ],
+      "publish_date": "2025-09",
+      "source_department": "山西大学研究生院"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "山西大学历年录取分数查询",
+      "url": "https://bkzsfw.sxu.edu.cn/static/front/sxu/basic/html_web/lnfs.html",
+      "summary": "山西大学历年录取分数查询系统，支持查询各省份、各年份、各科类录取数据，包含最高分、平均分、最低分等信息",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "山西大学招生就业处"
+    },
+    {
+      "title": "山西大学2025年本科招生录取工作简报",
+      "url": "https://bkzs.sxu.edu.cn/zsdt/d022a47989a04c04b4689572e4194e29.htm",
+      "summary": "山西大学2025年本科招生录取工作简报（山西普通类），包含各专业录取分数",
+      "attachments": [],
+      "publish_date": "2025-08-03",
+      "source_department": "山西大学招生就业处"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "计算机与信息技术学院2025年本科生转专业接收工作办法",
+      "url": "http://cs.sxu.edu.cn/news/notice/0698975a6c184af7a4f14c4b86e8ceda.htm",
+      "summary": "计算机与信息技术学院2025年本科生转专业接收工作办法，规定了接收条件、考核方式等",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "山西大学计算机与信息技术学院"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "2025年计算机与信息技术学院转专业公示",
+      "url": "http://cs.sxu.edu.cn/news/notice/0698975a6c184af7a4f14c4b86e8ceda.htm",
+      "summary": "2025年计算机与信息技术学院本科生转专业接收公示通知",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "山西大学计算机与信息技术学院"
+    }
+  ],
+  "major_streaming": [],
+  "training_program": [
+    {
+      "title": "山西大学博士研究生培养方案（2021版）",
+      "url": "http://gs.sxu.edu.cn/docs/2022-07/bb52530e093945c2910ffb1910764dd9.pdf",
+      "summary": "山西大学博士研究生培养方案（2021版），包含培养目标、学分要求、课程设置等",
+      "attachments": [
+        "http://gs.sxu.edu.cn/docs/2022-07/bb52530e093945c2910ffb1910764dd9.pdf"
+      ],
+      "publish_date": "2022-07-26",
+      "source_department": "山西大学研究生院"
+    },
+    {
+      "title": "山西大学学术学位硕士研究生培养方案（2021版）",
+      "url": "http://gs.sxu.edu.cn/docs/2022-07/04244c46b9644a9aa8a43277bcb473e9.pdf",
+      "summary": "山西大学学术学位硕士研究生培养方案（2021版）",
+      "attachments": [
+        "http://gs.sxu.edu.cn/docs/2022-07/04244c46b9644a9aa8a43277bcb473e9.pdf"
+      ],
+      "publish_date": "2022-07-26",
+      "source_department": "山西大学研究生院"
+    },
+    {
+      "title": "山西大学专业学位硕士研究生培养方案（2021版）",
+      "url": "http://gs.sxu.edu.cn/docs/2022-07/9999efad90f64917905cfd405395f1ca.pdf",
+      "summary": "山西大学专业学位硕士研究生培养方案（2021版）",
+      "attachments": [
+        "http://gs.sxu.edu.cn/docs/2022-07/9999efad90f64917905cfd405395f1ca.pdf"
+      ],
+      "publish_date": "2022-07-26",
+      "source_department": "山西大学研究生院"
+    }
+  ],
+  "minor_program": [],
+  "employment_report": [
+    {
+      "title": "山西大学就业质量报告",
+      "url": "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf",
+      "summary": "山西大学2023年/2024年毕业生就业质量报告，包含就业率、就业去向、薪资等数据",
+      "attachments": [
+        "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf"
+      ],
+      "publish_date": "2024-04",
+      "source_department": "山西大学招生就业处"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "山西大学2026年接收推荐免试研究生（含直博生）预报名通知",
+      "url": "https://yjszsw.sxu.edu.cn/sszs/4180ed6e7bf64bcabdfc4aefe910ec9e.htm",
+      "summary": "山西大学2026年接收推荐免试研究生（含直博生）预报名通知，包含申请条件、申请材料、申请流程等",
+      "attachments": [
+        "https://yjszsw.sxu.edu.cn/docs/2025-09/857eccb580c746bea085c7d9ede6ba4b.pdf",
+        "https://yjszsw.sxu.edu.cn/docs/2025-09/c34d862fbad44e6c9027936caaabfad8.pdf",
+        "https://yjszsw.sxu.edu.cn/docs/2025-09/d203d6191e2f4756b1d7715553b3b18c.pdf",
+        "https://yjszsw.sxu.edu.cn/docs/2025-09/c237885de79f4f7a8c6aa9119295bdb0.pdf"
+      ],
+      "publish_date": "2025-09-08",
+      "source_department": "山西大学研究生院"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "山西大学学科竞赛管理办法（试行）",
+      "url": "http://jwc.sxu.edu.cn/sjjx/xkjs/546091ce00bd45a7bbd0e424e73bb3f5.htm",
+      "summary": "山西省大学生学科竞赛管理办法（试行），规定了学科竞赛的组织管理、奖励办法等",
+      "attachments": [],
+      "publish_date": "2021-04-02",
+      "source_department": "山西大学教务处"
+    },
+    {
+      "title": "中国国际大学生创新大赛（2024）山西大学获奖名单",
+      "url": "http://jwc.sxu.edu.cn/sjjx/xkjs/b2224f856ad1497b9ad62a68317adbf3.htm",
+      "summary": "中国国际大学生创新大赛（2024）全国总决赛山西大学获奖名单",
+      "attachments": [],
+      "publish_date": "2025-04-01",
+      "source_department": "山西大学教务处"
+    },
+    {
+      "title": "山西大学科研平台概览",
+      "url": "https://www.sxu.edu.cn/xxgk/jgsz/kysw/index.html",
+      "summary": "山西大学科研单位列表，包含光电研究所、生物技术研究所、激光光谱研究所等19个自然科学研究单位和科技与社会研究所、中国社会史研究中心等14个哲学社会科学研究单位",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "山西大学"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "文学院",
+      "url": "http://dol.sxu.edu.cn/",
+      "disciplines": [
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "历史文化学院",
+      "url": "http://history.sxu.edu.cn/",
+      "disciplines": [
+        "历史学",
+        "考古学"
+      ]
+    },
+    {
+      "name": "哲学学院",
+      "url": "http://zxxy.sxu.edu.cn/",
+      "disciplines": [
+        "哲学"
+      ]
+    },
+    {
+      "name": "政治与公共管理学院",
+      "url": "http://zzx.sxu.edu.cn",
+      "disciplines": [
+        "政治学",
+        "公共管理"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "http://wy.sxu.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "教育科学学院",
+      "url": "http://jky.sxu.edu.cn/",
+      "disciplines": [
+        "教育学",
+        "心理学"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "http://fxy.sxu.edu.cn/",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "经济与管理学院",
+      "url": "http://jgxy.sxu.edu.cn/",
+      "disciplines": [
+        "理论经济学",
+        "应用经济学",
+        "管理科学与工程",
+        "工商管理"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://marxism.sxu.edu.cn",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "新闻与传播学院",
+      "url": "http://xwxy.sxu.edu.cn",
+      "disciplines": [
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "考古文博学院",
+      "url": "http://archaeology.sxu.edu.cn",
+      "disciplines": [
+        "考古学",
+        "文物与博物馆"
+      ]
+    },
+    {
+      "name": "体育学院",
+      "url": "http://tyy.sxu.edu.cn",
+      "disciplines": [
+        "体育学"
+      ]
+    },
+    {
+      "name": "音乐学院",
+      "url": "http://aom.sxu.edu.cn",
+      "disciplines": [
+        "音乐与舞蹈学"
+      ]
+    },
+    {
+      "name": "美术学院",
+      "url": "http://afa.sxu.edu.cn",
+      "disciplines": [
+        "美术学",
+        "设计学"
+      ]
+    },
+    {
+      "name": "纪检监察学院",
+      "url": "http://jjjcxy.sxu.edu.cn/index.html",
+      "disciplines": [
+        "纪检监察学"
+      ]
+    },
+    {
+      "name": "数学与统计学院",
+      "url": "http://math.sxu.edu.cn/",
+      "disciplines": [
+        "数学",
+        "统计学"
+      ]
+    },
+    {
+      "name": "计算机与信息技术学院",
+      "url": "http://cs.sxu.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术",
+        "软件工程",
+        "网络工程",
+        "数据科学与大数据技术"
+      ]
+    },
+    {
+      "name": "物理电子工程学院",
+      "url": "http://wdxy.sxu.edu.cn",
+      "disciplines": [
+        "物理学",
+        "电子科学与技术",
+        "光学工程"
+      ]
+    },
+    {
+      "name": "化学化工学院",
+      "url": "http://hxhgxy.sxu.edu.cn",
+      "disciplines": [
+        "化学",
+        "化学工程与技术",
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "http://life.sxu.edu.cn/",
+      "disciplines": [
+        "生物学",
+        "生态学"
+      ]
+    },
+    {
+      "name": "环境与资源学院",
+      "url": "http://hzy.sxu.edu.cn/",
+      "disciplines": [
+        "环境科学与工程",
+        "资源与环境"
+      ]
+    },
+    {
+      "name": "电力与建筑学院",
+      "url": "http://dj.sxu.edu.cn",
+      "disciplines": [
+        "电气工程",
+        "土木工程",
+        "建筑学"
+      ]
+    },
+    {
+      "name": "自动化与软件学院",
+      "url": "http://zdhse.sxu.edu.cn/",
+      "disciplines": [
+        "自动化",
+        "软件工程",
+        "机器人工程"
+      ]
+    },
+    {
+      "name": "合成生物学学院",
+      "url": "http://synbio.sxu.edu.cn/",
+      "disciplines": [
+        "合成生物学",
+        "生物工程"
+      ]
+    },
+    {
+      "name": "三立学院（三立书院）",
+      "url": "http://slxy.sxu.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "初民学院",
+      "url": "http://cmxy.sxu.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "继续教育学院",
+      "url": "http://jxjyxy.sxu.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "现代教育技术学院",
+      "url": "http://mets.sxu.edu.cn",
+      "disciplines": [
+        "教育技术学"
+      ]
+    },
+    {
+      "name": "国际教育交流学院",
+      "url": "http://siee.sxu.edu.cn/",
+      "disciplines": []
+    }
+  ],
+  "student_experiences": [],
+  "notes": "本次抓取覆盖山西大学官网及其招生就业处、研究生院、教务处等子站。转专业政策、大类分流规则、辅修双学位等未能获取到学校层面的统一文件，建议访问教务处校级文件页面获取更多信息。就业质量报告通过第三方平台获取。历年录取数据页面为动态查询系统，需手动选择条件查询。",
+  "missing_categories": [
+    "major_streaming",
+    "minor_program"
+  ]
+}

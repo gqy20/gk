@@ -1,0 +1,484 @@
+{
+  "university": "武汉大学",
+  "official_url": "https://www.whu.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "武汉大学全日制普通本科招生章程（2025年修订）",
+      "url": "https://aoff.whu.edu.cn/info/1067/26472.htm",
+      "summary": "武汉大学全日制普通本科招生章程，包含总则、招生组织机构、招生计划、录取规则、收费标准等完整内容，是学校本科招生的基本规章制度。",
+      "attachments": [],
+      "publish_date": "2025-05-22",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年强基计划招生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26932.htm",
+      "summary": "为服务国家重大战略需求，加强基础学科拔尖创新人才选拔培养，探索多维度考核评价模式，选拔有志于基础学科研究的优秀学生。招生对象为符合2026年普通高考报名条件的全国考生。",
+      "attachments": [],
+      "publish_date": "2026-04-09",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年艺术类专业招生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26882.htm",
+      "summary": "包含播音与主持艺术、戏剧影视文学、戏剧影视表演、视觉传达设计等艺术类专业的招生要求、考试内容、录取规则等。",
+      "attachments": [],
+      "publish_date": "2026-03-03",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年高水平运动队招生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26842.htm",
+      "summary": "招收田径、篮球、排球、足球、乒乓球、羽毛球、游泳、武术、围棋等项目的高水平运动员，包含报名条件、测试内容、录取办法等。",
+      "attachments": [],
+      "publish_date": "2026-01-22",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年外语类保送生招生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26702.htm",
+      "summary": "招收具有外语类保送资格的优秀应届高中毕业生，包含推荐条件、报名程序、测试安排、录取规则等内容。",
+      "attachments": [],
+      "publish_date": "2025-12-25",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年运动训练专业招生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26782.htm",
+      "summary": "招收运动训练专业学生，包含招生项目、报考条件、考试内容、录取规则等。",
+      "attachments": [],
+      "publish_date": "2026-01-16",
+      "source_department": "武汉大学本科招生网"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "分省分专业（科类）招生计划查询",
+      "url": "https://zsdata.whu.edu.cn/public/wzgl/#/jhcx",
+      "summary": "武汉大学分省分专业（科类）招生计划查询系统，提供全国各省份、各专业的招生计划数和录取批次信息。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年招收香港中学文凭考试学生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26692.htm",
+      "summary": "招收香港中学文凭考试成绩达到要求的学生，包含招生计划、专业设置、录取标准等。",
+      "attachments": [],
+      "publish_date": "2025-12-17",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "武汉大学2026年招收澳门保送生简章",
+      "url": "https://aoff.whu.edu.cn/info/1067/26652.htm",
+      "summary": "招收澳门地区保送生，包含保送条件、推荐程序、录取规则等。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学本科招生网"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "分省、分类别、分科类录取人数和录取分数",
+      "url": "https://info.whu.edu.cn/gz/xxgklm2lj/zsksxx/bkszs/fs_flb_fkllqrshlqfs.htm",
+      "summary": "武汉大学历年分省、分类别、分科类的录取人数和录取分数统计，包含各省份、各批次的录取最低分、平均分等信息。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学信息公开网"
+    },
+    {
+      "title": "珞珈视频-走进武大",
+      "url": "https://zsdata.whu.edu.cn/public/wzgl/#/live",
+      "summary": "通过视频介绍武汉大学的校园环境、学科特色、培养模式等，帮助考生了解学校。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学本科招生网"
+    },
+    {
+      "title": "珞珈视频-招生查询",
+      "url": "https://zsdata.whu.edu.cn/public/wzgl/#/jhcx",
+      "summary": "提供历年录取分数线查询服务，考生可查询各省份、各专业的历年录取分数。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学本科招生网"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "武汉大学本科生转专业管理办法",
+      "url": "https://www.whu.edu.cn/jwc/",
+      "summary": "武汉大学本科生转专业政策由教务部负责管理，学生可在规定时间内申请转专业，需满足相关学业成绩和考核要求。具体转专业条件和流程请查阅教务部相关规定。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学教务部"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "武汉大学转专业公示",
+      "url": "https://www.whu.edu.cn/jwc/",
+      "summary": "转专业拟录取名单公示页面，包含通过转专业审核的学生名单及拟转入专业信息。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学教务部"
+    }
+  ],
+  "major_streaming": [
+    {
+      "title": "武汉大学大类招生与分流培养",
+      "url": "https://aoff.whu.edu.cn/zsxx1/tslzs/bs.htm",
+      "summary": "武汉大学部分专业实行大类招生，学生入学后按大类培养，一段时间后再进行专业分流。具体分流规则和时间安排由各学院制定。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学教务部"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "武汉大学本科人才培养方案",
+      "url": "https://www.whu.edu.cn/rcpy.htm#md1",
+      "summary": "武汉大学本科人才培养方案包含通识教育课程、学科基础课程、专业核心课程、实践教学环节等模块，详细规定各专业学分要求、课程设置和毕业标准。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学教务部"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "武汉大学辅修/双学位/微专业",
+      "url": "https://www.whu.edu.cn/rcpy.htm#md1",
+      "summary": "武汉大学开设辅修专业、双学位和微专业项目，学生可在主修专业基础上修读其他学科门类的课程，符合条件者可获得相应证书。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学教务部"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "武汉大学就业质量报告",
+      "url": "https://www.whu.edu.cn/rcpy.htm#md4",
+      "summary": "武汉大学每年发布就业质量报告，包含毕业生就业率、就业去向分布、薪资水平、主要就业单位等信息，反映学校人才培养质量和就业指导服务成效。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学学生就业指导与服务中心"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "武汉大学推荐免试研究生（保研）工作办法",
+      "url": "https://www.whu.edu.cn/rcpy.htm#md2",
+      "summary": "武汉大学推荐免试研究生工作遵循公平、公正、公开原则，根据学生学业成绩、综合素质、科研能力等进行遴选，具体名额分配和遴选标准由各学院制定。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学研究生院"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "武汉大学科学研究机构",
+      "url": "https://www.whu.edu.cn/new2024/kxyjyjjg.jsp?urltype=tree.TreeTempUrl&wbtreeid=5161",
+      "summary": "武汉大学设有国家重点实验室、教育部重点实验室、湖北省重点实验室等科研平台，覆盖数学、物理、化学、生物、医学、工程等多个学科领域。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学科学技术发展研究院"
+    },
+    {
+      "title": "武汉大学学科竞赛",
+      "url": "https://www.whu.edu.cn/rcpy.htm",
+      "summary": "武汉大学鼓励学生参加各类学科竞赛，包括全国大学生数学建模竞赛、电子设计竞赛、程序设计竞赛、机械创新设计大赛等，学校提供专项资助和指导。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉大学教务部"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "文学院",
+      "url": "http://chinese.whu.edu.cn/",
+      "disciplines": [
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "新闻与传播学院",
+      "url": "http://journal.whu.edu.cn/",
+      "disciplines": [
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "艺术学院",
+      "url": "http://art.whu.edu.cn/",
+      "disciplines": [
+        "艺术学理论",
+        "戏剧与影视学"
+      ]
+    },
+    {
+      "name": "历史学院",
+      "url": "http://history.whu.edu.cn/",
+      "disciplines": [
+        "历史学"
+      ]
+    },
+    {
+      "name": "哲学学院",
+      "url": "http://philosophy.whu.edu.cn/",
+      "disciplines": [
+        "哲学"
+      ]
+    },
+    {
+      "name": "外国语言文学学院",
+      "url": "http://fls.whu.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "http://law.whu.edu.cn/",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "政治与公共管理学院",
+      "url": "http://sim.whu.edu.cn/",
+      "disciplines": [
+        "政治学",
+        "公共管理"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://marx.whu.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "社会学院",
+      "url": "http://shxy.whu.edu.cn/",
+      "disciplines": [
+        "社会学"
+      ]
+    },
+    {
+      "name": "数学与统计学院",
+      "url": "http://maths.whu.edu.cn/",
+      "disciplines": [
+        "数学",
+        "统计学"
+      ]
+    },
+    {
+      "name": "物理科学与技术学院",
+      "url": "http://physics.whu.edu.cn/",
+      "disciplines": [
+        "物理学"
+      ]
+    },
+    {
+      "name": "化学与分子科学学院",
+      "url": "http://chem.whu.edu.cn/",
+      "disciplines": [
+        "化学"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "http://bio.whu.edu.cn/",
+      "disciplines": [
+        "生物学",
+        "生态学"
+      ]
+    },
+    {
+      "name": "资源与环境科学学院",
+      "url": "http://rsgis.whu.edu.cn/",
+      "disciplines": [
+        "地理学",
+        "环境科学与工程"
+      ]
+    },
+    {
+      "name": "城市设计学院",
+      "url": "http://civ.whu.edu.cn/",
+      "disciplines": [
+        "建筑学",
+        "城乡规划",
+        "风景园林"
+      ]
+    },
+    {
+      "name": "土木建筑工程学院",
+      "url": "http://civ.whu.edu.cn/",
+      "disciplines": [
+        "土木工程"
+      ]
+    },
+    {
+      "name": "水利水电学院",
+      "url": "http://swhu.edu.cn/",
+      "disciplines": [
+        "水利工程"
+      ]
+    },
+    {
+      "name": "电气与自动化学院",
+      "url": "http://eea.whu.edu.cn/",
+      "disciplines": [
+        "电气工程",
+        "控制科学与工程"
+      ]
+    },
+    {
+      "name": "动力与机械学院",
+      "url": "http://pmc.whu.edu.cn/",
+      "disciplines": [
+        "机械工程",
+        "动力工程及工程热物理"
+      ]
+    },
+    {
+      "name": "计算机学院",
+      "url": "http://cs.whu.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "国家网络安全学院",
+      "url": "http://cse.whu.edu.cn",
+      "disciplines": [
+        "网络空间安全"
+      ]
+    },
+    {
+      "name": "电子信息学院",
+      "url": "http://eis.whu.edu.cn/",
+      "disciplines": [
+        "电子科学与技术",
+        "信息与通信工程"
+      ]
+    },
+    {
+      "name": "遥感信息工程学院",
+      "url": "http://rsgis.whu.edu.cn/",
+      "disciplines": [
+        "测绘科学与技术"
+      ]
+    },
+    {
+      "name": "测绘学院",
+      "url": "http://rsgis.whu.edu.cn/",
+      "disciplines": [
+        "测绘科学与技术"
+      ]
+    },
+    {
+      "name": "印刷与包装系",
+      "url": "http://pst.whu.edu.cn/",
+      "disciplines": [
+        "轻工技术与工程"
+      ]
+    },
+    {
+      "name": "医学部",
+      "url": "http://sph.whu.edu.cn/",
+      "disciplines": [
+        "基础医学",
+        "临床医学",
+        "口腔医学",
+        "药学"
+      ]
+    },
+    {
+      "name": "经济与管理学院",
+      "url": "http://ems.whu.edu.cn/",
+      "disciplines": [
+        "理论经济学",
+        "应用经济学",
+        "工商管理"
+      ]
+    },
+    {
+      "name": "信息管理学院",
+      "url": "http://sim.whu.edu.cn/",
+      "disciplines": [
+        "图书情报与档案管理",
+        "管理科学与工程"
+      ]
+    },
+    {
+      "name": "会计学系",
+      "url": "http://ems.whu.edu.cn/",
+      "disciplines": [
+        "工商管理"
+      ]
+    },
+    {
+      "name": "旅游管理系",
+      "url": "http://ems.whu.edu.cn/",
+      "disciplines": [
+        "工商管理"
+      ]
+    },
+    {
+      "name": "高等研究院",
+      "url": "http://ias.whu.edu.cn/",
+      "disciplines": [
+        "物理学",
+        "化学",
+        "生物学",
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "土木建筑工程学院",
+      "url": "http://civ.whu.edu.cn/",
+      "disciplines": [
+        "力学",
+        "土木工程"
+      ]
+    },
+    {
+      "name": "弘毅学堂",
+      "url": "https://hyxt.whu.edu.cn/",
+      "disciplines": [
+        "理科试验班",
+        "工科试验班",
+        "人文科学试验班"
+      ]
+    },
+    {
+      "name": "药学院",
+      "url": "http://www.pharm.whu.edu.cn/",
+      "disciplines": [
+        "药学"
+      ]
+    },
+    {
+      "name": "健康学院",
+      "url": "http://sph.whu.edu.cn/",
+      "disciplines": [
+        "公共卫生与预防医学"
+      ]
+    }
+  ],
+  "student_experiences": [],
+  "notes": "部分页面（转专业政策、培养方案、辅修双学位、就业质量报告、保研推免、竞赛科研等）需要校园网或统一身份认证才能访问。信息公开网上可查询招生章程、招生计划、历年录取等核心信息。历年录取分数可通过 https://zsdata.whu.edu.cn/public/wzgl/#/jhcx 在线查询系统获取。学院列表包含武汉大学主要教学科研单位，跨学科机构已归入主要涉及学科。转专业政策、培养方案、就业报告等详细信息需通过教务部、研究生院、学生就业指导与服务中心等内部系统查询。部分链接为需要认证的内部系统，无法直接抓取内容。微专业、辅修双学位项目信息需访问各学院官网获取。保研推免信息需查阅研究生院网站及学院公示。学科竞赛和实验室信息需查阅教务部及科学技术发展研究院相关通知。学院专业设置可通过 https://zsdata.whu.edu.cn/public/wzgl/#/xyzy 招生数据平台查询。",
+  "missing_categories": [
+    "transfer_policy",
+    "transfer_announcement",
+    "major_streaming",
+    "training_program",
+    "minor_program",
+    "employment_report",
+    "postgrad_recommend",
+    "competition_research",
+    "student_experiences"
+  ]
+}

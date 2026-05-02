@@ -1,0 +1,286 @@
+{
+  "university": "中国科学院大学",
+  "official_url": "https://www.ucas.ac.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "中国科学院大学2025年本科招生章程",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/newslist/4719aea6-edb5-4446-9f2d-cbcc771da521",
+      "summary": "包含本科招生总则、报考条件、录取规则等重要信息",
+      "attachments": [
+        "https://admission.ucas.ac.cn/Content/Upload/2025/10/2.docx"
+      ],
+      "publish_date": "2025-06",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "博士招生简章",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/newslist/94e6b364-4d3b-4e7c-9eea-37bb18b5ace0",
+      "summary": "博士研究生招生简章及通知公告",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "硕士招生简章",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/newslist/4c7e0e9f-2311-47a0-8f12-b0ec992078ac",
+      "summary": "硕士研究生招生简章及通知公告",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "2025年本科招生计划",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/news/46225e08-3a7b-4232-acef-0aa8ef1fb9a1",
+      "summary": "包含分省分专业招生计划信息",
+      "attachments": [],
+      "publish_date": "2025-06",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "2025年博士招生目录",
+      "url": "https://admission.ucas.ac.cn/info/ZhaoshengDanwei/9adf9e50-424b-44c8-b2dc-900ef9344373",
+      "summary": "博士研究生招生专业目录，含各培养单位招生信息",
+      "attachments": [],
+      "publish_date": "2025-09",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "2025年硕士招生目录",
+      "url": "https://admission.ucas.ac.cn/info/ZhaoshengDanwei/9e780c52-baf5-4020-b453-bc4510579559",
+      "summary": "硕士研究生招生专业目录，含各培养单位招生信息",
+      "attachments": [],
+      "publish_date": "2025-09",
+      "source_department": "招生办公室"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "本科历年分数线",
+      "url": "https://admission.ucas.ac.cn/info/FractionalLine/b68c5086-59cb-413f-8edf-5723f2902baa",
+      "summary": "各省份历年录取分数线数据",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "硕士历年分数线",
+      "url": "https://admission.ucas.ac.cn/Assistant/FractionLine/79e1e9fe-31f8-43c7-9b72-3d2e11c95a52",
+      "summary": "硕士历年录取分数线",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "博士历年分数线",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/newslist/a0d2ca25-2b79-4ba2-89bf-2f8f4603e35a",
+      "summary": "博士历年录取分数线",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "转专业政策",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/news/b132a85f-1cfa-455f-9184-bca24413a19b",
+      "summary": "本科转专业相关政策与常见问题解答",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "教务部"
+    }
+  ],
+  "transfer_announcement": [],
+  "major_streaming": [
+    {
+      "title": "大类招生与分流",
+      "url": "https://admission.ucas.ac.cn/ShowArticle/news/fb5ffe1a-dd5f-46f3-b449-f2febd19ca28",
+      "summary": "本科招生专业介绍及大类分流相关信息",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "本科生培养方案",
+      "url": "https://news.ucas.ac.cn/jxyd/",
+      "summary": "本科教学园地，含培养方案相关通知",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "教务部"
+    },
+    {
+      "title": "2025年北京高校本科教学建设项目",
+      "url": "https://news.ucas.ac.cn/jxyd/d705f43746f34a7f92a8ca6b70954e6b.htm",
+      "summary": "国科大多个项目入选2025年北京高校本科教学建设项目，包括优质本科课程、教材教案等",
+      "attachments": [],
+      "publish_date": "2026-04-01",
+      "source_department": "新闻中心"
+    }
+  ],
+  "minor_program": [],
+  "employment_report": [
+    {
+      "title": "就业信息服务",
+      "url": "https://job.ucas.ac.cn/",
+      "summary": "中国科学院大学就业信息网，提供就业信息、宣讲会、招聘信息等",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "就业中心"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "推荐免试硕士目录",
+      "url": "https://admission.ucas.ac.cn/info/ZhaoshengDanwei/0C5EE6E2-3029-4855-BB6A-8C0E6C43CC74",
+      "summary": "接收推荐免试硕士研究生招生专业目录",
+      "attachments": [],
+      "publish_date": "2025-09",
+      "source_department": "招生办公室"
+    },
+    {
+      "title": "直博生目录",
+      "url": "https://admission.ucas.ac.cn/info/ZhaoshengDanwei/0498302B-8BDB-4F34-B4F8-48740BAD4FC3",
+      "summary": "直接攻读博士研究生招生目录",
+      "attachments": [],
+      "publish_date": "2025-09",
+      "source_department": "招生办公室"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "科研动态",
+      "url": "https://www.ucas.ac.cn/kxyj/kydt/index.htm",
+      "summary": "国科大科研动态新闻，包括科技成果、学术前沿等",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研部"
+    },
+    {
+      "title": "科技创新",
+      "url": "https://www.ucas.ac.cn/xyshq/kjcx/index.htm",
+      "summary": "学生科技创新活动、竞赛相关信息",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "学生处"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "数学科学学院",
+      "url": "",
+      "disciplines": [
+        "数学"
+      ]
+    },
+    {
+      "name": "物理学院",
+      "url": "",
+      "disciplines": [
+        "物理学"
+      ]
+    },
+    {
+      "name": "化学学院",
+      "url": "",
+      "disciplines": [
+        "化学"
+      ]
+    },
+    {
+      "name": "材料科学与光电技术学院",
+      "url": "",
+      "disciplines": [
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "地球与行星科学学院",
+      "url": "",
+      "disciplines": [
+        "地球物理学",
+        "地质学"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "",
+      "disciplines": [
+        "生物学"
+      ]
+    },
+    {
+      "name": "计算机科学与技术学院",
+      "url": "",
+      "disciplines": [
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "电子信息与电气工程学院",
+      "url": "",
+      "disciplines": [
+        "电子科学与技术",
+        "信息与通信工程"
+      ]
+    },
+    {
+      "name": "工程科学学院",
+      "url": "",
+      "disciplines": [
+        "力学",
+        "机械工程"
+      ]
+    },
+    {
+      "name": "经济与管理学院",
+      "url": "",
+      "disciplines": [
+        "管理科学与工程",
+        "工商管理"
+      ]
+    },
+    {
+      "name": "人文学院",
+      "url": "",
+      "disciplines": [
+        "哲学",
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "外语系",
+      "url": "",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "公共政策与管理学院",
+      "url": "",
+      "disciplines": [
+        "公共管理"
+      ]
+    }
+  ],
+  "student_experiences": [],
+  "notes": "中国科学院大学是\"院所融合\"的独特高校，研究生教育主要依托中科院100余个研究所（培养单位）进行，本科教育在玉泉路校区进行。以上学院列表为国科大校本部本科层面的学院，完整培养单位信息详见培养单位页面。",
+  "missing_categories": [
+    "transfer_announcement",
+    "transfer_policy",
+    "minor_program",
+    "employment_report",
+    "competition_research",
+    "student_experiences"
+  ]
+}

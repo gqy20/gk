@@ -1,0 +1,502 @@
+{
+  "university": "北京师范大学",
+  "official_url": "https://www.bnu.edu.cn",
+  "crawl_time": "2026-05-03",
+  "admission_guide": [
+    {
+      "title": "2025年本科招生章程及体检实施细则",
+      "url": "https://admission.bnu.edu.cn/zszc/f46788185f834ce1975d3e4952a7468d.html",
+      "summary": "北京师范大学2025年本科招生章程全文，含总则、组织机构、招生计划及录取规则、附则四章。学校设北京校区和珠海校区，分别填报分别录取。遵循分数优先原则，各专业志愿间无分数级差。学费：艺术类8000-10000元/学年，外语类6000元/学年，其他4800-5400元/学年。",
+      "attachments": [],
+      "publish_date": "2025-06-09",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2024年本科招生章程",
+      "url": "https://admission.bnu.edu.cn/zszc/ea4527c129f943cf94f6d2c174ba688e.html",
+      "summary": "北京师范大学2024年本科招生章程，包含招生计划、录取规则、体检标准等内容。",
+      "attachments": [],
+      "publish_date": "2024-05-24",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2023年本科招生章程",
+      "url": "https://admission.bnu.edu.cn/zszc/a81b833442564572a589e2d3ef016a2f.html",
+      "summary": "北京师范大学2023年本科招生章程。",
+      "attachments": [],
+      "publish_date": "2023-06-05",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "北京师范大学2026年强基计划招生简章",
+      "url": "https://admission.bnu.edu.cn/tslx/qjjh/92f152d9b1594ff082b72498f95f2588.html",
+      "summary": "2026年强基计划招生简章，面向基础学科拔尖学生。",
+      "attachments": [],
+      "publish_date": "2026-04-10",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2025年强基计划招生简章",
+      "url": "https://admission.bnu.edu.cn/zsxx/b6ec629f9fba454aa248835731dade79.html",
+      "summary": "2025年强基计划招生简章。",
+      "attachments": [],
+      "publish_date": "2025-04-18",
+      "source_department": "北京师范大学招生办公室"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "2025年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/b411741c050f4fa6a6c4e206e2053d14.html",
+      "summary": "包含2025年北京校区和珠海校区各省招生录取情况，含31个省份招生计划PDF附件。2026年计划待审批，预计6月发布。",
+      "attachments": [
+        "https://admission.bnu.edu.cn/docs/2026-03/5c3ffb84b6294b508f4d29ca5f235410.pdf",
+        "https://admission.bnu.edu.cn/docs/2026-03/f2c451465d2a41af93981466f44ad77a.pdf",
+        "https://admission.bnu.edu.cn/docs/2026-03/f7c02d781f7f4d248f6038a914297102.pdf",
+        "https://admission.bnu.edu.cn/docs/2026-03/055a15a9e07646d98e68b0d374389778.pdf",
+        "https://admission.bnu.edu.cn/docs/2026-03/f9fcd8982f49459c85da391f093fd4b3.pdf"
+      ],
+      "publish_date": "2026-03-25",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2025年分省份招生计划及近年录取分数",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/a6eba715a00c4dd984f1e119aa01f8b7.html",
+      "summary": "2025年分省份招生计划及近年录取分数统计。",
+      "attachments": [],
+      "publish_date": "2025-06-23",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2024年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/8b0680c2ee5f4e1e985b766acd58ada0.html",
+      "summary": "2024年各省录取分数线及招生计划情况汇总。",
+      "attachments": [],
+      "publish_date": "2024-10-24",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2023年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/edff0e0dcd4c4919be5cbcb568d83d9d.html",
+      "summary": "2023年各省录取分数线及招生计划情况汇总。",
+      "attachments": [],
+      "publish_date": "2023-10-24",
+      "source_department": "北京师范大学招生办公室"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "2025年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/b411741c050f4fa6a6c4e206e2053d14.html",
+      "summary": "2025年北京校区和珠海校区各省录取分数线及近年录取情况，含31个省份PDF附件。",
+      "attachments": [
+        "https://admission.bnu.edu.cn/docs/2026-03/5c3ffb84b6294b508f4d29ca5f235410.pdf",
+        "https://admission.bnu.edu.cn/docs/2026-03/f2c451465d2a41af93981466f44ad77a.pdf",
+        "https://admission.bnu.edu.cn/docs/2026-03/f7c02d781f7f4d248f6038a914297102.pdf"
+      ],
+      "publish_date": "2026-03-25",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2024年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/8b0680c2ee5f4e1e985b766acd58ada0.html",
+      "summary": "2024年各省录取分数线情况。",
+      "attachments": [],
+      "publish_date": "2024-10-24",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2023年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/edff0e0dcd4c4919be5cbcb568d83d9d.html",
+      "summary": "2023年各省录取分数线情况。",
+      "attachments": [],
+      "publish_date": "2023-10-24",
+      "source_department": "北京师范大学招生办公室"
+    },
+    {
+      "title": "2022年各省份录取分数线及招生计划情况",
+      "url": "https://admission.bnu.edu.cn/zsjhlnfs/136512.html",
+      "summary": "2022年各省录取分数线情况。",
+      "attachments": [],
+      "publish_date": "2022-10-24",
+      "source_department": "北京师范大学招生办公室"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "关于印发《北京师范大学本科生转专业管理办法》的通知（师教〔2025〕2号）",
+      "url": "https://jwb.bnu.edu.cn/pygc/xygl/jxap/010994a043cb4299bd874f577ef1b9ca.htm",
+      "summary": "北京师范大学本科生转专业管理办法全文，含总则、组织领导、申请资格、工作程序、其他规定等六章十七条。要点：(1)本科一、二年级可申请转专业，每人仅可填报一个目标专业；(2)每年春季学期统一组织；(3)接收人数原则上不低于该专业一年级学生人数的5%；(4)强基计划、外语保送生、艺术类和体育类等有转专业限制；(5)公费师范生转专业需生源地省级教育行政部门同意；(6)转专业后从下一学期按新专业培养方案修读。",
+      "attachments": [],
+      "publish_date": "2025-03-14",
+      "source_department": "教务部（研究生院）"
+    },
+    {
+      "title": "关于发布2026年本科生转专业培养单位工作方案的公告（第二批）",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/jxap/d96930c535564d90b5abb35e7a6d09ed.htm",
+      "summary": "2026年本科生转专业培养单位工作方案（第二批），含各培养单位的接收条件、考核要求等。",
+      "attachments": [
+        "http://jwb.bnu.edu.cn/docs/2026-04/d2890277df0c4ef0b7f1f57f570cbe59.pdf"
+      ],
+      "publish_date": "2026-04-12",
+      "source_department": "教务部（研究生院）"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "关于公示2026年本科生转专业拟接收学生名单的通知",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/jxap/47fe80c63e374d44b4fd77f40853aff4.htm",
+      "summary": "公示2026年本科生转专业拟接收学生名单。",
+      "attachments": [
+        "http://jwb.bnu.edu.cn/docs/2026-05/351cb690b0b24e9a90ebf8a440a8558c.pdf"
+      ],
+      "publish_date": "2026-05-01",
+      "source_department": "教务部（研究生院）"
+    }
+  ],
+  "major_streaming": [
+    {
+      "title": "北京师范大学本科生转专业管理办法（第七条相关）",
+      "url": "https://jwb.bnu.edu.cn/pygc/xygl/jxap/010994a043cb4299bd874f577ef1b9ca.htm",
+      "summary": "北师大未发现独立的大类分流规则文件。转专业管理办法第七条规定：以大类招生或宽口径招生入校后按相应程序确认到所对应的具体专业，不视作已有转专业记录，相关学生仍具有转专业资格。",
+      "attachments": [],
+      "publish_date": "2025-03-14",
+      "source_department": "教务部（研究生院）"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "北京师范大学本科生培养方案",
+      "url": "http://jwb.bnu.edu.cn/zyykc/pyfa/bkspyfa/7fe8c2702419432aa19611fb89cba589.htm",
+      "summary": "北京师范大学本科生培养方案汇总页面，各专业培养方案链接。培养方案包含课程体系、学分要求、毕业标准等。",
+      "attachments": [],
+      "publish_date": "2019-03-14",
+      "source_department": "教务部"
+    },
+    {
+      "title": "北京师范大学研究生培养方案",
+      "url": "http://jwb.bnu.edu.cn/zyykc/pyfa/yjspyfa/250aeabc72a04d6bb87abc137d5db430.htm",
+      "summary": "北京师范大学研究生培养方案汇总页面。",
+      "attachments": [],
+      "publish_date": "2019-03-17",
+      "source_department": "教务部（研究生院）"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "关于2025年本科生申请修读辅修（辅修学士学位）专业的通知",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/fxfxxsxw/17deefe06b7243298ac440b485560195.htm",
+      "summary": "2025年辅修（辅修学士学位）专业申请通知。要点：(1)辅修专业应与主修专业归属不同的本科专业类；(2)申请须经所在学部院系审核通过、辅修培养单位考核通过、教务部核准；(3)执行2023版辅修培养方案；(4)依据《北京师范大学本科生辅修管理办法》（师教培养[2021]63号）。",
+      "attachments": [
+        "http://jwb.bnu.edu.cn/docs/2025-09/25587c04f2c6489982054f969a7986b3.doc",
+        "http://jwb.bnu.edu.cn/docs/2025-09/b8f11da0422d412a8f29b904120be386.doc"
+      ],
+      "publish_date": "2025-09-03",
+      "source_department": "教务部"
+    },
+    {
+      "title": "关于公布获准修读2025级辅修（辅修学士学位）专业学生名单的通知",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/fxfxxsxw/bda09dabe6d54e449abecf6b9cec3f5a.htm",
+      "summary": "公布获准修读2025级辅修（辅修学士学位）专业学生名单。",
+      "attachments": [],
+      "publish_date": "2025-09-20",
+      "source_department": "教务部"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "北京师范大学2024届毕业生就业质量报告",
+      "url": "https://xxgk.bnu.edu.cn/xxxgkml/jxzl/gxbysjyzlndbg/index.htm",
+      "summary": "北京师范大学2024届毕业生就业质量年度报告，数据截至2024年10月31日，含北京校区和珠海校区北京学籍毕业生。涵盖毕业生规模及结构、就业率、去向分布、薪资等信息。",
+      "attachments": [
+        "https://xxgk.bnu.edu.cn/docs/2025-10/604fb8d4d549495185121d50d447155e.pdf"
+      ],
+      "publish_date": "2025-10",
+      "source_department": "北京师范大学信息公开网"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "关于组织2025年推荐免试攻读研究生工作的通知",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/tjms/e043959863cd4b49b4ddbf53e0937aca.htm",
+      "summary": "2025年推免工作详细通知，含推免类型、名额分配、日程安排。要点：(1)推免类型分普通类、研究生支教团、学生事务助理；(2)坚持“统一分配、分区推荐、统一监督”；(3)普通类选拔依据综合评价计分排名；(4)综合评价包含学业成绩、科研成果、竞赛获奖、志愿服务等；(5)工作日程：8月提交备案，9月8日前组织排名和拟推荐名单，9月9-24日学校公示和审议。",
+      "attachments": [
+        "http://jwb.bnu.edu.cn/docs/2025-08/9603dae0881e404fb00ff83040dca83f.pdf",
+        "http://jwb.bnu.edu.cn/docs/2025-08/3e1690c5f33848398965407a37866469.docx",
+        "http://jwb.bnu.edu.cn/docs/2025-08/90fe0e0027da4c16a15805e49d2fcc11.xls",
+        "http://jwb.bnu.edu.cn/docs/2025-08/50fbfa1648894265866c0082a81c182c.xls"
+      ],
+      "publish_date": "2025-08-26",
+      "source_department": "教务部（研究生院）"
+    },
+    {
+      "title": "关于发布2025年北京校区推荐免试研究生名额分配结果的通知",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/tjms/63d20e27285142cd92262e224c463024.htm",
+      "summary": "公布2025年北京校区各培养单位推荐免试研究生名额分配结果。",
+      "attachments": [],
+      "publish_date": "2025-09-03",
+      "source_department": "教务部（研究生院）"
+    },
+    {
+      "title": "关于公示2025年北京校区推荐免试研究生资格名单的通知",
+      "url": "http://jwb.bnu.edu.cn/pygc/xygl/tjms/cf88f5beb4ba4ce6b52c4da05a3e6889.htm",
+      "summary": "公示2025年北京校区推荐免试研究生资格名单。",
+      "attachments": [],
+      "publish_date": "2025-09-10",
+      "source_department": "教务部（研究生院）"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "北京师范大学人文社科类科研平台",
+      "url": "https://keyanyuan.bnu.edu.cn/kypt/rwskpt/index.html",
+      "summary": "共47个人文社科类科研平台，包括：国家级2011协同创新中心（中国基础教育质量监测协同创新中心）、国家高端智库（中国教育与社会发展研究院）、6个国家教材建设重点研究基地、教育部哲学社会科学实验室2个、教育部人文社科重点研究基地7个、国家语委科研基地、国家手语和盲文研究中心等。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "北京师范大学科研院"
+    },
+    {
+      "title": "北京师范大学理工科平台",
+      "url": "https://keyanyuan.bnu.edu.cn/kypt/lgkpt/index.html",
+      "summary": "共46个理工科平台，包括：全国重点实验室4个（地表过程与水土风沙灾害风险防控、区域环境安全、遥感与数字地球、湿地环境保护与生态修复）、国家工程研究中心1个（互联网教育智能技术）、国家野外科学观测研究站1个（东北虎豹生物多样性）、教育部重点实验室9个、教育部工程研究中心7个、北京市重点实验室7个等。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "北京师范大学科研院"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "哲学学院",
+      "url": "http://phil.bnu.edu.cn/",
+      "disciplines": [
+        "哲学"
+      ]
+    },
+    {
+      "name": "经济与工商管理学院",
+      "url": "http://bs.bnu.edu.cn/",
+      "disciplines": [
+        "理论经济学",
+        "应用经济学",
+        "工商管理"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "http://law.bnu.edu.cn",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://marx.bnu.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "社会学院",
+      "url": "http://soc.bnu.edu.cn/",
+      "disciplines": [
+        "社会学",
+        "人类学"
+      ]
+    },
+    {
+      "name": "体育与运动学院",
+      "url": "http://www.tyx.bnu.edu.cn/",
+      "disciplines": [
+        "体育学"
+      ]
+    },
+    {
+      "name": "文学院",
+      "url": "http://wxy.bnu.edu.cn/",
+      "disciplines": [
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "国际中文教育学院",
+      "url": "https://gjzw.bnu.edu.cn",
+      "disciplines": [
+        "国际中文教育"
+      ]
+    },
+    {
+      "name": "外国语言文学学院",
+      "url": "http://www.sfll.bnu.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "新闻传播学院",
+      "url": "http://sjc.bnu.edu.cn/",
+      "disciplines": [
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "历史学院",
+      "url": "http://history.bnu.edu.cn/",
+      "disciplines": [
+        "中国史",
+        "世界史",
+        "考古学"
+      ]
+    },
+    {
+      "name": "数学科学学院",
+      "url": "http://math.bnu.edu.cn/",
+      "disciplines": [
+        "数学"
+      ]
+    },
+    {
+      "name": "物理与天文学院",
+      "url": "http://physics.bnu.edu.cn/",
+      "disciplines": [
+        "物理学",
+        "天文学"
+      ]
+    },
+    {
+      "name": "化学学院",
+      "url": "http://www.chem.bnu.edu.cn/",
+      "disciplines": [
+        "化学"
+      ]
+    },
+    {
+      "name": "系统科学学院",
+      "url": "http://sss.bnu.edu.cn/",
+      "disciplines": [
+        "系统科学"
+      ]
+    },
+    {
+      "name": "统计学院",
+      "url": "http://stat.bnu.edu.cn",
+      "disciplines": [
+        "统计学"
+      ]
+    },
+    {
+      "name": "环境学院",
+      "url": "http://env.bnu.edu.cn/",
+      "disciplines": [
+        "环境科学与工程"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "http://cls.bnu.edu.cn/",
+      "disciplines": [
+        "生物学"
+      ]
+    },
+    {
+      "name": "人工智能学院",
+      "url": "http://ai.bnu.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术",
+        "人工智能"
+      ]
+    },
+    {
+      "name": "政府管理学院",
+      "url": "http://www.sg.bnu.edu.cn",
+      "disciplines": [
+        "公共管理",
+        "政治学"
+      ]
+    },
+    {
+      "name": "艺术与传媒学院",
+      "url": "http://www.art.bnu.edu.cn/",
+      "disciplines": [
+        "戏剧与影视学",
+        "音乐与舞蹈学",
+        "美术学"
+      ]
+    },
+    {
+      "name": "一带一路学院",
+      "url": "https://brs.bnu.edu.cn/index.htm",
+      "disciplines": [
+        "应用经济学",
+        "管理学"
+      ]
+    },
+    {
+      "name": "未来教育学院",
+      "url": "https://cef.bnu.edu.cn/",
+      "disciplines": [
+        "教育学"
+      ]
+    },
+    {
+      "name": "文理学院",
+      "url": "https://fas.bnu.edu.cn/",
+      "disciplines": [
+        "教育学",
+        "中国语言文学",
+        "数学",
+        "物理学",
+        "化学",
+        "生物学"
+      ]
+    },
+    {
+      "name": "国家安全与应急管理学院",
+      "url": "https://nsem.bnu.edu.cn/",
+      "disciplines": [
+        "安全科学与工程",
+        "公共管理"
+      ]
+    },
+    {
+      "name": "未来设计学院",
+      "url": "https://design.bnu.edu.cn/",
+      "disciplines": [
+        "设计学"
+      ]
+    },
+    {
+      "name": "未来技术学院",
+      "url": "https://tecs.bnu.edu.cn/",
+      "disciplines": [
+        "环境科学与工程",
+        "人工智能",
+        "生物医学工程"
+      ]
+    },
+    {
+      "name": "湾区国际商学院",
+      "url": "https://bibs.bnu.edu.cn/",
+      "disciplines": [
+        "工商管理",
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "励耘学院",
+      "url": "http://lyxy.bnu.edu.cn/",
+      "disciplines": [
+        "拔尖人才培养"
+      ]
+    }
+  ],
+  "student_experiences": [
+    {
+      "topic": "转专业难度和具体流程",
+      "content": "北师大转专业需先在教务部网站查看各学院工作方案和接收条件，填写转专业意愿表提交教务处审核。每人只能报一个目标专业，各学院考核方式不同（笔试/面试/综合考察）。总体难度因专业而异，热门专业竞争较大。",
+      "source_type": "知乎",
+      "source_url": "https://www.zhihu.com/question/398240646"
+    }
+  ],
+  "notes": "1. 大类分流：北师大未发现独立的大类分流规则文件，转专业管理办法中提及大类招生后按程序确认具体专业不视为转专业。2. 就业质量报告：2024届报告PDF来自信息公开网，该栏目历年报告均可下载。3. 招生计划与历年录取数据均以分省PDF附件形式提供，覆盖全国31个省份。4. 科研平台数据来源于科研院官网，含47个人文社科平台和46个理工科平台。5. 学院列表排除了学部层级，仅保留具体学院/系。",
+  "missing_categories": []
+}

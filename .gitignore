@@ -9,8 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
-# Output
-data/output/
+# Output (needed for Vercel build)
+# data/output/
 
 # Logs
 logs/

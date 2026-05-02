@@ -1,0 +1,380 @@
+{
+  "university": "武汉理工大学",
+  "official_url": "https://www.whut.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "武汉理工大学2026年普通本科招生章程",
+      "url": "https://zs.whut.edu.cn/zc/tslx/",
+      "summary": "武汉理工大学普通本科招生章程，包含招生原则、招生计划、录取规则等。",
+      "attachments": [],
+      "publish_date": "2025-05",
+      "source_department": "武汉理工大学招生办公室"
+    },
+    {
+      "title": "武汉理工大学2026年博士研究生招生简章",
+      "url": "http://gd.whut.edu.cn/zs/zsjz/202601/t20260119_624017.shtml",
+      "summary": "武汉理工大学2026年博士研究生招生简章及各学院申请考核制招生方案",
+      "attachments": [],
+      "publish_date": "2026-01-20",
+      "source_department": "武汉理工大学研究生院"
+    },
+    {
+      "title": "武汉理工大学2026年硕士研究生招生简章",
+      "url": "http://gd.whut.edu.cn/zs/zsjz/202509/t20250923_618738.shtml",
+      "summary": "武汉理工大学2026年硕士研究生招生简章",
+      "attachments": [],
+      "publish_date": "2025-10-09",
+      "source_department": "武汉理工大学研究生院"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "武汉理工大学2026年普通本科招生计划",
+      "url": "https://zs.whut.edu.cn/bkcx/bkzsjh/",
+      "summary": "包含分省分专业招生计划数，涵盖79个本科招生专业",
+      "attachments": [],
+      "publish_date": "2026-05",
+      "source_department": "武汉理工大学招生办公室"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "武汉理工大学历年录取分数线查询",
+      "url": "https://zs.whut.edu.cn/bkcx/bklqqk/",
+      "summary": "提供历年各省录取分数线查询，涵盖近3年数据",
+      "attachments": [],
+      "publish_date": "2026-05",
+      "source_department": "武汉理工大学招生办公室"
+    },
+    {
+      "title": "武汉理工大学2023年硕士研究生招生复试分数线",
+      "url": "http://gd.whut.edu.cn/zs/lssj/202305/t20230531_557466.shtml",
+      "summary": "武汉理工大学2023年硕士研究生招生复试分数线",
+      "attachments": [],
+      "publish_date": "2023-03-20",
+      "source_department": "武汉理工大学研究生院"
+    },
+    {
+      "title": "武汉理工大学2022年硕士研究生招生复试分数线",
+      "url": "http://gd.whut.edu.cn/zs/lssj/202302/t20230221_547339.shtml",
+      "summary": "武汉理工大学2022年硕士研究生招生复试分数线",
+      "attachments": [],
+      "publish_date": "2022-03-18",
+      "source_department": "武汉理工大学研究生院"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "转专业政策规定",
+      "url": "https://www.whut.edu.cn/rencaipeiyang/bksjy/202512/t20251205_1380583.shtml",
+      "summary": "推行学生自主的专业选择制度，保障学生个性化发展。第二学期按专业大类培养时间，学生可以在培养大类里自主确认主修专业，同时可以在全校范围内自由申请转专业。第三学期学生可以申请辅修本校的双学位以及微专业。",
+      "attachments": [],
+      "publish_date": "2025-12-05",
+      "source_department": "武汉理工大学本科生院"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "转专业公示",
+      "url": "https://jwc.whut.edu.cn/",
+      "summary": "各学院转专业拟录取名单公示，具体公示时间和名单请关注教务处通知",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉理工大学本科生院"
+    }
+  ],
+  "major_streaming": [
+    {
+      "title": "大类分流规则",
+      "url": "https://www.whut.edu.cn/rencaipeiyang/bksjy/202512/t20251205_1380583.shtml",
+      "summary": "第二学期按专业大类培养时间，学生可以在培养大类里自主确认主修专业。学校实施大类招生培养，学生入学后按大类进行基础课程学习，后期进行专业分流。",
+      "attachments": [],
+      "publish_date": "2025-12-05",
+      "source_department": "武汉理工大学本科生院"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "卓越的本科教育（2025年）",
+      "url": "https://www.whut.edu.cn/rencaipeiyang/bksjy/202512/t20251205_1380583.shtml",
+      "summary": "包含学分制和主辅修制、拔尖创新人才培养、科教协同培养、校企协同培养、国际协同培养等多种培养模式。现有54个国家一流专业建设点，28个国家卓越工程师教育培养计划试点专业。",
+      "attachments": [],
+      "publish_date": "2025-12-05",
+      "source_department": "武汉理工大学"
+    },
+    {
+      "title": "专业培养方案",
+      "url": "https://jwc.whut.edu.cn/",
+      "summary": "各专业培养方案详情，包括课程体系、学分要求、毕业标准等",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉理工大学本科生院"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "辅修/双学位/微专业政策",
+      "url": "https://www.whut.edu.cn/rencaipeiyang/bksjy/202512/t20251205_1380583.shtml",
+      "summary": "第三学期学生可以申请辅修本校的双学位以及微专业。已开设光电子信息玻璃、碳经济与碳数字化微专业14个。",
+      "attachments": [],
+      "publish_date": "2025-12-05",
+      "source_department": "武汉理工大学本科生院"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "就业质量报告",
+      "url": "https://scc.whut.edu.cn/",
+      "summary": "武汉理工大学就业信息网，提供就业指导与服务。毕业生去向落实率近十年持续保持在95%以上，其中到世界500强企业就业人数超过总就业人数的1/3。2023年7月中央电视台《焦点访谈》栏目专题报道学校就业工作。",
+      "attachments": [],
+      "publish_date": "2024-12",
+      "source_department": "武汉理工大学学生就业指导中心"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "推荐免试研究生政策",
+      "url": "http://gd.whut.edu.cn/zs/",
+      "summary": "学校开展推荐优秀应届本科毕业生免试攻读硕士学位研究生工作，详情见研究生院招生信息网",
+      "attachments": [],
+      "publish_date": "2025-09",
+      "source_department": "武汉理工大学研究生院"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "科研基地概览",
+      "url": "https://www.whut.edu.cn/kexueyanjiu/kygk/201910/t20191015_1380592.shtml",
+      "summary": "学校建有材料复合新技术国家重点实验室、光纤传感技术与网络国家工程研究中心、硅酸盐建筑材料国家重点实验室、国家水运安全工程技术研究中心等56个国家级和省部级科研基地。",
+      "attachments": [],
+      "publish_date": "2025-12-01",
+      "source_department": "武汉理工大学科学技术发展院"
+    },
+    {
+      "title": "国家及省部级科研基地",
+      "url": "https://www.whut.edu.cn/kexueyanjiu/gjjsys/",
+      "summary": "涵盖材料、交通、汽车等领域的国家重点实验室和国家工程研究中心",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "武汉理工大学"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "材料科学与工程学院",
+      "url": "http://smse.whut.edu.cn/",
+      "disciplines": [
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "材料科学与工程国际化示范学院（材料与微电子学院）",
+      "url": "http://ismse.whut.edu.cn/",
+      "disciplines": [
+        "材料科学与工程",
+        "微电子科学与工程"
+      ]
+    },
+    {
+      "name": "交通与物流工程学院",
+      "url": "https://stle.whut.edu.cn",
+      "disciplines": [
+        "交通运输工程",
+        "物流管理与工程"
+      ]
+    },
+    {
+      "name": "船海与能源动力工程学院",
+      "url": "https://naoep.whut.edu.cn",
+      "disciplines": [
+        "船舶与海洋工程",
+        "动力工程及工程热物理"
+      ]
+    },
+    {
+      "name": "汽车工程学院",
+      "url": "http://auto.whut.edu.cn/",
+      "disciplines": [
+        "机械工程",
+        "车辆工程"
+      ]
+    },
+    {
+      "name": "机电工程学院",
+      "url": "http://smee.whut.edu.cn/",
+      "disciplines": [
+        "机械工程",
+        "仪器科学与技术"
+      ]
+    },
+    {
+      "name": "土木工程与建筑学院",
+      "url": "http://scea.whut.edu.cn/",
+      "disciplines": [
+        "土木工程",
+        "建筑学"
+      ]
+    },
+    {
+      "name": "资源与环境工程学院",
+      "url": "http://sree.whut.edu.cn/",
+      "disciplines": [
+        "矿业工程",
+        "环境科学与工程"
+      ]
+    },
+    {
+      "name": "信息工程学院",
+      "url": "http://wutinfo.whut.edu.cn/",
+      "disciplines": [
+        "电子科学与技术",
+        "信息与通信工程"
+      ]
+    },
+    {
+      "name": "计算机与人工智能学院",
+      "url": "http://csai.whut.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术",
+        "软件工程",
+        "人工智能"
+      ]
+    },
+    {
+      "name": "自动化学院",
+      "url": "http://sa.whut.edu.cn/",
+      "disciplines": [
+        "控制科学与工程",
+        "电气工程"
+      ]
+    },
+    {
+      "name": "航运学院",
+      "url": "http://sn.whut.edu.cn/",
+      "disciplines": [
+        "航海技术",
+        "海事管理"
+      ]
+    },
+    {
+      "name": "数学与统计学院",
+      "url": "http://maths.whut.edu.cn",
+      "disciplines": [
+        "数学",
+        "统计学"
+      ]
+    },
+    {
+      "name": "物理与力学学院",
+      "url": "http://phymech.whut.edu.cn",
+      "disciplines": [
+        "物理学",
+        "力学"
+      ]
+    },
+    {
+      "name": "化学化工与生命科学学院",
+      "url": "http://sccels.whut.edu.cn/",
+      "disciplines": [
+        "化学",
+        "化学工程与技术",
+        "生物学"
+      ]
+    },
+    {
+      "name": "管理学院",
+      "url": "http://som.whut.edu.cn/",
+      "disciplines": [
+        "管理科学与工程",
+        "工商管理"
+      ]
+    },
+    {
+      "name": "经济学院",
+      "url": "http://econ.whut.edu.cn/",
+      "disciplines": [
+        "应用经济学",
+        "理论经济学"
+      ]
+    },
+    {
+      "name": "艺术与设计学院",
+      "url": "http://a-d.whut.edu.cn/",
+      "disciplines": [
+        "设计学",
+        "美术学"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "http://sfl.whut.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://mkszyxy.whut.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "法学与人文社会学院",
+      "url": "http://wenfa.whut.edu.cn/",
+      "disciplines": [
+        "法学",
+        "社会学"
+      ]
+    },
+    {
+      "name": "安全科学与应急管理学院",
+      "url": "http://sem.whut.edu.cn/",
+      "disciplines": [
+        "安全科学与工程",
+        "应急管理"
+      ]
+    },
+    {
+      "name": "国际教育学院",
+      "url": "http://sie.whut.edu.cn/",
+      "disciplines": [
+        "国际教育"
+      ]
+    },
+    {
+      "name": "创业学院",
+      "url": "http://sen.whut.edu.cn/",
+      "disciplines": [
+        "创新创业管理"
+      ]
+    },
+    {
+      "name": "国家卓越工程师学院",
+      "url": "http://wyy.whut.edu.cn",
+      "disciplines": [
+        "工程硕士"
+      ]
+    },
+    {
+      "name": "武汉理工大学艾克斯马赛学院",
+      "url": "http://amucwut.whut.edu.cn/",
+      "disciplines": [
+        "生物医药工程"
+      ]
+    },
+    {
+      "name": "体育学院",
+      "url": "http://sports.whut.edu.cn/",
+      "disciplines": [
+        "体育学"
+      ]
+    }
+  ],
+  "student_experiences": [],
+  "notes": "本次抓取涵盖了武汉理工大学官方网站（https://www.whut.edu.cn）及其子站（本科招生网zs.whut.edu.cn、研究生院gd.whut.edu.cn、就业信息网scc.whut.edu.cn）的主要信息。学院列表仅列出具体学院层级，不包含独立建制的科研院所。学生经验分享属于非官方信息，本次未进行抓取。部分信息（如转专业公示、培养方案附件链接、就业质量报告PDF等）需要进一步访问具体子页面获取。科学研究页面显示学校有丰富的科研基地和创新成果，包括56个国家级和省部级科研基地，2023年获国家科学技术奖5项。就业指导中心提供完善的就业服务，毕业生去向落实率保持在95%以上。",
+  "missing_categories": [
+    "student_experiences"
+  ]
+}

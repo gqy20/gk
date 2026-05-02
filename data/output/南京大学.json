@@ -1,0 +1,561 @@
+{
+  "university": "南京大学",
+  "official_url": "https://www.nju.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "南京大学2026年强基计划招生简章",
+      "url": "https://bkzs.nju.edu.cn/static/front/nju/basic/html_cms/frontViewArticle1.html?id=9da1d588bf0f4b42adcfc1c12a5341fa",
+      "summary": "2026年强基计划招生简章，面向全国招生，选拔有志于服务国家重大战略需求且综合素质优秀或基础学科拔尖的学生。",
+      "attachments": [],
+      "publish_date": "2026-04-10",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "南京大学2026年外语类保送生招生简章",
+      "url": "https://bkzs.nju.edu.cn/static/front/nju/basic/html_cms/frontViewArticle1.html?id=1a2e27c233f343688fdbdfafc304d035",
+      "summary": "2026年外语类保送生招生简章，招收具有推荐保送资格的外国语中学学生。",
+      "attachments": [],
+      "publish_date": "2025-12-29",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "南京大学2026年招收香港中学文凭考试学生简章",
+      "url": "https://bkzs.nju.edu.cn/static/front/nju/basic/html_cms/frontViewArticle1.html?id=d986e032e7234b83806845f28810b6bf",
+      "summary": "招收香港中学文凭考试学生简章，适用于香港籍学生。",
+      "attachments": [],
+      "publish_date": "2025-11-21",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "南京大学2026年接收推荐免试研究生工作办法",
+      "url": "https://yzb.nju.edu.cn/07/0c/c47868a788236/page.htm",
+      "summary": "接收推荐免试研究生工作办法，包括预报名、复试、录取等流程。",
+      "attachments": [],
+      "publish_date": "2025-09-10",
+      "source_department": "研究生招生办公室"
+    },
+    {
+      "title": "南京大学2026年硕士研究生招生复试录取工作办法",
+      "url": "https://yzb.nju.edu.cn/9d/b5/c47863a826805/page.htm",
+      "summary": "硕士招生复试录取工作办法，包括复试分数线、录取规则等。",
+      "attachments": [],
+      "publish_date": "2026-03-16",
+      "source_department": "研究生招生办公室"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "南京大学2025年分省分专业招生计划",
+      "url": "https://bkzs.nju.edu.cn/static/front/nju/basic/html_web/zsjh.html",
+      "summary": "2025年各省分专业招生计划数，含江苏物理类普通批次643人。涵盖工科试验班、技术科学试验班、理科试验班类、电子信息类、人工智能、计算机科学与技术、软件工程、临床医学等专业。",
+      "attachments": [],
+      "publish_date": "2025",
+      "source_department": "本科生招生办公室"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "南京大学历年录取分数线查询",
+      "url": "https://bkzs.nju.edu.cn/static/front/nju/basic/html_web/lnfs.html",
+      "summary": "提供近三年(2023-2025)各省各科类录取分数线查询，支持按省份、年份(2023/2024/2025)、科类(物理类/历史类)、类型(普通批次/中外合作办学)筛选。示例：2025年江苏物理类普通批次最低分661分。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "南京大学2025年硕士研究生招生考试复试基本分数线",
+      "url": "https://yzb.nju.edu.cn/6b/64/c48336a748388/page.htm",
+      "summary": "2025年硕士研究生复试基本分数线，学术学位和专业学位分开划线。",
+      "attachments": [],
+      "publish_date": "2025-03-13",
+      "source_department": "研究生招生办公室"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "南京大学普通全日制本科生学科、专业准入实施管理办法",
+      "url": "https://jw.nju.edu.cn/_upload/article/files/a3/7b/899536274f68ae27b315a6553ee9/2effa5e4-bb38-4bdf-9399-b3be3896f33c.pdf",
+      "summary": "规定了转院系、转专业的基本条件和流程。学生可在第二至第四学期申请，每年5月10-15日受理，5月25-30日甄别考试，6月5-8日学校评审，6月10日前公布名单。需思想品质优良、学习成绩良好。",
+      "attachments": [
+        "https://jw.nju.edu.cn/_upload/article/files/a3/7b/899536274f68ae27b315a6553ee9/2effa5e4-bb38-4bdf-9399-b3be3896f33c.pdf"
+      ],
+      "publish_date": "2021-09-02",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "南京大学电子科学与工程学院专业准入要求",
+      "url": "https://ese.nju.edu.cn/22552/main.psp",
+      "summary": "电子科学与工程学院专业准入课程要求，准入课程共7门，第二学期结束时申请需修完《大学物理Ⅰ》《电路分析》并取得7个准入课程学分。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "电子科学与工程学院"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "2026年春季学期专业准入线下咨询会",
+      "url": "https://jw.nju.edu.cn/ad/e7/c24774a830951/page.htm",
+      "summary": "2026年春季学期专业准入线下咨询会顺利开展，提供转专业咨询指导服务。",
+      "attachments": [],
+      "publish_date": "2026-04-24",
+      "source_department": "本科生院"
+    }
+  ],
+  "major_streaming": [
+    {
+      "title": "南京大学2026年普通全日制本科生学科、专业分流通知",
+      "url": "https://jw.nju.edu.cn/a8/5e/c26263a829534/page.htm",
+      "summary": "2026年普通全日制本科生学科、专业分流通知，规定了大类分流的时间安排和流程。",
+      "attachments": [],
+      "publish_date": "2026-04-09",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "电子科学与工程学院专业分流方案",
+      "url": "https://ese.nju.edu.cn/22552/main.psp",
+      "summary": "本大类大二上学期进行专业分流，学生自愿报名，择优分配。允许非该大类学生跨院系转入。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "电子科学与工程学院"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "本科人才培养方案和教育教学计划查询方式",
+      "url": "https://jw.nju.edu.cn/ad/c8/c24794a634312/page.htm",
+      "summary": "提供了本科人才培养方案和教育教学计划的查询方式，学生可通过系统查询各专业培养方案。",
+      "attachments": [],
+      "publish_date": "2023-07-31",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "2017版教学计划",
+      "url": "https://jw.nju.edu.cn/0f/5f/c24794a397151/page.htm",
+      "summary": "2017版本科教学计划，包含各专业课程设置和学分要求。",
+      "attachments": [],
+      "publish_date": "2019-08-22",
+      "source_department": "本科生院"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "2025版本科辅修专业培养方案",
+      "url": "https://jw.nju.edu.cn/_redirect?siteId=414&columnId=46290&articleId=805038",
+      "summary": "2025版本科辅修专业培养方案，包含辅修专业设置、课程要求、学分规定等。",
+      "attachments": [],
+      "publish_date": "2026-01-09",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "2021版本科辅修专业培养方案（20250221修订）",
+      "url": "https://jw.nju.edu.cn/_upload/article/files/d4/e5/7bbef4344bada004e61d3e8697f1/321ac63d-1fc2-4ab0-a916-d25e0c124bb9.pdf",
+      "summary": "2021版辅修专业培养方案PDF文件，规定了辅修专业的课程体系、学分要求等。",
+      "attachments": [
+        "https://jw.nju.edu.cn/_upload/article/files/d4/e5/7bbef4344bada004e61d3e8697f1/321ac63d-1fc2-4ab0-a916-d25e0c124bb9.pdf"
+      ],
+      "publish_date": "2022-01-14",
+      "source_department": "本科生院"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "南京大学2024届毕业生就业质量报告",
+      "url": "https://xxgk.nju.edu.cn/83/52/c16401a754514/page.htm",
+      "summary": "南京大学2024届毕业生就业质量报告，涵盖本科和研究生毕业生规模、就业率、就业去向分布、薪资水平等。",
+      "attachments": [],
+      "publish_date": "2025-04-14",
+      "source_department": "学生就业指导中心"
+    },
+    {
+      "title": "南京大学地球科学与工程学院2024届就业质量报告",
+      "url": "https://es.nju.edu.cn/83/4e/c53008a754510/page.htm",
+      "summary": "地球科学与工程学院2024届毕业生就业质量报告。",
+      "attachments": [],
+      "publish_date": "2025-04-14",
+      "source_department": "地球科学与工程学院"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "南京大学2026年接收推荐免试研究生拟录取名单公示",
+      "url": "https://yzb.nju.edu.cn/28/72/c47868a796786/page.htm",
+      "summary": "2026年接收推荐免试研究生拟录取名单公示，包含推免生录取名单。",
+      "attachments": [],
+      "publish_date": "2025-10-29",
+      "source_department": "研究生招生办公室"
+    },
+    {
+      "title": "南京大学2026年接收推荐免试研究生工作办法",
+      "url": "https://yzb.nju.edu.cn/07/0c/c47868a788236/page.htm",
+      "summary": "接收推荐免试研究生工作办法，规定推免条件、预报名流程、复试安排、录取规则等。",
+      "attachments": [],
+      "publish_date": "2025-09-10",
+      "source_department": "研究生招生办公室"
+    },
+    {
+      "title": "推荐免试攻读研究生流程",
+      "url": "https://jw.nju.edu.cn/a9/42/c24763a371010/page.htm",
+      "summary": "推荐免试攻读研究生流程指南。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "南京大学国家重点实验室",
+      "url": "https://www.nju.edu.cn/kxyj/kyjg.htm",
+      "summary": "南京大学拥有7个国家重点实验室：固体微结构物理国家重点实验室(物理学院)、现代配位化学国家重点实验室(化学化工学院)、计算机软件新技术国家重点实验室(计算机学院)、内生金属矿床成矿机制研究国家重点实验室(地球科学与工程学院)、医药生物技术国家重点实验室(生命科学学院)、污染控制与资源化研究国家重点实验室(环境学院)、生命分析化学国家重点实验室(化学化工学院)。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科学技术研究院"
+    },
+    {
+      "title": "教育部人文社会科学重点研究基地",
+      "url": "https://www.nju.edu.cn/kxyj/kyjg.htm",
+      "summary": "中国新文学研究中心、中华民国史研究中心、长江三角洲经济社会发展研究中心、马克思主义社会理论研究中心。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "社会科学处"
+    },
+    {
+      "title": "国家高端智库建设培育单位",
+      "url": "https://www.nju.edu.cn/kxyj/kyjg.htm",
+      "summary": "长江产业经济研究院。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "社会科学处"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "新生学院",
+      "url": "https://xsxy.nju.edu.cn/",
+      "disciplines": [
+        "大类培养"
+      ]
+    },
+    {
+      "name": "文学院",
+      "url": "http://chin.nju.edu.cn/",
+      "disciplines": [
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "历史学院",
+      "url": "http://history.nju.edu.cn/",
+      "disciplines": [
+        "历史学"
+      ]
+    },
+    {
+      "name": "哲学学院",
+      "url": "http://philo.nju.edu.cn/",
+      "disciplines": [
+        "哲学"
+      ]
+    },
+    {
+      "name": "新闻传播学院",
+      "url": "http://jc.nju.edu.cn/",
+      "disciplines": [
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "https://law.nju.edu.cn/",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "商学院",
+      "url": "https://nubs.nju.edu.cn/",
+      "disciplines": [
+        "工商管理",
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "http://sfs.nju.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "政府管理学院",
+      "url": "http://public.nju.edu.cn/",
+      "disciplines": [
+        "公共管理",
+        "政治学"
+      ]
+    },
+    {
+      "name": "国际关系学院",
+      "url": "https://sis.nju.edu.cn/",
+      "disciplines": [
+        "国际关系"
+      ]
+    },
+    {
+      "name": "信息管理学院",
+      "url": "http://im.nju.edu.cn/",
+      "disciplines": [
+        "图书情报与档案管理"
+      ]
+    },
+    {
+      "name": "社会学院",
+      "url": "http://sociology.nju.edu.cn/",
+      "disciplines": [
+        "社会学"
+      ]
+    },
+    {
+      "name": "数学学院",
+      "url": "http://math.nju.edu.cn/",
+      "disciplines": [
+        "数学"
+      ]
+    },
+    {
+      "name": "物理学院",
+      "url": "http://physics.nju.edu.cn/",
+      "disciplines": [
+        "物理学"
+      ]
+    },
+    {
+      "name": "天文与空间科学学院",
+      "url": "http://astronomy.nju.edu.cn/",
+      "disciplines": [
+        "天文学"
+      ]
+    },
+    {
+      "name": "化学学院",
+      "url": "http://chem.nju.edu.cn/",
+      "disciplines": [
+        "化学"
+      ]
+    },
+    {
+      "name": "化工学院",
+      "url": "",
+      "disciplines": [
+        "化学工程与技术"
+      ]
+    },
+    {
+      "name": "计算机学院",
+      "url": "http://cs.nju.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "软件学院",
+      "url": "http://software.nju.edu.cn/",
+      "disciplines": [
+        "软件工程"
+      ]
+    },
+    {
+      "name": "人工智能学院",
+      "url": "http://ai.nju.edu.cn/",
+      "disciplines": [
+        "人工智能"
+      ]
+    },
+    {
+      "name": "电子科学与工程学院",
+      "url": "http://ese.nju.edu.cn/",
+      "disciplines": [
+        "电子科学与技术"
+      ]
+    },
+    {
+      "name": "现代工程与应用科学学院",
+      "url": "http://eng.nju.edu.cn/",
+      "disciplines": [
+        "光学工程",
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "环境学院",
+      "url": "http://hjxy.nju.edu.cn/",
+      "disciplines": [
+        "环境科学与工程"
+      ]
+    },
+    {
+      "name": "地球科学与工程学院",
+      "url": "http://es.nju.edu.cn/",
+      "disciplines": [
+        "地质学",
+        "地质资源与地质工程"
+      ]
+    },
+    {
+      "name": "地理与海洋科学学院",
+      "url": "http://sgos.nju.edu.cn/",
+      "disciplines": [
+        "地理学",
+        "海洋科学"
+      ]
+    },
+    {
+      "name": "大气科学学院",
+      "url": "http://as.nju.edu.cn/",
+      "disciplines": [
+        "大气科学"
+      ]
+    },
+    {
+      "name": "南京赫尔辛基大气与地球系统科学学院",
+      "url": "http://nh.nju.edu.cn",
+      "disciplines": [
+        "大气科学与地球系统科学"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "http://life.nju.edu.cn/",
+      "disciplines": [
+        "生物学",
+        "生态学"
+      ]
+    },
+    {
+      "name": "医学院",
+      "url": "http://med.nju.edu.cn/",
+      "disciplines": [
+        "临床医学",
+        "基础医学"
+      ]
+    },
+    {
+      "name": "工程管理学院",
+      "url": "http://sme.nju.edu.cn/",
+      "disciplines": [
+        "管理科学与工程"
+      ]
+    },
+    {
+      "name": "匡亚明学院",
+      "url": "http://dii.nju.edu.cn/",
+      "disciplines": [
+        "基础学科拔尖培养"
+      ]
+    },
+    {
+      "name": "海外教育学院",
+      "url": "http://hwxy.nju.edu.cn/",
+      "disciplines": [
+        "国际中文教育"
+      ]
+    },
+    {
+      "name": "建筑与城市规划学院",
+      "url": "http://arch.nju.edu.cn/",
+      "disciplines": [
+        "建筑学",
+        "城乡规划"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://marxism.nju.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "艺术学院",
+      "url": "http://art.nju.edu.cn/",
+      "disciplines": [
+        "艺术学"
+      ]
+    },
+    {
+      "name": "智能科学与技术学院",
+      "url": "https://is.nju.edu.cn/main.htm",
+      "disciplines": [
+        "智能科学与技术"
+      ]
+    },
+    {
+      "name": "智能软件与工程学院",
+      "url": "https://ise.nju.edu.cn/",
+      "disciplines": [
+        "软件工程",
+        "智能科学"
+      ]
+    },
+    {
+      "name": "集成电路学院",
+      "url": "https://ic.nju.edu.cn/main.htm",
+      "disciplines": [
+        "集成电路科学与工程"
+      ]
+    },
+    {
+      "name": "数字经济与管理学院",
+      "url": "https://sdem.nju.edu.cn/main.htm",
+      "disciplines": [
+        "数字经济"
+      ]
+    },
+    {
+      "name": "能源与资源学院",
+      "url": "https://sser.nju.edu.cn/",
+      "disciplines": [
+        "能源科学与工程"
+      ]
+    },
+    {
+      "name": "国家卓越工程师学院",
+      "url": "https://gcee.nju.edu.cn",
+      "disciplines": [
+        "工程类专业学位"
+      ]
+    },
+    {
+      "name": "机器人与自动化学院",
+      "url": "https://ra.nju.edu.cn/",
+      "disciplines": [
+        "机器人",
+        "自动化"
+      ]
+    },
+    {
+      "name": "前沿科学学院",
+      "url": "https://frontier.nju.edu.cn/main.htm",
+      "disciplines": [
+        "前沿交叉学科"
+      ]
+    },
+    {
+      "name": "生物医学工程学院",
+      "url": "https://bme.nju.edu.cn/",
+      "disciplines": [
+        "生物医学工程"
+      ]
+    },
+    {
+      "name": "教育研究院·陶行知教师教育学院",
+      "url": "http://edu.nju.edu.cn/",
+      "disciplines": [
+        "教育学"
+      ]
+    }
+  ],
+  "student_experiences": [],
+  "notes": "已成功抓取南京大学13类信息中的12类。学生经验分享未找到（非官方渠道内容，不强制要求）。转专业公示页和就业质量报告PDF附件链接部分页面需要登录或存在访问限制。学院列表已按要求仅列出具体学院，未包含学部层级。科研机构信息包含国家重点实验室、教育部重点实验室，省级重点实验室等共80余个科研平台。2024届就业质量报告显示毕业生总体就业情况良好。推免工作每年9-10月进行。历年录取分数线可通过本科招生网查询系统按省份、年份、科类查询。",
+  "missing_categories": []
+}

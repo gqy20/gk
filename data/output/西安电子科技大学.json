@@ -1,0 +1,442 @@
+{
+  "university": "西安电子科技大学",
+  "official_url": "https://www.xidian.edu.cn",
+  "crawl_time": "2026-05-03",
+  "admission_guide": [
+    {
+      "title": "西安电子科技大学2025年本科招生章程",
+      "url": "https://zsb.xidian.edu.cn/info/1009/5963.htm",
+      "summary": "西安电子科技大学2025年面向全国实行按专业大类招生。采用分数优先、遵循志愿的原则确定考生专业，各专业志愿间不设分数级差。同分依次按数学、外语、语文排序。预留计划1%。含通信工程（中英赫瑞-瓦特大学）、电子信息工程（中法南特大学）、数据科学与大数据技术（中英赫瑞-瓦特大学）、大数据管理与应用（中美弗吉尼亚理工大学）四个中外合作办学项目。",
+      "attachments": [
+        "https://zsb.xidian.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1638859082&wbfileid=A6071F1CD95277A3D2F10C26414ABF3F"
+      ],
+      "publish_date": "2025-05-30",
+      "source_department": "本科招生办公室"
+    },
+    {
+      "title": "西安电子科技大学2025年高校专项计划招生简章",
+      "url": "https://zsb.xidian.edu.cn/info/1009/5633.htm",
+      "summary": "西安电子科技大学2025年高校专项计划招生简章，面向边远、贫困、民族等地区县（含县级市）以下高中招收勤奋好学、成绩优良的农村学生。",
+      "attachments": [],
+      "publish_date": "2025-04-03",
+      "source_department": "本科招生办公室"
+    },
+    {
+      "title": "西安电子科技大学2026年运动训练专业招生简章",
+      "url": "https://zsb.xidian.edu.cn/info/1009/6373.htm",
+      "summary": "2026年运动训练专业招生简章，面向具有运动特长的高中毕业生。",
+      "attachments": [],
+      "publish_date": "2026-01-16",
+      "source_department": "本科招生办公室"
+    },
+    {
+      "title": "西安电子科技大学2026年外语类、竞赛类保送生招生简章",
+      "url": "https://zsb.xidian.edu.cn/info/1009/6353.htm",
+      "summary": "2026年外语类、竞赛类保送生招生简章。",
+      "attachments": [],
+      "publish_date": "2026-01-10",
+      "source_department": "本科招生办公室"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "西安电子科技大学招生计划查询系统",
+      "url": "https://zsxc.xidian.edu.cn/auth/zsdata/lqxx/#/",
+      "summary": "本科招生网提供的分省分专业招生计划查询系统，为JS动态渲染页面，需在线交互查询具体省份和专业的招生计划数。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科招生办公室"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "西安电子科技大学历年分数查询系统",
+      "url": "https://zsxc.xidian.edu.cn/auth/zsdata/lqxx/#/lnfs",
+      "summary": "本科招生网提供的历年录取分数线查询系统，可按省份查询历年各专业录取分数线、位次等信息，为JS动态渲染页面，需在线交互查询。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科招生办公室"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "关于印发《西安电子科技大学大类招生学生分流转专业实施办法（试行）》的通知",
+      "url": "https://jwc.xidian.edu.cn/info/1024/10929.htm",
+      "summary": "西电教〔2021〕20号。大类内分流时间为第二学期末，转专业时间为第四学期末。分流依据大一学年必修课加权平均成绩（100分）和综合素质测评成绩（10分），按志愿优先、择优录取原则进行。转专业条件由各学院自行制定，学校根据专业生师比、就业质量等进行审定。特殊类型学生（中外合作办学、定向生、艺术类等）不能申请转专业。",
+      "attachments": [
+        "https://jwc.xidian.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1070628979&wbfileid=C576FA887DFDA32480791C7B092A19D5"
+      ],
+      "publish_date": "2021-11-10",
+      "source_department": "教务处/本科生院"
+    },
+    {
+      "title": "关于开展2023级本科生转专业工作的通知",
+      "url": "https://jwc.xidian.edu.cn/info/1012/19363.htm",
+      "summary": "2025年6月发布的2023级本科生转专业工作通知，明确了转专业工作的基本原则、流程安排和时间节点。",
+      "attachments": [],
+      "publish_date": "2025-06-27",
+      "source_department": "教务处/本科生院"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "关于公示2023级转专业拟录取学生名单的通知",
+      "url": "https://jwc.xidian.edu.cn/info/1012/19583.htm",
+      "summary": "根据转专业工作安排，经过个人报名、初审、面试等环节，公示2023级各专业拟录取转专业学生名单，公示期内可联系本科生院提出异议。",
+      "attachments": [
+        "https://jwc.xidian.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1070628979&wbfileid=2A8E4DE4447EB97BBFA81E0E9E569755"
+      ],
+      "publish_date": "2025-07-10",
+      "source_department": "教务处/本科生院"
+    },
+    {
+      "title": "关于2022级本科生转专业拟录取名单公示",
+      "url": "https://jwc.xidian.edu.cn/info/1012/13463.htm",
+      "summary": "2022级各专业转专业拟录取学生名单公示。",
+      "attachments": [],
+      "publish_date": "2024-07-11",
+      "source_department": "教务处/本科生院"
+    },
+    {
+      "title": "关于2021级本科生转专业拟录取名单公示",
+      "url": "https://jwc.xidian.edu.cn/info/1012/12832.htm",
+      "summary": "2021级各专业转专业拟录取学生名单公示。",
+      "attachments": [],
+      "publish_date": "2023-07-10",
+      "source_department": "教务处/本科生院"
+    }
+  ],
+  "major_streaming": [
+    {
+      "title": "《西安电子科技大学大类招生学生分流转专业实施办法（试行）》——大类分流规则",
+      "url": "https://jwc.xidian.edu.cn/info/1024/10929.htm",
+      "summary": "大类内分流时间为第二学期末，学生自第三学期按分流后专业学习。分流仅在大类包含的专业内进行。学业评价包括课程成绩（大一学年必修课加权平均成绩，100分）和综合素质测评成绩（书院评定，10分）。按志愿优先、成绩排序依次录取。名额由本科生院结合专业评估质量和历史体量确定，一般在第二学期开学初公布。",
+      "attachments": [],
+      "publish_date": "2021-11-10",
+      "source_department": "教务处/本科生院"
+    },
+    {
+      "title": "关于2024级大类专业分流有关工作安排的通知",
+      "url": "https://jwc.xidian.edu.cn/info/1012/19023.htm",
+      "summary": "2025年6月发布的2024级大类专业分流工作安排通知，按西电教〔2021〕20号文件执行。",
+      "attachments": [],
+      "publish_date": "2025-06-04",
+      "source_department": "教务处/本科生院"
+    },
+    {
+      "title": "关于2023级大类专业分流有关工作安排的通知",
+      "url": "https://jwc.xidian.edu.cn/info/1012/13396.htm",
+      "summary": "2024年5月发布的2023级大类专业分流工作安排通知。",
+      "attachments": [],
+      "publish_date": "2024-05-29",
+      "source_department": "教务处/本科生院"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "西安电子科技大学2024版本科人才培养方案修订指导意见",
+      "url": "https://jwc.xidian.edu.cn/info/1012/14573.htm",
+      "summary": "西电教〔2024〕21号文件，指导2024版本科人才培养方案修订工作，各学院据此开展调研和修订。",
+      "attachments": [],
+      "publish_date": "2024-10-17",
+      "source_department": "教务处"
+    },
+    {
+      "title": "先进材料与纳米科技学院本科生培养方案",
+      "url": "https://amn.xidian.edu.cn/rcpy/bkspyfa.htm",
+      "summary": "先进材料与纳米科技学院本科生培养方案页面，包含材料科学与工程、化学等专业的课程体系和学分要求。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "先进材料与纳米科技学院"
+    },
+    {
+      "title": "经济与管理学院2024本科生培养方案修订宣贯会",
+      "url": "https://sem.xidian.edu.cn/info/1173/9087.htm",
+      "summary": "经济与管理学院2024版本科生培养方案修订宣贯会内容。",
+      "attachments": [],
+      "publish_date": "2024-04-22",
+      "source_department": "经济与管理学院"
+    },
+    {
+      "title": "计算机类学院联合召开2024本科人才培养方案修订宣贯会",
+      "url": "https://sai.xidian.edu.cn/info/1004/9275.htm",
+      "summary": "计算机科学与技术学院、网络与信息安全学院、人工智能学院联合召开2024版本科人才培养方案修订宣贯会暨课程体系建设研讨。",
+      "attachments": [],
+      "publish_date": "2024-04-28",
+      "source_department": "人工智能学院"
+    },
+    {
+      "title": "研究生培养方案",
+      "url": "https://gr.xidian.edu.cn/zwy.jsp?urltype=tree.TreeTempUrl&wbtreeid=1426",
+      "summary": "研究生院提供的各学科研究生培养方案。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "研究生院"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "西安电子科技大学2024-2025年第二学期微专业招生通知",
+      "url": "https://jwc.xidian.edu.cn/info/1015/18893.htm",
+      "summary": "推出'人工智能与大模型应用'微专业。核心课程包括深度学习、图像理解与计算机视觉、自然语言处理、大模型原理与行业应用、人工智能实践（共5门课程，7学分，112学时）。招生对象为全日制在校三年级及四年级本科生（非人工智能/智能科学与技术专业）。招生名额40人，学制0.5年。不收取额外学费。微专业是非学历教育，不授予学位，但修读完成可获得微专业证书。",
+      "attachments": [
+        "https://jwc.xidian.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1070628979&wbfileid=6BEB74B90A6CBE7884C9DAB32E096B86"
+      ],
+      "publish_date": "2025-05-27",
+      "source_department": "本科生院/人工智能学院"
+    },
+    {
+      "title": "西安电子科技大学2025-2026学年第二学期微专业招生通知",
+      "url": "https://info.xidian.edu.cn/info/1012/71260.htm",
+      "summary": "2025-2026学年第二学期微专业招生通知，继续推出人工智能与大模型应用微专业。",
+      "attachments": [],
+      "publish_date": "2026-04-14",
+      "source_department": "本科生院"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "西安电子科技大学2025届毕业生就业质量年度报告",
+      "url": "https://job.xidian.edu.cn/news/view/aid/338382/tag/tzgg",
+      "summary": "2025届毕业生就业质量年度报告PDF，含就业率、去向分布、薪资水平、重点单位就业比例等详细数据。",
+      "attachments": [
+        "https://job.xidian.edu.cn/attachment/xidian/ueditor/file/20260128/3325_%E8%A5%BF%E5%AE%89%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A62025%E5%B1%8A%E5%B0%B1%E4%B8%9A%E8%B4%A8%E9%87%8F%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf"
+      ],
+      "publish_date": "2026-01-28",
+      "source_department": "就业指导服务中心"
+    },
+    {
+      "title": "西安电子科技大学2024届毕业生就业质量年度报告",
+      "url": "https://job.xidian.edu.cn/news/view/aid/338275/tag/tzgg",
+      "summary": "2024届毕业生就业质量年度报告PDF。据公开信息，2024届毕业生84.28%到重点单位和领军企业就业，升学深造率54.79%。",
+      "attachments": [
+        "https://job.xidian.edu.cn/attachment/xidian/ueditor/file/20250126/3369_%E8%A5%BF%E5%AE%89%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A62024%E5%B1%8A%E6%AF%95%E4%B8%9A%E7%94%9F%E5%B0%B1%E4%B8%9A%E8%B4%A8%E9%87%8F%E5%B9%B4%E5%BA%A6%E6%8A%A5%E5%91%8A.pdf"
+      ],
+      "publish_date": "2025-01-24",
+      "source_department": "就业指导服务中心"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "关于印发《西安电子科技大学推荐优秀应届本科毕业生免试攻读硕士学位研究生工作实施办法（修订）》的通知",
+      "url": "https://jwc.xidian.edu.cn/info/1024/10930.htm",
+      "summary": "推免工作实施办法（修订版），规定推荐优秀应届本科毕业生免试攻读硕士学位研究生工作的遴选条件、名额分配、工作程序等。",
+      "attachments": [],
+      "publish_date": "2021-11-10",
+      "source_department": "教务处"
+    },
+    {
+      "title": "西安电子科技大学推荐优秀应届本科毕业生免试攻读硕士学位研究生工作实施办法（修订）（2019版）",
+      "url": "https://jwc.xidian.edu.cn/info/1024/7482.htm",
+      "summary": "2019年版推免工作实施办法。",
+      "attachments": [],
+      "publish_date": "2019-10-09",
+      "source_department": "教务处"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "雷达信号处理全国重点实验室",
+      "url": "https://rsp.xidian.edu.cn/",
+      "summary": "依托西安电子科技大学建设的全国重点实验室，前身为1974年成立的数字信号处理小组，1991年获批中国首批国家级重点实验室，2023年通过重组进入全国重点实验室首批建设名单。主要研究方向包括雷达探测系统技术、智能信息获取与处理、雷达成像与目标识别、多维多通道信息获取与处理等。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "电子工程学院"
+    },
+    {
+      "title": "超高速电路设计与电磁兼容教育部重点实验室",
+      "url": "https://see.xidian.edu.cn/",
+      "summary": "依托西安电子科技大学电子工程学院建设的教育部重点实验室。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "电子工程学院"
+    },
+    {
+      "title": "智能感知与图像理解教育部重点实验室",
+      "url": "http://sai.xidian.edu.cn/",
+      "summary": "依托西安电子科技大学人工智能学院建设的教育部重点实验室，国际智能感知与计算联合研究中心。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "人工智能学院"
+    },
+    {
+      "title": "西安电子科技大学2026年TI杯模拟电子线路设计赛暨电赛校赛",
+      "url": "https://bksy.xidian.edu.cn/info/1003/33282.htm",
+      "summary": "2026年TI杯模拟电子线路设计赛暨全国大学生电子设计竞赛校赛赛题发布。",
+      "attachments": [],
+      "publish_date": "2026-04-30",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "中国国际大学生创新大赛（2026）校级初赛通知",
+      "url": "https://bksy.xidian.edu.cn/info/1003/33292.htm",
+      "summary": "西安电子科技大学中国国际大学生创新大赛（2026）校级初赛通知。",
+      "attachments": [],
+      "publish_date": "2026-04-30",
+      "source_department": "本科生院"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "通信工程学院",
+      "url": "http://ste.xidian.edu.cn/",
+      "disciplines": [
+        "信息与通信工程",
+        "通信工程"
+      ]
+    },
+    {
+      "name": "电子工程学院",
+      "url": "http://see.xidian.edu.cn/",
+      "disciplines": [
+        "电子科学与技术",
+        "信息与通信工程"
+      ]
+    },
+    {
+      "name": "计算机科学与技术学院",
+      "url": "http://cs.xidian.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术",
+        "软件工程"
+      ]
+    },
+    {
+      "name": "机电工程学院",
+      "url": "http://eme.xidian.edu.cn/",
+      "disciplines": [
+        "机械工程",
+        "控制科学与工程"
+      ]
+    },
+    {
+      "name": "物理学院",
+      "url": "https://zsb.xidian.edu.cn/info/1057/2033.htm",
+      "disciplines": [
+        "物理学"
+      ]
+    },
+    {
+      "name": "光电工程学院",
+      "url": "https://zsb.xidian.edu.cn/info/1057/3404.htm",
+      "disciplines": [
+        "光学工程",
+        "仪器科学与技术"
+      ]
+    },
+    {
+      "name": "经济与管理学院",
+      "url": "http://em.xidian.edu.cn/",
+      "disciplines": [
+        "管理科学与工程",
+        "工商管理",
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "数学与统计学院",
+      "url": "http://math.xidian.edu.cn/",
+      "disciplines": [
+        "数学",
+        "统计学"
+      ]
+    },
+    {
+      "name": "人文学院",
+      "url": "http://rwxy.xidian.edu.cn/",
+      "disciplines": [
+        "哲学",
+        "中国语言文学",
+        "社会学"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "http://sfl.xidian.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "集成电路学部",
+      "url": "https://zsb.xidian.edu.cn/info/1057/2038.htm",
+      "disciplines": [
+        "集成电路科学与工程",
+        "电子科学与技术"
+      ]
+    },
+    {
+      "name": "生命科学技术学院",
+      "url": "http://life.xidian.edu.cn/",
+      "disciplines": [
+        "生物医学工程",
+        "生物学"
+      ]
+    },
+    {
+      "name": "空间科学与技术学院",
+      "url": "http://sast.xidian.edu.cn/",
+      "disciplines": [
+        "航空宇航科学与技术",
+        "信息与通信工程"
+      ]
+    },
+    {
+      "name": "先进材料与纳米科技学院",
+      "url": "http://amn.xidian.edu.cn/",
+      "disciplines": [
+        "材料科学与工程",
+        "化学"
+      ]
+    },
+    {
+      "name": "网络与信息安全学院",
+      "url": "http://ce.xidian.edu.cn/",
+      "disciplines": [
+        "网络空间安全",
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "人工智能学院",
+      "url": "http://sai.xidian.edu.cn/",
+      "disciplines": [
+        "智能科学与技术",
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "信息力学与感知工程学院",
+      "url": "https://zsb.xidian.edu.cn/info/1057/6203.htm",
+      "disciplines": [
+        "力学",
+        "信息与通信工程"
+      ]
+    },
+    {
+      "name": "软件学院",
+      "url": "http://sc.xidian.edu.cn/",
+      "disciplines": [
+        "软件工程"
+      ]
+    },
+    {
+      "name": "微电子学院",
+      "url": "http://sme.xidian.edu.cn/",
+      "disciplines": [
+        "电子科学与技术",
+        "微电子学与固体电子学"
+      ]
+    }
+  ],
+  "student_experiences": [
+    {
+      "topic": "转专业难度与经验",
+      "content": "据非官方信息统计，西安电子科技大学2023级转专业约41名学生成功转出，转专业率不到1%，专业排名前10%才有资格申请。大类内分流在第二学期末进行，转专业在第四学期末进行。申请需经转出学院初审和转入学院面试考核。",
+      "source_type": "论坛/社区",
+      "source_url": "https://www.10100.com/article/106159103"
+    }
+  ],
+  "notes": "1. 招生计划和历年录取分数的具体数字存储在JS动态渲染页面(zsxc.xidian.edu.cn)，无法通过静态抓取获取，已提供查询系统链接。2. 学院列表中\"集成电路学部\"按学校官方命名为\"学部\"而非\"学院\"，但其功能等同于学院层级，已包含在内。3. 科研基地完整列表在校内VPN页面，仅获取到部分公开信息。4. 推免实施办法页面详情需校内访问。5. 体育部、国际教育学院、网络与继续教育学院为教学单位但非传统学科类学院，未纳入colleges列表。",
+  "missing_categories": []
+}

@@ -1,0 +1,621 @@
+{
+  "university": "北京大学",
+  "official_url": "https://www.pku.edu.cn",
+  "crawl_time": "2026-05-02T10:15:00Z",
+  "admission_guide": [
+    {
+      "title": "北京大学2026年强基计划招生简章",
+      "url": "https://bkzs.pku.edu.cn/tzgg/4dc8487f304e476786627574e8744c27.htm",
+      "summary": "2026年继续开展基础学科招生改革试点，设Ⅰ组（数学类、物理学类、化学类、力学类、生物科学类、历史学类、考古学、哲学类、中国语言文学类古文字学方向）、Ⅱ组（历史学类、考古学、哲学类、中国语言文学类古文字学方向）、医学组（基础医学八年制）。综合成绩=高考成绩*85%+校测学科基础*10%+综合素质考核*5%。4月15-30日报名，6月28日-7月4日校测，7月5日公布结果。强基录取学生原则上不得转专业。",
+      "attachments": [],
+      "publish_date": "2026-04-15",
+      "source_department": "北京大学招生办公室"
+    },
+    {
+      "title": "北京大学2026年强基计划招生专业培养方案",
+      "url": "https://bkzs.pku.edu.cn/tzgg/826b90c60ffc485c82c6741358c1a837.htm",
+      "summary": "涵盖数学类、物理学类、化学类、力学类、生物科学类、历史学类、考古学、哲学类、中国语言文学类、基础医学十个专业的强基计划培养方案，实施博雅学堂试点、1+X导师制、本研衔接培养等。",
+      "attachments": [],
+      "publish_date": "2026-04-15",
+      "source_department": "北京大学招生办公室"
+    },
+    {
+      "title": "北京大学2026年硕士研究生招生简章（校本部）",
+      "url": "https://admission.pku.edu.cn/docs/20251009101959431969.pdf",
+      "summary": "2026年硕士研究生招生简章（校本部），PDF格式，包含报考条件、报名流程、考试科目、复试要求等。",
+      "attachments": [],
+      "publish_date": "2025-10-09",
+      "source_department": "北京大学研究生招生办"
+    },
+    {
+      "title": "北京大学2026年博士研究生招生简章(校本部)",
+      "url": "https://admission.pku.edu.cn/docs/20251010134140836566.pdf",
+      "summary": "2026年博士研究生招生简章（校本部），PDF格式，采用申请-考核制，包含报考条件、申请材料、考核流程等。",
+      "attachments": [],
+      "publish_date": "2025-10-10",
+      "source_department": "北京大学研究生招生办"
+    },
+    {
+      "title": "2025年北京大学招生简章暨报考指南",
+      "url": "https://bkzs.pku.edu.cn/docs/2025-09/f6c954dbc5c54378ae3b5f1e0cd6956b.pdf",
+      "summary": "2025年本科招生简章暨报考指南，PDF附件，涵盖各院系专业介绍、招生计划、录取规则等综合信息。",
+      "attachments": [],
+      "publish_date": "2025-06-16",
+      "source_department": "北京大学招生办公室"
+    },
+    {
+      "title": "北京大学招生章程",
+      "url": "https://gaokao.chsi.com.cn/zsgs/zhangcheng/listZszc--schId-1.dhtml",
+      "summary": "北京大学招生章程，发布于教育部阳光高考平台，包含学校基本情况、招生计划、录取规则、学费标准等法定信息。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "北京大学招生办公室"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "理学部",
+      "url": "https://fs.pku.edu.cn/",
+      "disciplines": [
+        "数学",
+        "物理学",
+        "化学",
+        "生物学",
+        "地理学",
+        "地球科学",
+        "心理学",
+        "建筑与景观设计"
+      ]
+    },
+    {
+      "name": "数学科学学院",
+      "url": "http://www.math.pku.edu.cn/",
+      "disciplines": [
+        "数学"
+      ]
+    },
+    {
+      "name": "物理学院",
+      "url": "http://www.phy.pku.edu.cn/",
+      "disciplines": [
+        "物理学"
+      ]
+    },
+    {
+      "name": "化学与分子工程学院",
+      "url": "http://www.chem.pku.edu.cn/",
+      "disciplines": [
+        "化学"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "https://bio.pku.edu.cn/",
+      "disciplines": [
+        "生物学"
+      ]
+    },
+    {
+      "name": "城市与环境学院",
+      "url": "https://ues.pku.edu.cn/",
+      "disciplines": [
+        "地理学",
+        "环境科学"
+      ]
+    },
+    {
+      "name": "地球与空间科学学院",
+      "url": "https://sess.pku.edu.cn/",
+      "disciplines": [
+        "地质学",
+        "地球物理学",
+        "空间科学"
+      ]
+    },
+    {
+      "name": "心理与认知科学学院",
+      "url": "http://www.psy.pku.edu.cn/",
+      "disciplines": [
+        "心理学",
+        "认知科学"
+      ]
+    },
+    {
+      "name": "建筑与景观设计学院",
+      "url": "http://www.cala.pku.edu.cn/",
+      "disciplines": [
+        "建筑学",
+        "景观设计"
+      ]
+    },
+    {
+      "name": "信息科学与技术学部",
+      "url": "https://fis.pku.edu.cn/",
+      "disciplines": [
+        "计算机科学",
+        "电子工程",
+        "集成电路",
+        "人工智能",
+        "软件工程"
+      ]
+    },
+    {
+      "name": "信息科学技术学院",
+      "url": "https://eecs.pku.edu.cn/",
+      "disciplines": [
+        "电子工程",
+        "计算机科学"
+      ]
+    },
+    {
+      "name": "计算机学院",
+      "url": "http://cs.pku.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "电子学院",
+      "url": "https://ele.pku.edu.cn/",
+      "disciplines": [
+        "电子科学与技术"
+      ]
+    },
+    {
+      "name": "集成电路学院",
+      "url": "https://ic.pku.edu.cn/",
+      "disciplines": [
+        "集成电路工程"
+      ]
+    },
+    {
+      "name": "智能学院",
+      "url": "http://sai.pku.edu.cn/",
+      "disciplines": [
+        "人工智能"
+      ]
+    },
+    {
+      "name": "王选计算机研究所",
+      "url": "http://www.icst.pku.edu.cn/",
+      "disciplines": [
+        "计算机应用技术"
+      ]
+    },
+    {
+      "name": "软件与微电子学院",
+      "url": "http://ss.pku.edu.cn/",
+      "disciplines": [
+        "软件工程",
+        "微电子学"
+      ]
+    },
+    {
+      "name": "人文学部",
+      "url": "https://fh.pku.edu.cn/",
+      "disciplines": [
+        "中国语言文学",
+        "历史学",
+        "考古学",
+        "哲学",
+        "外国语言文学",
+        "艺术学"
+      ]
+    },
+    {
+      "name": "中国语言文学系",
+      "url": "https://chinese.pku.edu.cn/",
+      "disciplines": [
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "历史学系",
+      "url": "https://history.pku.edu.cn/",
+      "disciplines": [
+        "历史学"
+      ]
+    },
+    {
+      "name": "考古文博学院",
+      "url": "https://archaeology.pku.edu.cn/",
+      "disciplines": [
+        "考古学",
+        "博物馆学"
+      ]
+    },
+    {
+      "name": "哲学系（宗教学系）",
+      "url": "https://phil.pku.edu.cn/",
+      "disciplines": [
+        "哲学",
+        "宗教学"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "https://sfl.pku.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "艺术学院",
+      "url": "http://www.art.pku.edu.cn/",
+      "disciplines": [
+        "艺术学"
+      ]
+    },
+    {
+      "name": "对外汉语教育学院",
+      "url": "https://hanyu.pku.edu.cn/",
+      "disciplines": [
+        "汉语国际教育"
+      ]
+    },
+    {
+      "name": "歌剧研究院",
+      "url": "https://opera.pku.edu.cn/",
+      "disciplines": [
+        "歌剧学"
+      ]
+    },
+    {
+      "name": "工学部",
+      "url": "https://fe.pku.edu.cn/",
+      "disciplines": [
+        "工程科学",
+        "力学",
+        "材料科学",
+        "环境工程",
+        "先进制造"
+      ]
+    },
+    {
+      "name": "工学院",
+      "url": "https://www.coe.pku.edu.cn/",
+      "disciplines": [
+        "工程力学",
+        "生物医学工程",
+        "材料科学"
+      ]
+    },
+    {
+      "name": "力学与工程科学学院",
+      "url": "https://mech.pku.edu.cn",
+      "disciplines": [
+        "力学"
+      ]
+    },
+    {
+      "name": "先进制造与机器人学院",
+      "url": "https://amr.pku.edu.cn/",
+      "disciplines": [
+        "先进制造",
+        "机器人"
+      ]
+    },
+    {
+      "name": "材料科学与工程学院",
+      "url": "https://www.mse.pku.edu.cn/",
+      "disciplines": [
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "未来技术学院",
+      "url": "https://future.pku.edu.cn/",
+      "disciplines": [
+        "未来技术",
+        "生物技术"
+      ]
+    },
+    {
+      "name": "环境科学与工程学院",
+      "url": "https://cese.pku.edu.cn/",
+      "disciplines": [
+        "环境科学与工程"
+      ]
+    },
+    {
+      "name": "社会科学学部",
+      "url": "https://fss.pku.edu.cn/",
+      "disciplines": [
+        "国际关系",
+        "法学",
+        "社会学",
+        "政治学",
+        "马克思主义",
+        "教育学",
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "国际关系学院",
+      "url": "http://www.sis.pku.edu.cn/",
+      "disciplines": [
+        "国际关系",
+        "外交学"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "http://www.law.pku.edu.cn/",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "信息管理系",
+      "url": "http://www.im.pku.edu.cn/",
+      "disciplines": [
+        "信息管理",
+        "图书馆学"
+      ]
+    },
+    {
+      "name": "社会学系",
+      "url": "http://www.shehui.pku.edu.cn/",
+      "disciplines": [
+        "社会学"
+      ]
+    },
+    {
+      "name": "政府管理学院",
+      "url": "http://www.sg.pku.edu.cn/",
+      "disciplines": [
+        "公共管理",
+        "政治学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "https://marxism.pku.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "教育学院",
+      "url": "http://www.gse.pku.edu.cn/",
+      "disciplines": [
+        "教育学"
+      ]
+    },
+    {
+      "name": "新闻与传播学院",
+      "url": "http://sjc.pku.edu.cn/",
+      "disciplines": [
+        "新闻学",
+        "传播学"
+      ]
+    },
+    {
+      "name": "体育教研部",
+      "url": "https://pe.pku.edu.cn/",
+      "disciplines": [
+        "体育学"
+      ]
+    },
+    {
+      "name": "经济与管理学部",
+      "url": "https://fem.pku.edu.cn/",
+      "disciplines": [
+        "经济学",
+        "管理学"
+      ]
+    },
+    {
+      "name": "经济学院",
+      "url": "http://econ.pku.edu.cn/",
+      "disciplines": [
+        "经济学"
+      ]
+    },
+    {
+      "name": "光华管理学院",
+      "url": "http://www.gsm.pku.edu.cn/index.htm",
+      "disciplines": [
+        "工商管理",
+        "金融学",
+        "会计学"
+      ]
+    },
+    {
+      "name": "人口研究所",
+      "url": "https://ipr.pku.edu.cn/",
+      "disciplines": [
+        "人口学"
+      ]
+    },
+    {
+      "name": "国家发展研究院",
+      "url": "https://www.nsd.pku.edu.cn/",
+      "disciplines": [
+        "经济学",
+        "管理学"
+      ]
+    },
+    {
+      "name": "医学部",
+      "url": "http://www.bjmu.edu.cn/",
+      "disciplines": [
+        "基础医学",
+        "临床医学",
+        "药学",
+        "公共卫生",
+        "护理学",
+        "医学人文"
+      ]
+    },
+    {
+      "name": "基础医学院",
+      "url": "http://sbms.bjmu.edu.cn/",
+      "disciplines": [
+        "基础医学"
+      ]
+    },
+    {
+      "name": "药学院",
+      "url": "http://sps.bjmu.edu.cn/",
+      "disciplines": [
+        "药学"
+      ]
+    },
+    {
+      "name": "公共卫生学院",
+      "url": "https://sph.pku.edu.cn/",
+      "disciplines": [
+        "公共卫生与预防医学"
+      ]
+    },
+    {
+      "name": "护理学院",
+      "url": "http://nursing.bjmu.edu.cn/",
+      "disciplines": [
+        "护理学"
+      ]
+    },
+    {
+      "name": "医学人文学院",
+      "url": "http://shh.bjmu.edu.cn/",
+      "disciplines": [
+        "医学人文"
+      ]
+    },
+    {
+      "name": "元培学院",
+      "url": "https://yuanpei.pku.edu.cn/",
+      "disciplines": [
+        "跨学科",
+        "自由选专业"
+      ]
+    },
+    {
+      "name": "燕京学堂",
+      "url": "https://yenchingacademy.pku.edu.cn/",
+      "disciplines": [
+        "中国学"
+      ]
+    },
+    {
+      "name": "前沿交叉学科研究院",
+      "url": "http://www.aais.pku.edu.cn/",
+      "disciplines": [
+        "交叉学科"
+      ]
+    },
+    {
+      "name": "北京国际数学研究中心",
+      "url": "http://bicmr.pku.edu.cn/",
+      "disciplines": [
+        "数学"
+      ]
+    },
+    {
+      "name": "现代农学院",
+      "url": "http://www.saas.pku.edu.cn/",
+      "disciplines": [
+        "农学"
+      ]
+    },
+    {
+      "name": "人工智能研究院",
+      "url": "http://www.ai.pku.edu.cn/",
+      "disciplines": [
+        "人工智能"
+      ]
+    },
+    {
+      "name": "碳中和研究院",
+      "url": "https://carbon.pku.edu.cn/",
+      "disciplines": [
+        "碳中和",
+        "气候变化"
+      ]
+    },
+    {
+      "name": "区域与国别研究院",
+      "url": "https://ias.pku.edu.cn/",
+      "disciplines": [
+        "区域与国别研究"
+      ]
+    },
+    {
+      "name": "深圳研究生院",
+      "url": "http://www.pkusz.edu.cn/",
+      "disciplines": [
+        "信息工程",
+        "化学生物学",
+        "环境与能源",
+        "城市规划",
+        "新材料",
+        "商学",
+        "法学",
+        "人文社科"
+      ]
+    },
+    {
+      "name": "汇丰商学院",
+      "url": "https://www.phbs.pku.edu.cn/",
+      "disciplines": [
+        "金融学",
+        "经济学",
+        "管理学"
+      ]
+    },
+    {
+      "name": "国际法学院",
+      "url": "http://stl.pku.edu.cn/",
+      "disciplines": [
+        "法学（普通法与中国法）"
+      ]
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "北京大学本科生转院(系)转专业实施办法(试行)",
+      "url": "http://www.dean.pku.edu.cn/web/rules_info.php?id=25",
+      "summary": "遵循公平、公开、公正、学生自愿、尊重专业兴趣、兼顾培养规模原则。除教育部规定不得转专业、定向/委培不能转、三年级(含)以上、休学或保留学籍、已达到退学程度的学生外均可申请。每学年办理一次，在第一学年末或第二学年末自主申请。流程：院系公布接收人数→教务部汇总公布→学生网上提交申请→拟转入院系审核→教务部核准公布名单。转专业学生一般转入同年级，确需降级可降级（在校不超过六年）。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "北京大学教务部"
+    },
+    {
+      "title": "北京大学校本部2023年转院(系)转专业工作通知",
+      "url": "https://dean.pku.edu.cn/web/notice_details.php?id=525",
+      "summary": "2023年校本部本科生转院(系)转专业按照《北京大学本科生转院(系)转专业实施办法(试行)》执行。可申请转专业学生为2021级和2022级在学本科生。门户开放时间为4月19日至5月9日。医学部与本部之间各专业可互转，但本部学生不能转入医学部长学制专业。各院系公布具体接收方案和学术要求。",
+      "attachments": [],
+      "publish_date": "2023-04-17",
+      "source_department": "北京大学教务部"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "北京大学推荐优秀应届本科毕业生免试攻读研究生工作实施办法",
+      "url": "http://www.dean.pku.edu.cn/web/rules_info.php?id=52",
+      "summary": "申请条件：纳入国家普通本科招生计划的应届毕业生（不含专升本、第二学士学位），身心健康，预计能正常毕业并获学士学位，成绩优良，学术研究兴趣浓厚，有较强创新意识和能力，诚实守信，无违法违纪处分，不计划本科毕业后赴境外留学。推免工作由教务部负责推荐环节（每年9月25日前结束），研究生院负责接收录取（每年10月25日前结束）。各院系成立推免工作小组制定选拔标准，学业成绩下游的学生不予推荐。鼓励推荐到外校和科研机构。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "北京大学教务部"
+    },
+    {
+      "title": "北京大学2026年接收推荐免试研究生办法（校本部）",
+      "url": "https://admission.pku.edu.cn/docs/20250901134327320368.pdf",
+      "summary": "申请人基本条件：拥护党的领导，品德良好，遵纪守法，获得所在学校推荐免试资格。申请人须通过北京大学研究生招生网(admission.pku.edu.cn)网上申报，提交申请表、个人陈述、专家推荐信2封、本科成绩单、获奖证书、外语水平证明等材料。各院系自行确定网报和材料接收截止时间。",
+      "attachments": [],
+      "publish_date": "2025-09-01",
+      "source_department": "北京大学研究生院"
+    },
+    {
+      "title": "推免资格申请指南",
+      "url": "http://www.dean.pku.edu.cn/web/student_info.php?type=7&id=21",
+      "summary": "推免工作分推荐和接收两个环节。推荐由教务部负责，每年9月25日前结束；接收由研究生院负责，每年10月25日前结束。学生须在校内门户(portal.pku.edu.cn)提交推免资格申请。已计划出国留学的学生不能申请推免。已获接收的推免生不得再申请出国留学或就业派遣。涉及三个系统：校内推免资格申请系统、北大研究生招生网、全国推免信息公开管理服务系统。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "北京大学教务部"
+    }
+  ],
+  "notes": "1. 2026年本科招生简章暨报考指南（PDF）尚未发布，最新为2025年版本。2. 转专业每年春季学期办理，各院系具体接收方案每年更新，当前最新通知页面为2023年版本，但实施办法仍为现行有效版本。3. 推免（保研）实施办法为通用制度文件，各年度具体安排以当年通知为准。",
+  "missing_categories": []
+}

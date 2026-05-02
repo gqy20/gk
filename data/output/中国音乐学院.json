@@ -1,0 +1,196 @@
+{
+  "university": "中国音乐学院",
+  "official_url": "https://www.ccmusic.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "中国音乐学院2025年本科招生章程",
+      "url": "https://bkzs.ccmusic.edu.cn/xxgk/067b1f42457e4c61801402a02ffdd752.htm",
+      "summary": "共十九条，包含总则、组织机构、招生计划、录取规则、收费标准、资助政策等内容。办学层次为本科，公办普通高等艺术院校。校考专业面向全国统一招生，不编制分省招生计划。音乐学、音乐教育、艺术管理、作曲专业每学年8000元，音乐表演专业每学年10000元。",
+      "attachments": [
+        "https://bkzs.ccmusic.edu.cn/docs/2025-06/f9e246f721154114b726f08d83f05cb3.pdf"
+      ],
+      "publish_date": "2025-05-20",
+      "source_department": "招生办公室"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "中国音乐学院本科专业设置",
+      "url": "https://bkzs.ccmusic.edu.cn/pub/ccmusic/jgsz/jxyx/index.htm",
+      "summary": "学校设11个教学院系，包含音乐学、音乐表演、作曲与作曲技术理论、音乐教育、艺术管理等本科专业。校考专业面向全国统一招生，不编制分省招生计划；普通类专业招生省份和计划以各省级招生考试机构公布的文件为准。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生办公室"
+    }
+  ],
+  "historical_admission": [],
+  "transfer_policy": [
+    {
+      "title": "中国音乐学院本科生转专业（含专业方向）管理规定",
+      "url": "https://gxcjy.iguopin.com/school/detail/major?id=568",
+      "summary": "学生本人可按学校培养方案自愿申请调整所学专业（方向）。在校期间只能申请办理一次转专业（方向），不得转回。申请时间为一、二年级第二学期第13、第14教学周内。不受理情形：一年级第一学期、受退学或开除处分者、无正当理由者。考核由所申报专业系主任组织专家委员会（不少于5人）进行，随期末考试进行考核。",
+      "attachments": [],
+      "publish_date": "2017-06",
+      "source_department": "教务处"
+    }
+  ],
+  "transfer_announcement": [],
+  "major_streaming": [],
+  "training_program": [],
+  "minor_program": [
+    {
+      "title": "中国音乐学院本科生辅修专业申请表",
+      "url": "https://jwc.ccmusic.edu.cn/docs/2024-12/f6a8f0aa37c84dc4a59a2c6ce8acb6e1.pdf",
+      "summary": "供本科生申请辅修专业使用，需经教务处审核批准后开始辅修课程学习。",
+      "attachments": [
+        "https://jwc.ccmusic.edu.cn/docs/2024-12/f6a8f0aa37c84dc4a59a2c6ce8acb6e1.pdf"
+      ],
+      "publish_date": "",
+      "source_department": "教务处"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "中国音乐学院2021届毕业生就业质量报告",
+      "url": "https://bkzs.ccmusic.edu.cn/pub/ccmusic/docs/2021-12/2c849cef1f8d40c593a6c5e43003eaa4.pdf",
+      "summary": "2021届毕业生共507人，其中本科毕业生290人，毕业研究生217人。截至2021年8月31日，毕业生总体毕业去向落实率为95.27%。",
+      "attachments": [
+        "https://bkzs.ccmusic.edu.cn/pub/ccmusic/docs/2021-12/2c849cef1f8d40c593a6c5e43003eaa4.pdf"
+      ],
+      "publish_date": "2021-12",
+      "source_department": "就业指导中心"
+    },
+    {
+      "title": "中国音乐学院2024年就业质量报告",
+      "url": "https://jzy.qsyikao.com/detail/39603",
+      "summary": "2024年就业质量报告，发布于2025年5月。",
+      "attachments": [],
+      "publish_date": "2025-05",
+      "source_department": "学校官方"
+    }
+  ],
+  "postgrad_recommend": [],
+  "competition_research": [
+    {
+      "title": "中国乐派研究院",
+      "url": "http://zgyp.ccmusic.edu.cn/",
+      "summary": "学校研究机构，致力于中国音乐理论研究与传播。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "中国音乐学院"
+    },
+    {
+      "title": "中国音乐研究基地",
+      "url": "http://cmrc.ccmusic.edu.cn/",
+      "summary": "学校研究机构，开展中国音乐学术研究。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "中国音乐学院"
+    },
+    {
+      "title": "学报编辑部",
+      "url": "https://cmj.ccmusic.edu.cn/",
+      "summary": "负责学校学术期刊编辑出版工作。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "中国音乐学院"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "音乐学系（中国音乐理论研究院）",
+      "url": "http://yyxx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐学"
+      ]
+    },
+    {
+      "name": "作曲系",
+      "url": "http://zqx.ccmusic.edu.cn",
+      "disciplines": [
+        "作曲与作曲技术理论"
+      ]
+    },
+    {
+      "name": "指挥系",
+      "url": "http://zhx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐与舞蹈学"
+      ]
+    },
+    {
+      "name": "声乐歌剧系（中国声乐艺术研究院）",
+      "url": "http://sygjx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐表演"
+      ]
+    },
+    {
+      "name": "国乐系",
+      "url": "http://gyx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐表演"
+      ]
+    },
+    {
+      "name": "管弦系",
+      "url": "http://gxx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐表演"
+      ]
+    },
+    {
+      "name": "钢琴系",
+      "url": "http://gqx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐表演"
+      ]
+    },
+    {
+      "name": "艺术管理系",
+      "url": "https://ysglx.ccmusic.edu.cn/",
+      "disciplines": [
+        "艺术管理"
+      ]
+    },
+    {
+      "name": "教育学院",
+      "url": "http://yysfjyzx.ccmusic.edu.cn",
+      "disciplines": [
+        "音乐教育"
+      ]
+    },
+    {
+      "name": "思想政治理论教学部",
+      "url": "http://sxzzlljxb.ccmusic.edu.cn",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "基础教学部",
+      "url": "http://jcxb.ccmusic.edu.cn",
+      "disciplines": [
+        "艺术学"
+      ]
+    },
+    {
+      "name": "附中",
+      "url": "https://gyfz.ccmusic.edu.cn/",
+      "disciplines": []
+    }
+  ],
+  "student_experiences": [],
+  "notes": "中国音乐学院是音乐类专门院校，招生方式以校考为主，面向全国统一招生，不编制分省分专业计划。部分网页访问存在限制，无法获取完整的PDF附件内容。部分信息如历年录取分数线、保研推免政策等在公开渠道获取有限。就业信息网http://oldweb.ccmusic.edu.cn/ccmusic/jiuyexinxi/已下线或无法访问。",
+  "missing_categories": [
+    "enrollment_plan",
+    "historical_admission",
+    "transfer_announcement",
+    "major_streaming",
+    "training_program",
+    "postgrad_recommend",
+    "competition_research",
+    "student_experiences"
+  ]
+}

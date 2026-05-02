@@ -1,0 +1,404 @@
+{
+  "university": "上海音乐学院",
+  "official_url": "https://www.shcmusic.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "2026年本科艺术类专业招生简章",
+      "url": "https://jwc.shcmusic.edu.cn/2026/0108/c493a59970/page.htm",
+      "summary": "2026年本科艺术类专业招生简章，包含校考专业、报考条件、考试内容等。附件包含专业目录及考试大纲PDF。",
+      "attachments": [
+        "https://jwc.shcmusic.edu.cn/_upload/article/files/3c/aa/7d2eaf1c428c8ed7b9d0277e7029/b6c3264a-5e51-409b-aaaf-91b3ef0c4b1b.pdf"
+      ],
+      "publish_date": "2026-01-08",
+      "source_department": "教务处/招生办公室"
+    },
+    {
+      "title": "2025年普通类本科专业招生章程",
+      "url": "https://jwc.shcmusic.edu.cn/2025/0619/c493a58307/page.htm",
+      "summary": "普通类专业招生章程，涵盖总则、报考条件、录取规则等。",
+      "attachments": [],
+      "publish_date": "2025-06-19",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2026年博士研究生招生简章",
+      "url": "https://yjsb.shcmusic.edu.cn/2026/0228/c119a60525/page.htm",
+      "summary": "包含招生专业目录、报考条件、考试科目、录取规则等。附件含招生简章PDF及多个DOC表格。",
+      "attachments": [
+        "https://yjsb.shcmusic.edu.cn/_upload/article/files/bb/6f/0d8250aa4d0a95ccb897b3826d36/3c5460f2-86a8-4de2-ba7e-88ca8720d2bb.pdf",
+        "https://yjsb.shcmusic.edu.cn/_upload/article/files/bb/6f/0d8250aa4d0a95ccb897b3826d36/6f2c4e73-8278-4cbb-aea5-ec28bc64c867.doc",
+        "https://yjsb.shcmusic.edu.cn/_upload/article/files/bb/6f/0d8250aa4d0a95ccb897b3826d36/11151f46-4052-4e28-b712-2802a9105cbf.docx"
+      ],
+      "publish_date": "2026-02-28",
+      "source_department": "研究生部"
+    },
+    {
+      "title": "2026年接收推荐免试攻读硕士学位研究生章程",
+      "url": "https://yjsb.shcmusic.edu.cn/2025/0912/c2675a58849/page.htm",
+      "summary": "接收推免生章程，规定本年度仅接收本院推免生，复试满分100分，9月下旬至10月初复试。",
+      "attachments": [],
+      "publish_date": "2025-09-12",
+      "source_department": "研究生部"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "2026年本科艺术类招生专业目录及考试大纲",
+      "url": "https://jwc.shcmusic.edu.cn/2025/1212/c493a59736/page.htm",
+      "summary": "2026年本科艺术类招生专业目录，含各专业考试大纲、科目要求。",
+      "attachments": [],
+      "publish_date": "2025-12-12",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2026年校考专业与各省统考科类对照关系表",
+      "url": "https://jwc.shcmusic.edu.cn/2025/1009/c493a59038/page.htm",
+      "summary": "各省市考生需参加的统考科类对照表，明确各省考试院对应科类要求。",
+      "attachments": [
+        "https://jwc.shcmusic.edu.cn/_upload/article/files/3c/aa/7d2eaf1c428c8ed7b9d0277e7029/b6c3264a-5e51-409b-aaaf-91b3ef0c4b1b.pdf"
+      ],
+      "publish_date": "2025-10-09",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2026年硕士研究生预分计划",
+      "url": "https://yjsb.shcmusic.edu.cn/2026/0319/c2675a60739/page.htm",
+      "summary": "2026年硕士研究生各专业拟招生计划名额。",
+      "attachments": [],
+      "publish_date": "2026-03-19",
+      "source_department": "研究生部"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "2025年普通类本科专业各省市录取最低分数线",
+      "url": "https://jwc.shcmusic.edu.cn/2025/0807/c493a58635/page.htm",
+      "summary": "2025年普通类专业各省市录取最低分数线。",
+      "attachments": [],
+      "publish_date": "2025-08-07",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2024年普通类本科专业各省市录取最低分数线",
+      "url": "https://jwc.shcmusic.edu.cn/2024/0805/c493a54650/page.htm",
+      "summary": "2024年普通类专业各省市录取最低分数线。",
+      "attachments": [],
+      "publish_date": "2024-08-05",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2023年普通类本科专业各省市录取最低分数线",
+      "url": "https://jwc.shcmusic.edu.cn/2023/0726/c493a48457/page.htm",
+      "summary": "2023年普通类专业各省市录取最低分数线。",
+      "attachments": [],
+      "publish_date": "2023-07-26",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2022年普通类本科专业各省市录取最低分数线",
+      "url": "https://jwc.shcmusic.edu.cn/2022/0722/c493a40633/page.htm",
+      "summary": "2022年普通类专业各省市录取最低分数线。",
+      "attachments": [],
+      "publish_date": "2022-07-22",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2021年普通类本科专业各省市录取分数线",
+      "url": "https://jwc.shcmusic.edu.cn/2021/0729/c493a32850/page.htm",
+      "summary": "2021年普通类专业各省市录取分数线。",
+      "attachments": [],
+      "publish_date": "2021-07-29",
+      "source_department": "教务处"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "上海音乐学院关于本科生转专业学习的若干规定",
+      "url": "https://jwc.shcmusic.edu.cn/2016/0314/c1321a18217/page.htm",
+      "summary": "规定艺术类专业之间及普通类专业之间可互转（中外合作专业除外），在读期间限一次，转专业须参加转入专业考核。",
+      "attachments": [],
+      "publish_date": "2019-10-01",
+      "source_department": "教务处"
+    }
+  ],
+  "transfer_announcement": [],
+  "major_streaming": [
+    {
+      "title": "上海音乐学院无大类分流机制说明",
+      "url": "https://www.shcmusic.edu.cn",
+      "summary": "上海音乐学院是专业直招院校，本科按专业方向录取（如音乐学、作曲与作曲技术理论、音乐表演等），入学即进入具体专业学习，无大类招生分流机制。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": ""
+    }
+  ],
+  "training_program": [
+    {
+      "title": "2015版本科生培养计划",
+      "url": "https://jwc.shcmusic.edu.cn/pyfa/list.htm",
+      "summary": "2015级本科培养计划，规定各专业学分要求、课程体系、毕业标准等。",
+      "attachments": [
+        "https://jwc.shcmusic.edu.cn/_upload/article/files/dc/f3/f890ffb24011b5a3d7e62dbe788e/04a4ee18-a4e2-440b-8b1b-833fee353301.pdf"
+      ],
+      "publish_date": "",
+      "source_department": "教务处"
+    },
+    {
+      "title": "2019级本科生培养方案",
+      "url": "https://xxgk.shcmusic.edu.cn/2020/1027/c788a28898/pagem.htm",
+      "summary": "2019级各专业培养方案，含课程设置、学分要求等。",
+      "attachments": [],
+      "publish_date": "2020-10-27",
+      "source_department": "信息公开网"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "上海音乐学院本科生辅修专业管理办法",
+      "url": "https://jwc.shcmusic.edu.cn/2022/0922/c1321a44899/page.htm",
+      "summary": "规定辅修专业毕业标准（学分）要求，完成辅修要求可获辅修专业证书。",
+      "attachments": [],
+      "publish_date": "2022-09-22",
+      "source_department": "教务处"
+    },
+    {
+      "title": "音乐科创微专业招生简章",
+      "url": "https://www.shcmusic.edu.cn/2025/0901/c1404a58723/page.htm",
+      "summary": "2025年新推出，学制1年，招生35人，学费全免。课程含音乐人工智能、声音VR、音乐智能制造等。",
+      "attachments": [
+        "https://www.shcmusic.edu.cn/_upload/article/files/53/9f/54342f8744939563bd44a6479189/07b46ec3-8e55-488a-a8f2-facb477f1cbf.pdf"
+      ],
+      "publish_date": "2025-09-01",
+      "source_department": "教务处"
+    },
+    {
+      "title": "音乐与健康微专业招生简章",
+      "url": "https://xxgk.shcmusic.edu.cn/2025/0901/c636a58727/pagem.htm",
+      "summary": "2025年新推出，招生15-20人，学制1年。集音乐、医学、心理学、神经科学等多学科交叉融合。",
+      "attachments": [],
+      "publish_date": "2025-09-01",
+      "source_department": "信息公开网"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "2023届就业质量报告",
+      "url": "https://xxgk.shcmusic.edu.cn/2024/0313/c820a50510/pagem.htm",
+      "summary": "2023届本科毕业生去向落实率97.84%，硕士95.98%，博士90.91%。本科升学比例38.53%。",
+      "attachments": [],
+      "publish_date": "2024-03-13",
+      "source_department": "信息公开网"
+    },
+    {
+      "title": "2022届就业质量报告",
+      "url": "https://xxgk.shcmusic.edu.cn/2023/0915/c734a48979/page.htm",
+      "summary": "2022届本科毕业生初次就业率97.66%。",
+      "attachments": [],
+      "publish_date": "2023-09-15",
+      "source_department": "信息公开网"
+    },
+    {
+      "title": "2021届就业质量报告",
+      "url": "https://xxgk.shcmusic.edu.cn/2022/1104/c734a45523/pagem.htm",
+      "summary": "2021届毕业生总体去向落实率99.55%，研究生100%，本科生99.25%。",
+      "attachments": [],
+      "publish_date": "2022-11-04",
+      "source_department": "信息公开网"
+    },
+    {
+      "title": "2020届就业质量报告",
+      "url": "https://free.eol.cn/download/eol/jiuye/SCM2020.pdf",
+      "summary": "2020届就业质量报告PDF版。",
+      "attachments": [
+        "https://free.eol.cn/download/eol/jiuye/SCM2020.pdf"
+      ],
+      "publish_date": "",
+      "source_department": "信息公开网"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "推荐优秀应届本科毕业生免试攻读研究生工作管理办法（修订版）",
+      "url": "https://yjsb.shcmusic.edu.cn/2025/0522/c122a57862/page.htm",
+      "summary": "2025年5月修订。A类名额≤60%（综合成绩前茅），B类名额≥40%（专业能力突出），向急需发展专业倾斜。含A类遴选标准（主干课90+、基础课85+、公共课75+）及B类条件（重大比赛奖项、科研成果等）。",
+      "attachments": [],
+      "publish_date": "2025-05-22",
+      "source_department": "研究生部"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "人工智能音乐疗愈重点实验室",
+      "url": "https://www.shcmusic.edu.cn/1536/list.htm",
+      "summary": "2024年11月成立，艺术、医学、科技交叉融合。研究方向包括音乐人工智能、音乐疗愈、声音脑科学等。与华山医院、上海市精神卫生中心等合作。",
+      "attachments": [],
+      "publish_date": "2024-11-01",
+      "source_department": "贺绿汀高研院"
+    },
+    {
+      "title": "上海市声学艺术重点实验室",
+      "url": "https://www.shcmusic.edu.cn/kycgsd/list.htm",
+      "summary": "省部级重点实验室（2007年设立），上海市科委主管，上海唯一音乐科技领域重点实验室。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研处"
+    },
+    {
+      "title": "挑战杯获奖情况汇总",
+      "url": "https://www.shcmusic.edu.cn/kycgsd/list.htm",
+      "summary": "第十九届（2025年）获全国一等奖1项、三等奖8项；第十八届（2023年）获一等奖1项、三等奖5项。",
+      "attachments": [],
+      "publish_date": "2025",
+      "source_department": "科研处"
+    },
+    {
+      "title": "科研处官网",
+      "url": "https://www.shcmusic.edu.cn/1446/list.htm",
+      "summary": "含国家艺术基金项目、蔡元培讲堂、科研成果速递等栏目。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研处"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "音乐学系",
+      "url": "https://www.shcmusic.edu.cn/1590/list.htm",
+      "disciplines": [
+        "音乐学",
+        "音乐教育",
+        "乐器修造艺术"
+      ]
+    },
+    {
+      "name": "作曲指挥系",
+      "url": "https://www.shcmusic.edu.cn/1591/list.htm",
+      "disciplines": [
+        "作曲与作曲技术理论",
+        "作曲",
+        "民族音乐作曲",
+        "视唱练耳"
+      ]
+    },
+    {
+      "name": "钢琴系",
+      "url": "https://www.shcmusic.edu.cn/1593/list.htm",
+      "disciplines": [
+        "钢琴演奏"
+      ]
+    },
+    {
+      "name": "声乐歌剧系",
+      "url": "https://www.shcmusic.edu.cn/1594/list.htm",
+      "disciplines": [
+        "声乐演唱"
+      ]
+    },
+    {
+      "name": "管弦系",
+      "url": "https://www.shcmusic.edu.cn/1595/list.htm",
+      "disciplines": [
+        "管弦乐器演奏"
+      ]
+    },
+    {
+      "name": "民族音乐系",
+      "url": "https://www.shcmusic.edu.cn/1596/list.htm",
+      "disciplines": [
+        "中国乐器演奏"
+      ]
+    },
+    {
+      "name": "音乐教育系",
+      "url": "https://www.shcmusic.edu.cn/1597/list.htm",
+      "disciplines": [
+        "音乐教育"
+      ]
+    },
+    {
+      "name": "音乐戏剧系",
+      "url": "https://www.shcmusic.edu.cn/1598/list.htm",
+      "disciplines": [
+        "音乐戏剧表演"
+      ]
+    },
+    {
+      "name": "音乐工程系",
+      "url": "https://www.shcmusic.edu.cn/1599/list.htm",
+      "disciplines": [
+        "音乐工程"
+      ]
+    },
+    {
+      "name": "现代器乐与打击乐系",
+      "url": "https://www.shcmusic.edu.cn/1600/list.htm",
+      "disciplines": [
+        "现代器乐演奏",
+        "打击乐演奏"
+      ]
+    },
+    {
+      "name": "艺术管理系",
+      "url": "https://www.shcmusic.edu.cn/1601/list.htm",
+      "disciplines": [
+        "艺术管理"
+      ]
+    },
+    {
+      "name": "数字媒体艺术学院",
+      "url": "https://www.shcmusic.edu.cn/1602/list.htm",
+      "disciplines": [
+        "数字媒体艺术"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "https://www.shcmusic.edu.cn/1603/list.htm",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "公共基础部",
+      "url": "https://www.shcmusic.edu.cn/1604/list.htm",
+      "disciplines": []
+    },
+    {
+      "name": "国际教育学院",
+      "url": "https://www.shcmusic.edu.cn/1659/list.htm",
+      "disciplines": [
+        "国际教育"
+      ]
+    },
+    {
+      "name": "附中（附小）",
+      "url": "https://www.shmusicschool.com/",
+      "disciplines": []
+    }
+  ],
+  "student_experiences": [
+    {
+      "topic": "在校就读体验",
+      "content": "钢琴系琴房不够用，琴况无法满足学生正常要求。地理位置优越，位于市中心，汾阳路校区法式风情小洋房令人向往。整体住宿环境较好。",
+      "source_type": "知乎",
+      "source_url": "https://www.zhihu.com/question/28479764"
+    },
+    {
+      "topic": "考研难度与经验",
+      "content": "上音相对公平，老师学富五车且谦虚低调，尊重学生。地理位置优越位于市中心。如果想考，好好努力就有希望。小时候没机会接触音乐，高二才开始学习音乐也能考入。",
+      "source_type": "知乎",
+      "source_url": "https://www.zhihu.com/question/31616589"
+    },
+    {
+      "topic": "报考攻略",
+      "content": "专业成绩合格考生须参加普通高等学校招生全国统一考试。上海音乐学院作为教育部批准的独立设置本科艺术院校，自主划定高考文化课最低录取分数线。",
+      "source_type": "知乎专栏",
+      "source_url": ""
+    }
+  ],
+  "notes": "转专业公示页面在官网未找到明确公开的拟录取名单；大类分流不适用（专业直招）；上音无传统\"双学位\"项目，主要为辅修专业和2025年新推出的微专业。",
+  "missing_categories": [
+    "transfer_announcement"
+  ]
+}

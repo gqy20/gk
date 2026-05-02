@@ -1,0 +1,370 @@
+{
+  "university": "中国人民大学",
+  "official_url": "https://www.ruc.edu.cn",
+  "crawl_time": "2026-05-02T15:30:00+08:00",
+  "admission_guide": [
+    {
+      "title": "中国人民大学阳光招生信息平台 - 招生政策",
+      "url": "https://rdzs.ruc.edu.cn/cms/list/zszc/?cat=10",
+      "summary": "中国人民大学本科招生阳光招生信息平台招生政策栏目，包含招生章程、招生简章、报考指南等文件。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "中国人民大学2026年硕士研究生招生简章",
+      "url": "https://pgs.ruc.edu.cn/info/1041/3474.htm",
+      "summary": "中国人民大学2026年硕士研究生招生简章，包含招生计划、报考条件、考试安排等信息。",
+      "attachments": [],
+      "publish_date": "2025-09-28",
+      "source_department": "研究生院招生管理办公室"
+    },
+    {
+      "title": "中国人民大学2026年招收硕士研究生全国统考专业目录",
+      "url": "https://pgs.ruc.edu.cn/info/1041/3482.htm",
+      "summary": "2026年硕士全国统考专业目录，包含各院系招生专业及考试科目。",
+      "attachments": [],
+      "publish_date": "2025-10-09",
+      "source_department": "研究生院"
+    },
+    {
+      "title": "中国人民大学2026年博士研究生招生简章",
+      "url": "https://pgs.ruc.edu.cn/bszs/jzml.htm",
+      "summary": "2026年博士研究生招生简章及目录页面。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "研究生院"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "各省招生计划查询系统",
+      "url": "https://rdzs.ruc.edu.cn/inquiry/enrollplan/indexcms/",
+      "summary": "中国人民大学本科招生各省份招生计划查询系统，可按省份查询分专业招生计划数。当前可查询2022年度数据，覆盖全国34个省市。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "中国人民大学研究生专业学位学科设置一览表",
+      "url": "https://grs.ruc.edu.cn/info/1064/3300.htm",
+      "summary": "研究生专业学位学科设置一览表。",
+      "attachments": [],
+      "publish_date": "2025-11-12",
+      "source_department": "研究生院"
+    },
+    {
+      "title": "中国人民大学学术型博士硕士学科设置一览表",
+      "url": "https://grs.ruc.edu.cn/info/1064/3299.htm",
+      "summary": "学术型博士硕士学科设置一览表。",
+      "attachments": [],
+      "publish_date": "2025-11-12",
+      "source_department": "研究生院"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "各专业分数线查询系统",
+      "url": "https://rdzs.ruc.edu.cn/inquiry/admission/indexcms/",
+      "summary": "中国人民大学本科各专业录取分数线查询系统，可按省份和年份查询，覆盖2001-2023年共23年数据，支持全国34个省市查询。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "2023年北京市录取分数线",
+      "url": "https://rdzs.ruc.edu.cn/inquiry/admission/indexcms/%E5%8C%97%E4%BA%AC/2023/listcms/",
+      "summary": "2023年北京市各专业录取分数线：法学最高682/最低678，金融学类最高683/最低675，人工智能（拔尖班）最高683/最低677，经济学类最高677/最低673，新闻传播学类最高677/最低671，计算机类（图灵实验班）最高679/最低677等。中外合作办学专业分数线相对较低，法语（中外合作办学）最低643。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "高考录取结果查询",
+      "url": "https://rdzs.ruc.edu.cn/cms/scores/",
+      "summary": "历年高考录取结果查询入口。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生招生办公室"
+    },
+    {
+      "title": "中国人民大学2026年硕士研究生招生考试考生进入复试的初试成绩基本要求",
+      "url": "https://pgs.ruc.edu.cn/info/1043/3553.htm",
+      "summary": "2026年硕士复试分数线基本要求。",
+      "attachments": [],
+      "publish_date": "2026-03-14",
+      "source_department": "研究生院"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "中国人民大学信息公开 - 教学质量",
+      "url": "https://xxgk.ruc.edu.cn/gksx/jxzl/index.htm",
+      "summary": "中国人民大学信息公开网教学质量栏目，包含基本数据、专业设置、毕业生就业等信息公开内容。转专业相关政策需通过教务处获取。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "信息公开工作领导小组办公室"
+    }
+  ],
+  "transfer_announcement": [],
+  "major_streaming": [],
+  "training_program": [],
+  "minor_program": [],
+  "employment_report": [
+    {
+      "title": "中国人民大学2023-2024学年本科教学质量报告",
+      "url": "https://xxgk.ruc.edu.cn/gksx/jxzl/bkjxzlbg/index.htm",
+      "summary": "2023-2024学年本科教学质量报告。报告显示：2024年共有国内生2806人、国际生142人毕业并获得主修学士学位，363人获得辅修学士学位，125人获辅修专业合格证书。本科毕业生以升学深造为主要去向，包括境内升学和境外留学，赴北京大学、清华大学、中国人民大学、麻省理工学院、帝国理工学院、哈佛大学、剑桥大学等国内外知名高校攻读研究生。直接就业的毕业生主要就业单位为外交部等国家党政机关，中国工商银行、中国银行等各大银行，中国建筑集团、中铁建设集团等大型国有企业，百度、京东等互联网企业。",
+      "attachments": [
+        "https://xxgk.ruc.edu.cn/gksx/jxzl/bkjxzlbg/0693d7d846fc4df08e2a70cdc1a2f436.htm"
+      ],
+      "publish_date": "2025-01-05",
+      "source_department": "信息公开工作领导小组办公室"
+    },
+    {
+      "title": "高校毕业生就业质量年度报告",
+      "url": "https://xxgk.ruc.edu.cn/gksx/jxzl/gxbysjyzlndbg/index.htm",
+      "summary": "中国人民大学高校毕业生就业质量年度报告，包含毕业生规模、结构、就业率、就业流向等详细数据。",
+      "attachments": [],
+      "publish_date": "2025-10-08",
+      "source_department": "信息公开工作领导小组办公室"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "中国人民大学2026年接收优秀应届本科毕业生免试攻读研究生工作办法",
+      "url": "https://pgs.ruc.edu.cn/info/1053/3471.htm",
+      "summary": "推免工作办法全文：申请条件为获得本科所在高校推免资格的优秀应届本科毕业生，须在推免生信息采集系统和教育部推免服务系统两个平台报名。复试形式包括笔试、面试、实践能力考核等，内容含专业课和综合课，跨一级学科申请人需加试一门专业课。思想政治素质和品德考核不合格者不予录取。直博生须在学信网全国博士生统一网报系统完成报名。",
+      "attachments": [],
+      "publish_date": "2025-09-11",
+      "source_department": "研究生院招生管理办公室"
+    },
+    {
+      "title": "中国人民大学关于2026年接收优秀应届本科毕业生免试攻读研究生报名的通知",
+      "url": "https://pgs.ruc.edu.cn/info/1053/3445.htm",
+      "summary": "2026年推免生报名通知。",
+      "attachments": [],
+      "publish_date": "2025-06-11",
+      "source_department": "研究生院招生管理办公室"
+    },
+    {
+      "title": "中国人民大学2025年接收优秀应届本科毕业生免试攻读研究生工作办法",
+      "url": "https://pgs.ruc.edu.cn/info/1053/3315.htm",
+      "summary": "2025年推免工作办法。",
+      "attachments": [],
+      "publish_date": "2024-09-26",
+      "source_department": "研究生院招生管理办公室"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "中国人民大学研究生院 - 培养管理（对外交流）",
+      "url": "https://grs.ruc.edu.cn/pygl/dwjl.htm",
+      "summary": "研究生院培养管理对外交流栏目，包含国际交换生项目、国家公派留学、联合培养博士等科研交流项目信息。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "研究生院"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "哲学院",
+      "url": "http://phi.ruc.edu.cn/",
+      "disciplines": [
+        "哲学",
+        "宗教学",
+        "伦理学",
+        "政治学、经济学与哲学"
+      ]
+    },
+    {
+      "name": "文学院",
+      "url": "http://wenxueyuan.ruc.edu.cn",
+      "disciplines": [
+        "中国语言文学"
+      ]
+    },
+    {
+      "name": "历史学院",
+      "url": "http://lsxy.ruc.edu.cn/",
+      "disciplines": [
+        "历史学",
+        "考古学",
+        "世界史"
+      ]
+    },
+    {
+      "name": "艺术学院",
+      "url": "http://art.ruc.edu.cn/",
+      "disciplines": [
+        "设计学",
+        "美术学"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "http://fl.ruc.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "国学院",
+      "url": "http://guoxue.ruc.edu.cn",
+      "disciplines": [
+        "中国古典学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://marx.ruc.edu.cn",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "中共党史党建学院",
+      "url": "http://dsdj.ruc.edu.cn",
+      "disciplines": [
+        "中共党史党建学"
+      ]
+    },
+    {
+      "name": "财政金融学院",
+      "url": "http://sf.ruc.edu.cn/",
+      "disciplines": [
+        "金融学",
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "统计学院",
+      "url": "http://stat.ruc.edu.cn",
+      "disciplines": [
+        "统计学",
+        "应用统计学",
+        "经济统计学",
+        "数据科学"
+      ]
+    },
+    {
+      "name": "劳动人事学院",
+      "url": "http://slhr.ruc.edu.cn/",
+      "disciplines": [
+        "工商管理",
+        "公共管理"
+      ]
+    },
+    {
+      "name": "经济学院",
+      "url": "http://econ.ruc.edu.cn",
+      "disciplines": [
+        "理论经济学",
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "中法学院",
+      "url": "http://ifc.ruc.edu.cn",
+      "disciplines": [
+        "外国语言文学",
+        "应用经济学",
+        "金融学",
+        "数学",
+        "工商管理",
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "生态环境学院",
+      "url": "http://envi.ruc.edu.cn",
+      "disciplines": [
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "应用经济学院",
+      "url": "http://ae.ruc.edu.cn/",
+      "disciplines": [
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "新闻学院",
+      "url": "http://jcr.ruc.edu.cn/",
+      "disciplines": [
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "社会学院",
+      "url": "http://ssps.ruc.edu.cn/",
+      "disciplines": [
+        "社会学"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "http://www.law.ruc.edu.cn",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "国际关系学院",
+      "url": "http://sis.ruc.edu.cn",
+      "disciplines": [
+        "政治学"
+      ]
+    },
+    {
+      "name": "信息学院",
+      "url": "http://info.ruc.edu.cn",
+      "disciplines": [
+        "计算机科学与技术",
+        "信息管理与信息系统",
+        "信息安全",
+        "数据科学与大数据技术"
+      ]
+    },
+    {
+      "name": "物理学院",
+      "url": "http://physics.ruc.edu.cn",
+      "disciplines": [
+        "物理学",
+        "材料物理"
+      ]
+    },
+    {
+      "name": "数学学院",
+      "url": "http://math.ruc.edu.cn/",
+      "disciplines": [
+        "数学",
+        "数据计算及应用"
+      ]
+    },
+    {
+      "name": "高瓴人工智能学院",
+      "url": "http://ai.ruc.edu.cn/",
+      "disciplines": [
+        "人工智能"
+      ]
+    },
+    {
+      "name": "化学与生命资源学院",
+      "url": "https://clr.ruc.edu.cn/zwwz/index.htm",
+      "disciplines": [
+        "化学",
+        "环境科学与工程"
+      ]
+    }
+  ],
+  "student_experiences": [],
+  "notes": "1. 本科招生网(rdzs.ruc.edu.cn)有WAF防护，部分页面无法通过爬虫直接获取内容（如招生政策列表页返回403/拦截页），招生章程具体文件需通过浏览器访问。2. 教务处(jwc.ruc.edu.cn)无法访问，转专业政策、培养方案、辅修双学位、大类分流等信息未能获取。3. 管理学部（商学院、公共管理学院、信息资源管理学院、农业与农村发展学院、教育学院等）的学院页面因网络超时未能抓取。4. 就业质量报告具体PDF文件未直接提取到附件链接。5. 已获取的信息主要来源：本科招生阳光信息平台(rdzs.ruc.edu.cn)、研究生招生网(pgs.ruc.edu.cn)、研究生院(grs.ruc.edu.cn)、信息公开网(xxgk.ruc.edu.cn)。",
+  "missing_categories": [
+    "transfer_announcement",
+    "major_streaming",
+    "training_program",
+    "minor_program"
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "university": "清华大学",
+  "official_url": "https://www.tsinghua.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "清华大学招生章程（阳光高考平台）",
+      "url": "https://gaokao.chsi.com.cn/zsgs/zhangcheng/listZszc--schId-3.dhtml",
+      "summary": "清华大学本科招生章程在教育部阳光高考信息公开平台发布，包含招生总则、组织机构、招生计划、录取规则、收费及资助等完整章程内容。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学招生办公室"
+    },
+    {
+      "title": "清华大学2026年强基计划招生简章",
+      "url": "https://www.join-tsinghua.edu.cn/info/1033/2166.htm",
+      "summary": "2026年强基计划招收基础理科学术类（数学与应用数学、物理学、化学、生物科学、信息与计算科学）、基础理科工程衔接类（数理基础科学、化学生物学、理论与应用力学）和基础文科类（中国语言文学类古文字学方向、历史学类、哲学类）。综合成绩=高考成绩85%+综合考核15%（笔试10%+面试5%）。报名时间4月10日-30日，综合考核6月底-7月初。",
+      "attachments": [],
+      "publish_date": "2026-04-10",
+      "source_department": "清华大学招生办公室"
+    },
+    {
+      "title": "清华大学2024年自强计划招生简章",
+      "url": "https://www.join-tsinghua.edu.cn/info/1034/1886.htm",
+      "summary": "面向边远、贫困、民族等地区县及县以下优秀高中毕业生的自强计划招生简章。",
+      "attachments": [],
+      "publish_date": "2024-04-10",
+      "source_department": "清华大学招生办公室"
+    }
+  ],
+  "enrollment_plan": [],
+  "historical_admission": [
+    {
+      "title": "清华大学2024年各省各批次录取分数线",
+      "url": "https://www.join-tsinghua.edu.cn/info/1032/1945.htm",
+      "summary": "2024年清华大学在全国各省（自治区、直辖市）各批次的录取分数线数据。",
+      "attachments": [],
+      "publish_date": "2024-07-13",
+      "source_department": "清华大学招生办公室"
+    },
+    {
+      "title": "清华大学2023年各省各批次录取分数线",
+      "url": "https://www.join-tsinghua.edu.cn/info/1032/1808.htm",
+      "summary": "2023年清华大学在全国各省（自治区、直辖市）各批次的录取分数线数据。",
+      "attachments": [],
+      "publish_date": "2023-07-18",
+      "source_department": "清华大学招生办公室"
+    },
+    {
+      "title": "清华大学2022年各省各批次录取分数线",
+      "url": "https://www.join-tsinghua.edu.cn/info/1032/1683.htm",
+      "summary": "2022年清华大学在全国各省（自治区、直辖市）各批次的录取分数线数据。",
+      "attachments": [],
+      "publish_date": "2022-07-17",
+      "source_department": "清华大学招生办公室"
+    },
+    {
+      "title": "清华大学历年录取分数线汇总（2011-2024）",
+      "url": "https://www.join-tsinghua.edu.cn/xxgk/lnlqfsx.htm",
+      "summary": "清华大学本科招生网公开的历年（2011-2024年）各省各批次录取分数线汇总页面，覆盖14年数据。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学招生办公室"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "转专业指导手册",
+      "url": "https://learning.tsinghua.edu.cn/info/1246/1743.htm",
+      "summary": "清华大学学生学习与发展指导中心编写的转专业指导手册，涵盖转专业条件、流程、时间节点等信息。转系申请时间为每学年春季学期第10-11周（每年四五月份），学校会在信息门户info.tsinghua.edu.cn上发布教务公告。",
+      "attachments": [],
+      "publish_date": "2024-02-26",
+      "source_department": "学生学习与发展指导中心"
+    },
+    {
+      "title": "辅修&转专业指导",
+      "url": "https://learning.tsinghua.edu.cn/info/1331/2375.htm",
+      "summary": "转专业申请需在春季学期第10-11周通过信息门户进行，申请人需参加教务处组织的文理科选拔考试（理科考数学和英语，文科考英语等），经教务处审核通过后办理相关手续。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "学生学习与发展指导中心"
+    }
+  ],
+  "transfer_announcement": [],
+  "major_streaming": [],
+  "training_program": [
+    {
+      "title": "2026年清华大学本科专业设置",
+      "url": "https://www.tsinghua.edu.cn/jyjx/bksjy/bkzy.htm",
+      "summary": "清华大学2026年本科共设94个专业，涵盖建筑、土木水利、环境、机械、电气、信息、航院、工物、化工、材料、理科、生命、经管、社科、人文、法学、新闻、美院、教育、药学、医学等学科方向。采用书院制培养模式，设有致理、日新、未央、探微、行健、新雅、秀钟、紫荆、水木、为先、笃实、自强、无穹等多个书院。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学教务处"
+    },
+    {
+      "title": "2026年清华大学双学士学位项目",
+      "url": "https://www.tsinghua.edu.cn/jyjx/bksjy/bkzy.htm",
+      "summary": "共设28个双学士学位项目，包括：计算机与金融（经管学院）、数理基础科学+工科方向（未央书院13个方向）、化学生物学+工科方向（探微书院6个方向）、理论与应用力学+工科方向（行健书院5个方向）、历史学+英语/哲学+英语（日新书院）、体育教育+工商管理（经管学院）等。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学教务处"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "2026年清华大学本科辅修学位专业",
+      "url": "https://www.tsinghua.edu.cn/jyjx/bksjy/bkzy.htm",
+      "summary": "共设43个辅修学位专业，覆盖建筑学、城乡规划、风景园林、土木水利与海洋工程、环境工程、机械工程、计算机科学与技术、自动化、微电子科学与工程、软件工程、航空航天工程、物理学、数学与应用数学、经济学、法学、新闻学、哲学、历史学、统计学、人工智能等。截止时间为2024年8月数据。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学教务处"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "清华大学2025届毕业生就业质量报告",
+      "url": "https://www.tsinghua.edu.cn/info/1182/124579.htm",
+      "summary": "2025届清华毕业生国内重要领域重点单位就业率超过86%，连续16年保持80%以上。10年来毕业生出国（境）深造比例约10%。2024年西部和东北地区就业人数同比增长16.5%。",
+      "attachments": [],
+      "publish_date": "2026-03-10",
+      "source_department": "清华大学学生职业发展指导中心"
+    },
+    {
+      "title": "清华大学2024届毕业生就业数据",
+      "url": "https://www.tsinghua.edu.cn/info/1177/116404.htm",
+      "summary": "2024届清华毕业生就业数据公布，10年来毕业生重要领域重点单位就业比例超80%。",
+      "attachments": [],
+      "publish_date": "2025-01-03",
+      "source_department": "清华大学"
+    },
+    {
+      "title": "清华大学2022年毕业生就业质量报告（PDF）",
+      "url": "https://career.tsinghua.edu.cn/info/1031/4775.htm",
+      "summary": "2022届毕业生毕业去向落实率为98.0%，超八成毕业生赴重点单位就业创业。",
+      "attachments": [
+        "https://career.tsinghua.edu.cn/__local/E/20/76/2B9F9D2BDE5C9FB3F1436218F4D_FCD98D0B_483A2F.pdf"
+      ],
+      "publish_date": "2022-12-31",
+      "source_department": "清华大学学生职业发展指导中心"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "清华大学推荐2026届本科毕业生免试攻读博士/硕士学位研究生工作实施办法",
+      "url": "https://www.zizzs.com/gk/kaoyanzhuanqu/208799.html",
+      "summary": "推免条件：纳入国家普通本科招生计划的应届毕业生、诚实守信、学风端正、未因学业违纪受过处分。组织管理由校推免生遴选工作领导小组负责，组长为校长。院系制定推荐办法和排序规则，注重过程评价，关注核心课程表现，不简单采用平均学分绩。有特殊学术专长者经3名导师推荐可破格申请（不超过院系推免总数3%）。推免率约61.2%。申请系统：https://yzbm.tsinghua.edu.cn。",
+      "attachments": [],
+      "publish_date": "2025-09",
+      "source_department": "清华大学教务处"
+    },
+    {
+      "title": "清华大学2026年接收推荐免试研究生办法",
+      "url": "http://pc.baoyanwang.com.cn/articles/3601",
+      "summary": "通过推荐免试方式接收全国优秀应届本科毕业生攻读硕士、博士学位。坚持公平公正公开原则，全面衡量德智体美劳素质，注重考核创新能力和实践能力。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学研究生院"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "清华大学科研机构 - 政府批建机构",
+      "url": "https://www.tsinghua.edu.cn/kxyj/kyjg/zfpjjg.htm",
+      "summary": "截至2026年3月31日，清华大学正在运行的政府部门批准建立的科研机构（牵头建设）共172个。包括：全国重点实验室13个、国家研究中心1个、国家工程研究中心/实验室11个、国家工程技术研究中心2个、国家重大科技基础设施2个、教育部重点实验室17个、教育部工程研究中心9个、北京市重点实验室28个等。全校校级科研机构共430个。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学科研院"
+    },
+    {
+      "title": "清华大学科研机构 - 自主设立机构",
+      "url": "https://www.tsinghua.edu.cn/kxyj/kyjg/zzsljg.htm",
+      "summary": "清华大学自主设立的科研机构列表。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学科研院"
+    },
+    {
+      "title": "清华大学科研机构 - 联合共建机构",
+      "url": "https://www.tsinghua.edu.cn/kxyj/kyjg/lhgjjg.htm",
+      "summary": "清华大学与校外独立法人单位联合共建的科研机构列表。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "清华大学科研院"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "建筑学院",
+      "url": "http://www.arch.tsinghua.edu.cn",
+      "disciplines": [
+        "建筑学",
+        "城乡规划学",
+        "风景园林学"
+      ]
+    },
+    {
+      "name": "土木水利学院",
+      "url": "http://www.civil.tsinghua.edu.cn",
+      "disciplines": [
+        "土木工程",
+        "水利工程",
+        "交通工程",
+        "管理科学与工程"
+      ]
+    },
+    {
+      "name": "环境学院",
+      "url": "http://www.env.tsinghua.edu.cn/",
+      "disciplines": [
+        "环境科学与工程",
+        "市政工程"
+      ]
+    },
+    {
+      "name": "机械工程学院",
+      "url": "http://www.sme.tsinghua.edu.cn/",
+      "disciplines": [
+        "机械工程",
+        "动力工程及工程热物理",
+        "仪器科学与技术",
+        "车辆工程",
+        "工业工程"
+      ]
+    },
+    {
+      "name": "电机工程与应用电子技术系",
+      "url": "http://www.eea.tsinghua.edu.cn/",
+      "disciplines": [
+        "电气工程"
+      ]
+    },
+    {
+      "name": "信息科学技术学院",
+      "url": "http://www.sist.tsinghua.edu.cn/",
+      "disciplines": [
+        "电子科学与技术",
+        "信息与通信工程",
+        "计算机科学与技术",
+        "控制科学与工程",
+        "软件工程"
+      ]
+    },
+    {
+      "name": "航天航空学院",
+      "url": "http://www.hy.tsinghua.edu.cn/",
+      "disciplines": [
+        "力学",
+        "航空宇航科学与技术",
+        "动力工程及工程热物理"
+      ]
+    },
+    {
+      "name": "工程物理系",
+      "url": "http://www.ep.tsinghua.edu.cn/",
+      "disciplines": [
+        "核科学与技术",
+        "物理学"
+      ]
+    },
+    {
+      "name": "化学工程系",
+      "url": "http://www.chemeng.tsinghua.edu.cn/",
+      "disciplines": [
+        "化学工程与技术",
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "材料学院",
+      "url": "http://www.mse.tsinghua.edu.cn/",
+      "disciplines": [
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "数学科学系",
+      "url": "http://www.math.tsinghua.edu.cn/",
+      "disciplines": [
+        "数学"
+      ]
+    },
+    {
+      "name": "物理系",
+      "url": "https://www.phys.tsinghua.edu.cn/",
+      "disciplines": [
+        "物理学"
+      ]
+    },
+    {
+      "name": "化学系",
+      "url": "http://www.chem.tsinghua.edu.cn/",
+      "disciplines": [
+        "化学"
+      ]
+    },
+    {
+      "name": "天文系",
+      "url": "https://astro.tsinghua.edu.cn/",
+      "disciplines": [
+        "天文学"
+      ]
+    },
+    {
+      "name": "生命科学学院",
+      "url": "http://life.tsinghua.edu.cn/",
+      "disciplines": [
+        "生物学"
+      ]
+    },
+    {
+      "name": "地球系统科学系",
+      "url": "https://www.dess.tsinghua.edu.cn/",
+      "disciplines": [
+        "地球系统科学"
+      ]
+    },
+    {
+      "name": "经济管理学院",
+      "url": "https://www.sem.tsinghua.edu.cn/",
+      "disciplines": [
+        "应用经济学",
+        "工商管理",
+        "管理科学与工程"
+      ]
+    },
+    {
+      "name": "公共管理学院",
+      "url": "http://www.sppm.tsinghua.edu.cn/",
+      "disciplines": [
+        "公共管理"
+      ]
+    },
+    {
+      "name": "社会科学学院",
+      "url": "https://www.sss.tsinghua.edu.cn/",
+      "disciplines": [
+        "社会学",
+        "政治学",
+        "心理学",
+        "理论经济学"
+      ]
+    },
+    {
+      "name": "人文学院",
+      "url": "https://www.rwxy.tsinghua.edu.cn/",
+      "disciplines": [
+        "中国语言文学",
+        "外国语言文学",
+        "哲学",
+        "历史学",
+        "科学技术史"
+      ]
+    },
+    {
+      "name": "法学院",
+      "url": "https://www.law.tsinghua.edu.cn/",
+      "disciplines": [
+        "法学"
+      ]
+    },
+    {
+      "name": "新闻与传播学院",
+      "url": "https://www.tsjc.tsinghua.edu.cn/",
+      "disciplines": [
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "https://www.smarx.tsinghua.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "美术学院",
+      "url": "https://www.ad.tsinghua.edu.cn/",
+      "disciplines": [
+        "设计学",
+        "美术学",
+        "艺术学理论"
+      ]
+    },
+    {
+      "name": "统计与数据科学系",
+      "url": "https://www.stat.tsinghua.edu.cn/",
+      "disciplines": [
+        "统计学"
+      ]
+    },
+    {
+      "name": "教育学院",
+      "url": "https://www.ioe.tsinghua.edu.cn/",
+      "disciplines": [
+        "教育学"
+      ]
+    },
+    {
+      "name": "药学院",
+      "url": "https://www.sps.tsinghua.edu.cn/",
+      "disciplines": [
+        "药学"
+      ]
+    },
+    {
+      "name": "医学院",
+      "url": "https://www.med.tsinghua.edu.cn/",
+      "disciplines": [
+        "生物医学工程",
+        "临床医学"
+      ]
+    },
+    {
+      "name": "交叉信息研究院",
+      "url": "http://iiis.tsinghua.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术",
+        "人工智能"
+      ]
+    },
+    {
+      "name": "心理与认知科学系",
+      "url": "https://www.pcs.tsinghua.edu.cn/",
+      "disciplines": [
+        "心理学"
+      ]
+    },
+    {
+      "name": "车辆与运载学院",
+      "url": "https://www.svm.tsinghua.edu.cn/",
+      "disciplines": [
+        "车辆工程"
+      ]
+    },
+    {
+      "name": "集成电路学院",
+      "url": "https://www.sic.tsinghua.edu.cn/",
+      "disciplines": [
+        "集成电路科学与工程"
+      ]
+    },
+    {
+      "name": "软件学院",
+      "url": "https://www.thss.tsinghua.edu.cn/",
+      "disciplines": [
+        "软件工程"
+      ]
+    },
+    {
+      "name": "生物医学工程学院",
+      "url": "https://bme.tsinghua.edu.cn/",
+      "disciplines": [
+        "生物医学工程"
+      ]
+    },
+    {
+      "name": "体育部",
+      "url": "https://www.thsports.tsinghua.edu.cn/",
+      "disciplines": [
+        "体育学"
+      ]
+    }
+  ],
+  "student_experiences": [
+    {
+      "topic": "清华转专业体验与建议",
+      "content": "清华转专业申请时间为春季学期第10-11周，需参加教务处组织的选拔考试。理科考数学和英语，文科考英语。有学生表示转系后需注意学籍手续、选课、学分认定等问题，计算机系等热门方向竞争激烈。转专业后课程衔接是关键挑战。",
+      "source_type": "知乎",
+      "source_url": "https://www.zhihu.com/question/312281927"
+    },
+    {
+      "topic": "2025年清华大学转专业数据分析",
+      "content": "2025年清华大学教务处公布转专业数据显示，转出最多的学院是建筑学院（26人），其次是土木系（12人）、水利系（4人）。2024级转专业中建筑学院转出23人、秀钟书院17人、土木工程系10人、经管学院7人。反映出行业变迁下学生的选择逻辑。",
+      "source_type": "搜狐",
+      "source_url": "https://www.sohu.com/a/896381174_121124408"
+    }
+  ],
+  "notes": "1. enrollment_plan（招生计划）：清华大学未在官网公开发布分省分专业招生计划表，强基计划招生计划数以报名平台内公布为准，高考统招计划由各省考试院发布。2. transfer_announcement（转专业公示）：转专业拟录取名单公示在清华大学校内信息门户（info.tsinghua.edu.cn）发布，仅校内可见，外部无法访问。3. major_streaming（大类分流规则）：清华大学采用书院制培养模式，非传统大类招生+分流模式。学生通过高考统招进入具体专业或通过强基计划进入书院（致理、日新、未央、探微、行健等），在书院内自主选择专业方向，不存在传统意义上的大类分流规则。4. 就业质量报告PDF仅找到2022年的，2024/2025届报告可能以网页形式发布。",
+  "missing_categories": [
+    "enrollment_plan",
+    "transfer_announcement",
+    "major_streaming"
+  ]
+}

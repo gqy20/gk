@@ -1,0 +1,566 @@
+{
+  "university": "南京邮电大学",
+  "official_url": "https://www.njupt.edu.cn",
+  "crawl_time": "2026-05-03",
+  "admission_guide": [
+    {
+      "title": "南京邮电大学2025年普通本科招生章程",
+      "url": "http://zs.njupt.edu.cn/2025/0605/c2562a285145/page.htm",
+      "summary": "省属公办高校，双一流建设高校，院校代码4132010293。仙林校区和三牌楼校区。分数优先原则安排专业，无级差。学费：文科5200、理科5500、工科5800、艺术6800元/年，优势学科上浮10%。预留计划不超过1%。",
+      "attachments": [],
+      "publish_date": "2025-06-03",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2024年普通本科招生章程",
+      "url": "http://zs.njupt.edu.cn/2024/0604/c2562a264832/page.htm",
+      "summary": "2024年本科招生章程，包含学校概况、招生计划、录取规则、收费标准等。",
+      "attachments": [],
+      "publish_date": "2024-05-27",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2023年普通本科招生章程",
+      "url": "http://zs.njupt.edu.cn/2023/0603/c2562a242452/page.htm",
+      "summary": "2023年本科招生章程。",
+      "attachments": [],
+      "publish_date": "2023-06-03",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2026年综合评价招生简章",
+      "url": "http://zs.njupt.edu.cn/2026/0428/c2585a301108/page.htm",
+      "summary": "2026年综合评价招生简章。",
+      "attachments": [],
+      "publish_date": "2026-04-29",
+      "source_department": "本科招生网"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "南京邮电大学2025年招生计划",
+      "url": "http://zs.njupt.edu.cn/2025/1110/c2563a291550/page.htm",
+      "summary": "2025年分省分专业招生计划。",
+      "attachments": [],
+      "publish_date": "2025-06-24",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2024年招生计划",
+      "url": "http://zs.njupt.edu.cn/2024/0626/c2563a266826/page.htm",
+      "summary": "2024年分省分专业招生计划。",
+      "attachments": [],
+      "publish_date": "2024-06-24",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2023年招生计划",
+      "url": "http://zs.njupt.edu.cn/2023/0624/c2563a244333/page.htm",
+      "summary": "2023年分省分专业招生计划。",
+      "attachments": [],
+      "publish_date": "2023-06-24",
+      "source_department": "本科招生网"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "南京邮电大学2025年录取情况统计表",
+      "url": "https://zs.njupt.edu.cn/_upload/article/files/e8/e0/65c9f09941bb9a3086417b138570/9e680ed7-3cee-49cc-b69b-54177ec31881.xlsx",
+      "summary": "2025年各省各专业录取分数统计表（Excel）。",
+      "attachments": [
+        "https://zs.njupt.edu.cn/_upload/article/files/e8/e0/65c9f09941bb9a3086417b138570/9e680ed7-3cee-49cc-b69b-54177ec31881.xlsx"
+      ],
+      "publish_date": "2025-11-19",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2024年录取情况统计表",
+      "url": "https://zs.njupt.edu.cn/_upload/article/files/3d/50/f2acbcee41d8ba2251abe3547474/84cef2c7-6f10-44af-bbeb-fdd1425f64cb.xlsx",
+      "summary": "2024年各省各专业录取分数统计表（Excel）。",
+      "attachments": [
+        "https://zs.njupt.edu.cn/_upload/article/files/3d/50/f2acbcee41d8ba2251abe3547474/84cef2c7-6f10-44af-bbeb-fdd1425f64cb.xlsx"
+      ],
+      "publish_date": "2024-11-08",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2023年录取情况统计表",
+      "url": "https://zs.njupt.edu.cn/2023/1016/c2587a247781/page.htm",
+      "summary": "2023年各省录取情况统计。",
+      "attachments": [],
+      "publish_date": "2023-10-16",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2022年录取情况统计表",
+      "url": "https://zs.njupt.edu.cn/2023/0104/c2587a233184/page.htm",
+      "summary": "2022年各省录取情况统计。",
+      "attachments": [],
+      "publish_date": "2022-12-30",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "南京邮电大学2021年录取情况统计表",
+      "url": "https://zs.njupt.edu.cn/2021/1217/c2587a212765/page.htm",
+      "summary": "2021年各省录取情况统计。",
+      "attachments": [],
+      "publish_date": "2021-11-17",
+      "source_department": "本科招生网"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "2025-2026学年第二学期各学院转专业工作细则",
+      "url": "http://jwc.njupt.edu.cn/2026/0430/c1594a301207/page.htm",
+      "summary": "2026年春季学期各学院转专业工作细则通知（校内访问）。",
+      "attachments": [],
+      "publish_date": "2026-04-30",
+      "source_department": "本科生院（教务管理办公室）"
+    },
+    {
+      "title": "2025-2026学年第二学期转入转出创新实验班工作方案",
+      "url": "http://jwc.njupt.edu.cn/2026/0430/c1594a301219/page.htm",
+      "summary": "创新实验班转入转出工作方案通知（校内访问）。",
+      "attachments": [],
+      "publish_date": "2026-04-30",
+      "source_department": "本科生院（教务管理办公室）"
+    },
+    {
+      "title": "学籍管理办法",
+      "url": "https://jwc.njupt.edu.cn/1535/list.htm",
+      "summary": "本科生学籍管理办法，包含转专业相关规定。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院"
+    }
+  ],
+  "transfer_announcement": [],
+  "major_streaming": [],
+  "training_program": [
+    {
+      "title": "专业培养方案调整工作流程",
+      "url": "https://jwc.njupt.edu.cn/2013/0119/c1521a44700/page.htm",
+      "summary": "培养方案调整工作流程说明。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院（教研科）"
+    },
+    {
+      "title": "专业培养方案制（修）订工作流程",
+      "url": "https://jwc.njupt.edu.cn/2013/0119/c1521a44690/page.htm",
+      "summary": "培养方案制订和修订工作流程说明。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院（教研科）"
+    },
+    {
+      "title": "本科生专业设置",
+      "url": "https://jwc.njupt.edu.cn/1532/list.htm",
+      "summary": "南京邮电大学本科专业设置信息公开页面。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "自学考试第二学历",
+      "url": "https://jjy.njupt.edu.cn/",
+      "summary": "继续教育学院自学考试第二学历相关信息。南京邮电大学提供自学考试第二学历教育。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "继续教育学院"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "南京邮电大学就业信息网",
+      "url": "http://njupt.91job.org.cn/",
+      "summary": "南京邮电大学就业信息网，提供招聘会、宣讲会、就业信息等服务。联系邮箱：jiuye@njupt.edu.cn，电话：025-85866867。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "招生就业处"
+    },
+    {
+      "title": "南京邮电大学2026届毕业生生源基本信息及就业联系方式",
+      "url": "http://njupt.91job.org.cn/",
+      "summary": "2026届毕业生生源信息公布。",
+      "attachments": [],
+      "publish_date": "2025-07-25",
+      "source_department": "就业信息网"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "南京邮电大学推荐优秀应届本科毕业生免试攻读研究生管理办法（修订）",
+      "url": "https://jwc.njupt.edu.cn/1536/list.htm",
+      "summary": "校发〔2025〕7号。推荐对象为应届本科毕业生（不含专升本、专转本、第二学士学位）。智育排名须在专业年级30%以内，CET-6≥425分（竞赛获奖等特殊途径可放宽至CET-4≥425分）。推荐工作一般于每年9月进行，由校推免生工作领导小组统一组织。A类竞赛国家级一等奖主要成员可申请直接推免资格。",
+      "attachments": [],
+      "publish_date": "2025-01-09",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "南京邮电大学2026年硕士推免生拟录取人数统计",
+      "url": "http://yzb.njupt.edu.cn/2026/0304/c7800a297362/page.htm",
+      "summary": "2026年硕士推免生拟录取人数统计数据。",
+      "attachments": [],
+      "publish_date": "2026-03-05",
+      "source_department": "研究生招生信息网"
+    },
+    {
+      "title": "南京邮电大学关于接收2026年推荐免试攻读研究生（含直博生）的通知",
+      "url": "http://yzb.njupt.edu.cn/2025/0915/c7800a288726/page.htm",
+      "summary": "2026年接收推免生（含直博生）的通知，包含报名条件和程序。",
+      "attachments": [],
+      "publish_date": "2025-09-15",
+      "source_department": "研究生招生信息网"
+    },
+    {
+      "title": "南京邮电大学2026年接收推免生攻读硕士学位招生专业一览表",
+      "url": "http://yzb.njupt.edu.cn/2025/0917/c7800a288893/page.htm",
+      "summary": "2026年接收推免生攻读硕士学位各学院专业一览表。",
+      "attachments": [],
+      "publish_date": "2025-09-17",
+      "source_department": "研究生招生信息网"
+    },
+    {
+      "title": "南京邮电大学2026年接收直博生招生专业一览表",
+      "url": "http://yzb.njupt.edu.cn/2025/0917/c7800a288894/page.htm",
+      "summary": "2026年接收直博生招生专业一览表。",
+      "attachments": [],
+      "publish_date": "2025-09-17",
+      "source_department": "研究生招生信息网"
+    },
+    {
+      "title": "南京邮电大学2025年接收推免生攻读硕士学位招生专业一览表",
+      "url": "http://yzb.njupt.edu.cn/2024/0926/c7800a270411/page.htm",
+      "summary": "2025年接收推免生攻读硕士学位各学院专业一览表。",
+      "attachments": [],
+      "publish_date": "2024-09-26",
+      "source_department": "研究生招生信息网"
+    },
+    {
+      "title": "南京邮电大学2024年硕士推免生各专业录取人数统计",
+      "url": "http://yzb.njupt.edu.cn/2024/0227/c7800a269424/page.htm",
+      "summary": "2024年硕士推免生各专业录取人数统计数据。",
+      "attachments": [],
+      "publish_date": "2024-02-28",
+      "source_department": "研究生招生信息网"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "信息与通信工程国家级实验教学示范中心",
+      "url": "http://180.209.96.19/",
+      "summary": "国家级实验教学示范中心，涵盖信息与通信工程领域。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "实验教学示范中心"
+    },
+    {
+      "title": "电子科学与技术国家级实验教学示范中心",
+      "url": "http://eselab.njupt.edu.cn/",
+      "summary": "国家级实验教学示范中心，涵盖电子科学与技术领域。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "实验教学示范中心"
+    },
+    {
+      "title": "网络与控制虚拟仿真实验教学中心",
+      "url": "http://coalab.njupt.edu.cn/",
+      "summary": "虚拟仿真实验教学中心。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "实验教学示范中心"
+    },
+    {
+      "title": "通信与信息网络虚拟仿真实验教学中心",
+      "url": "http://180.209.96.19/",
+      "summary": "虚拟仿真实验教学中心。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "实验教学示范中心"
+    },
+    {
+      "title": "信息电子技术虚拟仿真实验教学中心",
+      "url": "http://veselab.njupt.edu.cn/",
+      "summary": "虚拟仿真实验教学中心。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "实验教学示范中心"
+    },
+    {
+      "title": "柔性电子全国重点实验室",
+      "url": "https://lofe.njupt.edu.cn/main.htm",
+      "summary": "南京邮电大学柔性电子全国重点实验室。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研机构"
+    },
+    {
+      "title": "碳中和先进技术研究院",
+      "url": "http://xjjs.njupt.edu.cn/",
+      "summary": "碳中和先进技术研究院。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研机构"
+    },
+    {
+      "title": "人口研究院",
+      "url": "http://ipr.njupt.edu.cn/",
+      "summary": "人口研究院。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研机构"
+    },
+    {
+      "title": "高质量发展评价研究院",
+      "url": "http://ihq.njupt.edu.cn/",
+      "summary": "高质量发展评价研究院。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研机构"
+    },
+    {
+      "title": "空天地海通信技术一体化研究院",
+      "url": "https://www.njupt.edu.cn/kyjg/list.htm",
+      "summary": "空天地海通信技术一体化研究院。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "科研机构"
+    },
+    {
+      "title": "学科竞赛系统",
+      "url": "http://180.209.64.62/xkjs/",
+      "summary": "南京邮电大学学科竞赛管理系统，涵盖各类学科竞赛信息。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院"
+    },
+    {
+      "title": "创新创业教育学院",
+      "url": "https://cxcy.njupt.edu.cn/",
+      "summary": "创新创业教育学院，负责大学生创新创业训练计划和学科竞赛组织。",
+      "attachments": [],
+      "publish_date": "",
+      "source_department": "本科生院"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "通信与信息工程学院",
+      "url": "http://scie.njupt.edu.cn/",
+      "disciplines": [
+        "信息与通信工程",
+        "电子科学与技术"
+      ]
+    },
+    {
+      "name": "电子与光学工程学院、柔性电子（未来技术）学院",
+      "url": "http://eoe.njupt.edu.cn/",
+      "disciplines": [
+        "电子科学与技术",
+        "光学工程",
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "集成电路科学与工程学院（产教融合学院）",
+      "url": "https://ic.njupt.edu.cn/",
+      "disciplines": [
+        "集成电路科学与工程",
+        "电子科学与技术"
+      ]
+    },
+    {
+      "name": "计算机学院、软件学院、网络空间安全学院",
+      "url": "http://cs.njupt.edu.cn/",
+      "disciplines": [
+        "计算机科学与技术",
+        "软件工程",
+        "网络空间安全"
+      ]
+    },
+    {
+      "name": "自动化学院",
+      "url": "http://coa.njupt.edu.cn/",
+      "disciplines": [
+        "控制科学与工程",
+        "电气工程"
+      ]
+    },
+    {
+      "name": "人工智能学院",
+      "url": "http://ai.njupt.edu.cn",
+      "disciplines": [
+        "人工智能",
+        "智能科学与技术"
+      ]
+    },
+    {
+      "name": "材料科学与工程学院",
+      "url": "http://iam.njupt.edu.cn/",
+      "disciplines": [
+        "材料科学与工程"
+      ]
+    },
+    {
+      "name": "化学与生命科学学院",
+      "url": "http://chem.njupt.edu.cn/",
+      "disciplines": [
+        "化学",
+        "生物学"
+      ]
+    },
+    {
+      "name": "物联网学院",
+      "url": "http://ciot.njupt.edu.cn/",
+      "disciplines": [
+        "信息与通信工程",
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "理学院",
+      "url": "http://lxy.njupt.edu.cn/",
+      "disciplines": [
+        "数学",
+        "物理学",
+        "统计学"
+      ]
+    },
+    {
+      "name": "现代邮政学院、智慧交通学院",
+      "url": "http://simp.njupt.edu.cn/",
+      "disciplines": [
+        "交通运输工程",
+        "管理科学与工程"
+      ]
+    },
+    {
+      "name": "数字媒体与设计艺术学院",
+      "url": "http://cm.njupt.edu.cn/",
+      "disciplines": [
+        "设计学",
+        "新闻传播学"
+      ]
+    },
+    {
+      "name": "管理学院",
+      "url": "http://bc.njupt.edu.cn/",
+      "disciplines": [
+        "工商管理",
+        "管理科学与工程"
+      ]
+    },
+    {
+      "name": "经济学院",
+      "url": "http://jjxy.njupt.edu.cn/",
+      "disciplines": [
+        "应用经济学",
+        "理论经济学"
+      ]
+    },
+    {
+      "name": "马克思主义学院",
+      "url": "http://marxism.njupt.edu.cn/",
+      "disciplines": [
+        "马克思主义理论"
+      ]
+    },
+    {
+      "name": "社会与人口学院、社会工作学院",
+      "url": "http://sps.njupt.edu.cn/",
+      "disciplines": [
+        "社会学",
+        "公共管理"
+      ]
+    },
+    {
+      "name": "外国语学院",
+      "url": "http://fld.njupt.edu.cn/",
+      "disciplines": [
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "教育科学与技术学院",
+      "url": "http://edu.njupt.edu.cn/",
+      "disciplines": [
+        "教育学",
+        "教育技术学"
+      ]
+    },
+    {
+      "name": "贝尔英才学院",
+      "url": "http://bhs.njupt.edu.cn/",
+      "disciplines": [
+        "通信工程",
+        "电子信息工程",
+        "计算机科学与技术"
+      ]
+    },
+    {
+      "name": "海外教育学院",
+      "url": "http://overseas.njupt.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "波特兰学院",
+      "url": "http://psu.njupt.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "欧洲塞浦路斯学院",
+      "url": "http://eci.njupt.edu.cn",
+      "disciplines": []
+    },
+    {
+      "name": "体育部",
+      "url": "http://tyb.njupt.edu.cn/",
+      "disciplines": [
+        "体育学"
+      ]
+    },
+    {
+      "name": "继续教育学院、自学考试办公室",
+      "url": "http://jjy.njupt.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "应用技术学院",
+      "url": "http://yyjsxy.njupt.edu.cn/",
+      "disciplines": []
+    },
+    {
+      "name": "工程实验教学部",
+      "url": "https://deei.njupt.edu.cn/",
+      "disciplines": []
+    }
+  ],
+  "student_experiences": [
+    {
+      "topic": "转专业难度与经验",
+      "content": "南邮转专业一般在大一第二学期进行，需要满足绩点要求，各学院有不同的考核方式（笔试或面试）。计算机和通信相关专业竞争较激烈，建议提前了解目标学院的转专业细则。转专业工作细则通常在教务处网站发布。",
+      "source_type": "论坛/社区",
+      "source_url": ""
+    },
+    {
+      "topic": "保研/推免经验",
+      "content": "南邮推免要求智育排名在专业前30%，CET-6≥425分。竞赛获奖（如电子设计大赛、数学建模等A类赛事国奖）可获得特殊通道。推免工作一般在9月进行，各学院自行组织答辩和排名。",
+      "source_type": "论坛/社区",
+      "source_url": ""
+    },
+    {
+      "topic": "选课与学业规划",
+      "content": "南邮实行学分制，有自主学分制度。建议优先选好必修课和限选课，再安排自主学分课程。贝尔英才学院和波特兰学院有独立的培养体系，对英语要求较高。",
+      "source_type": "论坛/社区",
+      "source_url": ""
+    }
+  ],
+  "notes": "1. 转专业政策：本科生院通知公告中发布了\"各学院转专业工作细则\"和\"创新实验班转入转出工作方案\"，但具体内容仅限校内IP访问，校外无法获取详细条款。2. 就业质量报告：就业信息网（91job平台）未公开就业质量报告PDF，报告可能在校内系统或信息公开网的\"教学质量信息\"分类中。3. 大类分流规则：未在公开网页中找到专门的大类分流规则文件。4. 培养方案：教务处仅公开了培养方案调整/制订的工作流程，具体各专业培养方案文件未在公开网页中展示。5. 辅修/双学位：仅找到自学考试第二学历项目，未找到校内辅修/双学位制度的具体规定。",
+  "missing_categories": [
+    "transfer_announcement",
+    "major_streaming"
+  ]
+}

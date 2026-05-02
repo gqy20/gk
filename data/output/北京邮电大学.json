@@ -1,0 +1,368 @@
+{
+  "university": "北京邮电大学",
+  "official_url": "https://www.bupt.edu.cn",
+  "crawl_time": "2026-05-02",
+  "admission_guide": [
+    {
+      "title": "北京邮电大学2025年本科招生章程",
+      "url": "https://xxgk.bupt.edu.cn/xxgksxqd1/zsksxx/zszcjtslxzsbf_fpc_fklzsjh.htm",
+      "summary": "包含办学类型、办学层次、招生计划、报考条件、录取规则、收费标准、奖助学金等信息。学校为教育部直属全国重点大学，公办全日制普通高等学校和双一流建设高校。",
+      "attachments": [],
+      "publish_date": "2025-05-29",
+      "source_department": "信息公开网"
+    },
+    {
+      "title": "北京邮电大学2024年本科招生章程",
+      "url": "https://zsb.bupt.edu.cn/info/1005/2357.htm",
+      "summary": "规范本科生招生工作，保证招生工作正常顺利进行。包含总则、招生组织机构、招生计划、录取规则等章节。",
+      "attachments": [],
+      "publish_date": "2024-05-24",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "北京邮电大学2025年高校专项计划招生简章",
+      "url": "https://xxgk.bupt.edu.cn/xxgksxqd1/zsksxx/zszcjtslxzsbf_fpc_fklzsjh.htm",
+      "summary": "招生计划不少于年度本科招生计划总数的2%。考生本人及父亲或母亲或法定监护人户籍地须在本省实施区域的农村。",
+      "attachments": [],
+      "publish_date": "2025-01-19",
+      "source_department": "信息公开网"
+    }
+  ],
+  "enrollment_plan": [
+    {
+      "title": "北京邮电大学2025年招生计划",
+      "url": "https://zsb.bupt.edu.cn/index.htm",
+      "summary": "2025年招生计划总数为4120人，较去年增加220人，面向全国31个省份招生。实施专业志愿零调剂政策，6保1政策。",
+      "attachments": [],
+      "publish_date": "2025-06",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "北京邮电大学2025年北京招生计划",
+      "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_666685275e949252",
+      "summary": "包含北京各专业组计划数和选考科目要求。普通理工科专业组计划204人。",
+      "attachments": [],
+      "publish_date": "2025-06-18",
+      "source_department": "腾讯新闻"
+    }
+  ],
+  "historical_admission": [
+    {
+      "title": "北京邮电大学2023-2025年录取分数线",
+      "url": "https://www.dxsbb.com/news/31755.html",
+      "summary": "2025年北京分数线628分，2024年631分，2023年637分。2025年北京02组最低663分。",
+      "attachments": [],
+      "publish_date": "2026-03-17",
+      "source_department": "大学生必备网"
+    },
+    {
+      "title": "北京邮电大学2023年各专业录取分数（河北省）",
+      "url": "https://zsb.bupt.edu.cn/info/1088/2215.htm",
+      "summary": "包含计算机类(元班)、通信工程(大类招生)、电子信息类等各专业录取数据。计算机类(元班)最低657分。",
+      "attachments": [],
+      "publish_date": "2023-12-18",
+      "source_department": "本科招生网"
+    }
+  ],
+  "transfer_policy": [
+    {
+      "title": "北京邮电大学本科生校内转专业办法",
+      "url": "https://jwc.bupt.edu.cn/info/1177/3339.htm",
+      "summary": "实施转专业申请零门槛政策，转出不设限、转入有考核。大一上学期结束和大一下学期结束时各有一次申请机会。除中外合作办学专业外的其他专业均适用。",
+      "attachments": [],
+      "publish_date": "2025-06-27",
+      "source_department": "教务处"
+    },
+    {
+      "title": "经济管理学院本科生校内转专业实施细则",
+      "url": "https://sem.bupt.edu.cn/info/1114/8067.htm",
+      "summary": "接收人数根据学院实际情况确定。考核采取按专业分组面试，原专业成绩排名前5%免考核。面试综合平均分60分以上为考核通过。",
+      "attachments": [],
+      "publish_date": "2024-07-15",
+      "source_department": "经济管理学院"
+    }
+  ],
+  "transfer_announcement": [
+    {
+      "title": "关于公布2025年秋季学期本科生转专业名单的通知",
+      "url": "https://jwc.bupt.edu.cn/info/1177/3623.htm",
+      "summary": "公示期2025年9月18日至22日。公示期内1名学生放弃转专业，3名学生要求降级。",
+      "attachments": [],
+      "publish_date": "2025-09-18",
+      "source_department": "教务处"
+    }
+  ],
+  "major_streaming": [
+    {
+      "title": "电子信息类大类分流规则",
+      "url": "https://zsb.bupt.edu.cn/info/1067/1988.htm",
+      "summary": "学生在第一学期末结合本人志愿和第一学期成绩进行专业分流，可分流至电子工程学院或集成电路学院。",
+      "attachments": [],
+      "publish_date": "2025-06-06",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "人工智能大类分流规则",
+      "url": "https://zsb.bupt.edu.cn/info/1032/1653.htm",
+      "summary": "学生在第二学期结合本人志愿和第一学期成绩进行专业分流，第三学期开始分专业培养。",
+      "attachments": [],
+      "publish_date": "2025-06-06",
+      "source_department": "本科招生网"
+    },
+    {
+      "title": "元班分流专业介绍",
+      "url": "https://www.toutiao.com/w/1761072834856960/",
+      "summary": "元班本科阶段一二年级实行大类培养，二年级结束分流。计算机类(元班)分流至计算机科学与技术、网络空间安全专业；电子信息类(元班)分流至通信工程、电子科学与技术专业。",
+      "attachments": [],
+      "publish_date": "2023-03-22",
+      "source_department": "头条"
+    }
+  ],
+  "training_program": [
+    {
+      "title": "北京邮电大学通信工程培养方案",
+      "url": "https://max.book118.com/html/2024/1203/6143200125011004.shtm",
+      "summary": "采用研究型学习和实践型学习相结合的培养方式，包括课堂教学、实验教学、实习工作、毕业设计等环节。",
+      "attachments": [],
+      "publish_date": "2024-12-04",
+      "source_department": "原创力文档"
+    },
+    {
+      "title": "北京邮电大学硕士研究生培养方案（基本要求）",
+      "url": "https://max.book118.com/html/2018/0418/162009375.shtm",
+      "summary": "学制二年半，硕士课程学习1-1.5年，论文研究及撰写1.5-1年。学位课程学分不少于16学分。",
+      "attachments": [],
+      "publish_date": "2018-04-18",
+      "source_department": "原创力文档"
+    }
+  ],
+  "minor_program": [
+    {
+      "title": "北京邮电大学本科辅修专业管理办法",
+      "url": "https://zhidao.baidu.com/question/564283153",
+      "summary": "辅修专业条件：德智体综合考核良好，前两学期没有补考课程，必修课平均分达75分以上。辅修专业总学分一般不超过30学分。",
+      "attachments": [],
+      "publish_date": "2016-01-12",
+      "source_department": "百度知道"
+    },
+    {
+      "title": "北京邮电大学2025年双学士学位项目",
+      "url": "https://www.sohu.com/a/895178464_121118943",
+      "summary": "2025年获批3个双学士学位项目：应用物理学+电子科学与技术、信息与计算科学+通信工程、人工智能+大数据管理与应用。",
+      "attachments": [],
+      "publish_date": "2025-05-14",
+      "source_department": "搜狐"
+    }
+  ],
+  "employment_report": [
+    {
+      "title": "北京邮电大学2025届毕业生就业质量报告",
+      "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_75769d6fc2150952",
+      "summary": "2025届毕业生7418人，总体去向落实率94.35%。本科深造率63.76%，57.13%留京，37.22%进入国有企业。",
+      "attachments": [],
+      "publish_date": "2026-04-09",
+      "source_department": "腾讯新闻"
+    },
+    {
+      "title": "北京邮电大学2023届毕业生就业质量年度报告",
+      "url": "https://zhuanlan.zhihu.com/p/676123916",
+      "summary": "2023届毕业生7256人，本科生3623人。总体毕业去向落实率94.24%，本科生89.73%，硕士98.94%，博士96.73%。",
+      "attachments": [],
+      "publish_date": "2024-08-12",
+      "source_department": "知乎"
+    }
+  ],
+  "postgrad_recommend": [
+    {
+      "title": "北京邮电大学2025年推荐免试攻读硕士研究生接收办法",
+      "url": "https://sice.bupt.edu.cn/info/1013/2363.htm",
+      "summary": "申请条件：拥护党的领导、品德良好、具有推荐免试资格的优秀应届本科毕业生、本科专业与申请专业相同或相近、身体健康。",
+      "attachments": [],
+      "publish_date": "2024-09-20",
+      "source_department": "信息与通信工程学院"
+    },
+    {
+      "title": "北京邮电大学推免条件",
+      "url": "https://www.gaodun.com/baoyan/1679890.html",
+      "summary": "前三年综合素质评价平均成绩须在专业60%(含)以内，体质测试平均成绩须达到60分及以上，完成劳动教育学时不低于24学时。专业综合成绩排名须在专业40%(含)以内。",
+      "attachments": [],
+      "publish_date": "2025-01-13",
+      "source_department": "高顿教育"
+    }
+  ],
+  "competition_research": [
+    {
+      "title": "北京邮电大学国家重点实验室",
+      "url": "https://www.163.com/dy/article/JAMP90C60552LD78.html",
+      "summary": "拥有国家重点实验室3个（2个牵头建设，1个参与建设）、国家工程研究中心2个、国家国际科技合作基地1个、教育部重点实验室5个、教育部工程研究中心3个。",
+      "attachments": [],
+      "publish_date": "2024-08-28",
+      "source_department": "网易"
+    },
+    {
+      "title": "省部级科研基地",
+      "url": "https://kyy.bupt.edu.cn/kyjg/sbjkyjd.htm",
+      "summary": "泛网无线通信教育部重点实验室、可信分布式计算与服务教育部重点实验室，数学与信息网络教育部重点实验室、智能通信软件与多媒体北京市重点实验室等。",
+      "attachments": [],
+      "publish_date": "2026-04-25",
+      "source_department": "科研院"
+    },
+    {
+      "title": "2025年北京邮电大学物理实验竞赛",
+      "url": "https://physlab.bupt.edu.cn/info/1037/2308.htm",
+      "summary": "激发大学生对物理实验的兴趣，选拔代表队参加全国大学生物理实验竞赛和北京市大学生物理实验竞赛。",
+      "attachments": [],
+      "publish_date": "2025-04-11",
+      "source_department": "物理实验教学中心"
+    }
+  ],
+  "colleges": [
+    {
+      "name": "未来学院",
+      "url": "",
+      "disciplines": [
+        "信息与通信工程",
+        "计算机科学与技术",
+        "网络空间安全",
+        "电子科学与技术"
+      ]
+    },
+    {
+      "name": "信息与通信工程学院",
+      "url": "",
+      "disciplines": [
+        "信息与通信工程",
+        "电子信息工程",
+        "通信工程",
+        "空间信息与数字技术"
+      ]
+    },
+    {
+      "name": "电子工程学院",
+      "url": "",
+      "disciplines": [
+        "电子科学与技术",
+        "电子信息科学与技术",
+        "光电信息科学与工程"
+      ]
+    },
+    {
+      "name": "计算机学院（国家示范性软件学院）",
+      "url": "",
+      "disciplines": [
+        "计算机科学与技术",
+        "网络工程",
+        "软件工程"
+      ]
+    },
+    {
+      "name": "网络空间安全学院",
+      "url": "",
+      "disciplines": [
+        "网络空间安全"
+      ]
+    },
+    {
+      "name": "人工智能学院",
+      "url": "",
+      "disciplines": [
+        "人工智能",
+        "智能科学与技术"
+      ]
+    },
+    {
+      "name": "智能工程与自动化学院",
+      "url": "",
+      "disciplines": [
+        "控制科学与工程",
+        "机械工程"
+      ]
+    },
+    {
+      "name": "集成电路学院",
+      "url": "",
+      "disciplines": [
+        "集成电路科学与工程",
+        "集成电路工程"
+      ]
+    },
+    {
+      "name": "经济管理学院",
+      "url": "",
+      "disciplines": [
+        "管理科学与工程",
+        "工商管理",
+        "应用经济学"
+      ]
+    },
+    {
+      "name": "数学科学学院",
+      "url": "",
+      "disciplines": [
+        "数学",
+        "统计学"
+      ]
+    },
+    {
+      "name": "物理科学与技术学院",
+      "url": "",
+      "disciplines": [
+        "物理学",
+        "光学工程"
+      ]
+    },
+    {
+      "name": "现代邮政学院",
+      "url": "",
+      "disciplines": [
+        "物流管理与工程"
+      ]
+    },
+    {
+      "name": "人文学院",
+      "url": "",
+      "disciplines": [
+        "法学",
+        "外国语言文学"
+      ]
+    },
+    {
+      "name": "国际学院",
+      "url": "",
+      "disciplines": [
+        "电信工程及管理",
+        "物联网工程",
+        "电子信息工程",
+        "智能科学与技术"
+      ]
+    }
+  ],
+  "student_experiences": [
+    {
+      "topic": "北邮转专业难度和具体流程",
+      "content": "北邮转专业有两个时机：大一下学期和大二上学期。考核分为机试和面试两部分。机试约6道题，由浅入深。面试包括自我介绍、转专业原因、自身特长等。专业排名前5%可直接进入面试。",
+      "source_type": "知乎",
+      "source_url": "https://www.zhihu.com/question/335010150"
+    },
+    {
+      "topic": "北邮转专业指南",
+      "content": "转专业选拔分为三部分：通过成绩和机试按比例取排名，排名考前给予面试资格，再进行面试决定录取。重中之重是绩点，建议高数和线代拿高分。暑假开始学习编程，推荐C语言。",
+      "source_type": "知乎",
+      "source_url": "https://zhuanlan.zhihu.com/p/392282036"
+    },
+    {
+      "topic": "转专业前如何准备",
+      "content": "明确转专业原因，下载培养方案了解专业内容。准备好转专业手续和证明，在自我介绍中描述奖励、特长和对转入专业的热爱。了解专业核心课程、前沿研究方向。",
+      "source_type": "知乎",
+      "source_url": "https://zhuanlan.zhihu.com/p/55800704"
+    },
+    {
+      "topic": "机试和面试经验",
+      "content": "机试语言不限，推荐C语言。题目约5-6道，前两道相对简单。建议提前在洛谷或PTA上刷题。面试要准备自我介绍、转专业原因和自身特长。",
+      "source_type": "知乎",
+      "source_url": "https://zhuanlan.zhihu.com/p/262216730"
+    }
+  ],
+  "notes": "部分官方网站访问受限，数据来源于搜索结果和第三方平台。学院列表根据本科招生网和搜索结果整理，可能有遗漏。就业质量报告PDF附件未能直接获取到可访问的下载地址。",
+  "missing_categories": []
+}
