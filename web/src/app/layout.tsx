@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "中国高校信息地图",
   description: "148 所双一流高校招生、转专业、就业等 13 类信息可视化",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

@@ -154,7 +154,14 @@ export default function Home() {
             <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d8b75d]">
               Gaokao Research Atlas
             </div>
-            <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <img
+                src="/logo.svg"
+                alt=""
+                className="h-8 w-8 rounded-lg"
+                width={32}
+                height={32}
+              />
               <h1 className="text-2xl font-semibold leading-none text-[#fff9ec] sm:text-3xl">
                 中国高校信息地图
               </h1>
