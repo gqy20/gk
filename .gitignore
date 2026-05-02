@@ -18,8 +18,5 @@ logs/
 # Environment
 .env
 
-# Claude Code runtime
-.claude/
-
 # Playwright CLI runtime
 .playwright-cli/
