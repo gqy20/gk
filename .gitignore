@@ -12,5 +12,8 @@ wheels/
 # Output
 data/output/
 
+# Logs
+logs/
+
 # Environment
 .env

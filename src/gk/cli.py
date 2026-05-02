@@ -3,6 +3,7 @@
 import argparse
 import logging
 import sys
+from datetime import datetime
 from pathlib import Path
 
 from rich.console import Console
@@ -11,6 +12,7 @@ from rich.panel import Panel
 from gk.agent import Agent, AgentConfig
 
 console = Console()
+LOG_DIR = Path(__file__).parent.parent.parent / "logs"
 
 
 def run_interactive(config: AgentConfig) -> None:
@@ -102,10 +104,23 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    logging.basicConfig(
-        level=logging.DEBUG if args.debug else logging.INFO,
-        format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
-    )
+    log_level = logging.DEBUG if args.debug else logging.INFO
+    log_format = "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
+
+    # 控制台日志
+    logging.basicConfig(level=log_level, format=log_format)
+
+    # 文件日志 — 写入 logs/ 目录
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    command = args.command or "default"
+    log_file = LOG_DIR / f"{command}_{timestamp}.log"
+    file_handler = logging.FileHandler(log_file, encoding="utf-8")
+    file_handler.setLevel(log_level)
+    file_handler.setFormatter(logging.Formatter(log_format))
+    logging.getLogger().addHandler(file_handler)
+
+    console.print(f"[dim]日志文件: {log_file}[/]")
 
     if args.command == "crawl":
         run_crawl(args)
