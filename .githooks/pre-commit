@@ -1,0 +1,19 @@
+#!/bin/sh
+# 提交前自动重新生成 schools.json
+# 如果数据有更新，自动加入当前提交
+
+set -e
+
+cd "$(git rev-parse --show-toplevel)/web" || exit 1
+
+echo "[pre-commit] 重新生成 schools.json..."
+npx tsx scripts/generate-data.ts
+
+# 如果有变更，自动 stage
+cd "$(git rev-parse --show-toplevel)" || exit 1
+if git diff --quiet -- web/public/data/schools.json; then
+  echo "[pre-commit] schools.json 无变化"
+else
+  echo "[pre-commit] schools.json 已更新，自动加入提交"
+  git add web/public/data/schools.json
+fi
