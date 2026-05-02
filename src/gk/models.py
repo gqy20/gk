@@ -1,7 +1,5 @@
 """数据模型 — 高校信息抓取的结构化输出."""
 
-from __future__ import annotations
-
 from datetime import datetime
 
 from pydantic import BaseModel, Field

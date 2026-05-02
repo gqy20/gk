@@ -1,20 +1,19 @@
 """Claude Agent 封装 — 基于 claude-agent-sdk query() 模式.
 
-改进点（参考 quick-template）：
+核心功能：
 - output_format_schema(): $defs 内联，生成扁平 JSON Schema
-- parse_with_model(): 双路径结构化输出提取（structured_output + ToolUseBlock）
-- _aclose_silent(): 异步生成器安全关闭
+- _collect_response(): 事件流收集与统计
+- _parse_structured(): 结构化输出解析（structured_output + 文本降级）
 """
-
-from __future__ import annotations
 
 import asyncio
 import logging
 import time
+from collections.abc import Callable
 from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 from pydantic import BaseModel, ValidationError
 
@@ -115,39 +114,6 @@ def output_format_schema(model_class: type[BaseModel]) -> dict[str, Any]:
     }
 
 
-def parse_with_model(message: object, model_class: type[T]) -> T | None:
-    """从 SDK 消息提取结构化输出并通过 Pydantic 验证.
-
-    双路径提取：
-    1. ResultMessage.structured_output（SDK 原生字段）
-    2. ToolUseBlock("StructuredOutput").input（备用路径）
-    """
-    raw = _extract_raw_dict(message)
-    if raw is None:
-        return None
-    try:
-        return model_class.model_validate(raw)
-    except ValidationError:
-        return None
-
-
-def _extract_raw_dict(message: object) -> dict[str, Any] | None:
-    """从 SDK 消息中提取原始 dict 数据."""
-    # 路径 1: ResultMessage.structured_output
-    if hasattr(message, "structured_output"):
-        output = getattr(message, "structured_output")
-        if isinstance(output, dict):
-            return output
-    # 路径 2: ToolUseBlock("StructuredOutput").input
-    if hasattr(message, "content"):
-        for block in getattr(message, "content", []):
-            if getattr(block, "name", None) == "StructuredOutput":
-                inp = getattr(block, "input", None)
-                if isinstance(inp, dict):
-                    return inp
-    return None
-
-
 # ============================================================================
 # 配置 & 统计
 # ============================================================================
@@ -175,7 +141,7 @@ class QueryStats:
 class AgentConfig:
     """Agent 配置."""
 
-    model: str = "claude-sonnet-4-20250514"
+    model: str | None = None
     system_prompt: str = ""
     cwd: Path | None = None
     max_turns: int = 10
@@ -209,7 +175,7 @@ async def _collect_response(query_fn: Any, prompt: str, options: Any) -> QuerySt
     try:
         async for msg in query_fn(prompt=prompt, options=options):
             if isinstance(msg, AssistantMessage):
-                stats.model = getattr(msg, "model", "") or stats.model
+                stats.model = msg.model or stats.model
                 if msg.usage:
                     stats.input_tokens += msg.usage.get("input_tokens", 0)
                     stats.output_tokens += msg.usage.get("output_tokens", 0)
@@ -227,20 +193,19 @@ async def _collect_response(query_fn: Any, prompt: str, options: Any) -> QuerySt
                         )
 
             elif isinstance(msg, ResultMessage):
-                stats.turns = getattr(msg, "num_turns", stats.turns) or stats.turns
-                stats.duration_api_ms = getattr(msg, "duration_api_ms", 0) or 0
-                stats.stop_reason = getattr(msg, "stop_reason", None)
-                stats.session_id = getattr(msg, "session_id", "") or ""
-                stats.cost_usd = getattr(msg, "total_cost_usd", None)
+                stats.turns = msg.num_turns or stats.turns
+                stats.duration_api_ms = msg.duration_api_ms or 0
+                stats.stop_reason = msg.stop_reason
+                stats.session_id = msg.session_id or ""
+                stats.cost_usd = msg.total_cost_usd
                 if msg.usage:
                     stats.input_tokens = msg.usage.get("input_tokens", stats.input_tokens)
                     stats.output_tokens = msg.usage.get("output_tokens", stats.output_tokens)
                 if msg.result:
                     text_parts.append(msg.result)
-                # 核心改进：直接保存 structured_output 对象
-                stats.structured_output = getattr(msg, "structured_output", None)
-                if getattr(msg, "is_error", False):
-                    errors = getattr(msg, "errors", None) or ["unknown error"]
+                stats.structured_output = msg.structured_output
+                if msg.is_error:
+                    errors = msg.errors or ["unknown error"]
                     logger.error("Agent result error: %s", errors)
 
             elif isinstance(msg, RateLimitEvent):
@@ -287,15 +252,6 @@ def _translate_sdk_error(exc: BaseException) -> None:
     except ImportError:
         pass
     raise AgentError(f"SDK 错误: {exc}") from exc
-
-
-async def _aclose_silent(aiter: Any) -> None:
-    """安全关闭异步生成器，忽略已关闭/未实现 aclose 的情况."""
-    if hasattr(aiter, "aclose"):
-        try:
-            await aiter.aclose()
-        except (RuntimeError, AttributeError, StopAsyncIteration):
-            pass
 
 
 # ============================================================================
@@ -362,21 +318,22 @@ class Agent:
     def _parse_structured(self, stats: QueryStats, output_type: type[T] | None) -> str:
         """从 structured_output 解析并返回 JSON 字符串.
 
-        优先使用 structured_output（dict），否则用文本 + 4步降级解析.
+        优先使用 structured_output（dict），否则用文本 + 2步降级解析.
         """
         if output_type is None:
             return stats._result_text
+
+        import json
 
         # 路径 1: structured_output（SDK 原生 dict，最可靠）
         if stats.structured_output is not None and isinstance(stats.structured_output, dict):
             try:
                 output_type.model_validate(stats.structured_output)
-                import json
                 return json.dumps(stats.structured_output, ensure_ascii=False)
             except ValidationError:
                 pass
 
-        # 路径 2: 文本降级解析（4步）
+        # 路径 2: 文本降级解析
         text = stats._result_text
         if not text:
             raise AgentValidationError(
@@ -403,27 +360,11 @@ class Agent:
             except Exception:
                 pass
 
-        # 2c: Python dict → JSON（Agent 用了单引号）
-        import json
-        try:
-            parsed = json.loads(text.replace("'", '"'))
-            output_type.model_validate(parsed)
-            return json.dumps(parsed, ensure_ascii=False)
-        except Exception:
-            pass
-
-        # 2d: ast.literal_eval
-        import ast
-        try:
-            parsed = ast.literal_eval(text)
-            output_type.model_validate(parsed)
-            return json.dumps(parsed, ensure_ascii=False)
-        except Exception as e:
-            raise AgentValidationError(
-                f"输出验证失败: {e}",
-                raw_data=stats.structured_output,
-                model_class=output_type,
-            ) from e
+        raise AgentValidationError(
+            "输出验证失败：无法从响应中提取有效 JSON",
+            raw_data=stats.structured_output,
+            model_class=output_type,
+        )
 
     def _log_stats(self, stats: QueryStats) -> None:
         """输出完整日志."""
@@ -491,7 +432,7 @@ class Agent:
 def ask(
     prompt: str,
     *,
-    model: str = "claude-sonnet-4-20250514",
+    model: str | None = None,
     system_prompt: str = "",
     output_type: type[T] | None = None,
 ) -> tuple[str, QueryStats]:

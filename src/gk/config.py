@@ -1,7 +1,5 @@
 """配置模块 — 爬取配置、高校列表加载."""
 
-from __future__ import annotations
-
 import csv
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -13,7 +11,7 @@ CSV_PATH = Path(__file__).parent.parent.parent / "data" / "92_list.csv"
 class CrawlConfig:
     """爬取配置."""
 
-    model: str = "claude-sonnet-4-20250514"
+    model: str | None = None
     max_turns: int = 30
     output_dir: Path = field(default_factory=lambda: Path("data/output"))
     csv_path: Path = field(default_factory=lambda: CSV_PATH)

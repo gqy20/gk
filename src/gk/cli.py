@@ -1,7 +1,5 @@
 """命令行入口."""
 
-from __future__ import annotations
-
 import argparse
 import logging
 import sys
@@ -83,7 +81,7 @@ def main() -> None:
     # chat 子命令
     chat_parser = subparsers.add_parser("chat", help="对话模式")
     chat_parser.add_argument("prompt", nargs="?", help="单次查询内容")
-    chat_parser.add_argument("--model", default="claude-sonnet-4-20250514")
+    chat_parser.add_argument("--model", default=None)
     chat_parser.add_argument("--system", default="")
 
     # crawl 子命令
@@ -95,14 +93,11 @@ def main() -> None:
     crawl_parser.add_argument(
         "--output", default="data/output", help="输出目录（默认 data/output）"
     )
-    crawl_parser.add_argument("--model", default="claude-sonnet-4-20250514")
+    crawl_parser.add_argument("--model", default=None)
     crawl_parser.add_argument("--workers", type=int, default=3, help="并行 Agent 数（默认 3）")
     crawl_parser.add_argument("--csv", type=Path, help="高校列表 CSV 路径")
 
-    # 兼容无子命令的旧用法
-    parser.add_argument("prompt", nargs="?", help="单次查询（兼容旧用法）")
-    parser.add_argument("--model", default="claude-sonnet-4-20250514")
-    parser.add_argument("--system", default="")
+    # 全局参数
     parser.add_argument("--debug", action="store_true")
 
     args = parser.parse_args()
@@ -114,17 +109,14 @@ def main() -> None:
 
     if args.command == "crawl":
         run_crawl(args)
-    elif args.command == "chat" or args.prompt:
-        config = AgentConfig(
-            model=getattr(args, "model", "claude-sonnet-4-20250514"),
-            system_prompt=getattr(args, "system", ""),
-        )
-        if hasattr(args, "prompt") and args.prompt:
+    elif args.command == "chat":
+        config = AgentConfig(model=args.model, system_prompt=args.system)
+        if args.prompt:
             run_single(config, args.prompt)
         else:
             run_interactive(config)
     else:
-        config = AgentConfig(model=args.model, system_prompt=args.system)
+        config = AgentConfig()
         run_interactive(config)
 
 

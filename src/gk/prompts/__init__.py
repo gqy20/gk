@@ -1,7 +1,5 @@
 """Prompt 加载器 — 从 YAML 文件加载 Agent 提示词."""
 
-from __future__ import annotations
-
 from pathlib import Path
 
 import yaml

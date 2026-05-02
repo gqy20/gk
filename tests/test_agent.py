@@ -1,7 +1,6 @@
 """Agent 配置和基础测试."""
 
-import pytest
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from gk.agent import (
     Agent,
@@ -13,9 +12,7 @@ from gk.agent import (
     AgentValidationError,
     QueryStats,
     output_format_schema,
-    parse_with_model,
 )
-
 
 # --- 异常体系 ---
 
@@ -96,71 +93,12 @@ def test_output_format_schema_list_nested():
     assert "$defs" not in schema
 
 
-# --- parse_with_model ---
-
-
-def test_parse_with_model_structured_output():
-    """从 ResultMessage.structured_output 提取."""
-    class Result(BaseModel):
-        name: str
-
-    class FakeMessage:
-        structured_output = {"name": "test"}
-
-    parsed = parse_with_model(FakeMessage(), Result)
-    assert parsed is not None
-    assert parsed.name == "test"
-
-
-def test_parse_with_model_tool_use_block():
-    """从 ToolUseBlock("StructuredOutput") 提取."""
-    class Result(BaseModel):
-        name: str
-
-    class FakeBlock:
-        name = "StructuredOutput"
-        input = {"name": "from_block"}
-
-    class FakeMessage:
-        structured_output = None
-        content = [FakeBlock()]
-
-    parsed = parse_with_model(FakeMessage(), Result)
-    assert parsed is not None
-    assert parsed.name == "from_block"
-
-
-def test_parse_with_model_invalid():
-    """验证失败返回 None."""
-    class Result(BaseModel):
-        name: str
-
-    class FakeMessage:
-        structured_output = {"wrong": "field"}
-
-    parsed = parse_with_model(FakeMessage(), Result)
-    assert parsed is None
-
-
-def test_parse_with_model_no_output():
-    """无结构化输出返回 None."""
-    class Result(BaseModel):
-        name: str
-
-    class FakeMessage:
-        structured_output = None
-        content = []
-
-    parsed = parse_with_model(FakeMessage(), Result)
-    assert parsed is None
-
-
 # --- 配置 ---
 
 
 def test_agent_config_defaults():
     config = AgentConfig()
-    assert config.model == "claude-sonnet-4-20250514"
+    assert config.model is None
     assert config.max_turns == 10
     assert config.cwd is None
     assert config.skills is None
@@ -235,7 +173,7 @@ def test_agent_init_with_config():
 
 def test_agent_init_default():
     agent = Agent()
-    assert agent.config.model == "claude-sonnet-4-20250514"
+    assert agent.config.model is None
 
 
 def test_agent_last_stats():

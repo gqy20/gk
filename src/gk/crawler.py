@@ -1,7 +1,5 @@
 """并发调度层 — 多 Agent 并行抓取高校信息."""
 
-from __future__ import annotations
-
 import asyncio
 import logging
 from pathlib import Path

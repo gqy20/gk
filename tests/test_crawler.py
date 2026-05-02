@@ -1,13 +1,10 @@
 """爬取模块测试 — 配置加载、模型验证、prompt 加载."""
 
-import json
-
 import pytest
 
 from gk.config import CrawlConfig, load_universities, match_universities
 from gk.models import CollegeItem, DocItem, UniversityInfo
 from gk.prompts import build_crawl_prompt, load_prompt
-
 
 # --- models ---
 
@@ -120,7 +117,7 @@ def test_match_universities_empty():
 
 def test_crawl_config_defaults():
     config = CrawlConfig()
-    assert config.model == "claude-sonnet-4-20250514"
+    assert config.model is None
     assert config.max_turns == 30
 
 
