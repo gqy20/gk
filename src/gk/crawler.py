@@ -19,17 +19,15 @@ console = Console()
 
 
 def _build_agent_config(config: CrawlConfig, system_prompt: str) -> AgentConfig:
-    """构建 Agent 配置 — 注入 playwright-cli MCP + 自动权限 + 必要工具."""
+    """构建 Agent 配置 — playwright-cli skill 提供浏览器能力."""
     return AgentConfig(
         model=config.model,
         system_prompt=system_prompt,
         max_turns=config.max_turns,
         permission_mode="bypassPermissions",
-        tools=["Bash", "Read", "Grep", "Glob", "WebFetch"],
-        allowed_tools=["Bash", "Read", "Grep", "Glob", "WebFetch"],
-        mcp_servers={
-            "playwright-cli": {"command": "playwright-cli"},
-        },
+        skills=["playwright-cli"],
+        tools=["Bash", "Read", "Grep", "Glob"],
+        allowed_tools=["Bash", "Read", "Grep", "Glob"],
         stderr=lambda line: logger.debug("CLI stderr: %s", line.rstrip()),
     )
 
