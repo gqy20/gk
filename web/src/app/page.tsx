@@ -12,11 +12,11 @@ export default function Home() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
   const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
+  const [query, setQuery] = useState("");
   const [filter985, setFilter985] = useState(false);
   const [filter211, setFilter211] = useState(false);
   const [filterDoubleFirst, setFilterDoubleFirst] = useState(false);
 
-  // 加载数据
   useEffect(() => {
     async function load() {
       try {
@@ -37,15 +37,21 @@ export default function Home() {
     load();
   }, []);
 
-  // 筛选逻辑
   const filteredSchools = useMemo(() => {
     if (!data) return [];
     let result = data.schools;
+    const keyword = query.trim().toLowerCase();
+    if (keyword) {
+      result = result.filter((school) => {
+        const haystack = `${school.name} ${school.province} ${school.url}`.toLowerCase();
+        return haystack.includes(keyword);
+      });
+    }
     if (filter985) result = result.filter((s) => s.is985);
     if (filter211) result = result.filter((s) => s.is211);
     if (filterDoubleFirst) result = result.filter((s) => s.isDoubleFirstClass);
     return result;
-  }, [data, filter985, filter211, filterDoubleFirst]);
+  }, [data, query, filter985, filter211, filterDoubleFirst]);
 
   const filteredProvinces = useMemo(() => {
     const provMap = new Map<string, School[]>();
@@ -59,6 +65,18 @@ export default function Home() {
       .sort((a, b) => b.count - a.count);
   }, [filteredSchools]);
 
+  const doneCount = useMemo(
+    () => data?.schools.filter((school) => school.status === "done").length ?? 0,
+    [data],
+  );
+
+  const filteredDoneCount = useMemo(
+    () => filteredSchools.filter((school) => school.status === "done").length,
+    [filteredSchools],
+  );
+
+  const activeFilterCount = [filter985, filter211, filterDoubleFirst].filter(Boolean).length;
+
   const handleProvinceSelect = (province: string | null) => {
     setSelectedProvince(province === selectedProvince ? null : province);
     setSelectedSchool(null);
@@ -69,42 +87,86 @@ export default function Home() {
     setSelectedProvince(school.province);
   };
 
+  const handleResetFilters = () => {
+    setQuery("");
+    setFilter985(false);
+    setFilter211(false);
+    setFilterDoubleFirst(false);
+  };
+
   if (!data) {
     return (
-      <div className="h-screen flex items-center justify-center text-gray-400">
-        加载中...
+      <div className="flex h-screen items-center justify-center bg-[#10120f] text-sm text-[#d8caa6]">
+        <span className="mr-3 h-2 w-2 rounded-full bg-[#d8b75d]" />
+        地图数据加载中
       </div>
     );
   }
 
+  const contextLabel = selectedSchool
+    ? selectedSchool.name
+    : selectedProvince
+      ? `${selectedProvince} · ${filteredSchools.filter((school) => school.province === selectedProvince).length} 所`
+      : "全国高校";
+
   return (
-    <div className="h-screen min-h-screen flex flex-col bg-gray-50">
-      {/* 顶部标题 + 筛选 */}
-      <header className="bg-white shadow-sm z-10">
-        <div className="px-4 py-2">
-          <h1 className="text-lg font-bold text-gray-800">
-            中国高校信息地图
-            <span className="ml-2 text-xs font-normal text-gray-400">
-              {data.schools.length} 所高校 · {selectedSchool ? selectedSchool.name : "点击查看详情"}
-            </span>
-          </h1>
+    <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-[#10120f] text-[#f7f1e4]">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.55)_1px,transparent_1px)] [background-size:44px_44px]"
+      />
+
+      <header className="relative z-10 border-b border-white/10 bg-[#10120f]/95 px-3 py-3 shadow-2xl shadow-black/20 sm:px-4">
+        <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+          <div className="min-w-0">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#d8b75d]">
+              Gaokao Research Atlas
+            </div>
+            <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h1 className="text-2xl font-semibold leading-none text-[#fff9ec] sm:text-3xl">
+                中国高校信息地图
+              </h1>
+              <span className="max-w-full truncate text-xs text-[#bdb5a4] sm:text-sm">
+                当前：{contextLabel}
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 sm:min-w-[420px]">
+            <Metric label="高校" value={data.schools.length} />
+            <Metric label="已采集" value={doneCount} tone="gold" />
+            <Metric label="省份" value={filteredProvinces.length} tone="green" />
+          </div>
         </div>
+
         <FilterBar
+          query={query}
           filter985={filter985}
           filter211={filter211}
           filterDoubleFirst={filterDoubleFirst}
           totalCount={data.schools.length}
           filteredCount={filteredSchools.length}
+          doneCount={filteredDoneCount}
+          provinceCount={filteredProvinces.length}
+          activeFilterCount={activeFilterCount}
+          onQueryChange={setQuery}
           onToggle985={() => setFilter985((v) => !v)}
           onToggle211={() => setFilter211((v) => !v)}
           onToggleDoubleFirst={() => setFilterDoubleFirst((v) => !v)}
+          onReset={handleResetFilters}
         />
       </header>
 
-      {/* 主内容区：左地图 + 右侧面板 */}
-      <main className="flex-1 min-h-0 flex flex-col lg:flex-row overflow-hidden">
-        {/* 左侧：地图 */}
-        <div className="min-h-[45vh] lg:min-h-0 lg:flex-[3] relative border-b lg:border-b-0 lg:border-r border-gray-200">
+      <main className="relative z-10 grid flex-1 grid-rows-[minmax(0,1fr)_minmax(260px,40vh)] gap-3 overflow-hidden p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
+        <section className="relative min-h-0 overflow-hidden rounded-lg border border-white/10 bg-[#171c18]/92 shadow-2xl shadow-black/25">
+          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#d8caa6]">
+            <span className="rounded-full border border-[#d8b75d]/45 bg-[#10120f]/80 px-3 py-1">
+              Interactive Map
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1">
+              {filteredSchools.length} Pins
+            </span>
+          </div>
           <ChinaMap
             schools={filteredSchools}
             provinces={filteredProvinces}
@@ -112,10 +174,9 @@ export default function Home() {
             onProvinceSelect={handleProvinceSelect}
             onSchoolClick={handleSchoolClick}
           />
-        </div>
+        </section>
 
-        {/* 右侧：省份列表 + 学校详情 */}
-        <aside className="flex-1 min-h-0 lg:flex-[2] flex flex-col bg-white lg:min-w-[320px] lg:max-w-[430px]">
+        <aside className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-white/10 bg-[#f5f0e6] text-[#181713] shadow-2xl shadow-black/25">
           {selectedSchool ? (
             <SchoolPanel
               key={selectedSchool.name}
@@ -124,23 +185,29 @@ export default function Home() {
             />
           ) : (
             <>
-              <div className="px-4 py-2 bg-gray-50 border-b border-gray-100">
-                <span className="text-xs font-medium text-gray-500">
-                  省份列表
-                  {selectedProvince && ` (${selectedProvince})`}
-                </span>
-                {selectedProvince && (
-                  <button
-                    onClick={() => handleProvinceSelect(null)}
-                    className="ml-2 text-[10px] text-blue-500 hover:underline"
-                  >
-                    返回全部
-                  </button>
-                )}
+              <div className="border-b border-black/10 bg-[#f9f5ec] px-4 py-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#a57d22]">
+                      Province Index
+                    </div>
+                    <div className="mt-1 text-sm font-semibold text-[#181713]">
+                      {selectedProvince || "全部省份"}
+                    </div>
+                  </div>
+                  {selectedProvince && (
+                    <button
+                      onClick={() => handleProvinceSelect(null)}
+                      className="rounded-full border border-black/10 px-3 py-1 text-xs font-medium text-[#2c5f55] transition hover:border-[#2c5f55]/50 hover:bg-[#dfeee8]"
+                    >
+                      返回全部
+                    </button>
+                  )}
+                </div>
                 {loadError && (
-                  <span className="ml-2 text-[10px] text-orange-500">
+                  <div className="mt-2 rounded border border-[#d8872f]/30 bg-[#fff3df] px-2 py-1 text-[11px] text-[#9a5a13]">
                     数据加载失败：{loadError}
-                  </span>
+                  </div>
                 )}
               </div>
               <ProvinceList
@@ -154,6 +221,34 @@ export default function Home() {
           )}
         </aside>
       </main>
+    </div>
+  );
+}
+
+function Metric({
+  label,
+  value,
+  tone = "neutral",
+}: {
+  label: string;
+  value: number;
+  tone?: "neutral" | "gold" | "green";
+}) {
+  const toneClass =
+    tone === "gold"
+      ? "text-[#f1c15f]"
+      : tone === "green"
+        ? "text-[#80c9b4]"
+        : "text-[#fff9ec]";
+
+  return (
+    <div className="rounded-lg border border-white/10 bg-white/[0.055] px-3 py-2">
+      <div className="text-[10px] uppercase tracking-[0.18em] text-[#9f9888]">
+        {label}
+      </div>
+      <div className={`mt-1 text-xl font-semibold leading-none ${toneClass}`}>
+        {value}
+      </div>
     </div>
   );
 }

@@ -125,16 +125,18 @@ export default function ChinaMap({
       name: school.name,
       province: school.province,
       value: [...school.coord, school.province],
-      symbolSize: school.status === "done" ? 8 : 6,
+      symbolSize: school.status === "done" ? 9 : 6,
       itemStyle: {
         color:
           school.status === "done"
             ? selectedProvince && school.province !== selectedProvince
-              ? "rgba(37, 99, 235, 0.28)"
-              : "#2563eb"
+              ? "rgba(216, 183, 93, 0.22)"
+              : "#f2c45f"
             : selectedProvince && school.province !== selectedProvince
-              ? "rgba(148, 163, 184, 0.22)"
-              : "#94a3b8",
+              ? "rgba(127, 136, 128, 0.18)"
+              : "#8b948a",
+        shadowBlur: school.status === "done" ? 10 : 0,
+        shadowColor: "rgba(242, 196, 95, 0.45)",
       },
     }));
 
@@ -146,9 +148,22 @@ export default function ChinaMap({
     }));
 
     return {
-      backgroundColor: "#f8fafc",
+      backgroundColor: "transparent",
+      animationDuration: 900,
+      animationDurationUpdate: 520,
+      animationEasingUpdate: "cubicOut",
       tooltip: {
         trigger: "item",
+        backgroundColor: "rgba(16, 18, 15, 0.94)",
+        borderColor: "rgba(216, 183, 93, 0.55)",
+        borderWidth: 1,
+        padding: [10, 12],
+        textStyle: {
+          color: "#fff9ec",
+          fontSize: 12,
+        },
+        extraCssText:
+          "box-shadow:0 18px 45px rgba(0,0,0,.32);border-radius:8px;",
         formatter: (params: unknown) => {
           const item = tooltipParam(params);
           if (item.seriesType === "effectScatter") {
@@ -172,36 +187,52 @@ export default function ChinaMap({
         calculable: false,
         itemWidth: 12,
         itemHeight: 90,
+        textStyle: {
+          color: "#bdb5a4",
+          fontSize: 11,
+        },
         inRange: {
-          color: ["#eff6ff", "#bfdbfe", "#60a5fa", "#2563eb", "#1e40af"],
+          color: ["#202821", "#345246", "#5f8265", "#bca356", "#f1d37b"],
+        },
+        outOfRange: {
+          color: ["#202821"],
         },
       },
       geo: {
         map: "china",
         roam: true,
-        zoom: 1.18,
-        center: [104, 36],
+        zoom: 1.16,
+        center: [104, 35.8],
         label: {
           show: false,
         },
         itemStyle: {
-          areaColor: "#eff6ff",
-          borderColor: "#cbd5e1",
-          borderWidth: 0.7,
+          areaColor: "#202821",
+          borderColor: "rgba(255, 249, 236, 0.18)",
+          borderWidth: 0.8,
         },
         emphasis: {
           itemStyle: {
-            areaColor: "#bfdbfe",
+            areaColor: "#2c5f55",
+            borderColor: "#d8b75d",
+            borderWidth: 1.2,
           },
           label: {
             show: true,
-            color: "#0f172a",
+            color: "#fff9ec",
             fontSize: 12,
+            fontWeight: 600,
           },
         },
         select: {
           itemStyle: {
-            areaColor: "#93c5fd",
+            areaColor: "#d8b75d",
+            borderColor: "#fff9ec",
+          },
+          label: {
+            show: true,
+            color: "#10120f",
+            fontWeight: 700,
           },
         },
       },
@@ -211,7 +242,17 @@ export default function ChinaMap({
           type: "map",
           map: "china",
           geoIndex: 0,
+          selectedMode: "single",
           data: mapData,
+          itemStyle: {
+            borderColor: "rgba(255, 249, 236, 0.16)",
+            borderWidth: 0.7,
+          },
+          emphasis: {
+            itemStyle: {
+              areaColor: "#2c5f55",
+            },
+          },
         },
         {
           name: "高校分布",
@@ -221,11 +262,21 @@ export default function ChinaMap({
           showEffectOn: "render",
           rippleEffect: {
             brushType: "stroke",
-            scale: 2.6,
-            period: 4,
+            scale: 2.8,
+            period: 4.2,
           },
           label: {
             show: false,
+          },
+          emphasis: {
+            scale: true,
+            itemStyle: {
+              color: "#fff1b8",
+              borderColor: "#10120f",
+              borderWidth: 1,
+              shadowBlur: 18,
+              shadowColor: "rgba(242, 196, 95, 0.72)",
+            },
           },
           zlevel: 2,
         },
@@ -250,8 +301,8 @@ export default function ChinaMap({
 
   if (!mapReady) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-sm text-gray-400">
-        地图加载中...
+      <div className="flex h-full w-full items-center justify-center text-sm text-[#d8caa6]">
+        地图加载中
       </div>
     );
   }
