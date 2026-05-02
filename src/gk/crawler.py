@@ -17,15 +17,29 @@ console = Console()
 
 
 def _build_agent_config(config: CrawlConfig, system_prompt: str) -> AgentConfig:
-    """构建 Agent 配置 — playwright-cli skill 提供浏览器能力."""
+    """构建 Agent 配置 — 白名单限制只允许项目 MCP 工具，排除系统级 MCP."""
     return AgentConfig(
         model=config.model,
         system_prompt=system_prompt,
         max_turns=config.max_turns,
         permission_mode="bypassPermissions",
         skills=["playwright-cli"],
-        tools=["Bash", "Read", "Grep", "Glob"],
-        allowed_tools=["Bash", "Read", "Grep", "Glob"],
+        allowed_tools=[
+            # 基础工具
+            "Bash", "Read", "Grep", "Glob", "StructuredOutput",
+            # 项目 MCP: crawl-mcp（.mcp.json 配置）
+            "mcp__crawl-mcp__crawl_single",
+            "mcp__crawl-mcp__crawl_batch",
+            "mcp__crawl-mcp__crawl_site",
+            "mcp__crawl-mcp__extract_url",
+            "mcp__crawl-mcp__search_text",
+            "mcp__crawl-mcp__search_news",
+            "mcp__crawl-mcp__search_images",
+            "mcp__crawl-mcp__search_videos",
+            "mcp__crawl-mcp__search_books",
+            # playwright-cli skill
+            "Bash(playwright-cli:*)",
+        ],
         stderr=lambda line: logger.debug("CLI stderr: %s", line.rstrip()),
     )
 
@@ -60,12 +74,24 @@ async def crawl_one(
             result = UniversityInfo.model_validate_json(response_text)
         _save_result(result, config.output_dir)
 
-        console.print(
-            f"  [green]完成[/] 招生:{len(result.admission_guide)} | "
-            f"学院:{len(result.colleges)} | "
-            f"转专业:{len(result.transfer_policy)} | "
-            f"推免:{len(result.postgrad_recommend)}"
-        )
+        filled = {
+            k: len(v) for k, v in {
+                "招生章程": result.admission_guide,
+                "招生计划": result.enrollment_plan,
+                "历年录取": result.historical_admission,
+                "转专业政策": result.transfer_policy,
+                "大类分流": result.major_streaming,
+                "培养方案": result.training_program,
+                "辅修/双学位": result.minor_program,
+                "就业报告": result.employment_report,
+                "推免": result.postgrad_recommend,
+                "竞赛科研": result.competition_research,
+                "学院": result.colleges,
+                "学生经验": result.student_experiences,
+            }.items() if v
+        }
+        summary = " | ".join(f"{k}:{v}" for k, v in filled.items())
+        console.print(f"  [green]完成[/] {summary}")
         return result
 
     if semaphore:

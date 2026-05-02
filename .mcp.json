@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "crawl-mcp": {
+      "command": "uvx",
+      "args": ["crawl-mcp"],
+      "env": {
+        "OPENAI_API_KEY": "${ZHIPU_API_KEY}",
+        "OPENAI_BASE_URL": "https://open.bigmodel.cn/api/coding/paas/v4"
+      }
+    }
+  }
+}

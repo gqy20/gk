@@ -24,7 +24,6 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel, ValidationError
 from rich.console import Console
-from rich.table import Table
 
 logger = logging.getLogger("gk.agent")
 console = Console()
@@ -213,7 +212,7 @@ class _EventCollector:
 
     def handle_assistant(self, msg: Any) -> None:
         """处理 AssistantMessage — turn 进度 + 详细 block 输出."""
-        from claude_agent_sdk.types import TextBlock, ThinkingBlock, ToolUseBlock, ToolResultBlock
+        from claude_agent_sdk.types import TextBlock, ThinkingBlock, ToolResultBlock, ToolUseBlock
 
         self.stats.model = msg.model or self.stats.model
         if msg.usage:
