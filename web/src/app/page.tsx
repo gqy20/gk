@@ -2,6 +2,8 @@
 
 import { useState, useMemo, useEffect } from "react";
 import ChinaMap from "@/components/ChinaMap";
+import CompareBar from "@/components/CompareBar";
+import ComparePanel from "@/components/ComparePanel";
 import FilterBar from "@/components/FilterBar";
 import ProvinceList from "@/components/ProvinceList";
 import SchoolPanel from "@/components/SchoolPanel";
@@ -16,6 +18,8 @@ export default function Home() {
   const [filter985, setFilter985] = useState(false);
   const [filter211, setFilter211] = useState(false);
   const [filterDoubleFirst, setFilterDoubleFirst] = useState(false);
+  const [compareSchools, setCompareSchools] = useState<School[]>([]);
+  const [compareOpen, setCompareOpen] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -80,11 +84,13 @@ export default function Home() {
   const handleProvinceSelect = (province: string | null) => {
     setSelectedProvince(province === selectedProvince ? null : province);
     setSelectedSchool(null);
+    setCompareOpen(false);
   };
 
   const handleSchoolClick = (school: School) => {
     setSelectedSchool(school);
     setSelectedProvince(school.province);
+    setCompareOpen(false);
   };
 
   const handleResetFilters = () => {
@@ -93,6 +99,32 @@ export default function Home() {
     setFilter211(false);
     setFilterDoubleFirst(false);
   };
+
+  const handleCompareToggle = (school: School) => {
+    setCompareSchools((prev) => {
+      const exists = prev.find((s) => s.name === school.name);
+      if (exists) {
+        return prev.filter((s) => s.name !== school.name);
+      }
+      if (prev.length >= 3) return prev;
+      return [...prev, school];
+    });
+  };
+
+  const handleCompareRemove = (school: School) => {
+    setCompareSchools((prev) => prev.filter((s) => s.name !== school.name));
+  };
+
+  const handleCompareClear = () => {
+    setCompareSchools([]);
+    setCompareOpen(false);
+  };
+
+  useEffect(() => {
+    if (compareSchools.length < 2 && compareOpen) {
+      setCompareOpen(false);
+    }
+  }, [compareSchools.length, compareOpen]);
 
   if (!data) {
     return (
@@ -177,7 +209,13 @@ export default function Home() {
         </section>
 
         <aside className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-white/10 bg-[#f5f0e6] text-[#181713] shadow-2xl shadow-black/25">
-          {selectedSchool ? (
+          {compareOpen ? (
+            <ComparePanel
+              schools={compareSchools}
+              onClose={() => setCompareOpen(false)}
+              onRemove={handleCompareRemove}
+            />
+          ) : selectedSchool ? (
             <SchoolPanel
               key={selectedSchool.name}
               school={selectedSchool}
@@ -214,8 +252,16 @@ export default function Home() {
                 provinces={filteredProvinces}
                 selectedProvince={selectedProvince}
                 selectedSchool={selectedSchool}
+                compareSchools={compareSchools}
                 onProvinceClick={handleProvinceSelect}
                 onSchoolClick={handleSchoolClick}
+                onCompareToggle={handleCompareToggle}
+              />
+              <CompareBar
+                schools={compareSchools}
+                onRemove={handleCompareRemove}
+                onCompare={() => setCompareOpen(true)}
+                onClear={handleCompareClear}
               />
             </>
           )}

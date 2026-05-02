@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
 import type { School, ProvinceData } from "@/lib/data";
@@ -284,6 +284,11 @@ export default function ChinaMap({
     };
   };
 
+  const option = useMemo(
+    () => getOption(),
+    [schools, provinces, selectedProvince],
+  );
+
   const handleEvents = {
     click: (params: unknown) => {
       const item = params as TooltipParam;
@@ -311,10 +316,9 @@ export default function ChinaMap({
     <div className="w-full h-full">
       <ReactECharts
         ref={chartRef}
-        option={getOption()}
+        option={option}
         style={{ height: "100%", width: "100%" }}
         onEvents={handleEvents}
-        notMerge
         lazyUpdate
       />
     </div>

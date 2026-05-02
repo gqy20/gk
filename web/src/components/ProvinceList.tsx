@@ -6,16 +6,20 @@ interface ProvinceListProps {
   provinces: ProvinceData[];
   selectedProvince: string | null;
   selectedSchool: School | null;
+  compareSchools: School[];
   onProvinceClick: (province: string) => void;
   onSchoolClick: (school: School) => void;
+  onCompareToggle: (school: School) => void;
 }
 
 export default function ProvinceList({
   provinces,
   selectedProvince,
   selectedSchool,
+  compareSchools,
   onProvinceClick,
   onSchoolClick,
+  onCompareToggle,
 }: ProvinceListProps) {
   const displayProvinces = selectedProvince
     ? provinces.filter((p) => p.name === selectedProvince)
@@ -73,44 +77,93 @@ export default function ProvinceList({
 
           {(selectedProvince === prov.name || !selectedProvince) && (
             <div className="border-t border-black/10 bg-[#fbf5ea]">
-              {prov.schools.map((school) => (
-                <button
-                  type="button"
-                  key={school.name}
-                  onClick={() => onSchoolClick(school)}
-                  className={`flex w-full items-center gap-2 px-4 py-2.5 text-left text-xs transition ${
-                    selectedSchool?.name === school.name
-                      ? "bg-[#dfeee8] text-[#163d36]"
-                      : "text-[#4f4a40] hover:bg-[#f1e8da]"
-                  }`}
-                >
-                  <span
-                    className={`h-2.5 w-2.5 flex-shrink-0 rounded-full ${
-                      school.status === "done"
-                        ? "bg-[#2f9f7a]"
-                        : "bg-[#b7afa0]"
+              {prov.schools.map((school) => {
+                const isCompareSelected = compareSchools.some(
+                  (s) => s.name === school.name,
+                );
+                const canToggle =
+                  isCompareSelected || compareSchools.length < 3;
+
+                return (
+                  <div
+                    key={school.name}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => onSchoolClick(school)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        onSchoolClick(school);
+                      }
+                    }}
+                    className={`flex w-full cursor-pointer items-center gap-2 px-4 py-2.5 text-left text-xs transition ${
+                      selectedSchool?.name === school.name
+                        ? "bg-[#dfeee8] text-[#163d36]"
+                        : "text-[#4f4a40] hover:bg-[#f1e8da]"
                     }`}
-                  />
-                  <span className="min-w-0 flex-1 truncate font-medium">{school.name}</span>
-                  <span className="ml-auto flex flex-shrink-0 gap-1">
-                    {school.is985 && (
-                      <span className="rounded border border-[#e3a08b]/50 bg-[#f9ddd4] px-1.5 py-px text-[10px] text-[#9d3b25]">
-                        985
+                  >
+                    <span
+                      className={`h-2.5 w-2.5 flex-shrink-0 rounded-full ${
+                        school.status === "done"
+                          ? "bg-[#2f9f7a]"
+                          : "bg-[#b7afa0]"
+                      }`}
+                    />
+                    <span className="min-w-0 flex-1 truncate font-medium">
+                      {school.name}
+                    </span>
+                    <span className="ml-auto flex flex-shrink-0 items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          if (canToggle) onCompareToggle(school);
+                        }}
+                        disabled={!canToggle}
+                        title={isCompareSelected ? "取消对比" : "加入对比"}
+                        className={`flex h-5 w-5 items-center justify-center rounded border transition ${
+                          isCompareSelected
+                            ? "border-[#1a342f] bg-[#1a342f] text-[#fff9ec]"
+                            : canToggle
+                              ? "border-black/15 bg-white/60 text-transparent hover:border-[#2c5f55]/50"
+                              : "border-black/10 bg-black/5 text-transparent cursor-not-allowed opacity-50"
+                        }`}
+                      >
+                        <svg
+                          className="h-3 w-3"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            d="M2 6L5 9L10 3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                      <span className="flex gap-1">
+                        {school.is985 && (
+                          <span className="rounded border border-[#e3a08b]/50 bg-[#f9ddd4] px-1.5 py-px text-[10px] text-[#9d3b25]">
+                            985
+                          </span>
+                        )}
+                        {school.is211 && !school.is985 && (
+                          <span className="rounded border border-[#d8b75d]/50 bg-[#f5e4bb] px-1.5 py-px text-[10px] text-[#8a6414]">
+                            211
+                          </span>
+                        )}
+                        {school.isDoubleFirstClass && !school.is985 && !school.is211 && (
+                          <span className="rounded border border-[#6fc0a5]/50 bg-[#dfeee8] px-1.5 py-px text-[10px] text-[#2c5f55]">
+                            双一流
+                          </span>
+                        )}
                       </span>
-                    )}
-                    {school.is211 && !school.is985 && (
-                      <span className="rounded border border-[#d8b75d]/50 bg-[#f5e4bb] px-1.5 py-px text-[10px] text-[#8a6414]">
-                        211
-                      </span>
-                    )}
-                    {school.isDoubleFirstClass && !school.is985 && !school.is211 && (
-                      <span className="rounded border border-[#6fc0a5]/50 bg-[#dfeee8] px-1.5 py-px text-[10px] text-[#2c5f55]">
-                        双一流
-                      </span>
-                    )}
-                  </span>
-                </button>
-              ))}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
