@@ -12,7 +12,7 @@ class CrawlConfig:
     """爬取配置."""
 
     model: str | None = None
-    max_turns: int = 30
+    max_turns: int = 100
     output_dir: Path = field(default_factory=lambda: Path("data/output"))
     csv_path: Path = field(default_factory=lambda: CSV_PATH)
 

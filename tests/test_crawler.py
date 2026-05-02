@@ -118,7 +118,7 @@ def test_match_universities_empty():
 def test_crawl_config_defaults():
     config = CrawlConfig()
     assert config.model is None
-    assert config.max_turns == 30
+    assert config.max_turns == 100
 
 
 # --- prompts YAML ---

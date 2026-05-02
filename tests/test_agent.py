@@ -144,6 +144,7 @@ def test_query_stats_defaults():
     assert stats.tool_calls == 0
     assert stats.tool_calls_detail == {}
     assert stats.structured_output is None
+    assert stats.tasks == []
 
 
 def test_query_stats_with_values():
