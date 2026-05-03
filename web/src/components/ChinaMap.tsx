@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
+import { colors } from "@/lib/theme";
 import type { School, ProvinceData } from "@/lib/data";
 
 interface ChinaMapProps {
@@ -131,7 +132,7 @@ export default function ChinaMap({
           school.status === "done"
             ? selectedProvince && school.province !== selectedProvince
               ? "rgba(216, 183, 93, 0.22)"
-              : "#f2c45f"
+              : colors.primaryLight
             : selectedProvince && school.province !== selectedProvince
               ? "rgba(127, 136, 128, 0.18)"
               : "#8b948a",
@@ -155,11 +156,11 @@ export default function ChinaMap({
       tooltip: {
         trigger: "item",
         backgroundColor: "rgba(16, 18, 15, 0.94)",
-        borderColor: "rgba(216, 183, 93, 0.55)",
+        borderColor: colors.primaryBorder,
         borderWidth: 1,
         padding: [10, 12],
         textStyle: {
-          color: "#fff9ec",
+          color: colors.text,
           fontSize: 12,
         },
         extraCssText:
@@ -188,7 +189,7 @@ export default function ChinaMap({
         itemWidth: 12,
         itemHeight: 90,
         textStyle: {
-          color: "#bdb5a4",
+          color: colors.textSecondary,
           fontSize: 11,
         },
         inRange: {
@@ -213,25 +214,25 @@ export default function ChinaMap({
         },
         emphasis: {
           itemStyle: {
-            areaColor: "#2c5f55",
-            borderColor: "#d8b75d",
+            areaColor: colors.accentGreen,
+            borderColor: colors.primary,
             borderWidth: 1.2,
           },
           label: {
             show: true,
-            color: "#fff9ec",
+            color: colors.text,
             fontSize: 12,
             fontWeight: 600,
           },
         },
         select: {
           itemStyle: {
-            areaColor: "#d8b75d",
-            borderColor: "#fff9ec",
+            areaColor: colors.primary,
+            borderColor: colors.text,
           },
           label: {
             show: true,
-            color: "#10120f",
+            color: colors.surface,
             fontWeight: 700,
           },
         },
@@ -250,7 +251,7 @@ export default function ChinaMap({
           },
           emphasis: {
             itemStyle: {
-              areaColor: "#2c5f55",
+              areaColor: colors.accentGreen,
             },
           },
         },
@@ -272,7 +273,7 @@ export default function ChinaMap({
             scale: true,
             itemStyle: {
               color: "#fff1b8",
-              borderColor: "#10120f",
+              borderColor: colors.surface,
               borderWidth: 1,
               shadowBlur: 18,
               shadowColor: "rgba(242, 196, 95, 0.72)",
@@ -306,7 +307,7 @@ export default function ChinaMap({
 
   if (!mapReady) {
     return (
-      <div className="flex h-full w-full items-center justify-center text-sm text-[#d8caa6]">
+      <div className="flex h-full w-full items-center justify-center text-sm text-dark-200">
         地图加载中
       </div>
     );
