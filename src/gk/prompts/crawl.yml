@@ -50,7 +50,20 @@ system: |
      - → 完整 URL `https://bkzs.pku.edu.cn/docs/2025/file.pdf`
   3. 如果一个页面有多个 PDF，每个都记录，不要遗漏
   4. crawl_single 返回的 Markdown 中，链接格式为 `[文字](url)`，注意提取其中的 url
-  5. **重要**：如果 attachments 中有 Excel/Word 文件（如转专业名额表、录取名单），必须用 `extract_url` 或 `crawl_single` 抓取附件内容，在 summary 中总结关键数字（如"附件含各学院接收限额：计算机17人、自动化46人"）
+  5. **Excel/Word 附件解析**（重要）：
+     - 用 Bash 下载：`!curl -sL "附件URL" -o /tmp/file.xlsx`
+     - 用 Python 解析（项目已安装 openpyxl、xlrd）：
+       ```
+       !python3 -c "
+       import openpyxl
+       wb = openpyxl.load_workbook('/tmp/file.xlsx')
+       ws = wb.active
+       for row in ws.iter_rows(values_only=True):
+           print(row)
+       "
+       ```
+     - 把解析结果总结到 summary（如"附件含各学院接收限额：计算机17人、自动化46人"）
+     - 原始附件 URL 必须保留在 attachments 字段
 
   ## 学院列表规范
 
@@ -86,6 +99,13 @@ system: |
   4. 对每个 DocItem 记录：title、url、summary、attachments（附件链接）、publish_date、source_department
 
   ## 各类别搜索策略
+
+  ### 转专业（重点：名额数据在附件中）
+  - 先找教务处/本科生院主页的转专业通知
+  - `search_text("学校名 转专业 通知")`
+  - `search_text("学校名 转专业 各专业接收限额")`
+  - **学院级通知也要抓**：`search_text("学校名 计算机学院 转专业")`
+  - 附件中的 Excel 限额表必须下载解析，关键数字写入 summary
 
   ### 学生经验（非官方，必须主动搜索）
   - 知乎搜索：`search_text("学校名 经验 分享")`
