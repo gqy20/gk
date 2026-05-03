@@ -122,7 +122,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   }, [school.name, school.province, lng, lat]);
 
   // 搜索周边POI（使用高德REST API）
-  const amapKey = process.env.NEXT_PUBLIC_AMAP_JS_KEY || "";
+  const amapKey = process.env.NEXT_PUBLIC_AMAP_WEB_SERVICE_KEY || "";
   const searchPois = useCallback(
     async (category: typeof POI_CATEGORIES[number]) => {
       if (!amapKey) return [];
