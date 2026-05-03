@@ -21,6 +21,8 @@ def _build_agent_config(
     config: CrawlConfig,
     system_prompt: str,
     session: PlaywrightSession | None = None,
+    mcp_config_path: Path | None = None,
+    strict_mcp: bool = False,
 ) -> AgentConfig:
     """构建 Agent 配置 — 白名单限制只允许项目 MCP 工具，排除系统级 MCP.
 
@@ -28,13 +30,20 @@ def _build_agent_config(
         config: 爬取配置
         system_prompt: 系统提示词
         session: 可选的 Playwright session，用于进程隔离
+        mcp_config_path: 项目 .mcp.json 路径（默认使用项目根目录）
+        strict_mcp: 是否启用严格 MCP 模式（只使用指定的 MCP 配置）
     """
+    extra_args: dict[str, str | None] = {}
+    if strict_mcp and mcp_config_path:
+        extra_args["strict-mcp-config"] = None
+
     agent_config = AgentConfig(
         model=config.model,
         system_prompt=system_prompt,
         max_turns=config.max_turns,
         permission_mode="bypassPermissions",
         skills=["playwright-cli"],
+        mcp_servers=mcp_config_path if mcp_config_path else None,
         allowed_tools=[
             # 基础工具
             "Bash", "Read", "Grep", "Glob", "StructuredOutput",
@@ -52,6 +61,7 @@ def _build_agent_config(
             "Bash(playwright-cli:*)",
         ],
         stderr=lambda line: logger.debug("CLI stderr: %s", line.rstrip()),
+        extra_args=extra_args if extra_args else None,
     )
     # 如果提供了 session，设置环境变量以隔离 playwright 进程
     if session:
@@ -64,6 +74,8 @@ async def crawl_one(
     url: str,
     config: CrawlConfig,
     semaphore: asyncio.Semaphore | None = None,
+    mcp_config_path: Path | None = None,
+    strict_mcp: bool = False,
 ) -> UniversityInfo:
     """单个 Agent 异步抓取一所高校.
 
@@ -71,7 +83,10 @@ async def crawl_one(
     """
     async def _run(session: PlaywrightSession):
         system_prompt, user_prompt = build_crawl_prompt(university, url)
-        agent_config = _build_agent_config(config, system_prompt, session)
+        agent_config = _build_agent_config(
+            config, system_prompt, session,
+            mcp_config_path=mcp_config_path, strict_mcp=strict_mcp
+        )
         agent = Agent(agent_config)
 
         console.print(f"[bold cyan]开始: {university}[/] ({url})")
@@ -128,18 +143,36 @@ async def crawl_batch(
     universities: list[dict],
     config: CrawlConfig,
     workers: int = 3,
+    strict_mcp: bool = False,
 ) -> list[UniversityInfo]:
-    """并发抓取多所高校."""
+    """并发抓取多所高校.
+
+    Args:
+        universities: 高校列表
+        config: 爬取配置
+        workers: 并发数
+        strict_mcp: 是否启用严格 MCP 模式（只使用项目 .mcp.json，禁用系统 MCP）
+    """
     config.output_dir.mkdir(parents=True, exist_ok=True)
     semaphore = asyncio.Semaphore(workers)
     total = len(universities)
 
+    # 确定项目 .mcp.json 路径
+    mcp_config_path = Path(__file__).parent.parent.parent / ".mcp.json"
+    if not mcp_config_path.exists():
+        mcp_config_path = None
+        if strict_mcp:
+            logger.warning("strict_mcp=True 但未找到 .mcp.json，忽略")
+
     console.print(Panel(
-        f"目标: {total} 所高校 | 并发: {workers} | 模型: {config.model}",
+        f"目标: {total} 所高校 | 并发: {workers} | 模型: {config.model} | strict_mcp={strict_mcp}",
         title="高校信息抓取", style="bold",
     ))
 
-    tasks = [crawl_one(u["name"], u["url"], config, semaphore) for u in universities]
+    tasks = [
+        crawl_one(u["name"], u["url"], config, semaphore, mcp_config_path, strict_mcp)
+        for u in universities
+    ]
 
     results = []
     for coro in asyncio.as_completed(tasks):
@@ -162,9 +195,10 @@ def crawl_batch_sync(
     universities: list[dict],
     config: CrawlConfig,
     workers: int = 3,
+    strict_mcp: bool = False,
 ) -> list[UniversityInfo]:
     """同步入口."""
-    return asyncio.run(crawl_batch(universities, config, workers))
+    return asyncio.run(crawl_batch(universities, config, workers, strict_mcp))
 
 
 def _save_result(result: UniversityInfo, output_dir: Path) -> Path:
