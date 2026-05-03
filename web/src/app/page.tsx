@@ -97,7 +97,7 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-3 shadow-2xl shadow-black/20 sm:px-4">
+      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-2.5 shadow-2xl shadow-black/20 sm:px-4 sm:py-3">
         <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
           <div className="min-w-0">
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -144,7 +144,7 @@ function Home() {
         />
       </header>
 
-      <main className="relative z-10 grid flex-1 grid-rows-[minmax(0,1fr)_minmax(260px,40vh)] gap-3 overflow-hidden p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
+      <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
         <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
           <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-dark-300">
             <span className="rounded-full border border-border-subtle bg-white/[0.06] px-3 py-1">
@@ -270,7 +270,7 @@ function Metric({
 
   return (
     <motion.div
-      className="rounded-lg border border-border bg-white/[0.055] px-3 py-2"
+      className="rounded-lg border border-border bg-white/[0.055] px-2.5 py-1.5 sm:px-3 sm:py-2"
       whileHover={{ y: -2, transition: { duration: 0.2 } }}
     >
       <div className="text-[10px] text-dark-500">

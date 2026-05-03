@@ -129,7 +129,7 @@ export default function ProvinceList({
                       animate="show"
                       transition={{ delay: schoolIndex * 0.02 }}
                       className={cn(
-                        "flex items-center gap-2 px-4 py-2.5 text-xs transition",
+                        "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5",
                         isSchoolSelected
                           ? "bg-green-50 text-green-600"
                           : "text-dark-950 hover:bg-ink-400",

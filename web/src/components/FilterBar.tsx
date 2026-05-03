@@ -38,7 +38,7 @@ export default function FilterBar({
   const hasActiveControls = query.trim().length > 0 || activeFilterCount > 0;
 
   return (
-    <div className="mt-3 grid gap-2 lg:grid-cols-[minmax(240px,420px)_1fr_auto] lg:items-center">
+    <div className="mt-2.5 sm:mt-3 flex flex-col gap-2 sm:gap-3 lg:grid lg:grid-cols-[minmax(240px,420px)_1fr_auto] lg:items-center">
       <label className="group flex h-11 items-center gap-3 rounded-lg border border-border bg-surface-active px-3 transition focus-within:border-primary/70 focus-within:bg-surface-hover">
         <input
           value={query}
@@ -49,7 +49,7 @@ export default function FilterBar({
         />
       </label>
 
-      <div className="flex min-w-0 flex-wrap items-center gap-2">
+      <div className="flex min-w-0 flex-wrap items-center gap-1.5 sm:gap-2">
         <FilterTag
           label="985"
           active={filter985}
@@ -68,12 +68,15 @@ export default function FilterBar({
           onClick={onToggleDoubleFirst}
           tone="green"
         />
-        <span className="text-xs text-dark-500">
+        <span className="hidden text-xs text-dark-500 sm:inline">
           {filteredCount}/{totalCount} 所 · {doneCount} 已采集 · {provinceCount} 省份
         </span>
       </div>
 
-      <div className="flex items-center justify-end gap-2">
+      <div className="flex items-center justify-between gap-2 lg:justify-end">
+        <span className="text-xs text-dark-500 sm:hidden">
+          {filteredCount}/{totalCount} 所 · {doneCount} 已采集 · {provinceCount} 省份
+        </span>
         <button
           type="button"
           onClick={onReset}

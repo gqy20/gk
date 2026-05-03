@@ -60,7 +60,7 @@ export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
     <div className="flex h-full flex-col bg-surface-light text-text-light">
       <SchoolHeader school={school} onClose={onClose} />
       <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
-      <div className="min-h-0 flex-1 overflow-y-auto p-4">
+      <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
         {isOverview ? (
           <OverviewSection detail={detail} school={school} />
         ) : detail ? (
