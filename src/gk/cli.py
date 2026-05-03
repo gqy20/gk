@@ -46,7 +46,7 @@ def run_crawl(args: argparse.Namespace) -> None:
         console.print(f"  - {u['name']} ({u['url']})")
 
     config = CrawlConfig(model=args.model, output_dir=Path(args.output))
-    crawl_batch_sync(targets, config, workers=args.workers, strict_mcp=args.strict_mcp)
+    crawl_batch_sync(targets, config, workers=args.workers, strict_mcp=not args.disable_strict_mcp)
 
 
 def main() -> None:
@@ -59,7 +59,7 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=3, help="并行 Agent 数（默认 3）")
     parser.add_argument("--csv", type=Path, default=None, help="高校列表 CSV 路径（默认 data/92_list.csv）")
     parser.add_argument("--force", action="store_true", help="强制全量重跑（默认跳过已完成的）")
-    parser.add_argument("--strict-mcp", action="store_true", help="只使用项目 .mcp.json，禁用系统 MCP")
+    parser.add_argument("--disable-strict-mcp", action="store_true", help="禁用严格 MCP 模式（默认启用，只使用项目 .mcp.json）")
     parser.add_argument("--debug", action="store_true")
 
     args = parser.parse_args()
