@@ -16,8 +16,9 @@ interface PageProps {
 }
 
 export default async function SchoolDetailPage({ params }: PageProps) {
-  const { name } = await params;
-  const decodedName = decodeURIComponent(name);
+  const resolved = await params;
+  const rawName = await resolved.name;
+  const decodedName = decodeURIComponent(rawName);
   const filePath = path.join(process.cwd(), "public/data/schools.json");
   const raw = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   const school = (raw.schools || []).find((s: School) => s.name === decodedName) || null;
