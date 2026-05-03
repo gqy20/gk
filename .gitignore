@@ -21,3 +21,6 @@ logs/
 # Playwright CLI runtime
 .playwright-cli/
 .vercel
+
+# Claude worktrees
+.claude/
