@@ -213,15 +213,22 @@ class _EventCollector:
     # ── AssistantMessage ──────────────────────────────────────────
 
     def handle_assistant(self, msg: Any) -> None:
-        """处理 AssistantMessage — turn 进度 + 详细 block 输出."""
+        """处理 AssistantMessage — turn 进度 + 详细 block 输出.
+
+        子 agent（parent_tool_use_id 非空）的消息不纳入主对话 turn 计数，
+        避免与 CLI ResultMessage.num_turns 不一致。
+        """
         from claude_agent_sdk.types import TextBlock, ThinkingBlock, ToolResultBlock, ToolUseBlock
+
+        is_subagent = bool(getattr(msg, "parent_tool_use_id", None))
 
         self.stats.model = msg.model or self.stats.model
         if msg.usage:
             self.stats.input_tokens += msg.usage.get("input_tokens", 0)
             self.stats.output_tokens += msg.usage.get("output_tokens", 0)
 
-        self.stats.turns += 1
+        if not is_subagent:
+            self.stats.turns += 1
         turn = self.stats.turns
         max_t = self._max_turns or "?"
 
@@ -436,10 +443,12 @@ async def _collect_response(query_fn: Any, prompt: str, options: Any) -> QuerySt
         async for msg in query_fn(prompt=prompt, options=options):
             if isinstance(msg, AssistantMessage):
                 collector.handle_assistant(msg)
-                from claude_agent_sdk.types import TextBlock
-                for block in msg.content:
-                    if isinstance(block, TextBlock) and block.text:
-                        collector.text_parts.append(block.text)
+                # 只收集主对话的文本，跳过子 agent 的输出
+                if not getattr(msg, "parent_tool_use_id", None):
+                    from claude_agent_sdk.types import TextBlock
+                    for block in msg.content:
+                        if isinstance(block, TextBlock) and block.text:
+                            collector.text_parts.append(block.text)
 
             elif isinstance(msg, ResultMessage):
                 collector.handle_result(msg)
