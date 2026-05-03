@@ -43,6 +43,7 @@ export default function FilterBar({
         <input
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
+          aria-label="搜索学校、省份或官方域名"
           placeholder="搜索学校 / 省份 / 官方域名"
           className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-dark-700"
         />

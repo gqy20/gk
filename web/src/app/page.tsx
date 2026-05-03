@@ -89,6 +89,13 @@ function Home() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.55)_1px,transparent_1px)] [background-size:44px_44px]"
       />
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {selectedSchool
+          ? `已选择学校：${selectedSchool.name}`
+          : selectedProvince
+            ? `已选择省份：${selectedProvince}`
+            : "显示全国高校"}
+      </div>
 
       <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-3 shadow-2xl shadow-black/20 sm:px-4">
         <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
@@ -138,7 +145,7 @@ function Home() {
       </header>
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(0,1fr)_minmax(260px,40vh)] gap-3 overflow-hidden p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
-        <section className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
+        <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
           <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-dark-300">
             <span className="rounded-full border border-border-subtle bg-white/[0.06] px-3 py-1">
               {filteredSchools.length} 所高校
@@ -153,7 +160,7 @@ function Home() {
           />
         </section>
 
-        <aside className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25">
+        <aside aria-label="高校列表与详情" className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25">
           <AnimatePresence mode="wait">
             {compareOpen ? (
               <motion.div

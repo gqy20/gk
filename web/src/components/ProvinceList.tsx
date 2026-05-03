@@ -128,40 +128,35 @@ export default function ProvinceList({
                       initial="hidden"
                       animate="show"
                       transition={{ delay: schoolIndex * 0.02 }}
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => onSchoolClick(school)}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          event.preventDefault();
-                          onSchoolClick(school);
-                        }
-                      }}
                       className={cn(
-                        "flex w-full cursor-pointer items-center gap-2 px-4 py-2.5 text-left text-xs transition",
+                        "flex items-center gap-2 px-4 py-2.5 text-xs transition",
                         isSchoolSelected
                           ? "bg-green-50 text-green-600"
                           : "text-dark-950 hover:bg-ink-400",
                       )}
                     >
-                      <span
-                        className={cn(
-                          "h-2.5 w-2.5 flex-shrink-0 rounded-full",
-                          school.status === "done" ? "bg-green-300" : "bg-dark-400",
-                        )}
-                      />
-                      <span className="min-w-0 flex-1 truncate font-medium">
-                        {school.name}
-                      </span>
-                      <span className="ml-auto flex flex-shrink-0 items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => onSchoolClick(school)}
+                        className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                      >
+                        <span
+                          className={cn(
+                            "h-2.5 w-2.5 flex-shrink-0 rounded-full",
+                            school.status === "done" ? "bg-green-300" : "bg-dark-400",
+                          )}
+                        />
+                        <span className="truncate font-medium">{school.name}</span>
+                      </button>
+                      <span className="flex flex-shrink-0 items-center gap-2">
                         <button
                           type="button"
-                          onClick={(event) => {
-                            event.stopPropagation();
+                          onClick={() => {
                             if (canToggle) onCompareToggle(school);
                           }}
                           disabled={!canToggle}
                           title={isCompareSelected ? "取消对比" : "加入对比"}
+                          aria-pressed={isCompareSelected}
                           className={cn(
                             "flex h-5 w-5 items-center justify-center rounded border transition",
                             isCompareSelected
