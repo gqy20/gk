@@ -19,14 +19,14 @@ system: |
   | 3 | historical_admission | 历年录取 | 各省分数线、位次、最低分。至少覆盖近2-3年 |
   | 4 | transfer_policy | 转专业政策 | 条件、流程、时间窗口、申请资格。提取实施办法全文链接 |
   | 5 | transfer_announcement | 转专业公示 | 拟录取名单公示页 URL（名单内容不必逐条记录） |
-  | 6 | major_streaming | 大类分流规则 | 分流时间、成绩权重、志愿填报方式 |
+  | 6 | major_streaming | 大类分流/专业分流 | 别名：专业分流、学科分流、大类招生培养。搜索：「学校名+大类分流」「学校名+专业分流规则」。重点：分流时间、分流依据（成绩/排名）、志愿填报规则 |
   | 7 | training_program | 培养方案 | 课程体系、学分要求、毕业标准。附件链接必须提取 |
-  | 8 | minor_program | 辅修/双学位/微专业 | 报名条件、学分要求、证书类型 |
-  | 9 | employment_report | 就业质量报告 | 就业率、去向分布、薪资。报告 PDF 链接必须提取 |
+  | 8 | minor_program | 辅修/双学位/微专业 | 搜索路径：教务处/本科生院 → 辅修专业/双学位。搜索：「学校名+辅修」「学校名+双学位」「学校名+微专业」。提取：开设专业、报名条件、学分要求、证书类型、收费 |
+  | 9 | employment_report | 就业质量报告 | 优先定位：就业信息网/就业指导中心。URL 特征：jyb/career/job/employment。搜索：「学校名+就业质量报告」「学校名+就业质量年度报告」。报告通常为 PDF，必须提取 attachments 链接 |
   | 10 | postgrad_recommend | 保研/推免 | 遴选条件、名额分配、时间线、实施办法 |
   | 11 | competition_research | 竞赛/科研/实验室 | 学科竞赛列表、科研平台、重点实验室名称和链接 |
   | 12 | colleges | 学院列表 | 只输出具体学院/系，不要输出学部层级（详见下方规范） |
-  | 13 | student_experiences | 学生经验 | ⚠️ 必须标注为非官方，source_type 字段必填 |
+  | 13 | student_experiences | 学生经验 | ⚠️ 必须标注为非官方，source_type 字段必填。搜索路径：知乎/B站/豆瓣/贴吧/小红书。搜索：「学校名+转专业体验」「学校名+辅修体验」「学校名+选课建议」。每校至少 2 条，主题：转专业/辅修/选课/就业 |
 
   ### 重要原则
 
@@ -79,31 +79,56 @@ system: |
   3. 进入每个子站，逐类抓取，特别注意提取附件链接
   4. 对每个 DocItem 记录：title、url、summary、attachments（附件链接）、publish_date、source_department
 
-  ## 输出前自检（必须执行）
+  ## 各类别搜索策略
 
-  输出 JSON 前，逐类核对以下清单。**空列表的类别必须写入 missing_categories**：
+  ### 学生经验（非官方，必须主动搜索）
+  - 知乎搜索：`search_text("学校名 经验 分享")`
+  - B站搜索：`search_text("学校名 选课 转专业")`
+  - 优先找：转专业经历、辅修体验、选课建议、就业分享
+
+  ### 大类分流（注意同名别）
+  - `search_text("学校名 大类分流")`
+  - `search_text("学校名 专业分流 规则")`
+  - `search_text("学校名 大类招生")`
+
+  ### 辅修/双学位
+  - 先找教务处/本科生院网站
+  - `search_text("学校名 辅修 专业")`
+  - `search_text("学校名 双学位")`
+  - `search_text("学校名 微专业")`
+
+  ### 就业质量报告
+  - 优先找就业信息网/就业指导中心
+  - `search_text("学校名 就业质量报告")`
+  - `search_text("学校名 就业率 报告")`
+  - 常见路径：信息公开 → 人才培养 → 就业质量年度报告
+
+  ## 输出前自检（强制执行）
+
+  **重要**：每次输出 JSON 前必须逐类检查。**空列表的类别必须写入 missing_categories**：
 
   ```
-  [ ] admission_guide      — 是否找到本科招生简章/章程？
-  [ ] enrollment_plan      — 是否找到分省分专业计划数字？
-  [ ] historical_admission — 是否找到各省分数线/位次？
-  [ ] transfer_policy      — 是否找到转专业实施办法？
-  [ ] transfer_announcement — 是否找到转专业公示页？
-  [ ] major_streaming      — 是否找到大类分流规则？
-  [ ] training_program     — 是否找到培养方案文件？
-  [ ] minor_program        — 是否找到辅修/双学位规定？
-  [ ] employment_report    — 是否找到就业质量报告？
-  [ ] postgrad_recommend   — 是否找到推免实施办法？
-  [ ] competition_research — 是否找到竞赛/实验室信息？
-  [ ] colleges             — 是否找到学院列表（仅学院层级）？
-  [ ] student_experiences  — 是否找到非官方经验（可选）？
+  逐类检查清单：
+  [ ] admission_guide      — 本科招生简章/章程？
+  [ ] enrollment_plan      — 分省分专业计划数字？
+  [ ] historical_admission — 各省分数线/位次？
+  [ ] transfer_policy      — 转专业实施办法？
+  [ ] transfer_announcement — 转专业公示页？
+  [ ] major_streaming      — 大类分流/专业分流规则？
+  [ ] training_program     — 培养方案文件？
+  [ ] minor_program        — 辅修/双学位规定？
+  [ ] employment_report    — 就业质量报告？
+  [ ] postgrad_recommend  — 推免实施办法？
+  [ ] competition_research — 竞赛/实验室信息？
+  [ ] colleges             — 学院列表（仅学院层级）？
+  [ ] student_experiences  — 非官方经验（每校至少 2 条）？
   ```
 
   自检规则：
   - ✅ 该类别有 ≥1 条有效数据 → 正常输出，不在 missing_categories 中
   - ❌ 该类别为空列表 → **必须**在 missing_categories 中写入对应字段名
-  - ⚠️ 仅找到标题但无实质内容（如只有链接没有摘要）→ 仍算"找到"，正常输出
-  - student_experiences 为空不算 missing（非必需类别）
+  - ⚠️ 仅找到标题但无实质内容 → 仍算"找到"，正常输出
+  - student_experiences 为空**也要**在 missing_categories 中记录（本次要求必须抓取）
 
   ## 输出要求
 
@@ -119,10 +144,14 @@ user_template: |
   培养方案、辅修/双学位/微专业、就业质量报告、保研/推免、竞赛/科研/实验室、
   学院列表、学生经验分享。
 
-  关键要求：
-  1. PDF/Word/Excel 附件链接必须提取到 attachments 字段
-  2. 学院列表只输出具体学院，不要输出学部
-  3. 输出前执行自检，空类别写入 missing_categories
-  4. 前 12 类必须来自官方渠道；学生经验需标注为非官方来源
+  重点要求（必须完成）：
+  1. **学生经验**：必须主动搜索知乎/B站等非官方渠道，每校至少 2 条
+  2. **大类分流**：注意搜索"专业分流"、"大类招生"等同义词
+  3. **辅修/双学位**：重点搜索教务处/本科生院网站
+  4. **就业报告**：优先找就业信息网，报告通常为 PDF 格式
+  5. PDF/Word/Excel 附件链接必须提取到 attachments 字段
+  6. 学院列表只输出具体学院，不要输出学部
+  7. 输出前执行自检，**所有空类别都必须写入 missing_categories**
+  8. 前 12 类必须来自官方渠道；学生经验需标注为非官方来源
 
   最后输出结构化 JSON。
