@@ -28,6 +28,7 @@ type PoiCategoryKey = (typeof POI_CATEGORIES)[number]["key"];
 export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<AMap.Map | null>(null);
+  const amapRef = useRef<typeof AMap | null>(null);
   const [activeCategory, setActiveCategory] = useState<PoiCategoryKey | "all">("all");
   const [pois, setPois] = useState<Record<string, PoiItem[]>>({});
   const [loading, setLoading] = useState(false);
@@ -107,6 +108,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         });
 
         mapInstance.current = map;
+        amapRef.current = AMap;
         setMapReady(true);
       } catch (e) {
         console.error("地图加载失败:", e);
@@ -124,11 +126,11 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   // 搜索周边POI
   const searchPois = useCallback(
     async (category: typeof POI_CATEGORIES[number]) => {
-      if (!mapInstance.current || !window.AMap) return;
+      if (!mapInstance.current || !amapRef.current) return;
 
       setLoading(true);
       try {
-        const placeSearch = new window.AMap.PlaceSearch({
+        const placeSearch = new amapRef.current.PlaceSearch({
           type: category.type,
           pageSize: 10,
           pageIndex: 1,
@@ -189,8 +191,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         renderMarkers({ ...pois, [cat.key]: result } as Partial<Record<string, PoiItem[]>>);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeCategory, mapReady]);
+  }, [activeCategory, mapReady, searchPois]);
 
   // 渲染POI标记
   function renderMarkers(allPois: Partial<Record<string, PoiItem[]>>) {
