@@ -166,6 +166,7 @@ class AgentConfig:
     mcp_servers: dict[str, Any] = field(default_factory=dict)
     skills: list[str] | str | None = None
     permission_mode: str | None = None
+    setting_sources: list[str] | None = None
     stderr: Callable[[str], None] | None = None
     env: dict[str, str] | None = None
     extra_args: dict[str, str | None] | None = None
@@ -545,6 +546,8 @@ class Agent:
         )
         if cfg.permission_mode:
             options.permission_mode = cfg.permission_mode
+        if cfg.setting_sources is not None:
+            options.setting_sources = cfg.setting_sources
         if cfg.skills is not None:
             options.skills = cfg.skills
         if cfg.env is not None:

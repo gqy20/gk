@@ -42,6 +42,7 @@ def _build_agent_config(
         system_prompt=system_prompt,
         max_turns=config.max_turns,
         permission_mode="bypassPermissions",
+        setting_sources=["project"],
         skills=["playwright-cli"],
         mcp_servers=mcp_config_path if mcp_config_path else None,
         allowed_tools=[
