@@ -136,11 +136,21 @@ async def crawl_one(
             }
             summary = " | ".join(f"{k}:{v}" for k, v in filled.items())
             console.print(f"  [green]完成[/] {summary}")
+
+            # 检查结果完整性
+            if result.missing_categories:
+                logger.warning(
+                    "Incomplete data for %s: missing %s",
+                    university, result.missing_categories
+                )
             return result
         finally:
-            # 确保清理 playwright session
-            await close_session(session.session_name)
-            logger.debug("Session %s cleaned up", session.session_name)
+            # 清理 playwright session，失败不影响任务结果
+            try:
+                await close_session(session.session_name)
+                logger.debug("Session %s cleaned up", session.session_name)
+            except Exception as e:
+                logger.warning("close_session failed for %s: %s", session.session_name, e)
 
     session = PlaywrightSession()
     if semaphore:

@@ -1,6 +1,7 @@
 """Playwright Session 管理 — 支持并行任务的进程隔离与清理."""
 
 import asyncio
+import os
 import uuid
 from typing import Any
 
@@ -55,7 +56,7 @@ async def close_session(session_name: str) -> None:
     try:
         proc = await asyncio.create_subprocess_exec(
             "playwright-cli", "-s", session_name, "close",
-            env={"PLAYWRIGHT_CLI_SESSION": session_name},
+            env={**os.environ, "PLAYWRIGHT_CLI_SESSION": session_name},
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
