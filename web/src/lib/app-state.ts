@@ -5,6 +5,7 @@ export interface AppState {
   loadError: string | null;
   selectedProvince: string | null;
   selectedSchool: School | null;
+  previewSchool: School | null;
   query: string;
   filter985: boolean;
   filter211: boolean;
@@ -18,6 +19,7 @@ export const initialState: AppState = {
   loadError: null,
   selectedProvince: null,
   selectedSchool: null,
+  previewSchool: null,
   query: "",
   filter985: false,
   filter211: false,
@@ -31,6 +33,7 @@ export type AppAction =
   | { type: "SET_LOAD_ERROR"; payload: string | null }
   | { type: "SELECT_PROVINCE"; payload: string | null }
   | { type: "SELECT_SCHOOL"; payload: School | null }
+  | { type: "SET_PREVIEW_SCHOOL"; payload: School | null }
   | { type: "SET_QUERY"; payload: string }
   | { type: "TOGGLE_FILTER"; payload: "985" | "211" | "doubleFirst" }
   | { type: "RESET_FILTERS" }
@@ -54,6 +57,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         ...state,
         selectedProvince: isSame ? null : province,
         selectedSchool: null,
+        previewSchool: null,
         compareOpen: false,
       };
     }
@@ -63,8 +67,16 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         selectedSchool: school,
+        previewSchool: null,
         selectedProvince: school?.province ?? null,
         compareOpen: false,
+      };
+    }
+
+    case "SET_PREVIEW_SCHOOL": {
+      return {
+        ...state,
+        previewSchool: action.payload,
       };
     }
 

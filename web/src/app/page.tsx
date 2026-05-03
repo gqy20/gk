@@ -38,6 +38,7 @@ function Home() {
     loadError,
     selectedProvince,
     selectedSchool,
+    previewSchool,
     compareSchools,
     compareOpen,
     query,
@@ -160,7 +161,9 @@ function Home() {
                 schools={filteredSchools}
                 provinces={filteredProvinces}
                 selectedProvince={selectedProvince}
+                previewSchool={previewSchool}
                 onProvinceSelect={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
+                onSchoolPreview={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
                 onSchoolClick={(s) => dispatch({ type: "SELECT_SCHOOL", payload: s })}
               />
             </>
@@ -241,7 +244,7 @@ function Home() {
                   selectedSchool={selectedSchool}
                   compareSchools={compareSchools}
                   onProvinceClick={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
-                  onSchoolClick={(s) => dispatch({ type: "SELECT_SCHOOL", payload: s })}
+                  onSchoolClick={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
                   onCompareToggle={(s) => dispatch({ type: "TOGGLE_COMPARE", payload: s })}
                 />
                 <CompareBar

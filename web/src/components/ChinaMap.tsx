@@ -1,16 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
 import { colors } from "@/lib/theme";
 import type { School, ProvinceData } from "@/lib/data";
+import SchoolPopup from "./SchoolPopup";
 
 interface ChinaMapProps {
   schools: School[];
   provinces: ProvinceData[];
   selectedProvince: string | null;
+  previewSchool: School | null;
   onProvinceSelect: (province: string | null) => void;
+  onSchoolPreview: (school: School | null) => void;
   onSchoolClick: (school: School) => void;
 }
 
@@ -94,11 +97,14 @@ export default function ChinaMap({
   schools,
   provinces,
   selectedProvince,
+  previewSchool,
   onProvinceSelect,
+  onSchoolPreview,
   onSchoolClick,
 }: ChinaMapProps) {
   const chartRef = useRef<ReactECharts>(null);
   const [mapReady, setMapReady] = useState(false);
+  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -296,14 +302,44 @@ export default function ChinaMap({
 
       if (item.seriesType === "effectScatter" && item.name) {
         const school = schools.find((s) => s.name === item.name);
-        if (school) onSchoolClick(school);
+        if (school) {
+          // 延迟触发预览，如果300ms内双击则取消
+          clickTimer.current = setTimeout(() => {
+            onSchoolPreview(school);
+          }, 280);
+        }
         return;
       }
 
       const province = shortProvinceName(item.name);
       if (province) onProvinceSelect(province);
+
+      // 点击地图空白区域关闭悬浮窗
+      onSchoolPreview(null);
+    },
+    dblclick: (params: unknown) => {
+      const item = params as TooltipParam;
+      if (item.seriesType === "effectScatter" && item.name) {
+        if (clickTimer.current) {
+          clearTimeout(clickTimer.current);
+          clickTimer.current = null;
+        }
+        const school = schools.find((s) => s.name === item.name);
+        if (school) onSchoolClick(school);
+      }
     },
   };
+
+  const handleClosePopup = useCallback(() => {
+    onSchoolPreview(null);
+  }, [onSchoolPreview]);
+
+  const handleEnterDetail = useCallback(
+    (school: School) => {
+      onSchoolClick(school);
+    },
+    [onSchoolClick],
+  );
 
   if (!mapReady) {
     return (
@@ -314,7 +350,7 @@ export default function ChinaMap({
   }
 
   return (
-    <div className="w-full h-full">
+    <div className="relative w-full h-full">
       <ReactECharts
         ref={chartRef}
         option={option}
@@ -322,6 +358,13 @@ export default function ChinaMap({
         onEvents={handleEvents}
         lazyUpdate
       />
+      {previewSchool && (
+        <SchoolPopup
+          school={previewSchool}
+          onEnterDetail={handleEnterDetail}
+          onClose={handleClosePopup}
+        />
+      )}
     </div>
   );
 }
