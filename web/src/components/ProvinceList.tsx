@@ -104,8 +104,8 @@ export default function ProvinceList({
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     />
                   </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.16em] opacity-65">
-                    {doneCount} collected · {progress}%
+                  <div className="mt-1 text-[10px] opacity-65">
+                    {doneCount} 已采集 · {progress}%
                   </div>
                 </div>
               </div>

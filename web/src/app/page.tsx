@@ -93,9 +93,6 @@ function Home() {
       <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-3 shadow-2xl shadow-black/20 sm:px-4">
         <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
           <div className="min-w-0">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
-              Gaokao Research Atlas
-            </div>
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
               <img
                 src="/logo.svg"
@@ -142,12 +139,9 @@ function Home() {
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(0,1fr)_minmax(260px,40vh)] gap-3 overflow-hidden p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
         <section className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
-          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-dark-200">
-            <span className="rounded-full border border-primary/45 bg-surface/80 px-3 py-1">
-              Interactive Map
-            </span>
+          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-dark-300">
             <span className="rounded-full border border-border-subtle bg-white/[0.06] px-3 py-1">
-              {filteredSchools.length} Pins
+              {filteredSchools.length} 所高校
             </span>
           </div>
           <ChinaMap
@@ -206,10 +200,7 @@ function Home() {
                 <div className="border-b border-border-light bg-ink-200 px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold-700">
-                        Province Index
-                      </div>
-                      <div className="mt-1 text-sm font-semibold text-text-light">
+                      <div className="text-sm font-semibold text-text-light">
                         {selectedProvince || "全部省份"}
                       </div>
                     </div>
@@ -275,7 +266,7 @@ function Metric({
       className="rounded-lg border border-border bg-white/[0.055] px-3 py-2"
       whileHover={{ y: -2, transition: { duration: 0.2 } }}
     >
-      <div className="text-[10px] uppercase tracking-[0.18em] text-dark-500">
+      <div className="text-[10px] text-dark-500">
         {label}
       </div>
       <div className={`mt-1 text-xl font-semibold leading-none ${toneClass}`}>

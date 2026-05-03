@@ -56,7 +56,7 @@ export default function DetailSection({ category, detail }: DetailSectionProps) 
           <div key={index} className="rounded-lg border border-primary-border bg-gold-50 p-3 text-xs">
             <div className="font-semibold text-gold-800">{experience.topic}</div>
             <p className="mt-2 leading-relaxed text-dark-950">{experience.content}</p>
-            <div className="mt-2 text-[10px] uppercase tracking-[0.16em] text-red-600">
+            <div className="mt-2 text-[10px] text-red-600">
               {experience.source_type}
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function DetailSection({ category, detail }: DetailSectionProps) 
           >
             {item.title}
           </a>
-          <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] uppercase tracking-[0.12em] text-dark-600">
+          <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-dark-600">
             {item.publish_date && <span>{item.publish_date}</span>}
             {item.source_department && <span>{item.source_department}</span>}
           </div>

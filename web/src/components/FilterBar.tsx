@@ -40,13 +40,10 @@ export default function FilterBar({
   return (
     <div className="mt-3 grid gap-2 lg:grid-cols-[minmax(240px,420px)_1fr_auto] lg:items-center">
       <label className="group flex h-11 items-center gap-3 rounded-lg border border-border bg-surface-active px-3 transition focus-within:border-primary/70 focus-within:bg-surface-hover">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-dark-500">
-          Search
-        </span>
         <input
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          placeholder="学校 / 省份 / 官方域名"
+          placeholder="搜索学校 / 省份 / 官方域名"
           className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-dark-700"
         />
       </label>
@@ -75,10 +72,7 @@ export default function FilterBar({
         </span>
       </div>
 
-      <div className="flex items-center justify-between gap-2 lg:justify-end">
-        <span className="text-[11px] uppercase tracking-[0.16em] text-dark-800">
-          Filters {activeFilterCount}
-        </span>
+      <div className="flex items-center justify-end gap-2">
         <button
           type="button"
           onClick={onReset}

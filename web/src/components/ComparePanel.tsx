@@ -30,10 +30,7 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
       <div className="border-b border-border-light bg-base-950 px-4 py-4 text-text">
         <div className="flex items-start gap-3">
           <div className="min-w-0 flex-1">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
-              School Detail
-            </div>
-            <h2 className="mt-2 text-xl font-semibold leading-tight">
+            <h2 className="text-xl font-semibold leading-tight">
               学校对比
             </h2>
             <div className="mt-1 text-xs text-dark-300">
