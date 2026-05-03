@@ -99,8 +99,8 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-2.5 shadow-2xl shadow-black/20 sm:px-4 sm:py-3">
-        <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-2 shadow-2xl shadow-black/20 sm:px-4 sm:py-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
               <img
@@ -119,31 +119,35 @@ function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 sm:min-w-[420px]">
-            <Metric label="高校" value={data.schools.length} />
-            <Metric label="已采集" value={doneCount} tone="gold" />
-            <Metric label="省份" value={filteredProvinces.length} tone="green" />
-          </div>
-        </div>
+          {!selectedSchool && (
+            <>
+              <div className="grid grid-cols-3 gap-2 sm:min-w-[420px]">
+                <Metric label="高校" value={data.schools.length} />
+                <Metric label="已采集" value={doneCount} tone="gold" />
+                <Metric label="省份" value={filteredProvinces.length} tone="green" />
+              </div>
 
-        <FilterBar
-          query={query}
-          filter985={filter985}
-          filter211={filter211}
-          filterDoubleFirst={filterDoubleFirst}
-          totalCount={data.schools.length}
-          filteredCount={filteredSchools.length}
-          doneCount={filteredDoneCount}
-          provinceCount={filteredProvinces.length}
-          activeFilterCount={activeFilterCount}
-          onQueryChange={(v) => dispatch({ type: "SET_QUERY", payload: v })}
-          onToggle985={() => dispatch({ type: "TOGGLE_FILTER", payload: "985" })}
-          onToggle211={() => dispatch({ type: "TOGGLE_FILTER", payload: "211" })}
-          onToggleDoubleFirst={() =>
-            dispatch({ type: "TOGGLE_FILTER", payload: "doubleFirst" })
-          }
-          onReset={() => dispatch({ type: "RESET_FILTERS" })}
-        />
+              <FilterBar
+                query={query}
+                filter985={filter985}
+                filter211={filter211}
+                filterDoubleFirst={filterDoubleFirst}
+                totalCount={data.schools.length}
+                filteredCount={filteredSchools.length}
+                doneCount={filteredDoneCount}
+                provinceCount={filteredProvinces.length}
+                activeFilterCount={activeFilterCount}
+                onQueryChange={(v) => dispatch({ type: "SET_QUERY", payload: v })}
+                onToggle985={() => dispatch({ type: "TOGGLE_FILTER", payload: "985" })}
+                onToggle211={() => dispatch({ type: "TOGGLE_FILTER", payload: "211" })}
+                onToggleDoubleFirst={() =>
+                  dispatch({ type: "TOGGLE_FILTER", payload: "doubleFirst" })
+                }
+                onReset={() => dispatch({ type: "RESET_FILTERS" })}
+              />
+            </>
+          )}
+        </div>
       </header>
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
