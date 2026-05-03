@@ -105,7 +105,7 @@ export default function OverviewSection({ detail, school }: OverviewSectionProps
 
 function SectionTitle({ label }: { label: string }) {
   return (
-    <h3 className="text-[10px] font-semibold text-gold-700">
+    <h3 className="text-[10px] font-semibold text-dark-800">
       {label}
     </h3>
   );
@@ -122,7 +122,7 @@ function InfoRow({
 }) {
   return (
     <div className="rounded-lg border border-border-light bg-ink-50 p-3">
-      <div className="text-[10px] text-dark-600">
+      <div className="text-[10px] text-dark-800 font-medium">
         {label}
       </div>
       <div

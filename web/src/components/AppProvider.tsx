@@ -12,7 +12,7 @@ import type { School } from "@/lib/data";
 
 interface DerivedState {
   filteredSchools: School[];
-  filteredProvinces: { name: string; count: number; schools: School[] }[];
+  filteredProvinces: { name: string; count: number; schools: School[]; provinceIndex: number }[];
   doneCount: number;
   filteredDoneCount: number;
   activeFilterCount: number;
@@ -60,8 +60,17 @@ export default function AppProvider({ children }: { children: ReactNode }) {
         list.push(s);
         provMap.set(s.province, list);
       }
+      const allProvinces = (data?.provinces || []);
       return Array.from(provMap.entries())
-        .map(([name, schools]) => ({ name, count: schools.length, schools }))
+        .map(([name, schools]) => {
+          const originalIndex = allProvinces.findIndex((p) => p.name === name);
+          return {
+            name,
+            count: schools.length,
+            schools,
+            provinceIndex: originalIndex >= 0 ? originalIndex + 1 : provMap.size,
+          };
+        })
         .sort((a, b) => b.count - a.count);
     })();
 
