@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
 import { colors } from "@/lib/theme";
@@ -105,6 +106,7 @@ export default function ChinaMap({
   const chartRef = useRef<ReactECharts>(null);
   const [mapReady, setMapReady] = useState(false);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     let cancelled = false;
@@ -325,7 +327,7 @@ export default function ChinaMap({
           clickTimer.current = null;
         }
         const school = schools.find((s) => s.name === item.name);
-        if (school) onSchoolClick(school);
+        if (school) router.push(`/school/${encodeURIComponent(school.name)}`);
       }
     },
   };
@@ -333,13 +335,6 @@ export default function ChinaMap({
   const handleClosePopup = useCallback(() => {
     onSchoolPreview(null);
   }, [onSchoolPreview]);
-
-  const handleEnterDetail = useCallback(
-    (school: School) => {
-      onSchoolClick(school);
-    },
-    [onSchoolClick],
-  );
 
   if (!mapReady) {
     return (
@@ -361,7 +356,6 @@ export default function ChinaMap({
       {previewSchool && (
         <SchoolPopup
           school={previewSchool}
-          onEnterDetail={handleEnterDetail}
           onClose={handleClosePopup}
         />
       )}

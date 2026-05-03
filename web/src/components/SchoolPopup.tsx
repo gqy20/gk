@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -7,15 +8,14 @@ import type { School, UniversityInfo } from "@/lib/data";
 
 interface SchoolPopupProps {
   school: School;
-  onEnterDetail: (school: School) => void;
   onClose: () => void;
 }
 
 export default function SchoolPopup({
   school,
-  onEnterDetail,
   onClose,
 }: SchoolPopupProps) {
+  const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function SchoolPopup({
         variant="primary"
         size="sm"
         className="w-full"
-        onClick={() => onEnterDetail(school)}
+        onClick={() => router.push(`/school/${encodeURIComponent(school.name)}`)}
       >
         查看详情
       </Button>

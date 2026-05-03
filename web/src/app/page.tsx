@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import AppProvider, { useApp } from "@/components/AppProvider";
 import { Button } from "@/components/ui/Button";
@@ -10,7 +11,6 @@ import ComparePanel from "@/components/ComparePanel";
 import FilterBar from "@/components/FilterBar";
 import ProvinceList from "@/components/ProvinceList";
 import SchoolPanel from "@/components/school-panel/SchoolPanel";
-import SchoolMap from "@/components/school-panel/SchoolMap";
 
 const panelVariants = {
   initial: { x: 24, opacity: 0 },
@@ -33,6 +33,7 @@ export default function HomePage() {
 }
 
 function Home() {
+  const router = useRouter();
   const {
     data,
     loadError,
@@ -152,26 +153,20 @@ function Home() {
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
         <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
-          {selectedSchool ? (
-            <SchoolMap school={selectedSchool} compact={false} />
-          ) : (
-            <>
-              <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-dark-300">
-                <span className="rounded-full border border-border-subtle bg-white/[0.06] px-3 py-1">
-                  {filteredSchools.length} 所高校
-                </span>
-              </div>
-              <ChinaMap
-                schools={filteredSchools}
-                provinces={filteredProvinces}
-                selectedProvince={selectedProvince}
-                previewSchool={previewSchool}
-                onProvinceSelect={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
-                onSchoolPreview={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
-                onSchoolClick={(s) => dispatch({ type: "SELECT_SCHOOL", payload: s })}
-              />
-            </>
-          )}
+          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-dark-300">
+            <span className="rounded-full border border-border-subtle bg-white/[0.06] px-3 py-1">
+              {filteredSchools.length} 所高校
+            </span>
+          </div>
+          <ChinaMap
+            schools={filteredSchools}
+            provinces={filteredProvinces}
+            selectedProvince={selectedProvince}
+            previewSchool={previewSchool}
+            onProvinceSelect={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
+            onSchoolPreview={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
+            onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
+          />
         </section>
 
         <aside aria-label="高校列表与详情" className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25">
@@ -248,7 +243,7 @@ function Home() {
                   selectedSchool={selectedSchool}
                   compareSchools={compareSchools}
                   onProvinceClick={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
-                  onSchoolClick={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
+                  onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
                   onCompareToggle={(s) => dispatch({ type: "TOGGLE_COMPARE", payload: s })}
                 />
                 <CompareBar
