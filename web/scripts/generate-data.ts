@@ -16,6 +16,11 @@ const CSV_PATH = path.join(PROJECT_ROOT, "..", "data", "92_list.csv");
 const OUTPUT_DIR = path.join(PROJECT_ROOT, "..", "data", "output");
 const DEST = path.join(__dirname, "..", "public", "data", "schools.json");
 
+const DETAIL_NAME_ALIASES: Record<string, string[]> = {
+  上海体育学院: ["上海体育大学"],
+  空军军医大学: ["空军军医大学（第四军医大学）"],
+};
+
 function parseCSVLine(line: string): string[] {
   const cols: string[] = [];
   let current = "";
@@ -112,6 +117,34 @@ function readDetails(): Map<string, UniversityInfo> {
   return detailMap;
 }
 
+function getExistingDoneCount(): number {
+  if (!fs.existsSync(DEST)) return 0;
+
+  try {
+    const raw = JSON.parse(fs.readFileSync(DEST, "utf-8")) as {
+      schools?: School[];
+    };
+    if (!Array.isArray(raw.schools)) return 0;
+    return raw.schools.filter(
+      (school) => school.status === "done" && school.detail,
+    ).length;
+  } catch {
+    return 0;
+  }
+}
+
+function getDetailForSchool(
+  detailMap: Map<string, UniversityInfo>,
+  schoolName: string,
+): UniversityInfo | undefined {
+  const candidates = [schoolName, ...(DETAIL_NAME_ALIASES[schoolName] || [])];
+  for (const candidate of candidates) {
+    const detail = detailMap.get(candidate);
+    if (detail) return detail;
+  }
+  return undefined;
+}
+
 function main() {
   console.log("=== 生成前端数据 ===");
 
@@ -127,6 +160,15 @@ function main() {
   // 2. 读 output JSON
   const detailMap = readDetails();
   console.log(`Output: ${detailMap.size} 个详情索引`);
+  if (detailMap.size === 0) {
+    const existingDoneCount = getExistingDoneCount();
+    if (existingDoneCount > 0) {
+      console.warn(
+        `未找到 ${OUTPUT_DIR} 详情源，保留现有 ${DEST}（已采集 ${existingDoneCount} 所）。`,
+      );
+      return;
+    }
+  }
 
   // 3. 合并 + 填充坐标
   const provinceCounter = new Map<string, number>();
@@ -139,7 +181,7 @@ function main() {
     const prov = m.province;
     const idx = provinceCounter.get(prov) || 0;
     provinceCounter.set(prov, idx + 1);
-    const detail = detailMap.get(m.name);
+    const detail = getDetailForSchool(detailMap, m.name);
 
     return {
       ...m,
@@ -156,7 +198,8 @@ function main() {
   const output = { schools, provinces };
   fs.mkdirSync(path.dirname(DEST), { recursive: true });
   fs.writeFileSync(DEST, JSON.stringify(output, null, 2), "utf-8");
-  console.log(`输出: ${DEST} (${(Buffer.byteLength(JSON.stringify(output)) / 1024).toFixed(1)} KB)`);
+  const outputSizeKb = (Buffer.byteLength(JSON.stringify(output)) / 1024).toFixed(1);
+  console.log(`输出: ${DEST} (${outputSizeKb} KB)`);
   console.log("完成!");
 }
 

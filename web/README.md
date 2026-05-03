@@ -19,7 +19,7 @@ pnpm dev
 pnpm data:generate
 ```
 
-生成结果写入 `public/data/schools.json`。`pnpm build` 会通过 `prebuild` 自动重新生成该文件。
+生成结果写入 `public/data/schools.json`。`pnpm build` 会通过 `prebuild` 自动重新生成该文件；如果部署环境没有提交 `data/output/*.json`，脚本会保留已提交的 `public/data/schools.json`，避免把完整详情覆盖成空数据。
 
 ## 验证
 

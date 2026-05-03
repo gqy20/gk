@@ -101,30 +101,27 @@ export default function Home() {
   };
 
   const handleCompareToggle = (school: School) => {
-    setCompareSchools((prev) => {
-      const exists = prev.find((s) => s.name === school.name);
-      if (exists) {
-        return prev.filter((s) => s.name !== school.name);
-      }
-      if (prev.length >= 3) return prev;
-      return [...prev, school];
-    });
+    const exists = compareSchools.some((s) => s.name === school.name);
+    if (exists) {
+      const nextSchools = compareSchools.filter((s) => s.name !== school.name);
+      setCompareSchools(nextSchools);
+      if (nextSchools.length < 2) setCompareOpen(false);
+      return;
+    }
+    if (compareSchools.length >= 3) return;
+    setCompareSchools([...compareSchools, school]);
   };
 
   const handleCompareRemove = (school: School) => {
-    setCompareSchools((prev) => prev.filter((s) => s.name !== school.name));
+    const nextSchools = compareSchools.filter((s) => s.name !== school.name);
+    setCompareSchools(nextSchools);
+    if (nextSchools.length < 2) setCompareOpen(false);
   };
 
   const handleCompareClear = () => {
     setCompareSchools([]);
     setCompareOpen(false);
   };
-
-  useEffect(() => {
-    if (compareSchools.length < 2 && compareOpen) {
-      setCompareOpen(false);
-    }
-  }, [compareSchools.length, compareOpen]);
 
   if (!data) {
     return (
