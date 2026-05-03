@@ -15,6 +15,7 @@ const PROJECT_ROOT = path.resolve(__dirname, "..");
 const CSV_PATH = path.join(PROJECT_ROOT, "..", "data", "92_list.csv");
 const OUTPUT_DIR = path.join(PROJECT_ROOT, "..", "data", "output");
 const DEST = path.join(__dirname, "..", "public", "data", "schools.json");
+const COORDS_CACHE = path.join(__dirname, "../data/schools-coords.json");
 
 const DETAIL_NAME_ALIASES: Record<string, string[]> = {
   上海体育学院: ["上海体育大学"],
@@ -145,8 +146,26 @@ function getDetailForSchool(
   return undefined;
 }
 
+/** 加载高德地理编码缓存（如果存在） */
+function loadCoordsCache(): Record<string, [number, number]> | null {
+  if (!fs.existsSync(COORDS_CACHE)) return null;
+  try {
+    const raw = JSON.parse(fs.readFileSync(COORDS_CACHE, "utf-8"));
+    if (typeof raw === "object" && !Array.isArray(raw)) return raw;
+  } catch {}
+  return null;
+}
+
 function main() {
   console.log("=== 生成前端数据 ===");
+
+  // 0. 加载坐标缓存
+  const coordsCache = loadCoordsCache();
+  if (coordsCache) {
+    console.log(`坐标缓存: 已加载 ${Object.keys(coordsCache).length} 所学校精确坐标`);
+  } else {
+    console.log("坐标缓存: 未找到，将使用估算坐标（运行 geocode-schools.ts 可生成精确坐标）");
+  }
 
   // 1. 读 CSV
   if (!fs.existsSync(CSV_PATH)) {
@@ -185,7 +204,7 @@ function main() {
 
     return {
       ...m,
-      coord: getSchoolCoord(prov, idx, provinceTotals.get(prov) || 1),
+      coord: coordsCache?.[m.name] ?? getSchoolCoord(prov, idx, provinceTotals.get(prov) || 1),
       status: detail ? "done" : "pending",
       detail,
     };

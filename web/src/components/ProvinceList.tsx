@@ -63,7 +63,7 @@ export default function ProvinceList({
       animate="show"
       key={selectedProvince ?? "all"}
     >
-      {displayProvinces.map((prov) => {
+      {displayProvinces.map((prov, idx) => {
         const doneCount = prov.schools.filter((school) => school.status === "done").length;
         const progress = Math.round((doneCount / Math.max(prov.schools.length, 1)) * 100);
         const isSelected = selectedProvince === prov.name;
@@ -87,7 +87,7 @@ export default function ProvinceList({
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-current/20 text-[11px] font-semibold tabular-nums">
-                  {String(prov.provinceIndex).padStart(2, "0")}
+                  {String(idx + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-3">

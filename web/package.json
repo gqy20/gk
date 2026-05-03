@@ -12,6 +12,7 @@
     "data:generate": "tsx scripts/generate-data.ts"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "echarts": "^6.0.0",
     "echarts-for-react": "^3.0.6",
     "framer-motion": "^12.38.0",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "puppeteer-core": "^24.42.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
