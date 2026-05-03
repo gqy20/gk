@@ -41,7 +41,7 @@ class StudentExperienceItem(BaseModel):
 
 
 class UniversityInfo(BaseModel):
-    """高校信息抓取结果 — 覆盖招生、教学、就业等 13 类信息."""
+    """高校信息抓取结果 — 覆盖招生、教学、就业、生活服务等 18 类信息."""
 
     university: str = Field(description="学校名称")
     official_url: str = Field(description="官网地址")
@@ -89,6 +89,23 @@ class UniversityInfo(BaseModel):
     # --- 组织架构 ---
     colleges: list[CollegeItem] = Field(
         default_factory=list, description="学院/系列表"
+    )
+
+    # --- 生活服务类 ---
+    scholarship: list[DocItem] = Field(
+        default_factory=list, description="奖学金设置（国家奖学金、校级奖学金、专项奖学金等）"
+    )
+    dining_dorm: list[DocItem] = Field(
+        default_factory=list, description="食宿条件（食堂、宿舍、住宿费标准）"
+    )
+    contact_info: list[DocItem] = Field(
+        default_factory=list, description="联系办法（招生办联系方式、地址、交通指南）"
+    )
+    faq: list[DocItem] = Field(
+        default_factory=list, description="答考生问（常见问题解答）"
+    )
+    school_intro: list[DocItem] = Field(
+        default_factory=list, description="学校简介（学校概况、历史沿革、办学规模）"
     )
 
     # --- 非官方（需标注） ---
