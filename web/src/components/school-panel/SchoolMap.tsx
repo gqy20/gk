@@ -28,7 +28,6 @@ type PoiCategoryKey = (typeof POI_CATEGORIES)[number]["key"];
 export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<AMap.Map | null>(null);
-  const amapRef = useRef<typeof AMap | null>(null);
   const [activeCategory, setActiveCategory] = useState<PoiCategoryKey | "all">("all");
   const [pois, setPois] = useState<Record<string, PoiItem[]>>({});
   const [loading, setLoading] = useState(false);
@@ -58,7 +57,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         await loader.load({
           key: amapKey,
           version: "2.0",
-          plugins: ["AMap.PlaceSearch"],
+          plugins: [],
         });
 
         if (cancelled) return;
@@ -108,7 +107,6 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         });
 
         mapInstance.current = map;
-        amapRef.current = AMap;
         setMapReady(true);
       } catch (e) {
         console.error("地图加载失败:", e);
@@ -123,45 +121,32 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
     };
   }, [school.name, school.province, lng, lat]);
 
-  // 搜索周边POI
+  // 搜索周边POI（使用高德REST API）
+  const amapKey = process.env.NEXT_PUBLIC_AMAP_JS_KEY || "";
   const searchPois = useCallback(
     async (category: typeof POI_CATEGORIES[number]) => {
-      if (!mapInstance.current || !amapRef.current) return;
+      if (!amapKey) return [];
 
       setLoading(true);
       try {
-        const placeSearch = new amapRef.current.PlaceSearch({
-          type: category.type,
-          pageSize: 10,
-          pageIndex: 1,
-          map: undefined, // 不自动标注，我们自己处理
-        });
-
-        return new Promise<PoiItem[]>((resolve) => {
-          placeSearch.searchNearBy("", [lng, lat], 1200, (
-            status: string,
-            result: { poiList?: { pois: Array<{ name: string; address: string; distance: number; location: { lng: number; lat: number }; type: string }> } },
-          ) => {
-            if (status === "complete" && result.poiList?.pois) {
-              resolve(
-                result.poiList.pois.map((p) => ({
-                  name: p.name,
-                  address: p.address,
-                  distance: p.distance,
-                  location: [p.location.lng, p.location.lat],
-                  type: p.type,
-                })),
-              );
-            } else {
-              resolve([]);
-            }
-          });
-        });
+        const url = `https://restapi.amap.com/v3/place/around?key=${amapKey}&location=${lng},${lat}&radius=1200&types=${encodeURIComponent(category.type)}&output=JSON&offset=10`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.status === "1" && data.pois) {
+          return data.pois.map((p: { name: string; address: string; distance: number; location: string[]; type: string }) => ({
+            name: p.name,
+            address: p.address,
+            distance: p.distance,
+            location: [parseFloat(p.location[0]), parseFloat(p.location[1])],
+            type: p.type,
+          }));
+        }
+        return [];
       } finally {
         setLoading(false);
       }
     },
-    [lng, lat],
+    [lng, lat, amapKey],
   );
 
   // 切换分类时搜索
