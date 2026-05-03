@@ -283,6 +283,10 @@ class _EventCollector:
         start_ms = pending[1] if pending else now_ms
         duration = max(0, now_ms - start_ms)
 
+        # 清理可能残留的未配对工具（subagent 异常退出时可能发生）
+        if not pending:
+            logger.debug("ToolResult without matching ToolUse: %s", block.tool_use_id)
+
         content_preview = ""
         if block.content:
             if isinstance(block.content, str):
