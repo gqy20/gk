@@ -5,7 +5,7 @@ import { IconChevronDown } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import type { DetailCategoryKey } from "@/lib/data";
 
-export type TabKey = "overview" | "map" | DetailCategoryKey;
+export type TabKey = "overview" | DetailCategoryKey;
 
 interface TabNavProps {
   tabs: { key: TabKey; label: string; count?: number }[];

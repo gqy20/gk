@@ -5,7 +5,6 @@ import SchoolHeader from "./SchoolHeader";
 import TabNav, { type TabKey } from "./TabNav";
 import OverviewSection from "./OverviewSection";
 import DetailSection from "./DetailSection";
-import SchoolMap from "./SchoolMap";
 import type { School } from "@/lib/data";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
 
@@ -22,7 +21,6 @@ export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
   const tabs = useMemo(() => {
     const allTabs: { key: TabKey; label: string; count?: number }[] = [
       { key: "overview", label: "概览" },
-      { key: "map", label: "地图周边" },
       ...DETAIL_CATEGORIES.map((key) => ({
         key,
         label: CATEGORY_LABELS[key],
@@ -41,7 +39,7 @@ export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
     ];
 
     return allTabs.filter((tab) => {
-      if (tab.key === "overview" || tab.key === "map") return true;
+      if (tab.key === "overview") return true;
       if (!detail) return false;
       const items = detail[tab.key as keyof typeof detail];
       return Array.isArray(items) && items.length > 0;
@@ -57,7 +55,6 @@ export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
   }
 
   const isOverview = activeTab === "overview";
-  const isMap = activeTab === "map";
 
   return (
     <div className="flex h-full flex-col bg-surface-light text-text-light">
@@ -66,8 +63,6 @@ export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
       <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
         {isOverview ? (
           <OverviewSection detail={detail} school={school} />
-        ) : isMap ? (
-          <SchoolMap school={school} />
         ) : detail ? (
           <DetailSection category={activeTab} detail={detail} />
         ) : (

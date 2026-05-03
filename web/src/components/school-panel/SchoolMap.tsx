@@ -5,6 +5,7 @@ import type { School } from "@/lib/data";
 
 interface SchoolMapProps {
   school: School;
+  compact?: boolean;
 }
 
 interface PoiItem {
@@ -24,7 +25,7 @@ const POI_CATEGORIES = [
 
 type PoiCategoryKey = (typeof POI_CATEGORIES)[number]["key"];
 
-export default function SchoolMap({ school }: SchoolMapProps) {
+export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<AMap.Map | null>(null);
   const [activeCategory, setActiveCategory] = useState<PoiCategoryKey | "all">("all");
@@ -47,7 +48,7 @@ export default function SchoolMap({ school }: SchoolMapProps) {
         if (!amapKey) return;
 
         if (securityCode) {
-          (window as Record<string, unknown>)._AMapSecurityConfig = {
+          (window as unknown as Record<string, unknown>)._AMapSecurityConfig = {
             securityJsCode: securityCode,
           };
         }
@@ -265,7 +266,12 @@ export default function SchoolMap({ school }: SchoolMapProps) {
   return (
     <div className="flex h-full flex-col">
       {/* 地图容器 */}
-      <div ref={mapRef} className="relative h-[280px] w-full shrink-0 overflow-hidden rounded-lg border border-border-light bg-ink-800">
+      <div
+        ref={mapRef}
+        className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-ink-800 ${
+          compact ? "h-[280px] shrink-0" : "h-[60%] min-h-[300px] flex-1"
+        }`}
+      >
         {!mapReady && (
           <div className="absolute inset-0 flex items-center justify-center text-sm text-dark-500">
             地图加载中...
