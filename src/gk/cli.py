@@ -52,15 +52,15 @@ def run_crawl(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="GK — 高校信息并行爬取工具")
 
-    parser.add_argument("--universities", nargs="+", help="目标高校名称（空格分隔）")
-    parser.add_argument("--all", action="store_true", help="抓取全部高校")
-    parser.add_argument("--output", default="data/output", help="输出目录（默认 data/output）")
-    parser.add_argument("--model", default=None, help="指定模型")
-    parser.add_argument("--workers", type=int, default=3, help="并行 Agent 数（默认 3）")
-    parser.add_argument("--csv", type=Path, default=None, help="高校列表 CSV 路径（默认 data/92_list.csv）")
-    parser.add_argument("--force", action="store_true", help="强制全量重跑（默认跳过已完成的）")
-    parser.add_argument("--disable-strict-mcp", action="store_true", help="禁用严格 MCP 模式（默认启用，只使用项目 .mcp.json）")
-    parser.add_argument("--debug", action="store_true")
+    parser.add_argument("-u", "--universities", nargs="+", help="目标高校名称（空格分隔）")
+    parser.add_argument("-a", "--all", action="store_true", help="抓取全部高校")
+    parser.add_argument("-o", "--output", default="data/output", help="输出目录（默认 data/output）")
+    parser.add_argument("-m", "--model", default=None, help="指定模型")
+    parser.add_argument("-t", "--workers", type=int, default=3, help="并行 Agent 数（默认 3）")
+    parser.add_argument("-c", "--csv", type=Path, default=None, help="高校列表 CSV 路径")
+    parser.add_argument("-f", "--force", action="store_true", help="强制全量重跑")
+    parser.add_argument("-d", "--disable-strict-mcp", action="store_true", help="禁用严格 MCP 模式")
+    parser.add_argument("-D", "--debug", action="store_true")
 
     args = parser.parse_args()
 
