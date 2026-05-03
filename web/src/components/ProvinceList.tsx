@@ -131,8 +131,8 @@ export default function ProvinceList({
                       className={cn(
                         "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5",
                         isSchoolSelected
-                          ? "bg-green-50 text-green-600"
-                          : "text-dark-950 hover:bg-ink-400",
+                          ? "bg-green-50 text-green-500"
+                          : "text-text-light hover:bg-ink-400",
                       )}
                     >
                       <button
@@ -143,7 +143,7 @@ export default function ProvinceList({
                         <span
                           className={cn(
                             "h-2.5 w-2.5 flex-shrink-0 rounded-full",
-                            school.status === "done" ? "bg-green-300" : "bg-dark-400",
+                            school.status === "done" ? "bg-green-300" : "bg-dark-600",
                           )}
                         />
                         <span className="truncate font-medium">{school.name}</span>
