@@ -82,6 +82,15 @@ async def crawl_one(
     每个任务使用独立的 Playwright session，确保并行时进程隔离。
     """
     async def _run(session: PlaywrightSession):
+        # 运行时去重：获取信号量后再检查，避免长队列中的重复爬取
+        existing = config.output_dir / f"{university}.json"
+        if existing.exists():
+            logger.info("跳过(已存在): %s", university)
+            console.print(f"  [yellow]跳过[/] {university} (已存在)")
+            return UniversityInfo.model_validate_json(
+                existing.read_text(encoding="utf-8")
+            )
+
         system_prompt, user_prompt = build_crawl_prompt(university, url)
         agent_config = _build_agent_config(
             config, system_prompt, session,
