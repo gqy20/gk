@@ -167,6 +167,7 @@ class AgentConfig:
     skills: list[str] | str | None = None
     permission_mode: str | None = None
     stderr: Callable[[str], None] | None = None
+    env: dict[str, str] | None = None
 
 
 # ============================================================================
@@ -536,6 +537,8 @@ class Agent:
             options.permission_mode = cfg.permission_mode
         if cfg.skills is not None:
             options.skills = cfg.skills
+        if cfg.env is not None:
+            options.env = cfg.env
         if output_type is not None and issubclass(output_type, BaseModel):
             options.output_format = output_format_schema(output_type)
         return options

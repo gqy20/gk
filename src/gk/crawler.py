@@ -10,15 +10,26 @@ from rich.panel import Panel
 from gk.agent import Agent, AgentConfig
 from gk.config import CrawlConfig
 from gk.models import UniversityInfo
+from gk.playwright_session import PlaywrightSession, close_session
 from gk.prompts import build_crawl_prompt
 
 logger = logging.getLogger("gk.crawler")
 console = Console()
 
 
-def _build_agent_config(config: CrawlConfig, system_prompt: str) -> AgentConfig:
-    """构建 Agent 配置 — 白名单限制只允许项目 MCP 工具，排除系统级 MCP."""
-    return AgentConfig(
+def _build_agent_config(
+    config: CrawlConfig,
+    system_prompt: str,
+    session: PlaywrightSession | None = None,
+) -> AgentConfig:
+    """构建 Agent 配置 — 白名单限制只允许项目 MCP 工具，排除系统级 MCP.
+
+    Args:
+        config: 爬取配置
+        system_prompt: 系统提示词
+        session: 可选的 Playwright session，用于进程隔离
+    """
+    agent_config = AgentConfig(
         model=config.model,
         system_prompt=system_prompt,
         max_turns=config.max_turns,
@@ -42,6 +53,10 @@ def _build_agent_config(config: CrawlConfig, system_prompt: str) -> AgentConfig:
         ],
         stderr=lambda line: logger.debug("CLI stderr: %s", line.rstrip()),
     )
+    # 如果提供了 session，设置环境变量以隔离 playwright 进程
+    if session:
+        agent_config.env = session.env
+    return agent_config
 
 
 async def crawl_one(
@@ -50,54 +65,63 @@ async def crawl_one(
     config: CrawlConfig,
     semaphore: asyncio.Semaphore | None = None,
 ) -> UniversityInfo:
-    """单个 Agent 异步抓取一所高校."""
-    async def _run():
+    """单个 Agent 异步抓取一所高校.
+
+    每个任务使用独立的 Playwright session，确保并行时进程隔离。
+    """
+    async def _run(session: PlaywrightSession):
         system_prompt, user_prompt = build_crawl_prompt(university, url)
-        agent_config = _build_agent_config(config, system_prompt)
+        agent_config = _build_agent_config(config, system_prompt, session)
         agent = Agent(agent_config)
 
         console.print(f"[bold cyan]开始: {university}[/] ({url})")
-        logger.info("Crawling %s | %s", university, url)
+        logger.info("Crawling %s | %s | session=%s", university, url, session.session_name)
 
-        response_text, stats = await agent.aask(user_prompt, output_type=UniversityInfo)
+        try:
+            response_text, stats = await agent.aask(user_prompt, output_type=UniversityInfo)
 
-        console.print(
-            f"  [dim]{stats.model} | {stats.turns} turns | "
-            f"tools={stats.tool_calls} | api={stats.duration_api_ms}ms | "
-            f"cost=${stats.cost_usd or 0:.4f}[/]"
-        )
+            console.print(
+                f"  [dim]{stats.model} | {stats.turns} turns | "
+                f"tools={stats.tool_calls} | api={stats.duration_api_ms}ms | "
+                f"cost=${stats.cost_usd or 0:.4f}[/]"
+            )
 
-        # 优先使用 structured_output（dict），降级到 JSON 文本解析
-        if stats.structured_output and isinstance(stats.structured_output, dict):
-            result = UniversityInfo.model_validate(stats.structured_output)
-        else:
-            result = UniversityInfo.model_validate_json(response_text)
-        _save_result(result, config.output_dir)
+            # 优先使用 structured_output（dict），降级到 JSON 文本解析
+            if stats.structured_output and isinstance(stats.structured_output, dict):
+                result = UniversityInfo.model_validate(stats.structured_output)
+            else:
+                result = UniversityInfo.model_validate_json(response_text)
+            _save_result(result, config.output_dir)
 
-        filled = {
-            k: len(v) for k, v in {
-                "招生章程": result.admission_guide,
-                "招生计划": result.enrollment_plan,
-                "历年录取": result.historical_admission,
-                "转专业政策": result.transfer_policy,
-                "大类分流": result.major_streaming,
-                "培养方案": result.training_program,
-                "辅修/双学位": result.minor_program,
-                "就业报告": result.employment_report,
-                "推免": result.postgrad_recommend,
-                "竞赛科研": result.competition_research,
-                "学院": result.colleges,
-                "学生经验": result.student_experiences,
-            }.items() if v
-        }
-        summary = " | ".join(f"{k}:{v}" for k, v in filled.items())
-        console.print(f"  [green]完成[/] {summary}")
-        return result
+            filled = {
+                k: len(v) for k, v in {
+                    "招生章程": result.admission_guide,
+                    "招生计划": result.enrollment_plan,
+                    "历年录取": result.historical_admission,
+                    "转专业政策": result.transfer_policy,
+                    "大类分流": result.major_streaming,
+                    "培养方案": result.training_program,
+                    "辅修/双学位": result.minor_program,
+                    "就业报告": result.employment_report,
+                    "推免": result.postgrad_recommend,
+                    "竞赛科研": result.competition_research,
+                    "学院": result.colleges,
+                    "学生经验": result.student_experiences,
+                }.items() if v
+            }
+            summary = " | ".join(f"{k}:{v}" for k, v in filled.items())
+            console.print(f"  [green]完成[/] {summary}")
+            return result
+        finally:
+            # 确保清理 playwright session
+            await close_session(session.session_name)
+            logger.debug("Session %s cleaned up", session.session_name)
 
+    session = PlaywrightSession()
     if semaphore:
         async with semaphore:
-            return await _run()
-    return await _run()
+            return await _run(session)
+    return await _run(session)
 
 
 async def crawl_batch(
