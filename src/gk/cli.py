@@ -45,7 +45,7 @@ def run_crawl(args: argparse.Namespace) -> None:
     for u in targets:
         console.print(f"  - {u['name']} ({u['url']})")
 
-    config = CrawlConfig(model=args.model, output_dir=Path(args.output))
+    config = CrawlConfig.from_args(model=args.model, output_dir=args.output)
     crawl_batch_sync(targets, config, workers=args.workers, strict_mcp=not args.disable_strict_mcp)
 
 

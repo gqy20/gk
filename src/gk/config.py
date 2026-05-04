@@ -16,6 +16,19 @@ class CrawlConfig:
     output_dir: Path = field(default_factory=lambda: Path("data/output"))
     csv_path: Path = field(default_factory=lambda: CSV_PATH)
 
+    @classmethod
+    def from_args(cls, **kwargs) -> "CrawlConfig":
+        """从参数创建，.env 值优先于 CLI 参数."""
+        from gk.env import load_env
+
+        env = load_env()
+        return cls(
+            model=env.get("model") or kwargs.get("model"),
+            max_turns=kwargs.get("max_turns", 100),
+            output_dir=Path(kwargs.get("output_dir", "data/output")),
+            csv_path=kwargs.get("csv_path"),
+        )
+
 
 def load_universities(csv_path: Path | None = None) -> list[dict]:
     """从 CSV 加载高校列表."""
