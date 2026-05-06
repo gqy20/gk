@@ -40,6 +40,7 @@ class PlaywrightSession:
         return AgentConfig(
             env=self.env.copy(),
             skills=["playwright-cli"],
+            setting_sources=["project"],
         )
 
 

@@ -676,15 +676,3 @@ class Agent:
         result_text = self._parse_structured(sdk_stats, output_type)
         return result_text, sdk_stats
 
-
-def ask(
-    prompt: str,
-    *,
-    model: str | None = None,
-    system_prompt: str = "",
-    output_type: type[T] | None = None,
-) -> tuple[str, QueryStats]:
-    """快捷函数：一行调用 Agent."""
-    config = AgentConfig(model=model, system_prompt=system_prompt)
-    agent = Agent(config)
-    return agent.ask(prompt, output_type=output_type)
