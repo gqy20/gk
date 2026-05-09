@@ -57,13 +57,8 @@ export default function SchoolDetailClient({ school }: Props) {
       {/* Main content */}
       <main className="relative z-10 grid flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)]">
         {/* Left: Map + POI */}
-        <section className="relative flex min-h-0 flex-col gap-2 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
-          <div className="relative h-[65%] min-h-0 overflow-hidden">
-            <SchoolMap school={school} compact={false} />
-          </div>
-          <div className="flex-1 overflow-y-auto px-3 py-2 text-xs text-dark-400">
-            <p className="text-dark-600">周边设施加载中...</p>
-          </div>
+        <section className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
+          <SchoolMap school={school} compact={false} />
         </section>
 
         {/* Right: Detail panel */}

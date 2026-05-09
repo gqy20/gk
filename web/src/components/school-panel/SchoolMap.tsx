@@ -258,7 +258,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
       <div
         ref={mapRef}
         className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-ink-800 ${
-          compact ? "h-[280px] shrink-0" : "h-[60%] min-h-[300px] flex-1"
+          compact ? "h-[280px] shrink-0" : "h-[65%] min-h-[300px]"
         }`}
       >
         {!mapReady && (
