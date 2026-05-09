@@ -9,6 +9,7 @@ interface BadgeProps {
   tone?: BadgeTone;
   variant?: BadgeVariant;
   size?: BadgeSize;
+  compact?: boolean;
   className?: string;
 }
 
