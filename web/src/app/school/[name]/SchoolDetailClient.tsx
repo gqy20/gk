@@ -56,12 +56,12 @@ export default function SchoolDetailClient({ school }: Props) {
 
       {/* Main content */}
       <main className="relative z-10 grid flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)]">
-        {/* Left: Map + POI — 移动端隐藏，桌面端显示 */}
-        <section className="relative hidden min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25 lg:block">
+        {/* Left: Map + POI — 移动端紧凑高度，桌面端正常 */}
+        <section className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25 sm:max-h-[55%] lg:max-h-full">
           <SchoolMap school={school} />
         </section>
 
-        {/* Right: Detail panel — 移动端全宽 */}
+        {/* Right: Detail panel */}
         <aside className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25">
           <SchoolPanel
             school={school}
