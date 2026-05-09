@@ -1,44 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  /* Core palette */
+  /* Core palette — Gold: 浅奶黄 → 深金棕 */
   --color-gold-50: #fff4d7;
   --color-gold-100: #f5e4bb;
   --color-gold-200: #e4c87c;
   --color-gold-300: #d8b75d;
   --color-gold-400: #f1c15f;
-  --color-gold-500: #f2c45f;
-  --color-gold-600: #ffe2a0;
+  --color-gold-500: #c99a2e;
+  --color-gold-600: #a67c20;
   --color-gold-700: #8a6414;
   --color-gold-800: #7b5a19;
 
+  /* Green: 薄荷绿 → 深墨绿 */
   --color-green-50: #dfeee8;
   --color-green-100: #b9f1df;
   --color-green-200: #80c9b4;
   --color-green-300: #6fc0a5;
-  --color-green-400: #2c5f55;
+  --color-green-400: #4a9e89;
   --color-green-500: #1a342f;
   --color-green-600: #163d36;
   --color-green-700: #173f38;
   --color-green-800: #245d52;
 
+  /* Red: 浅珊瑚 → 深红褐 */
   --color-red-50: #f9ddd4;
   --color-red-100: #ffd7c8;
   --color-red-200: #f19a7a;
   --color-red-300: #e3a08b;
-  --color-red-400: #9d3b25;
-  --color-red-500: #d8872f;
-  --color-red-600: #9a5a13;
+  --color-red-400: #c45c3e;
+  --color-red-500: #a33d28;
+  --color-red-600: #8a2f1e;
 
+  /* Ink: 暖米色系（浅奶白 → 深灰褐）*/
   --color-ink-50: #fffaf0;
   --color-ink-100: #fbf5ea;
   --color-ink-200: #f9f5ec;
   --color-ink-300: #f5f0e6;
-  --color-ink-400: #f0e7d8;
-  --color-ink-500: #f0e7d4;
-  --color-ink-600: #ede4d5;
-  --color-ink-700: #e8decf;
-  --color-ink-800: #dfeee8;
+  --color-ink-400: #ede4d5;
+  --color-ink-500: #e0d5c5;
+  --color-ink-600: #d4c8b8;
+  --color-ink-700: #c8baa8;
+  --color-ink-800: #bcae98;
 
   --color-dark-50: #f7f1e4;
   --color-dark-100: #fff9ec;
@@ -209,7 +212,7 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-family: var(--font-noto-sc), var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB", sans-serif;
   font-feature-settings: "kern" 1, "liga" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

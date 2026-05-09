@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import AppProvider, { useApp } from "@/components/AppProvider";
 import { Button } from "@/components/ui/Button";
+import { HomePageSkeleton } from "@/components/ui/Skeleton";
 import ChinaMap from "@/components/ChinaMap";
 import CompareBar from "@/components/CompareBar";
 import ComparePanel from "@/components/ComparePanel";
@@ -97,16 +98,7 @@ function Home() {
   }, [dispatch]);
 
   if (!data) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-surface text-sm text-dark-200">
-        <motion.span
-          className="mr-3 h-2 w-2 rounded-full bg-primary"
-          animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        />
-        地图数据加载中
-      </div>
-    );
+    return <HomePageSkeleton />;
   }
 
   return (
