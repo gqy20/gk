@@ -101,21 +101,28 @@ function FilterTag({
   onClick: () => void;
   tone: "red" | "gold" | "green";
 }) {
-  const colors: Record<typeof tone, { active: string; inactive: string }> = {
-    red: {
-      active: "border-red-200/70 bg-red-200/18 text-red-100",
-      inactive: "border-border bg-surface-hover text-dark-400",
-    },
-    gold: {
-      active: "border-primary/80 bg-primary/18 text-gold-600",
-      inactive: "border-border bg-surface-hover text-dark-400",
-    },
-    green: {
-      active: "border-green-300/80 bg-green-300/16 text-green-100",
-      inactive: "border-border bg-surface-hover text-dark-400",
-    },
+  const solidColors: Record<typeof tone, string> = {
+    red: "bg-red-500 text-white border-transparent shadow-md shadow-red-500/25",
+    gold: "bg-gold-500 text-white border-transparent shadow-md shadow-gold-500/25",
+    green: "bg-green-500 text-white border-transparent shadow-md shadow-green-500/25",
   };
-  const classes = active ? colors[tone].active : colors[tone].inactive;
+
+  if (active) {
+    return (
+      <button
+        type="button"
+        aria-pressed={active}
+        onClick={onClick}
+        className={cn(
+          "h-9 rounded-lg border px-4 text-xs font-semibold transition",
+          solidColors[tone],
+          "hover:scale-[1.02] active:scale-[0.98]",
+        )}
+      >
+        {label}
+      </button>
+    );
+  }
 
   return (
     <button
@@ -123,8 +130,9 @@ function FilterTag({
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "h-9 rounded-full border px-4 text-xs font-semibold transition hover:-translate-y-px hover:border-primary/50",
-        classes,
+        "h-9 rounded-lg border border-border-light bg-white px-4 text-xs font-semibold text-dark-700 shadow-sm transition",
+        "hover:shadow-md hover:scale-[1.02] hover:border-gold-300 hover:text-gold-700",
+        "active:scale-[0.98]",
       )}
     >
       {label}

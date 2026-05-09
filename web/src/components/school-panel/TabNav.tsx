@@ -67,10 +67,10 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
               aria-haspopup="listbox"
               aria-expanded={menuOpen}
               className={cn(
-                "flex h-8 w-full items-center gap-2 rounded-full border px-3 text-xs font-medium transition",
+                "flex h-8 w-full items-center gap-2 rounded-lg border px-3 text-xs font-medium transition-shadow duration-200",
                 !isOverview
-                  ? "border-green-500 bg-green-500 text-text"
-                  : "border-border-light bg-base-50 text-dark-900 hover:border-green-400/40 hover:text-green-500",
+                  ? "border-green-500 bg-green-500 text-white shadow-sm shadow-green-500/25"
+                  : "border-border-light bg-base-50 text-dark-900 hover:border-green-400/40 hover:text-green-500 hover:shadow-sm",
               )}
             >
               <span className="min-w-0 flex-1 truncate text-left">
@@ -103,12 +103,15 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
                           setMenuOpen(false);
                         }}
                         className={cn(
-                          "flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-xs transition",
+                          "relative flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-xs transition",
                           isActive
-                            ? "bg-green-50 font-semibold text-green-500"
+                            ? "bg-green-50 font-semibold text-green-600"
                             : "text-dark-950 hover:bg-ink-500",
                         )}
                       >
+                        {isActive && (
+                          <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-green-500 rounded-r" />
+                        )}
                         <span className="min-w-0 flex-1 truncate">{tab.label}</span>
                         {tab.count !== undefined && tab.count > 0 && (
                           <span

@@ -99,22 +99,30 @@ function CategoryDot({
   isActive?: boolean;
   onClick?: () => void;
 }) {
-  const dotColor =
+  const dotSize = "h-2 w-2";
+  const dot =
     status === "done"
-      ? "bg-green-400"
+      ? `bg-green-500 ${dotSize} rounded-full shadow-sm shadow-green-500/30`
       : status === "failed"
-        ? "bg-red-400"
+        ? `bg-red-400 ${dotSize} rounded-full shadow-sm shadow-red-500/30`
         : status === "in_progress"
-          ? "bg-yellow-400"
-          : "bg-dark-500";
+          ? `bg-yellow-400 ${dotSize} rounded-full animate-pulse`
+          : `border-2 border-dark-300 ${dotSize} rounded-full bg-transparent`;
+
+  const statusIcon =
+    status === "done" ? (
+      <span className="text-[10px] font-semibold text-green-500 leading-none">✓</span>
+    ) : status === "failed" ? (
+      <span className="text-[10px] font-semibold text-red-400 leading-none">✗</span>
+    ) : null;
 
   if (!onClick) {
     return (
       <span
-        className={`inline-flex items-center gap-1 rounded-full border border-border-light bg-ink-50 px-2 py-0.5 text-[10px] text-dark-700`}
+        className="inline-flex items-center gap-1.5 rounded-full border border-border-light bg-ink-50 px-2.5 py-1 text-[10px] text-dark-700"
         title={`${label}: ${status}`}
       >
-        <span className={`inline-block h-1.5 w-1.5 rounded-full ${dotColor}`} />
+        <span className={dot} />
         {icon} {label}
       </span>
     );
@@ -125,14 +133,16 @@ function CategoryDot({
       type="button"
       onClick={onClick}
       title={`查看${label}信息来源`}
-      className={`inline-flex cursor-pointer items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] transition ${
+      className={cn(
+        "inline-flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-medium transition",
         isActive
-          ? "border-green-500 bg-green-50 text-green-700 shadow-sm shadow-green-500/20"
-          : "border-border-light bg-ink-50 text-dark-700 hover:border-green-400/50 hover:bg-ink-100"
-      }`}
+          ? "border-green-400 bg-green-50 text-green-600 shadow-md shadow-green-500/20"
+          : "border-border-light bg-ink-50 text-dark-700 hover:border-green-400/50 hover:bg-ink-100 hover:shadow-sm",
+      )}
     >
-      <span className={`inline-block h-1.5 w-1.5 rounded-full ${dotColor}`} />
-      {icon} {label}
+      <span className={dot} />
+      {statusIcon || <span>{icon}</span>}
+      {!statusIcon && <span>{label}</span>}
     </button>
   );
 }

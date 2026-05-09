@@ -195,10 +195,10 @@ export default function ProvinceList({
                       animate="show"
                       transition={{ delay: schoolIndex * 0.02 }}
                       className={cn(
-                        "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5",
+                        "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5 cursor-pointer",
                         isSchoolSelected
                           ? "bg-green-50 text-[#1a342f]"
-                          : "bg-white text-base-900 hover:bg-ink-100",
+                          : "bg-white text-base-900 hover:bg-ink-100/80",
                       )}
                     >
                       <button
@@ -221,18 +221,24 @@ export default function ProvinceList({
                             if (canToggle) onCompareToggle(school);
                           }}
                           disabled={!canToggle}
-                          title={isCompareSelected ? "取消对比" : "加入对比"}
+                          title={
+                            isCompareSelected
+                              ? "取消对比"
+                              : canToggle
+                                ? "加入对比"
+                                : `已满 ${compareSchools.length} 所，先移除一个`
+                          }
                           aria-pressed={isCompareSelected}
                           className={cn(
-                            "flex h-5 w-5 items-center justify-center rounded border transition",
+                            "flex h-6 w-6 items-center justify-center rounded-full border-2 transition",
                             isCompareSelected
-                              ? "border-green-500 bg-green-500 text-text"
+                              ? "border-green-500 bg-green-500 shadow-sm shadow-green-500/25"
                               : canToggle
-                                ? "border-black/15 bg-white/60 text-transparent hover:border-green-400/50"
-                                : "border-black/10 bg-black/5 text-transparent cursor-not-allowed opacity-50",
+                                ? "border-dashed border-dark-300 bg-white hover:border-green-400 hover:bg-green-50"
+                                : "border-dashed border-dark-200 bg-white/60 cursor-not-allowed opacity-40",
                           )}
                         >
-                          <IconCheck size={12} />
+                          {isCompareSelected && <IconCheck size={12} className="text-white" />}
                         </button>
                         <span className="flex gap-1">
                           {school.is985 && (

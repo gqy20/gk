@@ -123,14 +123,14 @@ export default function OverviewSection({
                   type="button"
                   onClick={() => toggleCard(cat)}
                   className={cn(
-                    "w-full rounded-lg border p-3 text-left transition cursor-pointer",
+                    "w-full rounded-lg border p-3 text-left transition-all duration-200 cursor-pointer shadow-sm",
                     isActive
-                      ? "border-green-500 bg-green-50/60 shadow-sm shadow-green-500/15 ring-1 ring-green-400/30"
+                      ? "border-green-400 bg-green-50/70 shadow-lg shadow-green-500/20 ring-1 ring-green-400/25"
                       : isDone
-                        ? "border-green-300/30 bg-green-50/50 hover:border-green-400/50"
+                        ? "border-l-2 border-l-green-400 bg-green-50/40 hover:shadow-md hover:-translate-y-px hover:border-green-300/60"
                         : isFailed
-                          ? "border-red-300/30 bg-red-50/30 hover:border-red-400/50"
-                          : "border-border-light bg-ink-50 hover:border-dark-500/40",
+                          ? "border-l-2 border-l-red-400 bg-red-50/30 hover:shadow-md hover:-translate-y-px hover:border-red-300/60"
+                          : "border-l-2 border-l-dashed border-dark-300 bg-ink-50 hover:shadow-md hover:-translate-y-px hover:border-dark-500/40",
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
