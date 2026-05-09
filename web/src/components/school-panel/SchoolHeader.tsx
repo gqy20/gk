@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 import type { School } from "@/lib/data";
 import {
   CRAWL_CATEGORIES,

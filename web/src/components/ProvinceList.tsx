@@ -230,7 +230,7 @@ export default function ProvinceList({
                           }
                           aria-pressed={isCompareSelected}
                           className={cn(
-                            "flex h-6 w-6 items-center justify-center rounded-full border-2 transition",
+                            "flex h-4 w-4 items-center justify-center rounded-full border-2 transition",
                             isCompareSelected
                               ? "border-green-500 bg-green-500 shadow-sm shadow-green-500/25"
                               : canToggle
