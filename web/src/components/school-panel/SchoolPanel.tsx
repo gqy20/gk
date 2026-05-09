@@ -88,9 +88,6 @@ export default function SchoolPanel({
       <SchoolHeader
         school={school}
         onClose={onClose}
-        crawlStatus={crawlStatus}
-        onCategoryClick={handleCategoryClick}
-        activeCrawlCategory={activeCrawlCategory}
       />
       <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       <div
