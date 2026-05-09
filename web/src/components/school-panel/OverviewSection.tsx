@@ -3,13 +3,24 @@
 import { cn } from "@/lib/utils";
 import type { DocItem, School, UniversityInfo } from "@/lib/data";
 import { DETAIL_CATEGORIES, CATEGORY_LABELS } from "@/lib/data";
+import {
+  CRAWL_CATEGORIES,
+  CRAWL_CATEGORY_LABELS,
+  type CategoryStatus,
+  type CrawlStatusMap,
+} from "@/lib/crawl-data";
 
 interface OverviewSectionProps {
   detail?: UniversityInfo;
   school: School;
+  crawlStatus?: CrawlStatusMap | null;
 }
 
-export default function OverviewSection({ detail, school }: OverviewSectionProps) {
+export default function OverviewSection({
+  detail,
+  school,
+  crawlStatus,
+}: OverviewSectionProps) {
   if (!detail) {
     return (
       <div className="rounded-lg border border-border-light bg-ink-50 p-4 text-sm text-dark-600">
@@ -25,6 +36,11 @@ export default function OverviewSection({ detail, school }: OverviewSectionProps
     (key) => detail[key] && detail[key]!.length > 0,
   );
   const missingCount = detail.missing_categories?.length ?? 0;
+
+  const statusMap = crawlStatus?.[school.name];
+  const crawlDoneCount = statusMap
+    ? CRAWL_CATEGORIES.filter((c) => statusMap[c]?.status === "done").length
+    : 0;
 
   return (
     <div className="space-y-4">
@@ -46,6 +62,61 @@ export default function OverviewSection({ detail, school }: OverviewSectionProps
         <div className="rounded-lg border border-primary-border bg-gold-50 p-3 text-xs leading-relaxed text-gold-800">
           {detail.notes}
         </div>
+      )}
+
+      {/* 校园信息采集进度 */}
+      {statusMap && (
+        <section>
+          <SectionTitle
+            label={`校园信息采集 (${crawlDoneCount}/${CRAWL_CATEGORIES.length})`}
+          />
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            {CRAWL_CATEGORIES.map((cat) => {
+              const cs = statusMap[cat] as CategoryStatus | undefined;
+              const info = CRAWL_CATEGORY_LABELS[cat];
+              if (!cs) return null;
+              const isDone = cs.status === "done";
+              const isFailed = cs.status === "failed";
+              return (
+                <div
+                  key={cat}
+                  className={cn(
+                    "rounded-lg border p-3",
+                    isDone
+                      ? "border-green-300/30 bg-green-50/50"
+                      : isFailed
+                        ? "border-red-300/30 bg-red-50/30"
+                        : "border-border-light bg-ink-50",
+                  )}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-medium text-text-light">
+                      {info.icon} {info.label}
+                    </span>
+                    <span
+                      className={cn(
+                        "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                        isDone
+                          ? "bg-green-100 text-green-600"
+                          : isFailed
+                            ? "bg-red-100 text-red-500"
+                            : "bg-ink-700 text-dark-900",
+                      )}
+                    >
+                      {cs.status === "done"
+                        ? `${cs.urls_collected} 条`
+                        : cs.status === "pending"
+                          ? "待采集"
+                          : cs.status === "failed"
+                            ? "失败"
+                            : "采集中"}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       )}
 
       <section>
@@ -105,9 +176,7 @@ export default function OverviewSection({ detail, school }: OverviewSectionProps
 
 function SectionTitle({ label }: { label: string }) {
   return (
-    <h3 className="text-[10px] font-semibold text-dark-800">
-      {label}
-    </h3>
+    <h3 className="text-[10px] font-semibold text-dark-800">{label}</h3>
   );
 }
 
@@ -122,9 +191,7 @@ function InfoRow({
 }) {
   return (
     <div className="rounded-lg border border-border-light bg-ink-50 p-3">
-      <div className="text-[10px] text-dark-800 font-medium">
-        {label}
-      </div>
+      <div className="text-[10px] text-dark-800 font-medium">{label}</div>
       <div
         className={cn(
           "mt-1 truncate text-sm font-semibold",

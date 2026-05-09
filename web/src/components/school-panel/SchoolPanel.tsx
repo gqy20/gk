@@ -7,13 +7,21 @@ import OverviewSection from "./OverviewSection";
 import DetailSection from "./DetailSection";
 import type { School } from "@/lib/data";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
+import type { CrawlStatusMap, CrawlSourcesMap } from "@/lib/crawl-data";
 
 interface SchoolPanelProps {
   school: School | null;
   onClose?: () => void;
+  crawlStatus?: CrawlStatusMap | null;
+  crawlSources?: CrawlSourcesMap | null;
 }
 
-export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
+export default function SchoolPanel({
+  school,
+  onClose,
+  crawlStatus,
+  crawlSources,
+}: SchoolPanelProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
 
   const detail = school?.detail;
@@ -58,13 +66,25 @@ export default function SchoolPanel({ school, onClose }: SchoolPanelProps) {
 
   return (
     <div className="flex h-full flex-col bg-surface-light text-text-light">
-      <SchoolHeader school={school} onClose={onClose} />
+      <SchoolHeader
+        school={school}
+        onClose={onClose}
+        crawlStatus={crawlStatus}
+      />
       <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
         {isOverview ? (
-          <OverviewSection detail={detail} school={school} />
+          <OverviewSection
+            detail={detail}
+            school={school}
+            crawlStatus={crawlStatus}
+          />
         ) : detail ? (
-          <DetailSection category={activeTab} detail={detail} />
+          <DetailSection
+            category={activeTab}
+            detail={detail}
+            crawlSources={crawlSources?.[school.name]}
+          />
         ) : (
           <p className="text-sm text-dark-600">暂无数据</p>
         )}

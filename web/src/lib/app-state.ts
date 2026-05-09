@@ -1,4 +1,9 @@
 import type { School, ProvinceData } from "@/lib/data";
+import type {
+  CrawlStatusMap,
+  CrawlSourcesMap,
+  RunRecord,
+} from "@/lib/crawl-data";
 
 export interface AppState {
   data: { schools: School[]; provinces: ProvinceData[] } | null;
@@ -12,6 +17,9 @@ export interface AppState {
   filterDoubleFirst: boolean;
   compareSchools: School[];
   compareOpen: boolean;
+  crawlStatus: CrawlStatusMap | null;
+  crawlSources: CrawlSourcesMap | null;
+  crawlRuns: RunRecord[] | null;
 }
 
 export const initialState: AppState = {
@@ -26,6 +34,9 @@ export const initialState: AppState = {
   filterDoubleFirst: false,
   compareSchools: [],
   compareOpen: false,
+  crawlStatus: null,
+  crawlSources: null,
+  crawlRuns: null,
 };
 
 export type AppAction =
@@ -40,7 +51,10 @@ export type AppAction =
   | { type: "TOGGLE_COMPARE"; payload: School }
   | { type: "REMOVE_COMPARE"; payload: School }
   | { type: "CLEAR_COMPARE" }
-  | { type: "SET_COMPARE_OPEN"; payload: boolean };
+  | { type: "SET_COMPARE_OPEN"; payload: boolean }
+  | { type: "SET_CRAWL_STATUS"; payload: CrawlStatusMap | null }
+  | { type: "SET_CRAWL_SOURCES"; payload: CrawlSourcesMap | null }
+  | { type: "SET_CRAWL_RUNS"; payload: RunRecord[] | null };
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -136,6 +150,15 @@ export function appReducer(state: AppState, action: AppAction): AppState {
 
     case "SET_COMPARE_OPEN":
       return { ...state, compareOpen: action.payload };
+
+    case "SET_CRAWL_STATUS":
+      return { ...state, crawlStatus: action.payload };
+
+    case "SET_CRAWL_SOURCES":
+      return { ...state, crawlSources: action.payload };
+
+    case "SET_CRAWL_RUNS":
+      return { ...state, crawlRuns: action.payload };
 
     default:
       return state;

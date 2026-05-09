@@ -3,20 +3,27 @@
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { School } from "@/lib/data";
+import {
+  CRAWL_CATEGORIES,
+  CRAWL_CATEGORY_LABELS,
+  type CategoryStatus,
+  type CrawlStatusMap,
+} from "@/lib/crawl-data";
 
 interface SchoolHeaderProps {
   school: School;
   onClose?: () => void;
+  crawlStatus?: CrawlStatusMap | null;
 }
 
-export default function SchoolHeader({ school, onClose }: SchoolHeaderProps) {
+export default function SchoolHeader({ school, onClose, crawlStatus }: SchoolHeaderProps) {
+  const statusMap = crawlStatus?.[school.name];
+
   return (
     <div className="border-b border-border-light bg-ink-100 px-3 py-3 text-text-light sm:px-4 sm:py-4">
       <div className="flex items-start gap-3">
         <div className="min-w-0 flex-1">
-          <h2 className="text-xl font-semibold leading-tight">
-            {school.name}
-          </h2>
+          <h2 className="text-xl font-semibold leading-tight">{school.name}</h2>
         </div>
         {onClose && (
           <Button theme="dark" variant="secondary" size="sm" onClick={onClose}>
@@ -37,10 +44,28 @@ export default function SchoolHeader({ school, onClose }: SchoolHeaderProps) {
         >
           {school.url.replace(/^https?:\/\//, "")}
         </a>
-        <span className="ml-auto rounded-full border border-border-light bg-ink-50 px-2.5 py-1 text-dark-600">
+        <span className="rounded-full border border-border-light bg-ink-50 px-2.5 py-1 text-dark-600">
           {school.status === "done" ? "已采集" : "待采集"}
         </span>
       </div>
+
+      {statusMap && (
+        <div className="mt-2 flex flex-wrap items-center gap-1.5 sm:mt-2.5">
+          {CRAWL_CATEGORIES.map((cat) => {
+            const cs = statusMap[cat] as CategoryStatus | undefined;
+            const info = CRAWL_CATEGORY_LABELS[cat];
+            if (!cs) return null;
+            return (
+              <CategoryDot
+                key={cat}
+                icon={info.icon}
+                label={info.label}
+                status={cs.status}
+              />
+            );
+          })}
+        </div>
+      )}
 
       <div className="mt-2.5 flex flex-wrap gap-1.5 sm:mt-3">
         {school.is985 && <Badge label="985" tone="red" />}
@@ -48,5 +73,34 @@ export default function SchoolHeader({ school, onClose }: SchoolHeaderProps) {
         {school.isDoubleFirstClass && <Badge label="双一流" tone="green" />}
       </div>
     </div>
+  );
+}
+
+function CategoryDot({
+  icon,
+  label,
+  status,
+}: {
+  icon: string;
+  label: string;
+  status: string;
+}) {
+  const dotColor =
+    status === "done"
+      ? "bg-green-400"
+      : status === "failed"
+        ? "bg-red-400"
+        : status === "in_progress"
+          ? "bg-yellow-400"
+          : "bg-dark-500";
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full border border-border-light bg-ink-50 px-2 py-0.5 text-[10px] text-dark-700`}
+      title={`${label}: ${status}`}
+    >
+      <span className={`inline-block h-1.5 w-1.5 rounded-full ${dotColor}`} />
+      {icon} {label}
+    </span>
   );
 }

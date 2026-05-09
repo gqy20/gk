@@ -52,6 +52,9 @@ function Home() {
     filteredDoneCount,
     activeFilterCount,
     contextLabel,
+    crawlStatus,
+    crawlSources,
+    crawlRuns,
     dispatch,
   } = useApp();
 
@@ -68,6 +71,27 @@ function Home() {
           payload: error instanceof Error ? error.message : "未知错误",
         });
         dispatch({ type: "SET_DATA", payload: { schools: [], provinces: [] } });
+      }
+
+      // 并行加载采集数据（静默失败）
+      const crawlFetches = await Promise.allSettled([
+        { action: "SET_CRAWL_STATUS" as const, url: "/data/crawl-status.json" },
+        { action: "SET_CRAWL_SOURCES" as const, url: "/data/crawl-sources.json" },
+        { action: "SET_CRAWL_RUNS" as const, url: "/data/crawl-runs.json" },
+      ].map(async ({ action, url }) => {
+        const res = await fetch(url);
+        return { action, res };
+      }));
+
+      for (const entry of crawlFetches) {
+        if (entry.status === "fulfilled" && entry.value.res.ok) {
+          try {
+            const json = await entry.value.res.json();
+            dispatch({ type: entry.value.action, payload: json });
+          } catch {
+            // ignore parse errors
+          }
+        }
       }
     }
     load();
@@ -122,10 +146,22 @@ function Home() {
 
           {!selectedSchool && (
             <>
-              <div className="grid grid-cols-3 gap-2 sm:min-w-[420px]">
+              <div className="grid grid-cols-4 gap-2 sm:min-w-[420px]">
                 <Metric label="高校" value={data.schools.length} />
                 <Metric label="已采集" value={doneCount} tone="gold" />
                 <Metric label="省份" value={filteredProvinces.length} tone="green" />
+                <Metric
+                  label="采集花费"
+                  value={
+                    crawlRuns?.length
+                      ? `$${crawlRuns
+                          .filter((r) => r.status === "completed")
+                          .reduce((s, r) => s + r.total_cost_usd, 0)
+                          .toFixed(2)}`
+                      : "-"
+                  }
+                  tone="neutral"
+                />
               </div>
 
               <FilterBar
@@ -201,6 +237,8 @@ function Home() {
                   key={selectedSchool.name}
                   school={selectedSchool}
                   onClose={() => dispatch({ type: "SELECT_SCHOOL", payload: null })}
+                  crawlStatus={crawlStatus}
+                  crawlSources={crawlSources}
                 />
               </motion.div>
             ) : (
@@ -267,7 +305,7 @@ function Metric({
   tone = "neutral",
 }: {
   label: string;
-  value: number;
+  value: string | number;
   tone?: "neutral" | "gold" | "green";
 }) {
   const toneClass =

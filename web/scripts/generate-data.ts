@@ -156,7 +156,7 @@ function loadCoordsCache(): Record<string, [number, number]> | null {
   return null;
 }
 
-function main() {
+async function main() {
   console.log("=== 生成前端数据 ===");
 
   // 0. 加载坐标缓存
@@ -220,6 +220,13 @@ function main() {
   const outputSizeKb = (Buffer.byteLength(JSON.stringify(output)) / 1024).toFixed(1);
   console.log(`输出: ${DEST} (${outputSizeKb} KB)`);
   console.log("完成!");
+
+  // 6. 导出 SQLite 采集数据
+  try {
+    await import("./export-crawl-data.js");
+  } catch {
+    // gk.sqlite 不存在时静默跳过
+  }
 }
 
 main();
