@@ -17,7 +17,7 @@ interface PoiItem {
 }
 
 const POI_CATEGORIES = [
-  { key: "subway", label: "地铁", type: "150100|150200", icon: "🚇", color: "#6fc0a5" },
+  { key: "subway", label: "地铁", type: "150500", keyword: "地铁", icon: "🚇", color: "#6fc0a5" },
   { key: "hospital", label: "医疗", type: "090100|090200|090300|090400", icon: "🏥", color: "#f2c45f" },
   { key: "shopping", label: "商圈", type: "060100|060400|060600", icon: "🛒", color: "#d8b75d" },
   { key: "food", label: "美食", type: "050000", icon: "🍜", color: "#b9f1df" },
@@ -133,7 +133,13 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         const res = await fetch(url);
         const data = await res.json();
         if (data.status === "1" && data.pois) {
-          return data.pois.map((p: Record<string, unknown>) => {
+          let pois = data.pois;
+          if (category.keyword) {
+            pois = pois.filter((p: Record<string, unknown>) =>
+              String(p.name || "").includes(category.keyword),
+            );
+          }
+          return pois.map((p: Record<string, unknown>) => {
             const loc = String(p.location || "").split(",");
             return {
               name: p.name,
