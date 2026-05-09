@@ -54,7 +54,6 @@ function Home() {
     contextLabel,
     crawlStatus,
     crawlSources,
-    crawlRuns,
     dispatch,
   } = useApp();
 
@@ -146,24 +145,6 @@ function Home() {
 
           {!selectedSchool && (
             <>
-              <div className="grid grid-cols-4 gap-2 sm:min-w-[420px]">
-                <Metric label="高校" value={data.schools.length} />
-                <Metric label="已采集" value={doneCount} tone="gold" />
-                <Metric label="省份" value={filteredProvinces.length} tone="green" />
-                <Metric
-                  label="采集花费"
-                  value={
-                    crawlRuns?.length
-                      ? `$${crawlRuns
-                          .filter((r) => r.status === "completed")
-                          .reduce((s, r) => s + r.total_cost_usd, 0)
-                          .toFixed(2)}`
-                      : "-"
-                  }
-                  tone="neutral"
-                />
-              </div>
-
               <FilterBar
                 query={query}
                 filter985={filter985}
@@ -299,33 +280,3 @@ function Home() {
   );
 }
 
-function Metric({
-  label,
-  value,
-  tone = "neutral",
-}: {
-  label: string;
-  value: string | number;
-  tone?: "neutral" | "gold" | "green";
-}) {
-  const toneClass =
-    tone === "gold"
-      ? "text-gold-400"
-      : tone === "green"
-        ? "text-green-200"
-        : "text-dark-50";
-
-  return (
-    <motion.div
-      className="rounded-lg border border-border bg-white/[0.055] px-2.5 py-1.5 sm:px-3 sm:py-2"
-      whileHover={{ y: -2, transition: { duration: 0.2 } }}
-    >
-      <div className="text-[10px] text-dark-500">
-        {label}
-      </div>
-      <div className={`mt-1 text-xl font-semibold leading-none ${toneClass}`}>
-        {value}
-      </div>
-    </motion.div>
-  );
-}
