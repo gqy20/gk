@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
+import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import type { DocItem, School, UniversityInfo } from "@/lib/data";
 import { DETAIL_CATEGORIES, CATEGORY_LABELS } from "@/lib/data";
@@ -44,6 +45,8 @@ export default function OverviewSection({
   onCategoryClick,
 }: OverviewSectionProps) {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const cardRefs = useRef<Record<string, HTMLButtonElement>>({});
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   if (!detail) {
     return (
@@ -75,6 +78,23 @@ export default function OverviewSection({
     }
   }, [activeCrawlCategory]);
 
+  // 点击外部关闭浮层
+  useEffect(() => {
+    if (!expandedCard) return;
+    function handleClick(e: MouseEvent) {
+      const target = e.target as Node;
+      if (
+        popoverRef.current?.contains(target) ||
+        (expandedCard && cardRefs.current[expandedCard]?.contains(target))
+      )
+        return;
+      setExpandedCard(null);
+      onCategoryClick?.(expandedCard);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [expandedCard]);
+
   function toggleCard(cat: string) {
     setExpandedCard((prev) => (prev === cat ? null : cat));
     onCategoryClick?.(cat);
@@ -104,7 +124,7 @@ export default function OverviewSection({
 
       {/* 校园信息采集进度 */}
       {statusMap && (
-        <section>
+        <section className="relative">
           <SectionTitle
             label={`校园信息采集 (${crawlDoneCount}/${CRAWL_CATEGORIES.length})`}
           />
@@ -116,97 +136,72 @@ export default function OverviewSection({
               const isDone = cs.status === "done";
               const isFailed = cs.status === "failed";
               const isActive = activeCrawlCategory === cat || expandedCard === cat;
-              const isExpanded = expandedCard === cat && isDone;
-              const sources = isDone ? schoolSources?.[cat] : null;
 
               return (
-                <div key={cat}>
-                  <button
-                    type="button"
-                    onClick={() => toggleCard(cat)}
-                    className={cn(
-                      "w-full rounded-lg border p-3 text-left transition cursor-pointer",
-                      isActive && isExpanded
-                        ? "border-green-500 bg-green-50/60 shadow-sm shadow-green-500/15"
-                        : isActive
-                          ? "border-green-400/50 bg-green-50/30"
-                          : isDone
-                            ? "border-green-300/30 bg-green-50/50 hover:border-green-400/50"
-                            : isFailed
-                              ? "border-red-300/30 bg-red-50/30 hover:border-red-400/50"
-                              : "border-border-light bg-ink-50 hover:border-dark-500/40",
-                    )}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-medium text-text-light">
-                        {info.icon} {info.label}
-                        {isExpanded && (
-                          <span className="ml-1 text-[9px] text-green-600">▲</span>
-                        )}
-                        {!isExpanded && isDone && (
-                          <span className="ml-1 text-[9px] text-dark-500">▶</span>
-                        )}
-                      </span>
-                      <span
-                        className={cn(
-                          "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
-                          isDone
-                            ? "bg-green-100 text-green-600"
-                            : isFailed
-                              ? "bg-red-100 text-red-500"
-                              : "bg-ink-700 text-dark-900",
-                        )}
-                      >
-                        {isDone
-                          ? `${cs.urls_collected} 条`
-                          : cs.status === "pending"
-                            ? "待采集"
-                            : cs.status === "failed"
-                              ? "失败"
-                              : "采集中"}
-                      </span>
-                    </div>
+                <button
+                  key={cat}
+                  ref={(el) => { if (el) cardRefs.current[cat] = el; }}
+                  type="button"
+                  onClick={() => toggleCard(cat)}
+                  className={cn(
+                    "w-full rounded-lg border p-3 text-left transition cursor-pointer",
+                    isActive
+                      ? "border-green-500 bg-green-50/60 shadow-sm shadow-green-500/15 ring-1 ring-green-400/30"
+                      : isDone
+                        ? "border-green-300/30 bg-green-50/50 hover:border-green-400/50"
+                        : isFailed
+                          ? "border-red-300/30 bg-red-50/30 hover:border-red-400/50"
+                          : "border-border-light bg-ink-50 hover:border-dark-500/40",
+                  )}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-medium text-text-light">
+                      {info.icon} {info.label}
+                      {isActive && isDone && (
+                        <span className="ml-1 text-[9px] text-green-600">▲</span>
+                      )}
+                    </span>
+                    <span
+                      className={cn(
+                        "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                        isDone
+                          ? "bg-green-100 text-green-600"
+                          : isFailed
+                            ? "bg-red-100 text-red-500"
+                            : "bg-ink-700 text-dark-900",
+                      )}
+                    >
+                      {isDone
+                        ? `${cs.urls_collected} 条`
+                        : cs.status === "pending"
+                          ? "待采集"
+                          : cs.status === "failed"
+                            ? "失败"
+                            : "采集中"}
+                    </span>
+                  </div>
 
-                    {/* 展开的来源列表 */}
-                    {isExpanded && sources && sources.length > 0 && (
-                      <div className="mt-2 space-y-1.5 border-t border-green-200/40 pt-2">
-                        {sources.slice(0, 6).map((src, i) => (
-                          <a
-                            key={i}
-                            href={src.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block rounded border border-border-subtle bg-white/[0.04] p-2 text-[10px] leading-relaxed transition hover:bg-white/[0.08] hover:border-blue-400/40"
-                          >
-                            <div className="line-clamp-1 font-medium text-blue-700">
-                              {src.title || new URL(src.url).hostname.replace("www.", "")}
-                            </div>
-                            <div className="mt-0.5 flex items-center gap-2 text-[9px] text-dark-500">
-                              <span className="rounded-full border border-border-subtle bg-ink-50 px-1 py-px">
-                                {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
-                              </span>
-                              <span>{Math.round(src.agent_confidence * 100)}%</span>
-                            </div>
-                          </a>
-                        ))}
-                        {sources.length > 6 && (
-                          <p className="text-center text-[9px] text-dark-500 pt-1">
-                            还有 {sources.length - 6} 条来源
-                          </p>
-                        )}
-                      </div>
-                    )}
-
-                    {!isDone && cs.last_error && isActive && (
-                      <p className="mt-1.5 text-[9px] text-red-400 line-clamp-2">
-                        错误: {cs.last_error}
-                      </p>
-                    )}
-                  </button>
-                </div>
+                  {!isDone && cs.last_error && isActive && (
+                    <p className="mt-1.5 text-[9px] text-red-400 line-clamp-2">
+                      错误: {cs.last_error}
+                    </p>
+                  )}
+                </button>
               );
             })}
           </div>
+
+          {/* 悬浮来源浮层 */}
+          {expandedCard && schoolSources?.[expandedCard] && (
+            <SourcePopover
+              ref={popoverRef}
+              category={expandedCard}
+              label={CRAWL_CATEGORY_LABELS[expandedCard]}
+              sources={schoolSources[expandedCard]}
+              anchorEl={cardRefs.current[expandedCard]}
+              onClose={() => { setExpandedCard(null); onCategoryClick?.(expandedCard); }}
+            />
+          )}
         </section>
       )}
 
@@ -319,3 +314,92 @@ function DocItemMini({ item }: { item: DocItem }) {
     </div>
   );
 }
+
+const SourcePopover = forwardRef<
+  HTMLDivElement,
+  {
+    category: string;
+    label: { icon: string; label: string };
+    sources: SourceItem[];
+    anchorEl?: HTMLButtonElement;
+    onClose: () => void;
+  }
+>(function SourcePopover({ label, sources, anchorEl, onClose }, ref) {
+  const [pos, setPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+
+  useEffect(() => {
+    if (!anchorEl) return;
+    const rect = anchorEl.getBoundingClientRect();
+
+    // 默认在触发卡片下方弹出，空间不够则翻转到上方
+    const belowSpace = window.innerHeight - rect.bottom - 8;
+    const popoverHeight = Math.min(sources.length * 52 + 60, 320);
+    const top = belowSpace >= popoverHeight || rect.top < popoverHeight + 8
+      ? rect.bottom + 6
+      : rect.top - popoverHeight - 6;
+
+    // 水平居中，不超出视口
+    const left = Math.max(8, Math.min(rect.left + (rect.width - 300) / 2, window.innerWidth - 308));
+    setPos({ top, left });
+
+    function onResize() {
+      const r = anchorEl.getBoundingClientRect();
+      const bs = window.innerHeight - r.bottom - 8;
+      const ph = Math.min(sources.length * 52 + 60, 320);
+      const t = bs >= ph || r.top < ph + 8 ? r.bottom + 6 : r.top - ph - 6;
+      const l = Math.max(8, Math.min(r.left + (r.width - 300) / 2, window.innerWidth - 308));
+      setPos({ top: t, left: l });
+    }
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [anchorEl, sources.length]);
+
+  return createPortal(
+    <div
+      ref={ref}
+      className="fixed z-[9999] w-[300px] rounded-xl border border-green-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm"
+      style={{ top: pos.top, left: pos.left }}
+    >
+      <div className="flex items-center justify-between border-b border-border-subtle pb-2 mb-2">
+        <span className="text-xs font-semibold text-text-light">
+          {label.icon} {label.label} · {sources.length} 条来源
+        </span>
+        <button
+          type="button"
+          onClick={onClose}
+          className="rounded p-0.5 text-dark-500 transition hover:bg-ink-100 hover:text-dark-800"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="max-h-[240px] overflow-y-auto space-y-1.5 pr-0.5 scrollbar-thin">
+        {sources.map((src, i) => (
+          <a
+            key={i}
+            href={src.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-lg border border-border-subtle/60 bg-white/[0.03] p-2 text-[11px] leading-relaxed transition hover:bg-white/[0.07] hover:border-blue-400/40"
+          >
+            <div className="line-clamp-1 font-medium text-blue-700">
+              {src.title || new URL(src.url).hostname.replace("www.", "")}
+            </div>
+            <div className="mt-0.5 flex items-center gap-2 text-[9px] text-dark-500">
+              <span className="rounded-full border border-border-subtle bg-ink-50 px-1 py-px">
+                {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
+              </span>
+              <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>
+              {src.http_status && src.http_status !== 200 && (
+                <span className="rounded bg-red-50 px-1 py-px text-red-400">
+                  HTTP {src.http_status}
+                </span>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>,
+    document.body,
+  );
+});
