@@ -129,23 +129,33 @@ export default function ChinaMap({
     };
   }, []);
 
+  // 学校标记颜色 — 优先级: 985 > 211 > 双一流 > 普通
+  function schoolColor(school: School): string {
+    if (selectedProvince && school.province !== selectedProvince)
+      return "rgba(127, 136, 128, 0.18)";
+    if (school.is985) return "#e3a08b";
+    if (school.is211) return "#d8b75d";
+    if (school.isDoubleFirstClass) return "#6fc0a5";
+    return "#8b948a";
+  }
+
+  function schoolShadow(school: School): string {
+    if (school.is985) return "rgba(227, 160, 139, 0.5)";
+    if (school.is211) return "rgba(216, 183, 93, 0.45)";
+    if (school.isDoubleFirstClass) return "rgba(111, 192, 165, 0.4)";
+    return "transparent";
+  }
+
   const getOption = (): echarts.EChartsOption => {
     const scatterData = schools.map((school) => ({
       name: school.name,
       province: school.province,
       value: [...school.coord, school.province],
-      symbolSize: school.status === "done" ? 9 : 6,
+      symbolSize: school.is985 ? 11 : school.is211 ? 9 : school.isDoubleFirstClass ? 7 : 6,
       itemStyle: {
-        color:
-          school.status === "done"
-            ? selectedProvince && school.province !== selectedProvince
-              ? "rgba(216, 183, 93, 0.22)"
-              : colors.primaryLight
-            : selectedProvince && school.province !== selectedProvince
-              ? "rgba(127, 136, 128, 0.18)"
-              : "#8b948a",
-        shadowBlur: school.status === "done" ? 10 : 0,
-        shadowColor: "rgba(242, 196, 95, 0.45)",
+        color: schoolColor(school),
+        shadowBlur: school.is985 || school.is211 || school.isDoubleFirstClass ? 10 : 0,
+        shadowColor: schoolShadow(school),
       },
     }));
 
