@@ -1,13 +1,13 @@
 /**
  * 构建时数据生成脚本。
- * 读取 data/92_list.csv + data/output/*.json → 输出 public/data/schools.json
+ * 读取 data/92_list.csv + data/output/*.json + data/gaokao-output/*.json → 输出 public/data/schools.json
  *
  * 运行方式: npx tsx scripts/generate-data.ts
  */
 
 import fs from "fs";
 import path from "path";
-import type { School, UniversityInfo } from "../src/lib/data";
+import type { School, UniversityInfo, GaokaoBasicInfo, MajorSatisfaction } from "../src/lib/data";
 import { groupByProvince } from "../src/lib/data";
 import { getSchoolCoord } from "../src/lib/provinces";
 
@@ -16,6 +16,10 @@ const CSV_PATH = path.join(PROJECT_ROOT, "..", "data", "92_list.csv");
 const OUTPUT_DIR = path.join(PROJECT_ROOT, "..", "data", "output");
 const DEST = path.join(__dirname, "..", "public", "data", "schools.json");
 const COORDS_CACHE = path.join(__dirname, "../data/schools-coords.json");
+
+// 阳光高考数据路径
+const GAOKAO_OUTPUT_DIR = path.join(PROJECT_ROOT, "..", "data", "gaokao-output");
+const GAOKAO_SCHIDS_PATH = path.join(PROJECT_ROOT, "..", "data", "gaokao-schids.json");
 
 const DETAIL_NAME_ALIASES: Record<string, string[]> = {
   上海体育学院: ["上海体育大学"],
@@ -146,6 +150,108 @@ function getDetailForSchool(
   return undefined;
 }
 
+// ── 阳光高考基线数据 ──────────────────────────────────────
+
+interface GaokaoSchId { name: string; sch_id: string; url: string }
+
+/** 加载阳光高考 sch_id → 学校名映射 */
+function loadGaokaoSchIds(): Map<string, string> {
+  const map = new Map<string, string>();
+  if (!fs.existsSync(GAOKAO_SCHIDS_PATH)) return map;
+  try {
+    const raw: GaokaoSchId[] = JSON.parse(fs.readFileSync(GAOKAO_SCHIDS_PATH, "utf-8"));
+    for (const s of raw) {
+      map.set(s.sch_id, s.name);
+      // 也用学校名做反向索引（sch_id 可能是数字字符串）
+      map.set(s.name, s.sch_id);
+    }
+  } catch { /* 静默失败 */ }
+  return map;
+}
+
+/** 从阳光高考数据中提取 basic_info */
+function extractBasicInfo(gaokao: Record<string, unknown>): GaokaoBasicInfo | undefined {
+  const bi = gaokao.basic_info as Record<string, unknown> | undefined;
+  if (!bi || !bi.location) return undefined;
+  return {
+    location: String(bi.location || ""),
+    address: String(bi.address || ""),
+    phone: String(bi.phone || ""),
+    website: String(bi.website || ""),
+    enrollment_website: String(bi.enrollment_website || ""),
+    attributes: Array.isArray(bi.attributes) ? bi.attributes as string[] : [],
+  };
+}
+
+/** 从阳光高考 major_streaming 提取专业满意度 */
+function extractMajorSatisfaction(gaokao: Record<string, unknown>): MajorSatisfaction[] | undefined {
+  const items = gaokao.major_streaming as Array<Record<string, unknown>> | undefined;
+  if (!items || items.length === 0) return undefined;
+  return items
+    .filter((item) => item.summary)
+    .map((item) => {
+      const summary = String(item.summary || "");
+      // 解析 "满意度 5.0 (12人投票)" 格式
+      const scoreMatch = summary.match(/([\d.]+)\s*[\(（]/);
+      const votesMatch = summary.match(/(\d+)\s*[人人]/);
+      // 清理 title 中的 markdown 链接
+      let title = String(item.title || "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
+      return {
+        title: title.trim(),
+        score: scoreMatch ? parseFloat(scoreMatch[1]) : 0,
+        votes: votesMatch ? parseInt(votesMatch[1], 10) : 0,
+      };
+    })
+    .filter((s) => s.score > 0);
+}
+
+/** 从阳光高考 faq 提取为 DocItem[] */
+function extractFaqDocItems(gaokao: Record<string, unknown>): UniversityInfo["faq"] | undefined {
+  const items = gaokao.faq as Array<Record<string, unknown>> | undefined;
+  if (!items || items.length === 0) return undefined;
+  return items
+    .filter((item) => item.content && String(item.content).length > 10)
+    .map((item) => ({
+      title: `Q&A: ${item.topic || ""}`,
+      url: "",
+      summary: `**${item.topic || ""}**\n${item.content || ""}`,
+      attachments: [],
+      publish_date: "",
+      source_department: "阳光高考平台",
+    }));
+}
+
+/**
+ * 合并阳光高考基线数据到 UniversityInfo。
+ * Agent 数据优先，阳光高考作为 fallback/补充。
+ */
+function mergeGaokaoBaseline(
+  detail: UniversityInfo,
+  gaokao: Record<string, unknown>,
+): UniversityInfo {
+  // basic_info：始终注入（100% 覆盖，Agent 通常没有结构化的基础信息）
+  const bi = extractBasicInfo(gaokao);
+  if (bi && !detail.basic_info) {
+    detail.basic_info = bi;
+  }
+
+  // faq：仅在 Agent 未抓到时用阳光高考补充
+  if ((!detail.faq || detail.faq.length === 0)) {
+    const faqItems = extractFaqDocItems(gaokao);
+    if (faqItems && faqItems.length > 0) {
+      detail.faq = faqItems;
+    }
+  }
+
+  // major_satisfaction：专业口碑数据（全新字段，无冲突）
+  const sat = extractMajorSatisfaction(gaokao);
+  if (sat && sat.length > 0 && !detail.major_satisfaction) {
+    detail.major_satisfaction = sat;
+  }
+
+  return detail;
+}
+
 /** 加载高德地理编码缓存（如果存在） */
 function loadCoordsCache(): Record<string, [number, number]> | null {
   if (!fs.existsSync(COORDS_CACHE)) return null;
@@ -189,6 +295,11 @@ async function main() {
     }
   }
 
+  // 2.5 加载阳光高考基线数据
+  const schIdMap = loadGaokaoSchIds();
+  const gaokaoDirExists = fs.existsSync(GAOKAO_OUTPUT_DIR);
+  console.log(`阳光高考: sch_ids=${schIdMap.size}, output_dir_exists=${gaokaoDirExists}`);
+
   // 3. 合并 + 填充坐标
   const provinceCounter = new Map<string, number>();
   const provinceTotals = new Map<string, number>();
@@ -200,7 +311,21 @@ async function main() {
     const prov = m.province;
     const idx = provinceCounter.get(prov) || 0;
     provinceCounter.set(prov, idx + 1);
-    const detail = getDetailForSchool(detailMap, m.name);
+    let detail = getDetailForSchool(detailMap, m.name);
+
+    // 合并阳光高考基线数据
+    if (detail && gaokaoDirExists && schIdMap.size > 0) {
+      const schId = schIdMap.get(m.name);
+      if (schId) {
+        const gaokaoPath = path.join(GAOKAO_OUTPUT_DIR, `${schId}.json`);
+        try {
+          if (fs.existsSync(gaokaoPath)) {
+            const gaokaoRaw = JSON.parse(fs.readFileSync(gaokaoPath, "utf-8"));
+            detail = mergeGaokaoBaseline(detail, gaokaoRaw);
+          }
+        } catch { /* 单校失败不阻断 */ }
+      }
+    }
 
     return {
       ...m,

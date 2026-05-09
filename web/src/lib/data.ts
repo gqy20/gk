@@ -22,6 +22,23 @@ export interface StudentExperienceItem {
   source_url: string;
 }
 
+/** 阳光高考基础信息（100% 覆盖率） */
+export interface GaokaoBasicInfo {
+  location: string;
+  address: string;
+  phone: string;
+  website: string;
+  enrollment_website: string;
+  attributes: string[];
+}
+
+/** 阳光高考专业满意度（来自 major_streaming，实际是学生评分） */
+export interface MajorSatisfaction {
+  title: string;
+  score: number;
+  votes: number;
+}
+
 export interface UniversityInfo {
   university: string;
   official_url: string;
@@ -41,6 +58,15 @@ export interface UniversityInfo {
   student_experiences: StudentExperienceItem[];
   notes: string;
   missing_categories: string[];
+  /** output2 新增字段 */
+  scholarship: DocItem[];
+  dining_dorm: DocItem[];
+  contact_info: DocItem[];
+  faq: DocItem[];
+  school_intro: DocItem[];
+  /** 阳光高考数据注入 */
+  basic_info?: GaokaoBasicInfo;
+  major_satisfaction?: MajorSatisfaction[];
 }
 
 /** 前端统一学校数据 */
@@ -74,7 +100,12 @@ export type DocCategoryKey =
   | "minor_program"
   | "employment_report"
   | "postgrad_recommend"
-  | "competition_research";
+  | "competition_research"
+  | "scholarship"
+  | "dining_dorm"
+  | "contact_info"
+  | "faq"
+  | "school_intro";
 
 export type DetailCategoryKey =
   | DocCategoryKey
@@ -94,6 +125,11 @@ export const CATEGORY_LABELS = {
   employment_report: "就业质量报告",
   postgrad_recommend: "保研/推免",
   competition_research: "竞赛/科研/实验室",
+  scholarship: "奖学金设置",
+  dining_dorm: "食宿条件",
+  contact_info: "联系办法",
+  faq: "答考生问",
+  school_intro: "学校简介",
   colleges: "学院列表",
   student_experiences: "学生经验",
 } satisfies Record<DetailCategoryKey, string>;
@@ -111,6 +147,11 @@ export const DETAIL_CATEGORIES = [
   "employment_report",
   "postgrad_recommend",
   "competition_research",
+  "scholarship",
+  "dining_dorm",
+  "contact_info",
+  "faq",
+  "school_intro",
 ] as const satisfies readonly DocCategoryKey[];
 
 /** 按省份分组 */

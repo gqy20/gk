@@ -6,7 +6,7 @@ import SchoolHeader from "./SchoolHeader";
 import TabNav, { type TabKey } from "./TabNav";
 import OverviewSection from "./OverviewSection";
 import DetailSection from "./DetailSection";
-import type { School } from "@/lib/data";
+import type { School, UniversityInfo } from "@/lib/data";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
 import type { CrawlStatusMap, CrawlSourcesMap } from "@/lib/crawl-data";
 
@@ -15,6 +15,16 @@ interface SchoolPanelProps {
   onClose?: () => void;
   crawlStatus?: CrawlStatusMap | null;
   crawlSources?: CrawlSourcesMap | null;
+}
+
+/** 安全获取详情字段的数据条数 */
+function getDetailCount(detail: UniversityInfo | undefined, key: string): number | undefined {
+  if (!detail) return undefined;
+  const val = (detail as unknown as Record<string, unknown>)[key];
+  if (Array.isArray(val)) return val.length;
+  if (key === "basic_info" && detail.basic_info) return 1;
+  if (key === "major_satisfaction" && detail.major_satisfaction) return detail.major_satisfaction.length;
+  return undefined;
 }
 
 export default function SchoolPanel({
@@ -39,18 +49,8 @@ export default function SchoolPanel({
       ...DETAIL_CATEGORIES.map((key) => ({
         key,
         label: CATEGORY_LABELS[key],
-        count: detail?.[key]?.length ?? 0,
+        count: getDetailCount(detail, key),
       })),
-      {
-        key: "colleges",
-        label: CATEGORY_LABELS.colleges,
-        count: detail?.colleges?.length ?? 0,
-      },
-      {
-        key: "student_experiences",
-        label: CATEGORY_LABELS.student_experiences,
-        count: detail?.student_experiences?.length ?? 0,
-      },
     ];
 
     return allTabs.filter((tab) => {

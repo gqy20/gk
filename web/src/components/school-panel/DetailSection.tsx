@@ -98,7 +98,51 @@ export default function DetailSection({
     );
   }
 
+  // 答考生问 — Q&A 特殊渲染（summary 中包含 Q: 和 A: 格式）
+  // 注意：此块需在 const docs 之后，因复用 docs 变量
+
   const docs = items as DocItem[];
+
+  if (category === "faq") {
+    return (
+      <div className="space-y-3">
+        {docs.map((item, index) => {
+          const lines = item.summary.split("\n").filter(Boolean);
+          return (
+            <div
+              key={index}
+              className="rounded-lg border border-blue-200/60 bg-blue-50/40 p-3 text-xs"
+            >
+              <div className="font-semibold text-blue-800">{item.title}</div>
+              <div className="mt-2 space-y-1.5">
+                {lines.map((line, li) => {
+                  const isQ = line.startsWith("Q:") || line.startsWith("Q：");
+                  const isA = line.startsWith("A:") || line.startsWith("A：");
+                  const content = line.replace(/^[QA][:：]\s*/, "");
+                  if (!content) return null;
+                  return (
+                    <p
+                      key={li}
+                      className={`leading-relaxed ${isQ ? "text-blue-700 font-medium" : isA ? "text-dark-900" : "text-dark-700"}`}
+                    >
+                      {isQ ? "Q: " : isA ? "A: " : ""}
+                      {content}
+                    </p>
+                  );
+                })}
+              </div>
+              {item.source_department && (
+                <div className="mt-1.5 text-[10px] text-blue-500">
+                  来源: {item.source_department}
+                </div>
+              )}
+            </div>
+          );
+        })}
+        {sources && <SourceList sources={sources} />}
+      </div>
+    );
+  }
   return (
     <div className="space-y-3">
       {docs.map((item, index) => (

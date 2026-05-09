@@ -259,7 +259,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const totalPois = Object.values(pois).reduce((sum, arr) => sum + arr.length, 0);
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full w-full flex-col">
       {/* 地图容器 */}
       <div
         ref={mapRef}

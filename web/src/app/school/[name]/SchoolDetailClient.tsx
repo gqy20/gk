@@ -58,14 +58,14 @@ export default function SchoolDetailClient({ school }: Props) {
     <div className="flex h-screen min-h-screen flex-col overflow-hidden bg-surface text-text">
 
       {/* Main content */}
-      <main className="relative z-10 grid flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)]">
+      <main className="relative z-10 flex flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3">
         {/* Left: Map + POI — 桌面端始终显示，移动端按切换状态显示 */}
-        <section className={`relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25 ${mobileView === "map" ? "flex" : "hidden"} lg:flex`}>
-          <SchoolMap school={school} />
+        <section className={`relative flex-1 min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25 ${mobileView === "map" ? "flex" : "hidden"} lg:flex`}>
+          <SchoolMap school={school} compact={false} />
         </section>
 
-        {/* Right: Detail panel — 桌面端始终显示，移动端按切换状态显示 */}
-        <aside className={`relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25 ${mobileView === "detail" ? "flex" : "hidden"} lg:flex`}>
+        {/* Right: Detail panel — 桌面端固定宽度，移动端按切换状态显示 */}
+        <aside className={`relative w-full min-w-0 max-w-[430px lg:w-[430px] lg:shrink-0 flex flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25 ${mobileView === "detail" ? "flex" : "hidden"} lg:flex`}>
           <SchoolPanel
             school={school}
             onClose={() => router.push("/")}

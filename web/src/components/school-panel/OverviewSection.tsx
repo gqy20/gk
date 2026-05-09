@@ -50,10 +50,16 @@ export default function OverviewSection({
 
   if (!detail) {
     return (
-      <div className="rounded-lg border border-border-light bg-ink-50 p-4 text-sm text-dark-600">
-        <div className="font-semibold text-text-light">详情数据未完成</div>
-        <div className="mt-2 text-xs">
-          当前状态：{school.status === "done" ? "已完成" : "等待采集"}
+      <div className="space-y-4">
+        {/* 阳光高考基础信息（即使无 detail 也可能显示） */}
+        {school.detail?.basic_info && (
+          <BasicInfoCard bi={school.detail.basic_info} />
+        )}
+        <div className="rounded-lg border border-border-light bg-ink-50 p-4 text-sm text-dark-600">
+          <div className="font-semibold text-text-light">详情数据未完成</div>
+          <div className="mt-2 text-xs">
+            当前状态：{school.status === "done" ? "已完成" : "等待采集"}
+          </div>
         </div>
       </div>
     );
@@ -101,6 +107,9 @@ export default function OverviewSection({
 
   return (
     <div className="space-y-4">
+      {/* 阳光高考基础信息（始终显示，有数据时） */}
+      {detail.basic_info && <BasicInfoCard bi={detail.basic_info} />}
+
       {/* 校园信息采集进度 */}
       {statusMap && (
         <section className="relative">
@@ -264,6 +273,42 @@ function DocItemMini({ item }: { item: DocItem }) {
         </span>
       )}
     </div>
+  );
+}
+
+/** 阳光高考基础信息卡片 */
+function BasicInfoCard({ bi }: { bi: NonNullable<UniversityInfo["basic_info"]> }) {
+  return (
+    <section>
+      <SectionTitle label="基础信息" />
+      <div className="mt-2 rounded-lg border border-blue-200/60 bg-blue-50/40 p-3 text-xs space-y-2">
+        {bi.address && (
+          <div className="flex items-start gap-2">
+            <span className="shrink-0 text-blue-600">📍</span>
+            <span className="text-dark-900">{bi.address}</span>
+          </div>
+        )}
+        {bi.phone && (
+          <div className="flex items-center gap-2">
+            <span className="shrink-0 text-blue-600">📞</span>
+            <span>{bi.phone}</span>
+          </div>
+        )}
+        {bi.enrollment_website && (
+          <div className="flex items-center gap-2">
+            <span className="shrink-0 text-blue-600">📋</span>
+            <a
+              href={bi.enrollment_website.startsWith("http") ? bi.enrollment_website : `https://${bi.enrollment_website}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="truncate text-blue-700 hover:text-blue-600 transition"
+            >
+              {bi.enrollment_website.replace(/^https?:\/\//, "")}
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
