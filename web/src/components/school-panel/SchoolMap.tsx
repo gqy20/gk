@@ -133,13 +133,16 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         const res = await fetch(url);
         const data = await res.json();
         if (data.status === "1" && data.pois) {
-          return data.pois.map((p: { name: string; address: string; distance: number; location: string[]; type: string }) => ({
-            name: p.name,
-            address: p.address,
-            distance: p.distance,
-            location: [parseFloat(p.location[0]), parseFloat(p.location[1])],
-            type: p.type,
-          }));
+          return data.pois.map((p: Record<string, unknown>) => {
+            const loc = String(p.location || "").split(",");
+            return {
+              name: p.name,
+              address: p.address,
+              distance: p.distance,
+              location: [parseFloat(loc[0] || "0"), parseFloat(loc[1] || "0")] as [number, number],
+              type: p.type,
+            };
+          });
         }
         return [];
       } finally {

@@ -14,9 +14,17 @@ interface SchoolHeaderProps {
   school: School;
   onClose?: () => void;
   crawlStatus?: CrawlStatusMap | null;
+  onCategoryClick?: (category: string) => void;
+  activeCrawlCategory?: string | null;
 }
 
-export default function SchoolHeader({ school, onClose, crawlStatus }: SchoolHeaderProps) {
+export default function SchoolHeader({
+  school,
+  onClose,
+  crawlStatus,
+  onCategoryClick,
+  activeCrawlCategory,
+}: SchoolHeaderProps) {
   const statusMap = crawlStatus?.[school.name];
 
   return (
@@ -61,6 +69,8 @@ export default function SchoolHeader({ school, onClose, crawlStatus }: SchoolHea
                 icon={info.icon}
                 label={info.label}
                 status={cs.status}
+                isActive={activeCrawlCategory === cat}
+                onClick={() => onCategoryClick?.(cat)}
               />
             );
           })}
@@ -80,10 +90,14 @@ function CategoryDot({
   icon,
   label,
   status,
+  isActive,
+  onClick,
 }: {
   icon: string;
   label: string;
   status: string;
+  isActive?: boolean;
+  onClick?: () => void;
 }) {
   const dotColor =
     status === "done"
@@ -94,13 +108,31 @@ function CategoryDot({
           ? "bg-yellow-400"
           : "bg-dark-500";
 
+  if (!onClick) {
+    return (
+      <span
+        className={`inline-flex items-center gap-1 rounded-full border border-border-light bg-ink-50 px-2 py-0.5 text-[10px] text-dark-700`}
+        title={`${label}: ${status}`}
+      >
+        <span className={`inline-block h-1.5 w-1.5 rounded-full ${dotColor}`} />
+        {icon} {label}
+      </span>
+    );
+  }
+
   return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-full border border-border-light bg-ink-50 px-2 py-0.5 text-[10px] text-dark-700`}
-      title={`${label}: ${status}`}
+    <button
+      type="button"
+      onClick={onClick}
+      title={`查看${label}信息来源`}
+      className={`inline-flex cursor-pointer items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] transition ${
+        isActive
+          ? "border-green-500 bg-green-50 text-green-700 shadow-sm shadow-green-500/20"
+          : "border-border-light bg-ink-50 text-dark-700 hover:border-green-400/50 hover:bg-ink-100"
+      }`}
     >
       <span className={`inline-block h-1.5 w-1.5 rounded-full ${dotColor}`} />
       {icon} {label}
-    </span>
+    </button>
   );
 }

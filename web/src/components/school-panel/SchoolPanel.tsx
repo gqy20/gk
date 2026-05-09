@@ -23,8 +23,14 @@ export default function SchoolPanel({
   crawlSources,
 }: SchoolPanelProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
+  const [activeCrawlCategory, setActiveCrawlCategory] = useState<string | null>(null);
 
   const detail = school?.detail;
+
+  function handleCategoryClick(category: string) {
+    if (activeTab !== "overview") setActiveTab("overview");
+    setActiveCrawlCategory((prev) => (prev === category ? null : category));
+  }
 
   const tabs = useMemo(() => {
     const allTabs: { key: TabKey; label: string; count?: number }[] = [
@@ -70,6 +76,8 @@ export default function SchoolPanel({
         school={school}
         onClose={onClose}
         crawlStatus={crawlStatus}
+        onCategoryClick={handleCategoryClick}
+        activeCrawlCategory={activeCrawlCategory}
       />
       <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
       <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
@@ -78,6 +86,9 @@ export default function SchoolPanel({
             detail={detail}
             school={school}
             crawlStatus={crawlStatus}
+            crawlSources={crawlSources}
+            activeCrawlCategory={activeCrawlCategory}
+            onCategoryClick={handleCategoryClick}
           />
         ) : detail ? (
           <DetailSection

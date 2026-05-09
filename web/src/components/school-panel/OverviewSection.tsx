@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import type { DocItem, School, UniversityInfo } from "@/lib/data";
 import { DETAIL_CATEGORIES, CATEGORY_LABELS } from "@/lib/data";
@@ -8,19 +9,42 @@ import {
   CRAWL_CATEGORY_LABELS,
   type CategoryStatus,
   type CrawlStatusMap,
+  type SourceItem,
+  type CrawlSourcesMap,
 } from "@/lib/crawl-data";
+
+const SOURCE_TYPE_LABELS: Record<string, string> = {
+  ZHIHU_HIGH: "知乎精选",
+  ZHIHU_NORMAL: "知乎",
+  OFFICIAL_EDU: "官网",
+  NEWS: "新闻",
+  GAOKAO_GOV: "高考网",
+  XIAOHONGSHU: "小红书",
+  BILIBILI: "B站",
+  TIEBA: "贴吧",
+  DOUYIN: "抖音",
+  OTHER: "其他",
+};
 
 interface OverviewSectionProps {
   detail?: UniversityInfo;
   school: School;
   crawlStatus?: CrawlStatusMap | null;
+  crawlSources?: CrawlSourcesMap | null;
+  activeCrawlCategory?: string | null;
+  onCategoryClick?: (category: string) => void;
 }
 
 export default function OverviewSection({
   detail,
   school,
   crawlStatus,
+  crawlSources,
+  activeCrawlCategory,
+  onCategoryClick,
 }: OverviewSectionProps) {
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
   if (!detail) {
     return (
       <div className="rounded-lg border border-border-light bg-ink-50 p-4 text-sm text-dark-600">
@@ -41,6 +65,20 @@ export default function OverviewSection({
   const crawlDoneCount = statusMap
     ? CRAWL_CATEGORIES.filter((c) => statusMap[c]?.status === "done").length
     : 0;
+
+  const schoolSources = crawlSources?.[school.name];
+
+  // 同步外部点击（Header 进度条）与本地展开状态
+  useEffect(() => {
+    if (activeCrawlCategory && activeCrawlCategory !== expandedCard) {
+      setExpandedCard(activeCrawlCategory);
+    }
+  }, [activeCrawlCategory]);
+
+  function toggleCard(cat: string) {
+    setExpandedCard((prev) => (prev === cat ? null : cat));
+    onCategoryClick?.(cat);
+  }
 
   return (
     <div className="space-y-4">
@@ -77,41 +115,94 @@ export default function OverviewSection({
               if (!cs) return null;
               const isDone = cs.status === "done";
               const isFailed = cs.status === "failed";
+              const isActive = activeCrawlCategory === cat || expandedCard === cat;
+              const isExpanded = expandedCard === cat && isDone;
+              const sources = isDone ? schoolSources?.[cat] : null;
+
               return (
-                <div
-                  key={cat}
-                  className={cn(
-                    "rounded-lg border p-3",
-                    isDone
-                      ? "border-green-300/30 bg-green-50/50"
-                      : isFailed
-                        ? "border-red-300/30 bg-red-50/30"
-                        : "border-border-light bg-ink-50",
-                  )}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-medium text-text-light">
-                      {info.icon} {info.label}
-                    </span>
-                    <span
-                      className={cn(
-                        "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
-                        isDone
-                          ? "bg-green-100 text-green-600"
-                          : isFailed
-                            ? "bg-red-100 text-red-500"
-                            : "bg-ink-700 text-dark-900",
-                      )}
-                    >
-                      {cs.status === "done"
-                        ? `${cs.urls_collected} 条`
-                        : cs.status === "pending"
-                          ? "待采集"
-                          : cs.status === "failed"
-                            ? "失败"
-                            : "采集中"}
-                    </span>
-                  </div>
+                <div key={cat}>
+                  <button
+                    type="button"
+                    onClick={() => toggleCard(cat)}
+                    className={cn(
+                      "w-full rounded-lg border p-3 text-left transition cursor-pointer",
+                      isActive && isExpanded
+                        ? "border-green-500 bg-green-50/60 shadow-sm shadow-green-500/15"
+                        : isActive
+                          ? "border-green-400/50 bg-green-50/30"
+                          : isDone
+                            ? "border-green-300/30 bg-green-50/50 hover:border-green-400/50"
+                            : isFailed
+                              ? "border-red-300/30 bg-red-50/30 hover:border-red-400/50"
+                              : "border-border-light bg-ink-50 hover:border-dark-500/40",
+                    )}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-medium text-text-light">
+                        {info.icon} {info.label}
+                        {isExpanded && (
+                          <span className="ml-1 text-[9px] text-green-600">▲</span>
+                        )}
+                        {!isExpanded && isDone && (
+                          <span className="ml-1 text-[9px] text-dark-500">▶</span>
+                        )}
+                      </span>
+                      <span
+                        className={cn(
+                          "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                          isDone
+                            ? "bg-green-100 text-green-600"
+                            : isFailed
+                              ? "bg-red-100 text-red-500"
+                              : "bg-ink-700 text-dark-900",
+                        )}
+                      >
+                        {isDone
+                          ? `${cs.urls_collected} 条`
+                          : cs.status === "pending"
+                            ? "待采集"
+                            : cs.status === "failed"
+                              ? "失败"
+                              : "采集中"}
+                      </span>
+                    </div>
+
+                    {/* 展开的来源列表 */}
+                    {isExpanded && sources && sources.length > 0 && (
+                      <div className="mt-2 space-y-1.5 border-t border-green-200/40 pt-2">
+                        {sources.slice(0, 6).map((src, i) => (
+                          <a
+                            key={i}
+                            href={src.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block rounded border border-border-subtle bg-white/[0.04] p-2 text-[10px] leading-relaxed transition hover:bg-white/[0.08] hover:border-blue-400/40"
+                          >
+                            <div className="line-clamp-1 font-medium text-blue-700">
+                              {src.title || new URL(src.url).hostname.replace("www.", "")}
+                            </div>
+                            <div className="mt-0.5 flex items-center gap-2 text-[9px] text-dark-500">
+                              <span className="rounded-full border border-border-subtle bg-ink-50 px-1 py-px">
+                                {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
+                              </span>
+                              <span>{Math.round(src.agent_confidence * 100)}%</span>
+                            </div>
+                          </a>
+                        ))}
+                        {sources.length > 6 && (
+                          <p className="text-center text-[9px] text-dark-500 pt-1">
+                            还有 {sources.length - 6} 条来源
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {!isDone && cs.last_error && isActive && (
+                      <p className="mt-1.5 text-[9px] text-red-400 line-clamp-2">
+                        错误: {cs.last_error}
+                      </p>
+                    )}
+                  </button>
                 </div>
               );
             })}
