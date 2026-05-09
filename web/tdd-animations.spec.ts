@@ -45,7 +45,7 @@ test.describe("体验优化 TDD", () => {
     const beforeText = await content.textContent();
 
     // 切换到「招生章程」tab
-    await page.click("button:has-text('选择分类')");
+    await page.click("button:has-text('分类')");
     await page.click("text=招生章程");
 
     // RED: 内容应该变化（不是同一内容）

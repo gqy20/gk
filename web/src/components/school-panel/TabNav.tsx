@@ -40,7 +40,7 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
   const currentDetailTab = detailTabs.find((tab) => tab.key === activeTab);
 
   return (
-    <div className="flex items-center gap-2 border-b border-border-light bg-ink-600 px-3 py-2">
+    <div className="flex items-center gap-1 border-b border-border-light bg-white/60 px-3 py-2">
       <button
         type="button"
         onClick={() => {
@@ -48,91 +48,88 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
           setMenuOpen(false);
         }}
         className={cn(
-          "h-8 shrink-0 rounded-full border px-3.5 text-xs font-medium transition",
+          "relative h-8 rounded-full px-4 text-xs font-medium transition-colors",
           isOverview
-            ? "border-green-500 bg-green-500 text-text"
-            : "border-border-light bg-base-50 text-dark-900 hover:border-green-400/40 hover:text-green-500",
+            ? "text-green-600"
+            : "text-dark-600 hover:text-dark-900 hover:bg-ink-100/60",
         )}
       >
         概览
+        {isOverview && (
+          <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-green-500" />
+        )}
       </button>
 
       {detailTabs.length > 0 && (
-        <>
-          <span className="h-5 w-px bg-border-light" aria-hidden="true" />
-          <div ref={menuRef} className="relative min-w-0 flex-1">
-            <button
-              type="button"
-              onClick={() => setMenuOpen((open) => !open)}
-              aria-haspopup="listbox"
-              aria-expanded={menuOpen}
-              className={cn(
-                "flex h-8 w-full items-center gap-2 rounded-lg border px-3 text-xs font-medium transition-shadow duration-200",
-                !isOverview
-                  ? "border-green-500 bg-green-500 text-white shadow-sm shadow-green-500/25"
-                  : "border-border-light bg-base-50 text-dark-900 hover:border-green-400/40 hover:text-green-500 hover:shadow-sm",
-              )}
-            >
-              <span className="min-w-0 flex-1 truncate text-left">
-                {currentDetailTab ? currentDetailTab.label : `选择分类 · ${detailTabs.length} 项`}
-              </span>
-              {currentDetailTab && currentDetailTab.count !== undefined && currentDetailTab.count > 0 && (
-                <span className="shrink-0 opacity-70">{currentDetailTab.count}</span>
-              )}
-              <IconChevronDown
-                size={12}
-                className={cn("transition-transform", menuOpen && "rotate-180")}
-              />
-            </button>
-
-            {menuOpen && (
-              <ul
-                role="listbox"
-                className="absolute left-0 right-0 top-full z-30 mt-1.5 max-h-[60vh] overflow-y-auto rounded-lg border border-border-light bg-ink-50 py-1 shadow-xl shadow-black/15"
-              >
-                {detailTabs.map((tab) => {
-                  const isActive = activeTab === tab.key;
-                  return (
-                    <li key={String(tab.key)}>
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={isActive}
-                        onClick={() => {
-                          onTabChange(tab.key);
-                          setMenuOpen(false);
-                        }}
-                        className={cn(
-                          "relative flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-xs transition",
-                          isActive
-                            ? "bg-green-50 font-semibold text-green-600"
-                            : "text-dark-950 hover:bg-ink-500",
-                        )}
-                      >
-                        {isActive && (
-                          <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-green-500 rounded-r" />
-                        )}
-                        <span className="min-w-0 flex-1 truncate">{tab.label}</span>
-                        {tab.count !== undefined && tab.count > 0 && (
-                          <span
-                            className={cn(
-                              "shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium",
-                              isActive
-                                ? "bg-green-500 text-text"
-                                : "bg-ink-700 text-dark-900",
-                            )}
-                          >
-                            {tab.count}
-                          </span>
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
+        <div ref={menuRef} className="relative">
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-haspopup="listbox"
+            aria-expanded={menuOpen}
+            className={cn(
+              "relative flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-medium transition-colors",
+              !isOverview
+                ? "text-green-600"
+                : "text-dark-600 hover:text-dark-900 hover:bg-ink-100/60",
             )}
-          </div>
-        </>
+          >
+            <span className="truncate">
+              {currentDetailTab ? currentDetailTab.label : "分类"}
+            </span>
+            <IconChevronDown
+              size={11}
+              className={cn("transition-transform", menuOpen && "rotate-180")}
+            />
+            {!isOverview && (
+              <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-green-500" />
+            )}
+          </button>
+
+          {menuOpen && (
+            <ul
+              role="listbox"
+              className="absolute left-0 right-0 top-full z-30 mt-1.5 max-h-[60vh] overflow-y-auto rounded-xl border border-border-light bg-white py-1 shadow-xl shadow-black/10"
+            >
+              {detailTabs.map((tab) => {
+                const isActive = activeTab === tab.key;
+                return (
+                  <li key={String(tab.key)}>
+                    <button
+                      type="button"
+                      role="option"
+                      aria-selected={isActive}
+                      onClick={() => {
+                        onTabChange(tab.key);
+                        setMenuOpen(false);
+                      }}
+                      className={cn(
+                        "flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-xs transition",
+                        isActive
+                          ? "font-semibold text-green-600 bg-green-50/70"
+                          : "text-dark-800 hover:bg-ink-100/50",
+                      )}
+                    >
+                      <span className="min-w-0 flex-1 truncate">{tab.label}</span>
+                      {tab.count !== undefined && tab.count > 0 && (
+                        <span
+                          className={cn(
+                            "shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                            isActive
+                              ? "bg-green-500 text-white"
+                              : "bg-ink-200 text-dark-700",
+                          )}
+                        >
+                          {tab.count}
+                        </span>
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );
