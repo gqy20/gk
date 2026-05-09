@@ -1,10 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { IconCheck } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import type { School, ProvinceData } from "@/lib/data";
+
+// 滚动位置存储（跨导航保持）
+const SCROLL_STORAGE_KEY = "gk-province-scroll";
 
 interface ProvinceListProps {
   provinces: ProvinceData[];
@@ -55,11 +59,73 @@ export default function ProvinceList({
     );
   }
 
+  const listRef = useRef<HTMLDivElement>(null);
+  const listKey = selectedProvince ?? "all";
+
+  function getSavedScroll(): number | null {
+    try {
+      const raw = sessionStorage.getItem(SCROLL_STORAGE_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      return data[listKey] ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  function saveScroll(pos: number) {
+    try {
+      const raw = sessionStorage.getItem(SCROLL_STORAGE_KEY);
+      const data = raw ? JSON.parse(raw) : {};
+      data[listKey] = pos;
+      sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify(data));
+    } catch {}
+  }
+
+  const hasSavedScroll = typeof window !== "undefined" && getSavedScroll() !== null;
+
+  // 滚动位置记忆：保存 + 恢复
+  const lastGoodScrollRef = useRef(getSavedScroll() ?? 0);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const saved = getSavedScroll();
+
+    // 有保存的位置 → 恢复
+    if (saved != null && saved > 0) {
+      const restore = () => { el.scrollTop = saved; };
+      if (hasSavedScroll) {
+        requestAnimationFrame(() => requestAnimationFrame(restore));
+      } else {
+        setTimeout(restore, 800);
+      }
+    }
+
+    let timer: ReturnType<typeof setTimeout>;
+    const onScroll = () => {
+      const pos = el.scrollTop;
+      if (pos > 0) lastGoodScrollRef.current = pos;
+      clearTimeout(timer);
+      timer = setTimeout(() => { if (pos > 0) saveScroll(pos); }, 300);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      // 卸载时用最后有效位置（>0）保存，防止被布局重置的 0 覆盖
+      if (lastGoodScrollRef.current > 0) {
+        saveScroll(lastGoodScrollRef.current);
+      }
+      el.removeEventListener("scroll", onScroll);
+    };
+  }, [listKey]);
+
   return (
     <motion.div
+      ref={listRef}
       className="min-h-0 flex-1 overflow-y-auto bg-surface-light p-3"
       variants={containerVariants}
-      initial="hidden"
+      initial={hasSavedScroll ? "show" : "hidden"}
       animate="show"
       key={selectedProvince ?? "all"}
     >

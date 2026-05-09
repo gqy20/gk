@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 import SchoolHeader from "./SchoolHeader";
 import TabNav, { type TabKey } from "./TabNav";
 import OverviewSection from "./OverviewSection";
@@ -69,6 +70,18 @@ export default function SchoolPanel({
   }
 
   const isOverview = activeTab === "overview";
+  const [contentVisible, setContentVisible] = useState(true);
+  const prevTabRef = useRef(activeTab);
+
+  // Tab 切换时淡出 → 切内容 → 淡入
+  useEffect(() => {
+    if (prevTabRef.current !== activeTab && prevTabRef.current !== null) {
+      setContentVisible(false);
+      const timer = setTimeout(() => setContentVisible(true), 200);
+      return () => clearTimeout(timer);
+    }
+    prevTabRef.current = activeTab;
+  }, [activeTab]);
 
   return (
     <div className="flex h-full flex-col bg-surface-light text-text-light">
@@ -80,7 +93,12 @@ export default function SchoolPanel({
         activeCrawlCategory={activeCrawlCategory}
       />
       <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
-      <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
+      <div
+        className={cn(
+          "min-h-0 flex-1 overflow-y-auto p-3 sm:p-4 transition-opacity duration-200",
+          contentVisible ? "opacity-100" : "opacity-0",
+        )}
+      >
         {isOverview ? (
           <OverviewSection
             detail={detail}

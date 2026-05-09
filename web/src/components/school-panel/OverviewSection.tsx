@@ -62,7 +62,6 @@ export default function OverviewSection({
   const filledCategories = DETAIL_CATEGORIES.filter(
     (key) => detail[key] && detail[key]!.length > 0,
   );
-  const missingCount = detail.missing_categories?.length ?? 0;
 
   const statusMap = crawlStatus?.[school.name];
   const crawlDoneCount = statusMap
@@ -102,26 +101,6 @@ export default function OverviewSection({
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-2">
-        <InfoRow label="抓取时间" value={detail.crawl_time?.slice(0, 16) || "-"} />
-        <InfoRow
-          label="信息完整度"
-          value={`${filledCategories.length}/${DETAIL_CATEGORIES.length} 类`}
-        />
-        <InfoRow label="学院" value={`${detail.colleges?.length ?? 0} 个`} />
-        <InfoRow
-          label="缺失类别"
-          value={`${missingCount} 类`}
-          warn={missingCount > 0}
-        />
-      </div>
-
-      {detail.notes && (
-        <div className="rounded-lg border border-primary-border bg-gold-50 p-3 text-xs leading-relaxed text-gold-800">
-          {detail.notes}
-        </div>
-      )}
-
       {/* 校园信息采集进度 */}
       {statusMap && (
         <section className="relative">
@@ -266,30 +245,6 @@ function SectionTitle({ label }: { label: string }) {
   );
 }
 
-function InfoRow({
-  label,
-  value,
-  warn,
-}: {
-  label: string;
-  value: string;
-  warn?: boolean;
-}) {
-  return (
-    <div className="rounded-lg border border-border-light bg-ink-50 p-3">
-      <div className="text-[10px] text-dark-800 font-medium">{label}</div>
-      <div
-        className={cn(
-          "mt-1 truncate text-sm font-semibold",
-          warn ? "text-red-600" : "text-text-light",
-        )}
-      >
-        {value}
-      </div>
-    </div>
-  );
-}
-
 function DocItemMini({ item }: { item: DocItem }) {
   return (
     <div className="border-l-2 border-primary-border pl-2 transition hover:border-green-400">
@@ -326,6 +281,15 @@ const SourcePopover = forwardRef<
   }
 >(function SourcePopover({ label, sources, anchorEl, onClose }, ref) {
   const [pos, setPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+  const [visible, setVisible] = useState(false);
+
+  // 入场动画：先渲染透明 → 下一帧触发 transition
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setVisible(true));
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   useEffect(() => {
     if (!anchorEl) return;
@@ -358,7 +322,10 @@ const SourcePopover = forwardRef<
   return createPortal(
     <div
       ref={ref}
-      className="fixed z-[9999] w-[300px] rounded-xl border border-green-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm"
+      className={cn(
+        "fixed z-[9999] w-[300px] rounded-xl border border-green-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm transition-all duration-200 ease-out",
+        visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",
+      )}
       style={{ top: pos.top, left: pos.left }}
     >
       <div className="flex items-center justify-between border-b border-border-subtle pb-2 mb-2">
@@ -367,7 +334,10 @@ const SourcePopover = forwardRef<
         </span>
         <button
           type="button"
-          onClick={onClose}
+          onClick={() => {
+            setVisible(false);
+            setTimeout(onClose, 200);
+          }}
           className="rounded p-0.5 text-dark-500 transition hover:bg-ink-100 hover:text-dark-800"
         >
           ✕
