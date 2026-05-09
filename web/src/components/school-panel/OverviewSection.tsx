@@ -89,7 +89,7 @@ export default function OverviewSection({
       )
         return;
       setExpandedCard(null);
-      onCategoryClick?.(expandedCard);
+      if (expandedCard) onCategoryClick?.(expandedCard);
     }
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
@@ -199,7 +199,7 @@ export default function OverviewSection({
               label={CRAWL_CATEGORY_LABELS[expandedCard]}
               sources={schoolSources[expandedCard]}
               anchorEl={cardRefs.current[expandedCard]}
-              onClose={() => { setExpandedCard(null); onCategoryClick?.(expandedCard); }}
+              onClose={() => { setExpandedCard(null); if (expandedCard) onCategoryClick?.(expandedCard); }}
             />
           )}
         </section>
@@ -343,6 +343,7 @@ const SourcePopover = forwardRef<
     setPos({ top, left });
 
     function onResize() {
+      if (!anchorEl) return;
       const r = anchorEl.getBoundingClientRect();
       const bs = window.innerHeight - r.bottom - 8;
       const ph = Math.min(sources.length * 52 + 60, 320);
