@@ -115,24 +115,22 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-2 shadow-2xl shadow-black/20 sm:px-4 sm:py-2.5">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-          <div className="min-w-0">
-            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-              <img
-                src="/logo.svg"
-                alt=""
-                className="h-8 w-8 rounded-lg"
-                width={32}
-                height={32}
-              />
-              <h1 className="text-2xl font-semibold leading-none text-dark-50 sm:text-3xl">
-                中国高校信息地图
-              </h1>
-              <span className="max-w-full truncate text-xs text-dark-300 sm:text-sm">
-                当前：{contextLabel}
-              </span>
-            </div>
+      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-1.5 shadow-2xl shadow-black/20 sm:px-4 sm:py-2.5">
+        <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+          <div className="min-w-0 flex items-center gap-2">
+            <img
+              src="/logo.svg"
+              alt=""
+              className="h-7 w-7 shrink-0 rounded-lg sm:h-8 sm:w-8"
+              width={28}
+              height={28}
+            />
+            <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-dark-50 sm:text-3xl">
+              中国高校信息地图
+            </h1>
+            <span className="hidden shrink-0 truncate text-xs text-dark-300 sm:inline sm:text-sm">
+              当前：{contextLabel}
+            </span>
           </div>
 
           {!selectedSchool && (

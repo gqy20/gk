@@ -107,7 +107,7 @@ export default function OverviewSection({
           <SectionTitle
             label={`校园信息采集 (${crawlDoneCount}/${CRAWL_CATEGORIES.length})`}
           />
-          <div className="mt-2 grid grid-cols-2 gap-2">
+          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {CRAWL_CATEGORIES.map((cat) => {
               const cs = statusMap[cat] as CategoryStatus | undefined;
               const info = CRAWL_CATEGORY_LABELS[cat];

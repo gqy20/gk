@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type BadgeTone = "red" | "gold" | "green";
 type BadgeVariant = "solid" | "subtle" | "outline";
-type BadgeSize = "sm" | "md";
+type BadgeSize = "sm" | "md" | "compact";
 
 interface BadgeProps {
   label: string;
@@ -36,6 +36,7 @@ const toneMap: Record<
 const sizeMap: Record<BadgeSize, string> = {
   sm: "px-1.5 py-px text-[10px] rounded",
   md: "px-2 py-0.5 text-[10px] font-semibold rounded-full",
+  compact: "px-1 py-px text-[9px] rounded",
 };
 
 export function Badge({
@@ -43,6 +44,7 @@ export function Badge({
   tone = "gold",
   variant = "solid",
   size = "md",
+  compact,
   className,
 }: BadgeProps) {
   return (
@@ -50,7 +52,7 @@ export function Badge({
       className={cn(
         "inline-block border",
         toneMap[tone][variant],
-        sizeMap[size],
+        sizeMap[compact ? "compact" : size],
         className,
       )}
     >
