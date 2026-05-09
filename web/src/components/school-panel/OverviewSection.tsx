@@ -391,7 +391,7 @@ const SourcePopover = forwardRef<
                 {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
               </span>
               <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>
-              {src.http_status && src.http_status !== 200 && (
+              {src.http_status && src.http_status >= 404 && src.http_status !== 403 && src.http_status !== 401 && (
                 <span className="rounded bg-red-50 px-1 py-px text-red-400">
                   HTTP {src.http_status}
                 </span>
