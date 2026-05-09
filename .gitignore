@@ -17,6 +17,18 @@ logs/
 
 # Environment
 .env
+.env.*
+
+# Node.js
+node_modules/
+.next/
+
+# SQLite runtime databases
+data/*.sqlite*
+data/*.sqlite.bak
+
+# Test output
+test-results/
 
 # Playwright CLI runtime
 .playwright-cli/
@@ -25,4 +37,5 @@ logs/
 # Claude worktrees
 .claude/
 
+# Crawl data (raw/intermediate)
 data/gaokao*
