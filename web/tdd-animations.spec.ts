@@ -9,7 +9,7 @@ import { test, expect, Page } from "@playwright/test";
 const BASE = "http://localhost:3000";
 
 test.describe("体验优化 TDD", () => {
-  test("1-Popover: 应有 transition-all 过渡类（入场/退场动画）", async ({ page }) => {
+  test("1-Popover: 应有过渡动画类（opacity + transform，非位置滑动）", async ({ page }) => {
     await page.goto(`${BASE}/school/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6`);
     // 点击宿舍卡片触发 Popover
     await page.click("button:has-text('5 条')");
@@ -18,9 +18,14 @@ test.describe("体验优化 TDD", () => {
     const popover = page.locator(".fixed.z-\\[9999\\]");
     await expect(popover).toBeVisible();
 
-    // RED: 验证包含过渡动画 CSS 类
+    // RED: 验证包含过渡动画 CSS 类（opacity + transform，不含 transition-all 避免位置滑动）
     const classes = await popover.getAttribute("class") ?? "";
-    expect(classes.split(/\s+/)).toContainEqual("transition-all");
+    const hasTransition =
+      classes.includes("transition-[opacity,transform]") ||
+      classes.includes("transition-all");
+    // 关键：不应有 transition-all（会导致从左上角滑入的 bug）
+    expect(hasTransition).toBe(true);
+    expect(classes).not.toContain("transition-all");
   });
 
   test("2-Popover: 关闭后应从 DOM 移除（支持退场动画）", async ({ page }) => {

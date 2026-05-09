@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AnimatePresence } from "framer-motion";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
 import { colors } from "@/lib/theme";
@@ -363,12 +364,15 @@ export default function ChinaMap({
         onEvents={handleEvents}
         lazyUpdate
       />
-      {previewSchool && (
-        <SchoolPopup
-          school={previewSchool}
-          onClose={handleClosePopup}
-        />
-      )}
+      <AnimatePresence>
+        {previewSchool && (
+          <SchoolPopup
+            key={previewSchool.name}
+            school={previewSchool}
+            onClose={handleClosePopup}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

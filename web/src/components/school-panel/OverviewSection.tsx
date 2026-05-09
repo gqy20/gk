@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, forwardRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import type { DocItem, School, UniversityInfo } from "@/lib/data";
@@ -136,9 +136,6 @@ export default function OverviewSection({
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-medium text-text-light">
                       {info.icon} {info.label}
-                      {isActive && isDone && (
-                        <span className="ml-1 text-[9px] text-green-600">▲</span>
-                      )}
                     </span>
                     <span
                       className={cn(
@@ -291,7 +288,7 @@ const SourcePopover = forwardRef<
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!anchorEl) return;
     const rect = anchorEl.getBoundingClientRect();
 
@@ -323,7 +320,7 @@ const SourcePopover = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "fixed z-[9999] w-[300px] rounded-xl border border-green-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm transition-all duration-200 ease-out",
+        "fixed z-[9999] w-[300px] rounded-xl border border-green-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm transition-[opacity,transform] duration-200 ease-out",
         visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",
       )}
       style={{ top: pos.top, left: pos.left }}

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { School, UniversityInfo } from "@/lib/data";
@@ -44,8 +45,12 @@ export default function SchoolPopup({
     : [];
 
   return (
-    <div
+    <motion.div
       ref={ref}
+      initial={{ scale: 0.95, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.95, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
       className="absolute left-1/2 top-[15%] z-20 w-[280px] -translate-x-1/2 rounded-xl border border-primary-border bg-surface-elevated p-4 shadow-2xl shadow-black/40"
     >
       {/* 标题区 */}
@@ -105,7 +110,7 @@ export default function SchoolPopup({
       >
         查看详情
       </Button>
-    </div>
+    </motion.div>
   );
 }
 
