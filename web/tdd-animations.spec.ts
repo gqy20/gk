@@ -78,7 +78,7 @@ test.describe("体验优化 TDD", () => {
     await page.waitForURL("**/school/**");
 
     // 返回地图
-    await page.click("button:has-text('返回地图')");
+    await page.click("button[aria-label='返回地图']");
     await page.waitForURL("**/");
 
     // 等待省份列表重新渲染 + 滚动恢复
