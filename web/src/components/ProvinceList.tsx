@@ -134,6 +134,14 @@ export default function ProvinceList({
         const progress = Math.round((doneCount / Math.max(prov.schools.length, 1)) * 100);
         const isSelected = selectedProvince === prov.name;
 
+        // 优先级排序: 985 > 211 > 双一流 > 普通; 同级按校名
+        const sortedSchools = [...prov.schools].sort((a, b) => {
+          const rankA = a.is985 ? 3 : a.is211 ? 2 : a.isDoubleFirstClass ? 1 : 0;
+          const rankB = b.is985 ? 3 : b.is211 ? 2 : b.isDoubleFirstClass ? 1 : 0;
+          if (rankA !== rankB) return rankB - rankA;
+          return a.name.localeCompare(b.name, "zh-CN");
+        });
+
         return (
           <motion.div
             key={prov.name}
@@ -176,7 +184,7 @@ export default function ProvinceList({
 
             {(isSelected || !selectedProvince) && (
               <div className="border-t border-border-light bg-ink-100">
-                {prov.schools.map((school, schoolIndex) => {
+                {sortedSchools.map((school, schoolIndex) => {
                   const isCompareSelected = compareSchools.some(
                     (s) => s.name === school.name,
                   );
