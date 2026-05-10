@@ -20,11 +20,11 @@ test.describe("专业满意度 TDD", () => {
     await page.waitForURL(/\/school\//);
     await page.waitForTimeout(500);
 
-    // RED: 当前没有渲染 major_satisfaction，此断言会失败
+    // 应显示专业满意度区域（标题含"专业满意度"）
     const satisfactionSection = page.locator(
-      "aside >> text=/满意度|专业评分|专业口碑/",
+      "aside >> text=/^专业满意度/",
     );
-    await expect(satisfactionSection).toBeVisible({ timeout: 5000 });
+    await expect(satisfactionSection.first()).toBeVisible({ timeout: 5000 });
   });
 
   test("2-满意度应显示具体评分数字", async ({ page }) => {

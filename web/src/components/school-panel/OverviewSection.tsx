@@ -3,7 +3,7 @@
 import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
-import type { DocItem, School, UniversityInfo } from "@/lib/data";
+import type { DocItem, School, UniversityInfo, MajorSatisfaction } from "@/lib/data";
 import { DETAIL_CATEGORIES, CATEGORY_LABELS } from "@/lib/data";
 import {
   CRAWL_CATEGORIES,
@@ -109,6 +109,11 @@ export default function OverviewSection({
     <div className="space-y-4">
       {/* 阳光高考基础信息（始终显示，有数据时） */}
       {detail.basic_info && <BasicInfoCard bi={detail.basic_info} />}
+
+      {/* 专业满意度（来自阳光高考 major_streaming） */}
+      {detail.major_satisfaction && detail.major_satisfaction.length > 0 && (
+        <MajorSatisfactionCard items={detail.major_satisfaction} />
+      )}
 
       {/* 校园信息采集进度 */}
       {statusMap && (
@@ -306,6 +311,68 @@ function BasicInfoCard({ bi }: { bi: NonNullable<UniversityInfo["basic_info"]> }
               {bi.enrollment_website.replace(/^https?:\/\//, "")}
             </a>
           </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+/** 专业满意度卡片（来自阳光高考学生评分） */
+function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
+  const sorted = [...items].sort((a, b) => b.score - a.score);
+  const top = sorted.slice(0, 8);
+  const avg = (items.reduce((s, i) => s + i.score, 0) / items.length).toFixed(1);
+
+  const scoreColor = (score: number) => {
+    if (score >= 4.5) return "bg-green-400";
+    if (score >= 4.0) return "bg-yellow-400";
+    if (score >= 3.5) return "bg-orange-400";
+    return "bg-red-300";
+  };
+
+  return (
+    <section>
+      <SectionTitle label={`专业满意度 (${items.length})`} />
+      <div className="mt-2 rounded-lg border border-orange-200/60 bg-orange-50/30 p-3 text-xs space-y-2">
+        {/* 平均分 */}
+        <div className="flex items-center justify-between">
+          <span className="text-dark-600">平均满意度</span>
+          <span className="text-base font-bold text-orange-600">{avg}</span>
+        </div>
+
+        {/* Top 专业列表 */}
+        <div className="space-y-1.5">
+          {top.map((item, idx) => (
+            <div key={item.title} className="flex items-center gap-2">
+              <span className="w-4 shrink-0 text-[10px] font-semibold text-orange-500/70">
+                {idx + 1}
+              </span>
+              <span className="min-w-0 flex-1 truncate font-medium text-dark-900">
+                {item.title}
+              </span>
+              <div className="flex items-center gap-1.5">
+                {/* 评分条 */}
+                <div className="h-1.5 w-12 overflow-hidden rounded-full bg-black/5">
+                  <div
+                    className={`h-full rounded-full transition-all ${scoreColor(item.score)}`}
+                    style={{ width: `${(item.score / 5) * 100}%` }}
+                  />
+                </div>
+                <span className="w-7 text-right text-[11px] font-semibold tabular-nums text-orange-700">
+                  {item.score.toFixed(1)}
+                </span>
+                <span className="w-8 text-right text-[9px] text-dark-400">
+                  ({item.votes}人)
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {items.length > 8 && (
+          <p className="text-center text-[10px] text-dark-400">
+            还有 {items.length - 8} 个专业
+          </p>
         )}
       </div>
     </section>
