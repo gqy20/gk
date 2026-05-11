@@ -255,3 +255,25 @@ button:disabled {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(216, 183, 93, 0.62);
 }
+
+/* 隐藏滚动条（保留滚动能力） */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* xs 断点 (475px) — 比 sm(640px) 更小 */
+@media (min-width: 475px) {
+  .xs\:inline-flex {
+    display: inline-flex;
+  }
+  .xs\:block {
+    display: block;
+  }
+  .xs\:inline {
+    display: inline;
+  }
+}
