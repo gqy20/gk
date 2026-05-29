@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { IconCheck } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
+import { EMPTY_MESSAGES, STATUS_LABELS } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
 
 // 滚动位置存储（跨导航保持）
@@ -54,7 +55,7 @@ export default function ProvinceList({
   if (displayProvinces.length === 0) {
     return (
       <div className="flex flex-1 items-center justify-center px-6 text-center text-sm text-dark-600">
-        没有匹配的高校
+        {EMPTY_MESSAGES.noSchools}
       </div>
     );
   }
@@ -202,7 +203,7 @@ export default function ProvinceList({
                       className={cn(
                         "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5 cursor-pointer",
                         isSchoolSelected
-                          ? "bg-green-50 text-[#1a342f]"
+                          ? "bg-green-50 text-green-500"
                           : "bg-white text-base-900 hover:bg-ink-100/80",
                       )}
                     >

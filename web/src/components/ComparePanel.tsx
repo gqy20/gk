@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { IconClose } from "@/components/ui/Icon";
 import type { School, DetailCategoryKey } from "@/lib/data";
+import { STATUS_LABELS, STAT_LABELS } from "@/lib/constants";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
 
 interface ComparePanelProps {
@@ -76,10 +77,10 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
               <div className="flex-1 px-3 py-3">
                 <div className="space-y-2.5 text-xs">
                   <CompareRow label="省份" value={school.province} />
-                  <CompareRow label="状态" value={school.status === "done" ? "已采集" : "待采集"} />
+                  <CompareRow label="状态" value={school.status === "done" ? STATUS_LABELS.done : STATUS_LABELS.pending} />
                   <CompareRow
-                    label="学院"
-                    value={`${school.detail?.colleges?.length ?? 0} 个`}
+                    label={STAT_LABELS.college}
+                    value={`${school.detail?.colleges?.length ?? 0} ${STAT_LABELS.unit}`}
                   />
 
                   <div className="h-px bg-border-light" />
@@ -113,7 +114,7 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
                   href={school.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate text-xs text-green-800 hover:text-green-700"
+                  className="block truncate text-xs text-green-500 hover:text-green-400"
                 >
                   {school.url.replace(/^https?:\/\//, "")}
                 </a>

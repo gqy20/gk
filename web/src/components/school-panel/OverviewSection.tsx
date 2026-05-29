@@ -13,19 +13,7 @@ import {
   type SourceItem,
   type CrawlSourcesMap,
 } from "@/lib/crawl-data";
-
-const SOURCE_TYPE_LABELS: Record<string, string> = {
-  ZHIHU_HIGH: "知乎精选",
-  ZHIHU_NORMAL: "知乎",
-  OFFICIAL_EDU: "官网",
-  NEWS: "新闻",
-  GAOKAO_GOV: "高考网",
-  XIAOHONGSHU: "小红书",
-  BILIBILI: "B站",
-  TIEBA: "贴吧",
-  DOUYIN: "抖音",
-  OTHER: "其他",
-};
+import { SOURCE_TYPE_LABELS, STATUS_LABELS, EMPTY_MESSAGES } from "@/lib/constants";
 
 interface OverviewSectionProps {
   detail?: UniversityInfo;
@@ -56,7 +44,7 @@ export default function OverviewSection({
           <BasicInfoCard bi={school.detail.basic_info} />
         )}
         <div className="rounded-lg border border-border-light bg-ink-50 p-4 text-sm text-dark-600">
-          <div className="font-semibold text-text-light">详情数据未完成</div>
+          <div className="font-semibold text-text-light">{EMPTY_MESSAGES.detailNotReady}</div>
           <div className="mt-2 text-xs">
             当前状态：{school.status === "done" ? "已完成" : "等待采集"}
           </div>
@@ -164,7 +152,7 @@ export default function OverviewSection({
                       {isDone
                         ? `${cs.urls_collected} 条`
                         : cs.status === "pending"
-                          ? "待采集"
+                          ? STATUS_LABELS.pending
                           : cs.status === "failed"
                             ? "失败"
                             : "采集中"}
@@ -263,7 +251,7 @@ function DocItemMini({ item }: { item: DocItem }) {
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="line-clamp-1 text-xs font-medium text-green-800 hover:text-green-700"
+        className="line-clamp-1 text-xs font-medium text-green-500 hover:text-green-400"
       >
         {item.title}
       </a>
@@ -460,9 +448,9 @@ const SourcePopover = forwardRef<
             href={src.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg border border-border-subtle/60 bg-white/[0.03] p-2 text-[11px] leading-relaxed transition hover:bg-white/[0.07] hover:border-blue-400/40"
+            className="block rounded-lg border border-border-subtle/60 bg-white/[0.03] p-2 text-[11px] leading-relaxed transition hover:bg-white/[0.07] hover:border-green-400/40"
           >
-            <div className="line-clamp-1 font-medium text-blue-700">
+            <div className="line-clamp-1 font-medium text-green-600">
               {src.title || new URL(src.url).hostname.replace("www.", "")}
             </div>
             <div className="mt-0.5 flex items-center gap-2 text-[9px] text-dark-500">

@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { School } from "@/lib/data";
+import { colors } from "@/lib/theme";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 
 interface SchoolMapProps {
   school: School;
@@ -17,11 +19,33 @@ interface PoiItem {
 }
 
 const POI_CATEGORIES = [
-  { key: "subway", label: "地铁", type: "150500", keyword: "地铁", icon: "🚇", color: "#6fc0a5" },
-  { key: "hospital", label: "医疗", type: "090100|090200|090300|090400", keyword: "", icon: "🏥", color: "#f2c45f" },
-  { key: "shopping", label: "商圈", type: "060100|060400|060600", keyword: "", icon: "🛒", color: "#d8b75d" },
-  { key: "food", label: "美食", type: "050000", keyword: "", icon: "🍜", color: "#b9f1df" },
+  { key: "subway", label: "地铁", type: "150500", keyword: "地铁", icon: "🚇", color: colors.green300 },
+  { key: "hospital", label: "医疗", type: "090100|090200|090300|090400", keyword: "", icon: "🏥", color: colors.gold400 },
+  { key: "shopping", label: "商圈", type: "060100|060400|060600", keyword: "", icon: "🛒", color: colors.primary },
+  { key: "food", label: "美食", type: "050000", keyword: "", icon: "🍜", color: colors.green100 },
 ] as const;
+
+// AMap 标记 / InfoWindow 共用样式常量（AMap API 需要原始字符串）
+const AMAP = {
+  schoolMarker: `background: linear-gradient(135deg, ${colors.primary}, ${colors.primaryHover}); width: 28px; height: 28px; border-radius: 50%; border: 3px solid ${colors.surface}; box-shadow: 0 0 12px ${colors.primaryHover}66; display: flex; align-items: center; justify-content: center; font-size: 14px;`,
+  infoWindow: (title: string, subtitle: string) => `
+    background:${colors.surfaceElevated};border:1px solid ${colors.primaryBorder};
+    padding:10px 14px;border-radius:8px;color:${colors.text};font-size:13px;
+    min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    <div style="font-weight:700;font-size:14px;margin-bottom:4px;color:${colors.primaryHover}">${title}</div>
+    <div style="color:${colors.textSecondary};font-size:12px">${subtitle}</div>`,
+  poiMarker: (color: string, icon: string) =>
+    `background:${color};width:22px;height:22px;border-radius:50%;
+     border:2px solid ${colors.surface};display:flex;align-items:center;
+     justify-content:center;font-size:11px;opacity:0.85;>${icon}</div>`,
+  poiInfoWindow: (name: string, address: string, distance: string, color: string) => `
+    background:${colors.surfaceElevated};border:1px solid ${color}40;
+    padding:10px 14px;border-radius:8px;color:${colors.text};font-size:12px;
+    min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    <div style="font-weight:600;margin-bottom:2px;">${name}</div>
+    <div style="color:${colors.textMuted};margin-bottom:2px;">${address}</div>
+    <div style="color:${color}">${distance}</div>`,
+} as const;
 
 type PoiCategoryKey = (typeof POI_CATEGORIES)[number]["key"];
 
@@ -73,14 +97,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         const marker = new AMap.Marker({
           position: [lng, lat],
           title: school.name,
-          content: `<div style="
-            background: linear-gradient(135deg, #d8b75d, #f1c15f);
-            width: 28px; height: 28px; border-radius: 50%;
-            border: 3px solid #10120f;
-            box-shadow: 0 0 12px rgba(242,196,95,0.5);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px;
-          ">🎓</div>`,
+          content: `<div style="${AMAP.schoolMarker}">🎓</div>`,
           offset: new AMap.Pixel(-14, -14),
         });
         marker.setMap(map);
@@ -93,16 +110,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         });
 
         marker.on("click", () => {
-          infoWindow.setContent(`
-            <div style="
-              background:#171c18;border:1px solid rgba(216,183,93,0.4);
-              padding:10px 14px;border-radius:8px;color:#fff9ec;font-size:13px;
-              min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,0.4);
-            ">
-              <div style="font-weight:700;font-size:14px;margin-bottom:4px;color:#f1c15f">${school.name}</div>
-              <div style="color:#bdb5a4;font-size:12px">${school.province}</div>
-            </div>
-          `);
+          infoWindow.setContent(AMAP.infoWindow(school.name, school.province));
           infoWindow.open(map, marker.getPosition());
         });
 
@@ -198,14 +206,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
     // 重新添加学校标记
     const schoolMarker = new AMap.Marker({
       position: [lng, lat],
-      content: `<div style="
-        background: linear-gradient(135deg, #d8b75d, #f1c15f);
-        width: 28px; height: 28px; border-radius: 50%;
-        border: 3px solid #10120f;
-        box-shadow: 0 0 12px rgba(242,196,95,0.5);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 14px;
-      ">🎓</div>`,
+      content: `<div style="${AMAP.schoolMarker}">🎓</div>`,
       offset: new AMap.Pixel(-14, -14),
       zIndex: 100,
     });
@@ -222,11 +223,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
       for (const item of items.slice(0, 8)) {
         const marker = new AMap.Marker({
           position: item.location,
-          content: `<div style="
-            background:${cat.color};width:22px;height:22px;border-radius:50%;
-            border:2px solid #10120f;display:flex;align-items:center;
-            justify-content:center;font-size:11px;opacity:0.85;
-          ">${cat.icon}</div>`,
+          content: `<div style="${AMAP.poiMarker(cat.color, cat.icon)}"`,
           offset: new AMap.Pixel(-11, -11),
           zIndex: 50,
         });
@@ -237,17 +234,10 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
             offset: new AMap.Pixel(0, -32),
             closeWhenClickMap: true,
           });
-          infoWindow.setContent(`
-            <div style="
-              background:#171c18;border:1px solid ${cat.color}40;
-              padding:10px 14px;border-radius:8px;color:#fff9ec;font-size:12px;
-              min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,0.4);
-            ">
-              <div style="font-weight:600;margin-bottom:2px;">${item.name}</div>
-              <div style="color:#81786a;margin-bottom:2px;">${item.address}</div>
-              <div style="color:${cat.color}">${item.distance < 1000 ? Math.round(item.distance) + 'm' : (item.distance / 1000).toFixed(1) + 'km'}</div>
-            </div>
-          `);
+          const distLabel = item.distance < 1000
+            ? `${Math.round(item.distance)}m`
+            : `${(item.distance / 1000).toFixed(1)}km`;
+          infoWindow.setContent(AMAP.poiInfoWindow(item.name, item.address, distLabel, cat.color));
           infoWindow.open(map, marker.getPosition());
         });
 
@@ -269,7 +259,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
       >
         {!mapReady && (
           <div className="absolute inset-0 flex items-center justify-center text-sm text-dark-500">
-            地图加载中...
+            {EMPTY_MESSAGES.loadingMap}
           </div>
         )}
       </div>
@@ -315,7 +305,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
 
         {/* 加载状态 */}
         {loading && (
-          <p className="py-4 text-center text-xs text-dark-500">搜索中...</p>
+          <p className="py-4 text-center text-xs text-dark-500">{EMPTY_MESSAGES.searchingPoi}</p>
         )}
 
         {/* POI列表 */}
@@ -368,7 +358,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
 
         {!loading && totalPois === 0 && mapReady && (
           <p className="py-8 text-center text-sm text-dark-500">
-            点击上方分类查看周边信息
+            {EMPTY_MESSAGES.clickPoiCategory}
           </p>
         )}
       </div>

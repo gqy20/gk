@@ -6,6 +6,7 @@ import MajorTreeBrowser from "@/components/majors/MajorTreeBrowser";
 import MajorList from "@/components/majors/MajorList";
 import MajorSearchBar from "@/components/majors/MajorSearchBar";
 import type { MajorsData, MajorCategory } from "@/types/majors";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 
 export default function MajorsPage() {
   const [data, setData] = useState<MajorsData | null>(null);
@@ -125,7 +126,7 @@ export default function MajorsPage() {
               />
             ) : (
               <div className="flex h-full items-center justify-center text-sm text-dark-500">
-                加载中...
+                {EMPTY_MESSAGES.loadingMap}
               </div>
             )}
           </div>

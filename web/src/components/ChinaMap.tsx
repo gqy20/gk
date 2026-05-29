@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
 import { colors } from "@/lib/theme";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
 import SchoolPopup from "./SchoolPopup";
 
@@ -291,11 +292,11 @@ export default function ChinaMap({
           emphasis: {
             scale: true,
             itemStyle: {
-              color: "#fff1b8",
+              color: colors.primaryHover,
               borderColor: colors.surface,
               borderWidth: 1,
               shadowBlur: 18,
-              shadowColor: "rgba(242, 196, 95, 0.72)",
+              shadowColor: `${colors.primaryHover}B8`,
             },
           },
           zlevel: 2,
@@ -350,13 +351,13 @@ export default function ChinaMap({
   if (!mapReady) {
     return (
       <div className="flex h-full w-full items-center justify-center text-sm text-dark-200">
-        地图加载中
+        {EMPTY_MESSAGES.loadingMap}
       </div>
     );
   }
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full" role="figure" aria-label={EMPTY_MESSAGES.map}>
       <ReactECharts
         ref={chartRef}
         option={option}

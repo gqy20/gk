@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { School, UniversityInfo } from "@/lib/data";
+import { STATUS_LABELS, STAT_LABELS } from "@/lib/constants";
 
 interface SchoolPopupProps {
   school: School;
@@ -25,8 +26,15 @@ export default function SchoolPopup({
         onClose();
       }
     }
+    function handleKeydown(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
     document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKeydown);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKeydown);
+    };
   }, [onClose]);
 
   const detail = school.detail as UniversityInfo | undefined;
@@ -47,6 +55,9 @@ export default function SchoolPopup({
   return (
     <motion.div
       ref={ref}
+      role="dialog"
+      aria-modal="false"
+      aria-label={`${school.name} — 学校预览`}
       initial={{ scale: 0.95, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.95, opacity: 0 }}
@@ -85,7 +96,7 @@ export default function SchoolPopup({
               : "border border-border-subtle bg-white/[0.04] text-dark-500"
           }`}
         >
-          {school.status === "done" ? "已采集" : "待采集"}
+          {school.status === "done" ? STATUS_LABELS.done : STATUS_LABELS.pending}
         </span>
       </div>
 
@@ -93,10 +104,10 @@ export default function SchoolPopup({
       {detail && (
         <div className="mb-3 grid grid-cols-2 gap-1.5">
           <StatCell
-            label="信息完整度"
+            label={STAT_LABELS.infoComplete}
             value={`${filledCategories.length}/11 类`}
           />
-          <StatCell label="学院" value={`${detail.colleges?.length ?? 0} 个`} />
+          <StatCell label={STAT_LABELS.college} value={`${detail.colleges?.length ?? 0} ${STAT_LABELS.unit}`} />
         </div>
       )}
 

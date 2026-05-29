@@ -8,25 +8,13 @@ import type {
   UniversityInfo,
 } from "@/lib/data";
 import type { SourceItem, CrawlSourcesMap } from "@/lib/crawl-data";
+import { SOURCE_TYPE_LABELS, EMPTY_MESSAGES } from "@/lib/constants";
 
 interface DetailSectionProps {
   category: DetailCategoryKey;
   detail: UniversityInfo;
   crawlSources?: Record<string, SourceItem[]>;
 }
-
-const SOURCE_TYPE_LABELS: Record<string, string> = {
-  ZHIHU_HIGH: "知乎精选",
-  ZHIHU_NORMAL: "知乎",
-  OFFICIAL_EDU: "官网",
-  NEWS: "新闻",
-  GAOKAO_GOV: "高考网",
-  XIAOHONGSHU: "小红书",
-  BILIBILI: "B站",
-  TIEBA: "贴吧",
-  DOUYIN: "抖音",
-  OTHER: "其他",
-};
 
 export default function DetailSection({
   category,
@@ -35,7 +23,7 @@ export default function DetailSection({
 }: DetailSectionProps) {
   const items = detail[category];
   if (!Array.isArray(items) || items.length === 0) {
-    return <p className="text-sm text-dark-600">暂无数据</p>;
+    return <p className="text-sm text-dark-600">{EMPTY_MESSAGES.noData}</p>;
   }
 
   const sources = crawlSources?.[category];
@@ -54,7 +42,7 @@ export default function DetailSection({
                 href={college.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-green-800 hover:text-green-700"
+                className="font-semibold text-green-500 hover:text-green-400"
               >
                 {college.name}
               </a>
@@ -82,7 +70,7 @@ export default function DetailSection({
             key={index}
             className="rounded-lg border border-primary-border bg-gold-50 p-3 text-xs"
           >
-            <div className="font-semibold text-gold-800">
+            <div className="font-semibold text-gold-700">
               {experience.topic}
             </div>
             <p className="mt-2 leading-relaxed text-dark-950">
@@ -154,7 +142,7 @@ export default function DetailSection({
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block font-semibold leading-relaxed text-green-800 hover:text-green-700"
+            className="block font-semibold leading-relaxed text-green-500 hover:text-green-400"
           >
             {item.title}
           </a>
@@ -204,7 +192,7 @@ function SourceList({ sources }: { sources: SourceItem[] }) {
             href={src.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="line-clamp-1 font-medium text-blue-700 hover:text-blue-600"
+            className="line-clamp-1 font-medium text-green-600 hover:text-green-400"
           >
             {src.title || src.url}
           </a>

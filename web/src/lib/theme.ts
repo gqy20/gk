@@ -6,9 +6,8 @@ export const colors = {
   surfaceElevated: "#171c18",
   primary: "#d8b75d",
   primaryHover: "#f1c15f",
-  primaryLight: "#f2c45f",
   primaryBorder: "rgba(216, 183, 93, 0.55)",
-  accentGreen: "#2c5f55",
+  accentGreen: "#4a9e89",
   accentGreenLight: "#6fc0a5",
   text: "#fff9ec",
   textSecondary: "#bdb5a4",
@@ -21,8 +20,8 @@ export const colors = {
     200: "#e4c87c",
     300: "#d8b75d",
     400: "#f1c15f",
-    500: "#f2c45f",
-    600: "#ffe2a0",
+    500: "#c99a2e",
+    600: "#a67c20",
     700: "#8a6414",
     800: "#7b5a19",
   },
@@ -32,7 +31,7 @@ export const colors = {
     100: "#b9f1df",
     200: "#80c9b4",
     300: "#6fc0a5",
-    400: "#2c5f55",
+    400: "#4a9e89",
     500: "#1a342f",
   },
 
@@ -46,4 +45,9 @@ export const colors = {
     700: "#7f796b",
     800: "#746f63",
   },
+
+  // 扁平快捷访问（供 AMap 模板字符串等场景使用）
+  green300: "#6fc0a5",
+  gold400: "#f1c15f",
+  green100: "#b9f1df",
 } as const;

@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 import SchoolHeader from "./SchoolHeader";
 import TabNav, { type TabKey } from "./TabNav";
 import OverviewSection from "./OverviewSection";
@@ -64,7 +65,7 @@ export default function SchoolPanel({
   if (!school) {
     return (
       <div className="flex flex-1 items-center justify-center text-sm text-dark-600">
-        选择学校查看详情
+        {EMPTY_MESSAGES.selectSchool}
       </div>
     );
   }

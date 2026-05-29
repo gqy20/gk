@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { School } from "@/lib/data";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 import SchoolDetailClient from "./SchoolDetailClient";
 
 export async function generateStaticParams(): Promise<{ name: string }[]> {
@@ -28,9 +29,9 @@ export default async function SchoolDetailPage({ params }: PageProps) {
     return (
       <div className="flex h-screen items-center justify-center bg-surface text-sm text-dark-200">
         <div className="text-center">
-          <p className="mb-4 text-lg">学校未找到</p>
+          <p className="mb-4 text-lg">{EMPTY_MESSAGES.schoolNotFound}</p>
           <a href="/" className="text-gold-500 underline">
-            返回首页
+            {EMPTY_MESSAGES.backHome}
           </a>
         </div>
       </div>
