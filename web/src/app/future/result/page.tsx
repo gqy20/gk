@@ -1,24 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { fetchFutureRunFromClient } from "@/lib/future/client";
 import type { FutureRunResult } from "@/lib/future/types";
 
-export default function FutureResultPage({
-  params,
-}: {
-  params: Promise<{ runId: string }> | { runId: string };
-}) {
-  const [runId, setRunId] = useState("");
+export default function FutureResultPage() {
+  return (
+    <Suspense fallback={<ResultShell />}>
+      <FutureResultContent />
+    </Suspense>
+  );
+}
+
+function ResultShell() {
+  return (
+    <div className="min-h-screen bg-surface text-text">
+      <header className="border-b border-border bg-surface/95 px-4 py-3">
+        <div className="mx-auto flex max-w-6xl items-center gap-3">
+          <a href="/future" className="text-sm text-dark-300 transition hover:text-text">
+            ← 新推演
+          </a>
+          <h1 className="text-lg font-semibold text-dark-50">未来路径推演结果</h1>
+        </div>
+      </header>
+      <main className="mx-auto max-w-6xl px-4 py-5">
+        <div className="rounded-lg border border-border bg-surface-elevated/50 p-5 text-sm text-dark-300">
+          正在读取推演结果…
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function FutureResultContent() {
+  const searchParams = useSearchParams();
+  const runId = searchParams.get("runId") || "";
   const [result, setResult] = useState<FutureRunResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    Promise.resolve(params).then((resolved) => setRunId(resolved.runId));
-  }, [params]);
+    if (!runId) {
+      setError("缺少 runId，无法读取推演结果。");
+      return;
+    }
 
-  useEffect(() => {
-    if (!runId) return;
     fetchFutureRunFromClient(runId)
       .then(setResult)
       .catch((err) => setError(err instanceof Error ? err.message : "读取推演结果失败"));

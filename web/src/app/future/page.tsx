@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, Suspense, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { createFutureRunFromClient } from "@/lib/future/client";
@@ -14,6 +14,34 @@ function splitTags(value: string) {
 }
 
 export default function FuturePage() {
+  return (
+    <Suspense fallback={<FuturePageShell />}>
+      <FuturePageContent />
+    </Suspense>
+  );
+}
+
+function FuturePageShell() {
+  return (
+    <div className="min-h-screen bg-surface text-text">
+      <header className="border-b border-border bg-surface/95 px-4 py-3">
+        <div className="mx-auto flex max-w-5xl items-center gap-3">
+          <a href="/" className="text-sm text-dark-300 transition hover:text-text">
+            ← 返回
+          </a>
+          <h1 className="text-lg font-semibold text-dark-50">未来路径推演</h1>
+        </div>
+      </header>
+      <main className="mx-auto max-w-5xl px-4 py-5">
+        <div className="rounded-lg border border-border bg-surface-elevated/50 p-5 text-sm text-dark-300">
+          正在加载推演表单…
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function FuturePageContent() {
   const router = useRouter();
   const search = useSearchParams();
   const school = search.get("school") || "";
@@ -78,7 +106,7 @@ export default function FuturePage() {
     setError(null);
     try {
       const result = await createFutureRunFromClient(input);
-      router.push(`/future/${encodeURIComponent(result.runId)}`);
+      router.push(`/future/result?runId=${encodeURIComponent(result.runId)}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "推演服务调用失败");
     } finally {
