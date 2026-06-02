@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { createFutureRunFromClient } from "@/lib/future/client";
 import type { FutureRunInput } from "@/lib/future/types";
 import type { School } from "@/lib/data";
+import { PROVINCE_COORDS } from "@/lib/provinces";
 import { FuturePanel, FutureShell, SectionHeading } from "./FutureShell";
 
 function splitTags(value: string) {
@@ -54,6 +55,7 @@ function FuturePageContent() {
   const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const provinceOptions = useMemo(() => Object.keys(PROVINCE_COORDS), []);
 
   useEffect(() => {
     let cancelled = false;
@@ -189,7 +191,7 @@ function FuturePageContent() {
           <FuturePanel className="p-5">
             <FormStep number="02" title="学生画像" description="画像不需要完美，重点是让路径差异更贴近学生本人。">
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <Field label="生源省份" value={studentProvince} onChange={setStudentProvince} />
+                <Select label="生源省份" value={studentProvince} onChange={setStudentProvince} options={provinceOptions} placeholder="请选择生源省份" />
                 <Select label="选科/方向" value={subjectTrack} onChange={setSubjectTrack} options={["物理", "历史", "理科", "文科", "综合"]} />
                 <Select label="分数段" value={scoreBand} onChange={setScoreBand} options={["顶尖", "较高", "中上", "中等", "压线"]} />
                 <Field label="性格标签" value={personalityTags} onChange={setPersonalityTags} />
@@ -344,11 +346,13 @@ function Select({
   value,
   onChange,
   options,
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   options: string[];
+  placeholder?: string;
 }) {
   return (
     <label className="block space-y-1.5 text-xs font-medium text-[#657064]">
@@ -358,6 +362,7 @@ function Select({
         onChange={(event) => onChange(event.target.value)}
         className="h-10 w-full rounded-lg border border-black/10 bg-white px-3 text-sm text-[#1d241f] outline-none transition focus:border-[#b99335]"
       >
+        {placeholder && <option value="">{placeholder}</option>}
         {options.map((option) => (
           <option key={option} value={option}>{option}</option>
         ))}
