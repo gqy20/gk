@@ -168,6 +168,10 @@ export class PostgresFutureRepository implements FutureRepository {
   }
 
   private async insertPath(runId: string, path: FuturePath) {
+    const scores = path.scores || {};
+    const timeline = Array.isArray(path.timeline) ? path.timeline : [];
+    const risks = Array.isArray(path.key_risks) ? path.key_risks : [];
+
     await this.db.query(
       `insert into future_paths (
         run_id,
@@ -185,10 +189,10 @@ export class PostgresFutureRepository implements FutureRepository {
         path.index,
         path.label,
         path.tagline,
-        stringifyJson(path.scores),
-        stringifyJson(path.timeline),
-        stringifyJson(path.key_risks),
-        path.advice,
+        stringifyJson(scores),
+        stringifyJson(timeline),
+        stringifyJson(risks),
+        path.advice || "",
         stringifyJson(path),
       ],
     );

@@ -188,7 +188,7 @@ function FuturePageContent() {
           <h2 className="text-sm font-semibold text-dark-50">输出内容</h2>
           <div className="mt-3 space-y-2 text-xs leading-6">
             <p>每次会生成多条结构化路径，包含时间线、评分、风险、转折点和建议。</p>
-            <p>当前前端需要配置独立推演 API：`NEXT_PUBLIC_FUTURE_API_BASE_URL`。</p>
+            <p>前端会调用同源 `/api/future-runs`，由 Vercel Function 连接 LLM 与 Neon。</p>
             <p>基础学校/专业数据仍由静态 JSON 提供，动态推演结果保存到 Neon。</p>
           </div>
         </aside>
