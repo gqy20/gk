@@ -104,7 +104,60 @@ function FutureResultContent() {
             <section className="rounded-lg border border-border bg-surface-elevated/70 p-4">
               <p className="text-sm leading-7 text-dark-200">{output.summary}</p>
               <p className="mt-3 text-sm leading-7 text-dark-300">{output.overall_advice}</p>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs text-dark-400">
+                {result?.run.model && <span>模型：{result.run.model}</span>}
+                {result?.run.promptVersion && <span>Prompt：{result.run.promptVersion}</span>}
+                {typeof result?.run.inputTokens === "number" && <span>输入：{result.run.inputTokens} tokens</span>}
+                {typeof result?.run.outputTokens === "number" && <span>输出：{result.run.outputTokens} tokens</span>}
+              </div>
             </section>
+
+            <section className="grid gap-3 lg:grid-cols-2">
+              <div className="rounded-lg border border-border bg-surface-elevated/70 p-4">
+                <h2 className="text-sm font-semibold text-dark-50">推演假设</h2>
+                <ul className="mt-3 space-y-2 text-xs leading-6 text-dark-300">
+                  {(output.choice_context.assumptions || []).map((assumption) => (
+                    <li key={assumption}>• {assumption}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-lg border border-border bg-surface-elevated/70 p-4">
+                <h2 className="text-sm font-semibold text-dark-50">质量检查</h2>
+                {output.validation ? (
+                  <div className="mt-3 space-y-2 text-xs leading-6 text-dark-300">
+                    <p>
+                      路径差异度：{Math.round(output.validation.diversityScore * 100)}%
+                      {output.validation.valid ? "，结构完整。" : "，存在需留意的问题。"}
+                    </p>
+                    {[...output.validation.errors, ...output.validation.warnings].slice(0, 4).map((item) => (
+                      <p key={item} className="text-amber-300">• {item}</p>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-3 text-xs leading-6 text-dark-300">本次结果未记录质量检查。</p>
+                )}
+              </div>
+            </section>
+
+            {output.branch_plan && output.branch_plan.length > 0 && (
+              <section className="rounded-lg border border-border bg-surface-elevated/70 p-4">
+                <h2 className="text-sm font-semibold text-dark-50">分叉计划</h2>
+                <div className="mt-3 grid gap-3 lg:grid-cols-3">
+                  {output.branch_plan.map((branch) => (
+                    <div key={branch.index} className="rounded-lg border border-border-subtle bg-surface-active p-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <h3 className="text-xs font-semibold text-dark-100">{branch.name}</h3>
+                        <span className="rounded-full border border-primary/30 px-2 py-0.5 text-[11px] text-primary">
+                          {branch.riskTone}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-xs leading-6 text-dark-300">{branch.focus}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section className="grid gap-3 lg:grid-cols-2">
               {output.paths.map((path) => (
@@ -113,6 +166,9 @@ function FutureResultContent() {
                     <div>
                       <h2 className="text-base font-semibold text-dark-50">{path.label}</h2>
                       <p className="mt-1 text-xs text-dark-400">{path.tagline}</p>
+                      {path.branch_ref && (
+                        <p className="mt-1 text-[11px] text-primary">分叉：{path.branch_ref}</p>
+                      )}
                     </div>
                     <span className="rounded-full border border-primary/40 bg-primary-soft px-2 py-1 text-xs text-primary">
                       {path.fit_score}

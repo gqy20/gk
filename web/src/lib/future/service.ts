@@ -1,8 +1,10 @@
 import { buildFuturePrompt, getFuturePromptVersion } from "./prompt";
+import { planFutureBranches } from "./branch-planner";
 import type { futurePathsTool } from "./schema";
 import { futurePathsTool as defaultFuturePathsTool } from "./schema";
 import type { FutureRepository } from "./repository";
 import type { FuturePath, FutureRunInput, FutureStructuredOutput } from "./types";
+import { validateFutureOutput } from "./validation";
 
 interface Provider {
   generateStructured(input: {
@@ -50,6 +52,7 @@ function normalizePath(path: FuturePath, index: number): FuturePath {
     tagline: path.tagline || "",
     probability_tone: path.probability_tone || "均衡",
     fit_score: Number(path.fit_score || 0),
+    branch_ref: path.branch_ref || "",
     scores: path.scores || {},
     timeline: Array.isArray(path.timeline) ? path.timeline : [],
     key_risks: Array.isArray(path.key_risks) ? path.key_risks : [],
@@ -58,12 +61,34 @@ function normalizePath(path: FuturePath, index: number): FuturePath {
   } as FuturePath;
 }
 
-function normalizeOutput(output: FutureStructuredOutput): FutureStructuredOutput {
-  return {
+function normalizeOutput(output: FutureStructuredOutput, input: FutureRunInput): FutureStructuredOutput {
+  const branchPlan = planFutureBranches(input);
+  const paths = Array.isArray(output.paths)
+    ? output.paths.map((path, index) => {
+        const branch = branchPlan[index];
+        return {
+          ...normalizePath(path, index),
+          branch_ref: path.branch_ref || branch?.name || "",
+        };
+      })
+    : [];
+  const normalized = {
     ...output,
-    paths: Array.isArray(output.paths)
-      ? output.paths.map((path, index) => normalizePath(path, index))
-      : [],
+    choice_context: {
+      school: output.choice_context?.school || input.choiceContext.school,
+      major: output.choice_context?.major || input.choiceContext.major,
+      city: output.choice_context?.city || input.choiceContext.city,
+      assumptions: Array.isArray(output.choice_context?.assumptions)
+        ? output.choice_context.assumptions
+        : [],
+    },
+    paths,
+    branch_plan: branchPlan,
+  };
+
+  return {
+    ...normalized,
+    validation: validateFutureOutput(normalized, input.pathCount),
   };
 }
 
@@ -125,7 +150,7 @@ export async function generateFutureRun({
       maxTokens,
     });
 
-    const output = normalizeOutput(result.data);
+    const output = normalizeOutput(result.data, input);
 
     await repository.completeRun(runId, {
       output,

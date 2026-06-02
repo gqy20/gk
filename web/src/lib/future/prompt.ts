@@ -1,6 +1,7 @@
 import type { FutureRunInput } from "./types";
+import { planFutureBranches } from "./branch-planner";
 
-const PROMPT_VERSION = "gk_future_v1";
+const PROMPT_VERSION = "gk_future_v2";
 const MAX_EVIDENCE_CHARS = 1800;
 
 export function getFuturePromptVersion() {
@@ -22,6 +23,23 @@ function formatEvidence(input: FutureRunInput) {
       return `${index + 1}. ${item.label}: ${clip(item.text.replace(/\s+/g, " ").trim(), budget)}`;
     })
     .join("\n");
+}
+
+function formatBranchPlan(input: FutureRunInput) {
+  return planFutureBranches(input)
+    .map((branch) => {
+      const assumptions = branch.assumptions.map((item) => `    - ${item}`).join("\n");
+      const tradeoffs = branch.requiredTradeoffs.map((item) => `    - ${item}`).join("\n");
+      return [
+        `${branch.index}. ${branch.name}（${branch.riskTone}）`,
+        `  方向：${branch.focus}`,
+        "  前提假设：",
+        assumptions,
+        "  必须呈现的代价：",
+        tradeoffs,
+      ].join("\n");
+    })
+    .join("\n\n");
 }
 
 export function buildFuturePrompt(input: FutureRunInput) {
@@ -56,12 +74,17 @@ export function buildFuturePrompt(input: FutureRunInput) {
 【可用证据】
 ${formatEvidence(input)}
 
+【分叉计划】
+请严格按以下 ${input.pathCount} 个分叉生成路径。每条路径的 branch_ref 必须等于对应分叉名称。
+${formatBranchPlan(input)}
+
 【生成要求】
 1. 输出必须调用指定工具，不能输出散文或 Markdown。
-2. 生成 ${input.pathCount} 条互相有明显差异的路径，覆盖稳健、均衡、冒险。
+2. 生成 ${input.pathCount} 条互相有明显差异的路径，不能把多个分叉写成同一种人生建议。
 3. 每条路径至少包含 3 个 timeline 阶段：大学1-2年级、大学3-4年级、毕业后1-5年。
 4. 评分要有区分度，不能全高分。
-5. 建议必须能指导学生在大学前两年做什么。`;
+5. 建议必须能指导学生在大学前两年做什么。
+6. choice_context.assumptions 必须包含证据边界和关键推演假设。`;
 
   return { system, user, version: PROMPT_VERSION };
 }

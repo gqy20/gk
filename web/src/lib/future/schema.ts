@@ -62,6 +62,7 @@ export const futurePathsTool = {
             tagline: { type: "string" },
             probability_tone: { type: "string", enum: ["稳健", "均衡", "冒险"] },
             fit_score: { type: "number", description: "0-100 适配分" },
+            branch_ref: { type: "string", description: "对应的分叉计划名称" },
             scores: scoresSchema,
             timeline: {
               type: "array",
@@ -85,6 +86,7 @@ export const futurePathsTool = {
             "tagline",
             "probability_tone",
             "fit_score",
+            "branch_ref",
             "scores",
             "timeline",
             "key_risks",

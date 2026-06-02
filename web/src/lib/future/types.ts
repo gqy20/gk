@@ -31,6 +31,22 @@ export interface FutureRunInput {
   pathCount: number;
 }
 
+export interface FutureBranchPlan {
+  index: number;
+  name: string;
+  riskTone: ProbabilityTone;
+  focus: string;
+  assumptions: string[];
+  requiredTradeoffs: string[];
+}
+
+export interface FutureValidationReport {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
+  diversityScore: number;
+}
+
 export type FutureScoreKey =
   | "income"
   | "stability"
@@ -61,6 +77,7 @@ export interface FuturePath {
   tagline: string;
   probability_tone: ProbabilityTone;
   fit_score: number;
+  branch_ref?: string;
   scores: FutureScores;
   timeline: FutureTimelineItem[];
   key_risks: string[];
@@ -85,6 +102,8 @@ export interface FutureStructuredOutput {
     highest_risk: string;
     most_balanced: string;
   };
+  branch_plan?: FutureBranchPlan[];
+  validation?: FutureValidationReport;
   overall_advice: string;
 }
 

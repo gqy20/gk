@@ -60,7 +60,7 @@ function FuturePageContent() {
   const [targetSchool, setTargetSchool] = useState(school);
   const [targetMajor, setTargetMajor] = useState(major);
   const [targetCity, setTargetCity] = useState(city);
-  const [pathCount, setPathCount] = useState(6);
+  const [pathCount, setPathCount] = useState(3);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -188,6 +188,7 @@ function FuturePageContent() {
           <h2 className="text-sm font-semibold text-dark-50">输出内容</h2>
           <div className="mt-3 space-y-2 text-xs leading-6">
             <p>每次会生成多条结构化路径，包含时间线、评分、风险、转折点和建议。</p>
+            <p>系统会先规划不同分叉，再让 LLM 按分叉生成，减少路径重复。</p>
             <p>前端会调用同源 `/api/future-runs`，由 Vercel Function 连接 LLM 与 Neon。</p>
             <p>基础学校/专业数据仍由静态 JSON 提供，动态推演结果保存到 Neon。</p>
           </div>
