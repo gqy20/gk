@@ -45,12 +45,33 @@ function FutureResultContent() {
       return;
     }
 
-    fetchFutureRunFromClient(runId)
-      .then(setResult)
-      .catch((err) => setError(err instanceof Error ? err.message : "读取推演结果失败"));
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
+    async function load() {
+      try {
+        const next = await fetchFutureRunFromClient(runId);
+        if (cancelled) return;
+        setResult(next);
+        setError(next.run.error || null);
+        if (next.run.status === "generating") {
+          timer = setTimeout(load, 3000);
+        }
+      } catch (err) {
+        if (!cancelled) setError(err instanceof Error ? err.message : "读取推演结果失败");
+      }
+    }
+
+    load();
+
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+    };
   }, [runId]);
 
   const output = result?.output;
+  const isGenerating = result?.run.status === "generating";
 
   return (
     <div className="min-h-screen bg-surface text-text">
@@ -72,9 +93,9 @@ function FutureResultContent() {
           </div>
         )}
 
-        {!error && !output && (
+        {!error && (!output || isGenerating) && (
           <div className="rounded-lg border border-border bg-surface-elevated/50 p-5 text-sm text-dark-300">
-            正在读取推演结果…
+            {isGenerating ? "正在生成未来路径，结果会自动刷新…" : "正在读取推演结果…"}
           </div>
         )}
 

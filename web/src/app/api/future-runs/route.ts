@@ -1,5 +1,6 @@
+import { after } from "next/server";
 import { NextResponse } from "next/server";
-import { handleCreateFutureRun } from "@/lib/future/server";
+import { handleGenerateFutureRun, handleStartFutureRun } from "@/lib/future/server";
 import type { FutureRunInput } from "@/lib/future/types";
 
 export const runtime = "nodejs";
@@ -8,7 +9,14 @@ export const maxDuration = 300;
 export async function POST(request: Request) {
   try {
     const input = (await request.json()) as FutureRunInput;
-    const result = await handleCreateFutureRun(input);
+    const result = await handleStartFutureRun(input);
+    after(async () => {
+      try {
+        await handleGenerateFutureRun(result.runId, input);
+      } catch {
+        // Failure is persisted by handleGenerateFutureRun.
+      }
+    });
     return NextResponse.json({ runId: result.runId, status: result.status });
   } catch (error) {
     return NextResponse.json(

@@ -28,6 +28,20 @@ export interface CreateFutureRunOptions {
   maxTokens?: number;
 }
 
+export interface StartFutureRunOptions {
+  input: FutureRunInput;
+  repository: FutureRepository;
+  model?: string;
+}
+
+export interface GenerateFutureRunOptions {
+  runId: string;
+  input: FutureRunInput;
+  repository: FutureRepository;
+  provider: Provider;
+  maxTokens?: number;
+}
+
 function normalizePath(path: FuturePath, index: number): FuturePath {
   return {
     ...path,
@@ -61,6 +75,29 @@ export async function createFutureRun({
   maxTokens = 8192,
 }: CreateFutureRunOptions) {
   const prompt = buildFuturePrompt(input);
+  const started = await startFutureRun({ input, repository, model });
+
+  await generateFutureRun({
+    runId: started.runId,
+    input,
+    repository,
+    provider,
+    maxTokens,
+  });
+
+  const result = await repository.getRunResult(started.runId);
+  return {
+    runId: started.runId,
+    status: "completed" as const,
+    output: result?.output ?? null,
+  };
+}
+
+export async function startFutureRun({
+  input,
+  repository,
+  model = "anthropic-compatible",
+}: StartFutureRunOptions) {
   const { id: runId } = await repository.createRun({
     status: "generating",
     input,
@@ -68,6 +105,17 @@ export async function createFutureRun({
     promptVersion: getFuturePromptVersion(),
   });
 
+  return { runId, status: "generating" as const };
+}
+
+export async function generateFutureRun({
+  runId,
+  input,
+  repository,
+  provider,
+  maxTokens = 8192,
+}: GenerateFutureRunOptions) {
+  const prompt = buildFuturePrompt(input);
   try {
     const result = await provider.generateStructured({
       system: prompt.system,
@@ -85,7 +133,7 @@ export async function createFutureRun({
       outputTokens: result.usage.outputTokens,
     });
 
-    return { runId, status: "completed" as const, output };
+    return output;
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown future generation error";
     await repository.failRun(runId, message);

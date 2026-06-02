@@ -2,7 +2,7 @@ import { AnthropicProvider } from "./anthropic";
 import { MemoryFutureRepository } from "./repository";
 import { getPostgresPool } from "./pg-client";
 import { PostgresFutureRepository } from "./postgres";
-import { createFutureRun, getFutureRunResult } from "./service";
+import { createFutureRun, generateFutureRun, getFutureRunResult, startFutureRun } from "./service";
 import type { FutureRepository } from "./repository";
 import type { FutureRunInput } from "./types";
 
@@ -43,6 +43,27 @@ export async function handleCreateFutureRun(input: FutureRunInput, options: Futu
     repository: options.repository || getDefaultFutureRepository(),
     provider: options.provider || getDefaultAnthropicProvider(),
     model: process.env.ANTHROPIC_MODEL || "anthropic-compatible",
+  });
+}
+
+export async function handleStartFutureRun(input: FutureRunInput, options: FutureServerOptions = {}) {
+  return startFutureRun({
+    input,
+    repository: options.repository || getDefaultFutureRepository(),
+    model: process.env.ANTHROPIC_MODEL || "anthropic-compatible",
+  });
+}
+
+export async function handleGenerateFutureRun(
+  runId: string,
+  input: FutureRunInput,
+  options: FutureServerOptions = {},
+) {
+  return generateFutureRun({
+    runId,
+    input,
+    repository: options.repository || getDefaultFutureRepository(),
+    provider: options.provider || getDefaultAnthropicProvider(),
   });
 }
 

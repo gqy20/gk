@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { createFutureRun, getFutureRunResult } from "./service";
+import { createFutureRun, generateFutureRun, getFutureRunResult, startFutureRun } from "./service";
 import type { FutureRepository } from "./repository";
 import type { FutureRunInput, FutureStructuredOutput } from "./types";
 
@@ -107,6 +107,51 @@ describe("future service", () => {
         inputTokens: 100,
         outputTokens: 500,
       }),
+    );
+  });
+
+  it("can start a run without waiting for LLM generation", async () => {
+    const repo: FutureRepository = {
+      createRun: vi.fn(async () => ({ id: "run_2" })),
+      completeRun: vi.fn(async () => undefined),
+      failRun: vi.fn(async () => undefined),
+      getRunResult: vi.fn(),
+    };
+
+    const result = await startFutureRun({
+      input: makeInput(),
+      repository: repo,
+      model: "claude-test",
+    });
+
+    expect(result).toEqual({ runId: "run_2", status: "generating" });
+    expect(repo.createRun).toHaveBeenCalledWith(expect.objectContaining({ status: "generating" }));
+  });
+
+  it("generates an existing run and stores the result", async () => {
+    const repo: FutureRepository = {
+      createRun: vi.fn(),
+      completeRun: vi.fn(async () => undefined),
+      failRun: vi.fn(async () => undefined),
+      getRunResult: vi.fn(),
+    };
+    const provider = {
+      generateStructured: vi.fn(async () => ({
+        data: makeOutput(),
+        usage: { inputTokens: 100, outputTokens: 500 },
+      })),
+    };
+
+    await generateFutureRun({
+      runId: "run_2",
+      input: makeInput(),
+      repository: repo,
+      provider,
+    });
+
+    expect(repo.completeRun).toHaveBeenCalledWith(
+      "run_2",
+      expect.objectContaining({ output: expect.objectContaining({ paths: expect.any(Array) }) }),
     );
   });
 
