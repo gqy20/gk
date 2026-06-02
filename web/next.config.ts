@@ -11,7 +11,6 @@ const privateNetworkDevOrigins = [
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: privateNetworkDevOrigins,
-  output: "export",
   images: {
     unoptimized: true,
   },
