@@ -140,6 +140,12 @@ function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </a>
+            <a
+              href="/future"
+              className="hidden shrink-0 items-center rounded-full border border-green-300/30 bg-green-300/12 px-3.5 py-1.5 text-xs font-medium text-green-300 transition-all hover:border-green-300/60 hover:bg-green-300/20 sm:inline-flex"
+            >
+              未来路径
+            </a>
           </div>
 
           {!selectedSchool && (
@@ -278,4 +284,3 @@ function Home() {
     </div>
   );
 }
-

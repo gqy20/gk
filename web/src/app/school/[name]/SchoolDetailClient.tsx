@@ -66,6 +66,14 @@ export default function SchoolDetailClient({ school }: Props) {
 
         {/* Right: Detail panel — 桌面端固定宽度，移动端按切换状态显示 */}
         <aside className={`relative w-full min-w-0 max-w-[430px lg:w-[430px] lg:shrink-0 flex flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25 ${mobileView === "detail" ? "flex" : "hidden"} lg:flex`}>
+          <div className="border-b border-border-light bg-ink-100 px-4 py-2">
+            <a
+              href={`/future?school=${encodeURIComponent(school.name)}&province=${encodeURIComponent(school.province)}`}
+              className="inline-flex h-8 items-center rounded-full border border-green-500/25 bg-green-50 px-3 text-xs font-medium text-green-500 transition hover:border-green-500/50 hover:bg-green-100"
+            >
+              模拟这所学校的未来路径
+            </a>
+          </div>
           <SchoolPanel
             school={school}
             onClose={() => router.push("/")}
