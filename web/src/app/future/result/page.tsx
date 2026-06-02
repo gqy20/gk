@@ -5,6 +5,14 @@ import { useSearchParams } from "next/navigation";
 import { fetchFutureRunFromClient } from "@/lib/future/client";
 import type { FuturePath, FutureRunResult, FutureStructuredOutput } from "@/lib/future/types";
 import { FuturePanel, FutureShell } from "../FutureShell";
+import { TONE, RADAR_VIEW, toneOf, buildRadarPoints } from "../_tone";
+import {
+  findRecommendedPath,
+  clipText,
+  scoreLabel,
+  buildQualityItems,
+  extractActionItems,
+} from "../_helpers";
 
 export default function FutureResultPage() {
   return (
@@ -395,90 +403,74 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
 }
 
 function ScoreGrid({ path }: { path: FuturePath }) {
+  const tone = toneOf(path);
+  const keys = Object.keys(path.scores) as Array<keyof FuturePath["scores"]>;
+  const pts = buildRadarPoints(path);
+  const { size, center: [cx, cy], radius } = RADAR_VIEW;
+  const ringRadii = [0.25, 0.5, 0.75, 1].map(s => s * radius);
+
   return (
-    <div className="mt-3 grid grid-cols-2 gap-2 text-xs sm:grid-cols-4">
-      {Object.entries(path.scores).map(([key, score]) => (
-        <div key={key} className="rounded-lg border border-black/10 bg-[#f7f1e4] p-2">
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-[#8c877c]">{scoreLabel(key)}</span>
-            <span className="font-semibold text-[#1d241f]">{score.value}/10</span>
-          </div>
-          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-black/20">
-            <div className="h-full rounded-full bg-[#b99335]" style={{ width: `${Math.min(100, score.value * 10)}%` }} />
-          </div>
-        </div>
-      ))}
+    <div className="mt-3 grid items-center gap-4 lg:grid-cols-[220px_minmax(0,1fr)]">
+      {/* 雷达图(纯 SVG,无依赖) */}
+      <div className="relative mx-auto w-full max-w-[220px]">
+        <svg viewBox={`0 0 ${size} ${size}`} className="w-full">
+          <defs>
+            <radialGradient id={`rg-${path.index}`} cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="currentColor" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          {ringRadii.map((rr, i) => (
+            <circle key={i} cx={cx} cy={cy} r={rr} fill="none"
+                    stroke="currentColor" strokeOpacity={0.12}
+                    strokeDasharray={i === 3 ? "0" : "2 3"} />
+          ))}
+          {keys.map((_, i) => {
+            const ang = -Math.PI / 2 + (Math.PI * 2 * i) / keys.length;
+            return <line key={i} x1={cx} y1={cy}
+                         x2={cx + Math.cos(ang) * radius} y2={cy + Math.sin(ang) * radius}
+                         stroke="currentColor" strokeOpacity={0.1} />;
+          })}
+          <polygon points={pts.map(p => p.join(",")).join(" ")}
+                   fill={`url(#rg-${path.index})`} className={TONE[tone].fg} />
+          <polygon points={pts.map(p => p.join(",")).join(" ")}
+                   fill="none" stroke="currentColor" strokeWidth="1.5"
+                   className={TONE[tone].fg} />
+          {pts.map(([x, y], i) => (
+            <circle key={i} cx={x} cy={y} r="2.5" className={`${TONE[tone].fg} fill-current`} />
+          ))}
+        </svg>
+      </div>
+      {/* 7 维并列条形 */}
+      <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {keys.map((k) => {
+          const v = path.scores[k]?.value ?? 0;
+          return (
+            <li key={k} className="rounded-lg border border-border bg-surface-subtle/40 p-2.5">
+              <div className="flex items-center justify-between text-[11px]">
+                <span className="text-text-muted">{scoreLabel(k)}</span>
+                <span className="font-mono tabular-nums text-text">{v}/10</span>
+              </div>
+              <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/5">
+                <div className={`h-full ${TONE[tone].bg}`}
+                     style={{ width: `${v * 10}%`, background: "currentColor" }} />
+              </div>
+              <p className="mt-1 text-[10px] leading-4 text-text-muted line-clamp-2">
+                {path.scores[k]?.reason}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
 
-function findRecommendedPath(output: FutureStructuredOutput) {
-  const balanced = output.comparison?.most_balanced || "";
-  const matched = output.paths.find((path) => balanced.includes(path.label) || path.label.includes(balanced));
-  if (matched) return matched;
-
-  const balancedTone = output.paths
-    .filter((path) => path.probability_tone === "均衡")
-    .sort((a, b) => b.fit_score - a.fit_score)[0];
-  if (balancedTone) return balancedTone;
-
-  return [...output.paths].sort((a, b) => b.fit_score - a.fit_score)[0] || null;
-}
-
-function buildQualityItems(output: FutureStructuredOutput) {
-  const validation = output.validation;
-  const allTimelineComplete = output.paths.every((path) => path.timeline.length >= 3);
-  const allRisksPresent = output.paths.every((path) => path.key_risks.length > 0);
-
-  return [
-    {
-      label: "路径差异度",
-      value: validation ? `${Math.round(validation.diversityScore * 100)}%` : "未记录",
-    },
-    {
-      label: "结构完整",
-      value: validation?.valid ? "通过" : "需复核",
-    },
-    {
-      label: "时间线",
-      value: allTimelineComplete ? "3 阶段完整" : "不完整",
-    },
-    {
-      label: "风险覆盖",
-      value: allRisksPresent ? "已覆盖" : "需补充",
-    },
-  ];
-}
-
-function extractActionItems(text: string) {
-  const normalized = text.replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
-  const parts = normalized
-    .split(/[。；;]/)
-    .map((item) => item.trim())
-    .filter((item) => item.length >= 8);
-  return (parts.length > 0 ? parts : [normalized]).slice(0, 3).map((item) => clipText(item, 52));
-}
+// 内联 findRecommendedPath / clipText / scoreLabel / buildQualityItems / extractActionItems
+// 已抽出到 ../_helpers.ts,并修了两处边界 bug,见 _helpers.test.ts。
 
 function scoreText(path: FuturePath, key: keyof FuturePath["scores"]) {
   const score = path.scores[key];
   if (!score) return "未提供";
   return `${score.value}/10 ${score.reason}`;
-}
-
-function clipText(text: string, max: number) {
-  if (text.length <= max) return text;
-  return `${text.slice(0, max - 1)}…`;
-}
-
-function scoreLabel(key: string) {
-  const labels: Record<string, string> = {
-    income: "收入",
-    stability: "稳定",
-    growth: "成长",
-    happiness: "幸福",
-    risk: "风险",
-    school_fit: "学校",
-    major_fit: "专业",
-  };
-  return labels[key] || key;
 }
