@@ -3,8 +3,8 @@ import { MemoryFutureRepository } from "./repository";
 import { getPostgresPool } from "./pg-client";
 import { PostgresFutureRepository } from "./postgres";
 import { createFutureRun, generateFutureRun, getFutureRunResult, startFutureRun } from "./service";
-import type { FutureRepository } from "./repository";
-import type { FutureRunInput } from "./types";
+import type { FutureRepository, ListRunsOptions } from "./repository";
+import type { FutureRunInput, FutureRunListItem } from "./types";
 
 export interface FutureServerOptions {
   repository?: FutureRepository;
@@ -69,4 +69,13 @@ export async function handleGenerateFutureRun(
 
 export async function handleGetFutureRun(runId: string, options: FutureServerOptions = {}) {
   return getFutureRunResult(runId, options.repository || getDefaultFutureRepository());
+}
+
+export async function handleListFutureRuns(
+  opts: ListRunsOptions = {},
+  options: FutureServerOptions = {},
+): Promise<FutureRunListItem[]> {
+  return options.repository
+    ? options.repository.listRuns(opts)
+    : getDefaultFutureRepository().listRuns(opts);
 }

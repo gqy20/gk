@@ -125,3 +125,17 @@ export interface FutureRunResult {
   run: FutureRunRecord;
   output: FutureStructuredOutput | null;
 }
+
+/** 历史列表卡片用的轻量项(不含完整 output) */
+export interface FutureRunListItem {
+  id: string;
+  title: string;
+  summary: string;
+  school: string;
+  major?: string;
+  status: FutureRunStatus;
+  fitScoreMax: number;
+  toneTop: ProbabilityTone | null;
+  errorMessage: string | null;
+  createdAt: string;
+}

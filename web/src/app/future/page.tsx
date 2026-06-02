@@ -3,11 +3,12 @@
 import { FormEvent, Suspense, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { createFutureRunFromClient } from "@/lib/future/client";
-import type { FutureRunInput } from "@/lib/future/types";
+import { createFutureRunFromClient, fetchFutureRunsFromClient } from "@/lib/future/client";
+import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
 import type { School } from "@/lib/data";
 import { PROVINCE_COORDS } from "@/lib/provinces";
 import { FuturePanel, FutureShell, SectionHeading } from "./FutureShell";
+import { TONE, type ToneKey } from "./_tone";
 
 function splitTags(value: string) {
   return value
@@ -55,6 +56,10 @@ function FuturePageContent() {
   const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [tab, setTab] = useState<"form" | "history">("form");
+  const [historyItems, setHistoryItems] = useState<FutureRunListItem[] | null>(null);
+  const [historyError, setHistoryError] = useState<string | null>(null);
+  const [historyLoading, setHistoryLoading] = useState(false);
   const provinceOptions = useMemo(() => Object.keys(PROVINCE_COORDS), []);
 
   useEffect(() => {
@@ -73,6 +78,29 @@ function FuturePageContent() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (tab !== "history") return;
+    let cancelled = false;
+    setHistoryLoading(true);
+    setHistoryError(null);
+    fetchFutureRunsFromClient({ limit: 20 })
+      .then((items) => {
+        if (cancelled) return;
+        setHistoryItems(items);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setHistoryError(err instanceof Error ? err.message : "拉取历史失败");
+        setHistoryItems([]);
+      })
+      .finally(() => {
+        if (!cancelled) setHistoryLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [tab]);
 
   const selectedSchool = useMemo(
     () => schools.find((item) => item.name === targetSchool) || null,
@@ -154,6 +182,9 @@ function FuturePageContent() {
       backLabel="返回"
       eyebrow="3 条路径 · 分叉推演 · Neon 保存"
     >
+      <TabBar value={tab} onChange={setTab} />
+
+      {tab === "form" && (
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <FuturePanel className="p-5">
@@ -281,8 +312,188 @@ function FuturePageContent() {
           </FuturePanel>
         </aside>
       </div>
+      )}
+
+      {tab === "history" && (
+        <HistoryList
+          items={historyItems}
+          loading={historyLoading}
+          error={historyError}
+          onReload={() => {
+            setTab("form");
+            // 下一帧切回 history,触发 useEffect 重拉
+            setTimeout(() => setTab("history"), 0);
+          }}
+        />
+      )}
     </FutureShell>
   );
+}
+
+function TabBar({ value, onChange }: { value: "form" | "history"; onChange: (v: "form" | "history") => void }) {
+  return (
+    <div className="mb-5 inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated/60 p-1 backdrop-blur-sm">
+      {([
+        { key: "form", label: "新推演" },
+        { key: "history", label: "历史" },
+      ] as const).map((item) => {
+        const active = value === item.key;
+        return (
+          <button
+            key={item.key}
+            type="button"
+            onClick={() => onChange(item.key)}
+            aria-pressed={active}
+            className={`rounded-full px-3.5 py-1 font-mono text-[11px] uppercase tracking-[0.18em] transition ${
+              active
+                ? "bg-accent/15 text-accent shadow-[0_0_0_1px_rgba(74,158,137,0.35)_inset]"
+                : "text-text-muted hover:text-text"
+            }`}
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function HistoryList({
+  items,
+  loading,
+  error,
+  onReload,
+}: {
+  items: FutureRunListItem[] | null;
+  loading: boolean;
+  error: string | null;
+  onReload: () => void;
+}) {
+  if (loading) {
+    return (
+      <FuturePanel className="p-5">
+        <div className="flex items-center gap-3 text-sm text-text-secondary">
+          <span aria-hidden className="relative flex h-2.5 w-2.5">
+            <span className="absolute inset-0 animate-ping rounded-full bg-accent/60" />
+            <span className="relative h-2.5 w-2.5 rounded-full bg-accent" />
+          </span>
+          <span>正在拉取历史…</span>
+        </div>
+      </FuturePanel>
+    );
+  }
+
+  if (error) {
+    return (
+      <FuturePanel className="p-5">
+        <p className="text-sm text-amber-300">拉取历史失败：{error}</p>
+        <button
+          type="button"
+          onClick={onReload}
+          className="mt-3 rounded-lg border border-border bg-surface-subtle/50 px-3 py-1.5 text-xs text-text-secondary hover:border-accent/40 hover:text-accent"
+        >
+          重试
+        </button>
+      </FuturePanel>
+    );
+  }
+
+  if (!items || items.length === 0) {
+    return (
+      <FuturePanel className="p-8 text-center">
+        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">Empty</div>
+        <p className="mt-2 text-sm text-text-secondary">还没有推演记录</p>
+        <p className="mt-1 text-xs text-text-muted">完成一次推演后,历史会出现在这里。</p>
+      </FuturePanel>
+    );
+  }
+
+  return (
+    <div className="grid gap-3">
+      {items.map((item) => (
+        <HistoryCard key={item.id} item={item} />
+      ))}
+    </div>
+  );
+}
+
+function HistoryCard({ item }: { item: FutureRunListItem }) {
+  const tone: ToneKey =
+    item.toneTop === "稳健" ? "steady" : item.toneTop === "冒险" ? "risky" : "balanced";
+  const toneCls = TONE[tone];
+  const dateLabel = formatRelative(item.createdAt);
+  const subtitle = [item.school, item.major].filter(Boolean).join(" · ") || "未指定学校";
+  return (
+    <a
+      href={`/future/result?runId=${encodeURIComponent(item.id)}`}
+      className="group/card relative block overflow-hidden rounded-2xl border border-border bg-surface-elevated/60 p-4 transition hover:-translate-y-0.5 hover:border-accent/40 sm:p-5"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+      />
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            {item.status === "generating" ? (
+              <span className="flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
+                <span aria-hidden className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inset-0 animate-ping rounded-full bg-primary/60" />
+                  <span className="relative h-1.5 w-1.5 rounded-full bg-primary" />
+                </span>
+                生成中
+              </span>
+            ) : item.status === "failed" ? (
+              <span className="rounded-full border border-red-300/40 bg-red-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-red-300">
+                失败
+              </span>
+            ) : (
+              <span
+                className={`rounded-full px-2 py-0.5 font-mono text-[10px] ring-1 ${toneCls.bg} ${toneCls.fg} ${toneCls.ring}`}
+              >
+                {item.toneTop || "已生成"}
+              </span>
+            )}
+            <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+              {dateLabel}
+            </span>
+          </div>
+          <h3 className="mt-1.5 truncate text-sm font-semibold tracking-tight text-text">
+            {item.title || `${item.school}的推演`}
+          </h3>
+          <p className="mt-0.5 text-xs text-text-secondary">
+            {subtitle}
+          </p>
+          {item.summary && (
+            <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-text-muted">
+              {item.summary}
+            </p>
+          )}
+          {item.status === "failed" && item.errorMessage && (
+            <p className="mt-1.5 text-[11px] text-red-300">{item.errorMessage}</p>
+          )}
+        </div>
+        <div className="shrink-0 text-right">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-text-muted">FIT</div>
+          <div className={`text-2xl font-semibold tabular-nums ${item.fitScoreMax > 0 ? toneCls.fg : "text-text-placeholder"}`}>
+            {item.fitScoreMax > 0 ? item.fitScoreMax : "--"}
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function formatRelative(iso: string) {
+  if (!iso) return "";
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return iso;
+  const diffSec = Math.floor((Date.now() - t) / 1000);
+  if (diffSec < 60) return "刚刚";
+  if (diffSec < 3600) return `${Math.floor(diffSec / 60)} 分钟前`;
+  if (diffSec < 86400) return `${Math.floor(diffSec / 3600)} 小时前`;
+  if (diffSec < 86400 * 7) return `${Math.floor(diffSec / 86400)} 天前`;
+  return new Date(t).toLocaleDateString("zh-Hans-CN");
 }
 
 function FormStep({

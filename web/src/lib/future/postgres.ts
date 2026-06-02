@@ -1,5 +1,5 @@
-import type { CompleteRunParams, CreateRunParams, FutureRepository } from "./repository";
-import type { FuturePath, FutureRunRecord, FutureRunResult, FutureStructuredOutput } from "./types";
+import type { CompleteRunParams, CreateRunParams, FutureRepository, ListRunsOptions } from "./repository";
+import type { FuturePath, FutureRunListItem, FutureRunRecord, FutureRunResult, FutureStructuredOutput } from "./types";
 
 export const FUTURE_SCHEMA_SQL = `
 create table if not exists future_runs (
@@ -78,6 +78,29 @@ function mapRunRow(row: Record<string, unknown>): FutureRunRecord {
     outputTokens: typeof row.output_tokens === "number" ? row.output_tokens : null,
     createdAt: row.created_at ? String(row.created_at) : undefined,
     updatedAt: row.updated_at ? String(row.updated_at) : undefined,
+  };
+}
+
+/** 把 listRuns 的 select 行压成列表卡片项 */
+function mapListRow(row: Record<string, unknown>): FutureRunListItem {
+  const paths = parseMaybeJson<Array<{ fit_score: number; probability_tone: "稳健" | "均衡" | "冒险" }>>(row.output_paths ?? []);
+  const fitScores = paths.map((p) => p?.fit_score ?? 0);
+  const fitScoreMax = fitScores.length ? Math.max(...fitScores) : 0;
+  const top = fitScoreMax > 0
+    ? paths.reduce<typeof paths[number] | null>((best, p) => (best && best.fit_score >= p.fit_score ? best : p), null)
+    : null;
+  const summary = String(row.output_summary || "");
+  return {
+    id: String(row.id),
+    title: String(row.output_title || ""),
+    summary: summary.length > 80 ? `${summary.slice(0, 79)}…` : summary,
+    school: String(row.school || ""),
+    major: row.major ? String(row.major) : undefined,
+    status: row.status as FutureRunListItem["status"],
+    fitScoreMax,
+    toneTop: top?.probability_tone ?? null,
+    errorMessage: row.error ? String(row.error) : null,
+    createdAt: row.created_at ? String(row.created_at) : new Date().toISOString(),
   };
 }
 
@@ -165,6 +188,26 @@ export class PostgresFutureRepository implements FutureRepository {
       run,
       output: row.output_json ? parseMaybeJson<FutureStructuredOutput>(row.output_json) : null,
     };
+  }
+
+  async listRuns(opts: ListRunsOptions = {}): Promise<FutureRunListItem[]> {
+    const limit = opts.limit ?? 20;
+    const result = await this.db.query<Record<string, unknown>>(
+      `select id,
+              status,
+              error,
+              created_at,
+              input_json->'choiceContext'->>'school' as school,
+              input_json->'choiceContext'->>'major' as major,
+              output_json->>'title' as output_title,
+              output_json->>'summary' as output_summary,
+              output_json->'paths' as output_paths
+       from future_runs
+       order by created_at desc
+       limit $1`,
+      [limit],
+    );
+    return result.rows.map(mapListRow);
   }
 
   private async insertPath(runId: string, path: FuturePath) {

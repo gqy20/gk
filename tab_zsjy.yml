@@ -1,0 +1,231 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - text:          
+    - generic [ref=e5]:
+      - generic [ref=e7]:
+        - link "一网通办" [ref=e8] [cursor=pointer]:
+          - /url: https://ihall.hebut.edu.cn
+        - text: "|"
+        - link "邮箱登录" [ref=e9] [cursor=pointer]:
+          - /url: http://mail.hebut.edu.cn/
+        - text: "|"
+        - link "English" [ref=e10] [cursor=pointer]:
+          - /url: https://eweb.hebut.edu.cn/
+        - text: "|"
+        - link "VPN服务" [ref=e11] [cursor=pointer]:
+          - /url: https://cst.hebut.edu.cn/fwzn/VPNfw/2637b825a6c54cdb9b39bd182c9fcd29.htm
+        - text: "|"
+        - link "电话查询" [ref=e12] [cursor=pointer]:
+          - /url: ../dhcx/index.htm
+        - text: "|"
+      - generic [ref=e13]:
+        - link " 学生" [ref=e14] [cursor=pointer]:
+          - /url: ../yhtd/xs/index.htm
+          - generic [ref=e15]: 
+          - text: 学生
+        - link " 教职工" [ref=e16] [cursor=pointer]:
+          - /url: ../yhtd/jzg/index.htm
+          - generic [ref=e17]: 
+          - text: 教职工
+        - link " 校友" [ref=e18] [cursor=pointer]:
+          - /url: ../yhtd/xy1/index.htm
+          - generic [ref=e19]: 
+          - text: 校友
+        - link " 访客" [ref=e20] [cursor=pointer]:
+          - /url: ../yhtd/fk/index.htm
+          - generic [ref=e21]: 
+          - text: 访客
+        - text: "|"
+        - generic: 
+        - link "" [ref=e22] [cursor=pointer]:
+          - /url: javascript:void(0)
+    - generic [ref=e26]:
+      - link [ref=e27] [cursor=pointer]:
+        - /url: ../index.htm
+        - img [ref=e29]
+        - img [ref=e32]
+      - generic [ref=e35]:
+        - list [ref=e36]:
+          - listitem [ref=e37]:
+            - link "工大概况" [ref=e38] [cursor=pointer]:
+              - /url: ../gdgk/index.htm
+          - listitem [ref=e39]:
+            - link "机构设置" [ref=e40] [cursor=pointer]:
+              - /url: ../jgsz1/index.htm
+          - listitem [ref=e41]:
+            - link "师资队伍" [ref=e42] [cursor=pointer]:
+              - /url: ../szdw/index.htm
+          - listitem [ref=e43]:
+            - link "教育教学" [ref=e44] [cursor=pointer]:
+              - /url: ../rcpy/index.htm
+          - listitem [ref=e45]:
+            - link "科学研究" [ref=e46] [cursor=pointer]:
+              - /url: ../kxyj/index.htm
+        - list [ref=e47]:
+          - listitem [ref=e48]:
+            - link "招生就业" [ref=e49] [cursor=pointer]:
+              - /url: index.htm
+          - listitem [ref=e50]:
+            - link "人才招聘" [ref=e51] [cursor=pointer]:
+              - /url: ../rczp/index.htm
+          - listitem [ref=e52]:
+            - link "合作交流" [ref=e53] [cursor=pointer]:
+              - /url: ../hzjl/index.htm
+          - listitem [ref=e54]:
+            - link "走进工大" [ref=e55] [cursor=pointer]:
+              - /url: ../zjgd/index.htm
+          - listitem [ref=e56]:
+            - link "校友之家" [ref=e57] [cursor=pointer]:
+              - /url: https://xyh.hebut.edu.cn
+  - heading "招生就业" [level=2] [ref=e62]
+  - generic [ref=e64]:
+    - text: 
+    - list [ref=e67]:
+      - listitem [ref=e68]:
+        - link "本科生招生 本科生招生" [ref=e69] [cursor=pointer]:
+          - /url: https://zs.hebut.edu.cn
+          - generic [ref=e70]: 本科生招生 本科生招生
+      - listitem [ref=e71]:
+        - link "研究生招生 研究生招生" [ref=e72] [cursor=pointer]:
+          - /url: http://yjs.hebut.edu.cn/zsgz/index.htm
+          - generic [ref=e73]: 研究生招生 研究生招生
+      - listitem [ref=e74]:
+        - link "留学生招生 留学生招生" [ref=e75] [cursor=pointer]:
+          - /url: https://sie.hebut.edu.cn/zsxx/zsjz/lxszsjz/index.htm
+          - generic [ref=e76]: 留学生招生 留学生招生
+      - listitem [ref=e77]:
+        - link "继续教育招生 继续教育招生" [ref=e78] [cursor=pointer]:
+          - /url: https://chengjiao.hebut.edu.cn/zszl/zsdt/index.htm
+          - generic [ref=e79]: 继续教育招生 继续教育招生
+      - listitem [ref=e80]:
+        - link "就业服务 就业服务" [ref=e81] [cursor=pointer]:
+          - /url: http://career.hebut.edu.cn
+          - generic [ref=e82]: 就业服务 就业服务
+      - listitem [ref=e83]:
+        - link "迎新服务 迎新服务" [ref=e84] [cursor=pointer]:
+          - /url: https://yx.hebut.edu.cn
+          - generic [ref=e85]: 迎新服务 迎新服务
+    - generic [ref=e86]:
+      - link "":
+        - /url: ../index.htm
+        - generic [ref=e87] [cursor=pointer]: 
+      - generic [ref=e88]: 
+      - link "招生就业" [ref=e89] [cursor=pointer]:
+        - /url: index.htm
+    - generic [ref=e90]:
+      - generic [ref=e92]:
+        - generic [ref=e94]: 
+        - heading "招生就业" [level=2] [ref=e95]
+      - list [ref=e97]:
+        - listitem [ref=e98]:
+          - link "本科生招生 查看更多 " [ref=e99] [cursor=pointer]:
+            - /url: https://zs.hebut.edu.cn
+            - generic [ref=e101]:
+              - heading "本科生招生" [level=3] [ref=e102]
+              - generic [ref=e103]:
+                - generic [ref=e104]: 查看更多
+                - generic [ref=e105]: 
+        - listitem [ref=e109]:
+          - link "研究生招生 查看更多 " [ref=e110] [cursor=pointer]:
+            - /url: http://yjs.hebut.edu.cn/zsgz/index.htm
+            - generic [ref=e112]:
+              - heading "研究生招生" [level=3] [ref=e113]
+              - generic [ref=e114]:
+                - generic [ref=e115]: 查看更多
+                - generic [ref=e116]: 
+        - listitem [ref=e120]:
+          - link "留学生招生 查看更多 " [ref=e121] [cursor=pointer]:
+            - /url: https://sie.hebut.edu.cn/zsxx/zsjz/lxszsjz/index.htm
+            - generic [ref=e123]:
+              - heading "留学生招生" [level=3] [ref=e124]
+              - generic [ref=e125]:
+                - generic [ref=e126]: 查看更多
+                - generic [ref=e127]: 
+        - listitem [ref=e131]:
+          - link "继续教育招生 查看更多 " [ref=e132] [cursor=pointer]:
+            - /url: https://chengjiao.hebut.edu.cn/zszl/zsdt/index.htm
+            - generic [ref=e134]:
+              - heading "继续教育招生" [level=3] [ref=e135]
+              - generic [ref=e136]:
+                - generic [ref=e137]: 查看更多
+                - generic [ref=e138]: 
+        - listitem [ref=e142]:
+          - link "就业服务 查看更多 " [ref=e143] [cursor=pointer]:
+            - /url: http://career.hebut.edu.cn
+            - generic [ref=e145]:
+              - heading "就业服务" [level=3] [ref=e146]
+              - generic [ref=e147]:
+                - generic [ref=e148]: 查看更多
+                - generic [ref=e149]: 
+        - listitem [ref=e153]:
+          - link "迎新服务 查看更多 " [ref=e154] [cursor=pointer]:
+            - /url: https://yx.hebut.edu.cn
+            - generic [ref=e156]:
+              - heading "迎新服务" [level=3] [ref=e157]
+              - generic [ref=e158]:
+                - generic [ref=e159]: 查看更多
+                - generic [ref=e160]: 
+  - contentinfo [ref=e165]:
+    - generic [ref=e166]:
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - link [ref=e170] [cursor=pointer]:
+            - /url: index.htm
+            - img [ref=e171]
+          - list [ref=e172]:
+            - listitem [ref=e173]:
+              - paragraph [ref=e175]: 官方微信
+            - listitem [ref=e176]:
+              - paragraph [ref=e178]: 官方微博
+        - list [ref=e179]:
+          - listitem [ref=e180]:
+            - link "中华人民共和国教育部" [ref=e181] [cursor=pointer]:
+              - /url: http://www.moe.gov.cn/
+          - listitem [ref=e182]:
+            - link "中国高等教育学生信息网" [ref=e183] [cursor=pointer]:
+              - /url: https://www.chsi.com.cn
+          - listitem [ref=e184]:
+            - link "中国学位与研究生教育信息网" [ref=e185] [cursor=pointer]:
+              - /url: http://www.cdgdc.edu.cn
+          - listitem [ref=e186]:
+            - link "中国大学生在线" [ref=e187] [cursor=pointer]:
+              - /url: http://www.univs.cn/
+          - listitem [ref=e188]:
+            - link "河北省教育厅" [ref=e189] [cursor=pointer]:
+              - /url: http://www.hee.gov.cn
+          - listitem [ref=e190]:
+            - link "天津市教育委员会" [ref=e191] [cursor=pointer]:
+              - /url: http://jy.tj.gov.cn
+          - listitem [ref=e192]:
+            - link "廉韵津沽" [ref=e193] [cursor=pointer]:
+              - /url: http://www.tjjw.gov.cn/html/qmcyzd/lztj/
+          - listitem [ref=e194]:
+            - link "信访举报专区" [ref=e195] [cursor=pointer]:
+              - /url: http://xww.hebut.edu.cn/zhxw/69781.htm
+      - generic [ref=e196]:
+        - generic [ref=e197]:
+          - paragraph [ref=e198]:
+            - generic [ref=e199]: 
+            - text: 书记邮箱 shuji@hebut.edu.cn
+            - generic [ref=e200]: 校长邮箱 xiaozhang@hebut.edu.cn
+          - paragraph [ref=e201]:
+            - generic [ref=e202]: 
+            - text: 地址：天津市北辰区西平道 5340 号
+          - paragraph [ref=e203]:
+            - generic [ref=e204]: 
+            - text: 邮编：300401
+          - paragraph [ref=e205]:
+            - generic [ref=e206]: 
+            - text: 电话 ：022-60438000
+        - generic [ref=e207]:
+          - link:
+            - /url: "http://bszs.conac.cn/sitename?method=show&id=58074951E51C37F1E053022819AC1568 "
+          - paragraph [ref=e208]:
+            - text: ©CopyRight 河北工业大学
+            - link "津ICP备05003053号-1 津教备0020号" [ref=e209] [cursor=pointer]:
+              - /url: "https://beian.miit.gov.cn "
+            - link "津公网安备12010602120142" [ref=e210] [cursor=pointer]:
+              - /url: http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12010602120142
+            - text: 访问量： 40922295
+  - link "" [ref=e211] [cursor=pointer]:
+    - /url: javascript:void(0)

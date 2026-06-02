@@ -1,4 +1,4 @@
-import type { FutureRunInput, FutureRunResult } from "./types";
+import type { FutureRunInput, FutureRunListItem, FutureRunResult } from "./types";
 
 export class FutureApiError extends Error {
   constructor(message: string) {
@@ -37,4 +37,14 @@ export async function fetchFutureRunFromClient(runId: string) {
   }
 
   return res.json() as Promise<FutureRunResult>;
+}
+
+export async function fetchFutureRunsFromClient(opts: { limit?: number } = {}) {
+  const qs = opts.limit ? `?limit=${encodeURIComponent(String(opts.limit))}` : "";
+  const res = await fetch(futureApiUrl(`/api/future-runs${qs}`));
+  if (!res.ok) {
+    throw new FutureApiError(await res.text());
+  }
+  const data = (await res.json()) as { items?: FutureRunListItem[] };
+  return data.items ?? [];
 }
