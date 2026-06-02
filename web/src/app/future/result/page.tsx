@@ -62,7 +62,9 @@ function FutureResultContent() {
   const output = result?.output;
   const isGenerating = result?.run.status === "generating";
   const recommendedPath = output ? findRecommendedPath(output) : null;
-  const displayedPaths = output ? orderPaths(output.paths, recommendedPath) : [];
+  const alternatePaths = output
+    ? output.paths.filter((path) => path.index !== recommendedPath?.index)
+    : [];
 
   return (
     <FutureShell
@@ -90,14 +92,20 @@ function FutureResultContent() {
             <InsightPanels output={output} />
             <ComparisonTable output={output} recommendedPath={recommendedPath} />
             <BranchPlanStrip output={output} recommendedPath={recommendedPath} />
-            <section className="space-y-3 lg:columns-2 lg:gap-3">
-              {displayedPaths.map((path) => (
+            <section className="space-y-3">
+              {recommendedPath && (
                 <PathCard
-                  key={path.index}
-                  path={path}
-                  isRecommended={path.index === recommendedPath?.index}
+                  path={recommendedPath}
+                  isRecommended
                 />
-              ))}
+              )}
+              {alternatePaths.length > 0 && (
+                <div className="grid items-start gap-3 lg:grid-cols-2">
+                  {alternatePaths.map((path) => (
+                    <PathCard key={path.index} path={path} isRecommended={false} />
+                  ))}
+                </div>
+              )}
             </section>
           </div>
         )}
@@ -311,7 +319,7 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
   return (
     <article
       id={`path-${path.index}`}
-      className={`mb-3 break-inside-avoid scroll-mt-20 rounded-lg border p-4 ${
+      className={`scroll-mt-20 rounded-lg border p-4 ${
         isRecommended
           ? "border-[#d6c9ab] bg-[#fffaf0] shadow-sm shadow-black/5"
           : "border-black/10 bg-[#fffaf0]"
@@ -415,14 +423,6 @@ function findRecommendedPath(output: FutureStructuredOutput) {
   if (balancedTone) return balancedTone;
 
   return [...output.paths].sort((a, b) => b.fit_score - a.fit_score)[0] || null;
-}
-
-function orderPaths(paths: FuturePath[], recommendedPath: FuturePath | null) {
-  if (!recommendedPath) return paths;
-  return [
-    recommendedPath,
-    ...paths.filter((path) => path.index !== recommendedPath.index),
-  ];
 }
 
 function buildQualityItems(output: FutureStructuredOutput) {

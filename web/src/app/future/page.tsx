@@ -1,10 +1,11 @@
 "use client";
 
-import { FormEvent, Suspense, useMemo, useState, type ReactNode } from "react";
+import { FormEvent, Suspense, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { createFutureRunFromClient } from "@/lib/future/client";
 import type { FutureRunInput } from "@/lib/future/types";
+import type { School } from "@/lib/data";
 import { FuturePanel, FutureShell, SectionHeading } from "./FutureShell";
 
 function splitTags(value: string) {
@@ -50,8 +51,48 @@ function FuturePageContent() {
   const [targetMajor, setTargetMajor] = useState(major);
   const [targetCity, setTargetCity] = useState(city);
   const [pathCount, setPathCount] = useState(3);
+  const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadSchools() {
+      try {
+        const res = await fetch("/data/schools.json");
+        const raw = await res.json();
+        if (!cancelled) setSchools(raw.schools || []);
+      } catch {
+        if (!cancelled) setSchools([]);
+      }
+    }
+    loadSchools();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const selectedSchool = useMemo(
+    () => schools.find((item) => item.name === targetSchool) || null,
+    [schools, targetSchool],
+  );
+  const cityOptions = useMemo(() => {
+    const values = schools.map((item) => extractCity(item)).filter(Boolean);
+    return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b, "zh-Hans-CN"));
+  }, [schools]);
+  const majorOptions = useMemo(() => {
+    const values = [
+      ...(selectedSchool?.detail?.major_satisfaction || []).map((item) => item.title),
+      ...(selectedSchool?.detail?.colleges || []).flatMap((college) => college.disciplines || []),
+    ];
+    return Array.from(new Set(values.filter(Boolean))).slice(0, 80);
+  }, [selectedSchool]);
+
+  useEffect(() => {
+    if (!selectedSchool) return;
+    const nextCity = extractCity(selectedSchool);
+    if (nextCity && !targetCity) setTargetCity(nextCity);
+  }, [selectedSchool, targetCity]);
 
   const input = useMemo<FutureRunInput>(() => ({
     profile: {
@@ -116,9 +157,31 @@ function FuturePageContent() {
           <FuturePanel className="p-5">
             <FormStep number="01" title="目标志愿" description="先确定这次要推演的学校、专业和城市。">
               <div className="grid gap-3 sm:grid-cols-3">
-                <Field label="目标学校" value={targetSchool} onChange={setTargetSchool} required />
-                <Field label="目标专业" value={targetMajor} onChange={setTargetMajor} />
-                <Field label="目标城市" value={targetCity} onChange={setTargetCity} />
+                <OptionSelect
+                  label="目标学校"
+                  value={targetSchool}
+                  onChange={(value) => {
+                    setTargetSchool(value);
+                    const school = schools.find((item) => item.name === value);
+                    const nextCity = school ? extractCity(school) : "";
+                    if (nextCity) setTargetCity(nextCity);
+                  }}
+                  options={schools.map((item) => item.name)}
+                  required
+                />
+                <OptionSelect
+                  label="目标专业"
+                  value={targetMajor}
+                  onChange={setTargetMajor}
+                  options={majorOptions}
+                  placeholder={selectedSchool ? "选择专业/学科方向" : "先选择学校"}
+                />
+                <OptionSelect
+                  label="目标城市"
+                  value={targetCity}
+                  onChange={setTargetCity}
+                  options={cityOptions}
+                />
               </div>
             </FormStep>
           </FuturePanel>
@@ -301,4 +364,53 @@ function Select({
       </select>
     </label>
   );
+}
+
+function OptionSelect({
+  label,
+  value,
+  onChange,
+  options,
+  required,
+  placeholder = "请选择",
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: string[];
+  required?: boolean;
+  placeholder?: string;
+}) {
+  const normalizedOptions = value && !options.includes(value) ? [value, ...options] : options;
+  return (
+    <label className="block space-y-1.5 text-xs font-medium text-[#657064]">
+      <span>{label}</span>
+      <select
+        required={required}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="h-10 w-full rounded-lg border border-black/10 bg-white px-3 text-sm text-[#1d241f] outline-none transition focus:border-[#b99335]"
+      >
+        <option value="">{placeholder}</option>
+        {normalizedOptions.map((option) => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function extractCity(school: School) {
+  const location = school.detail?.basic_info?.location || school.detail?.basic_info?.address || "";
+  const directCity = location.match(/([^省自治区\s，,：:]{2,8}市)/)?.[1];
+  if (directCity) return directCity.replace(/市$/, "");
+  const provinceCityMap: Record<string, string> = {
+    北京: "北京",
+    上海: "上海",
+    天津: "天津",
+    重庆: "重庆",
+    香港: "香港",
+    澳门: "澳门",
+  };
+  return provinceCityMap[school.province] || school.province;
 }
