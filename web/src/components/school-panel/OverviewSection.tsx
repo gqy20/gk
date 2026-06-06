@@ -420,7 +420,7 @@ const SourcePopover = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "fixed z-[9999] w-[300px] rounded-xl border border-brand-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm transition-[opacity,transform] duration-200 ease-out",
+        "fixed z-[9999] w-[300px] rounded-xl border border-brand-300/40 bg-surface-light/95 p-3 shadow-xl shadow-neutral-900/8 backdrop-blur-sm transition-[opacity,transform] duration-200 ease-out",
         visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",
       )}
       style={{ top: pos.top, left: pos.left }}
@@ -448,7 +448,7 @@ const SourcePopover = forwardRef<
             href={src.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg border border-border-subtle/60 bg-neutral-0/[0.03] p-2 text-[11px] leading-relaxed transition hover:bg-neutral-0/[0.07] hover:border-brand-400/40"
+            className="block rounded-lg border border-border-subtle/60 bg-neutral-900/5 p-2 text-[11px] leading-relaxed transition hover:bg-neutral-900/10 hover:border-brand-400/40"
           >
             <div className="line-clamp-1 font-medium text-brand-600">
               {src.title || new URL(src.url).hostname.replace("www.", "")}

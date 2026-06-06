@@ -18,12 +18,12 @@ export function FutureShell({
 }) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-surface text-text">
-      <header className="sticky top-0 z-20 border-b border-border bg-surface/85 backdrop-blur-xl">
+      <header className="sticky top-0 z-20 border-b border-border bg-surface-elevated/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
           <div className="flex min-w-0 items-center gap-3">
             <a
               href={backHref}
-              className="group flex items-center gap-1.5 rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-[11px] font-medium text-text-secondary transition hover:border-accent/50 hover:text-text"
+              className="group flex items-center gap-1.5 rounded-full border border-border bg-surface-elevated px-2.5 py-1 text-[11px] font-medium text-text-secondary transition hover:border-primary/40 hover:bg-brand-50 hover:text-primary"
             >
               <span aria-hidden className="transition group-hover:-translate-x-0.5">←</span>
               {backLabel}
@@ -85,13 +85,13 @@ export function FuturePanel({
   const Component: ElementType = as ?? "section";
   return (
     <Component
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated/70 backdrop-blur-sm
-                  shadow-[0_1px_0_0_rgba(255,249,236,0.06)_inset,0_24px_48px_-24px_rgba(0,0,0,0.6)]
+      className={`group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated
+                  shadow-[0_1px_0_0_rgba(255,255,255,0.7)_inset,0_18px_40px_-28px_rgba(17,24,32,0.35)]
                   transition hover:border-border-subtle ${ringClass} ${className}`}
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/80 to-transparent"
       />
       {children}
     </Component>

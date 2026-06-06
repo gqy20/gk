@@ -156,7 +156,7 @@ export default function ProvinceList({
               className={cn(
                 "w-full px-3 py-3 text-left transition",
                 isSelected
-                  ? "bg-brand-500 text-text"
+                  ? "bg-brand-500 text-text-inverse"
                   : "bg-surface-light-elevated text-text-light hover:bg-surface-light-hover",
               )}
             >

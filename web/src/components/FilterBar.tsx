@@ -42,7 +42,7 @@ export default function FilterBar({
     <div className="flex flex-col gap-1.5 sm:gap-3 lg:grid lg:grid-cols-[minmax(240px,420px)_1fr_auto] lg:items-center">
       {/* 移动端：搜索框 + 筛选标签 + 重置 单行排列；桌面端保持原布局 */}
       <div className="flex items-center gap-1.5 sm:flex-col sm:items-stretch">
-        <label className="group flex h-8 flex-1 items-center gap-2 rounded-lg border border-border bg-surface-active px-2.5 transition focus-within:border-primary/70 focus-within:bg-surface-hover sm:h-11 sm:gap-3 sm:px-3">
+        <label className="group flex h-8 flex-1 items-center gap-2 rounded-lg border border-border bg-surface-subtle px-2.5 transition focus-within:border-primary/70 focus-within:bg-surface-hover sm:h-11 sm:gap-3 sm:px-3">
           <input
             value={query}
             onChange={(event) => onQueryChange(event.target.value)}
@@ -121,7 +121,7 @@ function FilterTag({
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      whileHover={{ scale: 1.04, borderColor: "rgba(47,125,109,0.5)" }}
+      whileHover={{ scale: 1.04, borderColor: "rgba(37,111,143,0.45)" }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 22 }}
       className={cn(

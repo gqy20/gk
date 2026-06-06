@@ -19,16 +19,16 @@ const variantStyles: Record<
 > = {
   dark: {
     primary:
-      "border-border bg-surface-subtle text-text hover:border-primary/60 hover:bg-primary/10",
+      "border-brand-500 bg-brand-500 text-text-inverse hover:bg-brand-600",
     secondary:
-      "border-border bg-surface-active text-text-secondary hover:border-primary/60 hover:bg-primary/10",
-    ghost: "border-transparent text-text-secondary hover:text-text hover:bg-surface-active",
+      "border-border bg-surface-elevated text-text-secondary hover:border-primary/50 hover:bg-brand-50 hover:text-primary",
+    ghost: "border-transparent text-text-secondary hover:text-text hover:bg-surface-subtle",
     danger:
-      "border-border bg-surface-active text-text-secondary hover:border-danger-200/40 hover:text-danger-100",
+      "border-border bg-surface-elevated text-text-secondary hover:border-danger-200/60 hover:bg-danger-soft hover:text-danger",
   },
   light: {
     primary:
-      "border-brand-500 bg-brand-500 text-text hover:bg-brand-400 disabled:opacity-40",
+      "border-brand-500 bg-brand-500 text-text-inverse hover:bg-brand-600 disabled:opacity-40",
     secondary:
       "border-border-light bg-surface-light-elevated text-text-light hover:border-brand-400/50 hover:bg-success-soft",
     ghost: "border-transparent text-text-light hover:text-brand-500 hover:bg-surface-light-subtle",
@@ -39,13 +39,13 @@ const variantStyles: Record<
 
 const activeStyles: Record<ButtonTheme, Record<ButtonVariant, string>> = {
   dark: {
-    primary: "border-primary/60 bg-primary/10 text-text",
-    secondary: "border-primary/60 bg-primary/10 text-text",
-    ghost: "bg-surface-active text-text",
-    danger: "border-danger-200/40 text-danger-100",
+    primary: "border-primary bg-primary text-text-inverse",
+    secondary: "border-primary/50 bg-brand-50 text-primary",
+    ghost: "bg-surface-subtle text-text",
+    danger: "border-danger-200/60 bg-danger-soft text-danger",
   },
   light: {
-    primary: "border-brand-500 bg-brand-500 text-text",
+    primary: "border-brand-500 bg-brand-500 text-text-inverse",
     secondary: "border-brand-400/50 bg-success-soft text-brand-500",
     ghost: "bg-surface-light-subtle text-brand-500",
     danger: "border-danger-200/40 text-danger-400",

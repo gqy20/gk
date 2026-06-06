@@ -105,7 +105,7 @@ function Home() {
     <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-surface text-text">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.55)_1px,transparent_1px)] [background-size:44px_44px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.45] [background-image:linear-gradient(rgba(17,24,32,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,32,0.035)_1px,transparent_1px)] [background-size:44px_44px]"
       />
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {selectedSchool
@@ -115,7 +115,7 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="relative z-10 border-b border-border bg-surface/95 px-3 py-1.5 shadow-2xl shadow-black/20 sm:px-4 sm:py-2.5">
+      <header className="relative z-10 border-b border-border bg-surface-elevated/95 px-3 py-1.5 shadow-sm shadow-neutral-900/5 sm:px-4 sm:py-2.5">
         <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <div className="min-w-0 flex items-center gap-2">
             <img
@@ -128,7 +128,7 @@ function Home() {
             <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-text sm:text-3xl">
               中国高校信息地图
             </h1>
-            <span className="hidden shrink-0 truncate text-xs text-text-secondary sm:inline sm:text-sm">
+            <span className="hidden shrink-0 truncate text-xs text-text-muted sm:inline sm:text-sm">
               当前：{contextLabel}
             </span>
             <a
@@ -142,7 +142,7 @@ function Home() {
             </a>
             <a
               href="/future"
-              className="hidden shrink-0 items-center rounded-full border border-brand-300/30 bg-brand-300/12 px-3.5 py-1.5 text-xs font-medium text-brand-300 transition-all hover:border-brand-300/60 hover:bg-brand-300/20 sm:inline-flex"
+              className="hidden shrink-0 items-center rounded-full border border-brand-500/25 bg-brand-50 px-3.5 py-1.5 text-xs font-medium text-brand-600 transition-all hover:border-brand-500/45 hover:bg-brand-100 sm:inline-flex"
             >
               未来路径
             </a>
@@ -174,7 +174,7 @@ function Home() {
       </header>
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
-        <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
+        <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-map shadow-sm shadow-neutral-900/8">
           <ChinaMap
             schools={filteredSchools}
             provinces={filteredProvinces}
@@ -186,7 +186,7 @@ function Home() {
           />
         </section>
 
-        <aside aria-label="高校列表与详情" className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25">
+        <aside aria-label="高校列表与详情" className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-elevated text-text shadow-sm shadow-neutral-900/8">
           <AnimatePresence mode="wait">
             {compareOpen ? (
               <motion.div

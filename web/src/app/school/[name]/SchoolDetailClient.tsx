@@ -60,12 +60,12 @@ export default function SchoolDetailClient({ school }: Props) {
       {/* Main content */}
       <main className="relative z-10 flex flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3">
         {/* Left: Map + POI — 桌面端始终显示，移动端按切换状态显示 */}
-        <section className={`relative flex-1 min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25 ${mobileView === "map" ? "flex" : "hidden"} lg:flex`}>
+        <section className={`relative flex-1 min-h-0 overflow-hidden rounded-lg border border-border bg-surface-map shadow-sm shadow-neutral-900/8 ${mobileView === "map" ? "flex" : "hidden"} lg:flex`}>
           <SchoolMap school={school} compact={false} />
         </section>
 
         {/* Right: Detail panel — 桌面端固定宽度，移动端按切换状态显示 */}
-        <aside className={`relative w-full min-w-0 max-w-[430px lg:w-[430px] lg:shrink-0 flex flex-col overflow-hidden rounded-lg border border-border bg-surface-light text-text-light shadow-2xl shadow-black/25 ${mobileView === "detail" ? "flex" : "hidden"} lg:flex`}>
+        <aside className={`relative w-full min-w-0 max-w-[430px lg:w-[430px] lg:shrink-0 flex flex-col overflow-hidden rounded-lg border border-border bg-surface-elevated text-text shadow-sm shadow-neutral-900/8 ${mobileView === "detail" ? "flex" : "hidden"} lg:flex`}>
           <div className="border-b border-border-light bg-surface-light-subtle px-4 py-2">
             <a
               href={`/future?school=${encodeURIComponent(school.name)}&province=${encodeURIComponent(school.province)}`}
@@ -85,7 +85,7 @@ export default function SchoolDetailClient({ school }: Props) {
 
       {/* 移动端视图切换按钮 — 桌面端隐藏 */}
       <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 lg:hidden">
-        <div className="flex items-center gap-1 rounded-full border border-border/60 bg-surface-light/90 p-1 shadow-lg shadow-black/15 backdrop-blur-sm">
+        <div className="flex items-center gap-1 rounded-full border border-border/60 bg-surface-light/90 p-1 shadow-lg shadow-neutral-900/8 backdrop-blur-sm">
           <button
             type="button"
             onClick={() => setMobileView("detail")}

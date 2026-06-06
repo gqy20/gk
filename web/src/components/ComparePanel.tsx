@@ -28,7 +28,7 @@ function getCategoryCount(school: School, key: DetailCategoryKey): number {
 export default function ComparePanel({ schools, onClose, onRemove }: ComparePanelProps) {
   return (
     <div className="flex h-full flex-col bg-surface-light text-text-light">
-      <div className="border-b border-border-light bg-neutral-950 px-4 py-4 text-text">
+      <div className="border-b border-border-light bg-surface-elevated px-4 py-4 text-text">
         <div className="flex items-start gap-3">
           <div className="min-w-0 flex-1">
             <h2 className="text-xl font-semibold leading-tight">

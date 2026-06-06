@@ -186,7 +186,7 @@ function SourceList({ sources }: { sources: SourceItem[] }) {
       {sources.slice(0, 8).map((src, i) => (
         <div
           key={i}
-          className="rounded-lg border border-border-subtle bg-neutral-0/[0.03] p-2.5 text-xs"
+          className="rounded-lg border border-border-subtle bg-neutral-900/5 p-2.5 text-xs"
         >
           <a
             href={src.url}

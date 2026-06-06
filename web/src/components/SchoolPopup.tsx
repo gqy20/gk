@@ -62,7 +62,7 @@ export default function SchoolPopup({
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.95, opacity: 0 }}
       transition={{ type: "spring", stiffness: 400, damping: 28 }}
-      className="absolute left-1/2 top-[15%] z-20 w-[280px] -translate-x-1/2 rounded-xl border border-primary-border bg-surface-elevated p-4 shadow-2xl shadow-black/40"
+      className="absolute left-1/2 top-[15%] z-20 w-[280px] -translate-x-1/2 rounded-xl border border-primary-border bg-surface-elevated p-4 shadow-2xl shadow-neutral-900/18"
     >
       {/* 标题区 */}
       <div className="mb-2.5">
@@ -70,7 +70,7 @@ export default function SchoolPopup({
           {school.name}
         </h3>
         <div className="mt-1 flex items-center gap-2 text-xs text-text-muted">
-          <span className="rounded-full border border-border-subtle bg-neutral-0/[0.05] px-2 py-0.5">
+          <span className="rounded-full border border-border-subtle bg-neutral-900/5 px-2 py-0.5">
             {school.province}
           </span>
           <a
@@ -93,7 +93,7 @@ export default function SchoolPopup({
           className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
             school.status === "done"
               ? "border border-brand-500/30 bg-brand-500/10 text-brand-400"
-              : "border border-border-subtle bg-neutral-0/[0.04] text-text-muted"
+              : "border border-border-subtle bg-neutral-900/5 text-text-muted"
           }`}
         >
           {school.status === "done" ? STATUS_LABELS.done : STATUS_LABELS.pending}

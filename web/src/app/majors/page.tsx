@@ -42,7 +42,7 @@ export default function MajorsPage() {
   return (
     <div className="flex h-screen min-h-screen flex-col overflow-hidden bg-surface text-text">
       {/* Header */}
-      <header className="relative z-10 shrink-0 border-b border-border bg-surface/95 px-3 py-2 shadow-2xl shadow-black/20 sm:px-4">
+      <header className="relative z-10 shrink-0 border-b border-border bg-surface-elevated/95 px-3 py-2 shadow-sm shadow-neutral-900/5 sm:px-4">
         <div className="flex items-center gap-3">
           <a
             href="/"
@@ -87,7 +87,7 @@ export default function MajorsPage() {
         {activeCategory && (
           <aside
             aria-label="专业分类"
-            className="hidden w-52 shrink-0 overflow-y-auto border-r border-border bg-surface-elevated/40 sm:block"
+            className="hidden w-52 shrink-0 overflow-y-auto border-r border-border bg-surface-subtle sm:block"
           >
             <MajorTreeBrowser
               category={activeCategory}
@@ -105,7 +105,7 @@ export default function MajorsPage() {
               <select
                 value={selectedMenlei || ""}
                 onChange={(e) => handleSelectMenlei(e.target.value || null)}
-                className="w-full rounded-lg border border-border bg-surface-active px-3 py-1.5 text-xs text-text outline-none focus:border-primary/50"
+                className="w-full rounded-lg border border-border bg-surface-subtle px-3 py-1.5 text-xs text-text outline-none focus:border-primary/50"
               >
                 <option value="">全部门类</option>
                 {activeCategory.门类.map((m) => (

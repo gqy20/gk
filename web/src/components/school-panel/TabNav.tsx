@@ -89,7 +89,7 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
           {menuOpen && (
             <ul
               role="listbox"
-              className="absolute left-0 top-full z-30 mt-1.5 min-w-[180px] max-h-[60vh] overflow-y-auto rounded-xl border border-border-light bg-neutral-0 py-1 shadow-xl shadow-black/10"
+              className="absolute left-0 top-full z-30 mt-1.5 min-w-[180px] max-h-[60vh] overflow-y-auto rounded-xl border border-border-light bg-neutral-0 py-1 shadow-xl shadow-neutral-900/8"
             >
               {detailTabs.map((tab) => {
                 const isActive = activeTab === tab.key;

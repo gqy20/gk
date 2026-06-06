@@ -69,9 +69,9 @@ describe("FuturePanel — 玻璃面板", () => {
     expect(container.firstElementChild?.className).toMatch(/ring-accent-300\/45/);
   });
 
-  it("tone=risky 应注入红色 ring", () => {
+  it("tone=risky 应注入风险色 ring", () => {
     const { container } = render(<FuturePanel tone="risky">x</FuturePanel>);
-    expect(container.firstElementChild?.className).toMatch(/ring-danger-300\/40/);
+    expect(container.firstElementChild?.className).toMatch(/ring-risk-300\/40/);
   });
 
   it("顶部应存在 1px 高光线(inset-x-0 top-0 h-px)", () => {

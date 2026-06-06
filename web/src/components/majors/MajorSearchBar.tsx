@@ -30,7 +30,7 @@ export default function MajorSearchBar({
           placeholder="搜索专业名称或代码..."
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="h-8 w-full rounded-full border border-border bg-surface-active pl-9 pr-3 text-xs text-text placeholder:text-text-placeholder outline-none focus:border-primary/50 transition-colors"
+          className="h-8 w-full rounded-full border border-border bg-surface-subtle pl-9 pr-3 text-xs text-text placeholder:text-text-placeholder outline-none focus:border-primary/50 transition-colors"
         />
       </div>
     </div>

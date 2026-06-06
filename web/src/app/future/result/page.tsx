@@ -193,14 +193,14 @@ function DecisionHero({
           <p className="mt-3 max-w-3xl text-sm leading-7 text-text-secondary">{summary}</p>
           <p className="mt-2 max-w-3xl text-xs leading-6 text-text-muted">{adviceIntro}</p>
           <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
-            {run?.model && <span className="rounded-full border border-border bg-surface-subtle/60 px-2.5 py-1 text-text-muted">模型：{run.model}</span>}
-            {run?.promptVersion && <span className="rounded-full border border-border bg-surface-subtle/60 px-2.5 py-1 text-text-muted">Prompt：{run.promptVersion}</span>}
-            {typeof run?.inputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle/60 px-2.5 py-1 text-text-muted">输入：{run.inputTokens} tok</span>}
-            {typeof run?.outputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle/60 px-2.5 py-1 text-text-muted">输出：{run.outputTokens} tok</span>}
+            {run?.model && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">模型：{run.model}</span>}
+            {run?.promptVersion && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">Prompt：{run.promptVersion}</span>}
+            {typeof run?.inputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">输入：{run.inputTokens} tok</span>}
+            {typeof run?.outputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">输出：{run.outputTokens} tok</span>}
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-surface-subtle/40 p-4">
+        <div className="rounded-xl border border-border bg-surface-subtle p-4">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted">推荐适配分</p>
@@ -251,7 +251,7 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
             </div>
             <h2 className="mt-1 text-sm font-semibold tracking-tight text-text">前置条件</h2>
           </div>
-          <span className="rounded-full border border-border bg-surface-subtle/60 px-2 py-0.5 font-mono text-[10px] text-text-muted">
+          <span className="rounded-full border border-border bg-surface-subtle px-2 py-0.5 font-mono text-[10px] text-text-muted">
             {assumptionCount} 条
           </span>
         </div>
@@ -259,13 +259,13 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
           {(output.choice_context.assumptions || []).slice(0, 6).map((assumption) => (
             <li
               key={assumption}
-              className="rounded-lg border border-border bg-surface-subtle/40 px-3 py-2"
+              className="rounded-lg border border-border bg-surface-subtle px-3 py-2"
             >
               {assumption}
             </li>
           ))}
           {assumptionCount === 0 && (
-            <li className="rounded-lg border border-dashed border-border bg-surface-subtle/20 px-3 py-2 text-text-muted">
+            <li className="rounded-lg border border-dashed border-border bg-surface-subtle px-3 py-2 text-text-muted">
               未提供前置条件
             </li>
           )}
@@ -290,7 +290,7 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
             return (
               <div
                 key={item.label}
-                className="rounded-lg border border-border bg-surface-subtle/40 p-3"
+                className="rounded-lg border border-border bg-surface-subtle p-3"
               >
                 <div className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
                   {item.label}
@@ -434,7 +434,7 @@ function ScoreBar({ path, scoreKey }: { path: FuturePath; scoreKey: keyof Future
           {value}<span className="text-text-muted">/10</span>
         </span>
       </div>
-      <div className="mt-1 h-1 overflow-hidden rounded-full bg-neutral-0/[0.06]">
+      <div className="mt-1 h-1 overflow-hidden rounded-full bg-neutral-900/5">
         <div
           className={`h-full ${TONE[tone].bg}`}
           style={{ width: `${value * 10}%`, background: "currentColor" }}
@@ -479,12 +479,12 @@ function BranchPlanStrip({
               className={`group relative overflow-hidden rounded-xl border p-4 transition duration-200 hover:-translate-y-0.5 ${
                 isRecommended
                   ? "border-primary/40 bg-primary/[0.06] ring-1 ring-primary/30"
-                  : "border-border bg-surface-subtle/40 hover:border-accent/40"
+                  : "border-border bg-surface-subtle hover:border-accent/40"
               }`}
             >
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/70 to-transparent"
               />
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-xs font-semibold tracking-tight text-text">
@@ -533,13 +533,13 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
       id={`path-${path.index}`}
       className={`group/path scroll-mt-20 overflow-hidden rounded-2xl border p-4 transition duration-200 sm:p-5 ${
         isRecommended
-          ? "border-accent/40 bg-surface-elevated/70 ring-1 ring-accent/30"
-          : "border-border bg-surface-elevated/60 hover:border-accent/30 hover:-translate-y-0.5"
+          ? "border-accent/40 bg-surface-elevated ring-1 ring-accent/30"
+          : "border-border bg-surface-elevated hover:border-accent/30 hover:-translate-y-0.5"
       }`}
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/70 to-transparent"
       />
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
@@ -579,7 +579,7 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
         {path.timeline.slice(0, 3).map((item) => (
           <div
             key={item.stage}
-            className="rounded-xl border border-border bg-surface-subtle/40 p-3"
+            className="rounded-xl border border-border bg-surface-subtle p-3"
           >
             <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
               {item.stage}
@@ -595,7 +595,7 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
         type="button"
         onClick={() => setExpanded((current) => !current)}
         aria-expanded={expanded}
-        className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-subtle/50 px-3 py-2 text-xs font-medium text-text-secondary transition hover:border-accent/40 hover:text-accent"
+        className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-subtle px-3 py-2 text-xs font-medium text-text-secondary transition hover:border-accent/40 hover:text-accent"
       >
         {expanded ? "收起详情" : "展开时间线与建议"}
         <span
@@ -621,7 +621,7 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
                 <TimelineRow key={item.stage} item={item} index={i} />
               ))}
 
-              <div className="rounded-xl border border-border bg-surface-subtle/40 p-3">
+              <div className="rounded-xl border border-border bg-surface-subtle p-3">
                 <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
                   前两年行动建议
                 </h3>
@@ -647,7 +647,7 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
               )}
 
               {path.turning_points.length > 0 && (
-                <div className="rounded-xl border border-border bg-surface-subtle/40 p-3">
+                <div className="rounded-xl border border-border bg-surface-subtle p-3">
                   <h3 className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
                     关键转折点
                   </h3>
@@ -678,7 +678,7 @@ function TimelineRow({ item, index }: { item: FuturePath["timeline"][number]; in
       />
       <span
         aria-hidden
-        className="absolute left-[-3px] top-1 h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_0_3px_rgba(74,158,137,0.18)]"
+        className="absolute left-[-3px] top-1 h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_0_3px_rgba(37,111,143,0.16)]"
       />
       <div className="flex items-center gap-2">
         <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
@@ -745,7 +745,7 @@ function ScoreGrid({ path }: { path: FuturePath }) {
         {keys.map((k) => {
           const v = path.scores[k]?.value ?? 0;
           return (
-            <li key={k} className="rounded-lg border border-border bg-surface-subtle/40 p-2.5">
+            <li key={k} className="rounded-lg border border-border bg-surface-subtle p-2.5">
               <div className="flex items-center justify-between text-[11px]">
                 <span className="text-text-muted">{scoreLabel(k)}</span>
                 <span className="font-mono tabular-nums text-text">{v}/10</span>

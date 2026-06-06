@@ -49,7 +49,7 @@ export default function MajorTreeBrowser({
           "flex items-center justify-between rounded-lg px-3 py-2.5 mb-1 text-xs font-medium transition-colors mx-2 mt-2",
           !selectedMenlei
             ? "bg-primary/15 text-primary"
-            : "text-text-secondary hover:bg-surface-active hover:text-text",
+            : "text-text-secondary hover:bg-surface-subtle hover:text-text",
         )}
       >
         <span className="flex items-center gap-2">
@@ -58,7 +58,7 @@ export default function MajorTreeBrowser({
           </svg>
           全部门类
         </span>
-        <span className="rounded-full bg-surface-active px-2 py-0.5 text-[10px] tabular-nums">
+        <span className="rounded-full bg-surface-subtle px-2 py-0.5 text-[10px] tabular-nums">
           {totalMajors}
         </span>
       </button>
@@ -82,7 +82,7 @@ export default function MajorTreeBrowser({
                   "group flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-medium transition-all duration-150",
                   isSelected
                     ? "bg-primary/12 text-primary shadow-sm shadow-primary/5"
-                    : "text-text-secondary hover:bg-surface-active hover:text-text",
+                    : "text-text-secondary hover:bg-surface-subtle hover:text-text",
                 )}
               >
                 {/* 展开/收起箭头 */}
@@ -107,7 +107,7 @@ export default function MajorTreeBrowser({
                     "rounded-full px-1.5 py-px text-[10px] font-medium tabular-nums transition-colors",
                     isSelected
                       ? "bg-primary/20 text-primary"
-                      : "bg-surface-active text-text-muted group-hover:text-text-secondary",
+                      : "bg-surface-subtle text-text-muted group-hover:text-text-secondary",
                   )}
                 >
                   {menlei.major_count}

@@ -27,11 +27,11 @@ const POI_CATEGORIES = [
 
 // AMap 标记 / InfoWindow 共用样式常量（AMap API 需要原始字符串）
 const AMAP = {
-  schoolMarker: `background: linear-gradient(135deg, ${colors.primary}, ${colors.primaryHover}); width: 28px; height: 28px; border-radius: 50%; border: 3px solid ${colors.surface}; box-shadow: 0 0 12px ${colors.primaryHover}66; display: flex; align-items: center; justify-content: center; font-size: 14px;`,
+  schoolMarker: `background: linear-gradient(135deg, ${colors.primary}, ${colors.primaryHover}); width: 28px; height: 28px; border-radius: 50%; border: 3px solid ${colors.neutral[0]}; box-shadow: 0 8px 18px rgba(17,24,32,0.22); display: flex; align-items: center; justify-content: center; font-size: 14px;`,
   infoWindow: (title: string, subtitle: string) => `
     background:${colors.surfaceElevated};border:1px solid ${colors.primaryBorder};
     padding:10px 14px;border-radius:8px;color:${colors.text};font-size:13px;
-    min-width:140px;box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    min-width:140px;box-shadow:0 8px 24px rgba(17,24,32,0.14);
     <div style="font-weight:700;font-size:14px;margin-bottom:4px;color:${colors.primaryHover}">${title}</div>
     <div style="color:${colors.textSecondary};font-size:12px">${subtitle}</div>`,
   poiMarker: (color: string, icon: string) =>
@@ -41,7 +41,7 @@ const AMAP = {
   poiInfoWindow: (name: string, address: string, distance: string, color: string) => `
     background:${colors.surfaceElevated};border:1px solid ${color}40;
     padding:10px 14px;border-radius:8px;color:${colors.text};font-size:12px;
-    min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    min-width:160px;box-shadow:0 8px 24px rgba(17,24,32,0.14);
     <div style="font-weight:600;margin-bottom:2px;">${name}</div>
     <div style="color:${colors.textMuted};margin-bottom:2px;">${address}</div>
     <div style="color:${color}">${distance}</div>`,
@@ -89,7 +89,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         const map = new AMap.Map(mapRef.current!, {
           zoom: 15,
           center: [lng, lat],
-          mapStyle: "amap://styles/dark",
+          mapStyle: "amap://styles/normal",
           viewMode: "2D",
         });
 
@@ -253,7 +253,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
       {/* 地图容器 */}
       <div
         ref={mapRef}
-        className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-neutral-800 ${
+        className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-neutral-100 ${
           compact ? "h-[280px] shrink-0" : "h-[65%] min-h-[300px]"
         }`}
       >
@@ -273,8 +273,8 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
             onClick={() => setActiveCategory("all")}
             className={`rounded-full px-3 py-1 text-xs font-medium transition ${
               activeCategory === "all"
-                ? "bg-brand-500 text-text"
-                : "bg-neutral-50 text-text-light hover:bg-neutral-300 hover:text-brand-400"
+                ? "bg-brand-500 text-text-inverse"
+                : "bg-neutral-50 text-text-light hover:bg-brand-50 hover:text-brand-600"
             }`}
           >
             全部
@@ -291,8 +291,8 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                 onClick={() => setActiveCategory(cat.key)}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition ${
                   activeCategory === cat.key
-                    ? "bg-brand-500 text-text"
-                    : "bg-neutral-50 text-text-light hover:bg-neutral-300 hover:text-brand-400"
+                    ? "bg-brand-500 text-text-inverse"
+                    : "bg-neutral-50 text-text-light hover:bg-brand-50 hover:text-brand-600"
                 }`}
               >
                 <span className="mr-1">{cat.icon}</span>
@@ -331,7 +331,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                         mapInstance.current?.setCenter(item.location);
                         mapInstance.current?.setZoom(17);
                       }}
-                      className="flex w-full items-center justify-between rounded-md bg-neutral-50 px-3 py-2 text-left text-xs transition hover:bg-neutral-300"
+                      className="flex w-full items-center justify-between rounded-md border border-border-light-subtle bg-neutral-50 px-3 py-2 text-left text-xs transition hover:border-brand-200 hover:bg-brand-50"
                     >
                       <div className="min-w-0 flex-1">
                         <div className="truncate font-medium text-text">

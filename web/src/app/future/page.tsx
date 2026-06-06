@@ -263,7 +263,7 @@ function FuturePageContent() {
             </FormStep>
           </FuturePanel>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface-elevated/70 px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface-elevated px-4 py-3">
             <label className="text-xs font-medium text-text-secondary">
               路径数量
               <select
@@ -332,7 +332,7 @@ function FuturePageContent() {
 
 function TabBar({ value, onChange }: { value: "form" | "history"; onChange: (v: "form" | "history") => void }) {
   return (
-    <div className="mb-5 inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated/60 p-1 backdrop-blur-sm">
+    <div className="mb-5 inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated p-1 backdrop-blur-sm">
       {([
         { key: "form", label: "新推演" },
         { key: "history", label: "历史" },
@@ -346,7 +346,7 @@ function TabBar({ value, onChange }: { value: "form" | "history"; onChange: (v: 
             aria-pressed={active}
             className={`rounded-full px-3.5 py-1 font-mono text-[11px] uppercase tracking-[0.18em] transition ${
               active
-                ? "bg-accent/15 text-accent shadow-[0_0_0_1px_rgba(74,158,137,0.35)_inset]"
+                ? "bg-accent/15 text-accent shadow-[0_0_0_1px_rgba(37,111,143,0.22)_inset]"
                 : "text-text-muted hover:text-text"
             }`}
           >
@@ -390,7 +390,7 @@ function HistoryList({
         <button
           type="button"
           onClick={onReload}
-          className="mt-3 rounded-lg border border-border bg-surface-subtle/50 px-3 py-1.5 text-xs text-text-secondary hover:border-accent/40 hover:text-accent"
+          className="mt-3 rounded-lg border border-border bg-surface-subtle px-3 py-1.5 text-xs text-text-secondary hover:border-accent/40 hover:text-accent"
         >
           重试
         </button>
@@ -426,11 +426,11 @@ function HistoryCard({ item }: { item: FutureRunListItem }) {
   return (
     <a
       href={`/future/result?runId=${encodeURIComponent(item.id)}`}
-      className="group/card relative block overflow-hidden rounded-2xl border border-border bg-surface-elevated/60 p-4 transition hover:-translate-y-0.5 hover:border-accent/40 sm:p-5"
+      className="group/card relative block overflow-hidden rounded-2xl border border-border bg-surface-elevated p-4 transition hover:-translate-y-0.5 hover:border-accent/40 sm:p-5"
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/70 to-transparent"
       />
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">

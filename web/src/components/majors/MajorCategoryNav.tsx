@@ -39,7 +39,7 @@ export default function MajorCategoryNav({
               "relative shrink-0 h-9 px-3 sm:px-4 text-xs font-medium transition-colors whitespace-nowrap",
               isActive
                 ? "text-primary"
-                : "text-text-secondary hover:text-text hover:bg-surface-active",
+                : "text-text-secondary hover:text-text hover:bg-surface-subtle",
             )}
           >
             {label}

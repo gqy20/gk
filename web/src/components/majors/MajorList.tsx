@@ -68,7 +68,7 @@ function filterMajors(category: MajorCategory, menleiKey: string | null, query: 
 function EmptyGuide({ hasSearch }: { hasSearch: boolean }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
-      <div className="rounded-2xl border border-border-subtle bg-surface-elevated/40 p-6">
+      <div className="rounded-2xl border border-border-subtle bg-surface-subtle p-6">
         <svg className="mx-auto h-10 w-10 text-text-light-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
@@ -106,7 +106,7 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* 统计条 */}
-      <header className="shrink-0 border-b border-border px-4 py-2.5 bg-surface-elevated/30">
+      <header className="shrink-0 border-b border-border px-4 py-2.5 bg-surface-subtle">
         <div className="flex items-center gap-2">
           {activeMenlei ? (
             <>
@@ -117,7 +117,7 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
                 共 <span className="font-semibold tabular-nums text-text-secondary">{items.length}</span> 个专业
               </span>
               {searchQuery.trim() && (
-                <span className="rounded-full bg-surface-active px-2 py-0.5 text-[10px] text-text-muted">
+                <span className="rounded-full bg-surface-subtle px-2 py-0.5 text-[10px] text-text-muted">
                   搜索: {searchQuery}
                 </span>
               )}
@@ -151,7 +151,7 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(i * 0.015, 0.3), duration: 0.2 }}
-                className="group grid grid-cols-[auto_1fr_auto_auto] gap-x-3 gap-y-0.5 rounded-lg border border-border bg-surface-elevated/50 px-3 py-2.5 transition-colors hover:border-primary/25 hover:bg-surface-active active:bg-surface-active sm:grid-cols-[auto_1fr_auto_auto]"
+                className="group grid grid-cols-[auto_1fr_auto_auto] gap-x-3 gap-y-0.5 rounded-lg border border-border bg-surface-elevated px-3 py-2.5 transition-colors hover:border-primary/25 hover:bg-surface-subtle active:bg-surface-subtle sm:grid-cols-[auto_1fr_auto_auto]"
               >
                 {/* 第一行：代码 + 名称 + 满意度 + 标签 */}
                 <span className="row-span-2 self-center hidden font-mono text-[10px] text-text-light-muted tabular-nums sm:block">
@@ -173,7 +173,7 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
                         {sat.label}
                       </span>
                       {/* 进度条 */}
-                      <div className="hidden w-12 h-1 rounded-full bg-surface-active overflow-hidden sm:block">
+                      <div className="hidden w-12 h-1 rounded-full bg-surface-subtle overflow-hidden sm:block">
                         <motion.div
                           className={cn("h-full rounded-full", sat.color)}
                           initial={{ width: 0 }}

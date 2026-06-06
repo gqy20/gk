@@ -161,8 +161,8 @@ test.describe("future/result 视觉验收", () => {
     // 三个 PathCard 各自带一种 tone class
     const brandCount = await page.locator(".text-brand-300").count();
     const accentCount = await page.locator(".text-accent-300").count();
-    const dangerCount = await page.locator(".text-danger-300").count();
-    expect(brandCount + accentCount + dangerCount).toBeGreaterThan(0);
+    const riskCount = await page.locator(".text-risk-400").count();
+    expect(brandCount + accentCount + riskCount).toBeGreaterThan(0);
   });
 
   test("6-错误状态用红边框显示(不是米黄)", async ({ page }) => {

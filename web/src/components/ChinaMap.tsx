@@ -320,9 +320,9 @@ export default function ChinaMap({
   }
 
   function schoolShadow(school: School): string {
-    if (school.is985) return "rgba(216, 106, 85, 0.46)";
-    if (school.is211) return "rgba(200, 155, 60, 0.42)";
-    if (school.isDoubleFirstClass) return "rgba(88, 173, 152, 0.38)";
+    if (school.is985) return "rgba(214, 106, 93, 0.34)";
+    if (school.is211) return "rgba(185, 133, 45, 0.32)";
+    if (school.isDoubleFirstClass) return "rgba(47, 143, 107, 0.3)";
     return "transparent";
   }
 
@@ -409,7 +409,7 @@ export default function ChinaMap({
       animationEasingUpdate: "cubicOut",
       tooltip: {
         trigger: "item",
-        backgroundColor: "rgba(16, 18, 15, 0.94)",
+        backgroundColor: "rgba(23, 33, 43, 0.94)",
         borderColor: colors.primaryBorder,
         borderWidth: 1,
         padding: [10, 12],
@@ -418,7 +418,7 @@ export default function ChinaMap({
           fontSize: 12,
         },
         extraCssText:
-          "box-shadow:0 18px 45px rgba(0,0,0,.32);border-radius:8px;",
+          "box-shadow:0 18px 45px rgba(17,24,32,.28);border-radius:8px;",
         formatter: (params: unknown) => {
           const item = tooltipParam(params);
           if (item.seriesType === "effectScatter") {
@@ -450,7 +450,7 @@ export default function ChinaMap({
         },
         itemStyle: {
           areaColor: colors.chart.mapLow,
-          borderColor: "rgba(255, 249, 236, 0.18)",
+          borderColor: "rgba(255, 255, 255, 0.18)",
           borderWidth: drill.level === "country" ? 0.8 : 0.6,
         },
         emphasis: {
@@ -487,7 +487,7 @@ export default function ChinaMap({
           selectedMode: "single",
           data: mapData,
           itemStyle: {
-            borderColor: "rgba(255, 249, 236, 0.16)",
+            borderColor: "rgba(255, 255, 255, 0.14)",
             borderWidth: drill.level === "country" ? 0.7 : 0.5,
           },
           emphasis: {
@@ -612,14 +612,14 @@ export default function ChinaMap({
             全国
           </button>
 
-          <svg className="h-3 w-3 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="h-3 w-3 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
 
           {drill.breadcrumbs.slice(1).map((crumb, i) => (
             <span key={crumb.adcode} className="flex items-center gap-1.5">
               {i > 0 && (
-                <svg className="h-3 w-3 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="h-3 w-3 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               )}
@@ -630,7 +630,7 @@ export default function ChinaMap({
           ))}
 
           {loadingDrill && (
-            <span className="ml-1 text-[11px] text-text-subtle animate-pulse">加载中...</span>
+            <span className="ml-1 text-[11px] text-text-muted animate-pulse">加载中...</span>
           )}
         </div>
       )}
@@ -638,7 +638,7 @@ export default function ChinaMap({
       {/* 当前区域学校数量提示 */}
       {drill.level !== "country" && (
         <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-text-secondary">
-          <span className="rounded-full border border-border-subtle bg-neutral-0/[0.06] px-3 py-1">
+          <span className="rounded-full border border-border-subtle bg-neutral-900/5 px-3 py-1">
             {visibleSchools.length} 所高校
           </span>
         </div>
