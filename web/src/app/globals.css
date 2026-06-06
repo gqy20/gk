@@ -347,19 +347,19 @@ button:disabled {
 .china-map-veil {
   z-index: 4;
   background:
-    radial-gradient(ellipse at 42% 48%, rgba(255, 252, 242, 0.72) 0 24%, rgba(255, 252, 242, 0.18) 45%, transparent 62%),
-    radial-gradient(ellipse at 18% 20%, rgba(255, 255, 255, 0.30) 0 18%, transparent 48%),
-    radial-gradient(ellipse at 82% 72%, rgba(30, 111, 126, 0.12) 0 18%, transparent 44%);
+    radial-gradient(ellipse at 42% 48%, rgba(255, 252, 242, 0.54) 0 24%, rgba(255, 252, 242, 0.12) 45%, transparent 62%),
+    radial-gradient(ellipse at 18% 20%, rgba(255, 255, 255, 0.18) 0 18%, transparent 48%),
+    radial-gradient(ellipse at 86% 74%, rgba(30, 111, 126, 0.055) 0 18%, transparent 44%);
   mix-blend-mode: soft-light;
-  opacity: 0.34;
+  opacity: 0.21;
 }
 
 .china-map-stage-local .china-map-veil {
   background:
-    radial-gradient(ellipse at 44% 48%, rgba(255, 252, 242, 0.64) 0 28%, rgba(255, 252, 242, 0.14) 50%, transparent 66%),
-    radial-gradient(ellipse at 18% 20%, rgba(255, 255, 255, 0.26) 0 18%, transparent 48%),
-    radial-gradient(ellipse at 78% 72%, rgba(126, 111, 84, 0.07) 0 18%, transparent 44%);
-  opacity: 0.30;
+    radial-gradient(ellipse at 44% 48%, rgba(255, 252, 242, 0.48) 0 28%, rgba(255, 252, 242, 0.10) 50%, transparent 66%),
+    radial-gradient(ellipse at 18% 20%, rgba(255, 255, 255, 0.16) 0 18%, transparent 48%),
+    radial-gradient(ellipse at 78% 72%, rgba(126, 111, 84, 0.04) 0 18%, transparent 44%);
+  opacity: 0.15;
 }
 
 .china-map-maplibre {

@@ -62,6 +62,17 @@ type GeoJsonFeatureCollection = {
 
 type Bounds = [number, number, number, number];
 
+type InitialMapPayload = {
+  regions: GeoJsonFeatureCollection;
+  labels: GeoJsonFeatureCollection;
+  schools: GeoJsonFeatureCollection;
+};
+
+type PendingCamera = {
+  bounds: Bounds;
+  level: MapLevel;
+};
+
 type MapHoverInfo =
   | {
       kind: "region";
@@ -194,7 +205,7 @@ function fitBounds(map: maplibregl.Map, bounds: Bounds, level: MapLevel) {
       map.easeTo({
         center: camera.center,
         zoom: Math.min(cameraZoom + zoomBoost, 8.45),
-        duration: 460,
+        duration: level === "province" ? 520 : 420,
         essential: true,
       });
       return;
@@ -366,11 +377,14 @@ export default function ChinaMap({
 }: ChinaMapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
+  const pendingCameraRef = useRef<PendingCamera | null>(null);
   const hoveredRegionIdRef = useRef<string | number | null>(null);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [mapReady, setMapReady] = useState(false);
+  const [mapContainerReady, setMapContainerReady] = useState(false);
   const [loadingDrill, setLoadingDrill] = useState(false);
   const [mapData, setMapData] = useState<GeoJsonFeatureCollection | null>(null);
+  const [initialMapPayload, setInitialMapPayload] = useState<InitialMapPayload | null>(null);
   const [drill, setDrill] = useState<DrillState>(INITIAL_DRILL_STATE);
   const [hoverInfo, setHoverInfo] = useState<MapHoverInfo | null>(null);
 
@@ -405,6 +419,10 @@ export default function ChinaMap({
     () => makeSchoolData(visibleSchools, selectedProvince, highlightedSchoolNames, hasActiveMapFilters),
     [hasActiveMapFilters, highlightedSchoolNames, selectedProvince, visibleSchools],
   );
+  const initialSchoolData = useMemo(
+    () => makeSchoolData(schools, null, highlightedSchoolNames, hasActiveMapFilters),
+    [hasActiveMapFilters, highlightedSchoolNames, schools],
+  );
 
   const currentProvinceCount =
     currentProvince
@@ -420,7 +438,7 @@ export default function ChinaMap({
 
   const resetHover = useCallback(() => {
     const map = mapRef.current;
-    if (!map?.loaded() || !map.getSource("regions") || hoveredRegionIdRef.current === null) return;
+    if (!map || !map.getSource("regions") || hoveredRegionIdRef.current === null) return;
     map.setFeatureState(
       { source: "regions", id: hoveredRegionIdRef.current },
       { hover: false },
@@ -430,15 +448,33 @@ export default function ChinaMap({
 
   const setRegionSourceData = useCallback((data: GeoJsonFeatureCollection, labels: GeoJsonFeatureCollection) => {
     const map = mapRef.current;
-    if (!map?.loaded() || !map.getSource("regions") || !map.getSource("region-labels")) return;
+    if (!map || !map.getSource("regions") || !map.getSource("region-labels")) return;
     (map.getSource("regions") as GeoJSONSource | undefined)?.setData(data);
     (map.getSource("region-labels") as GeoJSONSource | undefined)?.setData(labels);
   }, []);
 
   const setSchoolSourceData = useCallback((data: GeoJsonFeatureCollection) => {
     const map = mapRef.current;
-    if (!map?.loaded() || !map.getSource("schools")) return;
+    if (!map || !map.getSource("schools")) return;
     (map.getSource("schools") as GeoJSONSource | undefined)?.setData(data);
+  }, []);
+
+  const scheduleCameraFit = useCallback((bounds: Bounds, level: MapLevel) => {
+    const map = mapRef.current;
+    if (!map) return;
+    pendingCameraRef.current = { bounds, level };
+
+    const fitPendingCamera = () => {
+      const pending = pendingCameraRef.current;
+      if (!pending) return;
+      pendingCameraRef.current = null;
+      fitBounds(map, pending.bounds, pending.level);
+    };
+
+    map.once("idle", fitPendingCamera);
+    window.requestAnimationFrame(() => {
+      fitPendingCamera();
+    });
   }, []);
 
   const syncSeaWatercolorLayer = useCallback((visible: boolean) => {
@@ -470,7 +506,7 @@ export default function ChinaMap({
             type: "raster",
             source: "sea-watercolor",
             paint: {
-              "raster-opacity": 0.34,
+              "raster-opacity": 0.26,
               "raster-fade-duration": 0,
             },
           },
@@ -480,7 +516,7 @@ export default function ChinaMap({
       }
 
       map.setLayoutProperty("sea-watercolor", "visibility", "visible");
-      map.setPaintProperty("sea-watercolor", "raster-opacity", 0.34);
+      map.setPaintProperty("sea-watercolor", "raster-opacity", 0.26);
     } catch {
       // The style can briefly be unavailable while MapLibre is settling after a source update.
     }
@@ -515,6 +551,25 @@ export default function ChinaMap({
         },
       });
       map.addLayer({
+        id: "region-underpaint",
+        type: "fill",
+        source: "regions",
+        paint: {
+          "fill-color": "rgba(255, 250, 240, 0.72)",
+          "fill-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            2.4,
+            0.36,
+            4.2,
+            0.44,
+            6,
+            0.5,
+          ],
+        },
+      });
+      map.addLayer({
         id: "region-fill",
         type: "fill",
         source: "regions",
@@ -546,11 +601,11 @@ export default function ChinaMap({
             "case",
             ["boolean", ["feature-state", "hover"], false],
             ["coalesce", ["get", "edgeColor"], "rgba(80, 98, 92, 0.86)"],
-            ["coalesce", ["get", "edgeColor"], "rgba(92, 104, 97, 0.56)"],
+            ["coalesce", ["get", "edgeColor"], "rgba(76, 92, 86, 0.68)"],
           ],
-          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.6, 4, 1, 6, 1.5],
-          "line-blur": 0.45,
-          "line-opacity": 0.78,
+          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.9, 4, 1.25, 6, 1.75],
+          "line-blur": 0.22,
+          "line-opacity": 0.86,
         },
       });
       map.addLayer({
@@ -595,12 +650,22 @@ export default function ChinaMap({
   );
 
   useEffect(() => {
+    if (initialMapPayload) return;
     let cancelled = false;
 
     async function loadInitialMap() {
       try {
         const data = await loadMapData("100000");
-        if (!cancelled) setMapData(data);
+        const initialRegions = normalizeMapData(data, provinces, selectedProvince);
+        const initialLabels = makeLabelData(initialRegions);
+        if (!cancelled) {
+          setMapData(data);
+          setInitialMapPayload({
+            regions: initialRegions,
+            labels: initialLabels,
+            schools: initialSchoolData,
+          });
+        }
       } catch {
         if (!cancelled) setMapReady(false);
       }
@@ -610,10 +675,15 @@ export default function ChinaMap({
     return () => {
       cancelled = true;
     };
-  }, [loadMapData]);
+  }, [initialMapPayload, initialSchoolData, loadMapData, provinces, selectedProvince]);
+
+  const handleMapContainerRef = useCallback((node: HTMLDivElement | null) => {
+    mapContainerRef.current = node;
+    setMapContainerReady(Boolean(node));
+  }, []);
 
   useEffect(() => {
-    if (!mapContainerRef.current || !normalizedMapData || !labelData || mapRef.current) return;
+    if (!mapContainerRef.current || !initialMapPayload || mapRef.current) return;
 
     const map = new maplibregl.Map({
       container: mapContainerRef.current,
@@ -650,7 +720,7 @@ export default function ChinaMap({
     );
 
     map.on("load", () => {
-      installMapLayers(map, normalizedMapData, labelData, schoolData);
+      installMapLayers(map, initialMapPayload.regions, initialMapPayload.labels, initialMapPayload.schools);
       setMapReady(true);
       syncSeaWatercolorLayer(true);
     });
@@ -659,13 +729,15 @@ export default function ChinaMap({
       map.remove();
       mapRef.current = null;
     };
-  }, [installMapLayers, labelData, normalizedMapData, schoolData, syncSeaWatercolorLayer]);
+  }, [initialMapPayload, installMapLayers, mapContainerReady, syncSeaWatercolorLayer]);
 
   useEffect(() => {
     if (!normalizedMapData || !labelData) return;
     resetHover();
     setRegionSourceData(normalizedMapData, labelData);
-  }, [labelData, normalizedMapData, resetHover, setRegionSourceData]);
+    const bounds = drill.level === "country" ? CHINA_VIEW_BOUNDS : boundsFromGeoJson(normalizedMapData);
+    scheduleCameraFit(bounds, drill.level);
+  }, [drill.level, labelData, normalizedMapData, resetHover, scheduleCameraFit, setRegionSourceData]);
 
   useEffect(() => {
     setSchoolSourceData(schoolData);
@@ -674,16 +746,6 @@ export default function ChinaMap({
   useEffect(() => {
     syncSeaWatercolorLayer(drill.level === "country");
   }, [drill.level, mapReady, syncSeaWatercolorLayer]);
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !mapReady || !mapData) return;
-    const bounds = drill.level === "country" ? CHINA_VIEW_BOUNDS : boundsFromGeoJson(mapData);
-    const frame = window.requestAnimationFrame(() => {
-      fitBounds(map, bounds, drill.level);
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [drill.level, mapData, mapReady]);
 
   const drillDown = useCallback(
     async (name: string, adcode: string) => {
@@ -733,18 +795,30 @@ export default function ChinaMap({
     if (!map || !mapReady) return;
 
     const handleMapClick = (event: MapMouseEvent) => {
-      const hits = map.queryRenderedFeatures(event.point, {
-        layers: ["region-fill", "school-points"],
-      });
-      if (hits.length > 0) return;
-      setHoverInfo(null);
-      onSchoolPreview(null);
-    };
+      const schoolFeature = map.queryRenderedFeatures(event.point, {
+        layers: ["school-points"],
+      })[0];
+      const schoolName = featureName(schoolFeature);
+      if (schoolName) {
+        const school = schools.find((item) => item.name === schoolName);
+        if (school) {
+          if (clickTimer.current) clearTimeout(clickTimer.current);
+          clickTimer.current = setTimeout(() => {
+            onSchoolPreview(school);
+          }, 180);
+          return;
+        }
+      }
 
-    const handleRegionClick = (event: MapLayerMouseEvent) => {
-      const feature = event.features?.[0];
-      const name = featureName(feature);
-      if (!name) return;
+      const regionFeature = map.queryRenderedFeatures(event.point, {
+        layers: ["region-fill", "region-underpaint"],
+      })[0];
+      const name = featureName(regionFeature);
+      if (!name) {
+        setHoverInfo(null);
+        onSchoolPreview(null);
+        return;
+      }
 
       if (drill.level === "country") {
         const province = shortProvinceName(name);
@@ -786,18 +860,6 @@ export default function ChinaMap({
       map.getCanvas().style.cursor = "";
     };
 
-    const handleSchoolClick = (event: MapLayerMouseEvent) => {
-      event.preventDefault();
-      const name = featureName(event.features?.[0]);
-      if (!name) return;
-      const school = schools.find((item) => item.name === name);
-      if (!school) return;
-      if (clickTimer.current) clearTimeout(clickTimer.current);
-      clickTimer.current = setTimeout(() => {
-        onSchoolPreview(school);
-      }, 180);
-    };
-
     const handleSchoolDoubleClick = (event: MapLayerMouseEvent) => {
       event.preventDefault();
       const name = featureName(event.features?.[0]);
@@ -832,20 +894,16 @@ export default function ChinaMap({
     };
 
     map.on("click", handleMapClick);
-    map.on("click", "region-fill", handleRegionClick);
     map.on("mousemove", "region-fill", handleRegionMove);
     map.on("mouseleave", "region-fill", handleRegionLeave);
-    map.on("click", "school-points", handleSchoolClick);
     map.on("dblclick", "school-points", handleSchoolDoubleClick);
     map.on("mousemove", "school-points", handleSchoolMove);
     map.on("mouseleave", "school-points", handleSchoolLeave);
 
     return () => {
       map.off("click", handleMapClick);
-      map.off("click", "region-fill", handleRegionClick);
       map.off("mousemove", "region-fill", handleRegionMove);
       map.off("mouseleave", "region-fill", handleRegionLeave);
-      map.off("click", "school-points", handleSchoolClick);
       map.off("dblclick", "school-points", handleSchoolDoubleClick);
       map.off("mousemove", "school-points", handleSchoolMove);
       map.off("mouseleave", "school-points", handleSchoolLeave);
@@ -917,7 +975,7 @@ export default function ChinaMap({
         </div>
       )}
 
-      <div ref={mapContainerRef} className="china-map-maplibre h-full w-full" />
+      <div ref={handleMapContainerRef} className="china-map-maplibre h-full w-full" />
 
       <MapHoverTooltip hoverInfo={hoverInfo} />
       <MapLegend
