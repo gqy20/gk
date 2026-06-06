@@ -23,10 +23,11 @@ export function getDefaultFutureRepository() {
 }
 
 export function getDefaultAnthropicProvider() {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  // 兼容两种 key 形式:ANTHROPIC_API_KEY(官方)/ ANTHROPIC_AUTH_TOKEN(网关/MiniMax)
+  const apiKey = process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN;
   const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5";
   if (!apiKey) {
-    throw new Error("ANTHROPIC_API_KEY is required");
+    throw new Error("ANTHROPIC_API_KEY (or ANTHROPIC_AUTH_TOKEN) is required");
   }
 
   return new AnthropicProvider({

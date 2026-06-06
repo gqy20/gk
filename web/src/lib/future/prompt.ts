@@ -14,7 +14,7 @@ function clip(text: string, max: number) {
 }
 
 function formatEvidence(input: FutureRunInput) {
-  const items = input.choiceContext.evidence.slice(0, 6);
+  const items = (input.choiceContext.evidence ?? []).slice(0, 6);
   if (items.length === 0) return "暂无学校资料证据，需明确标注推演假设。";
 
   return items
@@ -44,6 +44,7 @@ function formatBranchPlan(input: FutureRunInput) {
 
 export function buildFuturePrompt(input: FutureRunInput) {
   const { profile, choiceContext } = input;
+  const p = profile ?? {};
 
   const system = [
     "你是高考志愿咨询师和职业发展研究员。",
@@ -55,21 +56,21 @@ export function buildFuturePrompt(input: FutureRunInput) {
   const user = `请为这个志愿选择生成 ${input.pathCount} 条未来路径。
 
 【学生画像】
-- 生源省份：${profile.province}
-- 选科/方向：${profile.subjectTrack}
-- 分数段：${profile.scoreBand}
-- 性格标签：${profile.personalityTags.join("、") || "未提供"}
-- 兴趣方向：${profile.interests.join("、") || "未提供"}
-- 风险偏好：${profile.riskTolerance}/10
-- 家庭支持：${profile.familySupport}
-- 目标/顾虑：${profile.goals || "未提供"}
+- 生源省份：${p.province || "未提供"}
+- 选科/方向：${p.subjectTrack || "未提供"}
+- 分数段：${p.scoreBand || "未提供"}
+- 性格标签：${(p.personalityTags ?? []).join("、") || "未提供"}
+- 兴趣方向：${(p.interests ?? []).join("、") || "未提供"}
+- 风险偏好：${typeof p.riskTolerance === "number" ? `${p.riskTolerance}/10` : "未提供"}
+- 家庭支持：${p.familySupport || "未提供"}
+- 目标/顾虑：${p.goals || "未提供"}
 
 【志愿选择】
 - 学校：${choiceContext.school}
 - 专业：${choiceContext.major || "未指定"}
 - 城市：${choiceContext.city || "未指定"}
 - 省份：${choiceContext.province || "未指定"}
-- 学校标签：${choiceContext.schoolTags.join("、") || "未提供"}
+- 学校标签：${(choiceContext.schoolTags ?? []).join("、") || "未提供"}
 
 【可用证据】
 ${formatEvidence(input)}

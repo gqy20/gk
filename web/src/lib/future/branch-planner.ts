@@ -64,8 +64,9 @@ function pickTemplate(pool: BranchTemplate[], index: number) {
 }
 
 function templateOrder(input: FutureRunInput) {
-  const { riskTolerance, goals } = input.profile;
-  const goalText = goals.toLowerCase();
+  const profile = input.profile ?? {};
+  const riskTolerance = typeof profile.riskTolerance === "number" ? profile.riskTolerance : 5;
+  const goalText = (profile.goals ?? "").toLowerCase();
   const wantsStability = /稳|稳定|保底|下限|体制|国企/.test(goalText);
   const wantsGrowth = /上限|挑战|创业|探索|跨|一线|高薪/.test(goalText);
 
@@ -81,11 +82,13 @@ function templateOrder(input: FutureRunInput) {
 function contextualAssumptions(input: FutureRunInput) {
   const assumptions: string[] = [];
   const { choiceContext, profile } = input;
+  const interests = profile?.interests ?? [];
+  const evidence = choiceContext.evidence ?? [];
 
   if (choiceContext.major) assumptions.push(`以${choiceContext.major}作为主要能力起点`);
   if (choiceContext.city) assumptions.push(`城市机会以${choiceContext.city}及周边为主要外部环境`);
-  if (profile.interests.length > 0) assumptions.push(`兴趣方向包含${profile.interests.slice(0, 3).join("、")}`);
-  if (choiceContext.evidence.length === 0) assumptions.push("缺少学校细项证据时，只能做方向性推演");
+  if (interests.length > 0) assumptions.push(`兴趣方向包含${interests.slice(0, 3).join("、")}`);
+  if (evidence.length === 0) assumptions.push("缺少学校细项证据时，只能做方向性推演");
 
   return assumptions;
 }

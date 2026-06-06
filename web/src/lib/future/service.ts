@@ -97,7 +97,7 @@ export async function createFutureRun({
   repository,
   provider,
   model = "anthropic-compatible",
-  maxTokens = 8192,
+  maxTokens = 4096,
 }: CreateFutureRunOptions) {
   const prompt = buildFuturePrompt(input);
   const started = await startFutureRun({ input, repository, model });
@@ -138,7 +138,7 @@ export async function generateFutureRun({
   input,
   repository,
   provider,
-  maxTokens = 8192,
+  maxTokens = 4096,
 }: GenerateFutureRunOptions) {
   const prompt = buildFuturePrompt(input);
   try {

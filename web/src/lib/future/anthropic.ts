@@ -80,11 +80,15 @@ export class AnthropicProvider {
     maxTokens = 4096,
   }: GenerateStructuredInput): Promise<GenerateStructuredResult<T>> {
     const response = await this.fetchImpl(`${this.baseUrl}/v1/messages`, {
+      signal: AbortSignal.timeout(90_000),
       method: "POST",
       headers: {
         "content-type": "application/json",
         "x-api-key": this.apiKey,
         "anthropic-version": this.anthropicVersion,
+        // MiniMax 网关在 HTTP/2 keep-alive 下偶发挂起;显式关连接,每次新建 TCP,
+        // 单次 30-60s 内的请求不会被长连接池化阻塞。
+        connection: "close",
       },
       body: JSON.stringify({
         model: this.model,

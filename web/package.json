@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "WATCHPACK_POLLING=true next dev --webpack --hostname 0.0.0.0",
+    "dev": "bash scripts/dev.sh",
     "prebuild": "tsx scripts/generate-data.ts",
     "build": "next build",
     "start": "next start",
