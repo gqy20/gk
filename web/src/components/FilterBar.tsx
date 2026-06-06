@@ -1,31 +1,16 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-
 interface FilterBarProps {
   query: string;
-  filter985: boolean;
-  filter211: boolean;
-  filterDoubleFirst: boolean;
   activeFilterCount: number;
   onQueryChange: (value: string) => void;
-  onToggle985: () => void;
-  onToggle211: () => void;
-  onToggleDoubleFirst: () => void;
   onReset: () => void;
 }
 
 export default function FilterBar({
   query,
-  filter985,
-  filter211,
-  filterDoubleFirst,
   activeFilterCount,
   onQueryChange,
-  onToggle985,
-  onToggle211,
-  onToggleDoubleFirst,
   onReset,
 }: FilterBarProps) {
   const hasActiveControls = query.trim().length > 0 || activeFilterCount > 0;
@@ -43,9 +28,6 @@ export default function FilterBar({
       </label>
 
       <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
-        <FilterTag label="985" active={filter985} onClick={onToggle985} tone="red" />
-        <FilterTag label="211" active={filter211} onClick={onToggle211} tone="gold" />
-        <FilterTag label="双一流" active={filterDoubleFirst} onClick={onToggleDoubleFirst} tone="green" />
         {hasActiveControls && (
           <button
             type="button"
@@ -57,59 +39,5 @@ export default function FilterBar({
         )}
       </div>
     </div>
-  );
-}
-
-const solidColors: Record<"red" | "gold" | "green", string> = {
-  red: "bg-danger-500 text-text-inverse border-danger-600/30 shadow-sm shadow-danger-500/20",
-  gold: "bg-accent-500 text-text-inverse border-accent-700/25 shadow-sm shadow-accent-500/18",
-  green: "bg-success text-text-inverse border-brand-700/25 shadow-sm shadow-brand-500/18",
-};
-
-function FilterTag({
-  label,
-  active,
-  onClick,
-  tone,
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-  tone: "red" | "gold" | "green";
-}) {
-  const sizeClass = "h-7 px-3 text-xs sm:h-8 sm:px-3.5";
-
-  if (active) {
-    return (
-      <motion.button
-        type="button"
-        aria-pressed={active}
-        onClick={onClick}
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 500, damping: 25 }}
-        whileTap={{ scale: 0.95 }}
-        className={cn("shrink-0 rounded-md border font-semibold tracking-[0.02em]", sizeClass, solidColors[tone])}
-      >
-        {label}
-      </motion.button>
-    );
-  }
-
-  return (
-    <motion.button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      whileHover={{ scale: 1.04, borderColor: "rgba(63,143,155,0.48)" }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ type: "spring", stiffness: 400, damping: 22 }}
-      className={cn(
-        "shrink-0 rounded-md border border-border-light bg-neutral-0/78 font-semibold text-text-light-muted shadow-sm shadow-white/35",
-        sizeClass,
-      )}
-    >
-      {label}
-    </motion.button>
   );
 }

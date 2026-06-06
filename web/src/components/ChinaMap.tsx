@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import maplibregl, {
   type GeoJSONSource,
   type LngLatBoundsLike,
@@ -13,6 +13,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { colors } from "@/lib/theme";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
+import { SCHOOL_TIER_STYLES, getProvincePalette } from "@/lib/map-style";
 import {
   MAP_NAME_TO_PROVINCE,
   type MapLevel,
@@ -24,12 +25,20 @@ import SchoolPopup from "./SchoolPopup";
 
 interface ChinaMapProps {
   schools: School[];
+  highlightedSchools: School[];
   provinces: ProvinceData[];
   selectedProvince: string | null;
   previewSchool: School | null;
+  hasActiveMapFilters: boolean;
+  filter985: boolean;
+  filter211: boolean;
+  filterDoubleFirst: boolean;
   onProvinceSelect: (province: string | null) => void;
   onSchoolPreview: (school: School | null) => void;
   onSchoolClick: (school: School) => void;
+  onToggle985: () => void;
+  onToggle211: () => void;
+  onToggleDoubleFirst: () => void;
 }
 
 type Position = [number, number];
@@ -52,6 +61,23 @@ type GeoJsonFeatureCollection = {
 };
 
 type Bounds = [number, number, number, number];
+
+type MapHoverInfo =
+  | {
+      kind: "region";
+      x: number;
+      y: number;
+      name: string;
+      count: number;
+    }
+  | {
+      kind: "school";
+      x: number;
+      y: number;
+      name: string;
+      province: string;
+      tier: string;
+    };
 
 const MAP_PROVINCE_NAMES: Record<string, string> = {
   北京: "北京市",
@@ -95,152 +121,13 @@ const SHORT_PROVINCE_NAMES = new Map(
 );
 
 const CHINA_VIEW_BOUNDS: Bounds = [73, 17, 135.5, 54.5];
+const MAP_INTERACTION_BOUNDS: Bounds = [58, -2, 154, 64];
 const SEA_TEXTURE_COORDINATES: [Position, Position, Position, Position] = [
-  [112, 58],
-  [148, 58],
-  [148, 4],
-  [112, 4],
+  [48, 70],
+  [166, 70],
+  [166, -12],
+  [48, -12],
 ];
-
-const PROVINCE_WATERCOLOR_COLORS = [
-  "rgba(204, 226, 221, 0.78)",
-  "rgba(216, 229, 199, 0.78)",
-  "rgba(225, 211, 175, 0.76)",
-  "rgba(202, 222, 238, 0.78)",
-  "rgba(220, 202, 232, 0.68)",
-  "rgba(232, 190, 198, 0.64)",
-  "rgba(184, 218, 196, 0.76)",
-  "rgba(221, 228, 211, 0.78)",
-] as const;
-
-type MapTheme = {
-  name: string;
-  land: string;
-  landDeep: string;
-  border: string;
-  borderStrong: string;
-  glow: string;
-  glowStrong: string;
-  shadowDeep: string;
-  text: string;
-  textMuted: string;
-  paper: string;
-  paperEdge: string;
-};
-
-const BASE_THEME: MapTheme = {
-  name: "default",
-  land: "rgba(221, 233, 223, 0.76)",
-  landDeep: "rgba(189, 219, 212, 0.68)",
-  border: "rgba(126, 137, 128, 0.56)",
-  borderStrong: "rgba(80, 98, 92, 0.78)",
-  glow: "rgba(117, 179, 179, 0.22)",
-  glowStrong: "rgba(242, 223, 174, 0.78)",
-  shadowDeep: "rgba(112, 93, 67, 0.18)",
-  text: "#fdf9ee",
-  textMuted: "rgba(74, 82, 76, 0.68)",
-  paper: "rgba(255, 250, 240, 0.48)",
-  paperEdge: "rgba(84, 76, 61, 0.10)",
-};
-
-const PROVINCE_THEME_GROUPS: Array<{
-  name: string;
-  provinces: string[];
-  theme: Omit<MapTheme, "name">;
-}> = [
-  {
-    name: "jiangnan",
-    provinces: ["江苏", "浙江", "福建", "上海", "广东", "广西", "海南"],
-    theme: {
-      land: "rgba(205, 226, 186, 0.78)",
-      landDeep: "rgba(151, 196, 158, 0.62)",
-      border: "rgba(104, 136, 122, 0.52)",
-      borderStrong: "rgba(68, 103, 90, 0.78)",
-      glow: "rgba(103, 180, 158, 0.22)",
-      glowStrong: "rgba(196, 222, 166, 0.82)",
-      shadowDeep: "rgba(1, 15, 20, 0.20)",
-      text: "#fffaf0",
-      textMuted: "rgba(68, 84, 78, 0.68)",
-      paper: "rgba(243, 250, 238, 0.05)",
-      paperEdge: "rgba(236, 248, 234, 0.08)",
-    },
-  },
-  {
-    name: "central",
-    provinces: ["北京", "天津", "河北", "山西", "河南", "山东", "安徽", "陕西"],
-    theme: {
-      land: "rgba(232, 212, 163, 0.78)",
-      landDeep: "rgba(216, 184, 111, 0.58)",
-      border: "rgba(141, 126, 96, 0.5)",
-      borderStrong: "rgba(105, 88, 60, 0.76)",
-      glow: "rgba(188, 160, 92, 0.22)",
-      glowStrong: "rgba(241, 216, 145, 0.86)",
-      shadowDeep: "rgba(10, 13, 18, 0.18)",
-      text: "#fffaf0",
-      textMuted: "rgba(85, 76, 61, 0.68)",
-      paper: "rgba(255, 248, 232, 0.046)",
-      paperEdge: "rgba(255, 250, 240, 0.08)",
-    },
-  },
-  {
-    name: "southwest",
-    provinces: ["四川", "重庆", "贵州", "云南", "湖北", "湖南"],
-    theme: {
-      land: "rgba(174, 214, 169, 0.76)",
-      landDeep: "rgba(118, 174, 137, 0.58)",
-      border: "rgba(93, 127, 105, 0.52)",
-      borderStrong: "rgba(62, 101, 78, 0.78)",
-      glow: "rgba(90, 147, 116, 0.22)",
-      glowStrong: "rgba(178, 219, 181, 0.82)",
-      shadowDeep: "rgba(2, 16, 17, 0.18)",
-      text: "#fffaf0",
-      textMuted: "rgba(65, 86, 70, 0.68)",
-      paper: "rgba(242, 249, 239, 0.05)",
-      paperEdge: "rgba(237, 248, 232, 0.08)",
-    },
-  },
-  {
-    name: "northwest",
-    provinces: ["甘肃", "青海", "宁夏", "新疆", "西藏", "内蒙古"],
-    theme: {
-      land: "rgba(195, 218, 235, 0.72)",
-      landDeep: "rgba(143, 184, 213, 0.56)",
-      border: "rgba(102, 125, 137, 0.52)",
-      borderStrong: "rgba(70, 95, 108, 0.76)",
-      glow: "rgba(126, 163, 188, 0.22)",
-      glowStrong: "rgba(190, 214, 234, 0.84)",
-      shadowDeep: "rgba(7, 15, 20, 0.18)",
-      text: "#fffaf0",
-      textMuted: "rgba(68, 87, 98, 0.68)",
-      paper: "rgba(255, 249, 239, 0.044)",
-      paperEdge: "rgba(255, 252, 245, 0.08)",
-    },
-  },
-  {
-    name: "northeast",
-    provinces: ["辽宁", "吉林", "黑龙江"],
-    theme: {
-      land: "rgba(202, 222, 234, 0.76)",
-      landDeep: "rgba(151, 190, 209, 0.58)",
-      border: "rgba(99, 124, 137, 0.52)",
-      borderStrong: "rgba(66, 91, 105, 0.78)",
-      glow: "rgba(111, 159, 172, 0.22)",
-      glowStrong: "rgba(199, 226, 236, 0.84)",
-      shadowDeep: "rgba(4, 15, 21, 0.18)",
-      text: "#fffaf0",
-      textMuted: "rgba(68, 86, 96, 0.68)",
-      paper: "rgba(241, 248, 250, 0.045)",
-      paperEdge: "rgba(237, 247, 249, 0.08)",
-    },
-  },
-];
-
-function resolveTheme(province?: string | null): MapTheme {
-  if (!province) return BASE_THEME;
-  const group = PROVINCE_THEME_GROUPS.find((item) => item.provinces.includes(province));
-  if (!group) return BASE_THEME;
-  return { name: group.name, ...group.theme };
-}
 
 function mapProvinceName(province: string): string {
   return MAP_PROVINCE_NAMES[province] || province;
@@ -249,14 +136,6 @@ function mapProvinceName(province: string): string {
 function shortProvinceName(name?: string): string | null {
   if (!name) return null;
   return SHORT_PROVINCE_NAMES.get(name) || name;
-}
-
-function provinceWatercolor(name: string): string {
-  let hash = 0;
-  for (const char of name) {
-    hash = (hash + char.charCodeAt(0)) % PROVINCE_WATERCOLOR_COLORS.length;
-  }
-  return PROVINCE_WATERCOLOR_COLORS[hash];
 }
 
 function walkCoordinates(value: unknown, callback: (position: Position) => void) {
@@ -300,15 +179,31 @@ function centroidFromFeature(feature: GeoJsonFeature): Position | null {
 }
 
 function fitBounds(map: maplibregl.Map, bounds: Bounds, level: MapLevel) {
-  if (!map.loaded()) return;
   const nextBounds: LngLatBoundsLike = [
     [bounds[0], bounds[1]],
     [bounds[2], bounds[3]],
   ];
+  if (level !== "country") {
+    const camera = map.cameraForBounds(nextBounds, {
+      padding: 10,
+      maxZoom: 8.2,
+    });
+    if (camera) {
+      const zoomBoost = level === "province" ? 0.9 : 0.45;
+      const cameraZoom = camera.zoom ?? 6;
+      map.easeTo({
+        center: camera.center,
+        zoom: Math.min(cameraZoom + zoomBoost, 8.45),
+        duration: 460,
+        essential: true,
+      });
+      return;
+    }
+  }
   map.fitBounds(nextBounds, {
-    padding: level === "country" ? 34 : 58,
-    duration: 360,
-    maxZoom: level === "country" ? 4.15 : 7.2,
+    padding: level === "country" ? 34 : 18,
+    duration: 420,
+    maxZoom: level === "country" ? 4.15 : 8.2,
   });
 }
 
@@ -322,6 +217,7 @@ function normalizeMapData(
   const features = data.features.map((feature) => {
     const mapName = String(feature.properties.name || "");
     const shortName = shortProvinceName(mapName) || mapName;
+    const palette = getProvincePalette(shortName);
     return {
       ...feature,
       id: String(feature.properties.adcode || mapName),
@@ -329,7 +225,13 @@ function normalizeMapData(
         ...feature.properties,
         shortName,
         count: countByProvince.get(shortName) ?? 0,
-        fillColor: provinceWatercolor(shortName),
+        colorName: palette.colorName,
+        fillColor: palette.fill,
+        selectedFillColor: palette.selectedFill,
+        hoverFillColor: palette.hoverFill,
+        edgeColor: palette.edge,
+        labelColor: palette.label,
+        haloColor: palette.halo,
         selected: selectedProvince === shortName,
       },
     };
@@ -352,6 +254,8 @@ function makeLabelData(data: GeoJsonFeatureCollection) {
           type: "Feature" as const,
           properties: {
             name: feature.properties.shortName || feature.properties.name,
+            labelColor: feature.properties.labelColor,
+            haloColor: feature.properties.haloColor,
           },
           geometry: {
             type: "Point",
@@ -370,38 +274,70 @@ function schoolTier(school: School) {
   return "normal";
 }
 
-function schoolColor(school: School, selectedProvince: string | null): string {
-  if (selectedProvince && school.province !== selectedProvince) return colors.chart.schoolMuted;
+function schoolColor(school: School, selectedProvince: string | null, highlighted: boolean): string {
+  if (!highlighted || (selectedProvince && school.province !== selectedProvince)) return colors.chart.schoolMuted;
   if (school.is985) return colors.chart.school985;
   if (school.is211) return colors.chart.school211;
   if (school.isDoubleFirstClass) return colors.chart.schoolDoubleFirst;
   return colors.chart.schoolNormal;
 }
 
-function makeSchoolData(schools: School[], selectedProvince: string | null) {
+function schoolRadius(school: School, highlighted: boolean): number {
+  if (!highlighted) return 2.2;
+  if (school.is985) return 10.4;
+  if (school.is211) return 8.6;
+  if (school.isDoubleFirstClass) return 7.2;
+  return 5.4;
+}
+
+function makeSchoolData(
+  schools: School[],
+  selectedProvince: string | null,
+  highlightedSchoolNames: Set<string>,
+  hasActiveMapFilters: boolean,
+) {
   return {
     type: "FeatureCollection",
-    features: schools.map((school) => ({
-      type: "Feature" as const,
-      id: school.name,
-      properties: {
-        name: school.name,
-        province: school.province,
-        tier: schoolTier(school),
-        color: schoolColor(school, selectedProvince),
-        opacity: selectedProvince && school.province !== selectedProvince ? 0.38 : 0.94,
-      },
-      geometry: {
-        type: "Point",
-        coordinates: school.coord,
-      },
-    })),
+    features: schools.map((school) => {
+      const matchesFilter = !hasActiveMapFilters || highlightedSchoolNames.has(school.name);
+      const highlighted = matchesFilter && (!selectedProvince || school.province === selectedProvince);
+
+      return {
+        type: "Feature" as const,
+        id: school.name,
+        properties: {
+          name: school.name,
+          province: school.province,
+          tier: schoolTier(school),
+          highlighted,
+          color: schoolColor(school, selectedProvince, highlighted),
+          opacity: highlighted ? 0.98 : 0.07,
+          radius: schoolRadius(school, highlighted),
+          strokeWidth: highlighted ? 2.1 : 0.25,
+          sortKey: highlighted ? 2 : 1,
+        },
+        geometry: {
+          type: "Point",
+          coordinates: school.coord,
+        },
+      };
+    }),
   } as GeoJsonFeatureCollection;
 }
 
 function featureName(feature?: MapGeoJSONFeature): string | null {
   const name = feature?.properties?.name;
   return typeof name === "string" ? name : null;
+}
+
+function featureString(feature: MapGeoJSONFeature | undefined, key: string): string {
+  const value = feature?.properties?.[key];
+  return typeof value === "string" ? value : "";
+}
+
+function featureNumber(feature: MapGeoJSONFeature | undefined, key: string): number {
+  const value = feature?.properties?.[key];
+  return typeof value === "number" ? value : 0;
 }
 
 function featureAdcode(feature?: MapGeoJSONFeature): string | null {
@@ -413,12 +349,20 @@ function featureAdcode(feature?: MapGeoJSONFeature): string | null {
 
 export default function ChinaMap({
   schools,
+  highlightedSchools,
   provinces,
   selectedProvince,
   previewSchool,
+  hasActiveMapFilters,
+  filter985,
+  filter211,
+  filterDoubleFirst,
   onProvinceSelect,
   onSchoolPreview,
   onSchoolClick,
+  onToggle985,
+  onToggle211,
+  onToggleDoubleFirst,
 }: ChinaMapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -428,36 +372,24 @@ export default function ChinaMap({
   const [loadingDrill, setLoadingDrill] = useState(false);
   const [mapData, setMapData] = useState<GeoJsonFeatureCollection | null>(null);
   const [drill, setDrill] = useState<DrillState>(INITIAL_DRILL_STATE);
+  const [hoverInfo, setHoverInfo] = useState<MapHoverInfo | null>(null);
 
   const currentProvince =
     drill.level === "country"
       ? selectedProvince
       : MAP_NAME_TO_PROVINCE[drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name] ||
         selectedProvince;
-  const mapTheme = useMemo(() => resolveTheme(currentProvince), [currentProvince]);
-  const stageStyle = useMemo(
-    () =>
-      ({
-        "--china-map-land": mapTheme.land,
-        "--china-map-land-deep": mapTheme.landDeep,
-        "--china-map-border": mapTheme.border,
-        "--china-map-border-strong": mapTheme.borderStrong,
-        "--china-map-glow": mapTheme.glow,
-        "--china-map-glow-strong": mapTheme.glowStrong,
-        "--china-map-shadow-deep": mapTheme.shadowDeep,
-        "--china-map-text": mapTheme.text,
-        "--china-map-text-muted": mapTheme.textMuted,
-        "--china-map-paper": mapTheme.paper,
-        "--china-map-paper-edge": mapTheme.paperEdge,
-      }) as CSSProperties,
-    [mapTheme],
-  );
 
   const visibleSchools = useMemo(() => {
     if (drill.level === "country") return schools;
     if (!currentProvince) return schools;
     return schools.filter((school) => school.province === currentProvince);
   }, [schools, drill.level, currentProvince]);
+
+  const highlightedSchoolNames = useMemo(
+    () => new Set(highlightedSchools.map((school) => school.name)),
+    [highlightedSchools],
+  );
 
   const normalizedMapData = useMemo(() => {
     if (!mapData) return null;
@@ -470,9 +402,14 @@ export default function ChinaMap({
   }, [normalizedMapData]);
 
   const schoolData = useMemo(
-    () => makeSchoolData(visibleSchools, selectedProvince),
-    [visibleSchools, selectedProvince],
+    () => makeSchoolData(visibleSchools, selectedProvince, highlightedSchoolNames, hasActiveMapFilters),
+    [hasActiveMapFilters, highlightedSchoolNames, selectedProvince, visibleSchools],
   );
+
+  const currentProvinceCount =
+    currentProvince
+      ? provinces.find((province) => province.name === currentProvince)?.count ?? visibleSchools.length
+      : null;
 
   const loadMapData = useCallback(async (adcode: string) => {
     const url = adcode === "100000" ? "/china.json" : `/maps/${adcode}.json`;
@@ -504,13 +441,58 @@ export default function ChinaMap({
     (map.getSource("schools") as GeoJSONSource | undefined)?.setData(data);
   }, []);
 
+  const syncSeaWatercolorLayer = useCallback((visible: boolean) => {
+    const map = mapRef.current;
+    if (!map) return;
+    try {
+      if (!visible) {
+        if (map.getLayer("sea-watercolor")) {
+          map.removeLayer("sea-watercolor");
+        }
+        if (map.getSource("sea-watercolor")) {
+          map.removeSource("sea-watercolor");
+        }
+        return;
+      }
+
+      if (!map.getSource("sea-watercolor")) {
+        map.addSource("sea-watercolor", {
+          type: "image",
+          url: "/textures/sea-wash.webp",
+          coordinates: SEA_TEXTURE_COORDINATES,
+        });
+      }
+
+      if (!map.getLayer("sea-watercolor")) {
+        map.addLayer(
+          {
+            id: "sea-watercolor",
+            type: "raster",
+            source: "sea-watercolor",
+            paint: {
+              "raster-opacity": 0.34,
+              "raster-fade-duration": 0,
+            },
+          },
+          map.getLayer("region-fill") ? "region-fill" : undefined,
+        );
+        return;
+      }
+
+      map.setLayoutProperty("sea-watercolor", "visibility", "visible");
+      map.setPaintProperty("sea-watercolor", "raster-opacity", 0.34);
+    } catch {
+      // The style can briefly be unavailable while MapLibre is settling after a source update.
+    }
+  }, []);
+
   const installMapLayers = useCallback(
-    (map: maplibregl.Map, initialRegions: GeoJsonFeatureCollection, initialLabels: GeoJsonFeatureCollection) => {
-      map.addSource("sea-watercolor", {
-        type: "image",
-        url: "/textures/sea-wash.webp",
-        coordinates: SEA_TEXTURE_COORDINATES,
-      });
+    (
+      map: maplibregl.Map,
+      initialRegions: GeoJsonFeatureCollection,
+      initialLabels: GeoJsonFeatureCollection,
+      initialSchools: GeoJsonFeatureCollection,
+    ) => {
       map.addSource("regions", {
         type: "geojson",
         data: initialRegions,
@@ -522,7 +504,7 @@ export default function ChinaMap({
       });
       map.addSource("schools", {
         type: "geojson",
-        data: schoolData,
+        data: initialSchools,
       });
 
       map.addLayer({
@@ -533,15 +515,6 @@ export default function ChinaMap({
         },
       });
       map.addLayer({
-        id: "sea-watercolor",
-        type: "raster",
-        source: "sea-watercolor",
-        paint: {
-          "raster-opacity": 0.82,
-          "raster-fade-duration": 0,
-        },
-      });
-      map.addLayer({
         id: "region-fill",
         type: "fill",
         source: "regions",
@@ -549,9 +522,9 @@ export default function ChinaMap({
           "fill-color": [
             "case",
             ["boolean", ["feature-state", "hover"], false],
-            "rgba(242, 223, 174, 0.86)",
+            ["coalesce", ["get", "hoverFillColor"], "rgba(242, 223, 174, 0.86)"],
             ["boolean", ["get", "selected"], false],
-            "rgba(242, 223, 174, 0.78)",
+            ["coalesce", ["get", "selectedFillColor"], "rgba(242, 223, 174, 0.78)"],
             ["coalesce", ["get", "fillColor"], "rgba(221, 233, 223, 0.76)"],
           ],
           "fill-opacity": [
@@ -572,8 +545,8 @@ export default function ChinaMap({
           "line-color": [
             "case",
             ["boolean", ["feature-state", "hover"], false],
-            "rgba(80, 98, 92, 0.86)",
-            "rgba(92, 104, 97, 0.56)",
+            ["coalesce", ["get", "edgeColor"], "rgba(80, 98, 92, 0.86)"],
+            ["coalesce", ["get", "edgeColor"], "rgba(92, 104, 97, 0.56)"],
           ],
           "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.6, 4, 1, 6, 1.5],
           "line-blur": 0.45,
@@ -593,8 +566,8 @@ export default function ChinaMap({
           "text-font": ["Noto Sans Regular"],
         },
         paint: {
-          "text-color": "rgba(74, 82, 76, 0.70)",
-          "text-halo-color": "rgba(255, 250, 240, 0.78)",
+          "text-color": ["coalesce", ["get", "labelColor"], "rgba(74, 82, 76, 0.70)"],
+          "text-halo-color": ["coalesce", ["get", "haloColor"], "rgba(255, 250, 240, 0.78)"],
           "text-halo-width": 1.2,
           "text-opacity": 0.92,
         },
@@ -604,36 +577,21 @@ export default function ChinaMap({
         type: "circle",
         source: "schools",
         paint: {
-          "circle-radius": [
-            "match",
-            ["get", "tier"],
-            "985",
-            8.5,
-            "211",
-            7,
-            "doubleFirst",
-            6,
-            4.7,
-          ],
+          "circle-radius": ["coalesce", ["get", "radius"], 4.7],
           "circle-color": ["coalesce", ["get", "color"], colors.chart.schoolNormal],
           "circle-opacity": ["coalesce", ["get", "opacity"], 0.94],
           "circle-stroke-color": "rgba(255, 250, 240, 0.96)",
-          "circle-stroke-width": [
-            "match",
-            ["get", "tier"],
-            "985",
-            2,
-            "211",
-            1.6,
-            1.1,
-          ],
+          "circle-stroke-width": ["coalesce", ["get", "strokeWidth"], 1.1],
           "circle-blur": 0.04,
+        },
+        layout: {
+          "circle-sort-key": ["coalesce", ["get", "sortKey"], 1],
         },
       });
 
       fitBounds(map, CHINA_VIEW_BOUNDS, "country");
     },
-    [schoolData],
+    [],
   );
 
   useEffect(() => {
@@ -668,8 +626,12 @@ export default function ChinaMap({
       attributionControl: false,
       center: [104, 35],
       zoom: 3.15,
-      minZoom: 2.15,
+      minZoom: 2.45,
       maxZoom: 8.8,
+      maxBounds: [
+        [MAP_INTERACTION_BOUNDS[0], MAP_INTERACTION_BOUNDS[1]],
+        [MAP_INTERACTION_BOUNDS[2], MAP_INTERACTION_BOUNDS[3]],
+      ],
       pitchWithRotate: false,
       dragRotate: false,
       touchPitch: false,
@@ -688,16 +650,16 @@ export default function ChinaMap({
     );
 
     map.on("load", () => {
-      installMapLayers(map, normalizedMapData, labelData);
-      setSchoolSourceData(schoolData);
+      installMapLayers(map, normalizedMapData, labelData, schoolData);
       setMapReady(true);
+      syncSeaWatercolorLayer(true);
     });
 
     return () => {
       map.remove();
       mapRef.current = null;
     };
-  }, [installMapLayers, labelData, normalizedMapData, schoolData, setSchoolSourceData]);
+  }, [installMapLayers, labelData, normalizedMapData, schoolData, syncSeaWatercolorLayer]);
 
   useEffect(() => {
     if (!normalizedMapData || !labelData) return;
@@ -710,15 +672,23 @@ export default function ChinaMap({
   }, [schoolData, setSchoolSourceData]);
 
   useEffect(() => {
+    syncSeaWatercolorLayer(drill.level === "country");
+  }, [drill.level, mapReady, syncSeaWatercolorLayer]);
+
+  useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady || !mapData) return;
     const bounds = drill.level === "country" ? CHINA_VIEW_BOUNDS : boundsFromGeoJson(mapData);
-    fitBounds(map, bounds, drill.level);
+    const frame = window.requestAnimationFrame(() => {
+      fitBounds(map, bounds, drill.level);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [drill.level, mapData, mapReady]);
 
   const drillDown = useCallback(
     async (name: string, adcode: string) => {
       setLoadingDrill(true);
+      syncSeaWatercolorLayer(false);
       try {
         const data = await loadMapData(adcode);
         const targetLevel: MapLevel = drill.level === "country" ? "province" : "city";
@@ -740,7 +710,7 @@ export default function ChinaMap({
         setLoadingDrill(false);
       }
     },
-    [drill.level, loadMapData, onProvinceSelect],
+    [drill.level, loadMapData, onProvinceSelect, syncSeaWatercolorLayer],
   );
 
   const resetToCountry = useCallback(async () => {
@@ -749,13 +719,14 @@ export default function ChinaMap({
       const data = await loadMapData("100000");
       setMapData(data);
       setDrill(INITIAL_DRILL_STATE);
+      syncSeaWatercolorLayer(true);
       onProvinceSelect(null);
     } catch {
       console.warn("[ChinaMap] Failed to restore country map");
     } finally {
       setLoadingDrill(false);
     }
-  }, [loadMapData, onProvinceSelect]);
+  }, [loadMapData, onProvinceSelect, syncSeaWatercolorLayer]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -766,6 +737,7 @@ export default function ChinaMap({
         layers: ["region-fill", "school-points"],
       });
       if (hits.length > 0) return;
+      setHoverInfo(null);
       onSchoolPreview(null);
     };
 
@@ -791,15 +763,26 @@ export default function ChinaMap({
     const handleRegionMove = (event: MapLayerMouseEvent) => {
       const feature = event.features?.[0];
       const id = feature?.id;
-      if (id == null || id === hoveredRegionIdRef.current) return;
-      resetHover();
-      hoveredRegionIdRef.current = id;
-      map.setFeatureState({ source: "regions", id }, { hover: true });
+      const name = featureString(feature, "shortName") || featureName(feature);
+      if (!name) return;
+      if (id != null && id !== hoveredRegionIdRef.current) {
+        resetHover();
+        hoveredRegionIdRef.current = id;
+        map.setFeatureState({ source: "regions", id }, { hover: true });
+      }
+      setHoverInfo({
+        kind: "region",
+        x: event.point.x,
+        y: event.point.y,
+        name,
+        count: featureNumber(feature, "count"),
+      });
       map.getCanvas().style.cursor = "pointer";
     };
 
     const handleRegionLeave = () => {
       resetHover();
+      setHoverInfo(null);
       map.getCanvas().style.cursor = "";
     };
 
@@ -827,11 +810,24 @@ export default function ChinaMap({
       if (school) onSchoolClick(school);
     };
 
-    const handleSchoolMove = () => {
+    const handleSchoolMove = (event: MapLayerMouseEvent) => {
+      const feature = event.features?.[0];
+      const name = featureName(feature);
+      if (name) {
+        setHoverInfo({
+          kind: "school",
+          x: event.point.x,
+          y: event.point.y,
+          name,
+          province: featureString(feature, "province"),
+          tier: featureString(feature, "tier") || "normal",
+        });
+      }
       map.getCanvas().style.cursor = "pointer";
     };
 
     const handleSchoolLeave = () => {
+      setHoverInfo(null);
       map.getCanvas().style.cursor = "";
     };
 
@@ -862,10 +858,11 @@ export default function ChinaMap({
 
   return (
     <div
-      className="china-map-stage relative h-full w-full overflow-hidden"
+      className={`china-map-stage ${
+        drill.level === "country" ? "china-map-stage-country" : "china-map-stage-local"
+      } relative h-full w-full overflow-hidden`}
       role="figure"
       aria-label={EMPTY_MESSAGES.map}
-      style={stageStyle}
     >
       <div aria-hidden="true" className="china-map-veil" />
 
@@ -906,10 +903,11 @@ export default function ChinaMap({
       )}
 
       {drill.level !== "country" && (
-        <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-text-muted">
-          <span className="rounded-md border border-border bg-neutral-0/70 px-3 py-1 backdrop-blur-sm">
-            {visibleSchools.length} 所高校
-          </span>
+        <div className="pointer-events-none absolute right-4 top-3 z-20 max-w-[220px] rounded-md border border-border bg-neutral-0/76 px-3 py-2 text-xs text-text shadow-sm backdrop-blur-sm">
+          <div className="flex items-center justify-between gap-3">
+            <span className="font-semibold">{currentProvince}</span>
+            <span className="text-text-muted">{currentProvinceCount} 所</span>
+          </div>
         </div>
       )}
 
@@ -921,6 +919,16 @@ export default function ChinaMap({
 
       <div ref={mapContainerRef} className="china-map-maplibre h-full w-full" />
 
+      <MapHoverTooltip hoverInfo={hoverInfo} />
+      <MapLegend
+        filter985={filter985}
+        filter211={filter211}
+        filterDoubleFirst={filterDoubleFirst}
+        onToggle985={onToggle985}
+        onToggle211={onToggle211}
+        onToggleDoubleFirst={onToggleDoubleFirst}
+      />
+
       <AnimatePresence>
         {previewSchool && (
           <SchoolPopup
@@ -930,6 +938,134 @@ export default function ChinaMap({
           />
         )}
       </AnimatePresence>
+    </div>
+  );
+}
+
+function MapHoverTooltip({ hoverInfo }: { hoverInfo: MapHoverInfo | null }) {
+  if (!hoverInfo) return null;
+
+  const tierStyle =
+    hoverInfo.kind === "school"
+      ? SCHOOL_TIER_STYLES[hoverInfo.tier] || SCHOOL_TIER_STYLES.normal
+      : null;
+
+  return (
+    <div
+      className="pointer-events-none absolute z-30 min-w-[132px] rounded-md border border-border bg-neutral-0/88 px-3 py-2 text-xs text-text shadow-lg shadow-neutral-900/10 backdrop-blur-md"
+      style={{
+        left: Math.min(hoverInfo.x + 14, 520),
+        top: Math.max(12, hoverInfo.y + 14),
+      }}
+    >
+      {hoverInfo.kind === "region" ? (
+        <>
+          <div className="font-semibold leading-tight">{hoverInfo.name}</div>
+          <div className="mt-1.5 text-[11px] text-text-secondary">高校 {hoverInfo.count} 所</div>
+        </>
+      ) : (
+        <>
+          <div className="max-w-[180px] truncate font-semibold leading-tight">{hoverInfo.name}</div>
+          <div className="mt-1 flex items-center gap-1.5 text-[11px] text-text-muted">
+            <span>{hoverInfo.province}</span>
+            {tierStyle && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="inline-flex items-center gap-1">
+                  <span
+                    aria-hidden="true"
+                    className="h-2 w-2 rounded-full"
+                    style={{ backgroundColor: tierStyle.color }}
+                  />
+                  {tierStyle.label}
+                </span>
+              </>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+const activeLegendClasses: Record<"985" | "211" | "doubleFirst", string> = {
+  "985": "border-danger-600/30 bg-danger-500 text-text-inverse shadow-danger-500/20",
+  "211": "border-accent-700/25 bg-accent-500 text-text-inverse shadow-accent-500/18",
+  doubleFirst: "border-brand-700/25 bg-success text-text-inverse shadow-brand-500/18",
+};
+
+function MapLegend({
+  filter985,
+  filter211,
+  filterDoubleFirst,
+  onToggle985,
+  onToggle211,
+  onToggleDoubleFirst,
+}: {
+  filter985: boolean;
+  filter211: boolean;
+  filterDoubleFirst: boolean;
+  onToggle985: () => void;
+  onToggle211: () => void;
+  onToggleDoubleFirst: () => void;
+}) {
+  const activeByTier = {
+    "985": filter985,
+    "211": filter211,
+    doubleFirst: filterDoubleFirst,
+  };
+  const actionByTier = {
+    "985": onToggle985,
+    "211": onToggle211,
+    doubleFirst: onToggleDoubleFirst,
+  };
+
+  return (
+    <div className="absolute bottom-3 left-3 z-20 flex flex-wrap gap-1.5 rounded-md border border-border bg-neutral-0/72 px-2.5 py-2 text-[11px] text-text-muted shadow-sm backdrop-blur-sm">
+      {Object.entries(SCHOOL_TIER_STYLES).map(([tier, style]) => {
+        const filterTier = tier as "985" | "211" | "doubleFirst";
+        const isFilterable = tier !== "normal";
+        const isActive = isFilterable ? activeByTier[filterTier] : false;
+
+        if (!isFilterable) {
+          return (
+            <span key={tier} className="inline-flex h-7 items-center gap-1.5 whitespace-nowrap rounded-md px-2">
+              <span
+                aria-hidden="true"
+                className="h-2.5 w-2.5 rounded-full border border-neutral-0"
+                style={{ backgroundColor: style.color }}
+              />
+              {style.label}
+            </span>
+          );
+        }
+
+        return (
+          <motion.button
+            key={tier}
+            type="button"
+            aria-pressed={isActive}
+            onClick={actionByTier[filterTier]}
+            initial={isActive ? { scale: 0.9 } : false}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.04, borderColor: "rgba(63,143,155,0.48)" }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: isActive ? 500 : 400, damping: isActive ? 25 : 22 }}
+            className={`inline-flex h-7 items-center gap-1.5 whitespace-nowrap rounded-md border px-2 font-semibold shadow-sm ${
+              isActive
+                ? activeLegendClasses[filterTier]
+                : "border-transparent bg-transparent text-text-muted shadow-white/35"
+            }`}
+          >
+            <span
+              aria-hidden="true"
+              className="h-2.5 w-2.5 rounded-full border border-neutral-0"
+              style={{ backgroundColor: isActive ? "currentColor" : style.color }}
+            />
+            {style.label}
+          </motion.button>
+        );
+      })}
     </div>
   );
 }

@@ -6,7 +6,7 @@
  *
  * 覆盖:
  *   1. SchoolPopup 进场/退场 scale+fade 动画（framer-motion motion.div + AnimatePresence）
- *   2. FilterTag spring 弹性切换动画（motion.button + whileTap/whileHover）
+ *   2. MapLegend 筛选 spring 弹性切换动画（motion.button + whileTap/whileHover）
  *   3. 面板切换动效增强 (y轴偏移 + scale 缩放)
  *   5. SourcePopover 定位正确（从按钮下方弹出，非左上角滑入）
  */
@@ -66,7 +66,7 @@ test.describe("微交互动画 TDD", () => {
     expect(motionElementCount).toBeGreaterThanOrEqual(1);
   });
 
-  test("3-FilterTag: active 切换应使用 spring 弹性动画（motion.button）", async ({
+  test("3-MapLegend: active 切换应使用 spring 弹性动画（motion.button）", async ({
     page,
   }) => {
     await page.goto(BASE);

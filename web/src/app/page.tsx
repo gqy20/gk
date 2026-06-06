@@ -147,16 +147,8 @@ function Home() {
             <div className="min-w-0 shrink-0">
               <FilterBar
                 query={query}
-                filter985={filter985}
-                filter211={filter211}
-                filterDoubleFirst={filterDoubleFirst}
                 activeFilterCount={activeFilterCount}
                 onQueryChange={(v) => dispatch({ type: "SET_QUERY", payload: v })}
-                onToggle985={() => dispatch({ type: "TOGGLE_FILTER", payload: "985" })}
-                onToggle211={() => dispatch({ type: "TOGGLE_FILTER", payload: "211" })}
-                onToggleDoubleFirst={() =>
-                  dispatch({ type: "TOGGLE_FILTER", payload: "doubleFirst" })
-                }
                 onReset={() => dispatch({ type: "RESET_FILTERS" })}
               />
             </div>
@@ -167,13 +159,23 @@ function Home() {
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
         <section aria-label="高校地图" className="paper-card relative min-h-0 overflow-hidden rounded-lg border">
           <ChinaMap
-            schools={filteredSchools}
+            schools={data.schools}
+            highlightedSchools={filteredSchools}
             provinces={filteredProvinces}
             selectedProvince={selectedProvince}
             previewSchool={previewSchool}
+            hasActiveMapFilters={activeFilterCount > 0 || query.trim().length > 0}
+            filter985={filter985}
+            filter211={filter211}
+            filterDoubleFirst={filterDoubleFirst}
             onProvinceSelect={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
             onSchoolPreview={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
             onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
+            onToggle985={() => dispatch({ type: "TOGGLE_FILTER", payload: "985" })}
+            onToggle211={() => dispatch({ type: "TOGGLE_FILTER", payload: "211" })}
+            onToggleDoubleFirst={() =>
+              dispatch({ type: "TOGGLE_FILTER", payload: "doubleFirst" })
+            }
           />
         </section>
 
