@@ -86,7 +86,6 @@ type MapHoverInfo =
       x: number;
       y: number;
       name: string;
-      province: string;
       tier: string;
     };
 
@@ -423,11 +422,6 @@ export default function ChinaMap({
     () => makeSchoolData(schools, null, highlightedSchoolNames, hasActiveMapFilters),
     [hasActiveMapFilters, highlightedSchoolNames, schools],
   );
-
-  const currentProvinceCount =
-    currentProvince
-      ? provinces.find((province) => province.name === currentProvince)?.count ?? visibleSchools.length
-      : null;
 
   const loadMapData = useCallback(async (adcode: string) => {
     const url = adcode === "100000" ? "/china.json" : `/maps/${adcode}.json`;
@@ -827,7 +821,7 @@ export default function ChinaMap({
           void drillDown(mapProvinceName(province), adcode);
         }
       } else if (drill.level === "province") {
-        const adcode = featureAdcode(feature);
+        const adcode = featureAdcode(regionFeature);
         if (adcode) {
           void drillDown(name, adcode);
         }
@@ -881,7 +875,6 @@ export default function ChinaMap({
           x: event.point.x,
           y: event.point.y,
           name,
-          province: featureString(feature, "province"),
           tier: featureString(feature, "tier") || "normal",
         });
       }
@@ -960,15 +953,6 @@ export default function ChinaMap({
         </div>
       )}
 
-      {drill.level !== "country" && (
-        <div className="pointer-events-none absolute right-4 top-3 z-20 max-w-[220px] rounded-md border border-border bg-neutral-0/76 px-3 py-2 text-xs text-text shadow-sm backdrop-blur-sm">
-          <div className="flex items-center justify-between gap-3">
-            <span className="font-semibold">{currentProvince}</span>
-            <span className="text-text-muted">{currentProvinceCount} 所</span>
-          </div>
-        </div>
-      )}
-
       {!mapReady && (
         <div className="absolute inset-0 z-10 flex items-center justify-center text-sm text-text-secondary">
           {EMPTY_MESSAGES.loadingMap}
@@ -1025,19 +1009,15 @@ function MapHoverTooltip({ hoverInfo }: { hoverInfo: MapHoverInfo | null }) {
         <>
           <div className="max-w-[180px] truncate font-semibold leading-tight">{hoverInfo.name}</div>
           <div className="mt-1 flex items-center gap-1.5 text-[11px] text-text-muted">
-            <span>{hoverInfo.province}</span>
             {tierStyle && (
-              <>
-                <span aria-hidden="true">·</span>
-                <span className="inline-flex items-center gap-1">
-                  <span
-                    aria-hidden="true"
-                    className="h-2 w-2 rounded-full"
-                    style={{ backgroundColor: tierStyle.color }}
-                  />
-                  {tierStyle.label}
-                </span>
-              </>
+              <span className="inline-flex items-center gap-1">
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: tierStyle.color }}
+                />
+                {tierStyle.label}
+              </span>
             )}
           </div>
         </>

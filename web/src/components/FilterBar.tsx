@@ -1,5 +1,7 @@
 "use client";
 
+import { IconClose, IconSearch } from "@/components/ui/Icon";
+
 interface FilterBarProps {
   query: string;
   activeFilterCount: number;
@@ -17,14 +19,25 @@ export default function FilterBar({
 
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <label className="group flex h-8 w-[170px] min-w-0 items-center gap-2 rounded-md border border-border bg-neutral-0/78 px-2.5 shadow-inner shadow-white/40 transition focus-within:border-primary/70 focus-within:bg-neutral-0 sm:h-9 sm:w-[240px] xl:w-[320px] sm:gap-3 sm:px-3">
+      <label className="group flex h-10 w-[min(54vw,360px)] min-w-[190px] items-center gap-2 rounded-lg border border-border/70 bg-neutral-0/82 px-3 shadow-sm shadow-neutral-900/5 backdrop-blur-md transition focus-within:border-primary/55 focus-within:bg-neutral-0 focus-within:shadow-[0_0_0_3px_rgba(63,143,155,0.10)] sm:w-[320px] lg:w-[360px]">
+        <IconSearch className="text-text-placeholder transition group-focus-within:text-primary" size={15} />
         <input
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
           aria-label="搜索学校、省份或官方域名"
-          placeholder="搜索 / 省份"
-            className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-text-placeholder sm:text-base sm:placeholder:搜索学校 / 省份"
+          placeholder="搜索学校 / 省份 / 官网"
+          className="min-w-0 flex-1 bg-transparent text-sm font-medium text-text outline-none placeholder:font-normal placeholder:text-text-placeholder"
         />
+        {query.trim().length > 0 && (
+          <button
+            type="button"
+            aria-label="清空搜索"
+            onClick={() => onQueryChange("")}
+            className="grid h-6 w-6 shrink-0 place-items-center rounded-md text-text-muted transition hover:bg-brand-50 hover:text-primary"
+          >
+            <IconClose size={11} />
+          </button>
+        )}
       </label>
 
       <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
@@ -32,7 +45,7 @@ export default function FilterBar({
           <button
             type="button"
             onClick={onReset}
-            className="h-7 shrink-0 rounded-md border border-border bg-neutral-0/70 px-3 text-xs font-medium text-text-secondary transition hover:border-primary/60 hover:bg-brand-50 sm:h-8"
+            className="h-9 shrink-0 rounded-md border border-border/70 bg-neutral-0/70 px-3 text-xs font-medium text-text-secondary shadow-sm shadow-white/30 transition hover:border-primary/50 hover:bg-brand-50 hover:text-primary"
           >
             重置
           </button>

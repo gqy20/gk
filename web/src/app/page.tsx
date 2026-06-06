@@ -49,7 +49,6 @@ function Home() {
     filterDoubleFirst,
     filteredSchools,
     filteredProvinces,
-    doneCount,
     activeFilterCount,
     crawlStatus,
     crawlSources,
@@ -99,6 +98,19 @@ function Home() {
     return <HomePageSkeleton />;
   }
 
+  const selectedProvinceData = selectedProvince
+    ? filteredProvinces.find((province) => province.name === selectedProvince)
+    : null;
+  const hasActiveSearch = query.trim().length > 0;
+  const shouldShowSidePanel =
+    compareOpen ||
+    compareSchools.length > 0 ||
+    selectedSchool ||
+    selectedProvince ||
+    hasActiveSearch ||
+    activeFilterCount > 0 ||
+    loadError;
+
   return (
     <div className="ink-wash-bg relative flex h-screen min-h-screen flex-col overflow-hidden text-text">
       <div
@@ -113,19 +125,30 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="paper-shell relative z-10 border-b border-border px-3 py-1.5 shadow-sm shadow-neutral-900/5 sm:px-4 sm:py-2.5">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="min-w-0 flex items-center gap-2">
+      <header className="paper-shell relative z-10 border-b border-border px-3 py-2 shadow-sm shadow-neutral-900/5 sm:px-4">
+        <div className="flex min-w-0 items-center justify-between gap-3">
+          <div className="min-w-0 flex items-center gap-2.5">
             <img
               src="/logo.svg"
               alt=""
-              className="h-7 w-7 shrink-0 rounded-md ring-1 ring-border sm:h-8 sm:w-8"
+              className="h-8 w-8 shrink-0 rounded-md ring-1 ring-border/80"
               width={28}
               height={28}
             />
-            <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-text sm:text-2xl xl:text-3xl">
-              中国高校信息地图
-            </h1>
+            <div className="min-w-0">
+              <h1 className="min-w-0 truncate text-[19px] font-semibold leading-tight text-text sm:text-[21px]">
+                中国高校信息地图
+              </h1>
+            </div>
+          </div>
+
+          <div className="flex min-w-0 flex-1 items-center justify-end gap-2.5">
+            <FilterBar
+              query={query}
+              activeFilterCount={activeFilterCount}
+              onQueryChange={(v) => dispatch({ type: "SET_QUERY", payload: v })}
+              onReset={() => dispatch({ type: "RESET_FILTERS" })}
+            />
             <a
               href="/majors"
               className="hidden shrink-0 items-center gap-1.5 rounded-md border border-primary/25 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 lg:inline-flex"
@@ -142,21 +165,16 @@ function Home() {
               未来路径
             </a>
           </div>
-
-          {!selectedSchool && (
-            <div className="min-w-0 shrink-0">
-              <FilterBar
-                query={query}
-                activeFilterCount={activeFilterCount}
-                onQueryChange={(v) => dispatch({ type: "SET_QUERY", payload: v })}
-                onReset={() => dispatch({ type: "RESET_FILTERS" })}
-              />
-            </div>
-          )}
         </div>
       </header>
 
-      <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
+      <main
+        className={`relative z-10 grid flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 ${
+          shouldShowSidePanel
+            ? "grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1"
+            : "grid-rows-1"
+        }`}
+      >
         <section aria-label="高校地图" className="paper-card relative min-h-0 overflow-hidden rounded-lg border">
           <ChinaMap
             schools={data.schools}
@@ -179,95 +197,118 @@ function Home() {
           />
         </section>
 
-        <aside aria-label="高校列表与详情" className="paper-card relative flex min-h-0 flex-col overflow-hidden rounded-lg border text-text">
-          <AnimatePresence mode="wait">
-            {compareOpen ? (
-              <motion.div
-                key="compare"
-                className="flex min-h-0 flex-1 flex-col"
-                variants={panelVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={panelTransition}
-              >
-                <ComparePanel
-                  schools={compareSchools}
-                  onClose={() => dispatch({ type: "SET_COMPARE_OPEN", payload: false })}
-                  onRemove={(s) => dispatch({ type: "REMOVE_COMPARE", payload: s })}
-                />
-              </motion.div>
-            ) : selectedSchool ? (
-              <motion.div
-                key="school"
-                className="flex min-h-0 flex-1 flex-col"
-                variants={panelVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={panelTransition}
-              >
-                <SchoolPanel
-                  key={selectedSchool.name}
-                  school={selectedSchool}
-                  onClose={() => dispatch({ type: "SELECT_SCHOOL", payload: null })}
-                  crawlStatus={crawlStatus}
-                  crawlSources={crawlSources}
-                />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="list"
-                className="flex min-h-0 flex-1 flex-col"
-                variants={panelVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={panelTransition}
-              >
-                <div className="border-b border-border-light bg-accent-50/45 px-4 py-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <div className="text-sm font-semibold text-text-light">
-                        {selectedProvince || "全部省份"}
+        <AnimatePresence mode="wait">
+          {shouldShowSidePanel && (
+            <motion.aside
+              key="side-panel"
+              aria-label="高校列表与详情"
+              className="paper-card relative flex min-h-0 flex-col overflow-hidden rounded-lg border text-text"
+              variants={panelVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={panelTransition}
+            >
+              <AnimatePresence mode="wait">
+                {compareOpen ? (
+                  <motion.div
+                    key="compare"
+                    className="flex min-h-0 flex-1 flex-col"
+                    variants={panelVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={panelTransition}
+                  >
+                    <ComparePanel
+                      schools={compareSchools}
+                      onClose={() => dispatch({ type: "SET_COMPARE_OPEN", payload: false })}
+                      onRemove={(s) => dispatch({ type: "REMOVE_COMPARE", payload: s })}
+                    />
+                  </motion.div>
+                ) : selectedSchool ? (
+                  <motion.div
+                    key="school"
+                    className="flex min-h-0 flex-1 flex-col"
+                    variants={panelVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={panelTransition}
+                  >
+                    <SchoolPanel
+                      key={selectedSchool.name}
+                      school={selectedSchool}
+                      onClose={() => dispatch({ type: "SELECT_SCHOOL", payload: null })}
+                      crawlStatus={crawlStatus}
+                      crawlSources={crawlSources}
+                    />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="list"
+                    className="flex min-h-0 flex-1 flex-col"
+                    variants={panelVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={panelTransition}
+                  >
+                    <div className="border-b border-border-light bg-accent-50/45 px-4 py-3">
+                      <div className="flex items-center justify-between gap-3">
+                        <div>
+                          <div className="text-sm font-semibold text-text-light">
+                            {selectedProvince ? "学校列表" : "筛选结果"}
+                          </div>
+                          <div className="mt-0.5 text-xs text-text-light-muted">
+                            {selectedProvinceData?.count ?? filteredSchools.length} 所高校
+                          </div>
+                        </div>
+                        {(selectedProvince || hasActiveSearch || activeFilterCount > 0) && (
+                          <Button
+                            theme="light"
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => {
+                              if (selectedProvince) {
+                                dispatch({ type: "SELECT_PROVINCE", payload: null });
+                              }
+                              if (hasActiveSearch || activeFilterCount > 0) {
+                                dispatch({ type: "RESET_FILTERS" });
+                              }
+                            }}
+                          >
+                            返回全国
+                          </Button>
+                        )}
                       </div>
+                      {loadError && (
+                        <div className="mt-2 rounded border border-danger-500/30 bg-accent-50 px-2 py-1 text-[11px] text-danger-600">
+                          数据加载失败：{loadError}
+                        </div>
+                      )}
                     </div>
-                    {selectedProvince && (
-                      <Button
-                        theme="light"
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => dispatch({ type: "SELECT_PROVINCE", payload: null })}
-                      >
-                        返回全部
-                      </Button>
-                    )}
-                  </div>
-                  {loadError && (
-                    <div className="mt-2 rounded border border-danger-500/30 bg-accent-50 px-2 py-1 text-[11px] text-danger-600">
-                      数据加载失败：{loadError}
-                    </div>
-                  )}
-                </div>
-                <ProvinceList
-                  provinces={filteredProvinces}
-                  selectedProvince={selectedProvince}
-                  selectedSchool={selectedSchool}
-                  compareSchools={compareSchools}
-                  onProvinceClick={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
-                  onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
-                  onCompareToggle={(s) => dispatch({ type: "TOGGLE_COMPARE", payload: s })}
-                />
-                <CompareBar
-                  schools={compareSchools}
-                  onRemove={(s) => dispatch({ type: "REMOVE_COMPARE", payload: s })}
-                  onCompare={() => dispatch({ type: "SET_COMPARE_OPEN", payload: true })}
-                  onClear={() => dispatch({ type: "CLEAR_COMPARE" })}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </aside>
+                    <ProvinceList
+                      provinces={filteredProvinces}
+                      selectedProvince={selectedProvince}
+                      selectedSchool={selectedSchool}
+                      compareSchools={compareSchools}
+                      onProvinceClick={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
+                      onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
+                      onCompareToggle={(s) => dispatch({ type: "TOGGLE_COMPARE", payload: s })}
+                    />
+                    <CompareBar
+                      schools={compareSchools}
+                      onRemove={(s) => dispatch({ type: "REMOVE_COMPARE", payload: s })}
+                      onCompare={() => dispatch({ type: "SET_COMPARE_OPEN", payload: true })}
+                      onClear={() => dispatch({ type: "CLEAR_COMPARE" })}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.aside>
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );

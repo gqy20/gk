@@ -134,6 +134,7 @@ export default function ProvinceList({
         const doneCount = prov.schools.filter((school) => school.status === "done").length;
         const progress = Math.round((doneCount / Math.max(prov.schools.length, 1)) * 100);
         const isSelected = selectedProvince === prov.name;
+        const compactProvinceHeader = Boolean(selectedProvince);
 
         // 优先级排序: 985 > 211 > 双一流 > 普通; 同级按校名
         const sortedSchools = [...prov.schools].sort((a, b) => {
@@ -154,7 +155,8 @@ export default function ProvinceList({
               aria-pressed={isSelected}
               onClick={() => onProvinceClick(prov.name)}
               className={cn(
-                "w-full px-3 py-3 text-left transition",
+                "w-full px-3 text-left transition",
+                compactProvinceHeader ? "py-2.5" : "py-3",
                 isSelected
                   ? "bg-brand-500/90 text-text-inverse"
                   : "bg-neutral-0/66 text-text-light hover:bg-accent-50/60",
@@ -162,12 +164,14 @@ export default function ProvinceList({
             >
               <div className="flex items-center gap-3">
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="truncate text-sm font-semibold">{prov.name}</span>
-                    <span className="rounded-sm border border-current/15 bg-current/10 px-2 py-0.5 text-xs font-semibold">
-                      {prov.count} 所
-                    </span>
-                  </div>
+                  {!compactProvinceHeader && (
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="truncate text-sm font-semibold">{prov.name}</span>
+                      <span className="rounded-sm border border-current/15 bg-current/10 px-2 py-0.5 text-xs font-semibold">
+                        {prov.count} 所
+                      </span>
+                    </div>
+                  )}
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-black/10">
                     <motion.div
                       className="h-full rounded-full bg-accent-300"
@@ -176,8 +180,9 @@ export default function ProvinceList({
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     />
                   </div>
-                  <div className="mt-1 text-[10px] opacity-65">
-                    {doneCount} 已采集 · {progress}%
+                  <div className="mt-1 flex items-center justify-between gap-3 text-[10px] opacity-65">
+                    <span>{doneCount} 已采集 · {progress}%</span>
+                    {compactProvinceHeader && <span>{prov.count} 所</span>}
                   </div>
                 </div>
               </div>
