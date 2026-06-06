@@ -1,5 +1,8 @@
 import type { CompleteRunParams, CreateRunParams, FutureRepository, ListRunsOptions } from "./repository";
 import type { FuturePath, FutureRunListItem, FutureRunRecord, FutureRunResult, FutureStructuredOutput } from "./types";
+import { createLogger } from "./logger";
+
+const log = createLogger("postgres");
 
 export const FUTURE_SCHEMA_SQL = `
 create table if not exists future_runs (
@@ -128,10 +131,15 @@ export class PostgresFutureRepository implements FutureRepository {
       ],
     );
 
-    return { id: result.rows[0].id };
+    const runId = result.rows[0].id;
+    log.debug({ runId, status: params.status, model: params.model }, "createRun inserted");
+    return { id: runId };
   }
 
   async completeRun(runId: string, params: CompleteRunParams) {
+    const pathCount = params.output.paths?.length ?? 0;
+    log.info({ runId, pathCount, inputTokens: params.inputTokens, outputTokens: params.outputTokens }, "completeRun updating");
+
     await this.db.query(
       `update future_runs
        set status = 'completed',
@@ -162,6 +170,7 @@ export class PostgresFutureRepository implements FutureRepository {
   }
 
   async failRun(runId: string, error: string) {
+    log.error({ runId, error }, "failRun marking run as failed");
     await this.db.query(
       `update future_runs
        set status = 'failed',
@@ -182,7 +191,10 @@ export class PostgresFutureRepository implements FutureRepository {
       [runId],
     );
     const row = result.rows[0];
-    if (!row) return null;
+    if (!row) {
+      log.warn({ runId }, "getRunResult: run not found");
+      return null;
+    }
     const run = mapRunRow(row);
     return {
       run,
@@ -207,6 +219,7 @@ export class PostgresFutureRepository implements FutureRepository {
        limit $1`,
       [limit],
     );
+    log.debug({ limit, count: result.rows.length }, "listRuns queried");
     return result.rows.map(mapListRow);
   }
 

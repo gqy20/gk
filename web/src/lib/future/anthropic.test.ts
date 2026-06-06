@@ -1,17 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
 
-// Mock @anthropic-ai/sdk so we can drive messages.create() deterministically.
-const createMock = vi.fn();
-vi.mock("@anthropic-ai/sdk", () => {
-  class MockAnthropic {
-    messages = { create: createMock };
-    constructor(_opts: unknown) {
-      // capture opts via the closure-bound mock below
-    }
-  }
-  return { default: MockAnthropic, Anthropic: MockAnthropic };
-});
-
 import { AnthropicProvider, AnthropicResponseError } from "./anthropic";
 import { futurePathsTool } from "./schema";
 
@@ -35,9 +23,16 @@ const toolUseBody = {
   overall_advice: "先建立可迁移能力。",
 };
 
-describe("AnthropicProvider (SDK-backed)", () => {
+function mockFetchOk(body: unknown) {
+  return vi.fn(async () => ({
+    ok: true,
+    json: async () => body,
+  }));
+}
+
+describe("AnthropicProvider (fetch-based)", () => {
   it("parses the forced tool_use input as structured output", async () => {
-    createMock.mockResolvedValueOnce({
+    const fetchImpl = mockFetchOk({
       content: [
         { type: "text", text: "ok" },
         { type: "tool_use", name: "generate_future_paths", input: toolUseBody },
@@ -47,8 +42,9 @@ describe("AnthropicProvider (SDK-backed)", () => {
 
     const provider = new AnthropicProvider({
       apiKey: "test-key",
-      baseUrl: "https://anthropic.test",
+      baseUrl: "https://anthropic.test/v1",
       model: "claude-test",
+      fetchImpl,
     });
 
     const result = await provider.generateStructured<{ title: string }>({
@@ -60,20 +56,28 @@ describe("AnthropicProvider (SDK-backed)", () => {
 
     expect(result.data.title).toBe("浙江大学计算机类的未来路径");
     expect(result.usage).toEqual({ inputTokens: 10, outputTokens: 20 });
-    // SDK 内部会拼 baseURL + /v1/messages,不应再需要测试方直接校验 fetchImpl。
-    expect(createMock).toHaveBeenCalledTimes(1);
+    expect(fetchImpl).toHaveBeenCalledWith(
+      "https://anthropic.test/v1/messages",
+      expect.objectContaining({
+        method: "POST",
+        headers: expect.objectContaining({
+          "x-api-key": "test-key",
+          "anthropic-version": "2023-06-01",
+        }),
+      }),
+    );
   });
 
   it("throws a typed error when no matching tool_use block is returned", async () => {
-    createMock.mockResolvedValueOnce({
+    const fetchImpl = mockFetchOk({
       content: [{ type: "text", text: "plain text" }],
-      usage: { input_tokens: 1, output_tokens: 1 },
     });
 
     const provider = new AnthropicProvider({
       apiKey: "test-key",
-      baseUrl: "https://anthropic.test",
+      baseUrl: "https://anthropic.test/v1",
       model: "claude-test",
+      fetchImpl,
     });
 
     await expect(

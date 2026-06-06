@@ -1,4 +1,7 @@
 import type { futurePathsTool } from "./schema";
+import { createLogger } from "./logger";
+
+const log = createLogger("anthropic");
 
 type FetchLike = (input: string, init: RequestInit) => Promise<{
   ok: boolean;
@@ -70,6 +73,7 @@ export class AnthropicProvider {
     this.model = options.model;
     this.anthropicVersion = options.anthropicVersion || "2023-06-01";
     this.fetchImpl = options.fetchImpl || fetch;
+    log.debug({ baseUrl: this.baseUrl, model: this.model, anthropicVersion: this.anthropicVersion }, "AnthropicProvider initialized");
   }
 
   async generateStructured<T>({
@@ -79,6 +83,15 @@ export class AnthropicProvider {
     temperature = 0.75,
     maxTokens = 4096,
   }: GenerateStructuredInput): Promise<GenerateStructuredResult<T>> {
+    const startTime = Date.now();
+    log.info({
+      tool: tool.name,
+      maxTokens,
+      temperature,
+      systemLen: system.length,
+      userLen: user.length,
+    }, "LLM generateStructured start");
+
     const response = await this.fetchImpl(`${this.baseUrl}/v1/messages`, {
       signal: AbortSignal.timeout(90_000),
       method: "POST",
@@ -103,18 +116,33 @@ export class AnthropicProvider {
 
     if (!response.ok) {
       const detail = response.text ? await response.text() : "";
+      const elapsed = Date.now() - startTime;
+      log.error({
+        status: response.status,
+        detail: detail.slice(0, 500),
+        elapsed,
+        tool: tool.name,
+      }, "Anthropic API HTTP error");
       throw new AnthropicResponseError(`Anthropic API error ${response.status ?? ""}: ${detail}`);
     }
 
     const body = await response.json();
     const input = findToolInput(body, tool.name);
     if (!input) {
+      log.error({ tool: tool.name, hasContent: !!body?.content }, "Anthropic response missing tool_use block");
       throw new AnthropicResponseError(`Anthropic response did not include tool_use:${tool.name}`);
     }
 
     const usage = body && typeof body === "object"
       ? (body as { usage?: { input_tokens?: number; output_tokens?: number } }).usage
       : undefined;
+
+    const elapsed = Date.now() - startTime;
+    log.info({
+      inputTokens: usage?.input_tokens ?? null,
+      outputTokens: usage?.output_tokens ?? null,
+      elapsed,
+    }, "LLM call completed");
 
     return {
       data: input as T,

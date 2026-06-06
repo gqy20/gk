@@ -1,4 +1,7 @@
 import type { FutureScoreKey, FutureStructuredOutput, FutureValidationReport } from "./types";
+import { createLogger } from "./logger";
+
+const log = createLogger("validation");
 
 const SCORE_KEYS: FutureScoreKey[] = [
   "income",
@@ -51,10 +54,27 @@ export function validateFutureOutput(
     errors.push(`路径标签不够多样：${uniqueLabels.size}/${paths.length}`);
   }
 
-  return {
+  const report = {
     valid: errors.length === 0,
     errors,
     warnings,
     diversityScore,
   };
+
+  if (!report.valid) {
+    log.warn({
+      errorCount: report.errors.length,
+      warningCount: report.warnings.length,
+      diversityScore: report.diversityScore,
+      expectedPathCount,
+      actualPathCount: paths.length,
+    }, "validateFutureOutput: INVALID");
+  } else {
+    log.debug({
+      warningCount: report.warnings.length,
+      diversityScore: report.diversityScore,
+    }, "validateFutureOutput: valid");
+  }
+
+  return report;
 }

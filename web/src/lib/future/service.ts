@@ -5,6 +5,9 @@ import { futurePathsTool as defaultFuturePathsTool } from "./schema";
 import type { FutureRepository } from "./repository";
 import type { FuturePath, FutureRunInput, FutureStructuredOutput } from "./types";
 import { validateFutureOutput } from "./validation";
+import { createLogger, withRunId } from "./logger";
+
+const log = createLogger("service");
 
 interface Provider {
   generateStructured(input: {
@@ -99,6 +102,7 @@ export async function createFutureRun({
   model = "anthropic-compatible",
   maxTokens = 4096,
 }: CreateFutureRunOptions) {
+  log.info({ pathCount: input.pathCount, school: input.choiceContext.school, major: input.choiceContext.major }, "createFutureRun started");
   const prompt = buildFuturePrompt(input);
   const started = await startFutureRun({ input, repository, model });
 
@@ -111,6 +115,7 @@ export async function createFutureRun({
   });
 
   const result = await repository.getRunResult(started.runId);
+  log.info({ runId: started.runId, status: result?.run.status }, "createFutureRun completed");
   return {
     runId: started.runId,
     status: "completed" as const,
@@ -130,6 +135,7 @@ export async function startFutureRun({
     promptVersion: getFuturePromptVersion(),
   });
 
+  log.info({ runId, model }, "startFutureRun created run");
   return { runId, status: "generating" as const };
 }
 
@@ -140,7 +146,11 @@ export async function generateFutureRun({
   provider,
   maxTokens = 4096,
 }: GenerateFutureRunOptions) {
+  const runLog = withRunId(log, runId);
+  runLog.info({ maxTokens }, "generateFutureRun started");
+
   const prompt = buildFuturePrompt(input);
+  const startTime = Date.now();
   try {
     const result = await provider.generateStructured({
       system: prompt.system,
@@ -150,7 +160,17 @@ export async function generateFutureRun({
       maxTokens,
     });
 
+    const elapsed = Date.now() - startTime;
+    runLog.info({ elapsed, inputTokens: result.usage.inputTokens, outputTokens: result.usage.outputTokens }, "LLM call completed");
+
     const output = normalizeOutput(result.data, input);
+
+    runLog.info({
+      pathCount: output.paths.length,
+      valid: output.validation.valid,
+      errorCount: output.validation.errors.length,
+      warningCount: output.validation.warnings.length,
+    }, "normalizeOutput completed");
 
     await repository.completeRun(runId, {
       output,
@@ -158,9 +178,16 @@ export async function generateFutureRun({
       outputTokens: result.usage.outputTokens,
     });
 
+    runLog.info("generateFutureRun completed successfully");
     return output;
   } catch (error) {
+    const elapsed = Date.now() - startTime;
     const message = error instanceof Error ? error.message : "Unknown future generation error";
+    runLog.error({
+      err: message,
+      stack: error instanceof Error ? error.stack : undefined,
+      elapsed,
+    }, "generateFutureRun FAILED");
     await repository.failRun(runId, message);
     throw error;
   }

@@ -1,4 +1,7 @@
 import type { FutureBranchPlan, FutureRunInput, ProbabilityTone } from "./types";
+import { createLogger} from "./logger";
+
+const log = createLogger("branch-planner");
 
 interface BranchTemplate {
   name: string;
@@ -95,6 +98,9 @@ function contextualAssumptions(input: FutureRunInput) {
 
 export function planFutureBranches(input: FutureRunInput): FutureBranchPlan[] {
   const count = Math.max(1, Math.min(6, input.pathCount));
+  if (input.pathCount !== count) {
+    log.warn({ requested: input.pathCount, clamped: count }, "pathCount clamped to [1, 6]");
+  }
   const pools = templateOrder(input);
   const sharedAssumptions = contextualAssumptions(input);
 
@@ -109,5 +115,8 @@ export function planFutureBranches(input: FutureRunInput): FutureBranchPlan[] {
       assumptions: [...template.assumptions, ...sharedAssumptions].slice(0, 5),
       requiredTradeoffs: template.requiredTradeoffs,
     };
+  }).map((b) => {
+    log.debug({ index: b.index, name: b.name, riskTone: b.riskTone }, "planFutureBranches branch assigned");
+    return b;
   });
 }

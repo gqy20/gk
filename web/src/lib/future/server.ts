@@ -3,8 +3,11 @@ import { MemoryFutureRepository } from "./repository";
 import { getPostgresPool } from "./pg-client";
 import { PostgresFutureRepository } from "./postgres";
 import { createFutureRun, generateFutureRun, getFutureRunResult, startFutureRun } from "./service";
+import { createLogger } from "./logger";
 import type { FutureRepository, ListRunsOptions } from "./repository";
 import type { FutureRunInput, FutureRunListItem } from "./types";
+
+const log = createLogger("server");
 
 export interface FutureServerOptions {
   repository?: FutureRepository;
@@ -15,6 +18,8 @@ let sharedRepository: FutureRepository | null = null;
 
 export function getDefaultFutureRepository() {
   if (!sharedRepository) {
+    const backend = process.env.DATABASE_URL ? "postgres" : "memory";
+    log.info({ backend }, "Initializing future repository");
     sharedRepository = process.env.DATABASE_URL
       ? new PostgresFutureRepository(getPostgresPool())
       : new MemoryFutureRepository();
@@ -27,8 +32,12 @@ export function getDefaultAnthropicProvider() {
   const apiKey = process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN;
   const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5";
   if (!apiKey) {
+    log.error("ANTHROPIC_API_KEY (or ANTHROPIC_AUTH_TOKEN) is required");
     throw new Error("ANTHROPIC_API_KEY (or ANTHROPIC_AUTH_TOKEN) is required");
   }
+
+  const baseUrl = process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com";
+  log.info({ model, baseUrl, keyPrefix: apiKey.slice(0, 8) + "…" }, "Initializing Anthropic provider");
 
   return new AnthropicProvider({
     apiKey,

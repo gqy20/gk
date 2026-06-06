@@ -1,5 +1,8 @@
 import type { FutureRunInput } from "./types";
 import { planFutureBranches } from "./branch-planner";
+import { createLogger } from "./logger";
+
+const log = createLogger("prompt");
 
 const PROMPT_VERSION = "gk_future_v2";
 const MAX_EVIDENCE_CHARS = 1800;
@@ -14,7 +17,11 @@ function clip(text: string, max: number) {
 }
 
 function formatEvidence(input: FutureRunInput) {
-  const items = (input.choiceContext.evidence ?? []).slice(0, 6);
+  const rawItems = input.choiceContext.evidence ?? [];
+  const items = rawItems.slice(0, 6);
+  if (rawItems.length > 6) {
+    log.warn({ total: rawItems.length, kept: 6 }, "Evidence truncated to max 6 items");
+  }
   if (items.length === 0) return "暂无学校资料证据，需明确标注推演假设。";
 
   return items
@@ -87,5 +94,11 @@ ${formatBranchPlan(input)}
 5. 建议必须能指导学生在大学前两年做什么。
 6. choice_context.assumptions 必须包含证据边界和关键推演假设。`;
 
+  log.debug({
+    systemChars: system.length,
+    userChars: user.length,
+    version: PROMPT_VERSION,
+    pathCount: input.pathCount,
+  }, "buildFuturePrompt completed");
   return { system, user, version: PROMPT_VERSION };
 }

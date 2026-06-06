@@ -6,6 +6,9 @@ import type {
   FutureRunStatus,
   FutureStructuredOutput,
 } from "./types";
+import { createLogger } from "./logger";
+
+const log = createLogger("repository");
 
 export interface CreateRunParams {
   status: FutureRunStatus;
@@ -51,12 +54,17 @@ export class MemoryFutureRepository implements FutureRepository {
       createdAt: now,
       updatedAt: now,
     });
+    log.debug({ runId: id, mapSize: this.runs.size }, "MemoryRepository createRun");
     return { id };
   }
 
   async completeRun(runId: string, params: CompleteRunParams) {
     const run = this.runs.get(runId);
-    if (!run) throw new Error(`Future run not found: ${runId}`);
+    if (!run) {
+      log.error({ runId }, "MemoryRepository completeRun: run not found");
+      throw new Error(`Future run not found: ${runId}`);
+    }
+    log.debug({ runId }, "MemoryRepository completeRun");
     this.runs.set(runId, {
       ...run,
       status: "completed",
@@ -69,7 +77,11 @@ export class MemoryFutureRepository implements FutureRepository {
 
   async failRun(runId: string, error: string) {
     const run = this.runs.get(runId);
-    if (!run) throw new Error(`Future run not found: ${runId}`);
+    if (!run) {
+      log.error({ runId }, "MemoryRepository failRun: run not found");
+      throw new Error(`Future run not found: ${runId}`);
+    }
+    log.warn({ runId, error }, "MemoryRepository failRun");
     this.runs.set(runId, {
       ...run,
       status: "failed",
@@ -80,7 +92,10 @@ export class MemoryFutureRepository implements FutureRepository {
 
   async getRunResult(runId: string) {
     const run = this.runs.get(runId);
-    if (!run) return null;
+    if (!run) {
+      log.debug({ runId }, "MemoryRepository getRunResult: not found");
+      return null;
+    }
     return { run, output: run.output ?? null };
   }
 
@@ -92,7 +107,9 @@ export class MemoryFutureRepository implements FutureRepository {
       const tb = b.createdAt ? Date.parse(b.createdAt) : 0;
       return tb - ta;
     });
-    return sorted.slice(0, limit).map(toListItem);
+    const items = sorted.slice(0, limit).map(toListItem);
+    log.debug({ mapSize: this.runs.size, returned: items.length }, "MemoryRepository listRuns");
+    return items;
   }
 }
 
