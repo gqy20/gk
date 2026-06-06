@@ -22,7 +22,7 @@ let _rootLogger: pino.Logger | null = null;
 function getRootLogger(): pino.Logger {
   if (_rootLogger) return _rootLogger;
 
-  const streams: pino.StreamOptions[] = [];
+  const streams: Array<{ level: string; stream: NodeJS.WritableStream }> = [];
 
   if (LOG_TO_CONSOLE) {
     streams.push({ level: LOG_LEVEL, stream: process.stdout });

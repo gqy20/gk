@@ -8,6 +8,7 @@ import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
 import type { School } from "@/lib/data";
 import { PROVINCE_COORDS } from "@/lib/provinces";
 import { FuturePanel, FutureShell, SectionHeading } from "./FutureShell";
+import { FutureLoading } from "./FutureLoading";
 import { TONE, type ToneKey } from "./_tone";
 
 function splitTags(value: string) {
@@ -370,17 +371,7 @@ function HistoryList({
   onReload: () => void;
 }) {
   if (loading) {
-    return (
-      <FuturePanel className="p-5">
-        <div className="flex items-center gap-3 text-sm text-text-secondary">
-          <span aria-hidden className="relative flex h-2.5 w-2.5">
-            <span className="absolute inset-0 animate-ping rounded-full bg-accent/60" />
-            <span className="relative h-2.5 w-2.5 rounded-full bg-accent" />
-          </span>
-          <span>正在拉取历史…</span>
-        </div>
-      </FuturePanel>
-    );
+    return <FutureLoading message="正在拉取历史…" compact />;
   }
 
   if (error) {

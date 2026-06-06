@@ -24,6 +24,8 @@ export interface GenerateStructuredInput<TTool extends typeof futurePathsTool = 
   tool: TTool;
   temperature?: number;
   maxTokens?: number;
+  /** 请求超时时间（毫秒），默认 90s；复杂请求（如 3+ 路径）建议传 180_000 */
+  timeoutMs?: number;
 }
 
 export interface GenerateStructuredResult<T> {
@@ -82,18 +84,20 @@ export class AnthropicProvider {
     tool,
     temperature = 0.75,
     maxTokens = 4096,
+    timeoutMs = 90_000,
   }: GenerateStructuredInput): Promise<GenerateStructuredResult<T>> {
     const startTime = Date.now();
     log.info({
       tool: tool.name,
       maxTokens,
       temperature,
+      timeoutMs,
       systemLen: system.length,
       userLen: user.length,
     }, "LLM generateStructured start");
 
     const response = await this.fetchImpl(`${this.baseUrl}/v1/messages`, {
-      signal: AbortSignal.timeout(90_000),
+      signal: AbortSignal.timeout(timeoutMs),
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -129,7 +133,7 @@ export class AnthropicProvider {
     const body = await response.json();
     const input = findToolInput(body, tool.name);
     if (!input) {
-      log.error({ tool: tool.name, hasContent: !!body?.content }, "Anthropic response missing tool_use block");
+      log.error({ tool: tool.name, hasContent: !!(body && typeof body === "object" && "content" in (body as Record<string, unknown>)) }, "Anthropic response missing tool_use block");
       throw new AnthropicResponseError(`Anthropic response did not include tool_use:${tool.name}`);
     }
 

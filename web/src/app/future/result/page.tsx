@@ -1,11 +1,12 @@
 "use client";
 
-import { Suspense, useEffect, useState, type ReactNode } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState, useCallback, type ReactNode } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { fetchFutureRunFromClient } from "@/lib/future/client";
 import type { FuturePath, FutureRunResult, FutureStructuredOutput } from "@/lib/future/types";
 import { FuturePanel, FutureShell } from "../FutureShell";
+import { FutureLoading, FutureLoadingFallback } from "../FutureLoading";
 import { TONE, RADAR_VIEW, toneOf, buildRadarPoints, type ToneKey } from "../_tone";
 import {
   findRecommendedPath,
@@ -17,33 +18,25 @@ import {
 
 export default function FutureResultPage() {
   return (
-    <Suspense fallback={<ResultShell />}>
+    <Suspense fallback={<FutureLoadingFallback message="正在读取推演结果…" />}>
       <FutureResultContent />
     </Suspense>
   );
 }
 
-function ResultShell({ message = "正在读取推演结果…" }: { message?: string }) {
-  return (
-    <FutureShell title="未来路径推演结果" backHref="/future" backLabel="新推演">
-      <FuturePanel className="p-5">
-        <div className="flex items-center gap-3 text-sm text-text-secondary">
-          <span aria-hidden className="relative flex h-2.5 w-2.5">
-            <span className="absolute inset-0 animate-ping rounded-full bg-accent/60" />
-            <span className="relative h-2.5 w-2.5 rounded-full bg-accent" />
-          </span>
-          <span>{message}</span>
-        </div>
-      </FuturePanel>
-    </FutureShell>
-  );
-}
-
 function FutureResultContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const runId = searchParams.get("runId") || "";
   const [result, setResult] = useState<FutureRunResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [cancelled, setCancelled] = useState(false);
+
+  // 阶梯退避：3s → 4s → 5s → 5s 上限
+  const POLL_INTERVALS = [3000, 4000, 5000];
+  const MAX_POLL_INDEX = POLL_INTERVALS.length - 1;
+  const MAX_WAIT_MS = 300_000; // 5 分钟超时保护
+  const MAX_RETRIES = 2; // 瞬态错误自动重试次数
 
   useEffect(() => {
     if (!runId) {
@@ -51,33 +44,66 @@ function FutureResultContent() {
       return;
     }
 
-    let cancelled = false;
+    let isCancelled = false;
     let timer: ReturnType<typeof setTimeout> | null = null;
+    let pollIndex = 0;
+    let retryCount = 0;
+    const startTime = Date.now();
 
     async function load() {
+      // 超时保护
+      if (Date.now() - startTime > MAX_WAIT_MS) {
+        if (!isCancelled) setError("等待时间过长，请刷新页面重试。");
+        return;
+      }
+
       try {
         const next = await fetchFutureRunFromClient(runId);
-        if (cancelled) return;
+        if (isCancelled) return;
         setResult(next);
         setError(next.run.error || null);
+        retryCount = 0; // 成功后重置重试计数
         if (next.run.status === "generating") {
-          timer = setTimeout(load, 3000);
+          const interval = POLL_INTERVALS[Math.min(pollIndex, MAX_POLL_INDEX)];
+          pollIndex++;
+          timer = setTimeout(load, interval);
         }
       } catch (err) {
-        if (!cancelled) setError(err instanceof Error ? err.message : "读取推演结果失败");
+        if (isCancelled) return;
+        // 瞬态错误自动重试（网络抖动、临时 5xx 等）
+        if (retryCount < MAX_RETRIES) {
+          retryCount++;
+          const backoff = Math.min(1000 * Math.pow(2, retryCount), 8000);
+          timer = setTimeout(load, backoff);
+          return;
+        }
+        setError(err instanceof Error ? err.message : "读取推演结果失败");
       }
     }
 
     load();
 
     return () => {
-      cancelled = true;
+      isCancelled = true;
       if (timer) clearTimeout(timer);
     };
   }, [runId]);
 
+  const handleCancel = useCallback(() => {
+    setCancelled(true);
+    router.push("/future");
+  }, [router]);
+
+  const handleTimeoutRefresh = useCallback(() => {
+    setError(null);
+    setResult(null);
+    setCancelled(false);
+    // 触发重新加载：通过重置 runId 依赖（用 key trick 或直接 reload）
+    window.location.reload();
+  }, []);
+
   const output = result?.output;
-  const isGenerating = result?.run.status === "generating";
+  const isGenerating = result?.run.status === "generating" && !cancelled;
   const recommendedPath = output ? findRecommendedPath(output) : null;
   const alternatePaths = output
     ? output.paths.filter((path) => path.index !== recommendedPath?.index)
@@ -98,19 +124,14 @@ function FutureResultContent() {
         )}
 
         {!error && (!output || isGenerating) && (
-          <FuturePanel className="p-5">
-            <div className="flex items-center gap-3 text-sm text-text-secondary">
-              <span aria-hidden className="relative flex h-2.5 w-2.5">
-                <span className="absolute inset-0 animate-ping rounded-full bg-accent/60" />
-                <span className="relative h-2.5 w-2.5 rounded-full bg-accent" />
-              </span>
-              <span>
-                {isGenerating
-                  ? "正在生成未来路径，结果会自动刷新…"
-                  : "正在读取推演结果…"}
-              </span>
-            </div>
-          </FuturePanel>
+          <FutureLoading
+            message={isGenerating ? "正在推演未来路径" : "正在读取推演结果…"}
+            generating={isGenerating}
+            timeoutMs={180_000}
+            maxWaitMs={MAX_WAIT_MS}
+            onCancel={isGenerating ? handleCancel : undefined}
+            onTimeout={handleTimeoutRefresh}
+          />
         )}
 
         {output && (

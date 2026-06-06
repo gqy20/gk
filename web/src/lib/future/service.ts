@@ -16,6 +16,8 @@ interface Provider {
     tool: typeof futurePathsTool;
     temperature?: number;
     maxTokens?: number;
+    /** 请求超时时间（毫秒） */
+    timeoutMs?: number;
   }): Promise<{
     data: FutureStructuredOutput;
     usage: {
@@ -139,6 +141,13 @@ export async function startFutureRun({
   return { runId, status: "generating" as const };
 }
 
+/** 根据请求复杂度计算合理的 LLM 超时时间 */
+function resolveTimeoutMs(pathCount: number): number {
+  // 基准：2 路径 ≈ 26-38s → 90s 够用（2.5x 余量）
+  // 复杂：3+ 路径 ≈ 45-50s+，历史有超时案例 → 180s（~4x 余量）
+  return pathCount >= 3 ? 180_000 : 90_000;
+}
+
 export async function generateFutureRun({
   runId,
   input,
@@ -147,7 +156,8 @@ export async function generateFutureRun({
   maxTokens = 4096,
 }: GenerateFutureRunOptions) {
   const runLog = withRunId(log, runId);
-  runLog.info({ maxTokens }, "generateFutureRun started");
+  const timeoutMs = resolveTimeoutMs(input.pathCount);
+  runLog.info({ maxTokens, timeoutMs, pathCount: input.pathCount }, "generateFutureRun started");
 
   const prompt = buildFuturePrompt(input);
   const startTime = Date.now();
@@ -158,6 +168,7 @@ export async function generateFutureRun({
       tool: defaultFuturePathsTool,
       temperature: 0.75,
       maxTokens,
+      timeoutMs,
     });
 
     const elapsed = Date.now() - startTime;
@@ -167,9 +178,9 @@ export async function generateFutureRun({
 
     runLog.info({
       pathCount: output.paths.length,
-      valid: output.validation.valid,
-      errorCount: output.validation.errors.length,
-      warningCount: output.validation.warnings.length,
+      valid: output.validation?.valid,
+      errorCount: output.validation?.errors?.length,
+      warningCount: output.validation?.warnings?.length,
     }, "normalizeOutput completed");
 
     await repository.completeRun(runId, {
