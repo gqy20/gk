@@ -175,11 +175,6 @@ function Home() {
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
         <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
-          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-text-secondary">
-            <span className="rounded-full border border-border-subtle bg-neutral-0/[0.06] px-3 py-1">
-              {filteredSchools.length} 所高校
-            </span>
-          </div>
           <ChinaMap
             schools={filteredSchools}
             provinces={filteredProvinces}

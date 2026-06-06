@@ -8,6 +8,14 @@ import * as echarts from "echarts";
 import { colors } from "@/lib/theme";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
+import {
+  PROVINCE_ADCODES,
+  MAP_NAME_TO_PROVINCE,
+  type MapLevel,
+  type DrillState,
+  INITIAL_DRILL_STATE,
+  getProvinceAdcode,
+} from "@/lib/map-drill";
 import SchoolPopup from "./SchoolPopup";
 
 interface ChinaMapProps {
@@ -64,6 +72,44 @@ const SHORT_PROVINCE_NAMES = new Map(
   ]),
 );
 
+/** 各省份地图的中心坐标和缩放级别 */
+const PROVINCE_MAP_CONFIG: Record<string, { center: [number, number]; zoom: number }> = {
+  北京: { center: [116.4, 40.0], zoom: 1.5 },
+  天津: { center: [117.2, 39.1], zoom: 1.5 },
+  河北: { center: [115.5, 38.0], zoom: 1.2 },
+  山西: { center: [112.5, 37.5], zoom: 1.3 },
+  内蒙古: { center: [118.0, 43.5], zoom: 0.8 },
+  辽宁: { center: [123.4, 41.8], zoom: 1.2 },
+  吉林: { center: [126.5, 43.8], zoom: 1.3 },
+  黑龙江: { center: [128.0, 46.5], zoom: 1.0 },
+  上海: { center: [121.5, 31.2], zoom: 1.6 },
+  江苏: { center: [119.8, 33.0], zoom: 1.3 },
+  浙江: { center: [120.2, 29.0], zoom: 1.3 },
+  安徽: { center: [117.3, 31.8], zoom: 1.3 },
+  福建: { center: [118.0, 26.0], zoom: 1.3 },
+  江西: { center: [116.0, 27.5], zoom: 1.3 },
+  山东: { center: [118.0, 36.5], zoom: 1.2 },
+  河南: { center: [113.7, 34.0], zoom: 1.3 },
+  湖北: { center: [112.3, 30.8], zoom: 1.3 },
+  湖南: { center: [112.0, 27.8], zoom: 1.3 },
+  广东: { center: [113.5, 23.3], zoom: 1.2 },
+  广西: { center: [108.5, 23.7], zoom: 1.3 },
+  海南: { center: [109.5, 19.2], zoom: 1.5 },
+  重庆: { center: [107.5, 29.6], zoom: 1.5 },
+  四川: { center: [104.0, 30.5], zoom: 1.1 },
+  贵州: { center: [106.7, 26.7], zoom: 1.4 },
+  云南: { center: [102.5, 25.0], zoom: 1.1 },
+  西藏: { center: [89.5, 31.5], zoom: 0.9 },
+  陕西: { center: [109.0, 35.0], zoom: 1.2 },
+  甘肃: { center: [104.0, 36.0], zoom: 1.1 },
+  青海: { center: [96.0, 35.8], zoom: 1.1 },
+  宁夏: { center: [106.2, 38.0], zoom: 1.5 },
+  新疆: { center: [85.5, 41.0], zoom: 0.7 },
+  香港: { center: [114.17, 22.28], zoom: 2.0 },
+  澳门: { center: [113.54, 22.19], zoom: 2.0 },
+  台湾: { center: [120.9, 23.8], zoom: 1.3 },
+};
+
 type TooltipParam = {
   name?: string;
   seriesType?: string;
@@ -71,6 +117,7 @@ type TooltipParam = {
     name?: string;
     province?: string;
     value?: unknown[];
+    adcode?: string;
   };
 };
 
@@ -107,13 +154,115 @@ export default function ChinaMap({
 }: ChinaMapProps) {
   const chartRef = useRef<ReactECharts>(null);
   const [mapReady, setMapReady] = useState(false);
+  const [loadingDrill, setLoadingDrill] = useState(false);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const router = useRouter();
+
+  // 下钻状态
+  const [drill, setDrill] = useState<DrillState>(INITIAL_DRILL_STATE);
+
+  // 已注册的地图名称集合（避免重复注册）
+  const registeredMaps = useRef(new Set(["china"]));
+
+  /** 加载并注册指定 adcode 的地图 */
+  const loadMap = useCallback(async (adcode: string, mapName: string) => {
+    if (registeredMaps.current.has(mapName)) return true;
+
+    try {
+      const json = await fetch(`/maps/${adcode}.json`).then((r) => r.json());
+      echarts.registerMap(mapName, json as never);
+      registeredMaps.current.add(mapName);
+      return true;
+    } catch {
+      console.warn(`[ChinaMap] Failed to load map: ${adcode}`);
+      return false;
+    }
+  }, []);
+
+  /** 下钻到下一级 */
+  const drillDown = useCallback(
+    async (name: string, adcode: string) => {
+      setLoadingDrill(true);
+
+      // 判断当前层级，决定目标层级和地图名
+      let targetLevel: MapLevel;
+      let targetMapName: string;
+      let targetAdcode: string;
+
+      if (drill.level === "country") {
+        // 全国 → 省级（市级视图）
+        targetLevel = "province";
+        targetMapName = `province_${adcode}`;
+        targetAdcode = adcode;
+      } else if (drill.level === "province") {
+        // 省级 → 市级（区县视图）
+        targetLevel = "city";
+        targetMapName = `city_${adcode}`;
+        targetAdcode = adcode;
+      } else {
+        setLoadingDrill(false);
+        return;
+      }
+
+      const ok = await loadMap(targetAdcode, targetMapName);
+      if (!ok) {
+        setLoadingDrill(false);
+        return;
+      }
+
+      const newBreadcrumbs = [
+        ...drill.breadcrumbs,
+        { name, adcode: targetAdcode, level: targetLevel },
+      ];
+
+      setDrill({
+        level: targetLevel,
+        mapName: targetMapName,
+        adcode: targetAdcode,
+        breadcrumbs: newBreadcrumbs,
+      });
+
+      // 同步通知父组件选中该省份
+      if (targetLevel === "province") {
+        const prov = MAP_NAME_TO_PROVINCE[name] || name;
+        onProvinceSelect(prov);
+      }
+
+      setLoadingDrill(false);
+    },
+    [drill, loadMap, onProvinceSelect],
+  );
+
+  /** 返回上一级 */
+  const drillUp = useCallback(() => {
+    if (drill.breadcrumbs.length <= 1) return;
+
+    const newBreadcrumbs = drill.breadcrumbs.slice(0, -1);
+    const prev = newBreadcrumbs[newBreadcrumbs.length - 1];
+
+    setDrill({
+      level: prev.level,
+      mapName: prev.level === "country" ? "china" : `${prev.level}_${prev.adcode}`,
+      adcode: prev.adcode,
+      breadcrumbs: newBreadcrumbs,
+    });
+
+    // 如果返回到全国视图，清除省份选择
+    if (prev.level === "country") {
+      onProvinceSelect(null);
+    }
+  }, [drill.breadcrumbs, onProvinceSelect]);
+
+  /** 返回全国 */
+  const resetToCountry = useCallback(() => {
+    setDrill(INITIAL_DRILL_STATE);
+    onProvinceSelect(null);
+  }, [onProvinceSelect]);
 
   useEffect(() => {
     let cancelled = false;
 
-    async function registerMap() {
+    async function registerChina() {
       try {
         const chinaJson = await fetch("/china.json").then((r) => r.json());
         if (!cancelled) {
@@ -125,13 +274,42 @@ export default function ChinaMap({
       }
     }
 
-    registerMap();
+    registerChina();
     return () => {
       cancelled = true;
     };
   }, []);
 
-  // 学校标记颜色 — 优先级: 985 > 211 > 双一流 > 普通
+  // 根据当前下钻状态筛选学校
+  const visibleSchools = useMemo(() => {
+    if (drill.level === "country") return schools;
+    // 省级或市级视图：只显示当前省份的学校
+    const currentProv =
+      drill.level === "province"
+        ? MAP_NAME_TO_PROVINCE[drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name] ||
+          selectedProvince
+        : selectedProvince;
+
+    if (!currentProv) return schools;
+    return schools.filter((s) => s.province === currentProv);
+  }, [schools, drill.level, drill.breadcrumbs, selectedProvince]);
+
+  // 根据当前下钻状态计算区域聚合数据
+  const regionData = useMemo(() => {
+    if (drill.level === "country") {
+      return provinces.map((p) => ({
+        name: mapProvinceName(p.name),
+        rawName: p.name,
+        value: p.count,
+        adcode: getProvinceAdcode(p.name) || "",
+      }));
+    }
+    // 省级视图：按城市聚合（暂时用省份计数的简化版）
+    // TODO: 接入城市数据后改为真正的城市聚合
+    return [];
+  }, [drill.level, provinces]);
+
+  // 学校标记颜色
   function schoolColor(school: School): string {
     if (selectedProvince && school.province !== selectedProvince)
       return colors.chart.schoolMuted;
@@ -149,24 +327,80 @@ export default function ChinaMap({
   }
 
   const getOption = (): echarts.EChartsOption => {
-    const scatterData = schools.map((school) => ({
+    const currentMapName = drill.mapName;
+
+    // 根据当前层级确定中心点和缩放
+    let geoCenter: [number, number];
+    let geoZoom: number;
+
+    if (drill.level === "country") {
+      geoCenter = [104, 35.8];
+      geoZoom = 1.16;
+    } else {
+      // 从面包屑获取当前区域名称
+      const currentName = drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name;
+      const shortProv = MAP_NAME_TO_PROVINCE[currentName] || currentName;
+      const config = PROVINCE_MAP_CONFIG[shortProv];
+      if (config) {
+        geoCenter = config.center;
+        geoZoom = config.zoom;
+      } else {
+        geoCenter = [104, 35.8];
+        geoZoom = 1.16;
+      }
+    }
+
+    const scatterData = visibleSchools.map((school) => ({
       name: school.name,
       province: school.province,
       value: [...school.coord, school.province],
-      symbolSize: school.is985 ? 11 : school.is211 ? 9 : school.isDoubleFirstClass ? 7 : 6,
+      symbolSize:
+        school.is985 ? 11 : school.is211 ? 9 : school.isDoubleFirstClass ? 7 : 6,
       itemStyle: {
         color: schoolColor(school),
-        shadowBlur: school.is985 || school.is211 || school.isDoubleFirstClass ? 10 : 0,
+        shadowBlur:
+          school.is985 || school.is211 || school.isDoubleFirstClass ? 10 : 0,
         shadowColor: schoolShadow(school),
       },
     }));
 
-    const mapData = provinces.map((province) => ({
-      name: mapProvinceName(province.name),
-      province: province.name,
-      value: province.count,
-      selected: selectedProvince === province.name,
+    const mapData = regionData.map((r) => ({
+      name: r.name,
+      value: r.value,
+      adcode: r.adcode,
+      selected: selectedProvince === r.rawName,
     }));
+
+    // visualMap 只在全国视图显示
+    const visualMapConfig =
+      drill.level === "country"
+        ? {
+            min: 0,
+            max: Math.max(...provinces.map((p) => p.count), 1),
+            left: 16,
+            bottom: 18,
+            text: ["多", "少"],
+            calculable: false,
+            itemWidth: 12,
+            itemHeight: 90,
+            textStyle: {
+              color: colors.textSecondary,
+              fontSize: 11,
+            },
+            inRange: {
+              color: [
+                colors.chart.mapLow,
+                colors.chart.mapLowMid,
+                colors.chart.mapMid,
+                colors.chart.mapHighMid,
+                colors.chart.mapHigh,
+              ],
+            },
+            outOfRange: {
+              color: [colors.chart.mapLow],
+            },
+          }
+        : undefined;
 
     return {
       backgroundColor: "transparent",
@@ -194,43 +428,30 @@ export default function ChinaMap({
             return `<b>${escapeHtml(name)}</b><br/>${escapeHtml(province)}`;
           }
 
-          const province = shortProvinceName(item.name);
-          const count = provinces.find((p) => p.name === province)?.count ?? 0;
-          return `<b>${escapeHtml(item.name || "")}</b><br/>高校: ${count} 所`;
+          if (drill.level === "country") {
+            const province = shortProvinceName(item.name);
+            const count =
+              provinces.find((p) => p.name === province)?.count ?? 0;
+            return `<b>${escapeHtml(item.name || "")}</b><br/>高校: ${count} 所`;
+          }
+
+          // 省级/市级视图：显示区域名称
+          return `<b>${escapeHtml(item.name || "")}</b>`;
         },
       },
-      visualMap: {
-        min: 0,
-        max: Math.max(...provinces.map((p) => p.count), 1),
-        left: 16,
-        bottom: 18,
-        text: ["多", "少"],
-        calculable: false,
-        itemWidth: 12,
-        itemHeight: 90,
-        textStyle: {
-          color: colors.textSecondary,
-          fontSize: 11,
-        },
-        inRange: {
-          color: [colors.chart.mapLow, colors.chart.mapLowMid, colors.chart.mapMid, colors.chart.mapHighMid, colors.chart.mapHigh],
-        },
-        outOfRange: {
-          color: [colors.chart.mapLow],
-        },
-      },
+      ...(visualMapConfig ? { visualMap: visualMapConfig } : {}),
       geo: {
-        map: "china",
+        map: currentMapName,
         roam: true,
-        zoom: 1.16,
-        center: [104, 35.8],
+        zoom: geoZoom,
+        center: geoCenter,
         label: {
-          show: false,
+          show: drill.level !== "country", // 省级以下显示标签
         },
         itemStyle: {
           areaColor: colors.chart.mapLow,
           borderColor: "rgba(255, 249, 236, 0.18)",
-          borderWidth: 0.8,
+          borderWidth: drill.level === "country" ? 0.8 : 0.6,
         },
         emphasis: {
           itemStyle: {
@@ -241,7 +462,7 @@ export default function ChinaMap({
           label: {
             show: true,
             color: colors.text,
-            fontSize: 12,
+            fontSize: drill.level === "country" ? 12 : 11,
             fontWeight: 600,
           },
         },
@@ -259,15 +480,15 @@ export default function ChinaMap({
       },
       series: [
         {
-          name: "高校数量",
+          name: drill.level === "country" ? "高校数量" : "行政区划",
           type: "map",
-          map: "china",
+          map: currentMapName,
           geoIndex: 0,
           selectedMode: "single",
           data: mapData,
           itemStyle: {
             borderColor: "rgba(255, 249, 236, 0.16)",
-            borderWidth: 0.7,
+            borderWidth: drill.level === "country" ? 0.7 : 0.5,
           },
           emphasis: {
             itemStyle: {
@@ -307,17 +528,17 @@ export default function ChinaMap({
 
   const option = useMemo(
     () => getOption(),
-    [schools, provinces, selectedProvince],
+    [visibleSchools, provinces, selectedProvince, drill],
   );
 
   const handleEvents = {
     click: (params: unknown) => {
       const item = params as TooltipParam;
 
+      // 点击学校散点
       if (item.seriesType === "effectScatter" && item.name) {
         const school = schools.find((s) => s.name === item.name);
         if (school) {
-          // 延迟触发预览，如果300ms内双击则取消
           clickTimer.current = setTimeout(() => {
             onSchoolPreview(school);
           }, 280);
@@ -325,10 +546,29 @@ export default function ChinaMap({
         return;
       }
 
-      const province = shortProvinceName(item.name);
-      if (province) onProvinceSelect(province);
+      // 点击地图区域 → 下钻
+      if (item.seriesType === "map" && item.name) {
+        if (drill.level === "country") {
+          // 全国视图：点击省份 → 下钻到省级
+          const province = shortProvinceName(item.name);
+          if (province) {
+            const adcode = getProvinceAdcode(province);
+            if (adcode) {
+              drillDown(mapProvinceName(province), adcode);
+            }
+          }
+        } else if (drill.level === "province") {
+          // 省级视图：点击城市 → 下钻到市级（暂未实现区县级数据）
+          // 可以在这里扩展为加载城市的区县 GeoJSON
+          const cityAdcode = item.data?.adcode;
+          if (cityAdcode) {
+            drillDown(item.name!, cityAdcode);
+          }
+        }
+        return;
+      }
 
-      // 点击地图空白区域关闭悬浮窗
+      // 点击空白区域关闭悬浮窗
       onSchoolPreview(null);
     },
     dblclick: (params: unknown) => {
@@ -350,7 +590,7 @@ export default function ChinaMap({
 
   if (!mapReady) {
     return (
-      <div className="flex h-full w-full items-center justify-center text-sm text-dark-200">
+      <div className="flex h-full w-full items-center justify-center text-sm text-text-secondary">
         {EMPTY_MESSAGES.loadingMap}
       </div>
     );
@@ -358,6 +598,52 @@ export default function ChinaMap({
 
   return (
     <div className="relative w-full h-full" role="figure" aria-label={EMPTY_MESSAGES.map}>
+      {/* 面包屑导航 + 返回按钮 */}
+      {drill.level !== "country" && (
+        <div className="absolute left-3 top-3 z-20 flex items-center gap-1.5">
+          <button
+            onClick={resetToCountry}
+            className="flex items-center gap-1 rounded-full border border-border bg-surface-elevated/90 px-2.5 py-1 text-xs font-medium text-text-secondary shadow-lg backdrop-blur-sm transition-all hover:border-primary/40 hover:text-text hover:shadow-xl"
+            title="返回全国"
+          >
+            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            全国
+          </button>
+
+          <svg className="h-3 w-3 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+
+          {drill.breadcrumbs.slice(1).map((crumb, i) => (
+            <span key={crumb.adcode} className="flex items-center gap-1.5">
+              {i > 0 && (
+                <svg className="h-3 w-3 text-text-subtle" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              )}
+              <span className="rounded-full border border-primary/30 bg-primary-soft/80 px-2.5 py-1 text-xs font-semibold text-primary shadow-sm">
+                {crumb.name}
+              </span>
+            </span>
+          ))}
+
+          {loadingDrill && (
+            <span className="ml-1 text-[11px] text-text-subtle animate-pulse">加载中...</span>
+          )}
+        </div>
+      )}
+
+      {/* 当前区域学校数量提示 */}
+      {drill.level !== "country" && (
+        <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-text-secondary">
+          <span className="rounded-full border border-border-subtle bg-neutral-0/[0.06] px-3 py-1">
+            {visibleSchools.length} 所高校
+          </span>
+        </div>
+      )}
+
       <ReactECharts
         ref={chartRef}
         option={option}
