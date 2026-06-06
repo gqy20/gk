@@ -8,13 +8,17 @@ import type { MajorCategory } from "@/types/majors";
 interface MajorTreeBrowserProps {
   category: MajorCategory;
   selectedMenlei: string | null;
+  selectedClassKey: string | null;
   onSelectMenlei: (key: string | null) => void;
+  onSelectClass: (classKey: string | null, parentMenleiKey: string) => void;
 }
 
 export default function MajorTreeBrowser({
   category,
   selectedMenlei,
+  selectedClassKey,
   onSelectMenlei,
+  onSelectClass,
 }: MajorTreeBrowserProps) {
   const [expandedClasses, setExpandedClasses] = useState<Set<string>>(new Set());
 
@@ -125,17 +129,23 @@ export default function MajorTreeBrowser({
                     className="overflow-hidden"
                   >
                     {menlei.专业类.map((cls) => {
-                      const hasSelectedClass = isSelected; // 该门类下所有子项都视为激活上下文
+                      const isClassSelected = selectedClassKey === cls.key;
                       return (
                         <button
                           key={cls.key}
                           type="button"
-                          onClick={() => onSelectMenlei(menlei.key)}
+                          onClick={() =>
+                            isClassSelected
+                              ? onSelectMenlei(menlei.key) // 再次点击取消专业类筛选，回到门类级
+                              : onSelectClass(cls.key, menlei.key)
+                          }
                           className={cn(
                             "flex w-full items-center justify-between gap-2 truncate border-l-2 pl-6 pr-3 py-1.5 text-[11px] transition-colors",
-                            hasSelectedClass
-                              ? "border-primary/40 text-text-secondary hover:text-text"
-                              : "border-border-subtle text-text-muted hover:text-text-secondary hover:border-border",
+                            isClassSelected
+                              ? "border-primary bg-primary/8 text-primary font-medium"
+                              : isSelected
+                                ? "border-primary/30 text-text-secondary hover:border-primary/50 hover:text-text"
+                                : "border-border-subtle text-text-muted hover:text-text-secondary hover:border-border",
                           )}
                         >
                           <span className="truncate">{cls.name}</span>

@@ -12,6 +12,7 @@ export default function MajorsPage() {
   const [data, setData] = useState<MajorsData | null>(null);
   const [activeCatKey, setActiveCatKey] = useState<string>("");
   const [selectedMenlei, setSelectedMenlei] = useState<string | null>(null);
+  const [selectedClassKey, setSelectedClassKey] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -30,8 +31,18 @@ export default function MajorsPage() {
 
   const handleSelectMenlei = useCallback((key: string | null) => {
     setSelectedMenlei(key);
+    setSelectedClassKey(null); // 切换门类时清空专业类选择
     if (key !== null) setSearchQuery("");
   }, []);
+
+  const handleSelectClass = useCallback(
+    (classKey: string | null, parentMenleiKey: string) => {
+      setSelectedMenlei(parentMenleiKey);
+      setSelectedClassKey(classKey);
+      if (classKey !== null) setSearchQuery("");
+    },
+    [],
+  );
 
   // 当前选中的门类名称（用于移动端 selector 显示）
   const selectedMenleiName =
@@ -71,6 +82,7 @@ export default function MajorsPage() {
           onSelect={(key) => {
             setActiveCatKey(key);
             setSelectedMenlei(null);
+            setSelectedClassKey(null);
             setSearchQuery("");
           }}
         />
@@ -92,7 +104,9 @@ export default function MajorsPage() {
             <MajorTreeBrowser
               category={activeCategory}
               selectedMenlei={selectedMenlei}
+              selectedClassKey={selectedClassKey}
               onSelectMenlei={handleSelectMenlei}
+              onSelectClass={handleSelectClass}
             />
           </aside>
         )}
@@ -103,15 +117,35 @@ export default function MajorsPage() {
           {activeCategory && (
             <div className="shrink-0 border-b border-border px-3 py-2 sm:hidden">
               <select
-                value={selectedMenlei || ""}
-                onChange={(e) => handleSelectMenlei(e.target.value || null)}
+                value={selectedClassKey || selectedMenlei || ""}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (!val) {
+                    handleSelectMenlei(null);
+                    return;
+                  }
+                  // 判断是专业类 key（长度 > 4，如 "10500203"）还是门类 key
+                  const matchedClass = activeCategory.门类
+                    .flatMap((m) => m.专业类.map((c) => ({ ...c, menleiKey: m.key })))
+                    .find((c) => c.key === val);
+                  if (matchedClass) {
+                    handleSelectClass(matchedClass.key, matchedClass.menleiKey);
+                  } else {
+                    // 门级选择
+                    handleSelectMenlei(val);
+                  }
+                }}
                 className="w-full rounded-lg border border-border bg-surface-subtle px-3 py-1.5 text-xs text-text outline-none focus:border-primary/50"
               >
                 <option value="">全部门类</option>
                 {activeCategory.门类.map((m) => (
-                  <option key={m.key} value={m.key}>
-                    {m.name} ({m.major_count})
-                  </option>
+                  <optgroup key={m.key} label={`${m.name} (${m.major_count})`}>
+                    {m.专业类.map((cls) => (
+                      <option key={cls.key} value={cls.key}>
+                        {cls.name} ({cls.专业.length})
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
             </div>
@@ -122,6 +156,7 @@ export default function MajorsPage() {
               <MajorList
                 category={activeCategory}
                 menleiKey={selectedMenlei}
+                classKey={selectedClassKey}
                 searchQuery={searchQuery}
               />
             ) : (

@@ -8,6 +8,7 @@ import type { MajorCategory } from "@/types/majors";
 interface MajorListProps {
   category: MajorCategory;
   menleiKey: string | null;
+  classKey: string | null;
   searchQuery: string;
 }
 
@@ -37,7 +38,7 @@ function satisfactionConfig(score: string) {
   return { color: "bg-neutral-500", textColor: "text-text-muted", label: score, pct: (num / 5) * 100 };
 }
 
-function filterMajors(category: MajorCategory, menleiKey: string | null, query: string) {
+function filterMajors(category: MajorCategory, menleiKey: string | null, classKey: string | null, query: string) {
   const q = query.trim().toLowerCase();
   const results: {
     menleiName: string;
@@ -49,6 +50,7 @@ function filterMajors(category: MajorCategory, menleiKey: string | null, query: 
     if (menleiKey && menlei.key !== menleiKey) continue;
 
     for (const cls of menlei.专业类) {
+      if (classKey && cls.key !== classKey) continue; // 按专业类过滤
       for (const major of cls.专业) {
         if (q) {
           const matchName = (major.zymc || "").toLowerCase().includes(q);
@@ -87,19 +89,26 @@ function EmptyGuide({ hasSearch }: { hasSearch: boolean }) {
   );
 }
 
-export default function MajorList({ category, menleiKey, searchQuery }: MajorListProps) {
+export default function MajorList({ category, menleiKey, classKey, searchQuery }: MajorListProps) {
   const items = useMemo(
-    () => filterMajors(category, menleiKey, searchQuery),
-    [category, menleiKey, searchQuery],
+    () => filterMajors(category, menleiKey, classKey, searchQuery),
+    [category, menleiKey, classKey, searchQuery],
   );
+
+  // 当前选中的专业类信息
+  const activeClass = classKey
+    ? category.门类
+        .flatMap((m) => m.专业类)
+        .find((c) => c.key === classKey)
+    : null;
 
   // 当前选中的门类信息
   const activeMenlei = menleiKey
     ? category.门类.find((m) => m.key === menleiKey)
     : null;
 
-  // 无选中门类且无搜索时 → 显示引导（不倾倒全量列表）
-  if (items.length === 0 || (!menleiKey && !searchQuery.trim())) {
+  // 无选中门类/专业类且无搜索时 → 显示引导（不倾倒全量列表）
+  if (items.length === 0 || (!menleiKey && !classKey && !searchQuery.trim())) {
     return <EmptyGuide hasSearch={!!searchQuery.trim()} />;
   }
 
@@ -107,8 +116,28 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
     <div className="flex h-full flex-col overflow-hidden">
       {/* 统计条 */}
       <header className="shrink-0 border-b border-border px-4 py-2.5 bg-surface-subtle">
-        <div className="flex items-center gap-2">
-          {activeMenlei ? (
+        <div className="flex items-center gap-2 flex-wrap">
+          {activeClass ? (
+            <>
+              <span className="inline-flex items-center rounded-full bg-primary/8 px-2 py-0.5 text-[10px] text-text-muted">
+                {activeMenlei?.name}
+              </span>
+              <svg className="h-3 w-3 text-text-light-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+              <span className="inline-flex items-center rounded-full bg-primary/12 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
+                {activeClass.name}
+              </span>
+              <span className="text-[11px] text-text-muted">
+                共 <span className="font-semibold tabular-nums text-text-secondary">{items.length}</span> 个专业
+              </span>
+              {searchQuery.trim() && (
+                <span className="rounded-full bg-surface-subtle px-2 py-0.5 text-[10px] text-text-muted">
+                  搜索: {searchQuery}
+                </span>
+              )}
+            </>
+          ) : activeMenlei ? (
             <>
               <span className="inline-flex items-center rounded-full bg-primary/12 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
                 {activeMenlei.name}
