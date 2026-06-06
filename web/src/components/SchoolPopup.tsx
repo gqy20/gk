@@ -62,7 +62,7 @@ export default function SchoolPopup({
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.95, opacity: 0 }}
       transition={{ type: "spring", stiffness: 400, damping: 28 }}
-      className="absolute left-1/2 top-[15%] z-20 w-[280px] -translate-x-1/2 rounded-xl border border-primary-border bg-surface-elevated p-4 shadow-2xl shadow-neutral-900/18"
+      className="paper-card absolute left-1/2 top-[15%] z-20 w-[280px] -translate-x-1/2 rounded-lg border p-4 shadow-2xl shadow-neutral-900/12"
     >
       {/* 标题区 */}
       <div className="mb-2.5">
@@ -70,7 +70,7 @@ export default function SchoolPopup({
           {school.name}
         </h3>
         <div className="mt-1 flex items-center gap-2 text-xs text-text-muted">
-          <span className="rounded-full border border-border-subtle bg-neutral-900/5 px-2 py-0.5">
+          <span className="rounded-sm border border-border-subtle bg-accent-50/65 px-2 py-0.5">
             {school.province}
           </span>
           <a
@@ -90,9 +90,9 @@ export default function SchoolPopup({
         {school.is211 && <Badge label="211" tone="gold" />}
         {school.isDoubleFirstClass && <Badge label="双一流" tone="green" />}
         <span
-          className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
+          className={`rounded-sm px-2 py-0.5 text-[10px] font-medium ${
             school.status === "done"
-              ? "border border-brand-500/30 bg-brand-500/10 text-brand-400"
+              ? "border border-brand-500/30 bg-brand-50 text-brand-700"
               : "border border-border-subtle bg-neutral-900/5 text-text-muted"
           }`}
         >
@@ -113,7 +113,7 @@ export default function SchoolPopup({
 
       {/* 操作按钮 */}
       <Button
-        theme="dark"
+        theme="light"
         variant="primary"
         size="sm"
         className="w-full"
@@ -127,7 +127,7 @@ export default function SchoolPopup({
 
 function StatCell({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md border border-border-light bg-neutral-50 px-2.5 py-1.5">
+    <div className="rounded-md border border-border-light bg-neutral-0/70 px-2.5 py-1.5">
       <div className="text-[10px] text-text-light-muted">{label}</div>
       <div className="mt-0.5 text-xs font-semibold text-text-light">{value}</div>
     </div>

@@ -35,7 +35,7 @@ export default function DetailSection({
         {colleges.map((college) => (
           <div
             key={college.name}
-            className="rounded-lg border border-border-light bg-surface-light-elevated p-3 text-xs"
+            className="rounded-md border border-border-light bg-neutral-0/72 p-3 text-xs"
           >
             {college.url ? (
               <a
@@ -68,7 +68,7 @@ export default function DetailSection({
         {experiences.map((experience, index) => (
           <div
             key={index}
-            className="rounded-lg border border-primary-border bg-accent-50 p-3 text-xs"
+            className="rounded-md border border-primary-border bg-accent-50/70 p-3 text-xs"
           >
             <div className="font-semibold text-accent-700">
               {experience.topic}
@@ -99,9 +99,9 @@ export default function DetailSection({
           return (
             <div
               key={index}
-              className="rounded-lg border border-blue-200/60 bg-blue-50/40 p-3 text-xs"
+              className="rounded-md border border-brand-200/60 bg-brand-50/45 p-3 text-xs"
             >
-              <div className="font-semibold text-blue-800">{item.title}</div>
+              <div className="font-semibold text-brand-800">{item.title}</div>
               <div className="mt-2 space-y-1.5">
                 {lines.map((line, li) => {
                   const isQ = line.startsWith("Q:") || line.startsWith("Q：");
@@ -111,7 +111,7 @@ export default function DetailSection({
                   return (
                     <p
                       key={li}
-                      className={`leading-relaxed ${isQ ? "text-blue-700 font-medium" : isA ? "text-text-light" : "text-text-light-muted"}`}
+                      className={`leading-relaxed ${isQ ? "text-brand-700 font-medium" : isA ? "text-text-light" : "text-text-light-muted"}`}
                     >
                       {isQ ? "Q: " : isA ? "A: " : ""}
                       {content}
@@ -120,7 +120,7 @@ export default function DetailSection({
                 })}
               </div>
               {item.source_department && (
-                <div className="mt-1.5 text-[10px] text-blue-500">
+                <div className="mt-1.5 text-[10px] text-brand-500">
                   来源: {item.source_department}
                 </div>
               )}
@@ -136,7 +136,7 @@ export default function DetailSection({
       {docs.map((item, index) => (
         <div
           key={index}
-          className="rounded-lg border border-border-light bg-surface-light-elevated p-3 text-xs transition hover:border-brand-400/45"
+          className="rounded-md border border-border-light bg-neutral-0/72 p-3 text-xs transition hover:border-brand-400/45 hover:bg-brand-50/35"
         >
           <a
             href={item.url}
@@ -161,7 +161,7 @@ export default function DetailSection({
                   href={attachment}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-danger-300/50 bg-danger-soft px-2 py-0.5 text-[10px] text-danger-400 transition hover:border-danger-400/50"
+                  className="rounded-sm border border-danger-300/50 bg-danger-soft px-2 py-0.5 text-[10px] text-danger-500 transition hover:border-danger-400/50"
                 >
                   附件 {attachmentIndex + 1}
                 </a>
@@ -186,7 +186,7 @@ function SourceList({ sources }: { sources: SourceItem[] }) {
       {sources.slice(0, 8).map((src, i) => (
         <div
           key={i}
-          className="rounded-lg border border-border-subtle bg-neutral-900/5 p-2.5 text-xs"
+          className="rounded-md border border-border-subtle bg-neutral-0/62 p-2.5 text-xs"
         >
           <a
             href={src.url}
@@ -197,7 +197,7 @@ function SourceList({ sources }: { sources: SourceItem[] }) {
             {src.title || src.url}
           </a>
           <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-text-muted">
-            <span className="rounded-full border border-border-subtle bg-surface-light-elevated px-1.5 py-px">
+            <span className="rounded-sm border border-border-subtle bg-neutral-0/72 px-1.5 py-px">
               {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
             </span>
             <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>

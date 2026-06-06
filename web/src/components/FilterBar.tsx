@@ -32,13 +32,13 @@ export default function FilterBar({
 
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <label className="group flex h-8 w-[170px] min-w-0 items-center gap-2 rounded-lg border border-border bg-surface-subtle px-2.5 transition focus-within:border-primary/70 focus-within:bg-surface-hover sm:h-9 sm:w-[240px] xl:w-[320px] sm:gap-3 sm:px-3">
+      <label className="group flex h-8 w-[170px] min-w-0 items-center gap-2 rounded-md border border-border bg-neutral-0/78 px-2.5 shadow-inner shadow-white/40 transition focus-within:border-primary/70 focus-within:bg-neutral-0 sm:h-9 sm:w-[240px] xl:w-[320px] sm:gap-3 sm:px-3">
         <input
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
           aria-label="搜索学校、省份或官方域名"
           placeholder="搜索 / 省份"
-          className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-text-placeholder sm:text-base sm:placeholder:搜索学校 / 省份"
+            className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-text-placeholder sm:text-base sm:placeholder:搜索学校 / 省份"
         />
       </label>
 
@@ -50,7 +50,7 @@ export default function FilterBar({
           <button
             type="button"
             onClick={onReset}
-            className="h-7 shrink-0 rounded-lg border border-border px-3 text-xs font-medium text-text-secondary transition hover:border-primary/60 hover:bg-primary/10 sm:h-8"
+            className="h-7 shrink-0 rounded-md border border-border bg-neutral-0/70 px-3 text-xs font-medium text-text-secondary transition hover:border-primary/60 hover:bg-brand-50 sm:h-8"
           >
             重置
           </button>
@@ -61,9 +61,9 @@ export default function FilterBar({
 }
 
 const solidColors: Record<"red" | "gold" | "green", string> = {
-  red: "bg-danger-500 text-text-inverse border-transparent shadow-md shadow-danger-500/25",
-  gold: "bg-accent-500 text-text-inverse border-transparent shadow-md shadow-accent-500/25",
-  green: "bg-brand-500 text-text-inverse border-transparent shadow-md shadow-brand-500/25",
+  red: "bg-danger-500 text-text-inverse border-danger-600/30 shadow-sm shadow-danger-500/20",
+  gold: "bg-accent-500 text-text-inverse border-accent-700/25 shadow-sm shadow-accent-500/18",
+  green: "bg-success text-text-inverse border-brand-700/25 shadow-sm shadow-brand-500/18",
 };
 
 function FilterTag({
@@ -89,7 +89,7 @@ function FilterTag({
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 500, damping: 25 }}
         whileTap={{ scale: 0.95 }}
-        className={cn("shrink-0 rounded-lg border font-semibold", sizeClass, solidColors[tone])}
+        className={cn("shrink-0 rounded-md border font-semibold tracking-[0.02em]", sizeClass, solidColors[tone])}
       >
         {label}
       </motion.button>
@@ -101,11 +101,11 @@ function FilterTag({
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      whileHover={{ scale: 1.04, borderColor: "rgba(37,111,143,0.45)" }}
+      whileHover={{ scale: 1.04, borderColor: "rgba(63,143,155,0.48)" }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 22 }}
       className={cn(
-        "shrink-0 rounded-lg border border-border-light bg-neutral-0 font-semibold text-text-light-muted shadow-sm",
+        "shrink-0 rounded-md border border-border-light bg-neutral-0/78 font-semibold text-text-light-muted shadow-sm shadow-white/35",
         sizeClass,
       )}
     >

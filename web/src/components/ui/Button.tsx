@@ -19,21 +19,21 @@ const variantStyles: Record<
 > = {
   dark: {
     primary:
-      "border-brand-500 bg-brand-500 text-text-inverse hover:bg-brand-600",
+      "border-brand-600/35 bg-brand-500 text-text-inverse hover:bg-brand-600",
     secondary:
-      "border-border bg-surface-elevated text-text-secondary hover:border-primary/50 hover:bg-brand-50 hover:text-primary",
+      "border-border bg-neutral-0/82 text-text-secondary hover:border-primary/50 hover:bg-brand-50 hover:text-primary",
     ghost: "border-transparent text-text-secondary hover:text-text hover:bg-surface-subtle",
     danger:
-      "border-border bg-surface-elevated text-text-secondary hover:border-danger-200/60 hover:bg-danger-soft hover:text-danger",
+      "border-border bg-neutral-0/82 text-text-secondary hover:border-danger-200/60 hover:bg-danger-soft hover:text-danger",
   },
   light: {
     primary:
-      "border-brand-500 bg-brand-500 text-text-inverse hover:bg-brand-600 disabled:opacity-40",
+      "border-brand-600/35 bg-brand-500 text-text-inverse hover:bg-brand-600 disabled:opacity-40",
     secondary:
-      "border-border-light bg-surface-light-elevated text-text-light hover:border-brand-400/50 hover:bg-success-soft",
+      "border-border-light bg-neutral-0/82 text-text-light hover:border-brand-400/50 hover:bg-success-soft",
     ghost: "border-transparent text-text-light hover:text-brand-500 hover:bg-surface-light-subtle",
     danger:
-      "border-border-light bg-surface-light-elevated text-text-light hover:border-danger-200/40 hover:text-danger-400",
+      "border-border-light bg-neutral-0/82 text-text-light hover:border-danger-200/40 hover:bg-danger-soft hover:text-danger-500",
   },
 };
 
@@ -75,7 +75,7 @@ export function Button({
       whileHover={disabled ? undefined : { scale: 1.03 }}
       whileTap={disabled ? undefined : { scale: 0.97 }}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border transition",
+        "inline-flex items-center justify-center gap-2 rounded-md border transition shadow-sm shadow-white/30",
         "disabled:cursor-not-allowed disabled:opacity-35",
         sizeStyles[size],
         isActive ? activeStyles[theme][variant] : variantStyles[theme][variant],

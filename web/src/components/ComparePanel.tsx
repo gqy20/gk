@@ -27,8 +27,8 @@ function getCategoryCount(school: School, key: DetailCategoryKey): number {
 
 export default function ComparePanel({ schools, onClose, onRemove }: ComparePanelProps) {
   return (
-    <div className="flex h-full flex-col bg-surface-light text-text-light">
-      <div className="border-b border-border-light bg-surface-elevated px-4 py-4 text-text">
+    <div className="paper-shell flex h-full flex-col text-text-light">
+      <div className="border-b border-border-light bg-accent-50/45 px-4 py-4 text-text">
         <div className="flex items-start gap-3">
           <div className="min-w-0 flex-1">
             <h2 className="text-xl font-semibold leading-tight">
@@ -51,9 +51,9 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
           {schools.map((school) => (
             <div
               key={school.name}
-              className="flex w-[200px] shrink-0 flex-col rounded-lg border border-border-light bg-surface-light-elevated shadow-sm"
+              className="flex w-[200px] shrink-0 flex-col rounded-md border border-border-light bg-neutral-0/74 shadow-sm shadow-neutral-900/5"
             >
-              <div className="border-b border-border-light bg-surface-light-subtle px-3 py-3">
+              <div className="border-b border-border-light bg-accent-50/45 px-3 py-3">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-sm font-semibold leading-tight text-text-light">
                     {school.name}

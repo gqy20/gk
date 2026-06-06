@@ -36,6 +36,8 @@ export default function SchoolPanel({
 }: SchoolPanelProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
   const [activeCrawlCategory, setActiveCrawlCategory] = useState<string | null>(null);
+  const [contentVisible, setContentVisible] = useState(true);
+  const prevTabRef = useRef(activeTab);
 
   const detail = school?.detail;
 
@@ -62,18 +64,6 @@ export default function SchoolPanel({
     });
   }, [detail]);
 
-  if (!school) {
-    return (
-      <div className="flex flex-1 items-center justify-center text-sm text-text-light-muted">
-        {EMPTY_MESSAGES.selectSchool}
-      </div>
-    );
-  }
-
-  const isOverview = activeTab === "overview";
-  const [contentVisible, setContentVisible] = useState(true);
-  const prevTabRef = useRef(activeTab);
-
   // Tab 切换时淡出 → 切内容 → 淡入
   useEffect(() => {
     if (prevTabRef.current !== activeTab && prevTabRef.current !== null) {
@@ -84,8 +74,18 @@ export default function SchoolPanel({
     prevTabRef.current = activeTab;
   }, [activeTab]);
 
+  if (!school) {
+    return (
+      <div className="flex flex-1 items-center justify-center text-sm text-text-light-muted">
+        {EMPTY_MESSAGES.selectSchool}
+      </div>
+    );
+  }
+
+  const isOverview = activeTab === "overview";
+
   return (
-    <div className="flex h-full flex-col bg-surface-light text-text-light">
+    <div className="paper-shell flex h-full flex-col text-text-light">
       <SchoolHeader
         school={school}
         onClose={onClose}

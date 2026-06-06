@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import ReactECharts from "echarts-for-react";
@@ -9,7 +9,6 @@ import { colors } from "@/lib/theme";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
 import {
-  PROVINCE_ADCODES,
   MAP_NAME_TO_PROVINCE,
   type MapLevel,
   type DrillState,
@@ -75,17 +74,208 @@ const SHORT_PROVINCE_NAMES = new Map(
 const MAP_CENTER_COUNTRY: [number, number] = [104, 35.8];
 const MAP_ZOOM_COUNTRY = 1.16;
 
-const BIG_SCREEN_COLORS = {
-  mapBase: "#17313d",
-  mapBaseDeep: "#0e222d",
-  mapEdge: "rgba(139, 213, 231, 0.55)",
-  mapEdgeStrong: "rgba(191, 232, 241, 0.9)",
-  mapGlow: "rgba(88, 189, 217, 0.34)",
-  shadowDeep: "rgba(0, 15, 23, 0.78)",
-  shadowMid: "rgba(6, 35, 45, 0.62)",
-  textOnMap: "#d9f5fb",
-  textMutedOnMap: "rgba(217, 245, 251, 0.68)",
+const GEO_SEA_TEXTURE_BOUNDS = {
+  west: 113,
+  east: 146,
+  north: 60,
+  south: 5,
 } as const;
+
+const GEO_ART_LAYERS = [
+  {
+    id: "sea",
+    className: "china-map-geo-sea",
+    bounds: GEO_SEA_TEXTURE_BOUNDS,
+    opacity: 1,
+  },
+  {
+    id: "mountains",
+    className: "china-map-geo-mountains",
+    bounds: { west: 72, east: 102, north: 52, south: 25 },
+    opacity: 0.42,
+  },
+  {
+    id: "waves",
+    className: "china-map-geo-waves",
+    bounds: { west: 113, east: 131, north: 28, south: 11 },
+    opacity: 0.30,
+  },
+] as const;
+
+const PROVINCE_WATERCOLOR_COLORS = [
+  "rgba(204, 226, 221, 0.72)",
+  "rgba(216, 229, 199, 0.72)",
+  "rgba(225, 211, 175, 0.70)",
+  "rgba(202, 222, 238, 0.72)",
+  "rgba(220, 202, 232, 0.62)",
+  "rgba(232, 190, 198, 0.58)",
+  "rgba(184, 218, 196, 0.70)",
+  "rgba(221, 228, 211, 0.72)",
+] as const;
+
+type MapTheme = {
+  name: string;
+  sea: string;
+  seaDeep: string;
+  land: string;
+  landDeep: string;
+  border: string;
+  borderStrong: string;
+  glow: string;
+  glowStrong: string;
+  shadowDeep: string;
+  shadowMid: string;
+  text: string;
+  textMuted: string;
+  visualMap: string[];
+  paper: string;
+  paperEdge: string;
+  vignette: string;
+};
+
+const BASE_THEME: MapTheme = {
+  name: "default",
+  sea: "#68b7c1",
+  seaDeep: "#3f8f9b",
+  land: "rgba(221, 233, 223, 0.76)",
+  landDeep: "rgba(189, 219, 212, 0.68)",
+  border: "rgba(126, 137, 128, 0.56)",
+  borderStrong: "rgba(80, 98, 92, 0.78)",
+  glow: "rgba(117, 179, 179, 0.22)",
+  glowStrong: "rgba(242, 223, 174, 0.78)",
+  shadowDeep: "rgba(112, 93, 67, 0.18)",
+  shadowMid: "rgba(90, 150, 150, 0.14)",
+  text: "#fdf9ee",
+  textMuted: "rgba(74, 82, 76, 0.68)",
+  visualMap: ["#dce9df", "#bddbd4", "#94c8c6", "#72b6b7", "#d9bd75"],
+  paper: "rgba(255, 250, 240, 0.48)",
+  paperEdge: "rgba(84, 76, 61, 0.10)",
+  vignette: "rgba(85, 68, 45, 0.14)",
+};
+
+const PROVINCE_THEME_GROUPS: Array<{
+  name: string;
+  provinces: string[];
+  theme: Omit<MapTheme, "name">;
+}> = [
+  {
+    name: "jiangnan",
+    provinces: ["江苏", "浙江", "福建", "上海", "广东", "广西", "海南"],
+    theme: {
+      sea: "#102230",
+      seaDeep: "#08121b",
+      land: "rgba(205, 226, 186, 0.78)",
+      landDeep: "rgba(151, 196, 158, 0.62)",
+      border: "rgba(104, 136, 122, 0.52)",
+      borderStrong: "rgba(68, 103, 90, 0.78)",
+      glow: "rgba(103, 180, 158, 0.22)",
+      glowStrong: "rgba(196, 222, 166, 0.82)",
+      shadowDeep: "rgba(1, 15, 20, 0.78)",
+      shadowMid: "rgba(12, 46, 48, 0.58)",
+      text: "#fffaf0",
+      textMuted: "rgba(68, 84, 78, 0.68)",
+      visualMap: ["#cce2dd", "#a7d3cf", "#82c4c5", "#8fcda4", "#d8c577"],
+      paper: "rgba(243, 250, 238, 0.05)",
+      paperEdge: "rgba(236, 248, 234, 0.08)",
+      vignette: "rgba(7, 17, 19, 0.36)",
+    },
+  },
+  {
+    name: "central",
+    provinces: ["北京", "天津", "河北", "山西", "河南", "山东", "安徽", "陕西"],
+    theme: {
+      sea: "#101d2a",
+      seaDeep: "#071018",
+      land: "rgba(232, 212, 163, 0.78)",
+      landDeep: "rgba(216, 184, 111, 0.58)",
+      border: "rgba(141, 126, 96, 0.5)",
+      borderStrong: "rgba(105, 88, 60, 0.76)",
+      glow: "rgba(188, 160, 92, 0.22)",
+      glowStrong: "rgba(241, 216, 145, 0.86)",
+      shadowDeep: "rgba(10, 13, 18, 0.8)",
+      shadowMid: "rgba(44, 53, 54, 0.6)",
+      text: "#fffaf0",
+      textMuted: "rgba(85, 76, 61, 0.68)",
+      visualMap: ["#e6dcc5", "#e0cc9c", "#d8b872", "#bad0c7", "#9fc9db"],
+      paper: "rgba(255, 248, 232, 0.046)",
+      paperEdge: "rgba(255, 250, 240, 0.08)",
+      vignette: "rgba(7, 12, 17, 0.4)",
+    },
+  },
+  {
+    name: "southwest",
+    provinces: ["四川", "重庆", "贵州", "云南", "湖北", "湖南"],
+    theme: {
+      sea: "#0e1d28",
+      seaDeep: "#071219",
+      land: "rgba(174, 214, 169, 0.76)",
+      landDeep: "rgba(118, 174, 137, 0.58)",
+      border: "rgba(93, 127, 105, 0.52)",
+      borderStrong: "rgba(62, 101, 78, 0.78)",
+      glow: "rgba(90, 147, 116, 0.22)",
+      glowStrong: "rgba(178, 219, 181, 0.82)",
+      shadowDeep: "rgba(2, 16, 17, 0.78)",
+      shadowMid: "rgba(10, 40, 36, 0.58)",
+      text: "#fffaf0",
+      textMuted: "rgba(65, 86, 70, 0.68)",
+      visualMap: ["#d1e7cf", "#a9d5b9", "#77b78d", "#bad49a", "#e8b5bb"],
+      paper: "rgba(242, 249, 239, 0.05)",
+      paperEdge: "rgba(237, 248, 232, 0.08)",
+      vignette: "rgba(6, 13, 14, 0.38)",
+    },
+  },
+  {
+    name: "northwest",
+    provinces: ["甘肃", "青海", "宁夏", "新疆", "西藏", "内蒙古"],
+    theme: {
+      sea: "#12212c",
+      seaDeep: "#08121a",
+      land: "rgba(195, 218, 235, 0.72)",
+      landDeep: "rgba(143, 184, 213, 0.56)",
+      border: "rgba(102, 125, 137, 0.52)",
+      borderStrong: "rgba(70, 95, 108, 0.76)",
+      glow: "rgba(126, 163, 188, 0.22)",
+      glowStrong: "rgba(190, 214, 234, 0.84)",
+      shadowDeep: "rgba(7, 15, 20, 0.8)",
+      shadowMid: "rgba(35, 53, 61, 0.6)",
+      text: "#fffaf0",
+      textMuted: "rgba(68, 87, 98, 0.68)",
+      visualMap: ["#dce8ef", "#bad5e8", "#92bfdc", "#cfc487", "#e6d5a0"],
+      paper: "rgba(255, 249, 239, 0.044)",
+      paperEdge: "rgba(255, 252, 245, 0.08)",
+      vignette: "rgba(8, 13, 17, 0.42)",
+    },
+  },
+  {
+    name: "northeast",
+    provinces: ["辽宁", "吉林", "黑龙江"],
+    theme: {
+      sea: "#10202c",
+      seaDeep: "#071119",
+      land: "rgba(202, 222, 234, 0.76)",
+      landDeep: "rgba(151, 190, 209, 0.58)",
+      border: "rgba(99, 124, 137, 0.52)",
+      borderStrong: "rgba(66, 91, 105, 0.78)",
+      glow: "rgba(111, 159, 172, 0.22)",
+      glowStrong: "rgba(199, 226, 236, 0.84)",
+      shadowDeep: "rgba(4, 15, 21, 0.8)",
+      shadowMid: "rgba(15, 42, 48, 0.58)",
+      text: "#fffaf0",
+      textMuted: "rgba(68, 86, 96, 0.68)",
+      visualMap: ["#dcebf0", "#badbe8", "#95c6dc", "#a9d3cf", "#d7dfbe"],
+      paper: "rgba(241, 248, 250, 0.045)",
+      paperEdge: "rgba(237, 247, 249, 0.08)",
+      vignette: "rgba(6, 11, 16, 0.4)",
+    },
+  },
+];
+
+function resolveTheme(province?: string | null): MapTheme {
+  if (!province) return BASE_THEME;
+  const group = PROVINCE_THEME_GROUPS.find((item) => item.provinces.includes(province));
+  if (!group) return BASE_THEME;
+  return { name: group.name, ...group.theme };
+}
 
 /** 各省份地图的中心坐标和缩放级别 */
 const PROVINCE_MAP_CONFIG: Record<string, { center: [number, number]; zoom: number }> = {
@@ -158,6 +348,16 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function provinceWatercolor(name: string): string {
+  let hash = 0;
+  for (const char of name) {
+    hash = (hash + char.charCodeAt(0)) % PROVINCE_WATERCOLOR_COLORS.length;
+  }
+  return PROVINCE_WATERCOLOR_COLORS[hash];
+}
+
+type GeoArtLayerId = (typeof GEO_ART_LAYERS)[number]["id"];
+
 export default function ChinaMap({
   schools,
   provinces,
@@ -165,9 +365,11 @@ export default function ChinaMap({
   previewSchool,
   onProvinceSelect,
   onSchoolPreview,
-  onSchoolClick,
+  onSchoolClick: _onSchoolClick,
 }: ChinaMapProps) {
   const chartRef = useRef<ReactECharts>(null);
+  const geoArtRefs = useRef<Partial<Record<GeoArtLayerId, HTMLDivElement | null>>>({});
+  const geoArtFrameRef = useRef<number | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [loadingDrill, setLoadingDrill] = useState(false);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -248,26 +450,6 @@ export default function ChinaMap({
     [drill, loadMap, onProvinceSelect],
   );
 
-  /** 返回上一级 */
-  const drillUp = useCallback(() => {
-    if (drill.breadcrumbs.length <= 1) return;
-
-    const newBreadcrumbs = drill.breadcrumbs.slice(0, -1);
-    const prev = newBreadcrumbs[newBreadcrumbs.length - 1];
-
-    setDrill({
-      level: prev.level,
-      mapName: prev.level === "country" ? "china" : `${prev.level}_${prev.adcode}`,
-      adcode: prev.adcode,
-      breadcrumbs: newBreadcrumbs,
-    });
-
-    // 如果返回到全国视图，清除省份选择
-    if (prev.level === "country") {
-      onProvinceSelect(null);
-    }
-  }, [drill.breadcrumbs, onProvinceSelect]);
-
   /** 返回全国 */
   const resetToCountry = useCallback(() => {
     setDrill(INITIAL_DRILL_STATE);
@@ -277,19 +459,25 @@ export default function ChinaMap({
   useEffect(() => {
     let cancelled = false;
 
-    async function registerChina() {
+    async function registerMaps() {
       try {
         const chinaJson = await fetch("/china.json").then((r) => r.json());
         if (!cancelled) {
           echarts.registerMap("china", chinaJson as never);
-          setMapReady(true);
         }
       } catch {
-        if (!cancelled) setMapReady(false);
+        if (!cancelled) {
+          setMapReady(false);
+          return;
+        }
+      }
+
+      if (!cancelled) {
+        setMapReady(true);
       }
     }
 
-    registerChina();
+    registerMaps();
     return () => {
       cancelled = true;
     };
@@ -308,6 +496,34 @@ export default function ChinaMap({
     if (!currentProv) return schools;
     return schools.filter((s) => s.province === currentProv);
   }, [schools, drill.level, drill.breadcrumbs, selectedProvince]);
+
+  const currentProvince =
+    drill.level === "country"
+      ? selectedProvince
+      : MAP_NAME_TO_PROVINCE[drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name] ||
+        selectedProvince;
+  const mapTheme = useMemo(() => resolveTheme(currentProvince), [currentProvince]);
+  const stageStyle = useMemo(
+    () =>
+      ({
+        "--china-map-sea": mapTheme.sea,
+        "--china-map-sea-deep": mapTheme.seaDeep,
+        "--china-map-land": mapTheme.land,
+        "--china-map-land-deep": mapTheme.landDeep,
+        "--china-map-border": mapTheme.border,
+        "--china-map-border-strong": mapTheme.borderStrong,
+        "--china-map-glow": mapTheme.glow,
+        "--china-map-glow-strong": mapTheme.glowStrong,
+        "--china-map-shadow-deep": mapTheme.shadowDeep,
+        "--china-map-shadow-mid": mapTheme.shadowMid,
+        "--china-map-text": mapTheme.text,
+        "--china-map-text-muted": mapTheme.textMuted,
+        "--china-map-paper": mapTheme.paper,
+        "--china-map-paper-edge": mapTheme.paperEdge,
+        "--china-map-vignette": mapTheme.vignette,
+      }) as CSSProperties,
+    [mapTheme],
+  );
 
   // 根据当前下钻状态计算区域聚合数据
   const regionData = useMemo(() => {
@@ -335,10 +551,10 @@ export default function ChinaMap({
   }
 
   function schoolShadow(school: School): string {
-    if (school.is985) return "rgba(214, 106, 93, 0.34)";
-    if (school.is211) return "rgba(185, 133, 45, 0.32)";
-    if (school.isDoubleFirstClass) return "rgba(47, 143, 107, 0.3)";
-    return "rgba(126, 211, 233, 0.22)";
+    if (school.is985) return "rgba(201, 71, 67, 0.38)";
+    if (school.is211) return "rgba(185, 133, 55, 0.36)";
+    if (school.isDoubleFirstClass) return "rgba(63, 143, 118, 0.34)";
+    return "rgba(63, 143, 155, 0.30)";
   }
 
   const getOption = (): echarts.EChartsOption => {
@@ -368,16 +584,16 @@ export default function ChinaMap({
     const scatterData = visibleSchools.map((school) => ({
       name: school.name,
       province: school.province,
+      tier: school.is985 ? "985" : school.is211 ? "211" : school.isDoubleFirstClass ? "doubleFirst" : "normal",
       value: [...school.coord, school.province],
-      symbolSize:
-        school.is985 ? 12 : school.is211 ? 10 : school.isDoubleFirstClass ? 8 : 6,
       itemStyle: {
         color: schoolColor(school),
+        opacity: selectedProvince && school.province !== selectedProvince ? 0.42 : 0.96,
         shadowBlur:
-          school.is985 || school.is211 || school.isDoubleFirstClass ? 18 : 8,
+          school.is985 || school.is211 || school.isDoubleFirstClass ? 22 : 12,
         shadowColor: schoolShadow(school),
-        borderColor: "rgba(255,255,255,0.72)",
-        borderWidth: school.is985 || school.is211 ? 1.2 : 0.6,
+        borderColor: "rgba(255,250,240,0.96)",
+        borderWidth: school.is985 || school.is211 ? 2 : 1.2,
       },
     }));
 
@@ -386,6 +602,9 @@ export default function ChinaMap({
       value: r.value,
       adcode: r.adcode,
       selected: selectedProvince === r.rawName,
+      itemStyle: {
+        areaColor: provinceWatercolor(r.rawName),
+      },
     }));
 
     // visualMap 只在全国视图显示
@@ -401,20 +620,14 @@ export default function ChinaMap({
             itemWidth: 12,
             itemHeight: 90,
             textStyle: {
-              color: BIG_SCREEN_COLORS.textMutedOnMap,
+              color: mapTheme.textMuted,
               fontSize: 11,
             },
             inRange: {
-              color: [
-                "#14313e",
-                "#1c4a59",
-                "#2a6975",
-                "#4a8c95",
-                "#8fc9cb",
-              ],
+              color: mapTheme.visualMap,
             },
             outOfRange: {
-              color: ["#14313e"],
+              color: [mapTheme.visualMap[0]],
             },
           }
         : undefined;
@@ -426,12 +639,12 @@ export default function ChinaMap({
       animationEasingUpdate: "cubicOut",
       tooltip: {
         trigger: "item",
-        backgroundColor: "rgba(8, 18, 26, 0.94)",
-        borderColor: "rgba(129, 221, 239, 0.38)",
+        backgroundColor: "rgba(11, 18, 24, 0.94)",
+        borderColor: mapTheme.border,
         borderWidth: 1,
         padding: [10, 12],
         textStyle: {
-          color: BIG_SCREEN_COLORS.textOnMap,
+          color: mapTheme.text,
           fontSize: 12,
         },
         extraCssText:
@@ -452,7 +665,6 @@ export default function ChinaMap({
             return `<b>${escapeHtml(item.name || "")}</b><br/>高校: ${count} 所`;
           }
 
-          // 省级/市级视图：显示区域名称
           return `<b>${escapeHtml(item.name || "")}</b>`;
         },
       },
@@ -463,38 +675,38 @@ export default function ChinaMap({
         zoom: geoZoom,
         center: geoCenter,
         label: {
-          show: drill.level !== "country", // 省级以下显示标签
-          color: BIG_SCREEN_COLORS.textMutedOnMap,
+          show: drill.level !== "country",
+          color: mapTheme.textMuted,
           fontSize: 10,
         },
         itemStyle: {
-          areaColor: BIG_SCREEN_COLORS.mapBase,
-          borderColor: BIG_SCREEN_COLORS.mapEdge,
+          areaColor: mapTheme.landDeep,
+          borderColor: mapTheme.border,
           borderWidth: drill.level === "country" ? 1.1 : 0.8,
-          shadowBlur: 24,
-          shadowColor: BIG_SCREEN_COLORS.mapGlow,
+          shadowBlur: 0,
+          shadowColor: "transparent",
         },
         emphasis: {
           itemStyle: {
-            areaColor: "#2b7d8d",
-            borderColor: BIG_SCREEN_COLORS.mapEdgeStrong,
+            areaColor: mapTheme.glowStrong,
+            borderColor: mapTheme.borderStrong,
             borderWidth: 1.8,
-            shadowBlur: 30,
-            shadowColor: "rgba(128, 225, 242, 0.5)",
+            shadowBlur: 8,
+            shadowColor: mapTheme.glowStrong,
           },
           label: {
             show: true,
-            color: BIG_SCREEN_COLORS.textOnMap,
+            color: mapTheme.text,
             fontSize: drill.level === "country" ? 12 : 11,
             fontWeight: 600,
           },
         },
         select: {
           itemStyle: {
-            areaColor: "#62a9af",
-            borderColor: "#e4fbff",
+            areaColor: mapTheme.glowStrong,
+            borderColor: mapTheme.borderStrong,
             shadowBlur: 34,
-            shadowColor: "rgba(169, 236, 247, 0.62)",
+            shadowColor: mapTheme.glowStrong,
           },
           label: {
             show: true,
@@ -505,54 +717,6 @@ export default function ChinaMap({
       },
       series: [
         {
-          name: "地图底座深影",
-          type: "map",
-          map: currentMapName,
-          selectedMode: false,
-          silent: true,
-          roam: false,
-          zoom: geoZoom,
-          center: geoCenter,
-          data: mapData,
-          itemStyle: {
-            areaColor: BIG_SCREEN_COLORS.shadowDeep,
-            borderColor: "transparent",
-            shadowBlur: 28,
-            shadowColor: "rgba(0, 0, 0, 0.72)",
-            shadowOffsetX: 10,
-            shadowOffsetY: 18,
-          },
-          emphasis: {
-            disabled: true,
-          },
-          zlevel: 0,
-          z: 0,
-        },
-        {
-          name: "地图底座侧光",
-          type: "map",
-          map: currentMapName,
-          selectedMode: false,
-          silent: true,
-          roam: false,
-          zoom: geoZoom,
-          center: geoCenter,
-          data: mapData,
-          itemStyle: {
-            areaColor: BIG_SCREEN_COLORS.shadowMid,
-            borderColor: "rgba(78, 182, 205, 0.18)",
-            shadowBlur: 18,
-            shadowColor: "rgba(80, 195, 220, 0.25)",
-            shadowOffsetX: 5,
-            shadowOffsetY: 9,
-          },
-          emphasis: {
-            disabled: true,
-          },
-          zlevel: 0,
-          z: 1,
-        },
-        {
           name: drill.level === "country" ? "高校数量" : "行政区划",
           type: "map",
           map: currentMapName,
@@ -560,18 +724,18 @@ export default function ChinaMap({
           selectedMode: "single",
           data: mapData,
           itemStyle: {
-            areaColor: BIG_SCREEN_COLORS.mapBase,
-            borderColor: "rgba(174, 231, 241, 0.5)",
+            areaColor: mapTheme.land,
+            borderColor: mapTheme.border,
             borderWidth: drill.level === "country" ? 0.9 : 0.7,
             shadowBlur: 16,
-            shadowColor: "rgba(80, 195, 220, 0.24)",
+            shadowColor: mapTheme.glow,
           },
           emphasis: {
             itemStyle: {
-              areaColor: "#2f8da0",
-              borderColor: BIG_SCREEN_COLORS.mapEdgeStrong,
+              areaColor: mapTheme.glowStrong,
+              borderColor: mapTheme.borderStrong,
               shadowBlur: 28,
-              shadowColor: "rgba(128, 225, 242, 0.48)",
+              shadowColor: mapTheme.glowStrong,
             },
           },
           zlevel: 1,
@@ -582,6 +746,19 @@ export default function ChinaMap({
           type: "scatter",
           coordinateSystem: "geo",
           data: scatterData,
+          symbol: "circle",
+          symbolSize: (_value: unknown, params: { data?: { tier?: string } }) => {
+            switch (params.data?.tier) {
+              case "985":
+                return 17;
+              case "211":
+                return 14;
+              case "doubleFirst":
+                return 12;
+              default:
+                return 9;
+            }
+          },
           label: {
             show: false,
           },
@@ -596,7 +773,7 @@ export default function ChinaMap({
             },
           },
           zlevel: 3,
-          z: 8,
+          z: 12,
         },
       ],
     };
@@ -604,10 +781,93 @@ export default function ChinaMap({
 
   const option = useMemo(
     () => getOption(),
-    [visibleSchools, provinces, selectedProvince, drill],
+    [visibleSchools, provinces, selectedProvince, drill, mapTheme],
   );
 
+  const hideGeoArtLayer = useCallback((id: GeoArtLayerId) => {
+    const element = geoArtRefs.current[id];
+    if (!element) return;
+    element.style.opacity = "0";
+  }, []);
+
+  const updateGeoArtNow = useCallback(() => {
+    const chart = chartRef.current?.getEchartsInstance();
+    if (!chart || drill.level !== "country") {
+      GEO_ART_LAYERS.forEach((layer) => hideGeoArtLayer(layer.id));
+      return;
+    }
+
+    try {
+      GEO_ART_LAYERS.forEach((layer) => {
+        const element = geoArtRefs.current[layer.id];
+        if (!element) return;
+
+        const northWest = chart.convertToPixel({ geoIndex: 0 }, [
+          layer.bounds.west,
+          layer.bounds.north,
+        ]) as number[] | undefined;
+        const southEast = chart.convertToPixel({ geoIndex: 0 }, [
+          layer.bounds.east,
+          layer.bounds.south,
+        ]) as number[] | undefined;
+
+        if (!northWest || !southEast) {
+          hideGeoArtLayer(layer.id);
+          return;
+        }
+
+        const left = Math.min(northWest[0], southEast[0]);
+        const top = Math.min(northWest[1], southEast[1]);
+        const width = Math.abs(southEast[0] - northWest[0]);
+        const height = Math.abs(southEast[1] - northWest[1]);
+
+        if (!Number.isFinite(left + top + width + height) || width < 12 || height < 12) {
+          hideGeoArtLayer(layer.id);
+          return;
+        }
+
+        const roundedLeft = Math.round(left * 10) / 10;
+        const roundedTop = Math.round(top * 10) / 10;
+        const roundedWidth = Math.round(width * 10) / 10;
+        const roundedHeight = Math.round(height * 10) / 10;
+
+        element.style.transform = `translate3d(${roundedLeft}px, ${roundedTop}px, 0)`;
+        element.style.width = `${roundedWidth}px`;
+        element.style.height = `${roundedHeight}px`;
+        element.style.opacity = String(layer.opacity);
+      });
+    } catch {
+      GEO_ART_LAYERS.forEach((layer) => hideGeoArtLayer(layer.id));
+    }
+  }, [drill.level, hideGeoArtLayer]);
+
+  const scheduleGeoArtUpdate = useCallback(() => {
+    if (geoArtFrameRef.current !== null) return;
+    geoArtFrameRef.current = requestAnimationFrame(() => {
+      geoArtFrameRef.current = null;
+      updateGeoArtNow();
+    });
+  }, [updateGeoArtNow]);
+
+  useEffect(() => {
+    scheduleGeoArtUpdate();
+    const timeout = window.setTimeout(scheduleGeoArtUpdate, 120);
+    return () => {
+      window.clearTimeout(timeout);
+      if (geoArtFrameRef.current !== null) {
+        cancelAnimationFrame(geoArtFrameRef.current);
+        geoArtFrameRef.current = null;
+      }
+    };
+  }, [option, scheduleGeoArtUpdate]);
+
   const handleEvents = {
+    finished: () => {
+      scheduleGeoArtUpdate();
+    },
+    georoam: () => {
+      scheduleGeoArtUpdate();
+    },
     click: (params: unknown) => {
       const item = params as TooltipParam;
 
@@ -660,6 +920,11 @@ export default function ChinaMap({
     },
   };
 
+  const handleChartReady = useCallback(() => {
+    scheduleGeoArtUpdate();
+    window.setTimeout(scheduleGeoArtUpdate, 80);
+  }, [scheduleGeoArtUpdate]);
+
   const handleClosePopup = useCallback(() => {
     onSchoolPreview(null);
   }, [onSchoolPreview]);
@@ -673,13 +938,29 @@ export default function ChinaMap({
   }
 
   return (
-    <div className="china-map-stage relative h-full w-full overflow-hidden" role="figure" aria-label={EMPTY_MESSAGES.map}>
+    <div
+      className="china-map-stage relative h-full w-full overflow-hidden"
+      role="figure"
+      aria-label={EMPTY_MESSAGES.map}
+      style={stageStyle}
+    >
+      {GEO_ART_LAYERS.map((layer) => (
+        <div
+          key={layer.id}
+          aria-hidden="true"
+          className={layer.className}
+          ref={(element) => {
+            geoArtRefs.current[layer.id] = element;
+          }}
+        />
+      ))}
+      <div aria-hidden="true" className="china-map-veil" />
       {/* 面包屑导航 + 返回按钮 */}
       {drill.level !== "country" && (
         <div className="absolute left-3 top-3 z-20 flex items-center gap-1.5">
           <button
             onClick={resetToCountry}
-            className="flex items-center gap-1 rounded-full border border-cyan-100/25 bg-cyan-50/10 px-2.5 py-1 text-xs font-medium text-cyan-50 shadow-lg backdrop-blur-sm transition-all hover:border-cyan-100/45 hover:bg-cyan-50/15 hover:shadow-xl"
+            className="flex items-center gap-1 rounded-md border border-border bg-neutral-0/75 px-2.5 py-1 text-xs font-medium text-text shadow-sm backdrop-blur-sm transition-all hover:border-primary/45 hover:bg-brand-50"
             title="返回全国"
           >
             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -688,33 +969,33 @@ export default function ChinaMap({
             全国
           </button>
 
-          <svg className="h-3 w-3 text-cyan-100/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="h-3 w-3 text-text-muted/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
 
           {drill.breadcrumbs.slice(1).map((crumb, i) => (
             <span key={crumb.adcode} className="flex items-center gap-1.5">
               {i > 0 && (
-                <svg className="h-3 w-3 text-cyan-100/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="h-3 w-3 text-text-muted/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               )}
-              <span className="rounded-full border border-cyan-100/30 bg-cyan-50/10 px-2.5 py-1 text-xs font-semibold text-cyan-50 shadow-sm backdrop-blur-sm">
+              <span className="rounded-md border border-border bg-neutral-0/72 px-2.5 py-1 text-xs font-semibold text-text shadow-sm backdrop-blur-sm">
                 {crumb.name}
               </span>
             </span>
           ))}
 
           {loadingDrill && (
-            <span className="ml-1 text-[11px] text-cyan-100/60 animate-pulse">加载中...</span>
+            <span className="ml-1 text-[11px] text-text-muted animate-pulse">加载中...</span>
           )}
         </div>
       )}
 
       {/* 当前区域学校数量提示 */}
       {drill.level !== "country" && (
-        <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-cyan-100/70">
-          <span className="rounded-full border border-cyan-100/20 bg-cyan-50/10 px-3 py-1 backdrop-blur-sm">
+        <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-text-muted">
+          <span className="rounded-md border border-border bg-neutral-0/70 px-3 py-1 backdrop-blur-sm">
             {visibleSchools.length} 所高校
           </span>
         </div>
@@ -725,6 +1006,7 @@ export default function ChinaMap({
           ref={chartRef}
           option={option}
           style={{ height: "100%", width: "100%" }}
+          onChartReady={handleChartReady}
           onEvents={handleEvents}
           lazyUpdate
         />

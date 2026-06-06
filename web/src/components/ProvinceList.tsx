@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { IconCheck } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
-import { EMPTY_MESSAGES, STATUS_LABELS } from "@/lib/constants";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
 
 // 滚动位置存储（跨导航保持）
@@ -51,14 +51,6 @@ export default function ProvinceList({
   const displayProvinces = selectedProvince
     ? provinces.filter((p) => p.name === selectedProvince)
     : provinces;
-
-  if (displayProvinces.length === 0) {
-    return (
-      <div className="flex flex-1 items-center justify-center px-6 text-center text-sm text-text-light-muted">
-        {EMPTY_MESSAGES.noSchools}
-      </div>
-    );
-  }
 
   const listRef = useRef<HTMLDivElement>(null);
   const listKey = selectedProvince ?? "all";
@@ -121,16 +113,24 @@ export default function ProvinceList({
     };
   }, [listKey]);
 
+  if (displayProvinces.length === 0) {
+    return (
+      <div className="flex flex-1 items-center justify-center px-6 text-center text-sm text-text-light-muted">
+        {EMPTY_MESSAGES.noSchools}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       ref={listRef}
-      className="min-h-0 flex-1 overflow-y-auto bg-surface-light p-3"
+      className="paper-shell min-h-0 flex-1 overflow-y-auto p-3"
       variants={containerVariants}
       initial={hasSavedScroll ? "show" : "hidden"}
       animate="show"
       key={selectedProvince ?? "all"}
     >
-      {displayProvinces.map((prov, idx) => {
+      {displayProvinces.map((prov) => {
         const doneCount = prov.schools.filter((school) => school.status === "done").length;
         const progress = Math.round((doneCount / Math.max(prov.schools.length, 1)) * 100);
         const isSelected = selectedProvince === prov.name;
@@ -147,7 +147,7 @@ export default function ProvinceList({
           <motion.div
             key={prov.name}
             variants={itemVariants}
-            className="mb-3 overflow-hidden rounded-lg border border-border-light bg-surface-light-elevated"
+            className="mb-3 overflow-hidden rounded-md border border-border-light bg-neutral-0/72 shadow-sm shadow-neutral-900/5"
           >
             <button
               type="button"
@@ -156,21 +156,21 @@ export default function ProvinceList({
               className={cn(
                 "w-full px-3 py-3 text-left transition",
                 isSelected
-                  ? "bg-brand-500 text-text-inverse"
-                  : "bg-surface-light-elevated text-text-light hover:bg-surface-light-hover",
+                  ? "bg-brand-500/90 text-text-inverse"
+                  : "bg-neutral-0/66 text-text-light hover:bg-accent-50/60",
               )}
             >
               <div className="flex items-center gap-3">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-3">
                     <span className="truncate text-sm font-semibold">{prov.name}</span>
-                    <span className="rounded-full bg-current/10 px-2 py-0.5 text-xs font-semibold">
+                    <span className="rounded-sm border border-current/15 bg-current/10 px-2 py-0.5 text-xs font-semibold">
                       {prov.count} 所
                     </span>
                   </div>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-black/10">
                     <motion.div
-                      className="h-full rounded-full bg-primary"
+                      className="h-full rounded-full bg-accent-300"
                       initial={{ width: 0 }}
                       animate={{ width: `${progress}%` }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -184,7 +184,7 @@ export default function ProvinceList({
             </button>
 
             {(isSelected || !selectedProvince) && (
-              <div className="border-t border-border-light bg-surface-light-subtle">
+              <div className="border-t border-border-light bg-accent-50/25">
                 {sortedSchools.map((school, schoolIndex) => {
                   const isCompareSelected = compareSchools.some(
                     (s) => s.name === school.name,
@@ -201,10 +201,10 @@ export default function ProvinceList({
                       animate="show"
                       transition={{ delay: schoolIndex * 0.02 }}
                       className={cn(
-                        "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5 cursor-pointer",
+                        "flex cursor-pointer items-center gap-2 border-b border-border-light-subtle px-3 py-2 text-xs transition last:border-b-0 sm:px-4 sm:py-2.5",
                         isSchoolSelected
-                          ? "bg-success-soft text-brand-500"
-                          : "bg-neutral-0 text-text-light hover:bg-surface-light-subtle/80",
+                          ? "bg-success-soft/85 text-brand-700"
+                          : "bg-neutral-0/58 text-text-light hover:bg-neutral-0/88",
                       )}
                     >
                       <button
@@ -215,7 +215,7 @@ export default function ProvinceList({
                         <span
                           className={cn(
                             "h-2.5 w-2.5 flex-shrink-0 rounded-full",
-                            school.status === "done" ? "bg-brand-300" : "bg-neutral-600",
+                            school.status === "done" ? "bg-brand-400" : "bg-neutral-400",
                           )}
                         />
                         <span className="truncate font-medium">{school.name}</span>
@@ -238,9 +238,9 @@ export default function ProvinceList({
                           className={cn(
                             "flex h-4 w-4 items-center justify-center rounded-full border-2 transition",
                             isCompareSelected
-                              ? "border-brand-500 bg-brand-500 shadow-sm shadow-brand-500/25"
+                              ? "border-brand-500 bg-brand-500 shadow-sm shadow-brand-500/20"
                               : canToggle
-                                ? "border-dashed border-neutral-300 bg-neutral-0 hover:border-brand-400 hover:bg-success-soft"
+                                ? "border-dashed border-neutral-300 bg-neutral-0/80 hover:border-brand-400 hover:bg-success-soft"
                                 : "border-dashed border-neutral-200 bg-neutral-0/60 cursor-not-allowed opacity-40",
                           )}
                         >

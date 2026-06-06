@@ -258,11 +258,11 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const totalPois = Object.values(pois).reduce((sum, arr) => sum + arr.length, 0);
 
   return (
-    <div className="flex h-full w-full flex-col">
+    <div className="paper-shell flex h-full w-full flex-col p-3">
       {/* 地图容器 */}
       <div
         ref={mapRef}
-        className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-neutral-100 ${
+        className={`relative w-full overflow-hidden rounded-md border border-border-light bg-neutral-100 shadow-sm shadow-neutral-900/6 ${
           compact ? "h-[280px] shrink-0" : "h-[65%] min-h-[300px]"
         }`}
       >
@@ -280,10 +280,10 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
           <button
             type="button"
             onClick={() => setActiveCategory("all")}
-            className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+            className={`rounded-md border px-3 py-1 text-xs font-medium transition ${
               activeCategory === "all"
-                ? "bg-brand-500 text-text-inverse"
-                : "bg-neutral-50 text-text-light hover:bg-brand-50 hover:text-brand-600"
+                ? "border-brand-600/30 bg-brand-500 text-text-inverse"
+                : "border-border-light bg-neutral-0/72 text-text-light hover:bg-brand-50 hover:text-brand-600"
             }`}
           >
             全部
@@ -298,10 +298,10 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                 key={cat.key}
                 type="button"
                 onClick={() => setActiveCategory(cat.key)}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+                className={`rounded-md border px-3 py-1 text-xs font-medium transition ${
                   activeCategory === cat.key
-                    ? "bg-brand-500 text-text-inverse"
-                    : "bg-neutral-50 text-text-light hover:bg-brand-50 hover:text-brand-600"
+                    ? "border-brand-600/30 bg-brand-500 text-text-inverse"
+                    : "border-border-light bg-neutral-0/72 text-text-light hover:bg-brand-50 hover:text-brand-600"
                 }`}
               >
                 <span className="mr-1">{cat.icon}</span>
@@ -340,7 +340,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                         mapInstance.current?.setCenter(item.location);
                         mapInstance.current?.setZoom(17);
                       }}
-                      className="flex w-full items-center justify-between rounded-md border border-border-light-subtle bg-neutral-50 px-3 py-2 text-left text-xs transition hover:border-brand-200 hover:bg-brand-50"
+                      className="flex w-full items-center justify-between rounded-md border border-border-light-subtle bg-neutral-0/72 px-3 py-2 text-left text-xs transition hover:border-brand-200 hover:bg-brand-50"
                     >
                       <div className="min-w-0 flex-1">
                         <div className="truncate font-medium text-text">

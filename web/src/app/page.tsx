@@ -51,7 +51,6 @@ function Home() {
     filteredProvinces,
     doneCount,
     activeFilterCount,
-    contextLabel,
     crawlStatus,
     crawlSources,
     dispatch,
@@ -101,10 +100,10 @@ function Home() {
   }
 
   return (
-    <div className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-surface text-text">
+    <div className="ink-wash-bg relative flex h-screen min-h-screen flex-col overflow-hidden text-text">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.45] [background-image:linear-gradient(rgba(17,24,32,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,32,0.035)_1px,transparent_1px)] [background-size:44px_44px]"
+        className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_18%_20%,rgba(82,115,105,0.10),transparent_22%),radial-gradient(circle_at_86%_76%,rgba(68,150,166,0.12),transparent_24%),repeating-linear-gradient(97deg,rgba(83,72,56,0.035)_0_1px,transparent_1px_18px)]"
       />
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {selectedSchool
@@ -114,25 +113,22 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="relative z-10 border-b border-border bg-surface-elevated/95 px-3 py-1.5 shadow-sm shadow-neutral-900/5 sm:px-4 sm:py-2.5">
+      <header className="paper-shell relative z-10 border-b border-border px-3 py-1.5 shadow-sm shadow-neutral-900/5 sm:px-4 sm:py-2.5">
         <div className="flex min-w-0 items-center gap-3">
           <div className="min-w-0 flex items-center gap-2">
             <img
               src="/logo.svg"
               alt=""
-              className="h-7 w-7 shrink-0 rounded-lg sm:h-8 sm:w-8"
+              className="h-7 w-7 shrink-0 rounded-md ring-1 ring-border sm:h-8 sm:w-8"
               width={28}
               height={28}
             />
             <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-text sm:text-2xl xl:text-3xl">
               中国高校信息地图
             </h1>
-            <span className="hidden shrink-0 truncate text-xs text-text-muted md:inline sm:text-sm">
-              当前：{contextLabel}
-            </span>
             <a
               href="/majors"
-              className="hidden shrink-0 items-center gap-1.5 rounded-full border border-primary/25 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 hover:shadow-sm hover:shadow-primary/10 lg:inline-flex"
+              className="hidden shrink-0 items-center gap-1.5 rounded-md border border-primary/25 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 lg:inline-flex"
             >
               专业库
               <svg className="h-3 w-3 transition-transform group-hover:translate-x-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -141,7 +137,7 @@ function Home() {
             </a>
             <a
               href="/future"
-              className="hidden shrink-0 items-center rounded-full border border-brand-500/25 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-600 transition-all hover:border-brand-500/45 hover:bg-brand-100 lg:inline-flex"
+              className="hidden shrink-0 items-center rounded-md border border-brand-500/25 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-600 transition-all hover:border-brand-500/45 hover:bg-brand-100 lg:inline-flex"
             >
               未来路径
             </a>
@@ -169,7 +165,7 @@ function Home() {
       </header>
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
-        <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-map shadow-sm shadow-neutral-900/8">
+        <section aria-label="高校地图" className="paper-card relative min-h-0 overflow-hidden rounded-lg border">
           <ChinaMap
             schools={filteredSchools}
             provinces={filteredProvinces}
@@ -181,7 +177,7 @@ function Home() {
           />
         </section>
 
-        <aside aria-label="高校列表与详情" className="relative flex min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-surface-elevated text-text shadow-sm shadow-neutral-900/8">
+        <aside aria-label="高校列表与详情" className="paper-card relative flex min-h-0 flex-col overflow-hidden rounded-lg border text-text">
           <AnimatePresence mode="wait">
             {compareOpen ? (
               <motion.div
@@ -227,7 +223,7 @@ function Home() {
                 exit="exit"
                 transition={panelTransition}
               >
-                <div className="border-b border-border-light bg-surface-light-subtle px-4 py-3">
+                <div className="border-b border-border-light bg-accent-50/45 px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <div className="text-sm font-semibold text-text-light">

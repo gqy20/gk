@@ -43,7 +43,7 @@ export default function OverviewSection({
         {school.detail?.basic_info && (
           <BasicInfoCard bi={school.detail.basic_info} />
         )}
-        <div className="rounded-lg border border-border-light bg-surface-light-elevated p-4 text-sm text-text-light-muted">
+        <div className="rounded-md border border-border-light bg-neutral-0/72 p-4 text-sm text-text-light-muted">
           <div className="font-semibold text-text-light">{EMPTY_MESSAGES.detailNotReady}</div>
           <div className="mt-2 text-xs">
             当前状态：{school.status === "done" ? "已完成" : "等待采集"}
@@ -125,14 +125,14 @@ export default function OverviewSection({
                   type="button"
                   onClick={() => toggleCard(cat)}
                   className={cn(
-                    "w-full rounded-lg border p-3 text-left transition-all duration-200 cursor-pointer shadow-sm",
+                    "w-full cursor-pointer rounded-md border p-3 text-left shadow-sm transition-all duration-200",
                     isActive
                       ? "border-brand-400 bg-success-soft/70 shadow-lg shadow-brand-500/20 ring-1 ring-brand-400/25"
                       : isDone
                         ? "border-l-2 border-l-brand-400 bg-success-soft/40 hover:shadow-md hover:-translate-y-px hover:border-brand-300/60"
                         : isFailed
                           ? "border-l-2 border-l-danger-400 bg-danger-soft/30 hover:shadow-md hover:-translate-y-px hover:border-danger-300/60"
-                          : "border-l-2 border-l-dashed border-neutral-300 bg-surface-light-elevated hover:shadow-md hover:-translate-y-px hover:border-neutral-500/40",
+                          : "border-l-2 border-l-dashed border-neutral-300 bg-neutral-0/70 hover:-translate-y-px hover:border-neutral-500/40 hover:shadow-md",
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
@@ -141,7 +141,7 @@ export default function OverviewSection({
                     </span>
                     <span
                       className={cn(
-                        "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                        "rounded-sm px-1.5 py-0.5 text-[10px] font-medium",
                         isDone
                           ? "bg-brand-100 text-brand-600"
                           : isFailed
@@ -189,12 +189,12 @@ export default function OverviewSection({
           {filledCategories.map((key) => {
             const items = detail[key]!;
             return (
-              <div key={key} className="rounded-lg border border-border-light bg-surface-light-elevated p-3">
+              <div key={key} className="rounded-md border border-border-light bg-neutral-0/72 p-3">
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-xs font-semibold text-text-light">
                     {CATEGORY_LABELS[key]}
                   </span>
-                  <span className="rounded-full bg-neutral-300 px-2 py-0.5 text-[10px] text-text-light">
+                  <span className="rounded-sm bg-neutral-200 px-2 py-0.5 text-[10px] text-text-light">
                     {items.length} 条
                   </span>
                 </div>
@@ -221,7 +221,7 @@ export default function OverviewSection({
             {detail.colleges.slice(0, 18).map((college) => (
               <span
                 key={college.name}
-                className="rounded-full border border-border-light bg-surface-light-elevated px-2.5 py-1 text-[11px] text-text-light"
+                className="rounded-sm border border-border-light bg-neutral-0/72 px-2.5 py-1 text-[11px] text-text-light"
               >
                 {college.name}
               </span>
@@ -274,7 +274,7 @@ function BasicInfoCard({ bi }: { bi: NonNullable<UniversityInfo["basic_info"]> }
   return (
     <section>
       <SectionTitle label="基础信息" />
-      <div className="mt-2 rounded-lg border border-blue-200/60 bg-blue-50/40 p-3 text-xs space-y-2">
+      <div className="mt-2 space-y-2 rounded-md border border-brand-200/60 bg-brand-50/45 p-3 text-xs">
         {bi.address && (
           <div className="flex items-start gap-2">
             <span className="shrink-0 text-blue-600">📍</span>
@@ -321,7 +321,7 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
   return (
     <section>
       <SectionTitle label={`专业满意度 (${items.length})`} />
-      <div className="mt-2 rounded-lg border border-orange-200/60 bg-orange-50/30 p-3 text-xs space-y-2">
+      <div className="mt-2 space-y-2 rounded-md border border-accent-200/70 bg-accent-50/45 p-3 text-xs">
         {/* 平均分 */}
         <div className="flex items-center justify-between">
           <span className="text-text-light-muted">平均满意度</span>
@@ -448,13 +448,13 @@ const SourcePopover = forwardRef<
             href={src.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg border border-border-subtle/60 bg-neutral-900/5 p-2 text-[11px] leading-relaxed transition hover:bg-neutral-900/10 hover:border-brand-400/40"
+            className="block rounded-md border border-border-subtle/60 bg-neutral-0/62 p-2 text-[11px] leading-relaxed transition hover:border-brand-400/40 hover:bg-brand-50/45"
           >
             <div className="line-clamp-1 font-medium text-brand-600">
               {src.title || new URL(src.url).hostname.replace("www.", "")}
             </div>
             <div className="mt-0.5 flex items-center gap-2 text-[9px] text-text-muted">
-              <span className="rounded-full border border-border-subtle bg-surface-light-elevated px-1 py-px">
+              <span className="rounded-sm border border-border-subtle bg-neutral-0/72 px-1 py-px">
                 {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
               </span>
               <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>
