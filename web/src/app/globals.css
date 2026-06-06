@@ -390,6 +390,37 @@ button:disabled {
   z-index: 3;
 }
 
+.china-map-maplibre {
+  position: relative;
+  z-index: 3;
+}
+
+.china-map-maplibre .maplibregl-canvas {
+  outline: none;
+}
+
+.china-map-maplibre .maplibregl-control-container {
+  font-family: inherit;
+}
+
+.china-map-maplibre .maplibregl-ctrl-group {
+  overflow: hidden;
+  border: 1px solid rgba(84, 76, 61, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.76);
+  box-shadow: 0 12px 32px rgba(88, 74, 53, 0.10);
+  backdrop-filter: blur(8px);
+}
+
+.china-map-maplibre .maplibregl-ctrl button {
+  width: 30px;
+  height: 30px;
+}
+
+.china-map-maplibre .maplibregl-ctrl button:hover {
+  background-color: rgba(63, 143, 155, 0.10);
+}
+
 .paper-shell {
   background:
     radial-gradient(circle at 14% 22%, rgba(127, 159, 143, 0.10) 0 1px, transparent 1.8px),
