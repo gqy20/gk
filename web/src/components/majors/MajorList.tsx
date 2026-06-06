@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { MajorCategory } from "@/types/majors";
 
 interface MajorListProps {
@@ -67,7 +68,7 @@ function filterMajors(category: MajorCategory, menleiKey: string | null, classKe
 }
 
 /** 空状态引导组件 */
-function EmptyGuide({ hasSearch }: { hasSearch: boolean }) {
+function EmptyGuide({ hasSearch, totalMajors }: { hasSearch: boolean; totalMajors: number }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
       <div className="rounded-2xl border border-border-subtle bg-surface-subtle p-6">
@@ -77,12 +78,12 @@ function EmptyGuide({ hasSearch }: { hasSearch: boolean }) {
       </div>
       <div>
         <p className="text-sm font-medium text-text-secondary">
-          {hasSearch ? `未找到匹配结果` : "选择左侧门类开始浏览"}
+          {hasSearch ? EMPTY_MESSAGES.noMatch : EMPTY_MESSAGES.selectCategory}
         </p>
         <p className="mt-1 text-xs text-text-muted">
           {hasSearch
-            ? "尝试其他关键词或清空搜索"
-            : "共 " + (hasSearch ? "" : "") + " 个专业分布在 13 个门类中"}
+            ? EMPTY_MESSAGES.noMatchHint
+            : `共 ${totalMajors.toLocaleString()} 个专业分布在多个门类中`}
         </p>
       </div>
     </div>
@@ -107,9 +108,12 @@ export default function MajorList({ category, menleiKey, classKey, searchQuery }
     ? category.门类.find((m) => m.key === menleiKey)
     : null;
 
+  // 当前分类下的总专业数（用于空状态提示）
+  const totalInCategory = category.门类.reduce((s, m) => s + m.major_count, 0);
+
   // 无选中门类/专业类且无搜索时 → 显示引导（不倾倒全量列表）
   if (items.length === 0 || (!menleiKey && !classKey && !searchQuery.trim())) {
-    return <EmptyGuide hasSearch={!!searchQuery.trim()} />;
+    return <EmptyGuide hasSearch={!!searchQuery.trim()} totalMajors={totalInCategory} />;
   }
 
   return (
@@ -170,18 +174,10 @@ export default function MajorList({ category, menleiKey, classKey, searchQuery }
           {items.map(({ menleiName, className, major }, i) => {
             const name = resolveMajorName(major, className);
             const sat = satisfactionConfig(major.list_satisfaction);
+            const hasDetail = !!major.detail_url;
 
-            return (
-              <motion.a
-                key={major.specId}
-                href={major.detail_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(i * 0.015, 0.3), duration: 0.2 }}
-                className="group grid grid-cols-[auto_1fr_auto_auto] gap-x-3 gap-y-0.5 rounded-lg border border-border bg-surface-elevated px-3 py-2.5 transition-colors hover:border-primary/25 hover:bg-surface-subtle active:bg-surface-subtle sm:grid-cols-[auto_1fr_auto_auto]"
-              >
+            const cardContent = (
+              <>
                 {/* 第一行：代码 + 名称 + 满意度 + 标签 */}
                 <span className="row-span-2 self-center hidden font-mono text-[10px] text-text-light-muted tabular-nums sm:block">
                   {major.zydm}
@@ -189,7 +185,10 @@ export default function MajorList({ category, menleiKey, classKey, searchQuery }
 
                 {/* 名称 */}
                 <div className="min-w-0 self-end">
-                  <span className="truncate block text-xs font-medium leading-snug text-text group-hover:text-primary transition-colors">
+                  <span className={cn(
+                    "truncate block text-xs font-medium leading-snug",
+                    hasDetail ? "text-text group-hover:text-primary transition-colors" : "text-text-muted",
+                  )}>
                     {name}
                   </span>
                 </div>
@@ -218,6 +217,11 @@ export default function MajorList({ category, menleiKey, classKey, searchQuery }
 
                 {/* 标签行 */}
                 <div className="self-center flex items-center gap-1 justify-end">
+                  {!hasDetail && (
+                    <span className="inline-flex items-center rounded-md bg-neutral-500/10 px-1.5 py-px text-[10px] font-medium text-text-light-muted">
+                      暂缺
+                    </span>
+                  )}
                   {major.has_interpretation && (
                     <span className="inline-flex items-center rounded-md bg-brand-500/12 px-1.5 py-px text-[10px] font-medium text-brand-400">
                       解读
@@ -237,7 +241,37 @@ export default function MajorList({ category, menleiKey, classKey, searchQuery }
                     {menleiName !== activeMenlei?.name && ` · ${menleiName}`}
                   </span>
                 </div>
-              </motion.a>
+              </>
+            );
+
+            // 有详情链接 → 可点击跳转；无链接 → 静态展示
+            if (hasDetail) {
+              return (
+                <motion.a
+                  key={major.specId}
+                  href={major.detail_url!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(i * 0.015, 0.3), duration: 0.2 }}
+                  className="group grid grid-cols-[auto_1fr_auto_auto] gap-x-3 gap-y-0.5 rounded-lg border border-border bg-surface-elevated px-3 py-2.5 transition-colors hover:border-primary/25 hover:bg-surface-subtle active:bg-surface-subtle sm:grid-cols-[auto_1fr_auto_auto]"
+                >
+                  {cardContent}
+                </motion.a>
+              );
+            }
+
+            return (
+              <motion.div
+                key={major.specId}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(i * 0.015, 0.3), duration: 0.2 }}
+                className="grid grid-cols-[auto_1fr_auto_auto] gap-x-3 gap-y-0.5 rounded-lg border border-border/50 bg-surface-subtle/50 px-3 py-2.5 opacity-70 sm:grid-cols-[auto_1fr_auto_auto]"
+              >
+                {cardContent}
+              </motion.div>
             );
           })}
         </div>
