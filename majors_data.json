@@ -16,7 +16,7 @@
               "专业": [
                 {
                   "zydm": "010101",
-                  "zymc": "-",
+                  "zymc": "哲学",
                   "specId": "73381059",
                   "list_satisfaction": "4.2",
                   "has_interpretation": true,
@@ -30,7 +30,7 @@
                 },
                 {
                   "zydm": "010102",
-                  "zymc": "-",
+                  "zymc": "逻辑学",
                   "specId": "73381063",
                   "list_satisfaction": "3.5",
                   "has_interpretation": true,
@@ -44,7 +44,7 @@
                 },
                 {
                   "zydm": "010103",
-                  "zymc": "-",
+                  "zymc": "宗教学",
                   "specId": "73381067",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -58,7 +58,7 @@
                 },
                 {
                   "zydm": "010104",
-                  "zymc": "-",
+                  "zymc": "伦理学",
                   "specId": "164248791",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -85,7 +85,7 @@
               "专业": [
                 {
                   "zydm": "020101",
-                  "zymc": "-",
+                  "zymc": "经济学",
                   "specId": "73381079",
                   "list_satisfaction": "4.1",
                   "has_interpretation": true,
@@ -99,7 +99,7 @@
                 },
                 {
                   "zydm": "020102",
-                  "zymc": "-",
+                  "zymc": "经济统计学",
                   "specId": "437286851",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -113,7 +113,7 @@
                 },
                 {
                   "zydm": "020103",
-                  "zymc": "-",
+                  "zymc": "国民经济管理",
                   "specId": "73381095",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -127,7 +127,7 @@
                 },
                 {
                   "zydm": "020104",
-                  "zymc": "-",
+                  "zymc": "资源与环境经济学",
                   "specId": "437287109",
                   "list_satisfaction": "3.6",
                   "has_interpretation": true,
@@ -141,7 +141,7 @@
                 },
                 {
                   "zydm": "020105",
-                  "zymc": "-",
+                  "zymc": "商务经济学",
                   "specId": "665448572",
                   "list_satisfaction": "3.8",
                   "has_interpretation": true,
@@ -155,7 +155,7 @@
                 },
                 {
                   "zydm": "020106",
-                  "zymc": "-",
+                  "zymc": "能源经济",
                   "specId": "213783542",
                   "list_satisfaction": "4.0",
                   "has_interpretation": true,
@@ -176,7 +176,7 @@
                 },
                 {
                   "zydm": "020108",
-                  "zymc": "-",
+                  "zymc": "经济工程",
                   "specId": "4in7tseehx4jq80i",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -190,7 +190,7 @@
                 },
                 {
                   "zydm": "020109",
-                  "zymc": "-",
+                  "zymc": "数字经济",
                   "specId": "frxph478uqt6h743",
                   "list_satisfaction": "5.0",
                   "has_interpretation": false,
@@ -204,7 +204,7 @@
                 },
                 {
                   "zydm": "020110",
-                  "zymc": "-",
+                  "zymc": "低空经济与管理",
                   "specId": "kf8v1ntbp7tv7z9b",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -218,7 +218,7 @@
                 },
                 {
                   "zydm": "020111",
-                  "zymc": "-",
+                  "zymc": "资源环境审计",
                   "specId": "vl5lirxzuqvi2ig8",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -238,7 +238,7 @@
               "专业": [
                 {
                   "zydm": "020201",
-                  "zymc": "-",
+                  "zymc": "财政学",
                   "specId": "73381087",
                   "list_satisfaction": "4.4",
                   "has_interpretation": true,
@@ -252,7 +252,7 @@
                 },
                 {
                   "zydm": "020202",
-                  "zymc": "-",
+                  "zymc": "税收学",
                   "specId": "73381111",
                   "list_satisfaction": "4.4",
                   "has_interpretation": true,
@@ -266,7 +266,7 @@
                 },
                 {
                   "zydm": "020203",
-                  "zymc": "-",
+                  "zymc": "国际税收",
                   "specId": "9t437xhnjj0578ck",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -286,7 +286,7 @@
               "专业": [
                 {
                   "zydm": "020301",
-                  "zymc": "-",
+                  "zymc": "金融学",
                   "specId": "73381091",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -300,7 +300,7 @@
                 },
                 {
                   "zydm": "020302",
-                  "zymc": "-",
+                  "zymc": "金融工程",
                   "specId": "73381107",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -314,7 +314,7 @@
                 },
                 {
                   "zydm": "020303",
-                  "zymc": "-",
+                  "zymc": "保险学",
                   "specId": "73381103",
                   "list_satisfaction": "4.2",
                   "has_interpretation": true,
@@ -328,7 +328,7 @@
                 },
                 {
                   "zydm": "020304",
-                  "zymc": "-",
+                  "zymc": "投资学",
                   "specId": "73381127",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -342,7 +342,7 @@
                 },
                 {
                   "zydm": "020305",
-                  "zymc": "-",
+                  "zymc": "金融数学",
                   "specId": "164249073",
                   "list_satisfaction": "4.4",
                   "has_interpretation": true,
@@ -356,7 +356,7 @@
                 },
                 {
                   "zydm": "020306",
-                  "zymc": "-",
+                  "zymc": "信用管理",
                   "specId": "73381115",
                   "list_satisfaction": "4.3",
                   "has_interpretation": true,
@@ -370,7 +370,7 @@
                 },
                 {
                   "zydm": "020307",
-                  "zymc": "-",
+                  "zymc": "经济与金融",
                   "specId": "73381143",
                   "list_satisfaction": "4.2",
                   "has_interpretation": true,
@@ -384,7 +384,7 @@
                 },
                 {
                   "zydm": "020308",
-                  "zymc": "-",
+                  "zymc": "精算学",
                   "specId": "47e7kv0pns0tma1i",
                   "list_satisfaction": "0.0",
                   "has_interpretation": true,
@@ -398,7 +398,7 @@
                 },
                 {
                   "zydm": "020309",
-                  "zymc": "-",
+                  "zymc": "互联网金融",
                   "specId": "k6coqp3m2p59qjni",
                   "list_satisfaction": "4.8",
                   "has_interpretation": false,
@@ -412,7 +412,7 @@
                 },
                 {
                   "zydm": "020310",
-                  "zymc": "-",
+                  "zymc": "金融科技",
                   "specId": "2jgwq0d4turhi4og",
                   "list_satisfaction": "5.0",
                   "has_interpretation": false,
@@ -426,7 +426,7 @@
                 },
                 {
                   "zydm": "020311",
-                  "zymc": "-",
+                  "zymc": "金融审计",
                   "specId": "do8xhjlh1kzgdths",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -440,7 +440,7 @@
                 },
                 {
                   "zydm": "020312",
-                  "zymc": "-",
+                  "zymc": "数字金融",
                   "specId": "sw0sfnmyken30pfq",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -460,7 +460,7 @@
               "专业": [
                 {
                   "zydm": "020401",
-                  "zymc": "-",
+                  "zymc": "国际经济与贸易",
                   "specId": "73381083",
                   "list_satisfaction": "4.1",
                   "has_interpretation": true,
@@ -474,7 +474,7 @@
                 },
                 {
                   "zydm": "020402",
-                  "zymc": "-",
+                  "zymc": "贸易经济",
                   "specId": "73381099",
                   "list_satisfaction": "4.2",
                   "has_interpretation": true,
@@ -488,7 +488,7 @@
                 },
                 {
                   "zydm": "020403",
-                  "zymc": "-",
+                  "zymc": "国际经济发展合作",
                   "specId": "u6yv8flxq843ghaf",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -502,7 +502,7 @@
                 },
                 {
                   "zydm": "020404",
-                  "zymc": "-",
+                  "zymc": "数字贸易",
                   "specId": "8eyvhhd2wuposwj3",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37503,7 +37503,7 @@
                 },
                 {
                   "zydm": "210108",
-                  "zymc": "-",
+                  "zymc": "茶叶生产与应用技术",
                   "specId": "ex0iq7c91jco2mtt",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37565,7 +37565,7 @@
                 },
                 {
                   "zydm": "210204",
-                  "zymc": "-",
+                  "zymc": "林草保护工程",
                   "specId": "bk3h9m47e510fy1k",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37579,7 +37579,7 @@
                 },
                 {
                   "zydm": "210205",
-                  "zymc": "-",
+                  "zymc": "林业碳汇工程",
                   "specId": "p0rp80zrv75cczr1",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37677,7 +37677,7 @@
                 },
                 {
                   "zydm": "210402",
-                  "zymc": "-",
+                  "zymc": "远洋渔业",
                   "specId": "wxdfh26j4q55355s",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37739,7 +37739,7 @@
                 },
                 {
                   "zydm": "220202",
-                  "zymc": "-",
+                  "zymc": "地球物理勘探技术",
                   "specId": "gyn5qsp42whugb7v",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37802,7 +37802,7 @@
                 },
                 {
                   "zydm": "220304",
-                  "zymc": "-",
+                  "zymc": "无人机测绘技术",
                   "specId": "70slo5el7jrqm83h",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37816,7 +37816,7 @@
                 },
                 {
                   "zydm": "220305",
-                  "zymc": "-",
+                  "zymc": "智能遥感技术",
                   "specId": "v3p22u84m9vtnhei",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37943,7 +37943,7 @@
                 },
                 {
                   "zydm": "220802",
-                  "zymc": "-",
+                  "zymc": "生态环境数智化监测技术",
                   "specId": "gvqzte1d49ye7ka0",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -37957,7 +37957,7 @@
                 },
                 {
                   "zydm": "220803",
-                  "zymc": "-",
+                  "zymc": "资源循环工程",
                   "specId": "duowb007bxrx0si2",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38047,7 +38047,7 @@
                 },
                 {
                   "zydm": "230103",
-                  "zymc": "-",
+                  "zymc": "智慧综合能源工程",
                   "specId": "f96hsdb8mpvkpl94",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38081,7 +38081,7 @@
                 },
                 {
                   "zydm": "230202",
-                  "zymc": "-",
+                  "zymc": "核工程与核技术应用",
                   "specId": "z443tsr1qjvl1c5c",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38136,7 +38136,7 @@
                 },
                 {
                   "zydm": "230402",
-                  "zymc": "-",
+                  "zymc": "钢铁智能轧制技术",
                   "specId": "roz3uj0o7w3was3j",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38702,7 +38702,7 @@
                 },
                 {
                   "zydm": "250403",
-                  "zymc": "-",
+                  "zymc": "水土保持与荒漠化防治技术",
                   "specId": "wy3f13qick3iuo2v",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38816,7 +38816,7 @@
                 },
                 {
                   "zydm": "260107",
-                  "zymc": "-",
+                  "zymc": "增材制造工程技术",
                   "specId": "rjd214a6a7as9e00",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38830,7 +38830,7 @@
                 },
                 {
                   "zydm": "260108",
-                  "zymc": "-",
+                  "zymc": "智能光电制造工程",
                   "specId": "bq3rcs3ou6wtjqou",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -38893,7 +38893,7 @@
                 },
                 {
                   "zydm": "260204",
-                  "zymc": "-",
+                  "zymc": "低空飞行器工程技术",
                   "specId": "2p5oj1g231d0b3fc",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39035,7 +39035,7 @@
                 },
                 {
                   "zydm": "260308",
-                  "zymc": "-",
+                  "zymc": "具身智能工程技术",
                   "specId": "yehluu1nqbvszvuj",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39194,7 +39194,7 @@
                 },
                 {
                   "zydm": "260605",
-                  "zymc": "-",
+                  "zymc": "航空复合材料智造工程技术",
                   "specId": "ugdb9fxzj64r9dnu",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39208,7 +39208,7 @@
                 },
                 {
                   "zydm": "260606",
-                  "zymc": "-",
+                  "zymc": "电动飞行器应用技术",
                   "specId": "lwklri269aazwk0i",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39222,7 +39222,7 @@
                 },
                 {
                   "zydm": "260607",
-                  "zymc": "-",
+                  "zymc": "无人机系统应用技术",
                   "specId": "vrxez6lv1367085k",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39304,7 +39304,7 @@
                 },
                 {
                   "zydm": "260704",
-                  "zymc": "-",
+                  "zymc": "汽车芯片与软件工程技术",
                   "specId": "5q7pkyinb9c7d1ze",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39479,7 +39479,7 @@
                 },
                 {
                   "zydm": "280103",
-                  "zymc": "-",
+                  "zymc": "珠宝首饰工程技术",
                   "specId": "rnc4051qf02ld6q8",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39568,7 +39568,7 @@
                 },
                 {
                   "zydm": "280404",
-                  "zymc": "-",
+                  "zymc": "鞋类工程技术",
                   "specId": "920pc017tu1akfdq",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39639,7 +39639,7 @@
                 },
                 {
                   "zydm": "290104",
-                  "zymc": "-",
+                  "zymc": "酿酒工程技术",
                   "specId": "1bovvmcrvgj8v82i",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39717,7 +39717,7 @@
                 },
                 {
                   "zydm": "290207",
-                  "zymc": "-",
+                  "zymc": "康复工程技术",
                   "specId": "4l9tfvk0qsko3d1i",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39731,7 +39731,7 @@
                 },
                 {
                   "zydm": "290208",
-                  "zymc": "-",
+                  "zymc": "生物制药技术",
                   "specId": "ydav8c0iyjncxctb",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39848,7 +39848,7 @@
                 },
                 {
                   "zydm": "300106",
-                  "zymc": "-",
+                  "zymc": "高速铁路通信技术",
                   "specId": "vbpl94qrfifnbxqa",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -39862,7 +39862,7 @@
                 },
                 {
                   "zydm": "300107",
-                  "zymc": "-",
+                  "zymc": "高速铁路智能供电技术",
                   "specId": "1tz9svbe2j7l8oyn",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40207,7 +40207,7 @@
                 },
                 {
                   "zydm": "310105",
-                  "zymc": "-",
+                  "zymc": "智能体工程技术",
                   "specId": "4uxy1l6vd4kjmnaw",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40476,7 +40476,7 @@
                 },
                 {
                   "zydm": "310213",
-                  "zymc": "-",
+                  "zymc": "数据安全技术与管理",
                   "specId": "bz51twv7qryc5lwr",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40490,7 +40490,7 @@
                 },
                 {
                   "zydm": "310214",
-                  "zymc": "-",
+                  "zymc": "密码工程技术",
                   "specId": "oss5rlkx7vt402ft",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40504,7 +40504,7 @@
                 },
                 {
                   "zydm": "310215",
-                  "zymc": "-",
+                  "zymc": "工业智能工程技术",
                   "specId": "ji1vx6tpbkdkpe4r",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40518,7 +40518,7 @@
                 },
                 {
                   "zydm": "310216",
-                  "zymc": "-",
+                  "zymc": "开源技术开发与应用",
                   "specId": "s38ry2g2023ezwrn",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40571,7 +40571,7 @@
                 },
                 {
                   "zydm": "310304",
-                  "zymc": "-",
+                  "zymc": "车联网通信工程",
                   "specId": "cr6umql08p18va13",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40585,7 +40585,7 @@
                 },
                 {
                   "zydm": "310305",
-                  "zymc": "-",
+                  "zymc": "低空智联网工程",
                   "specId": "c2s9e9q5smfp8jq2",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40599,7 +40599,7 @@
                 },
                 {
                   "zydm": "310306",
-                  "zymc": "-",
+                  "zymc": "数据中心工程技术",
                   "specId": "u8q5ch8obhklrrer",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -40634,7 +40634,7 @@
                 },
                 {
                   "zydm": "310402",
-                  "zymc": "-",
+                  "zymc": "半导体装备工程技术",
                   "specId": "ofv2oq4r6tibg410",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41097,7 +41097,7 @@
                 },
                 {
                   "zydm": "330205",
-                  "zymc": "-",
+                  "zymc": "财富管理",
                   "specId": "ynks7b5648mwk5dd",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41197,7 +41197,7 @@
                 },
                 {
                   "zydm": "330304",
-                  "zymc": "-",
+                  "zymc": "业财融合管理",
                   "specId": "43q5pyrtrmwpbezg",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41217,7 +41217,7 @@
               "专业": [
                 {
                   "zydm": "330401",
-                  "zymc": "-",
+                  "zymc": "统计与大数据分析",
                   "specId": "5uztjr9298qloch8",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41354,7 +41354,7 @@
                 },
                 {
                   "zydm": "330704",
-                  "zymc": "-",
+                  "zymc": "商务数据分析与管理",
                   "specId": "2n9ij7wvb6d4cqk1",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41497,7 +41497,7 @@
                 },
                 {
                   "zydm": "340104",
-                  "zymc": "-",
+                  "zymc": "研学旅行策划与管理",
                   "specId": "8ilgevaxm5vp3dw2",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41511,7 +41511,7 @@
                 },
                 {
                   "zydm": "340105",
-                  "zymc": "-",
+                  "zymc": "会展策划与管理",
                   "specId": "6v2e7oy5k8umglvi",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41751,7 +41751,7 @@
                 },
                 {
                   "zydm": "350113",
-                  "zymc": "-",
+                  "zymc": "陶瓷艺术设计",
                   "specId": "ckvha9p4n863rzav",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41765,7 +41765,7 @@
                 },
                 {
                   "zydm": "350114",
-                  "zymc": "-",
+                  "zymc": "刺绣设计与工艺",
                   "specId": "sv8ufgrpsruowudz",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41779,7 +41779,7 @@
                 },
                 {
                   "zydm": "350115",
-                  "zymc": "-",
+                  "zymc": "智能人居设计",
                   "specId": "r017u2qj9dkzdiv3",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -41863,7 +41863,7 @@
               "专业": [
                 {
                   "zydm": "350401",
-                  "zymc": "-",
+                  "zymc": "文物修复与保护",
                   "specId": "z5iqnqv5c5vkvib6",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -42297,7 +42297,7 @@
               "专业": [
                 {
                   "zydm": "380201",
-                  "zymc": "-",
+                  "zymc": "刑事科学技术",
                   "specId": "gskxcud2f19hf0hq",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -42311,7 +42311,7 @@
                 },
                 {
                   "zydm": "380202",
-                  "zymc": "-",
+                  "zymc": "网络安全与执法",
                   "specId": "q7ziupbmw419yc9n",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -42331,7 +42331,7 @@
               "专业": [
                 {
                   "zydm": "380301",
-                  "zymc": "-",
+                  "zymc": "刑事侦查",
                   "specId": "6dblwskk2q3e7dgm",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -42365,7 +42365,7 @@
                 },
                 {
                   "zydm": "380402",
-                  "zymc": "-",
+                  "zymc": "数字法务",
                   "specId": "7yxq5men38usd74d",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -42632,7 +42632,7 @@
                 },
                 {
                   "zydm": "390304",
-                  "zymc": "-",
+                  "zymc": "安宁照护服务与管理",
                   "specId": "4811bnra075s6q9t",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43181,7 +43181,7 @@
                 },
                 {
                   "zydm": "410121",
-                  "zymc": "-",
+                  "zymc": "高标准农田建设与应用技术",
                   "specId": "cbwwxpqalt4ryqj4",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43195,7 +43195,7 @@
                 },
                 {
                   "zydm": "410122",
-                  "zymc": "-",
+                  "zymc": "乡村治理技术",
                   "specId": "540ame5ecorpbt5d",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43209,7 +43209,7 @@
                 },
                 {
                   "zydm": "410123",
-                  "zymc": "-",
+                  "zymc": "生态农业技术",
                   "specId": "6kbf1k5ns17b0lyx",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43223,7 +43223,7 @@
                 },
                 {
                   "zydm": "410124",
-                  "zymc": "-",
+                  "zymc": "智慧农业技术与装备",
                   "specId": "cpnllu0kw8ml2bdy",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43564,7 +43564,7 @@
                 },
                 {
                   "zydm": "410214",
-                  "zymc": "-",
+                  "zymc": "现代竹木产品设计与制造",
                   "specId": "bwhvhl5botcb1rgt",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43578,7 +43578,7 @@
                 },
                 {
                   "zydm": "410215",
-                  "zymc": "-",
+                  "zymc": "林草碳汇技术",
                   "specId": "plc2w7lzl0of0nym",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -43953,7 +43953,7 @@
                 },
                 {
                   "zydm": "410405",
-                  "zymc": "-",
+                  "zymc": "休闲渔业经营与管理",
                   "specId": "fhlvvn5fo5feh1lr",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -45620,7 +45620,7 @@
                 },
                 {
                   "zydm": "420909",
-                  "zymc": "-",
+                  "zymc": "安全技术与管理",
                   "specId": "m19z4n0y4b7uga63",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -45937,7 +45937,7 @@
                 },
                 {
                   "zydm": "430112",
-                  "zymc": "-",
+                  "zymc": "智能控制技术",
                   "specId": "sed52afwyozdfa6e",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -46532,7 +46532,7 @@
                 },
                 {
                   "zydm": "430506",
-                  "zymc": "-",
+                  "zymc": "金属材料检测技术",
                   "specId": "55h97w24zdaigytm",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -46795,7 +46795,7 @@
                 },
                 {
                   "zydm": "430610",
-                  "zymc": "-",
+                  "zymc": "复合材料智能制造技术",
                   "specId": "65k391sjihi457mg",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -47152,7 +47152,7 @@
                 },
                 {
                   "zydm": "440108",
-                  "zymc": "-",
+                  "zymc": "建筑装饰工程技术",
                   "specId": "qwuuoqhfpwlnpbl3",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -47439,7 +47439,7 @@
                 },
                 {
                   "zydm": "440307",
-                  "zymc": "-",
+                  "zymc": "建设工程监理",
                   "specId": "xav1emwtg7q54tud",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -47777,7 +47777,7 @@
                 },
                 {
                   "zydm": "440505",
-                  "zymc": "-",
+                  "zymc": "现代物业管理",
                   "specId": "4ilvclc1jeqzcgt6",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -48954,7 +48954,7 @@
                 },
                 {
                   "zydm": "460121",
-                  "zymc": "-",
+                  "zymc": "电力装备智造与维护技术",
                   "specId": "5tq0kd9tfislgieq",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -48968,7 +48968,7 @@
                 },
                 {
                   "zydm": "460122",
-                  "zymc": "-",
+                  "zymc": "轴承设计与制造技术",
                   "specId": "2rttrd6jusir72a4",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -49150,7 +49150,7 @@
                 },
                 {
                   "zydm": "460207",
-                  "zymc": "-",
+                  "zymc": "低空飞行器装备技术",
                   "specId": "67jqan4r2i9cmi9r",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -49164,7 +49164,7 @@
                 },
                 {
                   "zydm": "460208",
-                  "zymc": "-",
+                  "zymc": "机床智能化应用技术",
                   "specId": "2v4yrjigg8yrp7xe",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -49475,7 +49475,7 @@
                 },
                 {
                   "zydm": "460312",
-                  "zymc": "-",
+                  "zymc": "具身智能机器人技术",
                   "specId": "j0u9ffogbdzy04qd",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -49850,7 +49850,7 @@
                 },
                 {
                   "zydm": "460511",
-                  "zymc": "-",
+                  "zymc": "海洋电力工程技术",
                   "specId": "nn8ncdeg44amtrw0",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -49864,7 +49864,7 @@
                 },
                 {
                   "zydm": "460512",
-                  "zymc": "-",
+                  "zymc": "无人艇应用技术",
                   "specId": "hyhivp2oet9h5k0h",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -49878,7 +49878,7 @@
                 },
                 {
                   "zydm": "460513",
-                  "zymc": "-",
+                  "zymc": "新能源船舶技术",
                   "specId": "s6e3kpcf15ifjtcq",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -50135,7 +50135,7 @@
                 },
                 {
                   "zydm": "460612",
-                  "zymc": "-",
+                  "zymc": "航天装备精密制造技术",
                   "specId": "xdeoyhnanfkdyy2p",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -50149,7 +50149,7 @@
                 },
                 {
                   "zydm": "460613",
-                  "zymc": "-",
+                  "zymc": "航天装备智能装配技术",
                   "specId": "7y8sibgiioya3219",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -50831,7 +50831,7 @@
                 },
                 {
                   "zydm": "470214",
-                  "zymc": "-",
+                  "zymc": "药品生物技术",
                   "specId": "nrz0tlr1eypehq3x",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -51807,7 +51807,7 @@
                 },
                 {
                   "zydm": "490107",
-                  "zymc": "-",
+                  "zymc": "食品检验检测技术",
                   "specId": "02iwjvk9ok30qz3f",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -52755,7 +52755,7 @@
                 },
                 {
                   "zydm": "500114",
-                  "zymc": "-",
+                  "zymc": "铁道供电技术",
                   "specId": "agbyzaqlp1zh9zad",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -53894,7 +53894,7 @@
                 },
                 {
                   "zydm": "500418",
-                  "zymc": "-",
+                  "zymc": "民航运输服务",
                   "specId": "nr7jqcr5nfh3jypv",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -54540,7 +54540,7 @@
                 },
                 {
                   "zydm": "510111",
-                  "zymc": "-",
+                  "zymc": "物联网应用技术",
                   "specId": "g7xdhuylvymsx899",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55052,7 +55052,7 @@
                 },
                 {
                   "zydm": "510217",
-                  "zymc": "-",
+                  "zymc": "移动应用开发",
                   "specId": "4cq0673x39mf0xe7",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55066,7 +55066,7 @@
                 },
                 {
                   "zydm": "510218",
-                  "zymc": "-",
+                  "zymc": "工业软件开发技术",
                   "specId": "sc21cip6tamjy26w",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55080,7 +55080,7 @@
                 },
                 {
                   "zydm": "510219",
-                  "zymc": "-",
+                  "zymc": "智能体技术应用",
                   "specId": "huh42mtmcj00vyve",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55094,7 +55094,7 @@
                 },
                 {
                   "zydm": "510220",
-                  "zymc": "-",
+                  "zymc": "开源技术应用",
                   "specId": "35r585124ht7wuhd",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55108,7 +55108,7 @@
                 },
                 {
                   "zydm": "510221",
-                  "zymc": "-",
+                  "zymc": "信创系统技术应用",
                   "specId": "8503a7izb5dk1x0o",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55353,7 +55353,7 @@
                 },
                 {
                   "zydm": "510311",
-                  "zymc": "-",
+                  "zymc": "低空智联网技术",
                   "specId": "ivv07kz87pvk1fbj",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -55367,7 +55367,7 @@
                 },
                 {
                   "zydm": "510312",
-                  "zymc": "-",
+                  "zymc": "量子通信技术应用",
                   "specId": "199vgc6xkr0p00nm",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -56778,7 +56778,7 @@
                 },
                 {
                   "zydm": "520808",
-                  "zymc": "-",
+                  "zymc": "婴幼儿托育服务与管理",
                   "specId": "a9xcts0y42vx88ot",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -57345,7 +57345,7 @@
                 },
                 {
                   "zydm": "530305",
-                  "zymc": "-",
+                  "zymc": "中小企业创业与经营",
                   "specId": "m1x19g60vm8cpmnq",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -57359,7 +57359,7 @@
                 },
                 {
                   "zydm": "530306",
-                  "zymc": "-",
+                  "zymc": "财税大数据应用",
                   "specId": "x6p89y4z02tffvdg",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -57747,7 +57747,7 @@
                 },
                 {
                   "zydm": "530606",
-                  "zymc": "-",
+                  "zymc": "市场营销",
                   "specId": "yk2d9kckb7yb52q0",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -58247,7 +58247,7 @@
                 },
                 {
                   "zydm": "530811",
-                  "zymc": "-",
+                  "zymc": "低空物流技术与运营",
                   "specId": "c3798cplvt21jr1z",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -59544,7 +59544,7 @@
                 },
                 {
                   "zydm": "550128",
-                  "zymc": "-",
+                  "zymc": "时尚表演与传播",
                   "specId": "s4nayq26w1ovm9wi",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -59558,7 +59558,7 @@
                 },
                 {
                   "zydm": "550129",
-                  "zymc": "-",
+                  "zymc": "舞台艺术设计与制作",
                   "specId": "y5k2xrwd3tlis6ac",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -59572,7 +59572,7 @@
                 },
                 {
                   "zydm": "550130",
-                  "zymc": "-",
+                  "zymc": "数字媒体艺术设计",
                   "specId": "t7m4aet0b0jw7is4",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -59586,7 +59586,7 @@
                 },
                 {
                   "zydm": "550131",
-                  "zymc": "-",
+                  "zymc": "影视化妆造型",
                   "specId": "rji6boerdk39ho4j",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -60085,7 +60085,7 @@
                 },
                 {
                   "zydm": "550221",
-                  "zymc": "-",
+                  "zymc": "现代杂技表演艺术",
                   "specId": "pix6si7vvltldv2v",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -60414,7 +60414,7 @@
                 },
                 {
                   "zydm": "550409",
-                  "zymc": "-",
+                  "zymc": "文物数字技术",
                   "specId": "cdstm52u9yiivfat",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -61100,7 +61100,7 @@
                 },
                 {
                   "zydm": "560217",
-                  "zymc": "-",
+                  "zymc": "全媒体广告策划与营销",
                   "specId": "lkvsb4l3dnlchrak",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -62543,7 +62543,7 @@
                 },
                 {
                   "zydm": "570317",
-                  "zymc": "-",
+                  "zymc": "健身指导与管理",
                   "specId": "iabipjzob4wi9ar0",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -62636,7 +62636,7 @@
                 },
                 {
                   "zydm": "580103",
-                  "zymc": "-",
+                  "zymc": "法律事务",
                   "specId": "320924588",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -62827,7 +62827,7 @@
                 },
                 {
                   "zydm": "580302",
-                  "zymc": "-",
+                  "zymc": "刑事执行",
                   "specId": "73388745",
                   "list_satisfaction": "4.0",
                   "has_interpretation": false,
@@ -63164,7 +63164,7 @@
                 },
                 {
                   "zydm": "580506",
-                  "zymc": "-",
+                  "zymc": "司法警务",
                   "specId": "5o3qmvoosxo3jsnb",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -63626,7 +63626,7 @@
                 },
                 {
                   "zydm": "590107",
-                  "zymc": "-",
+                  "zymc": "现代文秘",
                   "specId": "tw0zkaxpbrl716ic",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -63920,7 +63920,7 @@
                 },
                 {
                   "zydm": "590211",
-                  "zymc": "-",
+                  "zymc": "人力资源管理",
                   "specId": "2xzy08y6dxrwgilk",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -63934,7 +63934,7 @@
                 },
                 {
                   "zydm": "590212",
-                  "zymc": "-",
+                  "zymc": "行政管理",
                   "specId": "q8dccv4y35dd9w5v",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
@@ -63948,7 +63948,7 @@
                 },
                 {
                   "zydm": "590213",
-                  "zymc": "-",
+                  "zymc": "外事实务",
                   "specId": "4ns4kx2e1i3w4jgv",
                   "list_satisfaction": "0.0",
                   "has_interpretation": false,
