@@ -86,12 +86,21 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
 
         if (cancelled) return;
 
-        const map = new AMap.Map(mapRef.current!, {
+        const mapOptions = {
           zoom: 15,
           center: [lng, lat],
           mapStyle: "amap://styles/normal",
-          viewMode: "2D",
-        });
+          viewMode: "3D",
+          pitch: 48,
+          rotation: -18,
+          showBuildingBlock: true,
+        } as AMap.MapOptions & {
+          pitch: number;
+          rotation: number;
+          showBuildingBlock: boolean;
+        };
+
+        const map = new AMap.Map(mapRef.current!, mapOptions);
 
         // 学校标记
         const marker = new AMap.Marker({

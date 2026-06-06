@@ -72,6 +72,21 @@ const SHORT_PROVINCE_NAMES = new Map(
   ]),
 );
 
+const MAP_CENTER_COUNTRY: [number, number] = [104, 35.8];
+const MAP_ZOOM_COUNTRY = 1.16;
+
+const BIG_SCREEN_COLORS = {
+  mapBase: "#17313d",
+  mapBaseDeep: "#0e222d",
+  mapEdge: "rgba(139, 213, 231, 0.55)",
+  mapEdgeStrong: "rgba(191, 232, 241, 0.9)",
+  mapGlow: "rgba(88, 189, 217, 0.34)",
+  shadowDeep: "rgba(0, 15, 23, 0.78)",
+  shadowMid: "rgba(6, 35, 45, 0.62)",
+  textOnMap: "#d9f5fb",
+  textMutedOnMap: "rgba(217, 245, 251, 0.68)",
+} as const;
+
 /** 各省份地图的中心坐标和缩放级别 */
 const PROVINCE_MAP_CONFIG: Record<string, { center: [number, number]; zoom: number }> = {
   北京: { center: [116.4, 40.0], zoom: 1.5 },
@@ -323,7 +338,7 @@ export default function ChinaMap({
     if (school.is985) return "rgba(214, 106, 93, 0.34)";
     if (school.is211) return "rgba(185, 133, 45, 0.32)";
     if (school.isDoubleFirstClass) return "rgba(47, 143, 107, 0.3)";
-    return "transparent";
+    return "rgba(126, 211, 233, 0.22)";
   }
 
   const getOption = (): echarts.EChartsOption => {
@@ -334,8 +349,8 @@ export default function ChinaMap({
     let geoZoom: number;
 
     if (drill.level === "country") {
-      geoCenter = [104, 35.8];
-      geoZoom = 1.16;
+      geoCenter = MAP_CENTER_COUNTRY;
+      geoZoom = MAP_ZOOM_COUNTRY;
     } else {
       // 从面包屑获取当前区域名称
       const currentName = drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name;
@@ -345,8 +360,8 @@ export default function ChinaMap({
         geoCenter = config.center;
         geoZoom = config.zoom;
       } else {
-        geoCenter = [104, 35.8];
-        geoZoom = 1.16;
+        geoCenter = MAP_CENTER_COUNTRY;
+        geoZoom = MAP_ZOOM_COUNTRY;
       }
     }
 
@@ -355,12 +370,14 @@ export default function ChinaMap({
       province: school.province,
       value: [...school.coord, school.province],
       symbolSize:
-        school.is985 ? 11 : school.is211 ? 9 : school.isDoubleFirstClass ? 7 : 6,
+        school.is985 ? 12 : school.is211 ? 10 : school.isDoubleFirstClass ? 8 : 6,
       itemStyle: {
         color: schoolColor(school),
         shadowBlur:
-          school.is985 || school.is211 || school.isDoubleFirstClass ? 10 : 0,
+          school.is985 || school.is211 || school.isDoubleFirstClass ? 18 : 8,
         shadowColor: schoolShadow(school),
+        borderColor: "rgba(255,255,255,0.72)",
+        borderWidth: school.is985 || school.is211 ? 1.2 : 0.6,
       },
     }));
 
@@ -384,20 +401,20 @@ export default function ChinaMap({
             itemWidth: 12,
             itemHeight: 90,
             textStyle: {
-              color: colors.textSecondary,
+              color: BIG_SCREEN_COLORS.textMutedOnMap,
               fontSize: 11,
             },
             inRange: {
               color: [
-                colors.chart.mapLow,
-                colors.chart.mapLowMid,
-                colors.chart.mapMid,
-                colors.chart.mapHighMid,
-                colors.chart.mapHigh,
+                "#14313e",
+                "#1c4a59",
+                "#2a6975",
+                "#4a8c95",
+                "#8fc9cb",
               ],
             },
             outOfRange: {
-              color: [colors.chart.mapLow],
+              color: ["#14313e"],
             },
           }
         : undefined;
@@ -409,19 +426,19 @@ export default function ChinaMap({
       animationEasingUpdate: "cubicOut",
       tooltip: {
         trigger: "item",
-        backgroundColor: "rgba(23, 33, 43, 0.94)",
-        borderColor: colors.primaryBorder,
+        backgroundColor: "rgba(8, 18, 26, 0.94)",
+        borderColor: "rgba(129, 221, 239, 0.38)",
         borderWidth: 1,
         padding: [10, 12],
         textStyle: {
-          color: colors.text,
+          color: BIG_SCREEN_COLORS.textOnMap,
           fontSize: 12,
         },
         extraCssText:
-          "box-shadow:0 18px 45px rgba(17,24,32,.28);border-radius:8px;",
+          "box-shadow:0 18px 45px rgba(0,12,18,.45);border-radius:8px;backdrop-filter:blur(10px);",
         formatter: (params: unknown) => {
           const item = tooltipParam(params);
-          if (item.seriesType === "effectScatter") {
+          if (item.seriesType === "scatter") {
             const data = item.data;
             const name = data?.name || item.name || "";
             const province = data?.province || String(data?.value?.[2] || "");
@@ -447,38 +464,94 @@ export default function ChinaMap({
         center: geoCenter,
         label: {
           show: drill.level !== "country", // 省级以下显示标签
+          color: BIG_SCREEN_COLORS.textMutedOnMap,
+          fontSize: 10,
         },
         itemStyle: {
-          areaColor: colors.chart.mapLow,
-          borderColor: "rgba(255, 255, 255, 0.18)",
-          borderWidth: drill.level === "country" ? 0.8 : 0.6,
+          areaColor: BIG_SCREEN_COLORS.mapBase,
+          borderColor: BIG_SCREEN_COLORS.mapEdge,
+          borderWidth: drill.level === "country" ? 1.1 : 0.8,
+          shadowBlur: 24,
+          shadowColor: BIG_SCREEN_COLORS.mapGlow,
         },
         emphasis: {
           itemStyle: {
-            areaColor: colors.brand[400],
-            borderColor: colors.primary,
-            borderWidth: 1.2,
+            areaColor: "#2b7d8d",
+            borderColor: BIG_SCREEN_COLORS.mapEdgeStrong,
+            borderWidth: 1.8,
+            shadowBlur: 30,
+            shadowColor: "rgba(128, 225, 242, 0.5)",
           },
           label: {
             show: true,
-            color: colors.text,
+            color: BIG_SCREEN_COLORS.textOnMap,
             fontSize: drill.level === "country" ? 12 : 11,
             fontWeight: 600,
           },
         },
         select: {
           itemStyle: {
-            areaColor: colors.primary,
-            borderColor: colors.text,
+            areaColor: "#62a9af",
+            borderColor: "#e4fbff",
+            shadowBlur: 34,
+            shadowColor: "rgba(169, 236, 247, 0.62)",
           },
           label: {
             show: true,
-            color: colors.surface,
+            color: "#06141b",
             fontWeight: 700,
           },
         },
       },
       series: [
+        {
+          name: "地图底座深影",
+          type: "map",
+          map: currentMapName,
+          selectedMode: false,
+          silent: true,
+          roam: false,
+          zoom: geoZoom,
+          center: geoCenter,
+          data: mapData,
+          itemStyle: {
+            areaColor: BIG_SCREEN_COLORS.shadowDeep,
+            borderColor: "transparent",
+            shadowBlur: 28,
+            shadowColor: "rgba(0, 0, 0, 0.72)",
+            shadowOffsetX: 10,
+            shadowOffsetY: 18,
+          },
+          emphasis: {
+            disabled: true,
+          },
+          zlevel: 0,
+          z: 0,
+        },
+        {
+          name: "地图底座侧光",
+          type: "map",
+          map: currentMapName,
+          selectedMode: false,
+          silent: true,
+          roam: false,
+          zoom: geoZoom,
+          center: geoCenter,
+          data: mapData,
+          itemStyle: {
+            areaColor: BIG_SCREEN_COLORS.shadowMid,
+            borderColor: "rgba(78, 182, 205, 0.18)",
+            shadowBlur: 18,
+            shadowColor: "rgba(80, 195, 220, 0.25)",
+            shadowOffsetX: 5,
+            shadowOffsetY: 9,
+          },
+          emphasis: {
+            disabled: true,
+          },
+          zlevel: 0,
+          z: 1,
+        },
         {
           name: drill.level === "country" ? "高校数量" : "行政区划",
           type: "map",
@@ -487,26 +560,28 @@ export default function ChinaMap({
           selectedMode: "single",
           data: mapData,
           itemStyle: {
-            borderColor: "rgba(255, 255, 255, 0.14)",
-            borderWidth: drill.level === "country" ? 0.7 : 0.5,
+            areaColor: BIG_SCREEN_COLORS.mapBase,
+            borderColor: "rgba(174, 231, 241, 0.5)",
+            borderWidth: drill.level === "country" ? 0.9 : 0.7,
+            shadowBlur: 16,
+            shadowColor: "rgba(80, 195, 220, 0.24)",
           },
           emphasis: {
             itemStyle: {
-              areaColor: colors.brand[400],
+              areaColor: "#2f8da0",
+              borderColor: BIG_SCREEN_COLORS.mapEdgeStrong,
+              shadowBlur: 28,
+              shadowColor: "rgba(128, 225, 242, 0.48)",
             },
           },
+          zlevel: 1,
+          z: 3,
         },
         {
           name: "高校分布",
-          type: "effectScatter",
+          type: "scatter",
           coordinateSystem: "geo",
           data: scatterData,
-          showEffectOn: "render",
-          rippleEffect: {
-            brushType: "stroke",
-            scale: 2.8,
-            period: 4.2,
-          },
           label: {
             show: false,
           },
@@ -514,13 +589,14 @@ export default function ChinaMap({
             scale: true,
             itemStyle: {
               color: colors.primaryHover,
-              borderColor: colors.surface,
+              borderColor: "#e9fbff",
               borderWidth: 1,
-              shadowBlur: 18,
-              shadowColor: `${colors.primaryHover}B8`,
+              shadowBlur: 28,
+              shadowColor: "rgba(128, 225, 242, 0.72)",
             },
           },
-          zlevel: 2,
+          zlevel: 3,
+          z: 8,
         },
       ],
     };
@@ -536,7 +612,7 @@ export default function ChinaMap({
       const item = params as TooltipParam;
 
       // 点击学校散点
-      if (item.seriesType === "effectScatter" && item.name) {
+      if (item.seriesType === "scatter" && item.name) {
         const school = schools.find((s) => s.name === item.name);
         if (school) {
           clickTimer.current = setTimeout(() => {
@@ -573,7 +649,7 @@ export default function ChinaMap({
     },
     dblclick: (params: unknown) => {
       const item = params as TooltipParam;
-      if (item.seriesType === "effectScatter" && item.name) {
+      if (item.seriesType === "scatter" && item.name) {
         if (clickTimer.current) {
           clearTimeout(clickTimer.current);
           clickTimer.current = null;
@@ -597,13 +673,13 @@ export default function ChinaMap({
   }
 
   return (
-    <div className="relative w-full h-full" role="figure" aria-label={EMPTY_MESSAGES.map}>
+    <div className="china-map-stage relative h-full w-full overflow-hidden" role="figure" aria-label={EMPTY_MESSAGES.map}>
       {/* 面包屑导航 + 返回按钮 */}
       {drill.level !== "country" && (
         <div className="absolute left-3 top-3 z-20 flex items-center gap-1.5">
           <button
             onClick={resetToCountry}
-            className="flex items-center gap-1 rounded-full border border-border bg-surface-elevated/90 px-2.5 py-1 text-xs font-medium text-text-secondary shadow-lg backdrop-blur-sm transition-all hover:border-primary/40 hover:text-text hover:shadow-xl"
+            className="flex items-center gap-1 rounded-full border border-cyan-100/25 bg-cyan-50/10 px-2.5 py-1 text-xs font-medium text-cyan-50 shadow-lg backdrop-blur-sm transition-all hover:border-cyan-100/45 hover:bg-cyan-50/15 hover:shadow-xl"
             title="返回全国"
           >
             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -612,45 +688,47 @@ export default function ChinaMap({
             全国
           </button>
 
-          <svg className="h-3 w-3 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <svg className="h-3 w-3 text-cyan-100/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
 
           {drill.breadcrumbs.slice(1).map((crumb, i) => (
             <span key={crumb.adcode} className="flex items-center gap-1.5">
               {i > 0 && (
-                <svg className="h-3 w-3 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="h-3 w-3 text-cyan-100/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               )}
-              <span className="rounded-full border border-primary/30 bg-primary-soft/80 px-2.5 py-1 text-xs font-semibold text-primary shadow-sm">
+              <span className="rounded-full border border-cyan-100/30 bg-cyan-50/10 px-2.5 py-1 text-xs font-semibold text-cyan-50 shadow-sm backdrop-blur-sm">
                 {crumb.name}
               </span>
             </span>
           ))}
 
           {loadingDrill && (
-            <span className="ml-1 text-[11px] text-text-muted animate-pulse">加载中...</span>
+            <span className="ml-1 text-[11px] text-cyan-100/60 animate-pulse">加载中...</span>
           )}
         </div>
       )}
 
       {/* 当前区域学校数量提示 */}
       {drill.level !== "country" && (
-        <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-text-secondary">
-          <span className="rounded-full border border-border-subtle bg-neutral-900/5 px-3 py-1">
+        <div className="pointer-events-none absolute right-4 top-3 z-10 flex items-center gap-2 text-xs text-cyan-100/70">
+          <span className="rounded-full border border-cyan-100/20 bg-cyan-50/10 px-3 py-1 backdrop-blur-sm">
             {visibleSchools.length} 所高校
           </span>
         </div>
       )}
 
-      <ReactECharts
-        ref={chartRef}
-        option={option}
-        style={{ height: "100%", width: "100%" }}
-        onEvents={handleEvents}
-        lazyUpdate
-      />
+      <div className="china-map-chart h-full w-full">
+        <ReactECharts
+          ref={chartRef}
+          option={option}
+          style={{ height: "100%", width: "100%" }}
+          onEvents={handleEvents}
+          lazyUpdate
+        />
+      </div>
       <AnimatePresence>
         {previewSchool && (
           <SchoolPopup

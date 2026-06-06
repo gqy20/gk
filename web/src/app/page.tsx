@@ -50,7 +50,6 @@ function Home() {
     filteredSchools,
     filteredProvinces,
     doneCount,
-    filteredDoneCount,
     activeFilterCount,
     contextLabel,
     crawlStatus,
@@ -116,7 +115,7 @@ function Home() {
       </div>
 
       <header className="relative z-10 border-b border-border bg-surface-elevated/95 px-3 py-1.5 shadow-sm shadow-neutral-900/5 sm:px-4 sm:py-2.5">
-        <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+        <div className="flex min-w-0 items-center gap-3">
           <div className="min-w-0 flex items-center gap-2">
             <img
               src="/logo.svg"
@@ -125,15 +124,15 @@ function Home() {
               width={28}
               height={28}
             />
-            <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-text sm:text-3xl">
+            <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-text sm:text-2xl xl:text-3xl">
               中国高校信息地图
             </h1>
-            <span className="hidden shrink-0 truncate text-xs text-text-muted sm:inline sm:text-sm">
+            <span className="hidden shrink-0 truncate text-xs text-text-muted md:inline sm:text-sm">
               当前：{contextLabel}
             </span>
             <a
               href="/majors"
-              className="hidden shrink-0 items-center gap-1.5 rounded-full border border-primary/25 bg-primary-soft px-3.5 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 hover:shadow-sm hover:shadow-primary/10 sm:inline-flex"
+              className="hidden shrink-0 items-center gap-1.5 rounded-full border border-primary/25 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 hover:shadow-sm hover:shadow-primary/10 lg:inline-flex"
             >
               专业库
               <svg className="h-3 w-3 transition-transform group-hover:translate-x-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -142,23 +141,19 @@ function Home() {
             </a>
             <a
               href="/future"
-              className="hidden shrink-0 items-center rounded-full border border-brand-500/25 bg-brand-50 px-3.5 py-1.5 text-xs font-medium text-brand-600 transition-all hover:border-brand-500/45 hover:bg-brand-100 sm:inline-flex"
+              className="hidden shrink-0 items-center rounded-full border border-brand-500/25 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-600 transition-all hover:border-brand-500/45 hover:bg-brand-100 lg:inline-flex"
             >
               未来路径
             </a>
           </div>
 
           {!selectedSchool && (
-            <>
+            <div className="min-w-0 shrink-0">
               <FilterBar
                 query={query}
                 filter985={filter985}
                 filter211={filter211}
                 filterDoubleFirst={filterDoubleFirst}
-                totalCount={data.schools.length}
-                filteredCount={filteredSchools.length}
-                doneCount={filteredDoneCount}
-                provinceCount={filteredProvinces.length}
                 activeFilterCount={activeFilterCount}
                 onQueryChange={(v) => dispatch({ type: "SET_QUERY", payload: v })}
                 onToggle985={() => dispatch({ type: "TOGGLE_FILTER", payload: "985" })}
@@ -168,7 +163,7 @@ function Home() {
                 }
                 onReset={() => dispatch({ type: "RESET_FILTERS" })}
               />
-            </>
+            </div>
           )}
         </div>
       </header>

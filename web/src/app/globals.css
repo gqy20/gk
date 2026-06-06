@@ -261,6 +261,38 @@ button:disabled {
   color: var(--color-text);
 }
 
+.china-map-stage {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(75, 180, 205, 0.26), transparent 34%),
+    radial-gradient(circle at 24% 30%, rgba(185, 133, 45, 0.16), transparent 30%),
+    radial-gradient(circle at 78% 70%, rgba(47, 143, 107, 0.16), transparent 32%),
+    linear-gradient(145deg, #071219 0%, #0b1a23 48%, #071016 100%);
+}
+
+.china-map-stage::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.china-map-stage::before {
+  z-index: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(126, 211, 233, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 211, 233, 0.07) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 44px 44px, 44px 44px, 11px 11px;
+  mask-image: radial-gradient(circle at center, black 0%, black 62%, transparent 100%);
+}
+
+.china-map-chart {
+  position: relative;
+  z-index: 3;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
