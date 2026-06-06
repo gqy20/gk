@@ -54,7 +54,7 @@ export default function ProvinceList({
 
   if (displayProvinces.length === 0) {
     return (
-      <div className="flex flex-1 items-center justify-center px-6 text-center text-sm text-dark-600">
+      <div className="flex flex-1 items-center justify-center px-6 text-center text-sm text-text-light-muted">
         {EMPTY_MESSAGES.noSchools}
       </div>
     );
@@ -147,7 +147,7 @@ export default function ProvinceList({
           <motion.div
             key={prov.name}
             variants={itemVariants}
-            className="mb-3 overflow-hidden rounded-lg border border-border-light bg-ink-50"
+            className="mb-3 overflow-hidden rounded-lg border border-border-light bg-surface-light-elevated"
           >
             <button
               type="button"
@@ -156,8 +156,8 @@ export default function ProvinceList({
               className={cn(
                 "w-full px-3 py-3 text-left transition",
                 isSelected
-                  ? "bg-green-500 text-text"
-                  : "bg-ink-50 text-text-light hover:bg-ink-400",
+                  ? "bg-brand-500 text-text"
+                  : "bg-surface-light-elevated text-text-light hover:bg-surface-light-hover",
               )}
             >
               <div className="flex items-center gap-3">
@@ -184,7 +184,7 @@ export default function ProvinceList({
             </button>
 
             {(isSelected || !selectedProvince) && (
-              <div className="border-t border-border-light bg-ink-100">
+              <div className="border-t border-border-light bg-surface-light-subtle">
                 {sortedSchools.map((school, schoolIndex) => {
                   const isCompareSelected = compareSchools.some(
                     (s) => s.name === school.name,
@@ -203,8 +203,8 @@ export default function ProvinceList({
                       className={cn(
                         "flex items-center gap-2 px-3 py-2 text-xs transition sm:px-4 sm:py-2.5 cursor-pointer",
                         isSchoolSelected
-                          ? "bg-green-50 text-green-500"
-                          : "bg-white text-base-900 hover:bg-ink-100/80",
+                          ? "bg-success-soft text-brand-500"
+                          : "bg-neutral-0 text-text-light hover:bg-surface-light-subtle/80",
                       )}
                     >
                       <button
@@ -215,7 +215,7 @@ export default function ProvinceList({
                         <span
                           className={cn(
                             "h-2.5 w-2.5 flex-shrink-0 rounded-full",
-                            school.status === "done" ? "bg-green-300" : "bg-dark-600",
+                            school.status === "done" ? "bg-brand-300" : "bg-neutral-600",
                           )}
                         />
                         <span className="truncate font-medium">{school.name}</span>
@@ -238,13 +238,13 @@ export default function ProvinceList({
                           className={cn(
                             "flex h-4 w-4 items-center justify-center rounded-full border-2 transition",
                             isCompareSelected
-                              ? "border-green-500 bg-green-500 shadow-sm shadow-green-500/25"
+                              ? "border-brand-500 bg-brand-500 shadow-sm shadow-brand-500/25"
                               : canToggle
-                                ? "border-dashed border-dark-300 bg-white hover:border-green-400 hover:bg-green-50"
-                                : "border-dashed border-dark-200 bg-white/60 cursor-not-allowed opacity-40",
+                                ? "border-dashed border-neutral-300 bg-neutral-0 hover:border-brand-400 hover:bg-success-soft"
+                                : "border-dashed border-neutral-200 bg-neutral-0/60 cursor-not-allowed opacity-40",
                           )}
                         >
-                          {isCompareSelected && <IconCheck size={12} className="text-white" />}
+                          {isCompareSelected && <IconCheck size={12} className="text-text-inverse" />}
                         </button>
                         <span className="flex gap-1">
                           {school.is985 && (

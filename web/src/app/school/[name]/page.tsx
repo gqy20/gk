@@ -27,10 +27,10 @@ export default async function SchoolDetailPage({ params }: PageProps) {
 
   if (!school) {
     return (
-      <div className="flex h-screen items-center justify-center bg-surface text-sm text-dark-200">
+      <div className="flex h-screen items-center justify-center bg-surface text-sm text-text-secondary">
         <div className="text-center">
           <p className="mb-4 text-lg">{EMPTY_MESSAGES.schoolNotFound}</p>
-          <a href="/" className="text-gold-500 underline">
+          <a href="/" className="text-accent-500 underline">
             {EMPTY_MESSAGES.backHome}
           </a>
         </div>

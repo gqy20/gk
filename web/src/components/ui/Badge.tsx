@@ -18,19 +18,19 @@ const toneMap: Record<
   Record<BadgeVariant, string>
 > = {
   red: {
-    solid: "border-red-300/55 bg-red-50 text-red-400",
-    subtle: "border-red-200/70 bg-red-200/18 text-red-100",
-    outline: "border-red-300/55 text-red-200 hover:bg-red-50",
+    solid: "border-danger-300/55 bg-danger-soft text-danger-400",
+    subtle: "border-danger-200/70 bg-danger-200/18 text-danger-100",
+    outline: "border-danger-300/55 text-danger-200 hover:bg-danger-soft",
   },
   gold: {
-    solid: "border-gold-300/55 bg-gold-100 text-gold-700",
-    subtle: "border-gold-300/80 bg-gold-300/18 text-gold-600",
-    outline: "border-gold-300/55 text-gold-200 hover:bg-gold-100",
+    solid: "border-accent-300/55 bg-accent-100 text-accent-700",
+    subtle: "border-accent-300/80 bg-accent-300/18 text-accent-600",
+    outline: "border-accent-300/55 text-accent-200 hover:bg-accent-100",
   },
   green: {
-    solid: "border-green-300/55 bg-green-50 text-green-400",
-    subtle: "border-green-300/80 bg-green-300/16 text-green-100",
-    outline: "border-green-300/55 text-green-200 hover:bg-green-50",
+    solid: "border-brand-300/55 bg-success-soft text-brand-400",
+    subtle: "border-brand-300/80 bg-brand-300/16 text-brand-100",
+    outline: "border-brand-300/55 text-brand-200 hover:bg-success-soft",
   },
 };
 

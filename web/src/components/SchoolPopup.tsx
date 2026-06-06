@@ -66,18 +66,18 @@ export default function SchoolPopup({
     >
       {/* 标题区 */}
       <div className="mb-2.5">
-        <h3 className="text-base font-semibold leading-tight text-dark-50">
+        <h3 className="text-base font-semibold leading-tight text-text">
           {school.name}
         </h3>
-        <div className="mt-1 flex items-center gap-2 text-xs text-dark-500">
-          <span className="rounded-full border border-border-subtle bg-white/[0.05] px-2 py-0.5">
+        <div className="mt-1 flex items-center gap-2 text-xs text-text-muted">
+          <span className="rounded-full border border-border-subtle bg-neutral-0/[0.05] px-2 py-0.5">
             {school.province}
           </span>
           <a
             href={school.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="max-w-[140px] truncate text-gold-600 hover:text-gold-500"
+            className="max-w-[140px] truncate text-accent-600 hover:text-accent-500"
           >
             {school.url.replace(/^https?:\/\//, "")}
           </a>
@@ -92,8 +92,8 @@ export default function SchoolPopup({
         <span
           className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
             school.status === "done"
-              ? "border border-green-500/30 bg-green-500/10 text-green-400"
-              : "border border-border-subtle bg-white/[0.04] text-dark-500"
+              ? "border border-brand-500/30 bg-brand-500/10 text-brand-400"
+              : "border border-border-subtle bg-neutral-0/[0.04] text-text-muted"
           }`}
         >
           {school.status === "done" ? STATUS_LABELS.done : STATUS_LABELS.pending}
@@ -127,8 +127,8 @@ export default function SchoolPopup({
 
 function StatCell({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md border border-border-light bg-base-50 px-2.5 py-1.5">
-      <div className="text-[10px] text-dark-700">{label}</div>
+    <div className="rounded-md border border-border-light bg-neutral-50 px-2.5 py-1.5">
+      <div className="text-[10px] text-text-light-muted">{label}</div>
       <div className="mt-0.5 text-xs font-semibold text-text-light">{value}</div>
     </div>
   );

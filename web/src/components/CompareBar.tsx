@@ -15,19 +15,19 @@ export default function CompareBar({ schools, onRemove, onCompare, onClear }: Co
   if (schools.length === 0) return null;
 
   return (
-    <div className="border-t border-border-light bg-ink-200 px-4 py-3">
+    <div className="border-t border-border-light bg-surface-light-subtle px-4 py-3">
       <div className="flex items-center gap-3">
         <div className="flex min-w-0 flex-1 flex-wrap gap-1.5">
           {schools.map((school) => (
             <span
               key={school.name}
-              className="inline-flex items-center gap-1 rounded-full border border-border-light bg-ink-50 px-2 py-0.5 text-xs text-dark-950"
+              className="inline-flex items-center gap-1 rounded-full border border-border-light bg-surface-light-elevated px-2 py-0.5 text-xs text-text-light"
             >
               <span className="max-w-[100px] truncate">{school.name}</span>
               <button
                 type="button"
                 onClick={() => onRemove(school)}
-                className="rounded-full p-0.5 text-red-400 transition hover:bg-red-50"
+                className="rounded-full p-0.5 text-danger-400 transition hover:bg-danger-soft"
               >
                 <IconClose size={12} />
               </button>

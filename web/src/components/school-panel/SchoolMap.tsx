@@ -19,10 +19,10 @@ interface PoiItem {
 }
 
 const POI_CATEGORIES = [
-  { key: "subway", label: "地铁", type: "150500", keyword: "地铁", icon: "🚇", color: colors.green300 },
-  { key: "hospital", label: "医疗", type: "090100|090200|090300|090400", keyword: "", icon: "🏥", color: colors.gold400 },
+  { key: "subway", label: "地铁", type: "150500", keyword: "地铁", icon: "🚇", color: colors.brand[300] },
+  { key: "hospital", label: "医疗", type: "090100|090200|090300|090400", keyword: "", icon: "🏥", color: colors.accentScale[400] },
   { key: "shopping", label: "商圈", type: "060100|060400|060600", keyword: "", icon: "🛒", color: colors.primary },
-  { key: "food", label: "美食", type: "050000", keyword: "", icon: "🍜", color: colors.green100 },
+  { key: "food", label: "美食", type: "050000", keyword: "", icon: "🍜", color: colors.brand[100] },
 ] as const;
 
 // AMap 标记 / InfoWindow 共用样式常量（AMap API 需要原始字符串）
@@ -253,12 +253,12 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
       {/* 地图容器 */}
       <div
         ref={mapRef}
-        className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-ink-800 ${
+        className={`relative w-full overflow-hidden rounded-lg border border-border-light bg-neutral-800 ${
           compact ? "h-[280px] shrink-0" : "h-[65%] min-h-[300px]"
         }`}
       >
         {!mapReady && (
-          <div className="absolute inset-0 flex items-center justify-center text-sm text-dark-500">
+          <div className="absolute inset-0 flex items-center justify-center text-sm text-text-muted">
             {EMPTY_MESSAGES.loadingMap}
           </div>
         )}
@@ -273,8 +273,8 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
             onClick={() => setActiveCategory("all")}
             className={`rounded-full px-3 py-1 text-xs font-medium transition ${
               activeCategory === "all"
-                ? "bg-green-500 text-text"
-                : "bg-base-50 text-dark-900 hover:bg-ink-600 hover:text-green-400"
+                ? "bg-brand-500 text-text"
+                : "bg-neutral-50 text-text-light hover:bg-neutral-300 hover:text-brand-400"
             }`}
           >
             全部
@@ -291,8 +291,8 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                 onClick={() => setActiveCategory(cat.key)}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition ${
                   activeCategory === cat.key
-                    ? "bg-green-500 text-text"
-                    : "bg-base-50 text-dark-900 hover:bg-ink-600 hover:text-green-400"
+                    ? "bg-brand-500 text-text"
+                    : "bg-neutral-50 text-text-light hover:bg-neutral-300 hover:text-brand-400"
                 }`}
               >
                 <span className="mr-1">{cat.icon}</span>
@@ -305,7 +305,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
 
         {/* 加载状态 */}
         {loading && (
-          <p className="py-4 text-center text-xs text-dark-500">{EMPTY_MESSAGES.searchingPoi}</p>
+          <p className="py-4 text-center text-xs text-text-muted">{EMPTY_MESSAGES.searchingPoi}</p>
         )}
 
         {/* POI列表 */}
@@ -320,7 +320,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                 <div className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold">
                   <span>{cat.icon}</span>
                   <span style={{ color: cat.color }}>{cat.label}</span>
-                  <span className="text-dark-500">({items.length})</span>
+                  <span className="text-text-muted">({items.length})</span>
                 </div>
                 <div className="space-y-1">
                   {items.map((item, i) => (
@@ -331,13 +331,13 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
                         mapInstance.current?.setCenter(item.location);
                         mapInstance.current?.setZoom(17);
                       }}
-                      className="flex w-full items-center justify-between rounded-md bg-base-50 px-3 py-2 text-left text-xs transition hover:bg-ink-600"
+                      className="flex w-full items-center justify-between rounded-md bg-neutral-50 px-3 py-2 text-left text-xs transition hover:bg-neutral-300"
                     >
                       <div className="min-w-0 flex-1">
-                        <div className="truncate font-medium text-dark-100">
+                        <div className="truncate font-medium text-text">
                           {item.name}
                         </div>
-                        <div className="truncate text-dark-500">
+                        <div className="truncate text-text-muted">
                           {item.address}
                         </div>
                       </div>
@@ -357,7 +357,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
           })}
 
         {!loading && totalPois === 0 && mapReady && (
-          <p className="py-8 text-center text-sm text-dark-500">
+          <p className="py-8 text-center text-sm text-text-muted">
             {EMPTY_MESSAGES.clickPoiCategory}
           </p>
         )}

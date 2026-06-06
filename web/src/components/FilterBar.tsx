@@ -48,7 +48,7 @@ export default function FilterBar({
             onChange={(event) => onQueryChange(event.target.value)}
             aria-label="搜索学校、省份或官方域名"
             placeholder="搜索 / 省份"
-            className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-dark-700 sm:placeholder:搜索学校 / 省份 / 官方域名"
+            className="min-w-0 flex-1 bg-transparent text-sm text-text outline-none placeholder:text-text-placeholder sm:placeholder:搜索学校 / 省份 / 官方域名"
           />
         </label>
 
@@ -60,7 +60,7 @@ export default function FilterBar({
             type="button"
             onClick={onReset}
             disabled={!hasActiveControls}
-            className="hidden h-7 shrink-0 rounded-full border border-border px-2.5 text-[10px] font-medium text-dark-200 transition enabled:hover:border-primary/60 enabled:hover:bg-primary/10 disabled:cursor-not-allowed disabled:opacity-35 sm:inline-flex sm:h-9 sm:px-4 sm:text-xs"
+            className="hidden h-7 shrink-0 rounded-full border border-border px-2.5 text-[10px] font-medium text-text-secondary transition enabled:hover:border-primary/60 enabled:hover:bg-primary/10 disabled:cursor-not-allowed disabled:opacity-35 sm:inline-flex sm:h-9 sm:px-4 sm:text-xs"
           >
             重置
           </button>
@@ -68,10 +68,10 @@ export default function FilterBar({
       </div>
 
       {/* 统计信息：移动端内联显示，桌面端独立行 */}
-      <span className="text-[10px] text-dark-500 sm:text-xs sm:hidden">
+      <span className="text-[10px] text-text-muted sm:text-xs sm:hidden">
         {filteredCount}/{totalCount} 所 · {doneCount} 已采集 · {provinceCount} 省
       </span>
-      <span className="hidden text-xs text-dark-500 sm:inline">
+      <span className="hidden text-xs text-text-muted sm:inline">
         {filteredCount}/{totalCount} 所 · {doneCount} 已采集 · {provinceCount} 省份
       </span>
     </div>
@@ -79,9 +79,9 @@ export default function FilterBar({
 }
 
 const solidColors: Record<"red" | "gold" | "green", string> = {
-  red: "bg-red-500 text-white border-transparent shadow-md shadow-red-500/25",
-  gold: "bg-gold-500 text-white border-transparent shadow-md shadow-gold-500/25",
-  green: "bg-green-500 text-white border-transparent shadow-md shadow-green-500/25",
+  red: "bg-danger-500 text-text-inverse border-transparent shadow-md shadow-danger-500/25",
+  gold: "bg-accent-500 text-text-inverse border-transparent shadow-md shadow-accent-500/25",
+  green: "bg-brand-500 text-text-inverse border-transparent shadow-md shadow-brand-500/25",
 };
 
 function FilterTag({
@@ -121,11 +121,11 @@ function FilterTag({
       type="button"
       aria-pressed={active}
       onClick={onClick}
-      whileHover={{ scale: 1.04, borderColor: "rgba(216,183,93,0.5)" }}
+      whileHover={{ scale: 1.04, borderColor: "rgba(47,125,109,0.5)" }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 22 }}
       className={cn(
-        "shrink-0 rounded-lg border border-border-light bg-white font-semibold text-dark-700 shadow-sm",
+        "shrink-0 rounded-lg border border-border-light bg-neutral-0 font-semibold text-text-light-muted shadow-sm",
         sizeClass,
       )}
     >

@@ -64,7 +64,7 @@ export default function SchoolPanel({
 
   if (!school) {
     return (
-      <div className="flex flex-1 items-center justify-center text-sm text-dark-600">
+      <div className="flex flex-1 items-center justify-center text-sm text-text-light-muted">
         {EMPTY_MESSAGES.selectSchool}
       </div>
     );
@@ -113,7 +113,7 @@ export default function SchoolPanel({
             crawlSources={crawlSources?.[school.name]}
           />
         ) : (
-          <p className="text-sm text-dark-600">暂无数据</p>
+          <p className="text-sm text-text-light-muted">暂无数据</p>
         )}
       </div>
     </div>

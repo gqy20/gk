@@ -61,17 +61,17 @@ describe("FuturePanel — 玻璃面板", () => {
   it("tone=steady 应注入绿系 ring", () => {
     const { container } = render(<FuturePanel tone="steady">x</FuturePanel>);
     const panel = container.firstElementChild;
-    expect(panel?.className).toMatch(/ring-green-300\/40/);
+    expect(panel?.className).toMatch(/ring-brand-300\/40/);
   });
 
-  it("tone=balanced 应注入琥珀色 ring", () => {
+  it("tone=balanced 应注入金色 ring", () => {
     const { container } = render(<FuturePanel tone="balanced">x</FuturePanel>);
-    expect(container.firstElementChild?.className).toMatch(/ring-amber-300\/45/);
+    expect(container.firstElementChild?.className).toMatch(/ring-accent-300\/45/);
   });
 
-  it("tone=risky 应注入青色 ring", () => {
+  it("tone=risky 应注入红色 ring", () => {
     const { container } = render(<FuturePanel tone="risky">x</FuturePanel>);
-    expect(container.firstElementChild?.className).toMatch(/ring-cyan-300\/40/);
+    expect(container.firstElementChild?.className).toMatch(/ring-danger-300\/40/);
   });
 
   it("顶部应存在 1px 高光线(inset-x-0 top-0 h-px)", () => {

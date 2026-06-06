@@ -1,13 +1,5 @@
 import type { ReactNode, ElementType } from "react";
-
-/** 路径色编码(稳健 / 均衡 / 冒险) */
-export const TONE = {
-  steady:   { fg: "text-green-300",  ring: "ring-green-300/40",  bg: "bg-green-300/10" },
-  balanced: { fg: "text-amber-300",   ring: "ring-amber-300/45",  bg: "bg-amber-300/10" },
-  risky:    { fg: "text-cyan-300",    ring: "ring-cyan-300/40",   bg: "bg-cyan-300/10"  },
-} as const;
-
-export type ToneKey = keyof typeof TONE;
+import { TONE, type ToneKey } from "./_tone";
 
 export function FutureShell({
   title,

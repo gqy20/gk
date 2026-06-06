@@ -134,17 +134,17 @@ export default function ChinaMap({
   // 学校标记颜色 — 优先级: 985 > 211 > 双一流 > 普通
   function schoolColor(school: School): string {
     if (selectedProvince && school.province !== selectedProvince)
-      return "rgba(127, 136, 128, 0.18)";
-    if (school.is985) return "#e3a08b";
-    if (school.is211) return "#d8b75d";
-    if (school.isDoubleFirstClass) return "#6fc0a5";
-    return "#8b948a";
+      return colors.chart.schoolMuted;
+    if (school.is985) return colors.chart.school985;
+    if (school.is211) return colors.chart.school211;
+    if (school.isDoubleFirstClass) return colors.chart.schoolDoubleFirst;
+    return colors.chart.schoolNormal;
   }
 
   function schoolShadow(school: School): string {
-    if (school.is985) return "rgba(227, 160, 139, 0.5)";
-    if (school.is211) return "rgba(216, 183, 93, 0.45)";
-    if (school.isDoubleFirstClass) return "rgba(111, 192, 165, 0.4)";
+    if (school.is985) return "rgba(216, 106, 85, 0.46)";
+    if (school.is211) return "rgba(200, 155, 60, 0.42)";
+    if (school.isDoubleFirstClass) return "rgba(88, 173, 152, 0.38)";
     return "transparent";
   }
 
@@ -213,10 +213,10 @@ export default function ChinaMap({
           fontSize: 11,
         },
         inRange: {
-          color: ["#202821", "#345246", "#5f8265", "#bca356", "#f1d37b"],
+          color: [colors.chart.mapLow, colors.chart.mapLowMid, colors.chart.mapMid, colors.chart.mapHighMid, colors.chart.mapHigh],
         },
         outOfRange: {
-          color: ["#202821"],
+          color: [colors.chart.mapLow],
         },
       },
       geo: {
@@ -228,13 +228,13 @@ export default function ChinaMap({
           show: false,
         },
         itemStyle: {
-          areaColor: "#202821",
+          areaColor: colors.chart.mapLow,
           borderColor: "rgba(255, 249, 236, 0.18)",
           borderWidth: 0.8,
         },
         emphasis: {
           itemStyle: {
-            areaColor: colors.accentGreen,
+            areaColor: colors.brand[400],
             borderColor: colors.primary,
             borderWidth: 1.2,
           },
@@ -271,7 +271,7 @@ export default function ChinaMap({
           },
           emphasis: {
             itemStyle: {
-              areaColor: colors.accentGreen,
+              areaColor: colors.brand[400],
             },
           },
         },

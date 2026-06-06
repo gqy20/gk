@@ -49,7 +49,7 @@ export default function MajorTreeBrowser({
           "flex items-center justify-between rounded-lg px-3 py-2.5 mb-1 text-xs font-medium transition-colors mx-2 mt-2",
           !selectedMenlei
             ? "bg-primary/15 text-primary"
-            : "text-dark-300 hover:bg-surface-active hover:text-text",
+            : "text-text-secondary hover:bg-surface-active hover:text-text",
         )}
       >
         <span className="flex items-center gap-2">
@@ -82,13 +82,13 @@ export default function MajorTreeBrowser({
                   "group flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs font-medium transition-all duration-150",
                   isSelected
                     ? "bg-primary/12 text-primary shadow-sm shadow-primary/5"
-                    : "text-dark-200 hover:bg-surface-active hover:text-text",
+                    : "text-text-secondary hover:bg-surface-active hover:text-text",
                 )}
               >
                 {/* 展开/收起箭头 */}
                 <svg
                   className={cn(
-                    "h-3 w-3 shrink-0 text-dark-500 transition-transform duration-200",
+                    "h-3 w-3 shrink-0 text-text-muted transition-transform duration-200",
                     isExpanded && "rotate-90",
                   )}
                   fill="none"
@@ -107,7 +107,7 @@ export default function MajorTreeBrowser({
                     "rounded-full px-1.5 py-px text-[10px] font-medium tabular-nums transition-colors",
                     isSelected
                       ? "bg-primary/20 text-primary"
-                      : "bg-surface-active text-dark-500 group-hover:text-dark-300",
+                      : "bg-surface-active text-text-muted group-hover:text-text-secondary",
                   )}
                 >
                   {menlei.major_count}
@@ -134,12 +134,12 @@ export default function MajorTreeBrowser({
                           className={cn(
                             "flex w-full items-center justify-between gap-2 truncate border-l-2 pl-6 pr-3 py-1.5 text-[11px] transition-colors",
                             hasSelectedClass
-                              ? "border-primary/40 text-dark-200 hover:text-text"
-                              : "border-border-subtle text-dark-500 hover:text-dark-300 hover:border-border",
+                              ? "border-primary/40 text-text-secondary hover:text-text"
+                              : "border-border-subtle text-text-muted hover:text-text-secondary hover:border-border",
                           )}
                         >
                           <span className="truncate">{cls.name}</span>
-                          <span className="shrink-0 text-[10px] text-dark-600 tabular-nums">
+                          <span className="shrink-0 text-[10px] text-text-light-muted tabular-nums">
                             {cls.专业.length}
                           </span>
                         </button>

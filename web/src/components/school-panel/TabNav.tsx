@@ -40,7 +40,7 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
   const currentDetailTab = detailTabs.find((tab) => tab.key === activeTab);
 
   return (
-    <div className="flex items-center gap-1 border-b border-border-light bg-white/60 px-3 py-2">
+    <div className="flex items-center gap-1 border-b border-border-light bg-neutral-0/60 px-3 py-2">
       <button
         type="button"
         onClick={() => {
@@ -50,13 +50,13 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
         className={cn(
           "relative h-8 rounded-full px-4 text-xs font-medium transition-colors",
           isOverview
-            ? "text-green-600"
-            : "text-dark-600 hover:text-dark-900 hover:bg-ink-100/60",
+            ? "text-brand-600"
+            : "text-text-light-muted hover:text-text-light hover:bg-surface-light-subtle/60",
         )}
       >
         概览
         {isOverview && (
-          <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-green-500" />
+          <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-brand-500" />
         )}
       </button>
 
@@ -70,8 +70,8 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
             className={cn(
               "relative flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-medium transition-colors",
               !isOverview
-                ? "text-green-600"
-                : "text-dark-600 hover:text-dark-900 hover:bg-ink-100/60",
+                ? "text-brand-600"
+                : "text-text-light-muted hover:text-text-light hover:bg-surface-light-subtle/60",
             )}
           >
             <span className="truncate">
@@ -82,14 +82,14 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
               className={cn("transition-transform", menuOpen && "rotate-180")}
             />
             {!isOverview && (
-              <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-green-500" />
+              <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-brand-500" />
             )}
           </button>
 
           {menuOpen && (
             <ul
               role="listbox"
-              className="absolute left-0 top-full z-30 mt-1.5 min-w-[180px] max-h-[60vh] overflow-y-auto rounded-xl border border-border-light bg-white py-1 shadow-xl shadow-black/10"
+              className="absolute left-0 top-full z-30 mt-1.5 min-w-[180px] max-h-[60vh] overflow-y-auto rounded-xl border border-border-light bg-neutral-0 py-1 shadow-xl shadow-black/10"
             >
               {detailTabs.map((tab) => {
                 const isActive = activeTab === tab.key;
@@ -106,8 +106,8 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
                       className={cn(
                         "flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-xs transition",
                         isActive
-                          ? "font-semibold text-green-600 bg-green-50/70"
-                          : "text-dark-800 hover:bg-ink-100/50",
+                          ? "font-semibold text-brand-600 bg-success-soft/70"
+                          : "text-text-light-secondary hover:bg-surface-light-subtle/50",
                       )}
                     >
                       <span className="min-w-0 flex-1 truncate">{tab.label}</span>
@@ -116,8 +116,8 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
                           className={cn(
                             "shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium",
                             isActive
-                              ? "bg-green-500 text-white"
-                              : "bg-ink-200 text-dark-700",
+                              ? "bg-brand-500 text-text-inverse"
+                              : "bg-surface-light-subtle text-text-light-muted",
                           )}
                         >
                           {tab.count}

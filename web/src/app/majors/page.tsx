@@ -46,17 +46,17 @@ export default function MajorsPage() {
         <div className="flex items-center gap-3">
           <a
             href="/"
-            className="flex items-center gap-2 text-dark-300 hover:text-text transition-colors"
+            className="flex items-center gap-2 text-text-secondary hover:text-text transition-colors"
           >
             <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </a>
-          <h1 className="min-w-0 truncate text-base font-semibold text-dark-50 sm:text-xl">
+          <h1 className="min-w-0 truncate text-base font-semibold text-text sm:text-xl">
             专业库
           </h1>
           {data && (
-            <span className="hidden text-xs text-dark-500 sm:inline">
+            <span className="hidden text-xs text-text-muted sm:inline">
               共 {data.categories.reduce((sum, c) => sum + c.门类.reduce((s, m) => s + m.major_count, 0), 0)} 个专业
             </span>
           )}
@@ -125,7 +125,7 @@ export default function MajorsPage() {
                 searchQuery={searchQuery}
               />
             ) : (
-              <div className="flex h-full items-center justify-center text-sm text-dark-500">
+              <div className="flex h-full items-center justify-center text-sm text-text-muted">
                 {EMPTY_MESSAGES.loadingMap}
               </div>
             )}

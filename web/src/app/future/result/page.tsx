@@ -92,7 +92,7 @@ function FutureResultContent() {
       eyebrow={result?.run.promptVersion || "结构化推演结果"}
     >
         {error && (
-          <div className="rounded-lg border border-red-300/40 bg-red-50 p-4 text-sm text-red-500">
+          <div className="rounded-lg border border-danger-300/40 bg-danger-soft p-4 text-sm text-danger">
             {error}
           </div>
         )}
@@ -283,9 +283,9 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
             const passLike = item.value === "通过" || item.value === "已覆盖" || item.value === "3 阶段完整";
             const warnLike = item.value === "需复核" || item.value === "需补充" || item.value === "不完整";
             const accent = passLike
-              ? "text-green-300"
+              ? "text-brand-300"
               : warnLike
-                ? "text-amber-300"
+                ? "text-warning"
                 : "text-text";
             return (
               <div
@@ -303,7 +303,7 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
           })}
         </div>
         {output.validation && !output.validation.valid && (
-          <div className="mt-3 space-y-1 border-t border-border/60 pt-3 text-xs leading-5 text-amber-300">
+          <div className="mt-3 space-y-1 border-t border-border/60 pt-3 text-xs leading-5 text-warning">
             {[...output.validation.errors, ...output.validation.warnings].slice(0, 3).map((item) => (
               <p key={item}>• {item}</p>
             ))}
@@ -434,7 +434,7 @@ function ScoreBar({ path, scoreKey }: { path: FuturePath; scoreKey: keyof Future
           {value}<span className="text-text-muted">/10</span>
         </span>
       </div>
-      <div className="mt-1 h-1 overflow-hidden rounded-full bg-white/[0.06]">
+      <div className="mt-1 h-1 overflow-hidden rounded-full bg-neutral-0/[0.06]">
         <div
           className={`h-full ${TONE[tone].bg}`}
           style={{ width: `${value * 10}%`, background: "currentColor" }}
@@ -629,15 +629,15 @@ function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: bo
               </div>
 
               {path.key_risks.length > 0 && (
-                <div className="rounded-xl border border-red-300/25 bg-red-500/[0.05] p-3">
-                  <h3 className="font-mono text-[10px] uppercase tracking-wider text-red-300">
+                <div className="rounded-xl border border-danger-300/25 bg-danger-500/[0.05] p-3">
+                  <h3 className="font-mono text-[10px] uppercase tracking-wider text-danger-300">
                     需要提前管理的风险
                   </h3>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {path.key_risks.map((risk) => (
                       <span
                         key={risk}
-                        className="rounded-full border border-red-300/30 bg-red-500/10 px-2 py-1 text-[11px] text-red-200"
+                        className="rounded-full border border-danger-300/30 bg-danger-500/10 px-2 py-1 text-[11px] text-danger-200"
                       >
                         {risk}
                       </span>
@@ -750,7 +750,7 @@ function ScoreGrid({ path }: { path: FuturePath }) {
                 <span className="text-text-muted">{scoreLabel(k)}</span>
                 <span className="font-mono tabular-nums text-text">{v}/10</span>
               </div>
-              <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/5">
+              <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-neutral-0/5">
                 <div className={`h-full ${TONE[tone].bg}`}
                      style={{ width: `${v * 10}%`, background: "currentColor" }} />
               </div>

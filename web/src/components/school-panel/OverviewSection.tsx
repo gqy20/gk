@@ -43,7 +43,7 @@ export default function OverviewSection({
         {school.detail?.basic_info && (
           <BasicInfoCard bi={school.detail.basic_info} />
         )}
-        <div className="rounded-lg border border-border-light bg-ink-50 p-4 text-sm text-dark-600">
+        <div className="rounded-lg border border-border-light bg-surface-light-elevated p-4 text-sm text-text-light-muted">
           <div className="font-semibold text-text-light">{EMPTY_MESSAGES.detailNotReady}</div>
           <div className="mt-2 text-xs">
             当前状态：{school.status === "done" ? "已完成" : "等待采集"}
@@ -127,12 +127,12 @@ export default function OverviewSection({
                   className={cn(
                     "w-full rounded-lg border p-3 text-left transition-all duration-200 cursor-pointer shadow-sm",
                     isActive
-                      ? "border-green-400 bg-green-50/70 shadow-lg shadow-green-500/20 ring-1 ring-green-400/25"
+                      ? "border-brand-400 bg-success-soft/70 shadow-lg shadow-brand-500/20 ring-1 ring-brand-400/25"
                       : isDone
-                        ? "border-l-2 border-l-green-400 bg-green-50/40 hover:shadow-md hover:-translate-y-px hover:border-green-300/60"
+                        ? "border-l-2 border-l-brand-400 bg-success-soft/40 hover:shadow-md hover:-translate-y-px hover:border-brand-300/60"
                         : isFailed
-                          ? "border-l-2 border-l-red-400 bg-red-50/30 hover:shadow-md hover:-translate-y-px hover:border-red-300/60"
-                          : "border-l-2 border-l-dashed border-dark-300 bg-ink-50 hover:shadow-md hover:-translate-y-px hover:border-dark-500/40",
+                          ? "border-l-2 border-l-danger-400 bg-danger-soft/30 hover:shadow-md hover:-translate-y-px hover:border-danger-300/60"
+                          : "border-l-2 border-l-dashed border-neutral-300 bg-surface-light-elevated hover:shadow-md hover:-translate-y-px hover:border-neutral-500/40",
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
@@ -143,10 +143,10 @@ export default function OverviewSection({
                       className={cn(
                         "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
                         isDone
-                          ? "bg-green-100 text-green-600"
+                          ? "bg-brand-100 text-brand-600"
                           : isFailed
-                            ? "bg-red-100 text-red-500"
-                            : "bg-ink-700 text-dark-900",
+                            ? "bg-danger-100 text-danger-500"
+                            : "bg-neutral-300 text-text-light",
                       )}
                     >
                       {isDone
@@ -160,7 +160,7 @@ export default function OverviewSection({
                   </div>
 
                   {!isDone && cs.last_error && isActive && (
-                    <p className="mt-1.5 text-[9px] text-red-400 line-clamp-2">
+                    <p className="mt-1.5 text-[9px] text-danger-400 line-clamp-2">
                       错误: {cs.last_error}
                     </p>
                   )}
@@ -189,12 +189,12 @@ export default function OverviewSection({
           {filledCategories.map((key) => {
             const items = detail[key]!;
             return (
-              <div key={key} className="rounded-lg border border-border-light bg-ink-50 p-3">
+              <div key={key} className="rounded-lg border border-border-light bg-surface-light-elevated p-3">
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-xs font-semibold text-text-light">
                     {CATEGORY_LABELS[key]}
                   </span>
-                  <span className="rounded-full bg-ink-700 px-2 py-0.5 text-[10px] text-dark-900">
+                  <span className="rounded-full bg-neutral-300 px-2 py-0.5 text-[10px] text-text-light">
                     {items.length} 条
                   </span>
                 </div>
@@ -203,7 +203,7 @@ export default function OverviewSection({
                     <DocItemMini key={index} item={item as DocItem} />
                   ))}
                   {items.length > 3 && (
-                    <p className="text-xs text-dark-600">
+                    <p className="text-xs text-text-light-muted">
                       还有 {items.length - 3} 条
                     </p>
                   )}
@@ -221,13 +221,13 @@ export default function OverviewSection({
             {detail.colleges.slice(0, 18).map((college) => (
               <span
                 key={college.name}
-                className="rounded-full border border-border-light bg-ink-50 px-2.5 py-1 text-[11px] text-dark-950"
+                className="rounded-full border border-border-light bg-surface-light-elevated px-2.5 py-1 text-[11px] text-text-light"
               >
                 {college.name}
               </span>
             ))}
             {detail.colleges.length > 18 && (
-              <span className="px-2.5 py-1 text-[11px] text-dark-600">
+              <span className="px-2.5 py-1 text-[11px] text-text-light-muted">
                 +{detail.colleges.length - 18}
               </span>
             )}
@@ -240,28 +240,28 @@ export default function OverviewSection({
 
 function SectionTitle({ label }: { label: string }) {
   return (
-    <h3 className="text-[10px] font-semibold text-dark-800">{label}</h3>
+    <h3 className="text-[10px] font-semibold text-text-light-secondary">{label}</h3>
   );
 }
 
 function DocItemMini({ item }: { item: DocItem }) {
   return (
-    <div className="border-l-2 border-primary-border pl-2 transition hover:border-green-400">
+    <div className="border-l-2 border-primary-border pl-2 transition hover:border-brand-400">
       <a
         href={item.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="line-clamp-1 text-xs font-medium text-green-500 hover:text-green-400"
+        className="line-clamp-1 text-xs font-medium text-brand-500 hover:text-brand-400"
       >
         {item.title}
       </a>
       {item.summary && (
-        <p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-dark-600">
+        <p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-text-light-muted">
           {item.summary}
         </p>
       )}
       {item.attachments?.length > 0 && (
-        <span className="mt-1 inline-block rounded bg-red-50 px-1.5 py-0.5 text-[10px] text-red-400">
+        <span className="mt-1 inline-block rounded bg-danger-soft px-1.5 py-0.5 text-[10px] text-danger-400">
           附件 {item.attachments.length}
         </span>
       )}
@@ -278,7 +278,7 @@ function BasicInfoCard({ bi }: { bi: NonNullable<UniversityInfo["basic_info"]> }
         {bi.address && (
           <div className="flex items-start gap-2">
             <span className="shrink-0 text-blue-600">📍</span>
-            <span className="text-dark-900">{bi.address}</span>
+            <span className="text-text-light">{bi.address}</span>
           </div>
         )}
         {bi.phone && (
@@ -312,10 +312,10 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
   const avg = (items.reduce((s, i) => s + i.score, 0) / items.length).toFixed(1);
 
   const scoreColor = (score: number) => {
-    if (score >= 4.5) return "bg-green-400";
+    if (score >= 4.5) return "bg-brand-400";
     if (score >= 4.0) return "bg-yellow-400";
     if (score >= 3.5) return "bg-orange-400";
-    return "bg-red-300";
+    return "bg-danger-300";
   };
 
   return (
@@ -324,7 +324,7 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
       <div className="mt-2 rounded-lg border border-orange-200/60 bg-orange-50/30 p-3 text-xs space-y-2">
         {/* 平均分 */}
         <div className="flex items-center justify-between">
-          <span className="text-dark-600">平均满意度</span>
+          <span className="text-text-light-muted">平均满意度</span>
           <span className="text-base font-bold text-orange-600">{avg}</span>
         </div>
 
@@ -335,7 +335,7 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
               <span className="w-4 shrink-0 text-[10px] font-semibold text-orange-500/70">
                 {idx + 1}
               </span>
-              <span className="min-w-0 flex-1 truncate font-medium text-dark-900">
+              <span className="min-w-0 flex-1 truncate font-medium text-text-light">
                 {item.title}
               </span>
               <div className="flex items-center gap-1.5">
@@ -349,7 +349,7 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
                 <span className="w-7 text-right text-[11px] font-semibold tabular-nums text-orange-700">
                   {item.score.toFixed(1)}
                 </span>
-                <span className="w-8 text-right text-[9px] text-dark-400">
+                <span className="w-8 text-right text-[9px] text-text-muted">
                   ({item.votes}人)
                 </span>
               </div>
@@ -358,7 +358,7 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
         </div>
 
         {items.length > 8 && (
-          <p className="text-center text-[10px] text-dark-400">
+          <p className="text-center text-[10px] text-text-muted">
             还有 {items.length - 8} 个专业
           </p>
         )}
@@ -420,7 +420,7 @@ const SourcePopover = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "fixed z-[9999] w-[300px] rounded-xl border border-green-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm transition-[opacity,transform] duration-200 ease-out",
+        "fixed z-[9999] w-[300px] rounded-xl border border-brand-300/40 bg-surface-light/95 p-3 shadow-xl shadow-black/25 backdrop-blur-sm transition-[opacity,transform] duration-200 ease-out",
         visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",
       )}
       style={{ top: pos.top, left: pos.left }}
@@ -435,7 +435,7 @@ const SourcePopover = forwardRef<
             setVisible(false);
             setTimeout(onClose, 200);
           }}
-          className="rounded p-0.5 text-dark-500 transition hover:bg-ink-100 hover:text-dark-800"
+          className="rounded p-0.5 text-text-muted transition hover:bg-surface-light-subtle hover:text-text-light-secondary"
         >
           ✕
         </button>
@@ -448,18 +448,18 @@ const SourcePopover = forwardRef<
             href={src.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-lg border border-border-subtle/60 bg-white/[0.03] p-2 text-[11px] leading-relaxed transition hover:bg-white/[0.07] hover:border-green-400/40"
+            className="block rounded-lg border border-border-subtle/60 bg-neutral-0/[0.03] p-2 text-[11px] leading-relaxed transition hover:bg-neutral-0/[0.07] hover:border-brand-400/40"
           >
-            <div className="line-clamp-1 font-medium text-green-600">
+            <div className="line-clamp-1 font-medium text-brand-600">
               {src.title || new URL(src.url).hostname.replace("www.", "")}
             </div>
-            <div className="mt-0.5 flex items-center gap-2 text-[9px] text-dark-500">
-              <span className="rounded-full border border-border-subtle bg-ink-50 px-1 py-px">
+            <div className="mt-0.5 flex items-center gap-2 text-[9px] text-text-muted">
+              <span className="rounded-full border border-border-subtle bg-surface-light-elevated px-1 py-px">
                 {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
               </span>
               <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>
               {src.http_status && src.http_status >= 404 && src.http_status !== 403 && src.http_status !== 401 && (
-                <span className="rounded bg-red-50 px-1 py-px text-red-400">
+                <span className="rounded bg-danger-soft px-1 py-px text-danger-400">
                   HTTP {src.http_status}
                 </span>
               )}

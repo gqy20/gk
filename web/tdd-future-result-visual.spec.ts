@@ -6,7 +6,7 @@
  * 2. DecisionHero 显示推荐路径 label + 大字 fit_score
  * 3. ScoreGrid 渲染雷达图 SVG 且 polygon 有 7 个顶点(对应 7 维分数)
  * 4. ComparisonTable 至少包含 income/stability/growth/risk 四行 + 3 列路径
- * 5. PathCard 包含 TONE 颜色 class(text-green-300 / amber-300 / cyan-300)
+ * 5. PathCard 包含 TONE 颜色 class(text-brand-300 / accent-300 / danger-300)
  * 6. 错误状态用红边框显示,而非米黄
  */
 import { test, expect } from "@playwright/test";
@@ -152,17 +152,17 @@ test.describe("future/result 视觉验收", () => {
     await expect(page.locator("thead").getByText("跨界转向")).toBeVisible();
   });
 
-  test("5-PathCard 包含 TONE 颜色 class(green-300/amber-300/cyan-300)", async ({ page }) => {
+  test("5-PathCard 包含 TONE 颜色 class(green-300/accent-300/danger-300)", async ({ page }) => {
     await page.route("**/api/future-runs/test", (route) =>
       route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(mockResult) }),
     );
     await page.goto(`${BASE}/future/result?runId=test`);
     await page.waitForSelector("h2:has-text('学术深造')");
     // 三个 PathCard 各自带一种 tone class
-    const greenCount = await page.locator(".text-green-300").count();
-    const amberCount = await page.locator(".text-amber-300").count();
-    const cyanCount = await page.locator(".text-cyan-300").count();
-    expect(greenCount + amberCount + cyanCount).toBeGreaterThan(0);
+    const brandCount = await page.locator(".text-brand-300").count();
+    const accentCount = await page.locator(".text-accent-300").count();
+    const dangerCount = await page.locator(".text-danger-300").count();
+    expect(brandCount + accentCount + dangerCount).toBeGreaterThan(0);
   });
 
   test("6-错误状态用红边框显示(不是米黄)", async ({ page }) => {
@@ -172,7 +172,7 @@ test.describe("future/result 视觉验收", () => {
     await page.goto(`${BASE}/future/result?runId=missing`);
     // FutureApiError 把 res.text() 包成 Error.message,所以显示 mock 的 "Internal Error"
     await page.waitForSelector("text=Internal Error", { timeout: 15000 });
-    const errorBox = page.locator(".border-red-300\\/40");
+    const errorBox = page.locator(".border-danger-300\\/40");
     await expect(errorBox).toBeVisible();
   });
 

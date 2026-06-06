@@ -28,13 +28,13 @@ function getCategoryCount(school: School, key: DetailCategoryKey): number {
 export default function ComparePanel({ schools, onClose, onRemove }: ComparePanelProps) {
   return (
     <div className="flex h-full flex-col bg-surface-light text-text-light">
-      <div className="border-b border-border-light bg-base-950 px-4 py-4 text-text">
+      <div className="border-b border-border-light bg-neutral-950 px-4 py-4 text-text">
         <div className="flex items-start gap-3">
           <div className="min-w-0 flex-1">
             <h2 className="text-xl font-semibold leading-tight">
               学校对比
             </h2>
-            <div className="mt-1 text-xs text-dark-300">
+            <div className="mt-1 text-xs text-text-secondary">
               {schools.length} 所学校
             </div>
           </div>
@@ -51,9 +51,9 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
           {schools.map((school) => (
             <div
               key={school.name}
-              className="flex w-[200px] shrink-0 flex-col rounded-lg border border-border-light bg-ink-50 shadow-sm"
+              className="flex w-[200px] shrink-0 flex-col rounded-lg border border-border-light bg-surface-light-elevated shadow-sm"
             >
-              <div className="border-b border-border-light bg-ink-200 px-3 py-3">
+              <div className="border-b border-border-light bg-surface-light-subtle px-3 py-3">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-sm font-semibold leading-tight text-text-light">
                     {school.name}
@@ -61,7 +61,7 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
                   <button
                     type="button"
                     onClick={() => onRemove(school)}
-                    className="shrink-0 rounded-full p-1 text-red-400 transition hover:bg-red-50"
+                    className="shrink-0 rounded-full p-1 text-danger-400 transition hover:bg-danger-soft"
                     title="移除"
                   >
                     <IconClose size={14} />
@@ -114,7 +114,7 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
                   href={school.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block truncate text-xs text-green-500 hover:text-green-400"
+                  className="block truncate text-xs text-brand-500 hover:text-brand-400"
                 >
                   {school.url.replace(/^https?:\/\//, "")}
                 </a>
@@ -138,8 +138,8 @@ function CompareRow({
 }) {
   return (
     <div className="flex items-center justify-between gap-2">
-      <span className="text-dark-600">{label}</span>
-      <span className={`font-medium ${highlight ? "text-green-400" : "text-dark-950"}`}>
+      <span className="text-text-light-muted">{label}</span>
+      <span className={`font-medium ${highlight ? "text-brand-400" : "text-text-light"}`}>
         {value}
       </span>
     </div>

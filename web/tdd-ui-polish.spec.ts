@@ -44,24 +44,22 @@ test.describe("UI 打磨 TDD", () => {
   test("7-色板语义: gold 色阶应从浅到深递进", async ({ page }) => {
     await page.goto(BASE);
 
-    // GREEN: gold-50 应比 gold-300 浅（亮度更高）
+    // Accent and danger scales should be distinct semantic tokens.
     const colors = await page.evaluate(() => {
       const style = getComputedStyle(document.documentElement);
       return {
-        gold50: style.getPropertyValue("--color-gold-50").trim(),
-        gold300: style.getPropertyValue("--color-gold-300").trim(),
-        gold500: style.getPropertyValue("--color-gold-500").trim(),
-        red500: style.getPropertyValue("--color-red-500").trim(),
-        ink800: style.getPropertyValue("--color-ink-800").trim(),
+        accent50: style.getPropertyValue("--color-accent-50").trim(),
+        accent300: style.getPropertyValue("--color-accent-300").trim(),
+        accent500: style.getPropertyValue("--color-accent-500").trim(),
+        danger500: style.getPropertyValue("--color-danger-500").trim(),
+        neutral800: style.getPropertyValue("--color-neutral-800").trim(),
       };
     });
 
-    // gold-50 应该是浅色（接近白），gold-300 是主色
-    expect(colors.gold50).not.toBe(colors.gold300);
-    // red-500 不应该是橙色系
-    expect(colors.red500).not.toContain("d887");
-    expect(colors.red500).not.toContain("f2c4");
-    // ink-800 不应该是绿色
-    expect(colors.ink800).not.toContain("dfeee");
+    expect(colors.accent50).not.toBe(colors.accent300);
+    expect(colors.accent500).not.toBe(colors.danger500);
+    expect(colors.danger500).not.toContain("d887");
+    expect(colors.danger500).not.toContain("f2c4");
+    expect(colors.neutral800).not.toContain("dfeee");
   });
 });

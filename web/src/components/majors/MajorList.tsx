@@ -24,17 +24,17 @@ function satisfactionConfig(score: string) {
   const num = parseFloat(score);
   if (isNaN(num) || num === 0) {
     return {
-      color: "bg-dark-700",
-      textColor: "text-dark-600",
+      color: "bg-neutral-700",
+      textColor: "text-text-light-muted",
       label: "暂无",
       pct: 0,
     };
   }
-  if (num >= 4.5) return { color: "bg-green-300", textColor: "text-green-300", label: score, pct: (num / 5) * 100 };
-  if (num >= 4.0) return { color: "bg-green-400", textColor: "text-green-400", label: score, pct: (num / 5) * 100 };
-  if (num >= 3.5) return { color: "bg-gold-300", textColor: "text-gold-300", label: score, pct: (num / 5) * 100 };
-  if (num >= 3.0) return { color: "bg-dark-300", textColor: "text-dark-200", label: score, pct: (num / 5) * 100 };
-  return { color: "bg-dark-500", textColor: "text-dark-500", label: score, pct: (num / 5) * 100 };
+  if (num >= 4.5) return { color: "bg-brand-300", textColor: "text-brand-300", label: score, pct: (num / 5) * 100 };
+  if (num >= 4.0) return { color: "bg-brand-400", textColor: "text-brand-400", label: score, pct: (num / 5) * 100 };
+  if (num >= 3.5) return { color: "bg-accent-300", textColor: "text-accent-300", label: score, pct: (num / 5) * 100 };
+  if (num >= 3.0) return { color: "bg-neutral-300", textColor: "text-text-secondary", label: score, pct: (num / 5) * 100 };
+  return { color: "bg-neutral-500", textColor: "text-text-muted", label: score, pct: (num / 5) * 100 };
 }
 
 function filterMajors(category: MajorCategory, menleiKey: string | null, query: string) {
@@ -69,15 +69,15 @@ function EmptyGuide({ hasSearch }: { hasSearch: boolean }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
       <div className="rounded-2xl border border-border-subtle bg-surface-elevated/40 p-6">
-        <svg className="mx-auto h-10 w-10 text-dark-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <svg className="mx-auto h-10 w-10 text-text-light-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
         </svg>
       </div>
       <div>
-        <p className="text-sm font-medium text-dark-200">
+        <p className="text-sm font-medium text-text-secondary">
           {hasSearch ? `未找到匹配结果` : "选择左侧门类开始浏览"}
         </p>
-        <p className="mt-1 text-xs text-dark-500">
+        <p className="mt-1 text-xs text-text-muted">
           {hasSearch
             ? "尝试其他关键词或清空搜索"
             : "共 " + (hasSearch ? "" : "") + " 个专业分布在 13 个门类中"}
@@ -113,23 +113,23 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
               <span className="inline-flex items-center rounded-full bg-primary/12 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
                 {activeMenlei.name}
               </span>
-              <span className="text-[11px] text-dark-500">
-                共 <span className="font-semibold tabular-nums text-dark-300">{items.length}</span> 个专业
+              <span className="text-[11px] text-text-muted">
+                共 <span className="font-semibold tabular-nums text-text-secondary">{items.length}</span> 个专业
               </span>
               {searchQuery.trim() && (
-                <span className="rounded-full bg-surface-active px-2 py-0.5 text-[10px] text-dark-400">
+                <span className="rounded-full bg-surface-active px-2 py-0.5 text-[10px] text-text-muted">
                   搜索: {searchQuery}
                 </span>
               )}
             </>
           ) : searchQuery.trim() ? (
-            <span className="text-[11px] text-dark-500">
-              搜索「<span className="text-dark-300">{searchQuery}</span>」:
-              <span className="font-semibold tabular-nums text-dark-300"> {items.length}</span> 个结果
+            <span className="text-[11px] text-text-muted">
+              搜索「<span className="text-text-secondary">{searchQuery}</span>」:
+              <span className="font-semibold tabular-nums text-text-secondary"> {items.length}</span> 个结果
             </span>
           ) : (
-            <span className="text-[11px] text-dark-500">
-              全部门类 · <span className="font-semibold tabular-nums text-dark-300">{items.length}</span> 个专业
+            <span className="text-[11px] text-text-muted">
+              全部门类 · <span className="font-semibold tabular-nums text-text-secondary">{items.length}</span> 个专业
             </span>
           )}
         </div>
@@ -154,7 +154,7 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
                 className="group grid grid-cols-[auto_1fr_auto_auto] gap-x-3 gap-y-0.5 rounded-lg border border-border bg-surface-elevated/50 px-3 py-2.5 transition-colors hover:border-primary/25 hover:bg-surface-active active:bg-surface-active sm:grid-cols-[auto_1fr_auto_auto]"
               >
                 {/* 第一行：代码 + 名称 + 满意度 + 标签 */}
-                <span className="row-span-2 self-center hidden font-mono text-[10px] text-dark-600 tabular-nums sm:block">
+                <span className="row-span-2 self-center hidden font-mono text-[10px] text-text-light-muted tabular-nums sm:block">
                   {major.zydm}
                 </span>
 
@@ -183,19 +183,19 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
                       </div>
                     </>
                   ) : (
-                    <span className="text-[10px] text-dark-600">--</span>
+                    <span className="text-[10px] text-text-light-muted">--</span>
                   )}
                 </div>
 
                 {/* 标签行 */}
                 <div className="self-center flex items-center gap-1 justify-end">
                   {major.has_interpretation && (
-                    <span className="inline-flex items-center rounded-md bg-green-500/12 px-1.5 py-px text-[10px] font-medium text-green-400">
+                    <span className="inline-flex items-center rounded-md bg-brand-500/12 px-1.5 py-px text-[10px] font-medium text-brand-400">
                       解读
                     </span>
                   )}
                   {major.graduate_scale !== "-" && (
-                    <span className="hidden items-center rounded-md bg-gold-500/10 px-1.5 py-px text-[10px] font-medium text-gold-400 xs:inline-flex">
+                    <span className="hidden items-center rounded-md bg-accent-500/10 px-1.5 py-px text-[10px] font-medium text-accent-400 xs:inline-flex">
                       {major.graduate_scale}
                     </span>
                   )}
@@ -203,7 +203,7 @@ export default function MajorList({ category, menleiKey, searchQuery }: MajorLis
 
                 {/* 第二行：专业类归属 */}
                 <div className="col-start-2 min-w-0 self-start">
-                  <span className="truncate text-[10px] text-dark-500">
+                  <span className="truncate text-[10px] text-text-muted">
                     {className}
                     {menleiName !== activeMenlei?.name && ` · ${menleiName}`}
                   </span>

@@ -21,19 +21,19 @@ const variantStyles: Record<
     primary:
       "border-border bg-surface-subtle text-text hover:border-primary/60 hover:bg-primary/10",
     secondary:
-      "border-border bg-surface-active text-dark-200 hover:border-primary/60 hover:bg-primary/10",
-    ghost: "border-transparent text-dark-200 hover:text-text hover:bg-surface-active",
+      "border-border bg-surface-active text-text-secondary hover:border-primary/60 hover:bg-primary/10",
+    ghost: "border-transparent text-text-secondary hover:text-text hover:bg-surface-active",
     danger:
-      "border-border bg-surface-active text-dark-200 hover:border-red-200/40 hover:text-red-100",
+      "border-border bg-surface-active text-text-secondary hover:border-danger-200/40 hover:text-danger-100",
   },
   light: {
     primary:
-      "border-green-500 bg-green-500 text-text hover:bg-green-400 disabled:opacity-40",
+      "border-brand-500 bg-brand-500 text-text hover:bg-brand-400 disabled:opacity-40",
     secondary:
-      "border-border-light bg-ink-50 text-dark-950 hover:border-green-400/50 hover:bg-green-50",
-    ghost: "border-transparent text-dark-950 hover:text-green-500 hover:bg-ink-100",
+      "border-border-light bg-surface-light-elevated text-text-light hover:border-brand-400/50 hover:bg-success-soft",
+    ghost: "border-transparent text-text-light hover:text-brand-500 hover:bg-surface-light-subtle",
     danger:
-      "border-border-light bg-ink-50 text-dark-950 hover:border-red-200/40 hover:text-red-400",
+      "border-border-light bg-surface-light-elevated text-text-light hover:border-danger-200/40 hover:text-danger-400",
   },
 };
 
@@ -42,13 +42,13 @@ const activeStyles: Record<ButtonTheme, Record<ButtonVariant, string>> = {
     primary: "border-primary/60 bg-primary/10 text-text",
     secondary: "border-primary/60 bg-primary/10 text-text",
     ghost: "bg-surface-active text-text",
-    danger: "border-red-200/40 text-red-100",
+    danger: "border-danger-200/40 text-danger-100",
   },
   light: {
-    primary: "border-green-500 bg-green-500 text-text",
-    secondary: "border-green-400/50 bg-green-50 text-green-500",
-    ghost: "bg-ink-100 text-green-500",
-    danger: "border-red-200/40 text-red-400",
+    primary: "border-brand-500 bg-brand-500 text-text",
+    secondary: "border-brand-400/50 bg-success-soft text-brand-500",
+    ghost: "bg-surface-light-subtle text-brand-500",
+    danger: "border-danger-200/40 text-danger-400",
   },
 };
 

@@ -125,10 +125,10 @@ function Home() {
               width={28}
               height={28}
             />
-            <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-dark-50 sm:text-3xl">
+            <h1 className="min-w-0 truncate text-lg font-semibold leading-none text-text sm:text-3xl">
               中国高校信息地图
             </h1>
-            <span className="hidden shrink-0 truncate text-xs text-dark-300 sm:inline sm:text-sm">
+            <span className="hidden shrink-0 truncate text-xs text-text-secondary sm:inline sm:text-sm">
               当前：{contextLabel}
             </span>
             <a
@@ -142,7 +142,7 @@ function Home() {
             </a>
             <a
               href="/future"
-              className="hidden shrink-0 items-center rounded-full border border-green-300/30 bg-green-300/12 px-3.5 py-1.5 text-xs font-medium text-green-300 transition-all hover:border-green-300/60 hover:bg-green-300/20 sm:inline-flex"
+              className="hidden shrink-0 items-center rounded-full border border-brand-300/30 bg-brand-300/12 px-3.5 py-1.5 text-xs font-medium text-brand-300 transition-all hover:border-brand-300/60 hover:bg-brand-300/20 sm:inline-flex"
             >
               未来路径
             </a>
@@ -175,8 +175,8 @@ function Home() {
 
       <main className="relative z-10 grid flex-1 grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1">
         <section aria-label="高校地图" className="relative min-h-0 overflow-hidden rounded-lg border border-border bg-surface-elevated/92 shadow-2xl shadow-black/25">
-          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-dark-300">
-            <span className="rounded-full border border-border-subtle bg-white/[0.06] px-3 py-1">
+          <div className="pointer-events-none absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2 text-xs text-text-secondary">
+            <span className="rounded-full border border-border-subtle bg-neutral-0/[0.06] px-3 py-1">
               {filteredSchools.length} 所高校
             </span>
           </div>
@@ -237,7 +237,7 @@ function Home() {
                 exit="exit"
                 transition={panelTransition}
               >
-                <div className="border-b border-border-light bg-ink-200 px-4 py-3">
+                <div className="border-b border-border-light bg-surface-light-subtle px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <div className="text-sm font-semibold text-text-light">
@@ -256,7 +256,7 @@ function Home() {
                     )}
                   </div>
                   {loadError && (
-                    <div className="mt-2 rounded border border-red-500/30 bg-gold-50 px-2 py-1 text-[11px] text-red-600">
+                    <div className="mt-2 rounded border border-danger-500/30 bg-accent-50 px-2 py-1 text-[11px] text-danger-600">
                       数据加载失败：{loadError}
                     </div>
                   )}

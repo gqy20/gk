@@ -6,9 +6,9 @@
 import type { FuturePath } from "@/lib/future/types";
 
 export const TONE = {
-  steady:   { fg: "text-green-300",  ring: "ring-green-300/40",  bg: "bg-green-300/10" },
-  balanced: { fg: "text-amber-300",   ring: "ring-amber-300/45",  bg: "bg-amber-300/10" },
-  risky:    { fg: "text-cyan-300",    ring: "ring-cyan-300/40",   bg: "bg-cyan-300/10"  },
+  steady:   { fg: "text-brand-300",  ring: "ring-brand-300/40",  bg: "bg-brand-300/10" },
+  balanced: { fg: "text-accent-300",   ring: "ring-accent-300/45",   bg: "bg-accent-300/10" },
+  risky:    { fg: "text-danger-300",    ring: "ring-danger-300/40",    bg: "bg-danger-300/10" },
 } as const;
 
 export type ToneKey = keyof typeof TONE;

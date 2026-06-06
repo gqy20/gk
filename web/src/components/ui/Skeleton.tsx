@@ -5,7 +5,7 @@ export function Skeleton({
 }) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-dark-300/30 ${className}`}
+      className={`animate-pulse rounded-lg bg-neutral-300/30 ${className}`}
     />
   );
 }
@@ -36,7 +36,7 @@ export function HomePageSkeleton() {
           <Skeleton className="h-5 w-28" />
           {/* 省份卡片 × 4 */}
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="space-y-2 rounded-lg border border-border-light bg-ink-50 p-3">
+            <div key={i} className="space-y-2 rounded-lg border border-border-light bg-surface-light-elevated p-3">
               <div className="flex items-center gap-2">
                 <Skeleton className="h-4 w-20" />
                 <Skeleton className="ml-auto h-4 w-10 rounded-full" />

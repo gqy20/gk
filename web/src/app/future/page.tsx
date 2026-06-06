@@ -28,7 +28,7 @@ export default function FuturePage() {
 function FuturePageShell() {
   return (
     <FutureShell title="未来路径推演" backHref="/" backLabel="返回">
-      <FuturePanel className="p-5 text-sm text-[#657064]">正在加载推演表单…</FuturePanel>
+      <FuturePanel className="p-5 text-sm text-text-secondary">正在加载推演表单…</FuturePanel>
     </FutureShell>
   );
 }
@@ -235,7 +235,7 @@ function FuturePageContent() {
           <FuturePanel className="p-5">
             <FormStep number="03" title="目标与取舍" description="这里决定三条路径会偏稳健、均衡还是冒险。">
               <div className="grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)]">
-                <label className="block space-y-2 text-xs font-medium text-[#657064]">
+                <label className="block space-y-2 text-xs font-medium text-text-secondary">
                   <span>风险偏好：{riskTolerance}/10</span>
                   <input
                     type="range"
@@ -243,33 +243,33 @@ function FuturePageContent() {
                     max={10}
                     value={riskTolerance}
                     onChange={(event) => setRiskTolerance(Number(event.target.value))}
-                    className="w-full accent-[#b99335]"
+                    className="w-full accent-primary"
                   />
-                  <div className="flex justify-between text-[11px] text-[#8c877c]">
+                  <div className="flex justify-between text-[11px] text-text-muted">
                     <span>稳健</span>
                     <span>均衡</span>
                     <span>冒险</span>
                   </div>
                 </label>
-                <label className="block space-y-2 text-xs font-medium text-[#657064]">
+                <label className="block space-y-2 text-xs font-medium text-text-secondary">
                   <span>目标/顾虑</span>
                   <textarea
                     value={goals}
                     onChange={(event) => setGoals(event.target.value)}
-                    className="min-h-28 w-full rounded-lg border border-black/10 bg-white px-3 py-2 text-sm text-[#1d241f] outline-none transition focus:border-[#b99335]"
+                    className="min-h-28 w-full rounded-lg border border-border bg-surface-subtle px-3 py-2 text-sm text-text outline-none transition focus:border-primary"
                   />
                 </label>
               </div>
             </FormStep>
           </FuturePanel>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-black/10 bg-[#fffaf0] px-4 py-3">
-            <label className="text-xs font-medium text-[#657064]">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface-elevated/70 px-4 py-3">
+            <label className="text-xs font-medium text-text-secondary">
               路径数量
               <select
                 value={pathCount}
                 onChange={(event) => setPathCount(Number(event.target.value))}
-                className="ml-2 rounded-lg border border-black/10 bg-white px-2 py-1 text-[#1d241f]"
+                className="ml-2 rounded-lg border border-border bg-surface-subtle px-2 py-1 text-text"
               >
                 {[3, 4, 5, 6].map((count) => (
                   <option key={count} value={count}>{count}</option>
@@ -282,7 +282,7 @@ function FuturePageContent() {
           </div>
 
           {error && (
-            <p className="rounded-lg border border-red-300/40 bg-red-50 px-3 py-2 text-xs text-red-500">
+            <p className="rounded-lg border border-danger-300/40 bg-danger-soft px-3 py-2 text-xs text-danger">
               {error}
             </p>
           )}
@@ -302,9 +302,9 @@ function FuturePageContent() {
 
           <FuturePanel className="p-5">
             <SectionHeading title="输出会包含" />
-            <div className="mt-4 grid gap-2 text-xs leading-5 text-[#657064]">
+            <div className="mt-4 grid gap-2 text-xs leading-5 text-text-secondary">
               {["推荐路径与适配分", "三条分叉计划", "路径对比表", "大学前三阶段时间线", "前两年行动清单", "假设和质量检查"].map((item) => (
-                <div key={item} className="rounded-lg border border-black/10 bg-[#f7f1e4] px-3 py-2">
+                <div key={item} className="rounded-lg border border-border bg-surface-subtle px-3 py-2">
                   {item}
                 </div>
               ))}
@@ -386,7 +386,7 @@ function HistoryList({
   if (error) {
     return (
       <FuturePanel className="p-5">
-        <p className="text-sm text-amber-300">拉取历史失败：{error}</p>
+        <p className="text-sm text-warning">拉取历史失败：{error}</p>
         <button
           type="button"
           onClick={onReload}
@@ -444,7 +444,7 @@ function HistoryCard({ item }: { item: FutureRunListItem }) {
                 生成中
               </span>
             ) : item.status === "failed" ? (
-              <span className="rounded-full border border-red-300/40 bg-red-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-red-300">
+              <span className="rounded-full border border-danger-300/40 bg-danger-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-danger-300">
                 失败
               </span>
             ) : (
@@ -470,7 +470,7 @@ function HistoryCard({ item }: { item: FutureRunListItem }) {
             </p>
           )}
           {item.status === "failed" && item.errorMessage && (
-            <p className="mt-1.5 text-[11px] text-red-300">{item.errorMessage}</p>
+            <p className="mt-1.5 text-[11px] text-danger-300">{item.errorMessage}</p>
           )}
         </div>
         <div className="shrink-0 text-right">
@@ -510,9 +510,9 @@ function FormStep({
   return (
     <div className="grid gap-4 md:grid-cols-[150px_minmax(0,1fr)]">
       <div>
-        <div className="text-xs font-semibold text-[#b99335]">{number}</div>
-        <h2 className="mt-1 text-base font-semibold text-[#172019]">{title}</h2>
-        <p className="mt-2 text-xs leading-5 text-[#657064]">{description}</p>
+        <div className="text-xs font-semibold text-accent">{number}</div>
+        <h2 className="mt-1 text-base font-semibold text-text">{title}</h2>
+        <p className="mt-2 text-xs leading-5 text-text-secondary">{description}</p>
       </div>
       <div>{children}</div>
     </div>
@@ -522,8 +522,8 @@ function FormStep({
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between gap-4 border-b border-black/10 pb-2 last:border-b-0 last:pb-0">
-      <span className="text-xs text-[#7c7260]">{label}</span>
-      <span className="min-w-0 truncate text-sm font-medium text-[#172019]">{value}</span>
+      <span className="text-xs text-text-muted">{label}</span>
+      <span className="min-w-0 truncate text-sm font-medium text-text">{value}</span>
     </div>
   );
 }
@@ -540,13 +540,13 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <label className="block space-y-1.5 text-xs font-medium text-[#657064]">
+    <label className="block space-y-1.5 text-xs font-medium text-text-secondary">
       <span>{label}</span>
       <input
         required={required}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-black/10 bg-white px-3 text-sm text-[#1d241f] outline-none transition focus:border-[#b99335]"
+        className="h-10 w-full rounded-lg border border-border bg-surface-subtle px-3 text-sm text-text outline-none transition focus:border-primary"
       />
     </label>
   );
@@ -566,12 +566,12 @@ function Select({
   placeholder?: string;
 }) {
   return (
-    <label className="block space-y-1.5 text-xs font-medium text-[#657064]">
+    <label className="block space-y-1.5 text-xs font-medium text-text-secondary">
       <span>{label}</span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-black/10 bg-white px-3 text-sm text-[#1d241f] outline-none transition focus:border-[#b99335]"
+        className="h-10 w-full rounded-lg border border-border bg-surface-subtle px-3 text-sm text-text outline-none transition focus:border-primary"
       >
         {placeholder && <option value="">{placeholder}</option>}
         {options.map((option) => (
@@ -599,13 +599,13 @@ function OptionSelect({
 }) {
   const normalizedOptions = value && !options.includes(value) ? [value, ...options] : options;
   return (
-    <label className="block space-y-1.5 text-xs font-medium text-[#657064]">
+    <label className="block space-y-1.5 text-xs font-medium text-text-secondary">
       <span>{label}</span>
       <select
         required={required}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-black/10 bg-white px-3 text-sm text-[#1d241f] outline-none transition focus:border-[#b99335]"
+        className="h-10 w-full rounded-lg border border-border bg-surface-subtle px-3 text-sm text-text outline-none transition focus:border-primary"
       >
         <option value="">{placeholder}</option>
         {normalizedOptions.map((option) => (

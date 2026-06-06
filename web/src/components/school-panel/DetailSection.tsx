@@ -23,7 +23,7 @@ export default function DetailSection({
 }: DetailSectionProps) {
   const items = detail[category];
   if (!Array.isArray(items) || items.length === 0) {
-    return <p className="text-sm text-dark-600">{EMPTY_MESSAGES.noData}</p>;
+    return <p className="text-sm text-text-light-muted">{EMPTY_MESSAGES.noData}</p>;
   }
 
   const sources = crawlSources?.[category];
@@ -35,14 +35,14 @@ export default function DetailSection({
         {colleges.map((college) => (
           <div
             key={college.name}
-            className="rounded-lg border border-border-light bg-ink-50 p-3 text-xs"
+            className="rounded-lg border border-border-light bg-surface-light-elevated p-3 text-xs"
           >
             {college.url ? (
               <a
                 href={college.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-green-500 hover:text-green-400"
+                className="font-semibold text-brand-500 hover:text-brand-400"
               >
                 {college.name}
               </a>
@@ -50,7 +50,7 @@ export default function DetailSection({
               <span className="font-semibold text-text-light">{college.name}</span>
             )}
             {college.disciplines?.length > 0 && (
-              <div className="mt-1 text-dark-600">
+              <div className="mt-1 text-text-light-muted">
                 {college.disciplines.join("、")}
               </div>
             )}
@@ -68,15 +68,15 @@ export default function DetailSection({
         {experiences.map((experience, index) => (
           <div
             key={index}
-            className="rounded-lg border border-primary-border bg-gold-50 p-3 text-xs"
+            className="rounded-lg border border-primary-border bg-accent-50 p-3 text-xs"
           >
-            <div className="font-semibold text-gold-700">
+            <div className="font-semibold text-accent-700">
               {experience.topic}
             </div>
-            <p className="mt-2 leading-relaxed text-dark-950">
+            <p className="mt-2 leading-relaxed text-text-light">
               {experience.content}
             </p>
-            <div className="mt-2 text-[10px] text-red-600">
+            <div className="mt-2 text-[10px] text-danger-600">
               {experience.source_type}
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function DetailSection({
                   return (
                     <p
                       key={li}
-                      className={`leading-relaxed ${isQ ? "text-blue-700 font-medium" : isA ? "text-dark-900" : "text-dark-700"}`}
+                      className={`leading-relaxed ${isQ ? "text-blue-700 font-medium" : isA ? "text-text-light" : "text-text-light-muted"}`}
                     >
                       {isQ ? "Q: " : isA ? "A: " : ""}
                       {content}
@@ -136,22 +136,22 @@ export default function DetailSection({
       {docs.map((item, index) => (
         <div
           key={index}
-          className="rounded-lg border border-border-light bg-ink-50 p-3 text-xs transition hover:border-green-400/45"
+          className="rounded-lg border border-border-light bg-surface-light-elevated p-3 text-xs transition hover:border-brand-400/45"
         >
           <a
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block font-semibold leading-relaxed text-green-500 hover:text-green-400"
+            className="block font-semibold leading-relaxed text-brand-500 hover:text-brand-400"
           >
             {item.title}
           </a>
-          <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-dark-600">
+          <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-text-light-muted">
             {item.publish_date && <span>{item.publish_date}</span>}
             {item.source_department && <span>{item.source_department}</span>}
           </div>
           {item.summary && (
-            <p className="mt-2 leading-relaxed text-dark-950">{item.summary}</p>
+            <p className="mt-2 leading-relaxed text-text-light">{item.summary}</p>
           )}
           {item.attachments?.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
@@ -161,7 +161,7 @@ export default function DetailSection({
                   href={attachment}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-red-300/50 bg-red-50 px-2 py-0.5 text-[10px] text-red-400 transition hover:border-red-400/50"
+                  className="rounded-full border border-danger-300/50 bg-danger-soft px-2 py-0.5 text-[10px] text-danger-400 transition hover:border-danger-400/50"
                 >
                   附件 {attachmentIndex + 1}
                 </a>
@@ -180,40 +180,40 @@ function SourceList({ sources }: { sources: SourceItem[] }) {
 
   return (
     <section className="mt-4 space-y-2 border-t border-border-light pt-3">
-      <h4 className="text-[10px] font-semibold text-dark-800">
+      <h4 className="text-[10px] font-semibold text-text-light-secondary">
         信息来源 ({sources.length} 条)
       </h4>
       {sources.slice(0, 8).map((src, i) => (
         <div
           key={i}
-          className="rounded-lg border border-border-subtle bg-white/[0.03] p-2.5 text-xs"
+          className="rounded-lg border border-border-subtle bg-neutral-0/[0.03] p-2.5 text-xs"
         >
           <a
             href={src.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="line-clamp-1 font-medium text-green-600 hover:text-green-400"
+            className="line-clamp-1 font-medium text-brand-600 hover:text-brand-400"
           >
             {src.title || src.url}
           </a>
-          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-dark-500">
-            <span className="rounded-full border border-border-subtle bg-ink-50 px-1.5 py-px">
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-text-muted">
+            <span className="rounded-full border border-border-subtle bg-surface-light-elevated px-1.5 py-px">
               {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
             </span>
             <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>
             {src.http_status && src.http_status >= 404 && src.http_status !== 403 && src.http_status !== 401 && (
-              <span className="text-red-400">HTTP {src.http_status}</span>
+              <span className="text-danger-400">HTTP {src.http_status}</span>
             )}
           </div>
           {src.relevance_note && (
-            <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-dark-600">
+            <p className="mt-1 line-clamp-2 text-[11px] leading-relaxed text-text-light-muted">
               {src.relevance_note}
             </p>
           )}
         </div>
       ))}
       {sources.length > 8 && (
-        <p className="text-center text-[10px] text-dark-500">
+        <p className="text-center text-[10px] text-text-muted">
           还有 {sources.length - 8} 条来源
         </p>
       )}
