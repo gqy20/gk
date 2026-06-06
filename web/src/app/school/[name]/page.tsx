@@ -13,12 +13,12 @@ export async function generateStaticParams(): Promise<{ name: string }[]> {
 }
 
 interface PageProps {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }
 
 export default async function SchoolDetailPage({ params }: PageProps) {
   const resolved = await params;
-  const rawName = await resolved.name;
+  const rawName = resolved.name;
   // output: "export" 模式下 Next.js 会二次编码 params，需要解码两次
   const decodedName = decodeURIComponent(decodeURIComponent(rawName));
   const filePath = path.join(process.cwd(), "public/data/schools.json");

@@ -105,14 +105,11 @@ function FutureResultContent() {
   const output = result?.output;
   const isGenerating = result?.run.status === "generating" && !cancelled;
   const recommendedPath = output ? findRecommendedPath(output) : null;
-  const alternatePaths = output
-    ? output.paths.filter((path) => path.index !== recommendedPath?.index)
-    : [];
 
   return (
     <FutureShell
       title={output?.title || "未来路径推演结果"}
-      subtitle="先看推荐结论和路径对比，再展开每条路径的时间线、风险和行动建议。"
+      subtitle="先确定推荐方向，再在三条路径之间切换查看。对比和推演依据放在辅助区。"
       backHref="/future"
       backLabel="新推演"
       eyebrow={result?.run.promptVersion || "结构化推演结果"}
@@ -148,34 +145,11 @@ function FutureResultContent() {
               <DecisionHero output={output} run={result?.run} recommendedPath={recommendedPath} />
             </motion.div>
             <motion.div variants={panelFade}>
-              <InsightPanels output={output} />
+              <PathDecisionStage output={output} recommendedPath={recommendedPath} />
             </motion.div>
             <motion.div variants={panelFade}>
-              <ComparisonTable output={output} recommendedPath={recommendedPath} />
+              <SupportSections output={output} run={result?.run} recommendedPath={recommendedPath} />
             </motion.div>
-            {output.branch_plan && output.branch_plan.length > 0 && (
-              <motion.div variants={panelFade}>
-                <BranchPlanStrip output={output} recommendedPath={recommendedPath} />
-              </motion.div>
-            )}
-            <motion.section
-              variants={panelFade}
-              className="space-y-3"
-            >
-              {recommendedPath && (
-                <PathCard
-                  path={recommendedPath}
-                  isRecommended
-                />
-              )}
-              {alternatePaths.length > 0 && (
-                <div className="grid items-start gap-3 lg:grid-cols-2">
-                  {alternatePaths.map((path) => (
-                    <PathCard key={path.index} path={path} isRecommended={false} />
-                  ))}
-                </div>
-              )}
-            </motion.section>
           </motion.div>
         )}
     </FutureShell>
@@ -213,12 +187,11 @@ function DecisionHero({
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-text-secondary">{summary}</p>
           <p className="mt-2 max-w-3xl text-xs leading-6 text-text-muted">{adviceIntro}</p>
-          <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
-            {run?.model && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">模型：{run.model}</span>}
-            {run?.promptVersion && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">Prompt：{run.promptVersion}</span>}
-            {typeof run?.inputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">输入：{run.inputTokens} tok</span>}
-            {typeof run?.outputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">输出：{run.outputTokens} tok</span>}
-          </div>
+          {run?.model && (
+            <div className="mt-4 inline-flex rounded-full border border-border bg-surface-subtle px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-text-muted">
+              {run.model}
+            </div>
+          )}
         </div>
 
         <div className="rounded-xl border border-border bg-surface-subtle p-4">
@@ -259,12 +232,370 @@ function DecisionHero({
   );
 }
 
-function InsightPanels({ output }: { output: FutureStructuredOutput }) {
+function PathDecisionStage({
+  output,
+  recommendedPath,
+}: {
+  output: FutureStructuredOutput;
+  recommendedPath: FuturePath | null;
+}) {
+  const initialPath = recommendedPath || output.paths[0] || null;
+  const [selectedIndex, setSelectedIndex] = useState(initialPath?.index ?? 0);
+  const selectedPath =
+    output.paths.find((path) => path.index === selectedIndex) || initialPath;
+
+  if (!selectedPath) return null;
+
+  return (
+    <section className="space-y-4">
+      <FuturePanel className="p-4 sm:p-5">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+              三条未来路径
+            </div>
+            <h2 className="mt-1 text-sm font-semibold tracking-tight text-text">
+              选择一条路径查看完整推演
+            </h2>
+          </div>
+          <p className="max-w-xl text-xs leading-5 text-text-muted">
+            当前只展开一条路径，避免三份时间线和建议互相挤压。
+          </p>
+        </div>
+
+        <div
+          className="mt-4 grid gap-3 lg:grid-cols-[repeat(auto-fit,minmax(260px,1fr))]"
+          role="tablist"
+          aria-label="未来路径"
+        >
+          {output.paths.map((path) => (
+            <PathOptionCard
+              key={path.index}
+              path={path}
+              selected={path.index === selectedPath.index}
+              isRecommended={path.index === recommendedPath?.index}
+              onSelect={() => setSelectedIndex(path.index)}
+            />
+          ))}
+        </div>
+      </FuturePanel>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedPath.index}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+        >
+          <SelectedPathDetail
+            path={selectedPath}
+            isRecommended={selectedPath.index === recommendedPath?.index}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </section>
+  );
+}
+
+function PathOptionCard({
+  path,
+  selected,
+  isRecommended,
+  onSelect,
+}: {
+  path: FuturePath;
+  selected: boolean;
+  isRecommended: boolean;
+  onSelect: () => void;
+}) {
+  const tone = toneOf(path);
+  const toneCls = TONE[tone];
+  const mainRisk = path.key_risks?.[0] || "风险待观察";
+  const mainStrength = bestScoreLabel(path);
+
+  return (
+    <button
+      type="button"
+      role="tab"
+      aria-selected={selected}
+      aria-controls={`path-panel-${path.index}`}
+      onClick={onSelect}
+      className={`group relative min-h-[190px] overflow-hidden rounded-xl border p-4 text-left transition duration-200 ${
+        selected
+          ? `border-accent/50 bg-surface-elevated ${toneCls.ring} ring-1`
+          : "border-border bg-surface-subtle hover:-translate-y-0.5 hover:border-accent/35"
+      }`}
+    >
+      <span
+        aria-hidden
+        className={`absolute inset-x-0 top-0 h-0.5 bg-current ${selected ? toneCls.fg : "text-border"}`}
+      />
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="text-base font-semibold tracking-tight text-text">{path.label}</h3>
+            {isRecommended && (
+              <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent">
+                推荐
+              </span>
+            )}
+          </div>
+          <p className="mt-2 line-clamp-2 text-xs leading-5 text-text-secondary">
+            {path.tagline}
+          </p>
+        </div>
+        <div className="shrink-0 text-right">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+            FIT
+          </div>
+          <div className={`text-3xl font-semibold tabular-nums ${toneCls.fg}`}>
+            {path.fit_score}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        <span
+          className={`rounded-full px-2 py-0.5 font-mono text-[10px] ring-1 ${toneCls.bg} ${toneCls.fg} ${toneCls.ring}`}
+        >
+          {path.probability_tone}
+        </span>
+        {path.branch_ref && (
+          <span className="rounded-full border border-border bg-surface-elevated px-2 py-0.5 font-mono text-[10px] text-text-muted">
+            {path.branch_ref}
+          </span>
+        )}
+      </div>
+
+      <div className="mt-4 grid gap-2 border-t border-border/60 pt-3 text-[11px] leading-5">
+        <div>
+          <span className="font-mono uppercase tracking-wider text-text-muted">优势</span>
+          <p className="mt-0.5 text-text-secondary">{mainStrength}</p>
+        </div>
+        <div>
+          <span className="font-mono uppercase tracking-wider text-text-muted">风险</span>
+          <p className="mt-0.5 line-clamp-1 text-text-secondary">{mainRisk}</p>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function SelectedPathDetail({
+  path,
+  isRecommended,
+}: {
+  path: FuturePath;
+  isRecommended: boolean;
+}) {
+  const tone: ToneKey = toneOf(path);
+  const toneCls = TONE[tone];
+  const actionItems = extractActionItems(path.advice);
+
+  return (
+    <FuturePanel
+      tone={tone}
+      className="p-5 sm:p-6"
+      as="article"
+    >
+      <div
+        id={`path-panel-${path.index}`}
+        role="tabpanel"
+        aria-label={path.label}
+        className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)]"
+      >
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 id={`path-${path.index}`} className="text-2xl font-semibold tracking-tight text-text">
+              {path.label}
+            </h2>
+            {isRecommended && (
+              <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent">
+                推荐
+              </span>
+            )}
+            <span
+              className={`rounded-full px-2 py-0.5 font-mono text-[10px] ring-1 ${toneCls.bg} ${toneCls.fg} ${toneCls.ring}`}
+            >
+              {path.probability_tone}
+            </span>
+          </div>
+          <p className="mt-2 text-sm leading-7 text-text-secondary">{path.tagline}</p>
+
+          <div className="mt-5 rounded-xl border border-border bg-surface-subtle p-4">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+              适合你，因为
+            </div>
+            <div className="mt-3 grid gap-2">
+              {(["school_fit", "major_fit", "happiness"] as const).map((key) => {
+                const score = path.scores[key];
+                if (!score) return null;
+                return (
+                  <div key={key} className="rounded-lg border border-border bg-surface-elevated p-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-xs font-medium text-text">{scoreLabel(key)}</span>
+                      <span className={`font-mono text-xs tabular-nums ${toneCls.fg}`}>
+                        {score.value}/10
+                      </span>
+                    </div>
+                    <p className="mt-1 text-[11px] leading-5 text-text-muted">{score.reason}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <ScoreGrid path={path} />
+        </div>
+
+        <div className="space-y-4">
+          <div className="rounded-xl border border-border bg-surface-subtle p-4">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+              未来节奏
+            </div>
+            <div className="mt-4 space-y-4">
+              {path.timeline.map((item, i) => (
+                <TimelineRow key={item.stage} item={item} index={i} />
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-danger-300/25 bg-danger-500/[0.05] p-4">
+              <h3 className="font-mono text-[10px] uppercase tracking-wider text-danger-300">
+                需要警惕
+              </h3>
+              <ul className="mt-2 space-y-1.5 text-xs leading-5 text-danger-100">
+                {(path.key_risks.length > 0 ? path.key_risks : ["暂未识别明确风险"]).map((risk) => (
+                  <li key={risk} className="flex gap-1.5">
+                    <span aria-hidden className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-danger-300" />
+                    <span>{risk}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-border bg-surface-subtle p-4">
+              <h3 className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+                关键转折点
+              </h3>
+              <ul className="mt-2 space-y-1.5 text-xs leading-5 text-text-secondary">
+                {(path.turning_points.length > 0 ? path.turning_points : ["等待更多信息确认"]).map((tp) => (
+                  <li key={tp} className="flex gap-1.5">
+                    <span aria-hidden className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-text-muted" />
+                    <span>{tp}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-surface-subtle p-4">
+            <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
+              下一步
+            </h3>
+            <ul className="mt-2 space-y-1.5">
+              {actionItems.map((item) => (
+                <li key={item} className="flex gap-2 text-xs leading-6 text-text-secondary">
+                  <span aria-hidden className={`mt-2 h-1 w-1 shrink-0 rounded-full bg-current ${toneCls.fg}`} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </FuturePanel>
+  );
+}
+
+function SupportSections({
+  output,
+  run,
+  recommendedPath,
+}: {
+  output: FutureStructuredOutput;
+  run: FutureRunResult["run"] | undefined;
+  recommendedPath: FuturePath | null;
+}) {
+  return (
+    <div className="grid gap-3 lg:grid-cols-2">
+      <DisclosurePanel title="对比三条路径" kicker="路径对比" defaultOpen={false}>
+        <ComparisonTableContent output={output} recommendedPath={recommendedPath} />
+      </DisclosurePanel>
+      <DisclosurePanel title="推演依据" kicker="依据与质量" defaultOpen={false}>
+        <InsightPanels output={output} run={run} />
+      </DisclosurePanel>
+    </div>
+  );
+}
+
+function DisclosurePanel({
+  title,
+  kicker,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  kicker: string;
+  children: ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <FuturePanel className="p-0">
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-4 p-4 text-left sm:p-5"
+      >
+        <span>
+          <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+            {kicker}
+          </span>
+          <span className="mt-1 block text-sm font-semibold tracking-tight text-text">
+            {title}
+          </span>
+        </span>
+        <span
+          aria-hidden
+          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface-subtle text-text-muted transition ${open ? "rotate-45" : ""}`}
+        >
+          +
+        </span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            className="overflow-hidden"
+          >
+            <div className="border-t border-border/60 p-4 sm:p-5">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </FuturePanel>
+  );
+}
+
+function InsightPanels({
+  output,
+  run,
+}: {
+  output: FutureStructuredOutput;
+  run: FutureRunResult["run"] | undefined;
+}) {
   const qualityItems = buildQualityItems(output);
   const assumptionCount = output.choice_context.assumptions?.length || 0;
   return (
-    <section className="grid gap-3 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)]">
-      <FuturePanel className="p-5">
+    <section className="grid gap-3">
+      <div>
         <div className="flex items-end justify-between gap-3">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
@@ -291,9 +622,9 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
             </li>
           )}
         </ul>
-      </FuturePanel>
+      </div>
 
-      <FuturePanel className="p-5">
+      <div>
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
           质量检查
         </div>
@@ -330,12 +661,18 @@ function InsightPanels({ output }: { output: FutureStructuredOutput }) {
             ))}
           </div>
         )}
-      </FuturePanel>
+      </div>
+
+      <div className="flex flex-wrap gap-2 border-t border-border/60 pt-3 text-[11px]">
+        {run?.promptVersion && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">Prompt：{run.promptVersion}</span>}
+        {typeof run?.inputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">输入：{run.inputTokens} tok</span>}
+        {typeof run?.outputTokens === "number" && <span className="rounded-full border border-border bg-surface-subtle px-2.5 py-1 text-text-muted">输出：{run.outputTokens} tok</span>}
+      </div>
     </section>
   );
 }
 
-function ComparisonTable({
+function ComparisonTableContent({
   output,
   recommendedPath,
 }: {
@@ -372,74 +709,71 @@ function ComparisonTable({
     },
   ];
 
+  return <ComparisonGrid output={output} recommendedPath={recommendedPath} rows={rows} />;
+}
+
+function ComparisonGrid({
+  output,
+  recommendedPath,
+  rows,
+}: {
+  output: FutureStructuredOutput;
+  recommendedPath: FuturePath | null;
+  rows: Array<{
+    label: string;
+    render: (path: FuturePath) => ReactNode;
+  }>;
+}) {
   return (
-    <FuturePanel className="p-5">
-      <div className="flex items-end justify-between gap-3">
-        <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-            路径对比
-          </div>
-          <h2 className="mt-1 text-sm font-semibold tracking-tight text-text">取舍一览</h2>
-          <p className="mt-1 max-w-prose text-xs leading-5 text-text-muted">
-            先比较取舍，再展开细节。
-          </p>
-        </div>
-        {recommendedPath && (
-          <span className="hidden rounded-full border border-primary/40 bg-primary/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-primary sm:inline">
-            推荐：{recommendedPath.label}
-          </span>
-        )}
-      </div>
-      <div className="mt-4 overflow-x-auto">
-        <table className="min-w-[760px] w-full border-separate border-spacing-0 text-left text-xs">
-          <thead>
-            <tr>
-              <th className="w-24 border-b border-border px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-text-muted">
-                维度
-              </th>
-              {output.paths.map((path) => {
-                const isRec = path.index === recommendedPath?.index;
-                const tone = toneOf(path);
-                return (
-                  <th
-                    key={path.index}
-                    className={`border-b border-border px-3 py-2 ${
-                      isRec
-                        ? "bg-primary/5 text-primary"
-                        : "text-text"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className={`h-1.5 w-1.5 shrink-0 rounded-full bg-current ${TONE[tone].fg}`} />
-                      <span className="font-semibold tracking-tight">{path.label}</span>
-                    </div>
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.label}>
-                <td className="border-b border-border px-3 py-3 align-top font-mono text-[10px] uppercase tracking-wider text-text-muted">
-                  {row.label}
+    <div className="overflow-x-auto">
+      <table className="min-w-[760px] w-full border-separate border-spacing-0 text-left text-xs">
+        <thead>
+          <tr>
+            <th className="w-24 border-b border-border px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-text-muted">
+              维度
+            </th>
+            {output.paths.map((path) => {
+              const isRec = path.index === recommendedPath?.index;
+              const tone = toneOf(path);
+              return (
+                <th
+                  key={path.index}
+                  className={`border-b border-border px-3 py-2 ${
+                    isRec
+                      ? "bg-primary/5 text-primary"
+                      : "text-text"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className={`h-1.5 w-1.5 shrink-0 rounded-full bg-current ${TONE[tone].fg}`} />
+                    <span className="font-semibold tracking-tight">{path.label}</span>
+                  </div>
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.label}>
+              <td className="border-b border-border px-3 py-3 align-top font-mono text-[10px] uppercase tracking-wider text-text-muted">
+                {row.label}
+              </td>
+              {output.paths.map((path) => (
+                <td
+                  key={path.index}
+                  className={`border-b border-border px-3 py-3 align-top leading-5 ${
+                    path.index === recommendedPath?.index ? "bg-primary/5" : ""
+                  }`}
+                >
+                  {row.render(path)}
                 </td>
-                {output.paths.map((path) => (
-                  <td
-                    key={path.index}
-                    className={`border-b border-border px-3 py-3 align-top leading-5 ${
-                      path.index === recommendedPath?.index ? "bg-primary/5" : ""
-                    }`}
-                  >
-                    {row.render(path)}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </FuturePanel>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -465,228 +799,6 @@ function ScoreBar({ path, scoreKey }: { path: FuturePath; scoreKey: keyof Future
         <p className="mt-1 text-[10px] leading-4 text-text-muted line-clamp-2">{score.reason}</p>
       )}
     </div>
-  );
-}
-
-function BranchPlanStrip({
-  output,
-  recommendedPath,
-}: {
-  output: FutureStructuredOutput;
-  recommendedPath: FuturePath | null;
-}) {
-  if (!output.branch_plan || output.branch_plan.length === 0) return null;
-
-  return (
-    <FuturePanel className="p-5">
-      <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-        分叉计划
-      </div>
-      <h2 className="mt-1 text-sm font-semibold tracking-tight text-text">三条路径怎么选</h2>
-      <div className="mt-4 grid gap-3 lg:grid-cols-3">
-        {output.branch_plan.map((branch) => {
-          const isRecommended = !!recommendedPath?.branch_ref?.includes(branch.name);
-          const tone: ToneKey =
-            branch.riskTone === "稳健"
-              ? "steady"
-              : branch.riskTone === "冒险"
-                ? "risky"
-                : "balanced";
-          const toneCls = TONE[tone];
-          return (
-            <a
-              key={branch.index}
-              href={`#path-${branch.index}`}
-              className={`group relative overflow-hidden rounded-xl border p-4 transition duration-200 hover:-translate-y-0.5 ${
-                isRecommended
-                  ? "border-primary/40 bg-primary/[0.06] ring-1 ring-primary/30"
-                  : "border-border bg-surface-subtle hover:border-accent/40"
-              }`}
-            >
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/70 to-transparent"
-              />
-              <div className="flex items-center justify-between gap-2">
-                <h3 className="text-xs font-semibold tracking-tight text-text">
-                  {branch.name}
-                </h3>
-                <span
-                  className={`rounded-full px-2 py-0.5 font-mono text-[10px] ring-1 ${toneCls.bg} ${toneCls.fg} ${toneCls.ring}`}
-                >
-                  {branch.riskTone}
-                </span>
-              </div>
-              <p className="mt-2 text-xs leading-6 text-text-secondary">{branch.focus}</p>
-              {branch.requiredTradeoffs && branch.requiredTradeoffs.length > 0 && (
-                <ul className="mt-3 space-y-1 border-t border-border/60 pt-2 text-[11px] leading-5 text-text-muted">
-                  {branch.requiredTradeoffs.slice(0, 2).map((t) => (
-                    <li key={t} className="flex gap-1.5">
-                      <span aria-hidden className="mt-1 h-1 w-1 shrink-0 rounded-full bg-text-muted" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <span
-                className={`mt-3 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider transition ${
-                  isRecommended ? "text-primary" : "text-text-muted group-hover:text-accent"
-                }`}
-              >
-                展开
-                <span aria-hidden className="transition group-hover:translate-x-0.5">→</span>
-              </span>
-            </a>
-          );
-        })}
-      </div>
-    </FuturePanel>
-  );
-}
-
-function PathCard({ path, isRecommended }: { path: FuturePath; isRecommended: boolean }) {
-  const [expanded, setExpanded] = useState(isRecommended);
-  const tone: ToneKey = toneOf(path);
-  const toneCls = TONE[tone];
-
-  return (
-    <article
-      id={`path-${path.index}`}
-      className={`group/path scroll-mt-20 overflow-hidden rounded-2xl border p-4 transition duration-200 sm:p-5 ${
-        isRecommended
-          ? "border-accent/40 bg-surface-elevated ring-1 ring-accent/30"
-          : "border-border bg-surface-elevated hover:border-accent/30 hover:-translate-y-0.5"
-      }`}
-    >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/70 to-transparent"
-      />
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-base font-semibold tracking-tight text-text">{path.label}</h2>
-            {isRecommended && (
-              <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent">
-                推荐
-              </span>
-            )}
-            <span
-              className={`rounded-full px-2 py-0.5 font-mono text-[10px] ring-1 ${toneCls.bg} ${toneCls.fg} ${toneCls.ring}`}
-            >
-              {path.probability_tone}
-            </span>
-          </div>
-          <p className="mt-1 text-xs leading-5 text-text-secondary">{path.tagline}</p>
-          {path.branch_ref && (
-            <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-text-muted">
-              分叉：{path.branch_ref}
-            </p>
-          )}
-        </div>
-        <div className="shrink-0 text-right">
-          <div className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
-            FIT
-          </div>
-          <div className={`text-2xl font-semibold tabular-nums ${toneCls.fg}`}>
-            {path.fit_score}
-          </div>
-        </div>
-      </div>
-
-      <ScoreGrid path={path} />
-
-      <div className="mt-4 grid gap-2 text-xs sm:grid-cols-3">
-        {path.timeline.slice(0, 3).map((item) => (
-          <div
-            key={item.stage}
-            className="rounded-xl border border-border bg-surface-subtle p-3"
-          >
-            <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
-              {item.stage}
-            </h3>
-            <p className="mt-1 line-clamp-2 leading-5 text-text-secondary">
-              {item.key_events?.[0] || clipText(item.text, 34)}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <button
-        type="button"
-        onClick={() => setExpanded((current) => !current)}
-        aria-expanded={expanded}
-        className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-subtle px-3 py-2 text-xs font-medium text-text-secondary transition hover:border-accent/40 hover:text-accent"
-      >
-        {expanded ? "收起详情" : "展开时间线与建议"}
-        <span
-          aria-hidden
-          className={`transition-transform ${expanded ? "rotate-90" : "rotate-0"}`}
-        >
-          ›
-        </span>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {expanded && (
-          <motion.div
-            key="details"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="overflow-hidden"
-          >
-            <div className="mt-4 space-y-3 border-t border-border/60 pt-4">
-              {path.timeline.map((item, i) => (
-                <TimelineRow key={item.stage} item={item} index={i} />
-              ))}
-
-              <div className="rounded-xl border border-border bg-surface-subtle p-3">
-                <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
-                  前两年行动建议
-                </h3>
-                <p className="mt-1 text-xs leading-6 text-text-secondary">{path.advice}</p>
-              </div>
-
-              {path.key_risks.length > 0 && (
-                <div className="rounded-xl border border-danger-300/25 bg-danger-500/[0.05] p-3">
-                  <h3 className="font-mono text-[10px] uppercase tracking-wider text-danger-300">
-                    需要提前管理的风险
-                  </h3>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {path.key_risks.map((risk) => (
-                      <span
-                        key={risk}
-                        className="rounded-full border border-danger-300/30 bg-danger-500/10 px-2 py-1 text-[11px] text-danger-200"
-                      >
-                        {risk}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {path.turning_points.length > 0 && (
-                <div className="rounded-xl border border-border bg-surface-subtle p-3">
-                  <h3 className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
-                    关键转折点
-                  </h3>
-                  <ul className="mt-2 space-y-1 text-[11px] leading-5 text-text-secondary">
-                    {path.turning_points.map((tp) => (
-                      <li key={tp} className="flex gap-1.5">
-                        <span aria-hidden className="mt-1 h-1 w-1 shrink-0 rounded-full bg-text-muted" />
-                        <span>{tp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </article>
   );
 }
 
@@ -795,8 +907,11 @@ const panelFade = {
   show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" as const } },
 };
 
-function scoreText(path: FuturePath, key: keyof FuturePath["scores"]) {
-  const score = path.scores[key];
-  if (!score) return "未提供";
-  return `${score.value}/10 ${score.reason}`;
+function bestScoreLabel(path: FuturePath) {
+  const entries = Object.entries(path.scores) as Array<[keyof FuturePath["scores"], FuturePath["scores"][keyof FuturePath["scores"]]]>;
+  const [key, score] = entries
+    .filter(([, item]) => item)
+    .sort((a, b) => b[1].value - a[1].value)[0] || ["growth", null];
+  if (!score) return "优势待观察";
+  return `${scoreLabel(key)} ${score.value}/10`;
 }
