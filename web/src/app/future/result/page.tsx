@@ -23,7 +23,7 @@ const MAX_RETRIES = 2;
 
 export default function FutureResultPage() {
   return (
-    <Suspense fallback={<FutureLoadingFallback message="正在读取推演结果…" />}>
+    <Suspense fallback={<FutureLoadingFallback message="正在读取预演结果…" />}>
       <FutureResultContent />
     </Suspense>
   );
@@ -76,7 +76,7 @@ function FutureResultContent() {
           timer = setTimeout(load, backoff);
           return;
         }
-        setError(err instanceof Error ? err.message : "读取推演结果失败");
+        setError(err instanceof Error ? err.message : "读取预演结果失败");
       }
     }
 
@@ -103,7 +103,7 @@ function FutureResultContent() {
 
   const output = result?.output;
   const isGenerating = result?.run.status === "generating" && !cancelled;
-  const displayError = runId ? error : "缺少 runId，无法读取推演结果。";
+  const displayError = runId ? error : "缺少 runId，无法读取预演结果。";
   const recommendedPath = output ? findRecommendedPath(output) : null;
   const initialPath = recommendedPath || output?.paths[0] || null;
   const [selectedMode, setSelectedMode] = useState(initialPath ? pathMode(initialPath.index) : "compare");
@@ -124,10 +124,10 @@ function FutureResultContent() {
 
   return (
     <FutureShell
-      title={output?.title || "未来路径推演结果"}
+      title={output?.title || "大学四年预演结果"}
       backHref="/future"
-      backLabel="新推演"
-      eyebrow={result?.run.promptVersion || "结构化推演结果"}
+      backLabel="重新预演"
+      eyebrow={result?.run.promptVersion || "大学路线预演"}
       headerControls={
         output ? (
           <HeaderPathTabs
@@ -148,7 +148,7 @@ function FutureResultContent() {
 
         {!displayError && (!output || isGenerating) && (
           <FutureLoading
-            message={isGenerating ? "正在推演未来路径" : "正在读取推演结果…"}
+            message={isGenerating ? "正在预演大学四年路线" : "正在读取预演结果…"}
             generating={isGenerating}
             timeoutMs={180_000}
             maxWaitMs={MAX_WAIT_MS}
@@ -220,7 +220,7 @@ function HeaderPathTabs({
   onSelect: (mode: string) => void;
 }) {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto" role="tablist" aria-label="未来路径">
+    <div className="flex items-center gap-2 overflow-x-auto" role="tablist" aria-label="大学路线">
       {paths.map((path) => {
         const mode = pathMode(path.index);
         const selected = selectedMode === mode;
@@ -276,7 +276,7 @@ function HeaderPathTabs({
         }`}
       >
         <span>
-          <span className="block text-xs font-semibold tracking-tight text-text">路径对比</span>
+          <span className="block text-xs font-semibold tracking-tight text-text">路线对比</span>
           <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-wider text-text-muted">
             COMPARE
           </span>
@@ -301,35 +301,46 @@ function DecisionSummary({
   const activePath = selectedPath || recommendedPath;
   const summary = clipText(output.summary, 150);
   const actions = extractActionItems(activePath?.advice || output.overall_advice);
+  const reasons = activePath ? buildRecommendationReasons(activePath, output) : [];
   const tone: ToneKey = activePath ? toneOf(activePath) : "balanced";
   const toneCls = TONE[tone];
 
   return (
     <FuturePanel tone={tone} className="p-4 sm:p-5">
       <ResultBlessing />
-      <div className="grid items-center gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.56fr)]">
+      <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.56fr)]">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-            <span>{activePath?.index === recommendedPath?.index ? "推荐结论" : "当前查看"}</span>
-            {recommendedPath && <span className="text-text-muted">推荐：{recommendedPath.label}</span>}
+            <span>{activePath?.index === recommendedPath?.index ? "建议先按这条走" : "当前查看"}</span>
+            {recommendedPath && <span className="text-text-muted">优先路线：{recommendedPath.label}</span>}
             {run?.model && <span className="text-text-muted">{run.model}</span>}
           </div>
           <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-text">
-              {activePath?.label || "先保留路径选择权"}
+              {activePath?.label || "先保留大学里的选择权"}
             </h2>
             {activePath && (
               <span className={`font-mono text-xl font-semibold tabular-nums ${toneCls.fg}`}>
-                FIT {activePath.fit_score}/10
+                适合度 {activePath.fit_score}
               </span>
             )}
           </div>
           <p className="mt-2 max-w-5xl text-sm leading-6 text-text-secondary">{summary}</p>
+          {reasons.length > 0 && (
+            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+              {reasons.map((item) => (
+                <div key={item.label} className="rounded-lg border border-border bg-surface-subtle px-3 py-2">
+                  <div className="text-[10px] font-medium text-text-muted">{item.label}</div>
+                  <div className="mt-1 text-xs leading-5 text-text-secondary">{item.value}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="rounded-xl border border-border bg-surface-subtle p-3">
           <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-            先做这几件事
+            先确认这 3 件事
           </h3>
           <ul className="mt-2 space-y-1">
             {actions.map((item) => (
@@ -355,6 +366,7 @@ function SelectedPathDetail({
   const tone: ToneKey = toneOf(path);
   const toneCls = TONE[tone];
   const actionItems = extractActionItems(path.advice);
+  const studentGuide = buildStudentGuide(path);
 
   return (
     <FuturePanel
@@ -386,9 +398,14 @@ function SelectedPathDetail({
           </div>
           <p className="mt-2 text-sm leading-6 text-text-secondary">{path.tagline}</p>
 
+          <div className="mt-4 grid gap-2">
+            <GuideBlock label="适合谁" value={studentGuide.fit} toneCls={toneCls} />
+            <GuideBlock label="大一大二要做什么" value={studentGuide.firstSteps} toneCls={toneCls} />
+          </div>
+
           <div className="mt-4 rounded-xl border border-border bg-surface-subtle p-3">
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-              适合你，因为
+              为什么可能适合你
             </div>
             <div className="mt-2 grid gap-2">
               {(["school_fit", "major_fit", "happiness"] as const).map((key) => {
@@ -415,7 +432,7 @@ function SelectedPathDetail({
         <div className="space-y-4">
           <div className="rounded-xl border border-border bg-surface-subtle p-3">
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-              未来节奏
+              大学四年节奏
             </div>
             <div className="mt-3 grid gap-3 lg:grid-cols-3">
               {path.timeline.map((item, i) => (
@@ -427,7 +444,7 @@ function SelectedPathDetail({
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-danger-300/25 bg-danger-500/[0.05] p-3">
               <h3 className="font-mono text-[10px] uppercase tracking-wider text-danger-300">
-                需要警惕
+                最容易踩的坑
               </h3>
               <ul className="mt-2 space-y-1.5 text-xs leading-5 text-danger-100">
                 {(path.key_risks.length > 0 ? path.key_risks : ["暂未识别明确风险"]).map((risk) => (
@@ -441,7 +458,7 @@ function SelectedPathDetail({
 
             <div className="rounded-xl border border-border bg-surface-subtle p-3">
               <h3 className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
-                关键转折点
+                什么时候该换路
               </h3>
               <ul className="mt-2 space-y-1.5 text-xs leading-5 text-text-secondary">
                 {(path.turning_points.length > 0 ? path.turning_points : ["等待更多信息确认"]).map((tp) => (
@@ -456,7 +473,7 @@ function SelectedPathDetail({
 
           <div className="rounded-xl border border-border bg-surface-subtle p-3">
             <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
-              下一步
+              大一大二先做什么
             </h3>
             <ul className="mt-2 space-y-1.5">
               {actionItems.map((item) => (
@@ -473,6 +490,25 @@ function SelectedPathDetail({
   );
 }
 
+function GuideBlock({
+  label,
+  value,
+  toneCls,
+}: {
+  label: string;
+  value: string;
+  toneCls: (typeof TONE)[ToneKey];
+}) {
+  return (
+    <div className="rounded-lg border border-border bg-surface-subtle p-3">
+      <div className={`font-mono text-[10px] uppercase tracking-wider ${toneCls.fg}`}>
+        {label}
+      </div>
+      <p className="mt-1 text-xs leading-5 text-text-secondary">{value}</p>
+    </div>
+  );
+}
+
 function ComparisonPage({
   output,
   recommendedPath,
@@ -485,13 +521,13 @@ function ComparisonPage({
       <div id="path-panel-compare" className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-            路径对比
+            路线对比
           </div>
-          <h2 className="mt-1 text-xl font-semibold tracking-tight text-text">取舍一览</h2>
+          <h2 className="mt-1 text-xl font-semibold tracking-tight text-text">几种大学走法怎么选</h2>
         </div>
         {recommendedPath && (
           <span className="rounded-full border border-primary/40 bg-primary/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-primary">
-            推荐：{recommendedPath.label}
+            建议先看：{recommendedPath.label}
           </span>
         )}
       </div>
@@ -514,8 +550,12 @@ function ComparisonTableContent({
     render: (path: FuturePath) => ReactNode;
   }> = [
     {
-      label: "适合人群",
-      render: (path) => path.branch_ref || path.probability_tone,
+      label: "主要在做什么",
+      render: (path) => path.tagline || path.branch_ref || path.probability_tone,
+    },
+    {
+      label: "大一重点",
+      render: (path) => buildStudentGuide(path).firstSteps,
     },
     ...(["income", "stability", "growth", "risk"] as const).map((key) => ({
       label: scoreLabel(key),
@@ -531,9 +571,9 @@ function ComparisonTableContent({
         ),
     },
     {
-      label: "第一步",
+      label: "换路信号",
       render: (path) =>
-        path.timeline?.[0]?.key_events?.[0] || path.timeline?.[0]?.stage || (
+        buildStudentGuide(path).switchSignal || path.turning_points?.[0] || (
           <span className="text-text-muted">未提供</span>
         ),
     },
@@ -607,7 +647,7 @@ function ComparisonGrid({
   );
 }
 
-/** 单条分数条:在路径对比里以横向 bar + 数字呈现 */
+/** 单条分数条:在路线对比里以横向 bar + 数字呈现 */
 function ScoreBar({ path, scoreKey }: { path: FuturePath; scoreKey: keyof FuturePath["scores"] }) {
   const tone = toneOf(path);
   const score = path.scores[scoreKey];
@@ -739,4 +779,38 @@ const panelFade = {
 
 function pathMode(index: number) {
   return `path-${index}`;
+}
+
+function buildRecommendationReasons(path: FuturePath, output: FutureStructuredOutput) {
+  const topScores = (["school_fit", "major_fit", "stability", "growth", "happiness"] as const)
+    .map((key) => ({ key, score: path.scores[key] }))
+    .filter((item) => item.score?.reason)
+    .sort((a, b) => (b.score?.value ?? 0) - (a.score?.value ?? 0))
+    .slice(0, 2)
+    .map((item) => ({
+      label: scoreLabel(item.key),
+      value: item.score.reason,
+    }));
+
+  const assumption = output.choice_context?.assumptions?.[0];
+  return [
+    ...topScores,
+    assumption ? { label: "判断前提", value: clipText(assumption, 42) } : null,
+  ].filter(Boolean) as Array<{ label: string; value: string }>;
+}
+
+function buildStudentGuide(path: FuturePath) {
+  const adviceParts = extractActionItems(path.advice);
+  return {
+    fit: adviceParts[0] || path.tagline || "适合想先看清这条志愿后续走法的学生。",
+    firstSteps:
+      adviceParts[1] ||
+      path.timeline?.[0]?.key_events?.[0] ||
+      path.timeline?.[0]?.text ||
+      "大一大二先把基础课、绩点和一次真实体验做起来。",
+    pitfall:
+      path.key_risks?.[0] || adviceParts[2] || "只凭想象判断专业，不去验证课程和就业真实情况。",
+    switchSignal:
+      path.turning_points?.[0] || "如果大一结束后兴趣很低、课程吃力或拿不到有效反馈，就要考虑调整路线。",
+  };
 }

@@ -28,8 +28,8 @@ export default function FuturePage() {
 
 function FuturePageShell() {
   return (
-    <FutureShell title="未来路径推演" backHref="/" backLabel="返回">
-      <FuturePanel className="p-5 text-sm text-text-secondary">正在加载推演表单…</FuturePanel>
+    <FutureShell title="大学四年预演" backHref="/" backLabel="返回">
+      <FuturePanel className="p-5 text-sm text-text-secondary">正在加载预演表单…</FuturePanel>
     </FutureShell>
   );
 }
@@ -49,11 +49,11 @@ function FuturePageContent() {
   const [interests, setInterests] = useState(major || "计算机 工程");
   const [riskTolerance, setRiskTolerance] = useState(5);
   const [familySupport, setFamilySupport] = useState("中");
-  const [goals, setGoals] = useState("希望找到上限和稳定性比较平衡的路径。");
+  const [goals, setGoals] = useState("担心专业不适合，也希望大学毕业后有比较稳的选择。");
   const [targetSchool, setTargetSchool] = useState(school);
   const [targetMajor, setTargetMajor] = useState(major);
   const [targetCity, setTargetCity] = useState(city);
-  const [pathCount, setPathCount] = useState(3);
+  const pathCount = 3;
   const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -173,7 +173,7 @@ function FuturePageContent() {
       const result = await createFutureRunFromClient(input);
       router.push(`/future/result?runId=${encodeURIComponent(result.runId)}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "推演服务调用失败");
+      setError(err instanceof Error ? err.message : "预演服务调用失败");
     } finally {
       setSubmitting(false);
     }
@@ -181,7 +181,8 @@ function FuturePageContent() {
 
   return (
     <FutureShell
-      title="未来路径推演"
+      title="大学四年预演"
+      subtitle="把一个志愿拆成几种大学走法：稳住成绩、早点实习、试错探索，或提前准备转向预案。"
       backHref="/"
       backLabel="返回"
       headerControls={<TabBar value={tab} onChange={setTab} />}
@@ -193,7 +194,7 @@ function FuturePageContent() {
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px] 2xl:grid-cols-[minmax(0,1fr)_420px]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <FuturePanel className="p-5 sm:p-6">
-            <FormStep number="01" title="目标志愿" description="先确定这次要推演的学校、专业和城市。">
+            <FormStep number="01" title="你正在考虑的志愿" description="先填这次想预演的学校、专业和城市。">
               <div className="grid gap-x-5 gap-y-4 lg:grid-cols-3">
                 <OptionSelect
                   label="目标学校"
@@ -225,7 +226,7 @@ function FuturePageContent() {
           </FuturePanel>
 
           <FuturePanel className="p-5 sm:p-6">
-            <FormStep number="02" title="学生画像" description="画像不需要完美，重点是让路径差异更贴近学生本人。">
+            <FormStep number="02" title="你的情况" description="不用写得很完美，重点是让几条大学路线更贴近你。">
               <div className="grid gap-x-5 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
                 <Select label="生源省份" value={studentProvince} onChange={setStudentProvince} options={provinceOptions} placeholder="请选择生源省份" />
                 <Select label="选科/方向" value={subjectTrack} onChange={setSubjectTrack} options={["物理", "历史", "理科", "文科", "综合"]} />
@@ -238,7 +239,7 @@ function FuturePageContent() {
           </FuturePanel>
 
           <FuturePanel className="p-5 sm:p-6">
-            <FormStep number="03" title="目标与取舍" description="这里决定三条路径会偏稳健、均衡还是冒险。">
+            <FormStep number="03" title="你最担心什么" description="这些顾虑会决定路线更偏成绩、就业、探索还是转向预案。">
               <div className="grid items-start gap-8 xl:grid-cols-[340px_minmax(0,1fr)]">
                 <label className="block rounded-xl bg-neutral-0/45 p-4 text-xs font-medium text-text-secondary">
                   <span className="flex items-center justify-between gap-3">
@@ -260,7 +261,7 @@ function FuturePageContent() {
                   </div>
                 </label>
                 <label className="block space-y-3 text-xs font-medium text-text-secondary">
-                  <span className="block">目标/顾虑</span>
+                  <span className="block">担心/期待</span>
                   <textarea
                     value={goals}
                     onChange={(event) => setGoals(event.target.value)}
@@ -272,25 +273,11 @@ function FuturePageContent() {
           </FuturePanel>
 
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)]">
-            <label className="text-xs font-medium text-text-secondary">
-              路径数量
-              <span className="relative ml-3 inline-block">
-                <select
-                  value={pathCount}
-                  onChange={(event) => setPathCount(Number(event.target.value))}
-                  className={selectClassName("h-10 w-20")}
-                >
-                  {[3, 4, 5, 6].map((count) => (
-                    <option key={count} value={count}>{count}</option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-text-muted">
-                  ▾
-                </span>
-              </span>
-            </label>
+            <p className="max-w-2xl text-xs leading-5 text-text-secondary">
+              默认生成 3 条大学路线：一条偏稳、一条偏实践、一条保留试错或转向空间。
+            </p>
             <Button type="submit" disabled={submitting || !targetSchool.trim()} theme="light" variant="primary">
-              {submitting ? "生成中" : "开始推演"}
+              {submitting ? "生成中" : "开始预演"}
             </Button>
           </div>
 
@@ -303,7 +290,7 @@ function FuturePageContent() {
 
         <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
           <FuturePanel className="p-5 sm:p-6">
-            <SectionHeading title="本次推演摘要" description="提交前先确认输入是否符合预期。" />
+            <SectionHeading title="本次预演摘要" description="提交前先确认要预演的是不是这次志愿。" />
             <div className="mt-4 space-y-3 text-sm">
               <SummaryRow label="学校" value={targetSchool || "未填写"} />
               <SummaryRow label="专业" value={targetMajor || "未指定"} />
@@ -316,7 +303,7 @@ function FuturePageContent() {
           <FuturePanel className="p-5 sm:p-6">
             <SectionHeading title="输出会包含" />
             <div className="mt-4 grid gap-2 text-xs leading-5 text-text-secondary">
-              {["推荐路径与适配分", "三条分叉计划", "路径对比表", "大学前三阶段时间线", "前两年行动清单"].map((item) => (
+              {["推荐先按哪条路线走", "几种大学四年走法", "大一大二行动清单", "最容易踩的坑", "什么时候该换路"].map((item) => (
                 <div key={item} className="rounded-lg border border-border bg-surface-subtle px-3 py-2">
                   {item}
                 </div>
@@ -347,7 +334,7 @@ function TabBar({ value, onChange }: { value: "form" | "history"; onChange: (v: 
   return (
     <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated p-1 backdrop-blur-sm">
       {([
-        { key: "form", label: "新推演" },
+        { key: "form", label: "新预演" },
         { key: "history", label: "历史" },
       ] as const).map((item) => {
         const active = value === item.key;
@@ -405,8 +392,8 @@ function HistoryList({
     return (
       <FuturePanel className="p-8 text-center">
         <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">Empty</div>
-        <p className="mt-2 text-sm text-text-secondary">还没有推演记录</p>
-        <p className="mt-1 text-xs text-text-muted">完成一次推演后,历史会出现在这里。</p>
+        <p className="mt-2 text-sm text-text-secondary">还没有预演记录</p>
+        <p className="mt-1 text-xs text-text-muted">完成一次预演后,历史会出现在这里。</p>
       </FuturePanel>
     );
   }
@@ -462,7 +449,7 @@ function HistoryCard({ item }: { item: FutureRunListItem }) {
             </span>
           </div>
           <h3 className="mt-1.5 truncate text-sm font-semibold tracking-tight text-text">
-            {item.title || `${item.school}的推演`}
+            {item.title || `${item.school}的大学四年预演`}
           </h3>
           <p className="mt-0.5 text-xs text-text-secondary">
             {subtitle}
@@ -477,7 +464,7 @@ function HistoryCard({ item }: { item: FutureRunListItem }) {
           )}
         </div>
         <div className="shrink-0 text-right">
-          <div className="font-mono text-[10px] uppercase tracking-wider text-text-muted">FIT</div>
+          <div className="font-mono text-[10px] uppercase tracking-wider text-text-muted">适合度</div>
           <div className={`text-2xl font-semibold tabular-nums ${item.fitScoreMax > 0 ? toneCls.fg : "text-text-placeholder"}`}>
             {item.fitScoreMax > 0 ? item.fitScoreMax : "--"}
           </div>

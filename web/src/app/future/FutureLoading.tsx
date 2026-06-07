@@ -6,10 +6,10 @@ import { FuturePanel } from "./FutureShell";
 
 // ── 阶段定义 ──────────────────────────────────────────────
 const STAGES = [
-  { key: "analyze", label: "分析背景信息" },
-  { key: "deduce", label: "推演路径分支" },
-  { key: "validate", label: "校验质量指标" },
-  { key: "finalize", label: "整合输出结果" },
+  { key: "analyze", label: "整理你的学校、专业和偏好" },
+  { key: "deduce", label: "拆出几种大学走法" },
+  { key: "validate", label: "比较每条路的收益和风险" },
+  { key: "finalize", label: "生成大一大二行动建议" },
 ] as const;
 
 type StageKey = (typeof STAGES)[number]["key"];
