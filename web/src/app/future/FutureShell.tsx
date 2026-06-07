@@ -7,6 +7,8 @@ export function FutureShell({
   eyebrow,
   backHref = "/",
   backLabel = "返回",
+  headerControls,
+  mainClassName = "",
   children,
 }: {
   title: string;
@@ -14,12 +16,14 @@ export function FutureShell({
   eyebrow?: string;
   backHref?: string;
   backLabel?: string;
+  headerControls?: ReactNode;
+  mainClassName?: string;
   children: ReactNode;
 }) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-surface text-text">
       <header className="sticky top-0 z-20 border-b border-border bg-surface-elevated/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-3 py-2.5 sm:px-5">
           <div className="flex min-w-0 items-center gap-3">
             <a
               href={backHref}
@@ -56,11 +60,16 @@ export function FutureShell({
             </span>
           </div>
         </div>
+        {headerControls && (
+          <div className="mx-auto max-w-[1600px] border-t border-border/60 px-3 py-2 sm:px-5">
+            {headerControls}
+          </div>
+        )}
       </header>
 
-      <main className="relative mx-auto max-w-7xl px-4 py-6 sm:py-8">
+      <main className={`relative mx-auto max-w-[1600px] px-3 py-4 sm:px-5 sm:py-5 ${mainClassName}`}>
         {subtitle && (
-          <p className="mb-6 max-w-3xl text-sm leading-7 text-text-secondary sm:mb-8">
+          <p className="mb-4 max-w-3xl text-sm leading-7 text-text-secondary">
             {subtitle}
           </p>
         )}

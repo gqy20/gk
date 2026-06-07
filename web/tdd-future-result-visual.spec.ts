@@ -143,7 +143,7 @@ test.describe("future/result 视觉验收", () => {
     await page.goto(`${BASE}/future/result?runId=test`);
     // 先等数据加载完(推荐路径 label 出现)
     await page.waitForSelector("h2:has-text('学术深造')");
-    await page.getByRole("button", { name: /对比三条路径/ }).click();
+    await page.getByRole("tab", { name: /路径对比/ }).click();
     // 表格 body 至少 7 行(rows = 适合人群/收入/稳定/成长/风险/最大风险/第一步)
     const rowCount = await page.locator("tbody tr").count();
     expect(rowCount).toBeGreaterThanOrEqual(7);
