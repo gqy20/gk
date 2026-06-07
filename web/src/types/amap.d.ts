@@ -86,7 +86,7 @@ declare namespace AMap {
     map?: Map | null;
   }
 
-  interface Overlay {}
+  type Overlay = object;
 }
 
 interface Window {

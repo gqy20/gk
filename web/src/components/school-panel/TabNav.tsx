@@ -5,15 +5,25 @@ import { IconChevronDown } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import type { DetailCategoryKey } from "@/lib/data";
 
-export type TabKey = "overview" | DetailCategoryKey;
+export type TabKey = "overview" | "resources";
+export type ResourceTabKey = DetailCategoryKey | "campus_sources";
 
 interface TabNavProps {
   tabs: { key: TabKey; label: string; count?: number }[];
   activeTab: TabKey;
   onTabChange: (tab: TabKey) => void;
+  resourceTabs: { key: ResourceTabKey; label: string; count?: number }[];
+  activeResourceTab: ResourceTabKey | null;
+  onResourceTabChange: (tab: ResourceTabKey) => void;
 }
 
-export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
+export default function TabNav({
+  activeTab,
+  onTabChange,
+  resourceTabs,
+  activeResourceTab,
+  onResourceTabChange,
+}: TabNavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -35,9 +45,9 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
     };
   }, [menuOpen]);
 
-  const detailTabs = tabs.filter((tab) => tab.key !== "overview");
   const isOverview = activeTab === "overview";
-  const currentDetailTab = detailTabs.find((tab) => tab.key === activeTab);
+  const isResources = activeTab === "resources";
+  const currentResourceTab = resourceTabs.find((tab) => tab.key === activeResourceTab);
 
   return (
     <div className="flex items-center gap-1 border-b border-border-light bg-neutral-0/45 px-3 py-2">
@@ -54,34 +64,37 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
             : "text-text-light-muted hover:text-text-light hover:bg-accent-50/70",
         )}
       >
-        概览
+        总览
         {isOverview && (
           <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-brand-500" />
         )}
       </button>
 
-      {detailTabs.length > 0 && (
+      {resourceTabs.length > 0 && (
         <div ref={menuRef} className="relative">
           <button
             type="button"
-            onClick={() => setMenuOpen((open) => !open)}
+            onClick={() => {
+              onTabChange("resources");
+              setMenuOpen((open) => !open);
+            }}
             aria-haspopup="listbox"
             aria-expanded={menuOpen}
             className={cn(
               "relative flex h-8 items-center gap-1.5 rounded-md px-3 text-xs font-medium transition-colors",
-              !isOverview
+              isResources
                 ? "text-brand-600"
                 : "text-text-light-muted hover:text-text-light hover:bg-accent-50/70",
             )}
           >
             <span className="truncate">
-              {currentDetailTab ? currentDetailTab.label : "分类"}
+              {isResources && currentResourceTab ? currentResourceTab.label : "资料库"}
             </span>
             <IconChevronDown
               size={11}
               className={cn("transition-transform", menuOpen && "rotate-180")}
             />
-            {!isOverview && (
+            {isResources && (
               <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-brand-500" />
             )}
           </button>
@@ -91,8 +104,8 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
               role="listbox"
               className="paper-card absolute left-0 top-full z-30 mt-1.5 max-h-[60vh] min-w-[180px] overflow-y-auto rounded-md border py-1"
             >
-              {detailTabs.map((tab) => {
-                const isActive = activeTab === tab.key;
+              {resourceTabs.map((tab) => {
+                const isActive = activeResourceTab === tab.key;
                 return (
                   <li key={String(tab.key)}>
                     <button
@@ -100,7 +113,8 @@ export default function TabNav({ tabs, activeTab, onTabChange }: TabNavProps) {
                       role="option"
                       aria-selected={isActive}
                       onClick={() => {
-                        onTabChange(tab.key);
+                        onTabChange("resources");
+                        onResourceTabChange(tab.key);
                         setMenuOpen(false);
                       }}
                       className={cn(

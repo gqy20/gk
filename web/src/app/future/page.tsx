@@ -83,8 +83,11 @@ function FuturePageContent() {
   useEffect(() => {
     if (tab !== "history") return;
     let cancelled = false;
-    setHistoryLoading(true);
-    setHistoryError(null);
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setHistoryLoading(true);
+      setHistoryError(null);
+    });
     fetchFutureRunsFromClient({ limit: 20 })
       .then((items) => {
         if (cancelled) return;
@@ -122,7 +125,8 @@ function FuturePageContent() {
   useEffect(() => {
     if (!selectedSchool) return;
     const nextCity = extractCity(selectedSchool);
-    if (nextCity && !targetCity) setTargetCity(nextCity);
+    if (!nextCity || targetCity) return;
+    queueMicrotask(() => setTargetCity(nextCity));
   }, [selectedSchool, targetCity]);
 
   const input = useMemo<FutureRunInput>(() => ({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FuturePanel } from "./FutureShell";
 
@@ -139,7 +139,7 @@ export function FutureLoading({
 }: FutureLoadingProps) {
   const [elapsed, setElapsed] = useState(0);
   const [timedOut, setTimedOut] = useState(false);
-  const startTimeRef = useRef(Date.now());
+  const startTimeRef = useRef(0);
   const rafRef = useRef<number>(0);
 
   // 计时器：每秒更新 elapsed

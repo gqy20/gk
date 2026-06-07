@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import MajorCategoryNav from "@/components/majors/MajorCategoryNav";
 import MajorTreeBrowser from "@/components/majors/MajorTreeBrowser";
 import MajorList from "@/components/majors/MajorList";
@@ -44,25 +45,19 @@ export default function MajorsPage() {
     [],
   );
 
-  // 当前选中的门类名称（用于移动端 selector 显示）
-  const selectedMenleiName =
-    activeCategory && selectedMenlei
-      ? activeCategory.门类.find((m) => m.key === selectedMenlei)?.name
-      : "全部门类";
-
   return (
     <div className="flex h-screen min-h-screen flex-col overflow-hidden bg-surface text-text">
       {/* Header */}
       <header className="relative z-10 shrink-0 border-b border-border bg-surface-elevated/95 px-3 py-2 shadow-sm shadow-neutral-900/5 sm:px-4">
         <div className="flex items-center gap-3">
-          <a
+          <Link
             href="/"
             className="flex items-center gap-2 text-text-secondary hover:text-text transition-colors"
           >
             <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-          </a>
+          </Link>
           <h1 className="min-w-0 truncate text-base font-semibold text-text sm:text-xl">
             专业库
           </h1>

@@ -37,7 +37,7 @@ const AMAP = {
   poiMarker: (color: string, icon: string) =>
     `background:${color};width:22px;height:22px;border-radius:50%;
      border:2px solid ${colors.surface};display:flex;align-items:center;
-     justify-content:center;font-size:11px;opacity:0.85;>${icon}</div>`,
+     justify-content:center;font-size:11px;opacity:0.85;">${icon}</div>`,
   poiInfoWindow: (name: string, address: string, distance: string, color: string) => `
     background:${colors.surfaceElevated};border:1px solid ${color}40;
     padding:10px 14px;border-radius:8px;color:${colors.text};font-size:12px;
@@ -175,37 +175,8 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
     [lng, lat, amapKey],
   );
 
-  // 切换分类时搜索
-  useEffect(() => {
-    if (!mapReady) return;
-
-    if (activeCategory === "all") {
-      // 全部加载
-      Promise.all(
-        POI_CATEGORIES.map(async (cat) => {
-          const existing = pois[cat.key];
-          if (existing && existing.length > 0) return existing;
-          return searchPois(cat);
-        }),
-      ).then((results) => {
-        const nextPois: Record<string, PoiItem[]> = {};
-        POI_CATEGORIES.forEach((cat, i) => {
-          nextPois[cat.key] = results[i] ?? [];
-        });
-        setPois(nextPois);
-        renderMarkers(nextPois);
-      });
-    } else {
-      const cat = POI_CATEGORIES.find((c) => c.key === activeCategory)!;
-      searchPois(cat).then((result) => {
-        setPois((prev) => ({ ...prev, [cat.key]: result }) as Record<string, PoiItem[]>);
-        renderMarkers({ ...pois, [cat.key]: result } as Partial<Record<string, PoiItem[]>>);
-      });
-    }
-  }, [activeCategory, mapReady, searchPois]);
-
   // 渲染POI标记
-  function renderMarkers(allPois: Partial<Record<string, PoiItem[]>>) {
+  const renderMarkers = useCallback((allPois: Partial<Record<string, PoiItem[]>>) => {
     if (!mapInstance.current) return;
     const map = mapInstance.current;
 
@@ -253,7 +224,45 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         marker.setMap(map);
       }
     }
-  }
+  }, [activeCategory, lng, lat]);
+
+  // 切换分类时搜索
+  useEffect(() => {
+    if (!mapReady) return;
+
+    let cancelled = false;
+
+    async function loadPois() {
+      if (activeCategory === "all") {
+        const results = await Promise.all(
+          POI_CATEGORIES.map(async (cat) => searchPois(cat)),
+        );
+        if (cancelled) return;
+        const nextPois: Record<string, PoiItem[]> = {};
+        POI_CATEGORIES.forEach((cat, i) => {
+          nextPois[cat.key] = results[i] ?? [];
+        });
+        setPois(nextPois);
+        renderMarkers(nextPois);
+        return;
+      }
+
+      const cat = POI_CATEGORIES.find((c) => c.key === activeCategory);
+      if (!cat) return;
+      const result = await searchPois(cat);
+      if (cancelled) return;
+      setPois((prev) => {
+        const next = { ...prev, [cat.key]: result } as Record<string, PoiItem[]>;
+        renderMarkers(next);
+        return next;
+      });
+    }
+
+    loadPois();
+    return () => {
+      cancelled = true;
+    };
+  }, [activeCategory, mapReady, renderMarkers, searchPois]);
 
   const totalPois = Object.values(pois).reduce((sum, arr) => sum + arr.length, 0);
 

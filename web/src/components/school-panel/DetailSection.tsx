@@ -7,11 +7,11 @@ import type {
   StudentExperienceItem,
   UniversityInfo,
 } from "@/lib/data";
-import type { SourceItem, CrawlSourcesMap } from "@/lib/crawl-data";
+import { CRAWL_CATEGORY_LABELS, type SourceItem } from "@/lib/crawl-data";
 import { SOURCE_TYPE_LABELS, EMPTY_MESSAGES } from "@/lib/constants";
 
 interface DetailSectionProps {
-  category: DetailCategoryKey;
+  category: DetailCategoryKey | "campus_sources";
   detail: UniversityInfo;
   crawlSources?: Record<string, SourceItem[]>;
 }
@@ -21,6 +21,14 @@ export default function DetailSection({
   detail,
   crawlSources,
 }: DetailSectionProps) {
+  if (category === "campus_sources") {
+    const sourceGroups = getCampusSourceGroups(crawlSources);
+    if (sourceGroups.length === 0) {
+      return <p className="text-sm text-text-light-muted">{EMPTY_MESSAGES.noData}</p>;
+    }
+    return <CampusSourceLibrary groups={sourceGroups} />;
+  }
+
   const items = detail[category];
   if (!Array.isArray(items) || items.length === 0) {
     return <p className="text-sm text-text-light-muted">{EMPTY_MESSAGES.noData}</p>;
@@ -175,14 +183,60 @@ export default function DetailSection({
   );
 }
 
-function SourceList({ sources }: { sources: SourceItem[] }) {
+function getCampusSourceGroups(sourceMap?: Record<string, SourceItem[]>) {
+  if (!sourceMap) return [];
+  return Object.entries(sourceMap).filter(
+    ([key, sources]) => CRAWL_CATEGORY_LABELS[key] && sources.length > 0,
+  );
+}
+
+function CampusSourceLibrary({
+  groups,
+}: {
+  groups: Array<[string, SourceItem[]]>;
+}) {
+  return (
+    <div className="space-y-4">
+      {groups.map(([key, sources]) => {
+        const meta = CRAWL_CATEGORY_LABELS[key];
+        return (
+          <section
+            key={key}
+            className="rounded-md border border-border-light bg-neutral-0/72 p-3"
+          >
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <h3 className="text-sm font-semibold text-text-light">
+                <span className="mr-1.5">{meta.icon}</span>
+                {meta.label}
+              </h3>
+              <span className="rounded-sm bg-surface-light-subtle px-2 py-0.5 text-[10px] text-text-light-muted">
+                {sources.length} 条
+              </span>
+            </div>
+            <SourceList sources={sources} compact />
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
+function SourceList({
+  sources,
+  compact = false,
+}: {
+  sources: SourceItem[];
+  compact?: boolean;
+}) {
   if (!sources.length) return null;
 
   return (
-    <section className="mt-4 space-y-2 border-t border-border-light pt-3">
-      <h4 className="text-[10px] font-semibold text-text-light-secondary">
-        信息来源 ({sources.length} 条)
-      </h4>
+    <section className={compact ? "space-y-2" : "mt-4 space-y-2 border-t border-border-light pt-3"}>
+      {!compact && (
+        <h4 className="text-[10px] font-semibold text-text-light-secondary">
+          信息来源 ({sources.length} 条)
+        </h4>
+      )}
       {sources.slice(0, 8).map((src, i) => (
         <div
           key={i}

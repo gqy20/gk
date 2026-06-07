@@ -4,12 +4,12 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import SchoolHeader from "./SchoolHeader";
-import TabNav, { type TabKey } from "./TabNav";
+import TabNav, { type ResourceTabKey, type TabKey } from "./TabNav";
 import OverviewSection from "./OverviewSection";
 import DetailSection from "./DetailSection";
 import type { School, UniversityInfo } from "@/lib/data";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
-import type { CrawlStatusMap, CrawlSourcesMap } from "@/lib/crawl-data";
+import type { CrawlStatusMap, CrawlSourcesMap, SourceItem } from "@/lib/crawl-data";
 
 interface SchoolPanelProps {
   school: School | null;
@@ -31,38 +31,58 @@ function getDetailCount(detail: UniversityInfo | undefined, key: string): number
 export default function SchoolPanel({
   school,
   onClose,
-  crawlStatus,
   crawlSources,
 }: SchoolPanelProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
-  const [activeCrawlCategory, setActiveCrawlCategory] = useState<string | null>(null);
+  const [activeResourceCategory, setActiveResourceCategory] = useState<ResourceTabKey | null>(null);
   const [contentVisible, setContentVisible] = useState(true);
   const prevTabRef = useRef(activeTab);
 
   const detail = school?.detail;
+  const schoolSources = school ? crawlSources?.[school.name] : undefined;
 
-  function handleCategoryClick(category: string) {
-    if (activeTab !== "overview") setActiveTab("overview");
-    setActiveCrawlCategory((prev) => (prev === category ? null : category));
-  }
+  const resourceTabs = useMemo(() => {
+    const allTabs = DETAIL_CATEGORIES.map((key) => ({
+      key,
+      label: CATEGORY_LABELS[key],
+      count: getDetailCount(detail, key),
+    }));
 
-  const tabs = useMemo(() => {
-    const allTabs: { key: TabKey; label: string; count?: number }[] = [
-      { key: "overview", label: "概览" },
-      ...DETAIL_CATEGORIES.map((key) => ({
-        key,
-        label: CATEGORY_LABELS[key],
-        count: getDetailCount(detail, key),
-      })),
-    ];
-
-    return allTabs.filter((tab) => {
-      if (tab.key === "overview") return true;
+    const detailTabs = allTabs.filter((tab) => {
       if (!detail) return false;
       const items = detail[tab.key as keyof typeof detail];
       return Array.isArray(items) && items.length > 0;
     });
-  }, [detail]);
+
+    const campusSourceCount = countCampusSources(schoolSources);
+    if (campusSourceCount > 0) {
+      return [
+        ...detailTabs,
+        {
+          key: "campus_sources" as const,
+          label: "校园来源",
+          count: campusSourceCount,
+        },
+      ];
+    }
+
+    return detailTabs;
+  }, [detail, schoolSources]);
+
+  const tabs = useMemo(() => {
+    const totalResources = resourceTabs.reduce((sum, tab) => sum + (tab.count || 0), 0);
+    return [
+      { key: "overview" as const, label: "总览" },
+      { key: "resources" as const, label: "资料库", count: totalResources || undefined },
+    ];
+  }, [resourceTabs]);
+
+  useEffect(() => {
+    if (activeResourceCategory && resourceTabs.some((tab) => tab.key === activeResourceCategory)) {
+      return;
+    }
+    queueMicrotask(() => setActiveResourceCategory(resourceTabs[0]?.key || null));
+  }, [activeResourceCategory, resourceTabs]);
 
   // Tab 切换时淡出 → 切内容 → 淡入
   useEffect(() => {
@@ -83,6 +103,7 @@ export default function SchoolPanel({
   }
 
   const isOverview = activeTab === "overview";
+  const resourceCategory = activeResourceCategory || resourceTabs[0]?.key || null;
 
   return (
     <div className="paper-shell flex h-full flex-col text-text-light">
@@ -90,7 +111,14 @@ export default function SchoolPanel({
         school={school}
         onClose={onClose}
       />
-      <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+      <TabNav
+        tabs={tabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        resourceTabs={resourceTabs}
+        activeResourceTab={resourceCategory}
+        onResourceTabChange={setActiveResourceCategory}
+      />
       <div
         className={cn(
           "min-h-0 flex-1 overflow-y-auto p-3 sm:p-4 transition-opacity duration-200",
@@ -101,16 +129,12 @@ export default function SchoolPanel({
           <OverviewSection
             detail={detail}
             school={school}
-            crawlStatus={crawlStatus}
-            crawlSources={crawlSources}
-            activeCrawlCategory={activeCrawlCategory}
-            onCategoryClick={handleCategoryClick}
           />
-        ) : detail ? (
+        ) : detail && resourceCategory ? (
           <DetailSection
-            category={activeTab}
+            category={resourceCategory}
             detail={detail}
-            crawlSources={crawlSources?.[school.name]}
+            crawlSources={schoolSources}
           />
         ) : (
           <p className="text-sm text-text-light-muted">暂无数据</p>
@@ -118,4 +142,9 @@ export default function SchoolPanel({
       </div>
     </div>
   );
+}
+
+function countCampusSources(sourceMap?: Record<string, SourceItem[]>): number {
+  if (!sourceMap) return 0;
+  return Object.values(sourceMap).reduce((sum, sources) => sum + sources.length, 0);
 }

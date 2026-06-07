@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
 const BASE = "http://localhost:3000";
 const DEVICES = [
@@ -20,7 +20,7 @@ test.describe("移动端适配测试", () => {
         fullPage: false,
       });
 
-      const issues = await page.evaluate(({ vw, vh }) => {
+      const issues = await page.evaluate(({ vw }) => {
         const problems: string[] = [];
 
         // 1. 检查水平滚动条
@@ -77,7 +77,7 @@ test.describe("移动端适配测试", () => {
         fullPage: false,
       });
 
-      const issues = await page.evaluate(({ vw, vh }) => {
+      const issues = await page.evaluate(({ vw }) => {
         const problems: string[] = [];
 
         // 1. 水平溢出

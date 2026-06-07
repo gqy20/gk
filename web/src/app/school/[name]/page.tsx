@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import Link from "next/link";
 import type { School } from "@/lib/data";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import SchoolDetailClient from "./SchoolDetailClient";
@@ -30,9 +31,9 @@ export default async function SchoolDetailPage({ params }: PageProps) {
       <div className="flex h-screen items-center justify-center bg-surface text-sm text-text-secondary">
         <div className="text-center">
           <p className="mb-4 text-lg">{EMPTY_MESSAGES.schoolNotFound}</p>
-          <a href="/" className="text-accent-500 underline">
+          <Link href="/" className="text-accent-500 underline">
             {EMPTY_MESSAGES.backHome}
-          </a>
+          </Link>
         </div>
       </div>
     );

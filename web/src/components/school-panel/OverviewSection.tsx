@@ -1,41 +1,18 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useRef, forwardRef } from "react";
-import { createPortal } from "react-dom";
-import { cn } from "@/lib/utils";
-import type { DocItem, School, UniversityInfo, MajorSatisfaction } from "@/lib/data";
+import type { School, UniversityInfo, MajorSatisfaction } from "@/lib/data";
 import { DETAIL_CATEGORIES, CATEGORY_LABELS } from "@/lib/data";
-import {
-  CRAWL_CATEGORIES,
-  CRAWL_CATEGORY_LABELS,
-  type CategoryStatus,
-  type CrawlStatusMap,
-  type SourceItem,
-  type CrawlSourcesMap,
-} from "@/lib/crawl-data";
-import { SOURCE_TYPE_LABELS, STATUS_LABELS, EMPTY_MESSAGES } from "@/lib/constants";
+import { EMPTY_MESSAGES } from "@/lib/constants";
 
 interface OverviewSectionProps {
   detail?: UniversityInfo;
   school: School;
-  crawlStatus?: CrawlStatusMap | null;
-  crawlSources?: CrawlSourcesMap | null;
-  activeCrawlCategory?: string | null;
-  onCategoryClick?: (category: string) => void;
 }
 
 export default function OverviewSection({
   detail,
   school,
-  crawlStatus,
-  crawlSources,
-  activeCrawlCategory,
-  onCategoryClick,
 }: OverviewSectionProps) {
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
-  const cardRefs = useRef<Record<string, HTMLButtonElement>>({});
-  const popoverRef = useRef<HTMLDivElement>(null);
-
   if (!detail) {
     return (
       <div className="space-y-4">
@@ -57,42 +34,6 @@ export default function OverviewSection({
     (key) => detail[key] && detail[key]!.length > 0,
   );
 
-  const statusMap = crawlStatus?.[school.name];
-  const crawlDoneCount = statusMap
-    ? CRAWL_CATEGORIES.filter((c) => statusMap[c]?.status === "done").length
-    : 0;
-
-  const schoolSources = crawlSources?.[school.name];
-
-  // 同步外部点击（Header 进度条）与本地展开状态
-  useEffect(() => {
-    if (activeCrawlCategory && activeCrawlCategory !== expandedCard) {
-      setExpandedCard(activeCrawlCategory);
-    }
-  }, [activeCrawlCategory]);
-
-  // 点击外部关闭浮层
-  useEffect(() => {
-    if (!expandedCard) return;
-    function handleClick(e: MouseEvent) {
-      const target = e.target as Node;
-      if (
-        popoverRef.current?.contains(target) ||
-        (expandedCard && cardRefs.current[expandedCard]?.contains(target))
-      )
-        return;
-      setExpandedCard(null);
-      if (expandedCard) onCategoryClick?.(expandedCard);
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [expandedCard]);
-
-  function toggleCard(cat: string) {
-    setExpandedCard((prev) => (prev === cat ? null : cat));
-    onCategoryClick?.(cat);
-  }
-
   return (
     <div className="space-y-4">
       {/* 阳光高考基础信息（始终显示，有数据时） */}
@@ -103,112 +44,18 @@ export default function OverviewSection({
         <MajorSatisfactionCard items={detail.major_satisfaction} />
       )}
 
-      {/* 校园信息采集进度 */}
-      {statusMap && (
-        <section className="relative">
-          <SectionTitle
-            label={`校园信息采集 (${crawlDoneCount}/${CRAWL_CATEGORIES.length})`}
-          />
-          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {CRAWL_CATEGORIES.map((cat) => {
-              const cs = statusMap[cat] as CategoryStatus | undefined;
-              const info = CRAWL_CATEGORY_LABELS[cat];
-              if (!cs) return null;
-              const isDone = cs.status === "done";
-              const isFailed = cs.status === "failed";
-              const isActive = activeCrawlCategory === cat || expandedCard === cat;
-
-              return (
-                <button
-                  key={cat}
-                  ref={(el) => { if (el) cardRefs.current[cat] = el; }}
-                  type="button"
-                  onClick={() => toggleCard(cat)}
-                  className={cn(
-                    "w-full cursor-pointer rounded-md border p-3 text-left shadow-sm transition-all duration-200",
-                    isActive
-                      ? "border-brand-400 bg-success-soft/70 shadow-lg shadow-brand-500/20 ring-1 ring-brand-400/25"
-                      : isDone
-                        ? "border-l-2 border-l-brand-400 bg-success-soft/40 hover:shadow-md hover:-translate-y-px hover:border-brand-300/60"
-                        : isFailed
-                          ? "border-l-2 border-l-danger-400 bg-danger-soft/30 hover:shadow-md hover:-translate-y-px hover:border-danger-300/60"
-                          : "border-l-2 border-l-dashed border-neutral-300 bg-neutral-0/70 hover:-translate-y-px hover:border-neutral-500/40 hover:shadow-md",
-                  )}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-medium text-text-light">
-                      {info.icon} {info.label}
-                    </span>
-                    <span
-                      className={cn(
-                        "rounded-sm px-1.5 py-0.5 text-[10px] font-medium",
-                        isDone
-                          ? "bg-brand-100 text-brand-600"
-                          : isFailed
-                            ? "bg-danger-100 text-danger-500"
-                            : "bg-neutral-300 text-text-light",
-                      )}
-                    >
-                      {isDone
-                        ? `${cs.urls_collected} 条`
-                        : cs.status === "pending"
-                          ? STATUS_LABELS.pending
-                          : cs.status === "failed"
-                            ? "失败"
-                            : "采集中"}
-                    </span>
-                  </div>
-
-                  {!isDone && cs.last_error && isActive && (
-                    <p className="mt-1.5 text-[9px] text-danger-400 line-clamp-2">
-                      错误: {cs.last_error}
-                    </p>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* 悬浮来源浮层 */}
-          {expandedCard && schoolSources?.[expandedCard] && (
-            <SourcePopover
-              ref={popoverRef}
-              category={expandedCard}
-              label={CRAWL_CATEGORY_LABELS[expandedCard]}
-              sources={schoolSources[expandedCard]}
-              anchorEl={cardRefs.current[expandedCard]}
-              onClose={() => { setExpandedCard(null); if (expandedCard) onCategoryClick?.(expandedCard); }}
-            />
-          )}
-        </section>
-      )}
-
       <section>
-        <SectionTitle label={`已获取信息 ${filledCategories.length} 类`} />
-        <div className="mt-2 space-y-2">
+        <SectionTitle label={`资料库索引 ${filledCategories.length} 类`} />
+        <div className="mt-2 flex flex-wrap gap-1.5">
           {filledCategories.map((key) => {
             const items = detail[key]!;
             return (
-              <div key={key} className="rounded-md border border-border-light bg-neutral-0/72 p-3">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold text-text-light">
-                    {CATEGORY_LABELS[key]}
-                  </span>
-                  <span className="rounded-sm bg-neutral-200 px-2 py-0.5 text-[10px] text-text-light">
-                    {items.length} 条
-                  </span>
-                </div>
-                <div className="mt-2 space-y-2">
-                  {items.slice(0, 3).map((item, index) => (
-                    <DocItemMini key={index} item={item as DocItem} />
-                  ))}
-                  {items.length > 3 && (
-                    <p className="text-xs text-text-light-muted">
-                      还有 {items.length - 3} 条
-                    </p>
-                  )}
-                </div>
-              </div>
+              <span
+                key={key}
+                className="rounded-sm border border-border-light bg-neutral-0/72 px-2.5 py-1 text-[11px] text-text-light"
+              >
+                {CATEGORY_LABELS[key]} · {items.length}
+              </span>
             );
           })}
         </div>
@@ -241,31 +88,6 @@ export default function OverviewSection({
 function SectionTitle({ label }: { label: string }) {
   return (
     <h3 className="text-[10px] font-semibold text-text-light-secondary">{label}</h3>
-  );
-}
-
-function DocItemMini({ item }: { item: DocItem }) {
-  return (
-    <div className="border-l-2 border-primary-border pl-2 transition hover:border-brand-400">
-      <a
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="line-clamp-1 text-xs font-medium text-brand-500 hover:text-brand-400"
-      >
-        {item.title}
-      </a>
-      {item.summary && (
-        <p className="mt-0.5 line-clamp-2 text-[11px] leading-relaxed text-text-light-muted">
-          {item.summary}
-        </p>
-      )}
-      {item.attachments?.length > 0 && (
-        <span className="mt-1 inline-block rounded bg-danger-soft px-1.5 py-0.5 text-[10px] text-danger-400">
-          附件 {item.attachments.length}
-        </span>
-      )}
-    </div>
   );
 }
 
@@ -366,108 +188,3 @@ function MajorSatisfactionCard({ items }: { items: MajorSatisfaction[] }) {
     </section>
   );
 }
-
-const SourcePopover = forwardRef<
-  HTMLDivElement,
-  {
-    category: string;
-    label: { icon: string; label: string };
-    sources: SourceItem[];
-    anchorEl?: HTMLButtonElement;
-    onClose: () => void;
-  }
->(function SourcePopover({ label, sources, anchorEl, onClose }, ref) {
-  const [pos, setPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
-  const [visible, setVisible] = useState(false);
-
-  // 入场动画：先渲染透明 → 下一帧触发 transition
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      requestAnimationFrame(() => setVisible(true));
-    });
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!anchorEl) return;
-    const rect = anchorEl.getBoundingClientRect();
-
-    // 默认在触发卡片下方弹出，空间不够则翻转到上方
-    const belowSpace = window.innerHeight - rect.bottom - 8;
-    const popoverHeight = Math.min(sources.length * 52 + 60, 320);
-    const top = belowSpace >= popoverHeight || rect.top < popoverHeight + 8
-      ? rect.bottom + 6
-      : rect.top - popoverHeight - 6;
-
-    // 水平居中，不超出视口
-    const left = Math.max(8, Math.min(rect.left + (rect.width - 300) / 2, window.innerWidth - 308));
-    setPos({ top, left });
-
-    function onResize() {
-      if (!anchorEl) return;
-      const r = anchorEl.getBoundingClientRect();
-      const bs = window.innerHeight - r.bottom - 8;
-      const ph = Math.min(sources.length * 52 + 60, 320);
-      const t = bs >= ph || r.top < ph + 8 ? r.bottom + 6 : r.top - ph - 6;
-      const l = Math.max(8, Math.min(r.left + (r.width - 300) / 2, window.innerWidth - 308));
-      setPos({ top: t, left: l });
-    }
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [anchorEl, sources.length]);
-
-  return createPortal(
-    <div
-      ref={ref}
-      className={cn(
-        "fixed z-[9999] w-[300px] rounded-xl border border-brand-300/40 bg-surface-light/95 p-3 shadow-xl shadow-neutral-900/8 backdrop-blur-sm transition-[opacity,transform] duration-200 ease-out",
-        visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",
-      )}
-      style={{ top: pos.top, left: pos.left }}
-    >
-      <div className="flex items-center justify-between border-b border-border-subtle pb-2 mb-2">
-        <span className="text-xs font-semibold text-text-light">
-          {label.icon} {label.label} · {sources.length} 条来源
-        </span>
-        <button
-          type="button"
-          onClick={() => {
-            setVisible(false);
-            setTimeout(onClose, 200);
-          }}
-          className="rounded p-0.5 text-text-muted transition hover:bg-surface-light-subtle hover:text-text-light-secondary"
-        >
-          ✕
-        </button>
-      </div>
-
-      <div className="max-h-[240px] overflow-y-auto space-y-1.5 pr-0.5 scrollbar-thin">
-        {sources.map((src, i) => (
-          <a
-            key={i}
-            href={src.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block rounded-md border border-border-subtle/60 bg-neutral-0/62 p-2 text-[11px] leading-relaxed transition hover:border-brand-400/40 hover:bg-brand-50/45"
-          >
-            <div className="line-clamp-1 font-medium text-brand-600">
-              {src.title || new URL(src.url).hostname.replace("www.", "")}
-            </div>
-            <div className="mt-0.5 flex items-center gap-2 text-[9px] text-text-muted">
-              <span className="rounded-sm border border-border-subtle bg-neutral-0/72 px-1 py-px">
-                {SOURCE_TYPE_LABELS[src.source_type] || src.source_type}
-              </span>
-              <span>置信度 {Math.round(src.agent_confidence * 100)}%</span>
-              {src.http_status && src.http_status >= 404 && src.http_status !== 403 && src.http_status !== 401 && (
-                <span className="rounded bg-danger-soft px-1 py-px text-danger-400">
-                  HTTP {src.http_status}
-                </span>
-              )}
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>,
-    document.body,
-  );
-});

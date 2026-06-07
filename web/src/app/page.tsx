@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import AppProvider, { useApp } from "@/components/AppProvider";
@@ -129,7 +130,7 @@ function Home() {
       <header className="paper-shell relative z-10 border-b border-border px-3 py-2 shadow-sm shadow-neutral-900/5 sm:px-4">
         <div className="flex min-w-0 items-center justify-between gap-3">
           <div className="min-w-0 flex items-center gap-2.5">
-            <img
+            <Image
               src="/logo.svg"
               alt=""
               className="h-8 w-8 shrink-0 rounded-md ring-1 ring-border/80"

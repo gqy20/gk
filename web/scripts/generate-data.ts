@@ -195,7 +195,7 @@ function extractMajorSatisfaction(gaokao: Record<string, unknown>): MajorSatisfa
       const scoreMatch = summary.match(/([\d.]+)\s*[\(（]/);
       const votesMatch = summary.match(/(\d+)\s*[人人]/);
       // 清理 title 中的 markdown 链接
-      let title = String(item.title || "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
+      const title = String(item.title || "").replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
       return {
         title: title.trim(),
         score: scoreMatch ? parseFloat(scoreMatch[1]) : 0,

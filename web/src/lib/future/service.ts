@@ -105,7 +105,7 @@ export async function createFutureRun({
   maxTokens = 4096,
 }: CreateFutureRunOptions) {
   log.info({ pathCount: input.pathCount, school: input.choiceContext.school, major: input.choiceContext.major }, "createFutureRun started");
-  const prompt = buildFuturePrompt(input);
+  buildFuturePrompt(input);
   const started = await startFutureRun({ input, repository, model });
 
   await generateFutureRun({

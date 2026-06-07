@@ -4,7 +4,7 @@
  * 运行方式: npx playwright test tdd-animations.spec.ts
  * 前提: pnpm dev 已启动 (localhost:3000)
  */
-import { test, expect, Page } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 
 const BASE = "http://localhost:3000";
 

@@ -16,6 +16,11 @@ import {
   extractActionItems,
 } from "../_helpers";
 
+const POLL_INTERVALS = [3000, 4000, 5000] as const;
+const MAX_POLL_INDEX = POLL_INTERVALS.length - 1;
+const MAX_WAIT_MS = 300_000;
+const MAX_RETRIES = 2;
+
 export default function FutureResultPage() {
   return (
     <Suspense fallback={<FutureLoadingFallback message="正在读取推演结果…" />}>
@@ -33,15 +38,8 @@ function FutureResultContent() {
   const [cancelled, setCancelled] = useState(false);
   const [userSelectedMode, setUserSelectedMode] = useState(false);
 
-  // 阶梯退避：3s → 4s → 5s → 5s 上限
-  const POLL_INTERVALS = [3000, 4000, 5000];
-  const MAX_POLL_INDEX = POLL_INTERVALS.length - 1;
-  const MAX_WAIT_MS = 300_000; // 5 分钟超时保护
-  const MAX_RETRIES = 2; // 瞬态错误自动重试次数
-
   useEffect(() => {
     if (!runId) {
-      setError("缺少 runId，无法读取推演结果。");
       return;
     }
 
@@ -105,6 +103,7 @@ function FutureResultContent() {
 
   const output = result?.output;
   const isGenerating = result?.run.status === "generating" && !cancelled;
+  const displayError = runId ? error : "缺少 runId，无法读取推演结果。";
   const recommendedPath = output ? findRecommendedPath(output) : null;
   const initialPath = recommendedPath || output?.paths[0] || null;
   const [selectedMode, setSelectedMode] = useState(initialPath ? pathMode(initialPath.index) : "compare");
@@ -115,7 +114,7 @@ function FutureResultContent() {
 
   useEffect(() => {
     if (!initialPath || userSelectedMode) return;
-    setSelectedMode(pathMode(initialPath.index));
+    queueMicrotask(() => setSelectedMode(pathMode(initialPath.index)));
   }, [initialPath, userSelectedMode]);
 
   const handleModeSelect = useCallback((mode: string) => {
@@ -141,13 +140,13 @@ function FutureResultContent() {
       }
       mainClassName="pb-8"
     >
-        {error && (
+        {displayError && (
           <div className="rounded-lg border border-danger-300/40 bg-danger-soft p-4 text-sm text-danger">
-            {error}
+            {displayError}
           </div>
         )}
 
-        {!error && (!output || isGenerating) && (
+        {!displayError && (!output || isGenerating) && (
           <FutureLoading
             message={isGenerating ? "正在推演未来路径" : "正在读取推演结果…"}
             generating={isGenerating}
@@ -737,15 +736,6 @@ const panelFade = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" as const } },
 };
-
-function bestScoreLabel(path: FuturePath) {
-  const entries = Object.entries(path.scores) as Array<[keyof FuturePath["scores"], FuturePath["scores"][keyof FuturePath["scores"]]]>;
-  const [key, score] = entries
-    .filter(([, item]) => item)
-    .sort((a, b) => b[1].value - a[1].value)[0] || ["growth", null];
-  if (!score) return "优势待观察";
-  return `${scoreLabel(key)} ${score.value}/10`;
-}
 
 function pathMode(index: number) {
   return `path-${index}`;

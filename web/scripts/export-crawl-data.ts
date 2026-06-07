@@ -8,7 +8,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
-// @ts-ignore -- node:sqlite is experimental in Node 24
+// @ts-expect-error -- node:sqlite is experimental in Node 24
 import { DatabaseSync } from "node:sqlite";
 
 const PROJECT_ROOT = path.resolve(__dirname, "..");

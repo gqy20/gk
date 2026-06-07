@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { IconCheck } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
@@ -55,7 +55,7 @@ export default function ProvinceList({
   const listRef = useRef<HTMLDivElement>(null);
   const listKey = selectedProvince ?? "all";
 
-  function getSavedScroll(): number | null {
+  const getSavedScroll = useCallback((): number | null => {
     try {
       const raw = sessionStorage.getItem(SCROLL_STORAGE_KEY);
       if (!raw) return null;
@@ -64,16 +64,16 @@ export default function ProvinceList({
     } catch {
       return null;
     }
-  }
+  }, [listKey]);
 
-  function saveScroll(pos: number) {
+  const saveScroll = useCallback((pos: number) => {
     try {
       const raw = sessionStorage.getItem(SCROLL_STORAGE_KEY);
       const data = raw ? JSON.parse(raw) : {};
       data[listKey] = pos;
       sessionStorage.setItem(SCROLL_STORAGE_KEY, JSON.stringify(data));
     } catch {}
-  }
+  }, [listKey]);
 
   const hasSavedScroll = typeof window !== "undefined" && getSavedScroll() !== null;
 
@@ -111,7 +111,7 @@ export default function ProvinceList({
       }
       el.removeEventListener("scroll", onScroll);
     };
-  }, [listKey]);
+  }, [getSavedScroll, hasSavedScroll, saveScroll]);
 
   if (displayProvinces.length === 0) {
     return (
