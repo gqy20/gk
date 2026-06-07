@@ -10,6 +10,7 @@ import ChinaMap from "@/components/ChinaMap";
 import CompareBar from "@/components/CompareBar";
 import ComparePanel from "@/components/ComparePanel";
 import FilterBar from "@/components/FilterBar";
+import { HeaderBlessing, PanelBlessing } from "@/components/GaokaoBlessing";
 import ProvinceList from "@/components/ProvinceList";
 import SchoolPanel from "@/components/school-panel/SchoolPanel";
 
@@ -140,6 +141,7 @@ function Home() {
                 中国高校信息地图
               </h1>
             </div>
+            <HeaderBlessing />
           </div>
 
           <div className="flex min-w-0 flex-1 items-center justify-end gap-2.5">
@@ -264,6 +266,7 @@ function Home() {
                             {selectedProvinceData?.count ?? filteredSchools.length} 所高校
                           </div>
                         </div>
+                        <PanelBlessing className="hidden max-w-[188px] sm:flex" />
                         {(selectedProvince || hasActiveSearch || activeFilterCount > 0) && (
                           <Button
                             theme="light"

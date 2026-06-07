@@ -447,6 +447,47 @@ button:disabled {
   display: none;
 }
 
+.future-risk-slider {
+  appearance: none;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.future-risk-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(63, 143, 155, 0.82), rgba(197, 154, 75, 0.48));
+}
+
+.future-risk-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  border: 3px solid var(--color-surface-elevated);
+  border-radius: 999px;
+  background: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(42, 72, 80, 0.24);
+}
+
+.future-risk-slider::-moz-range-track {
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(63, 143, 155, 0.82), rgba(197, 154, 75, 0.48));
+}
+
+.future-risk-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--color-surface-elevated);
+  border-radius: 999px;
+  background: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(42, 72, 80, 0.24);
+}
+
 /* xs breakpoint (475px), smaller than Tailwind sm (640px). */
 @media (min-width: 475px) {
   .xs\:inline-flex {

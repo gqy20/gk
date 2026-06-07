@@ -131,6 +131,7 @@ const SHORT_PROVINCE_NAMES = new Map(
 );
 
 const CHINA_VIEW_BOUNDS: Bounds = [73, 17, 135.5, 54.5];
+const CHINA_CAMERA_BOUNDS: Bounds = [58, 6, 150, 65];
 const MAP_INTERACTION_BOUNDS: Bounds = [58, -2, 154, 64];
 const SEA_TEXTURE_COORDINATES: [Position, Position, Position, Position] = [
   [48, 70],
@@ -195,15 +196,18 @@ function fitBounds(map: maplibregl.Map, bounds: Bounds, level: MapLevel) {
   ];
   if (level !== "country") {
     const camera = map.cameraForBounds(nextBounds, {
-      padding: 10,
+      padding:
+        level === "province"
+          ? { top: 24, right: 170, bottom: 24, left: 24 }
+          : { top: 18, right: 110, bottom: 18, left: 22 },
       maxZoom: 8.2,
     });
     if (camera) {
-      const zoomBoost = level === "province" ? 0.9 : 0.45;
+      const zoomOffset = level === "province" ? -0.35 : -0.15;
       const cameraZoom = camera.zoom ?? 6;
       map.easeTo({
         center: camera.center,
-        zoom: Math.min(cameraZoom + zoomBoost, 8.45),
+        zoom: Math.min(cameraZoom + zoomOffset, 8.45),
         duration: level === "province" ? 520 : 420,
         essential: true,
       });
@@ -211,7 +215,7 @@ function fitBounds(map: maplibregl.Map, bounds: Bounds, level: MapLevel) {
     }
   }
   map.fitBounds(nextBounds, {
-    padding: level === "country" ? 34 : 18,
+    padding: level === "country" ? 54 : 18,
     duration: 420,
     maxZoom: level === "country" ? 4.15 : 8.2,
   });
@@ -469,6 +473,11 @@ export default function ChinaMap({
     window.requestAnimationFrame(() => {
       fitPendingCamera();
     });
+    window.setTimeout(() => {
+      map.resize();
+      pendingCameraRef.current = { bounds, level };
+      fitPendingCamera();
+    }, 180);
   }, []);
 
   const syncSeaWatercolorLayer = useCallback((visible: boolean) => {
@@ -638,7 +647,7 @@ export default function ChinaMap({
         },
       });
 
-      fitBounds(map, CHINA_VIEW_BOUNDS, "country");
+      fitBounds(map, CHINA_CAMERA_BOUNDS, "country");
     },
     [],
   );
@@ -689,7 +698,7 @@ export default function ChinaMap({
       },
       attributionControl: false,
       center: [104, 35],
-      zoom: 3.15,
+      zoom: 2.95,
       minZoom: 2.45,
       maxZoom: 8.8,
       maxBounds: [
@@ -729,9 +738,23 @@ export default function ChinaMap({
     if (!normalizedMapData || !labelData) return;
     resetHover();
     setRegionSourceData(normalizedMapData, labelData);
-    const bounds = drill.level === "country" ? CHINA_VIEW_BOUNDS : boundsFromGeoJson(normalizedMapData);
+    const bounds = drill.level === "country" ? CHINA_CAMERA_BOUNDS : boundsFromGeoJson(normalizedMapData);
     scheduleCameraFit(bounds, drill.level);
   }, [drill.level, labelData, normalizedMapData, resetHover, scheduleCameraFit, setRegionSourceData]);
+
+  useEffect(() => {
+    const node = mapContainerRef.current;
+    const map = mapRef.current;
+    if (!node || !map || !normalizedMapData) return;
+
+    const observer = new ResizeObserver(() => {
+      map.resize();
+      const bounds = drill.level === "country" ? CHINA_CAMERA_BOUNDS : boundsFromGeoJson(normalizedMapData);
+      scheduleCameraFit(bounds, drill.level);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [drill.level, mapReady, normalizedMapData, scheduleCameraFit]);
 
   useEffect(() => {
     setSchoolSourceData(schoolData);

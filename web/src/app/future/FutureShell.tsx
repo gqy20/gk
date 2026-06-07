@@ -9,6 +9,8 @@ export function FutureShell({
   backLabel = "返回",
   headerControls,
   mainClassName = "",
+  contentMaxClassName = "max-w-[1600px]",
+  headerMaxClassName = "max-w-[1600px]",
   children,
 }: {
   title: string;
@@ -18,12 +20,14 @@ export function FutureShell({
   backLabel?: string;
   headerControls?: ReactNode;
   mainClassName?: string;
+  contentMaxClassName?: string;
+  headerMaxClassName?: string;
   children: ReactNode;
 }) {
   return (
     <div className="relative min-h-screen overflow-hidden bg-surface text-text">
       <header className="sticky top-0 z-20 border-b border-border bg-surface-elevated/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-3 py-2.5 sm:px-5">
+        <div className={`mx-auto flex ${headerMaxClassName} items-center justify-between gap-3 px-3 py-2.5 sm:px-5`}>
           <div className="flex min-w-0 items-center gap-3">
             <a
               href={backHref}
@@ -61,13 +65,13 @@ export function FutureShell({
           </div>
         </div>
         {headerControls && (
-          <div className="mx-auto max-w-[1600px] border-t border-border/60 px-3 py-2 sm:px-5">
+          <div className={`mx-auto ${headerMaxClassName} border-t border-border/60 px-3 py-2 sm:px-5`}>
             {headerControls}
           </div>
         )}
       </header>
 
-      <main className={`relative mx-auto max-w-[1600px] px-3 py-4 sm:px-5 sm:py-5 ${mainClassName}`}>
+      <main className={`relative mx-auto ${contentMaxClassName} px-3 py-4 sm:px-5 sm:py-5 ${mainClassName}`}>
         {subtitle && (
           <p className="mb-4 max-w-3xl text-sm leading-7 text-text-secondary">
             {subtitle}

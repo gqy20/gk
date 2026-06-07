@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState, useCallback, type ReactNode } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { ResultBlessing } from "@/components/GaokaoBlessing";
 import { fetchFutureRunFromClient } from "@/lib/future/client";
 import type { FuturePath, FutureRunResult, FutureStructuredOutput } from "@/lib/future/types";
 import { FuturePanel, FutureShell } from "../FutureShell";
@@ -306,6 +307,7 @@ function DecisionSummary({
 
   return (
     <FuturePanel tone={tone} className="p-4 sm:p-5">
+      <ResultBlessing />
       <div className="grid items-center gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.56fr)]">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">

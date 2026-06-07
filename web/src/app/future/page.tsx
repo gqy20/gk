@@ -178,19 +178,19 @@ function FuturePageContent() {
   return (
     <FutureShell
       title="未来路径推演"
-      subtitle="把一个志愿选择拆成几条可比较的未来路径：先看分叉，再看代价，最后得到前两年的行动建议。"
       backHref="/"
       backLabel="返回"
-      eyebrow="3 条路径 · 分叉推演 · Neon 保存"
+      headerControls={<TabBar value={tab} onChange={setTab} />}
+      headerMaxClassName="max-w-none"
+      contentMaxClassName="max-w-none"
+      mainClassName="pb-10 pt-5"
     >
-      <TabBar value={tab} onChange={setTab} />
-
       {tab === "form" && (
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px] 2xl:grid-cols-[minmax(0,1fr)_420px]">
         <form onSubmit={handleSubmit} className="space-y-4">
-          <FuturePanel className="p-5">
+          <FuturePanel className="p-5 sm:p-6">
             <FormStep number="01" title="目标志愿" description="先确定这次要推演的学校、专业和城市。">
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid gap-x-5 gap-y-4 lg:grid-cols-3">
                 <OptionSelect
                   label="目标学校"
                   value={targetSchool}
@@ -220,9 +220,9 @@ function FuturePageContent() {
             </FormStep>
           </FuturePanel>
 
-          <FuturePanel className="p-5">
+          <FuturePanel className="p-5 sm:p-6">
             <FormStep number="02" title="学生画像" description="画像不需要完美，重点是让路径差异更贴近学生本人。">
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-x-5 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
                 <Select label="生源省份" value={studentProvince} onChange={setStudentProvince} options={provinceOptions} placeholder="请选择生源省份" />
                 <Select label="选科/方向" value={subjectTrack} onChange={setSubjectTrack} options={["物理", "历史", "理科", "文科", "综合"]} />
                 <Select label="分数段" value={scoreBand} onChange={setScoreBand} options={["顶尖", "较高", "中上", "中等", "压线"]} />
@@ -233,49 +233,57 @@ function FuturePageContent() {
             </FormStep>
           </FuturePanel>
 
-          <FuturePanel className="p-5">
+          <FuturePanel className="p-5 sm:p-6">
             <FormStep number="03" title="目标与取舍" description="这里决定三条路径会偏稳健、均衡还是冒险。">
-              <div className="grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)]">
-                <label className="block space-y-2 text-xs font-medium text-text-secondary">
-                  <span>风险偏好：{riskTolerance}/10</span>
+              <div className="grid items-start gap-8 xl:grid-cols-[340px_minmax(0,1fr)]">
+                <label className="block rounded-xl bg-neutral-0/45 p-4 text-xs font-medium text-text-secondary">
+                  <span className="flex items-center justify-between gap-3">
+                    <span>风险偏好</span>
+                    <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
+                  </span>
                   <input
                     type="range"
                     min={1}
                     max={10}
                     value={riskTolerance}
                     onChange={(event) => setRiskTolerance(Number(event.target.value))}
-                    className="w-full accent-primary"
+                    className="future-risk-slider mt-4 w-full"
                   />
-                  <div className="flex justify-between text-[11px] text-text-muted">
+                  <div className="mt-3 flex justify-between text-[11px] text-text-muted">
                     <span>稳健</span>
                     <span>均衡</span>
                     <span>冒险</span>
                   </div>
                 </label>
-                <label className="block space-y-2 text-xs font-medium text-text-secondary">
-                  <span>目标/顾虑</span>
+                <label className="block space-y-3 text-xs font-medium text-text-secondary">
+                  <span className="block">目标/顾虑</span>
                   <textarea
                     value={goals}
                     onChange={(event) => setGoals(event.target.value)}
-                    className="min-h-28 w-full rounded-lg border border-border bg-surface-subtle px-3 py-2 text-sm text-text outline-none transition focus:border-primary"
+                    className={inputClassName("min-h-32 resize-y py-3 leading-6")}
                   />
                 </label>
               </div>
             </FormStep>
           </FuturePanel>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface-elevated px-4 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)]">
             <label className="text-xs font-medium text-text-secondary">
               路径数量
-              <select
-                value={pathCount}
-                onChange={(event) => setPathCount(Number(event.target.value))}
-                className="ml-2 rounded-lg border border-border bg-surface-subtle px-2 py-1 text-text"
-              >
-                {[3, 4, 5, 6].map((count) => (
-                  <option key={count} value={count}>{count}</option>
-                ))}
-              </select>
+              <span className="relative ml-3 inline-block">
+                <select
+                  value={pathCount}
+                  onChange={(event) => setPathCount(Number(event.target.value))}
+                  className={selectClassName("h-10 w-20")}
+                >
+                  {[3, 4, 5, 6].map((count) => (
+                    <option key={count} value={count}>{count}</option>
+                  ))}
+                </select>
+                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-text-muted">
+                  ▾
+                </span>
+              </span>
             </label>
             <Button type="submit" disabled={submitting || !targetSchool.trim()} theme="light" variant="primary">
               {submitting ? "生成中" : "开始推演"}
@@ -289,8 +297,8 @@ function FuturePageContent() {
           )}
         </form>
 
-        <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
-          <FuturePanel className="p-5">
+        <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
+          <FuturePanel className="p-5 sm:p-6">
             <SectionHeading title="本次推演摘要" description="提交前先确认输入是否符合预期。" />
             <div className="mt-4 space-y-3 text-sm">
               <SummaryRow label="学校" value={targetSchool || "未填写"} />
@@ -301,10 +309,10 @@ function FuturePageContent() {
             </div>
           </FuturePanel>
 
-          <FuturePanel className="p-5">
+          <FuturePanel className="p-5 sm:p-6">
             <SectionHeading title="输出会包含" />
             <div className="mt-4 grid gap-2 text-xs leading-5 text-text-secondary">
-              {["推荐路径与适配分", "三条分叉计划", "路径对比表", "大学前三阶段时间线", "前两年行动清单", "假设和质量检查"].map((item) => (
+              {["推荐路径与适配分", "三条分叉计划", "路径对比表", "大学前三阶段时间线", "前两年行动清单"].map((item) => (
                 <div key={item} className="rounded-lg border border-border bg-surface-subtle px-3 py-2">
                   {item}
                 </div>
@@ -333,7 +341,7 @@ function FuturePageContent() {
 
 function TabBar({ value, onChange }: { value: "form" | "history"; onChange: (v: "form" | "history") => void }) {
   return (
-    <div className="mb-5 inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated p-1 backdrop-blur-sm">
+    <div className="inline-flex items-center gap-1 rounded-full border border-border bg-surface-elevated p-1 backdrop-blur-sm">
       {([
         { key: "form", label: "新推演" },
         { key: "history", label: "历史" },
@@ -499,7 +507,7 @@ function FormStep({
   children: ReactNode;
 }) {
   return (
-    <div className="grid gap-4 md:grid-cols-[150px_minmax(0,1fr)]">
+    <div className="grid gap-6 lg:grid-cols-[160px_minmax(0,1fr)]">
       <div>
         <div className="text-xs font-semibold text-accent">{number}</div>
         <h2 className="mt-1 text-base font-semibold text-text">{title}</h2>
@@ -531,13 +539,13 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <label className="block space-y-1.5 text-xs font-medium text-text-secondary">
-      <span>{label}</span>
+    <label className="block space-y-2 text-xs font-medium text-text-secondary">
+      <span className="block">{label}</span>
       <input
         required={required}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-border bg-surface-subtle px-3 text-sm text-text outline-none transition focus:border-primary"
+        className={inputClassName()}
       />
     </label>
   );
@@ -557,18 +565,23 @@ function Select({
   placeholder?: string;
 }) {
   return (
-    <label className="block space-y-1.5 text-xs font-medium text-text-secondary">
-      <span>{label}</span>
-      <select
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-border bg-surface-subtle px-3 text-sm text-text outline-none transition focus:border-primary"
-      >
-        {placeholder && <option value="">{placeholder}</option>}
-        {options.map((option) => (
-          <option key={option} value={option}>{option}</option>
-        ))}
-      </select>
+    <label className="block space-y-2 text-xs font-medium text-text-secondary">
+      <span className="block">{label}</span>
+      <span className="relative block">
+        <select
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          className={selectClassName()}
+        >
+          {placeholder && <option value="">{placeholder}</option>}
+          {options.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
+          ▾
+        </span>
+      </span>
     </label>
   );
 }
@@ -590,21 +603,42 @@ function OptionSelect({
 }) {
   const normalizedOptions = value && !options.includes(value) ? [value, ...options] : options;
   return (
-    <label className="block space-y-1.5 text-xs font-medium text-text-secondary">
-      <span>{label}</span>
-      <select
-        required={required}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-10 w-full rounded-lg border border-border bg-surface-subtle px-3 text-sm text-text outline-none transition focus:border-primary"
-      >
-        <option value="">{placeholder}</option>
-        {normalizedOptions.map((option) => (
-          <option key={option} value={option}>{option}</option>
-        ))}
-      </select>
+    <label className="block space-y-2 text-xs font-medium text-text-secondary">
+      <span className="block">{label}</span>
+      <span className="relative block">
+        <select
+          required={required}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          className={selectClassName()}
+        >
+          <option value="">{placeholder}</option>
+          {normalizedOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
+          ▾
+        </span>
+      </span>
     </label>
   );
+}
+
+function inputClassName(extra = "") {
+  return `w-full rounded-xl border border-border bg-neutral-0/70 px-4 text-sm text-text
+          shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]
+          outline-none transition duration-150 placeholder:text-text-placeholder
+          hover:border-border-subtle focus:border-accent/60 focus:bg-surface-elevated
+          focus:ring-2 focus:ring-accent/15 ${extra || "h-12"}`;
+}
+
+function selectClassName(extra = "") {
+  return `w-full appearance-none rounded-xl border border-border bg-neutral-0/70 px-4 pr-10 text-sm text-text
+          shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]
+          outline-none transition duration-150
+          hover:border-border-subtle focus:border-accent/60 focus:bg-surface-elevated
+          focus:ring-2 focus:ring-accent/15 ${extra || "h-12"}`;
 }
 
 function extractCity(school: School) {
