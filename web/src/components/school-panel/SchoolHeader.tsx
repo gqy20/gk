@@ -6,11 +6,13 @@ import type { School } from "@/lib/data";
 interface SchoolHeaderProps {
   school: School;
   onClose?: () => void;
+  futureHref?: string;
 }
 
 export default function SchoolHeader({
   school,
   onClose,
+  futureHref,
 }: SchoolHeaderProps) {
   return (
     <div className="flex items-center gap-2 border-b border-border-light bg-accent-50/45 px-3 py-1.5 sm:px-4 sm:py-3">
@@ -40,6 +42,14 @@ export default function SchoolHeader({
         {school.is985 && <Badge label="985" tone="red" compact />}
         {school.is211 && <Badge label="211" tone="gold" compact />}
         {school.isDoubleFirstClass && <Badge label="双一流" tone="green" compact />}
+        {futureHref && (
+          <a
+            href={futureHref}
+            className="inline-flex h-5 items-center rounded-sm border border-brand-500/30 bg-success-soft px-1.5 text-[10px] font-medium text-brand-700 transition hover:border-brand-500/55 hover:bg-brand-100"
+          >
+            模拟
+          </a>
+        )}
       </span>
     </div>
   );

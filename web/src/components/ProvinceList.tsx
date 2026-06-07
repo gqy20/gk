@@ -131,8 +131,6 @@ export default function ProvinceList({
       key={selectedProvince ?? "all"}
     >
       {displayProvinces.map((prov) => {
-        const doneCount = prov.schools.filter((school) => school.status === "done").length;
-        const progress = Math.round((doneCount / Math.max(prov.schools.length, 1)) * 100);
         const isSelected = selectedProvince === prov.name;
         const compactProvinceHeader = Boolean(selectedProvince);
 
@@ -172,18 +170,11 @@ export default function ProvinceList({
                       </span>
                     </div>
                   )}
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-black/10">
-                    <motion.div
-                      className="h-full rounded-full bg-accent-300"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
-                  </div>
-                  <div className="mt-1 flex items-center justify-between gap-3 text-[10px] opacity-65">
-                    <span>{doneCount} 已采集 · {progress}%</span>
-                    {compactProvinceHeader && <span>{prov.count} 所</span>}
-                  </div>
+                  {compactProvinceHeader && (
+                    <div className="text-xs font-medium opacity-72">
+                      {prov.count} 所高校
+                    </div>
+                  )}
                 </div>
               </div>
             </button>

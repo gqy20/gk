@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { School, UniversityInfo } from "@/lib/data";
-import { STATUS_LABELS, STAT_LABELS } from "@/lib/constants";
+import { STAT_LABELS } from "@/lib/constants";
 
 interface SchoolPopupProps {
   school: School;
@@ -89,15 +89,6 @@ export default function SchoolPopup({
         {school.is985 && <Badge label="985" tone="red" />}
         {school.is211 && <Badge label="211" tone="gold" />}
         {school.isDoubleFirstClass && <Badge label="双一流" tone="green" />}
-        <span
-          className={`rounded-sm px-2 py-0.5 text-[10px] font-medium ${
-            school.status === "done"
-              ? "border border-brand-500/30 bg-brand-50 text-brand-700"
-              : "border border-border-subtle bg-neutral-900/5 text-text-muted"
-          }`}
-        >
-          {school.status === "done" ? STATUS_LABELS.done : STATUS_LABELS.pending}
-        </span>
       </div>
 
       {/* 简要统计 */}

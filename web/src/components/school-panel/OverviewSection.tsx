@@ -1,17 +1,24 @@
 "use client";
 
-import type { School, UniversityInfo, MajorSatisfaction } from "@/lib/data";
+import type {
+  DetailCategoryKey,
+  MajorSatisfaction,
+  School,
+  UniversityInfo,
+} from "@/lib/data";
 import { DETAIL_CATEGORIES, CATEGORY_LABELS } from "@/lib/data";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 
 interface OverviewSectionProps {
   detail?: UniversityInfo;
   school: School;
+  onResourceSelect?: (category: DetailCategoryKey) => void;
 }
 
 export default function OverviewSection({
   detail,
   school,
+  onResourceSelect,
 }: OverviewSectionProps) {
   if (!detail) {
     return (
@@ -22,9 +29,6 @@ export default function OverviewSection({
         )}
         <div className="rounded-md border border-border-light bg-neutral-0/72 p-4 text-sm text-text-light-muted">
           <div className="font-semibold text-text-light">{EMPTY_MESSAGES.detailNotReady}</div>
-          <div className="mt-2 text-xs">
-            当前状态：{school.status === "done" ? "已完成" : "等待采集"}
-          </div>
         </div>
       </div>
     );
@@ -50,12 +54,14 @@ export default function OverviewSection({
           {filledCategories.map((key) => {
             const items = detail[key]!;
             return (
-              <span
+              <button
+                type="button"
                 key={key}
-                className="rounded-sm border border-border-light bg-neutral-0/72 px-2.5 py-1 text-[11px] text-text-light"
+                onClick={() => onResourceSelect?.(key)}
+                className="rounded-sm border border-border-light bg-neutral-0/72 px-2.5 py-1 text-[11px] text-text-light transition hover:border-brand-300 hover:bg-brand-50/45 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/50"
               >
                 {CATEGORY_LABELS[key]} · {items.length}
-              </span>
+              </button>
             );
           })}
         </div>

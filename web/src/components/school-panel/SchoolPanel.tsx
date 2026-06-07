@@ -14,6 +14,7 @@ import type { CrawlStatusMap, CrawlSourcesMap, SourceItem } from "@/lib/crawl-da
 interface SchoolPanelProps {
   school: School | null;
   onClose?: () => void;
+  futureHref?: string;
   crawlStatus?: CrawlStatusMap | null;
   crawlSources?: CrawlSourcesMap | null;
 }
@@ -31,6 +32,7 @@ function getDetailCount(detail: UniversityInfo | undefined, key: string): number
 export default function SchoolPanel({
   school,
   onClose,
+  futureHref,
   crawlSources,
 }: SchoolPanelProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
@@ -105,11 +107,17 @@ export default function SchoolPanel({
   const isOverview = activeTab === "overview";
   const resourceCategory = activeResourceCategory || resourceTabs[0]?.key || null;
 
+  function handleResourceSelect(category: ResourceTabKey) {
+    setActiveResourceCategory(category);
+    setActiveTab("resources");
+  }
+
   return (
     <div className="paper-shell flex h-full flex-col text-text-light">
       <SchoolHeader
         school={school}
         onClose={onClose}
+        futureHref={futureHref}
       />
       <TabNav
         tabs={tabs}
@@ -129,6 +137,7 @@ export default function SchoolPanel({
           <OverviewSection
             detail={detail}
             school={school}
+            onResourceSelect={handleResourceSelect}
           />
         ) : detail && resourceCategory ? (
           <DetailSection

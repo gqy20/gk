@@ -225,6 +225,8 @@ function normalizeMapData(
   data: GeoJsonFeatureCollection,
   provinces: ProvinceData[],
   selectedProvince: string | null,
+  schools: School[] = [],
+  level: MapLevel = "country",
 ) {
   const countByProvince = new Map(provinces.map((province) => [province.name, province.count]));
 
@@ -238,7 +240,9 @@ function normalizeMapData(
       properties: {
         ...feature.properties,
         shortName,
-        count: countByProvince.get(shortName) ?? 0,
+        count: level === "country"
+          ? countByProvince.get(shortName) ?? 0
+          : countSchoolsInFeature(feature, schools),
         colorName: palette.colorName,
         fillColor: palette.fill,
         selectedFillColor: palette.selectedFill,
@@ -255,6 +259,69 @@ function normalizeMapData(
     type: "FeatureCollection",
     features,
   } as GeoJsonFeatureCollection;
+}
+
+function countSchoolsInFeature(feature: GeoJsonFeature, schools: School[]) {
+  const geometry = feature.geometry;
+  if (!geometry) return 0;
+  return schools.filter((school) => pointInGeometry(school.coord, geometry)).length;
+}
+
+function pointInGeometry(point: [number, number], geometry: GeoJsonGeometry): boolean {
+  if (geometry.type === "Polygon") {
+    const polygon = asPolygonCoordinates(geometry.coordinates);
+    return polygon ? pointInPolygon(point, polygon) : false;
+  }
+  if (geometry.type === "MultiPolygon") {
+    const polygons = asMultiPolygonCoordinates(geometry.coordinates);
+    return polygons ? polygons.some((polygon) => pointInPolygon(point, polygon)) : false;
+  }
+  return false;
+}
+
+function asPolygonCoordinates(value: unknown): number[][][] | null {
+  if (!Array.isArray(value)) return null;
+  return value as number[][][];
+}
+
+function asMultiPolygonCoordinates(value: unknown): number[][][][] | null {
+  if (!Array.isArray(value)) return null;
+  return value as number[][][][];
+}
+
+function pointInPolygon(point: [number, number], polygon: number[][][]): boolean {
+  const [lng, lat] = point;
+  const outerRing = polygon[0];
+  if (!outerRing) return false;
+
+  let inside = false;
+  for (let i = 0, j = outerRing.length - 1; i < outerRing.length; j = i++) {
+    const xi = outerRing[i][0];
+    const yi = outerRing[i][1];
+    const xj = outerRing[j][0];
+    const yj = outerRing[j][1];
+    const intersects = yi > lat !== yj > lat
+      && lng < ((xj - xi) * (lat - yi)) / (yj - yi || Number.EPSILON) + xi;
+    if (intersects) inside = !inside;
+  }
+
+  if (!inside) return false;
+  return !polygon.slice(1).some((hole) => pointInRing(point, hole));
+}
+
+function pointInRing(point: [number, number], ring: number[][]): boolean {
+  const [lng, lat] = point;
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0];
+    const yi = ring[i][1];
+    const xj = ring[j][0];
+    const yj = ring[j][1];
+    const intersects = yi > lat !== yj > lat
+      && lng < ((xj - xi) * (lat - yi)) / (yj - yi || Number.EPSILON) + xi;
+    if (intersects) inside = !inside;
+  }
+  return inside;
 }
 
 function makeLabelData(data: GeoJsonFeatureCollection) {
@@ -410,8 +477,8 @@ export default function ChinaMap({
 
   const normalizedMapData = useMemo(() => {
     if (!mapData) return null;
-    return normalizeMapData(mapData, provinces, selectedProvince);
-  }, [mapData, provinces, selectedProvince]);
+    return normalizeMapData(mapData, provinces, selectedProvince, visibleSchools, drill.level);
+  }, [drill.level, mapData, provinces, selectedProvince, visibleSchools]);
 
   const labelData = useMemo(() => {
     if (!normalizedMapData) return null;
@@ -603,12 +670,12 @@ export default function ChinaMap({
           "line-color": [
             "case",
             ["boolean", ["feature-state", "hover"], false],
-            ["coalesce", ["get", "edgeColor"], "rgba(80, 98, 92, 0.86)"],
-            ["coalesce", ["get", "edgeColor"], "rgba(76, 92, 86, 0.68)"],
+            "rgba(76, 96, 91, 0.66)",
+            "rgba(76, 92, 86, 0.42)",
           ],
-          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.9, 4, 1.25, 6, 1.75],
-          "line-blur": 0.22,
-          "line-opacity": 0.86,
+          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.72, 4, 0.95, 6, 1.15],
+          "line-blur": 0.36,
+          "line-opacity": 0.72,
         },
       });
       map.addLayer({
@@ -659,7 +726,7 @@ export default function ChinaMap({
     async function loadInitialMap() {
       try {
         const data = await loadMapData("100000");
-        const initialRegions = normalizeMapData(data, provinces, selectedProvince);
+        const initialRegions = normalizeMapData(data, provinces, selectedProvince, schools, "country");
         const initialLabels = makeLabelData(initialRegions);
         if (!cancelled) {
           setMapData(data);
@@ -808,6 +875,11 @@ export default function ChinaMap({
   }, [loadMapData, onProvinceSelect, syncSeaWatercolorLayer]);
 
   useEffect(() => {
+    if (selectedProvince || drill.level === "country" || loadingDrill) return;
+    void resetToCountry();
+  }, [drill.level, loadingDrill, resetToCountry, selectedProvince]);
+
+  useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady) return;
 
@@ -940,39 +1012,9 @@ export default function ChinaMap({
     >
       <div aria-hidden="true" className="china-map-veil" />
 
-      {drill.level !== "country" && (
-        <div className="absolute left-3 top-3 z-20 flex items-center gap-1.5">
-          <button
-            onClick={resetToCountry}
-            className="flex items-center gap-1 rounded-md border border-border bg-neutral-0/75 px-2.5 py-1 text-xs font-medium text-text shadow-sm backdrop-blur-sm transition-all hover:border-primary/45 hover:bg-brand-50"
-            title="返回全国"
-          >
-            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            全国
-          </button>
-
-          <svg className="h-3 w-3 text-text-muted/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-
-          {drill.breadcrumbs.slice(1).map((crumb, i) => (
-            <span key={crumb.adcode} className="flex items-center gap-1.5">
-              {i > 0 && (
-                <svg className="h-3 w-3 text-text-muted/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              )}
-              <span className="rounded-md border border-border bg-neutral-0/72 px-2.5 py-1 text-xs font-semibold text-text shadow-sm backdrop-blur-sm">
-                {crumb.name}
-              </span>
-            </span>
-          ))}
-
-          {loadingDrill && (
-            <span className="ml-1 text-[11px] text-text-muted animate-pulse">加载中...</span>
-          )}
+      {loadingDrill && drill.level !== "country" && (
+        <div className="absolute left-3 top-3 z-20 rounded-md bg-neutral-0/70 px-2.5 py-1 text-[11px] text-text-muted shadow-sm backdrop-blur-sm">
+          加载中...
         </div>
       )}
 

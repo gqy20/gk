@@ -53,6 +53,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<AMap.Map | null>(null);
   const [activeCategory, setActiveCategory] = useState<PoiCategoryKey | "all">("all");
+  const [selectedPoi, setSelectedPoi] = useState<string | null>(null);
   const [pois, setPois] = useState<Record<string, PoiItem[]>>({});
   const [loading, setLoading] = useState(false);
   const [mapReady, setMapReady] = useState(false);
@@ -90,15 +91,8 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
           zoom: 15,
           center: [lng, lat],
           mapStyle: "amap://styles/normal",
-          viewMode: "3D",
-          pitch: 48,
-          rotation: -18,
-          showBuildingBlock: true,
-        } as AMap.MapOptions & {
-          pitch: number;
-          rotation: number;
-          showBuildingBlock: boolean;
-        };
+          viewMode: "2D",
+        } as AMap.MapOptions;
 
         const map = new AMap.Map(mapRef.current!, mapOptions);
 
@@ -209,6 +203,7 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
         });
 
         marker.on("click", () => {
+          setSelectedPoi(`${cat.key}:${item.name}`);
           const infoWindow = new AMap.InfoWindow({
             isCustom: true,
             offset: new AMap.Pixel(0, -32),
@@ -235,7 +230,13 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
     async function loadPois() {
       if (activeCategory === "all") {
         const results = await Promise.all(
-          POI_CATEGORIES.map(async (cat) => searchPois(cat)),
+          POI_CATEGORIES.map(async (cat) => {
+            try {
+              return await searchPois(cat);
+            } catch {
+              return [];
+            }
+          }),
         );
         if (cancelled) return;
         const nextPois: Record<string, PoiItem[]> = {};
@@ -267,12 +268,12 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
   const totalPois = Object.values(pois).reduce((sum, arr) => sum + arr.length, 0);
 
   return (
-    <div className="paper-shell flex h-full w-full flex-col p-3">
+    <div className="paper-shell flex h-full w-full flex-col gap-2.5 p-2.5">
       {/* 地图容器 */}
       <div
         ref={mapRef}
         className={`relative w-full overflow-hidden rounded-md border border-border-light bg-neutral-100 shadow-sm shadow-neutral-900/6 ${
-          compact ? "h-[280px] shrink-0" : "h-[65%] min-h-[300px]"
+          compact ? "h-[220px] shrink-0" : "min-h-[360px] flex-[1.75]"
         }`}
       >
         {!mapReady && (
@@ -283,16 +284,21 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
       </div>
 
       {/* 分类筛选 + POI列表 */}
-      <div className="mt-3 min-h-0 flex-1 overflow-y-auto">
+      <div className={`flex min-h-0 flex-col overflow-hidden rounded-md border border-border-light bg-neutral-0/38 ${
+        compact ? "flex-1" : "h-[30%] max-h-[280px] min-h-[190px] shrink-0"
+      }`}>
         {/* 分类按钮 */}
-        <div className="mb-3 flex flex-wrap gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto border-b border-border-light bg-neutral-0/55 px-2 py-2">
           <button
             type="button"
-            onClick={() => setActiveCategory("all")}
-            className={`rounded-md border px-3 py-1 text-xs font-medium transition ${
+            onClick={() => {
+              setActiveCategory("all");
+              setSelectedPoi(null);
+            }}
+            className={`h-8 shrink-0 rounded-md px-3 text-xs font-medium transition ${
               activeCategory === "all"
-                ? "border-brand-600/30 bg-brand-500 text-text-inverse"
-                : "border-border-light bg-neutral-0/72 text-text-light hover:bg-brand-50 hover:text-brand-600"
+                ? "bg-brand-500 text-text-inverse shadow-sm shadow-brand-900/10"
+                : "text-text-light-muted hover:bg-brand-50 hover:text-brand-600"
             }`}
           >
             全部
@@ -306,11 +312,14 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
               <button
                 key={cat.key}
                 type="button"
-                onClick={() => setActiveCategory(cat.key)}
-                className={`rounded-md border px-3 py-1 text-xs font-medium transition ${
+                onClick={() => {
+                  setActiveCategory(cat.key);
+                  setSelectedPoi(null);
+                }}
+                className={`h-8 shrink-0 rounded-md px-3 text-xs font-medium transition ${
                   activeCategory === cat.key
-                    ? "border-brand-600/30 bg-brand-500 text-text-inverse"
-                    : "border-border-light bg-neutral-0/72 text-text-light hover:bg-brand-50 hover:text-brand-600"
+                    ? "bg-brand-500 text-text-inverse shadow-sm shadow-brand-900/10"
+                    : "text-text-light-muted hover:bg-brand-50 hover:text-brand-600"
                 }`}
               >
                 <span className="mr-1">{cat.icon}</span>
@@ -321,65 +330,86 @@ export default function SchoolMap({ school, compact = true }: SchoolMapProps) {
           })}
         </div>
 
-        {/* 加载状态 */}
-        {loading && (
-          <p className="py-4 text-center text-xs text-text-muted">{EMPTY_MESSAGES.searchingPoi}</p>
-        )}
+        <div className="poi-scroll min-h-0 flex-1 overflow-y-auto px-2 py-2">
+          {/* 加载状态 */}
+          {loading && (
+            <p className="py-4 text-center text-xs text-text-muted">{EMPTY_MESSAGES.searchingPoi}</p>
+          )}
 
-        {/* POI列表 */}
-        {!loading &&
-          POI_CATEGORIES.map((cat) => {
-            const items = pois[cat.key];
-            if (!items?.length) return null;
-            if (activeCategory !== "all" && activeCategory !== cat.key) return null;
+          {/* POI列表 */}
+          {!loading &&
+            POI_CATEGORIES.map((cat) => {
+              const items = pois[cat.key];
+              if (!items?.length) return null;
+              if (activeCategory !== "all" && activeCategory !== cat.key) return null;
 
-            return (
-              <div key={cat.key} className="mb-3">
-                <div className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold">
-                  <span>{cat.icon}</span>
-                  <span style={{ color: cat.color }}>{cat.label}</span>
-                  <span className="text-text-muted">({items.length})</span>
-                </div>
-                <div className="space-y-1">
-                  {items.map((item, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => {
-                        mapInstance.current?.setCenter(item.location);
-                        mapInstance.current?.setZoom(17);
-                      }}
-                      className="flex w-full items-center justify-between rounded-md border border-border-light-subtle bg-neutral-0/72 px-3 py-2 text-left text-xs transition hover:border-brand-200 hover:bg-brand-50"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <div className="truncate font-medium text-text">
-                          {item.name}
-                        </div>
-                        <div className="truncate text-text-muted">
-                          {item.address}
-                        </div>
-                      </div>
-                      <span
-                        className="shrink-0 ml-2 text-[11px]"
-                        style={{ color: cat.color }}
+              return (
+                <div key={cat.key} className="space-y-1.5">
+                  {activeCategory === "all" && (
+                    <div className="flex items-center gap-1.5 px-1 pt-1 text-[11px] font-semibold text-text-light-muted">
+                      <span>{cat.icon}</span>
+                      <span>{cat.label}</span>
+                      <span>({items.length})</span>
+                    </div>
+                  )}
+                  {items.map((item, i) => {
+                    const id = `${cat.key}:${item.name}`;
+                    const isSelected = selectedPoi === id;
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => {
+                          setSelectedPoi(id);
+                          mapInstance.current?.setCenter(item.location);
+                          mapInstance.current?.setZoom(17);
+                        }}
+                        className={`grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-md border px-2.5 py-2 text-left text-xs transition ${
+                          isSelected
+                            ? "border-brand-300 bg-brand-50/55 shadow-sm shadow-brand-900/6"
+                            : "border-transparent bg-neutral-0/62 hover:border-brand-200/70 hover:bg-brand-50/35"
+                        }`}
                       >
-                        {item.distance < 1000
-                          ? `${Math.round(item.distance)}m`
-                          : `${(item.distance / 1000).toFixed(1)}km`}
-                      </span>
-                    </button>
-                  ))}
+                        <div className="min-w-0">
+                          <div className="truncate font-semibold text-text">
+                            {item.name}
+                          </div>
+                          <div className="mt-0.5 truncate text-[11px] text-text-muted">
+                            {item.address || "暂无地址"}
+                          </div>
+                        </div>
+                        <span
+                          className="rounded-sm bg-neutral-0/86 px-1.5 py-0.5 text-[10px] font-medium tabular-nums"
+                          style={{ color: cat.color }}
+                        >
+                          {formatDistance(item.distance)}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
 
-        {!loading && totalPois === 0 && mapReady && (
-          <p className="py-8 text-center text-sm text-text-muted">
-            {EMPTY_MESSAGES.clickPoiCategory}
-          </p>
-        )}
+          {!loading && !mapReady && (
+            <p className="py-8 text-center text-sm text-text-muted">
+              {EMPTY_MESSAGES.loadingMap}
+            </p>
+          )}
+
+          {!loading && totalPois === 0 && mapReady && (
+            <p className="py-8 text-center text-sm text-text-muted">
+              {EMPTY_MESSAGES.clickPoiCategory}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
+}
+
+function formatDistance(distance: number) {
+  return distance < 1000
+    ? `${Math.round(distance)}m`
+    : `${(distance / 1000).toFixed(1)}km`;
 }

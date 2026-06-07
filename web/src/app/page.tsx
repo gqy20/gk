@@ -100,9 +100,6 @@ function Home() {
     return <HomePageSkeleton />;
   }
 
-  const selectedProvinceData = selectedProvince
-    ? filteredProvinces.find((province) => province.name === selectedProvince)
-    : null;
   const hasActiveSearch = query.trim().length > 0;
   const shouldShowSidePanel =
     compareOpen ||
@@ -127,7 +124,7 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="paper-shell relative z-10 border-b border-border px-3 py-2 shadow-sm shadow-neutral-900/5 sm:px-4">
+      <header className="paper-shell relative z-20 px-3 py-2 shadow-[0_16px_36px_rgba(235,227,211,0.38)] sm:px-4">
         <div className="flex min-w-0 items-center justify-between gap-3">
           <div className="min-w-0 flex items-center gap-2.5">
             <Image
@@ -157,9 +154,6 @@ function Home() {
               className="hidden shrink-0 items-center gap-1.5 rounded-md border border-primary/25 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 lg:inline-flex"
             >
               专业库
-              <svg className="h-3 w-3 transition-transform group-hover:translate-x-px" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
             </a>
             <a
               href="/future"
@@ -172,13 +166,13 @@ function Home() {
       </header>
 
       <main
-        className={`relative z-10 grid flex-1 gap-2.5 overflow-hidden p-2.5 sm:gap-3 sm:p-3 ${
+        className={`relative z-10 -mt-1 grid flex-1 gap-2.5 overflow-hidden p-2.5 pt-2 sm:gap-3 sm:p-3 sm:pt-2.5 ${
           shouldShowSidePanel
             ? "grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1"
             : "grid-rows-1"
         }`}
       >
-        <section aria-label="高校地图" className="paper-card relative min-h-0 overflow-hidden rounded-lg border">
+        <section aria-label="高校地图" className="paper-card home-map-card relative min-h-0 overflow-hidden rounded-lg before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-4 before:bg-gradient-to-b before:from-[rgba(247,241,228,0.28)] before:to-transparent">
           <ChinaMap
             schools={data.schools}
             highlightedSchools={filteredSchools}
@@ -261,11 +255,13 @@ function Home() {
                       <div className="flex items-center justify-between gap-3">
                         <div>
                           <div className="text-sm font-semibold text-text-light">
-                            {selectedProvince ? "学校列表" : "筛选结果"}
+                            {selectedProvince ?? "筛选结果"}
                           </div>
-                          <div className="mt-0.5 text-xs text-text-light-muted">
-                            {selectedProvinceData?.count ?? filteredSchools.length} 所高校
-                          </div>
+                          {!selectedProvince && (
+                            <div className="mt-0.5 text-xs text-text-light-muted">
+                              {filteredSchools.length} 所高校
+                            </div>
+                          )}
                         </div>
                         <PanelBlessing className="hidden max-w-[188px] sm:flex" />
                         {(selectedProvince || hasActiveSearch || activeFilterCount > 0) && (

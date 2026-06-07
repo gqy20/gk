@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { IconClose } from "@/components/ui/Icon";
 import type { School, DetailCategoryKey } from "@/lib/data";
-import { STATUS_LABELS, STAT_LABELS } from "@/lib/constants";
+import { STAT_LABELS } from "@/lib/constants";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
 
 interface ComparePanelProps {
@@ -77,7 +77,6 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
               <div className="flex-1 px-3 py-3">
                 <div className="space-y-2.5 text-xs">
                   <CompareRow label="省份" value={school.province} />
-                  <CompareRow label="状态" value={school.status === "done" ? STATUS_LABELS.done : STATUS_LABELS.pending} />
                   <CompareRow
                     label={STAT_LABELS.college}
                     value={`${school.detail?.colleges?.length ?? 0} ${STAT_LABELS.unit}`}
@@ -97,15 +96,6 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
                     );
                   })}
 
-                  {school.detail?.crawl_time && (
-                    <>
-                      <div className="h-px bg-border-light" />
-                      <CompareRow
-                        label="抓取时间"
-                        value={school.detail.crawl_time.slice(0, 16)}
-                      />
-                    </>
-                  )}
                 </div>
               </div>
 
