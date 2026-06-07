@@ -133,11 +133,16 @@ const SHORT_PROVINCE_NAMES = new Map(
 const CHINA_VIEW_BOUNDS: Bounds = [73, 17, 135.5, 54.5];
 const CHINA_CAMERA_BOUNDS: Bounds = [58, 6, 150, 65];
 const MAP_INTERACTION_BOUNDS: Bounds = [58, -2, 154, 64];
+const MAP_PITCH_BY_LEVEL: Record<MapLevel, number> = {
+  country: 24,
+  province: 20,
+  city: 16,
+};
 const SEA_TEXTURE_COORDINATES: [Position, Position, Position, Position] = [
-  [48, 70],
-  [166, 70],
-  [166, -12],
-  [48, -12],
+  [-120, 88],
+  [260, 88],
+  [260, -72],
+  [-120, -72],
 ];
 
 function mapProvinceName(province: string): string {
@@ -194,6 +199,7 @@ function fitBounds(map: maplibregl.Map, bounds: Bounds, level: MapLevel) {
     [bounds[0], bounds[1]],
     [bounds[2], bounds[3]],
   ];
+  const pitch = MAP_PITCH_BY_LEVEL[level];
   if (level !== "country") {
     const camera = map.cameraForBounds(nextBounds, {
       padding:
@@ -208,16 +214,26 @@ function fitBounds(map: maplibregl.Map, bounds: Bounds, level: MapLevel) {
       map.easeTo({
         center: camera.center,
         zoom: Math.min(cameraZoom + zoomOffset, 8.45),
+        bearing: -5,
+        pitch,
         duration: level === "province" ? 520 : 420,
         essential: true,
       });
       return;
     }
   }
-  map.fitBounds(nextBounds, {
-    padding: level === "country" ? 54 : 18,
+  const camera = map.cameraForBounds(nextBounds, {
+    padding: 54,
+    maxZoom: 4.15,
+  });
+  if (!camera) return;
+  map.easeTo({
+    center: camera.center,
+    zoom: camera.zoom,
+    bearing: -5,
+    pitch,
     duration: 420,
-    maxZoom: level === "country" ? 4.15 : 8.2,
+    essential: true,
   });
 }
 
@@ -243,6 +259,7 @@ function normalizeMapData(
         count: level === "country"
           ? countByProvince.get(shortName) ?? 0
           : countSchoolsInFeature(feature, schools),
+        elevationBase: 0,
         colorName: palette.colorName,
         fillColor: palette.fill,
         selectedFillColor: palette.selectedFill,
@@ -617,7 +634,7 @@ export default function ChinaMap({
         id: "paper-background",
         type: "background",
         paint: {
-          "background-color": "rgba(246, 239, 226, 0)",
+          "background-color": "rgba(231, 226, 214, 1)",
         },
       });
       map.addLayer({
@@ -637,6 +654,122 @@ export default function ChinaMap({
             6,
             0.5,
           ],
+        },
+      });
+      map.addLayer({
+        id: "region-paper-base",
+        type: "fill",
+        source: "regions",
+        paint: {
+          "fill-color": "rgba(255, 253, 247, 0.88)",
+          "fill-opacity": 0.72,
+          "fill-translate": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            2.4,
+            ["literal", [4, 6]],
+            5,
+            ["literal", [8, 11]],
+            8,
+            ["literal", [12, 16]],
+          ],
+          "fill-translate-anchor": "viewport",
+        },
+      });
+      map.addLayer({
+        id: "region-drop-shadow",
+        type: "fill",
+        source: "regions",
+        paint: {
+          "fill-color": "rgba(66, 58, 45, 0.42)",
+          "fill-opacity": [
+            "interpolate",
+            ["linear"],
+            ["coalesce", ["get", "count"], 0],
+            0,
+            0.12,
+            8,
+            0.18,
+            34,
+            0.25,
+          ],
+          "fill-translate": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            2.4,
+            ["literal", [12, 16]],
+            5,
+            ["literal", [20, 28]],
+            8,
+            ["literal", [28, 38]],
+          ],
+          "fill-translate-anchor": "viewport",
+        },
+      });
+      map.addLayer({
+        id: "region-paper-side",
+        type: "fill",
+        source: "regions",
+        paint: {
+          "fill-color": [
+            "case",
+            ["boolean", ["feature-state", "hover"], false],
+            "rgba(103, 132, 124, 0.42)",
+            ["boolean", ["get", "selected"], false],
+            "rgba(100, 124, 115, 0.38)",
+            "rgba(92, 113, 106, 0.34)",
+          ],
+          "fill-opacity": 0.78,
+          "fill-translate": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            2.4,
+            ["literal", [8, 10]],
+            5,
+            ["literal", [13, 16]],
+            8,
+            ["literal", [18, 22]],
+          ],
+          "fill-translate-anchor": "viewport",
+        },
+      });
+      map.addLayer({
+        id: "region-paper-side-edge",
+        type: "line",
+        source: "regions",
+        paint: {
+          "line-color": "rgba(61, 82, 77, 0.38)",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 1.1, 4, 1.55, 6, 2.1],
+          "line-blur": 0.45,
+          "line-opacity": 0.72,
+          "line-translate": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            2.4,
+            ["literal", [8, 10]],
+            5,
+            ["literal", [13, 16]],
+            8,
+            ["literal", [18, 22]],
+          ],
+          "line-translate-anchor": "viewport",
+        },
+      });
+      map.addLayer({
+        id: "region-paper-highlight",
+        type: "line",
+        source: "regions",
+        paint: {
+          "line-color": "rgba(255, 253, 246, 0.88)",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 2.2, 4, 3.2, 6, 4.6],
+          "line-blur": 1.1,
+          "line-opacity": 0.74,
+          "line-translate": ["literal", [-1.4, -1.8]],
+          "line-translate-anchor": "viewport",
         },
       });
       map.addLayer({
@@ -670,12 +803,12 @@ export default function ChinaMap({
           "line-color": [
             "case",
             ["boolean", ["feature-state", "hover"], false],
-            "rgba(76, 96, 91, 0.66)",
-            "rgba(76, 92, 86, 0.42)",
+            "rgba(70, 88, 82, 0.78)",
+            "rgba(76, 92, 86, 0.56)",
           ],
-          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.72, 4, 0.95, 6, 1.15],
-          "line-blur": 0.36,
-          "line-opacity": 0.72,
+          "line-width": ["interpolate", ["linear"], ["zoom"], 2, 1.15, 4, 1.5, 6, 1.9],
+          "line-blur": 0.18,
+          "line-opacity": 0.82,
         },
       });
       map.addLayer({
@@ -685,16 +818,48 @@ export default function ChinaMap({
         minzoom: 2.45,
         layout: {
           "text-field": ["to-string", ["get", "name"]],
-          "text-size": ["interpolate", ["linear"], ["zoom"], 2.5, 11, 4.2, 13, 6, 15],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 2.5, 13, 4.2, 16, 6, 20],
           "text-allow-overlap": false,
           "text-ignore-placement": false,
           "text-font": ["Noto Sans Regular"],
         },
         paint: {
-          "text-color": ["coalesce", ["get", "labelColor"], "rgba(74, 82, 76, 0.70)"],
-          "text-halo-color": ["coalesce", ["get", "haloColor"], "rgba(255, 250, 240, 0.78)"],
-          "text-halo-width": 1.2,
-          "text-opacity": 0.92,
+          "text-color": "rgba(255, 255, 251, 0.94)",
+          "text-halo-color": "rgba(57, 69, 64, 0.30)",
+          "text-halo-width": 1.8,
+          "text-opacity": 0.96,
+        },
+      });
+      map.addLayer({
+        id: "school-point-shadows",
+        type: "circle",
+        source: "schools",
+        paint: {
+          "circle-radius": [
+            "interpolate",
+            ["linear"],
+            ["coalesce", ["get", "radius"], 4.7],
+            2,
+            3.6,
+            11,
+            16,
+          ],
+          "circle-color": "rgba(49, 44, 35, 0.32)",
+          "circle-opacity": ["*", ["coalesce", ["get", "opacity"], 0.94], 0.34],
+          "circle-blur": 0.72,
+          "circle-translate": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            2.4,
+            ["literal", [3, 5]],
+            6,
+            ["literal", [6, 9]],
+          ],
+          "circle-translate-anchor": "viewport",
+        },
+        layout: {
+          "circle-sort-key": ["coalesce", ["get", "sortKey"], 1],
         },
       });
       map.addLayer({
@@ -745,7 +910,7 @@ export default function ChinaMap({
     return () => {
       cancelled = true;
     };
-  }, [initialMapPayload, initialSchoolData, loadMapData, provinces, selectedProvince]);
+  }, [initialMapPayload, initialSchoolData, loadMapData, provinces, schools, selectedProvince]);
 
   const handleMapContainerRef = useCallback((node: HTMLDivElement | null) => {
     mapContainerRef.current = node;
@@ -766,6 +931,8 @@ export default function ChinaMap({
       attributionControl: false,
       center: [104, 35],
       zoom: 2.95,
+      bearing: -5,
+      pitch: MAP_PITCH_BY_LEVEL.country,
       minZoom: 2.45,
       maxZoom: 8.8,
       maxBounds: [
@@ -876,7 +1043,10 @@ export default function ChinaMap({
 
   useEffect(() => {
     if (selectedProvince || drill.level === "country" || loadingDrill) return;
-    void resetToCountry();
+    const id = window.setTimeout(() => {
+      void resetToCountry();
+    }, 0);
+    return () => window.clearTimeout(id);
   }, [drill.level, loadingDrill, resetToCountry, selectedProvince]);
 
   useEffect(() => {
