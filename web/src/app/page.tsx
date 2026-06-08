@@ -218,6 +218,12 @@ function Home() {
             >
               未来路径
             </a>
+            <a
+              href="/simulator"
+              className="home-nav-pill hidden lg:inline-flex"
+            >
+              大学模拟器
+            </a>
           </div>
         </div>
       </header>

@@ -10,6 +10,13 @@ type FetchLike = (input: string, init: RequestInit) => Promise<{
   json: () => Promise<unknown>;
 }>;
 
+/** LLM 结构化工具的通用形状（name + description + input_schema） */
+export interface StructuredToolShape {
+  name: string;
+  description: string;
+  input_schema: Record<string, unknown>;
+}
+
 export interface AnthropicProviderOptions {
   apiKey: string;
   baseUrl?: string;
@@ -18,7 +25,7 @@ export interface AnthropicProviderOptions {
   fetchImpl?: FetchLike;
 }
 
-export interface GenerateStructuredInput<TTool extends typeof futurePathsTool = typeof futurePathsTool> {
+export interface GenerateStructuredInput<TTool extends StructuredToolShape = StructuredToolShape> {
   system: string;
   user: string;
   tool: TTool;
