@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -30,7 +30,9 @@ const panelTransition = {
 export default function HomePage() {
   return (
     <AppProvider>
-      <Home />
+      <Suspense fallback={<HomePageSkeleton />}>
+        <Home />
+      </Suspense>
     </AppProvider>
   );
 }
@@ -54,11 +56,13 @@ function Home() {
     filteredSchools,
     filteredProvinces,
     activeFilterCount,
-    crawlStatus,
     crawlSources,
     dispatch,
   } = useApp();
+  const [mapTransitioning, setMapTransitioning] = useState(false);
+  const [transitionProvince, setTransitionProvince] = useState<string | null>(null);
   const provinceFromUrl = searchParams.get("province")?.trim() || null;
+  const pendingProvinceUrlRef = useRef<string | null | undefined>(undefined);
 
   const setProvinceUrl = useCallback((province: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -68,13 +72,24 @@ function Home() {
       params.delete("province");
     }
     const queryString = params.toString();
-    router.replace(queryString ? `${pathname}?${queryString}` : pathname, { scroll: false });
+    const nextHref = queryString ? `${pathname}?${queryString}` : pathname;
+    window.history.replaceState(window.history.state, "", nextHref);
+    router.replace(nextHref, { scroll: false });
   }, [pathname, router, searchParams]);
 
   const setProvince = useCallback((province: string | null) => {
+    pendingProvinceUrlRef.current = province;
+    setTransitionProvince(province ?? selectedProvince);
     dispatch({ type: "SET_PROVINCE", payload: province });
     setProvinceUrl(province);
-  }, [dispatch, setProvinceUrl]);
+  }, [dispatch, selectedProvince, setProvinceUrl]);
+
+  const handleMapTransitionChange = useCallback((transitioning: boolean) => {
+    setMapTransitioning(transitioning);
+    if (!transitioning && !selectedProvince) {
+      setTransitionProvince(null);
+    }
+  }, [selectedProvince]);
 
   useEffect(() => {
     async function load() {
@@ -91,48 +106,63 @@ function Home() {
         dispatch({ type: "SET_DATA", payload: { schools: [], provinces: [] } });
       }
 
-      // 并行加载采集数据（静默失败）
-      const crawlFetches = await Promise.allSettled([
-        { action: "SET_CRAWL_STATUS" as const, url: "/data/crawl-status.json" },
-        { action: "SET_CRAWL_SOURCES" as const, url: "/data/crawl-sources.json" },
-        { action: "SET_CRAWL_RUNS" as const, url: "/data/crawl-runs.json" },
-      ].map(async ({ action, url }) => {
-        const res = await fetch(url);
-        return { action, res };
-      }));
-
-      for (const entry of crawlFetches) {
-        if (entry.status === "fulfilled" && entry.value.res.ok) {
-          try {
-            const json = await entry.value.res.json();
-            dispatch({ type: entry.value.action, payload: json });
-          } catch {
-            // ignore parse errors
-          }
-        }
-      }
+      // 来源明细较大，选中学校后再加载。
     }
     load();
   }, [dispatch]);
 
   useEffect(() => {
+    if (!selectedSchool || crawlSources) return;
+    let cancelled = false;
+
+    async function loadCrawlSources() {
+      try {
+        const res = await fetch("/data/crawl-sources.json");
+        if (!res.ok) return;
+        const json = await res.json();
+        if (!cancelled) {
+          dispatch({ type: "SET_CRAWL_SOURCES", payload: json });
+        }
+      } catch {
+        // 来源明细只用于资料库补充信息，失败不阻断详情浏览。
+      }
+    }
+
+    void loadCrawlSources();
+    return () => {
+      cancelled = true;
+    };
+  }, [crawlSources, dispatch, selectedSchool]);
+
+  useEffect(() => {
+    const pendingProvince = pendingProvinceUrlRef.current;
+    if (pendingProvince !== undefined) {
+      if (provinceFromUrl === pendingProvince) {
+        pendingProvinceUrlRef.current = undefined;
+      } else if (selectedProvince === pendingProvince) {
+        setProvinceUrl(pendingProvince);
+        return;
+      }
+    }
     if (provinceFromUrl === selectedProvince) return;
     dispatch({ type: "SET_PROVINCE", payload: provinceFromUrl });
-  }, [dispatch, provinceFromUrl, selectedProvince]);
+  }, [dispatch, provinceFromUrl, selectedProvince, setProvinceUrl]);
 
   if (!data) {
     return <HomePageSkeleton />;
   }
 
   const hasActiveSearch = query.trim().length > 0;
-  const shouldShowSidePanel =
+  const visibleProvince = selectedProvince ?? transitionProvince;
+  const hasSidePanelContent =
     compareOpen ||
     compareSchools.length > 0 ||
     selectedSchool ||
-    selectedProvince ||
+    visibleProvince ||
     hasActiveSearch ||
     activeFilterCount > 0 ||
     loadError;
+  const shouldReserveSidePanel = mapTransitioning || hasSidePanelContent;
 
   return (
     <div className="ink-wash-bg relative flex h-screen min-h-screen flex-col overflow-hidden text-text">
@@ -143,8 +173,8 @@ function Home() {
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {selectedSchool
           ? `已选择学校：${selectedSchool.name}`
-          : selectedProvince
-            ? `已选择省份：${selectedProvince}`
+          : visibleProvince
+            ? `已选择省份：${visibleProvince}`
             : "显示全国高校"}
       </div>
 
@@ -191,7 +221,7 @@ function Home() {
 
       <main
         className={`relative z-10 -mt-1 grid flex-1 gap-2.5 overflow-hidden p-2.5 pt-2 sm:gap-3 sm:p-3 sm:pt-2.5 ${
-          shouldShowSidePanel
+          shouldReserveSidePanel
             ? "grid-rows-[minmax(52vh,1fr)_minmax(200px,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(360px,430px)] lg:grid-rows-1"
             : "grid-rows-1"
         }`}
@@ -215,11 +245,12 @@ function Home() {
             onToggleDoubleFirst={() =>
               dispatch({ type: "TOGGLE_FILTER", payload: "doubleFirst" })
             }
+            onTransitionChange={handleMapTransitionChange}
           />
         </section>
 
         <AnimatePresence mode="wait">
-          {shouldShowSidePanel && (
+          {hasSidePanelContent && (
             <motion.aside
               key="side-panel"
               aria-label="高校列表与详情"
@@ -261,7 +292,6 @@ function Home() {
                       key={selectedSchool.name}
                       school={selectedSchool}
                       onClose={() => dispatch({ type: "SELECT_SCHOOL", payload: null })}
-                      crawlStatus={crawlStatus}
                       crawlSources={crawlSources}
                     />
                   </motion.div>
@@ -279,17 +309,18 @@ function Home() {
                       <div className="flex items-center justify-between gap-3">
                         <div>
                           <div className="text-sm font-semibold text-text-light">
-                            {selectedProvince ?? "筛选结果"}
+                            {visibleProvince ?? "筛选结果"}
                           </div>
                         </div>
                         <PanelBlessing className="hidden max-w-[188px] sm:flex" />
-                        {(selectedProvince || hasActiveSearch || activeFilterCount > 0) && (
+                        {(visibleProvince || hasActiveSearch || activeFilterCount > 0) && (
                           <Button
                             theme="light"
                             variant="secondary"
                             size="sm"
                             onClick={() => {
-                              if (selectedProvince) {
+                              if (visibleProvince) {
+                                setTransitionProvince(visibleProvince);
                                 setProvince(null);
                               }
                               if (hasActiveSearch || activeFilterCount > 0) {
@@ -309,7 +340,7 @@ function Home() {
                     </div>
                     <ProvinceList
                       provinces={filteredProvinces}
-                      selectedProvince={selectedProvince}
+                      selectedProvince={visibleProvince}
                       selectedSchool={selectedSchool}
                       compareSchools={compareSchools}
                       onProvinceClick={setProvince}

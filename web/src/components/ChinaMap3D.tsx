@@ -30,6 +30,7 @@ interface ChinaMap3DProps {
   onToggle985: () => void;
   onToggle211: () => void;
   onToggleDoubleFirst: () => void;
+  onTransitionChange?: (transitioning: boolean) => void;
 }
 
 type Position = [number, number];
@@ -84,6 +85,13 @@ type SchoolMesh = THREE.Mesh & {
     tier: string;
     highlighted: boolean;
     baseScale: number;
+    seal: THREE.Mesh | null;
+  };
+};
+
+type SchoolVisualMesh = THREE.Object3D & {
+  userData: {
+    kind: "schoolVisual";
   };
 };
 
@@ -816,6 +824,7 @@ export default function ChinaMap3D({
   onToggle985,
   onToggle211,
   onToggleDoubleFirst,
+  onTransitionChange,
 }: ChinaMap3DProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -978,6 +987,19 @@ export default function ChinaMap3D({
     schoolMeshesRef.current = [];
   }, []);
 
+  const clearSchools = useCallback(() => {
+    const mapGroup = mapGroupRef.current;
+    if (!mapGroup) return;
+    for (const child of [...mapGroup.children]) {
+      if (child.userData.kind !== "school" && child.userData.kind !== "schoolVisual") {
+        continue;
+      }
+      mapGroup.remove(child);
+      disposeObject(child);
+    }
+    schoolMeshesRef.current = [];
+  }, []);
+
   const buildRegions = useCallback((data: GeoJsonFeatureCollection, level: MapLevel) => {
     const mapGroup = mapGroupRef.current;
     if (!mapGroup) return;
@@ -1082,59 +1104,105 @@ export default function ChinaMap3D({
     });
   }, [currentProvince, drill.breadcrumbs, localProvince, provinces, selectedProvince, visibleSchools]);
 
-  const buildSchools = useCallback(() => {
+  /* eslint-disable react-hooks/immutability -- Three.js scene objects are updated imperatively. */
+  const updateSchoolStyles = useCallback((
+    highlightedNames: Set<string>,
+    activeSelectedProvince: string | null,
+    activeMapFilters: boolean,
+  ) => {
+    for (const marker of schoolMeshesRef.current) {
+      const { school, tier, seal } = marker.userData;
+      const matchesFilter = !activeMapFilters || highlightedNames.has(school.name);
+      const highlighted = matchesFilter && (!activeSelectedProvince || school.province === activeSelectedProvince);
+      const scale = schoolScale(school, highlighted);
+      const markerColor = schoolColor(school, activeSelectedProvince, highlighted);
+      const material = marker.material;
+
+      marker.scale.set(scale * 0.72, scale * 0.08, scale * 0.72);
+
+      if (material instanceof THREE.MeshBasicMaterial) {
+        material.color.set(markerColor);
+        material.opacity = highlighted ? 0.001 : 0.08;
+        material.needsUpdate = true;
+      }
+
+      if (seal) {
+        const sealSize = scale * (tier === "985" ? 1.65 : tier === "211" ? 1.52 : tier === "doubleFirst" ? 1.44 : 1.26);
+        seal.visible = highlighted;
+        seal.scale.set(sealSize, sealSize, 1);
+      }
+    }
+  }, []);
+  /* eslint-enable react-hooks/immutability */
+
+  const buildSchools = useCallback((schoolsForLevel: School[]) => {
     const mapGroup = mapGroupRef.current;
     if (!mapGroup) return;
+    clearSchools();
     const projector = projectorRef.current;
 
-    for (const school of visibleSchools) {
-      const matchesFilter = !hasActiveMapFilters || highlightedSchoolNames.has(school.name);
-      const highlighted = matchesFilter && (!selectedProvince || school.province === selectedProvince);
-      const scale = schoolScale(school, highlighted);
+    for (const school of schoolsForLevel) {
       const tier = schoolTier(school);
       const position = projector.project(school.coord);
-      const markerColor = schoolColor(school, selectedProvince, highlighted);
+      const markerColor = schoolColor(school, null, true);
 
-      const hitGeometry = new THREE.CylinderGeometry(scale * 0.72, scale * 0.72, scale * 0.08, 16);
+      const hitGeometry = new THREE.CylinderGeometry(1, 1, 1, 16);
       const hitMaterial = new THREE.MeshBasicMaterial({
         color: new THREE.Color(markerColor),
         transparent: true,
-        opacity: highlighted ? 0.001 : 0.08,
+        opacity: 0.001,
       });
       const marker = new THREE.Mesh(hitGeometry, hitMaterial) as unknown as SchoolMesh;
       marker.position.set(position.x, SCHOOL_Y, position.y);
       marker.castShadow = false;
-      marker.userData = { kind: "school", school, tier, highlighted, baseScale: scale };
+      marker.userData = { kind: "school", school, tier, highlighted: true, baseScale: 1, seal: null };
       mapGroup.add(marker);
       schoolMeshesRef.current.push(marker);
 
-      if (highlighted) {
-        const sealSize = scale * (tier === "985" ? 1.65 : tier === "211" ? 1.52 : tier === "doubleFirst" ? 1.44 : 1.26);
-        const seal = new THREE.Mesh(
-          new THREE.PlaneGeometry(sealSize, sealSize),
-          createSchoolSealMaterial(tier, markerColor, school.name, 0.96),
-        );
-        seal.position.set(position.x, SCHOOL_Y + 0.084, position.y);
-        seal.rotation.x = -Math.PI / 2;
-        seal.rotation.z = (seededRandom(`school-seal-rotation:${school.name}`)() - 0.5) * 0.34;
-        seal.renderOrder = 3;
-        mapGroup.add(seal);
-      }
+      const seal = new THREE.Mesh(
+        new THREE.PlaneGeometry(1, 1),
+        createSchoolSealMaterial(tier, markerColor, school.name, 0.96),
+      );
+      (seal as unknown as SchoolVisualMesh).userData = { kind: "schoolVisual" };
+      seal.position.set(position.x, SCHOOL_Y + 0.084, position.y);
+      seal.rotation.x = -Math.PI / 2;
+      seal.rotation.z = (seededRandom(`school-seal-rotation:${school.name}`)() - 0.5) * 0.34;
+      seal.renderOrder = 3;
+      mapGroup.add(seal);
+      marker.userData.seal = seal;
     }
-  }, [hasActiveMapFilters, highlightedSchoolNames, selectedProvince, visibleSchools]);
+  }, [clearSchools]);
 
   const rebuildMap = useCallback((data: GeoJsonFeatureCollection, level: MapLevel) => {
     setMapReady(false);
     syncScenePalette(level);
     clearMapGroup();
     buildRegions(data, level);
-    buildSchools();
+    buildSchools(visibleSchools);
+    updateSchoolStyles(highlightedSchoolNames, selectedProvince, hasActiveMapFilters);
     setMapReady(true);
     window.requestAnimationFrame(() => {
       fitCameraToMap(level);
       renderScene();
     });
-  }, [buildRegions, buildSchools, clearMapGroup, fitCameraToMap, renderScene, syncScenePalette]);
+  }, [
+    buildRegions,
+    buildSchools,
+    clearMapGroup,
+    fitCameraToMap,
+    hasActiveMapFilters,
+    highlightedSchoolNames,
+    renderScene,
+    selectedProvince,
+    syncScenePalette,
+    updateSchoolStyles,
+    visibleSchools,
+  ]);
+  const rebuildMapRef = useRef(rebuildMap);
+
+  useEffect(() => {
+    rebuildMapRef.current = rebuildMap;
+  }, [rebuildMap]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -1241,13 +1309,31 @@ export default function ChinaMap3D({
   useEffect(() => {
     if (!mapData) return;
     const id = window.requestAnimationFrame(() => {
-      rebuildMap(mapData, drill.level);
+      rebuildMapRef.current(mapData, drill.level);
     });
     return () => window.cancelAnimationFrame(id);
-  }, [drill.level, hasActiveMapFilters, highlightedSchoolNames, mapData, rebuildMap, selectedProvince]);
+  }, [drill.level, mapData]);
+
+  useEffect(() => {
+    if (!mapData || !mapReady) return;
+    const id = window.requestAnimationFrame(() => {
+      updateSchoolStyles(highlightedSchoolNames, selectedProvince, hasActiveMapFilters);
+      renderScene();
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [
+    hasActiveMapFilters,
+    highlightedSchoolNames,
+    mapData,
+    mapReady,
+    renderScene,
+    selectedProvince,
+    updateSchoolStyles,
+  ]);
 
   const drillDown = useCallback(async (name: string, adcode: string) => {
     setLoadingDrill(true);
+    onTransitionChange?.(true);
     try {
       const data = await loadMapData(adcode);
       const targetLevel: MapLevel = drill.level === "country" ? "province" : "city";
@@ -1266,11 +1352,13 @@ export default function ChinaMap3D({
       console.warn(`[ChinaMap3D] Failed to load map: ${adcode}`);
     } finally {
       setLoadingDrill(false);
+      onTransitionChange?.(false);
     }
-  }, [drill.level, loadMapData, onProvinceSelect]);
+  }, [drill.level, loadMapData, onProvinceSelect, onTransitionChange]);
 
   const resetToCountry = useCallback(async () => {
     setLoadingDrill(true);
+    onTransitionChange?.(true);
     try {
       const data = await loadMapData("100000");
       setMapData(data);
@@ -1281,8 +1369,9 @@ export default function ChinaMap3D({
       console.warn("[ChinaMap3D] Failed to restore country map");
     } finally {
       setLoadingDrill(false);
+      onTransitionChange?.(false);
     }
-  }, [loadMapData, onProvinceSelect, onSchoolPreview]);
+  }, [loadMapData, onProvinceSelect, onSchoolPreview, onTransitionChange]);
 
   useEffect(() => {
     if (selectedProvince || drill.level === "country" || loadingDrill) return;

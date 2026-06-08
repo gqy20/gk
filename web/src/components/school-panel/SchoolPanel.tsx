@@ -9,13 +9,12 @@ import OverviewSection from "./OverviewSection";
 import DetailSection from "./DetailSection";
 import type { School, UniversityInfo } from "@/lib/data";
 import { CATEGORY_LABELS, DETAIL_CATEGORIES } from "@/lib/data";
-import type { CrawlStatusMap, CrawlSourcesMap, SourceItem } from "@/lib/crawl-data";
+import type { CrawlSourcesMap, SourceItem } from "@/lib/crawl-data";
 
 interface SchoolPanelProps {
   school: School | null;
   onClose?: () => void;
   futureHref?: string;
-  crawlStatus?: CrawlStatusMap | null;
   crawlSources?: CrawlSourcesMap | null;
 }
 

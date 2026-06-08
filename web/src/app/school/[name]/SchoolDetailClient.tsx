@@ -5,10 +5,7 @@ import { useRouter } from "next/navigation";
 import SchoolMap from "@/components/school-panel/SchoolMap";
 import SchoolPanel from "@/components/school-panel/SchoolPanel";
 import type { School } from "@/lib/data";
-import type {
-  CrawlStatusMap,
-  CrawlSourcesMap,
-} from "@/lib/crawl-data";
+import type { CrawlSourcesMap } from "@/lib/crawl-data";
 
 interface Props {
   school: School;
@@ -18,7 +15,6 @@ type MobileView = "map" | "detail";
 
 export default function SchoolDetailClient({ school }: Props) {
   const router = useRouter();
-  const [crawlStatus, setCrawlStatus] = useState<CrawlStatusMap | null>(null);
   const [crawlSources, setCrawlSources] = useState<CrawlSourcesMap | null>(null);
   const [mobileView, setMobileView] = useState<MobileView>("detail");
   const futureHref = `/future?school=${encodeURIComponent(school.name)}&province=${encodeURIComponent(school.province)}`;
@@ -26,27 +22,10 @@ export default function SchoolDetailClient({ school }: Props) {
   useEffect(() => {
     async function loadCrawlData() {
       try {
-        const [statusRes, sourcesRes] = await Promise.allSettled([
-          fetch("/data/crawl-status.json"),
-          fetch("/data/crawl-sources.json"),
-        ]);
-
-        if (statusRes.status === "fulfilled" && statusRes.value.ok) {
-          try {
-            const json = await statusRes.value.json();
-            setCrawlStatus(json);
-          } catch {
-            // ignore
-          }
-        }
-        if (sourcesRes.status === "fulfilled" && sourcesRes.value.ok) {
-          try {
-            const json = await sourcesRes.value.json();
-            setCrawlSources(json);
-          } catch {
-            // ignore
-          }
-        }
+        const res = await fetch("/data/crawl-sources.json");
+        if (!res.ok) return;
+        const json = await res.json();
+        setCrawlSources(json);
       } catch {
         // ignore
       }
@@ -70,7 +49,6 @@ export default function SchoolDetailClient({ school }: Props) {
             school={school}
             onClose={() => router.push("/")}
             futureHref={futureHref}
-            crawlStatus={crawlStatus}
             crawlSources={crawlSources}
           />
         </aside>

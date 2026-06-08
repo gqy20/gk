@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { IconCheck } from "@/components/ui/Icon";
@@ -21,24 +20,6 @@ interface ProvinceListProps {
   onSchoolClick: (school: School) => void;
   onCompareToggle: (school: School) => void;
 }
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.04 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 400, damping: 28 } },
-};
-
-const schoolVariants = {
-  hidden: { opacity: 0, x: -8 },
-  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 500, damping: 30 } },
-};
 
 export default function ProvinceList({
   provinces,
@@ -123,12 +104,9 @@ export default function ProvinceList({
   }
 
   return (
-    <motion.div
+    <div
       ref={listRef}
       className="paper-shell min-h-0 flex-1 overflow-y-auto p-3"
-      variants={containerVariants}
-      initial={hasSavedScroll ? "show" : "hidden"}
-      animate="show"
       key={selectedProvince ?? "all"}
     >
       {displayProvinces.map((prov) => {
@@ -145,9 +123,8 @@ export default function ProvinceList({
         });
 
         return (
-          <motion.div
+          <div
             key={prov.name}
-            variants={itemVariants}
             className="mb-3 overflow-hidden rounded-md border border-border-light bg-neutral-0/72 shadow-sm shadow-neutral-900/5"
           >
             <button
@@ -187,7 +164,7 @@ export default function ProvinceList({
                 className="border-t border-border-light bg-accent-50/25"
                 style={isSelected ? { background: palette.halo } : undefined}
               >
-                {sortedSchools.map((school, schoolIndex) => {
+                {sortedSchools.map((school) => {
                   const isCompareSelected = compareSchools.some(
                     (s) => s.name === school.name,
                   );
@@ -196,12 +173,8 @@ export default function ProvinceList({
                   const isSchoolSelected = selectedSchool?.name === school.name;
 
                   return (
-                    <motion.div
+                    <div
                       key={school.name}
-                      variants={schoolVariants}
-                      initial="hidden"
-                      animate="show"
-                      transition={{ delay: schoolIndex * 0.02 }}
                       className={cn(
                         "flex cursor-pointer items-center gap-2 border-b border-border-light-subtle px-3 py-2 text-xs transition last:border-b-0 sm:px-4 sm:py-2.5",
                         isSchoolSelected
@@ -261,14 +234,14 @@ export default function ProvinceList({
                           )}
                         </span>
                       </span>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
             )}
-          </motion.div>
+          </div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }

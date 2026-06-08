@@ -1,9 +1,5 @@
 import type { School, ProvinceData } from "@/lib/data";
-import type {
-  CrawlStatusMap,
-  CrawlSourcesMap,
-  RunRecord,
-} from "@/lib/crawl-data";
+import type { CrawlSourcesMap } from "@/lib/crawl-data";
 
 export interface AppState {
   data: { schools: School[]; provinces: ProvinceData[] } | null;
@@ -17,9 +13,7 @@ export interface AppState {
   filterDoubleFirst: boolean;
   compareSchools: School[];
   compareOpen: boolean;
-  crawlStatus: CrawlStatusMap | null;
   crawlSources: CrawlSourcesMap | null;
-  crawlRuns: RunRecord[] | null;
 }
 
 export const initialState: AppState = {
@@ -34,16 +28,13 @@ export const initialState: AppState = {
   filterDoubleFirst: false,
   compareSchools: [],
   compareOpen: false,
-  crawlStatus: null,
   crawlSources: null,
-  crawlRuns: null,
 };
 
 export type AppAction =
   | { type: "SET_DATA"; payload: { schools: School[]; provinces: ProvinceData[] } | null }
   | { type: "SET_LOAD_ERROR"; payload: string | null }
   | { type: "SET_PROVINCE"; payload: string | null }
-  | { type: "SELECT_PROVINCE"; payload: string | null }
   | { type: "SELECT_SCHOOL"; payload: School | null }
   | { type: "SET_PREVIEW_SCHOOL"; payload: School | null }
   | { type: "SET_QUERY"; payload: string }
@@ -53,9 +44,7 @@ export type AppAction =
   | { type: "REMOVE_COMPARE"; payload: School }
   | { type: "CLEAR_COMPARE" }
   | { type: "SET_COMPARE_OPEN"; payload: boolean }
-  | { type: "SET_CRAWL_STATUS"; payload: CrawlStatusMap | null }
-  | { type: "SET_CRAWL_SOURCES"; payload: CrawlSourcesMap | null }
-  | { type: "SET_CRAWL_RUNS"; payload: RunRecord[] | null };
+  | { type: "SET_CRAWL_SOURCES"; payload: CrawlSourcesMap | null };
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -73,18 +62,6 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         previewSchool: null,
         compareOpen: false,
       };
-
-    case "SELECT_PROVINCE": {
-      const province = action.payload;
-      const isSame = province === state.selectedProvince;
-      return {
-        ...state,
-        selectedProvince: isSame ? null : province,
-        selectedSchool: null,
-        previewSchool: null,
-        compareOpen: false,
-      };
-    }
 
     case "SELECT_SCHOOL": {
       const school = action.payload;
@@ -161,14 +138,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case "SET_COMPARE_OPEN":
       return { ...state, compareOpen: action.payload };
 
-    case "SET_CRAWL_STATUS":
-      return { ...state, crawlStatus: action.payload };
-
     case "SET_CRAWL_SOURCES":
       return { ...state, crawlSources: action.payload };
-
-    case "SET_CRAWL_RUNS":
-      return { ...state, crawlRuns: action.payload };
 
     default:
       return state;
