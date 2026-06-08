@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { SchoolLogo } from "@/components/ui/SchoolLogo";
 import type { School, UniversityInfo } from "@/lib/data";
 import { STAT_LABELS } from "@/lib/constants";
 
@@ -66,9 +67,12 @@ export default function SchoolPopup({
     >
       {/* 标题区 */}
       <div className="mb-2.5">
-        <h3 className="text-base font-semibold leading-tight text-text">
-          {school.name}
-        </h3>
+        <div className="flex items-center gap-2">
+          <SchoolLogo school={school} size="sm" />
+          <h3 className="text-base font-semibold leading-tight text-text">
+            {school.name}
+          </h3>
+        </div>
         <div className="mt-1 flex items-center gap-2 text-xs text-text-muted">
           <span className="rounded-sm border border-border-subtle bg-accent-50/65 px-2 py-0.5">
             {school.province}

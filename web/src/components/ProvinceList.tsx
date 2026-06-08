@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { IconCheck } from "@/components/ui/Icon";
+import { SchoolLogo } from "@/components/ui/SchoolLogo";
 import { cn } from "@/lib/utils";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
@@ -187,12 +188,10 @@ export default function ProvinceList({
                         onClick={() => onSchoolClick(school)}
                         className="flex min-w-0 flex-1 items-center gap-2 text-left"
                       >
-                        <span
-                          className={cn(
-                            "h-2.5 w-2.5 flex-shrink-0 rounded-full",
-                            school.status === "done" ? "" : "bg-neutral-400",
-                          )}
-                          style={school.status === "done" ? { background: palette.selectedFill } : undefined}
+                        <SchoolLogo
+                          school={school}
+                          size="xs"
+                          fallbackBg={school.status === "done" ? palette.selectedFill : undefined}
                         />
                         <span className="truncate font-medium">{school.name}</span>
                       </button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/Badge";
+import { SchoolLogo } from "@/components/ui/SchoolLogo";
 import type { School } from "@/lib/data";
 
 interface SchoolHeaderProps {
@@ -26,6 +27,7 @@ export default function SchoolHeader({
           ←
         </button>
       )}
+      <SchoolLogo school={school} size="md" />
       <a
         href={school.url}
         target="_blank"
