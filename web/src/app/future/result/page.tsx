@@ -315,16 +315,9 @@ function DecisionSummary({
             {recommendedPath && <span className="text-text-muted">优先路线：{recommendedPath.label}</span>}
             {run?.model && <span className="text-text-muted">{run.model}</span>}
           </div>
-          <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h2 className="text-2xl font-semibold leading-tight tracking-tight text-text">
-              {activePath?.label || "先保留大学里的选择权"}
-            </h2>
-            {activePath && (
-              <span className={`font-mono text-xl font-semibold tabular-nums ${toneCls.fg}`}>
-                适合度 {activePath.fit_score}
-              </span>
-            )}
-          </div>
+          <h2 className="mt-2 text-2xl font-semibold leading-tight tracking-tight text-text">
+            {activePath?.label || "先保留大学里的选择权"}
+          </h2>
           <p className="mt-2 max-w-5xl text-sm leading-6 text-text-secondary">{summary}</p>
           {reasons.length > 0 && (
             <div className="mt-3 grid gap-2 sm:grid-cols-3">
@@ -365,7 +358,6 @@ function SelectedPathDetail({
 }) {
   const tone: ToneKey = toneOf(path);
   const toneCls = TONE[tone];
-  const actionItems = extractActionItems(path.advice);
   const studentGuide = buildStudentGuide(path);
 
   return (
@@ -390,11 +382,6 @@ function SelectedPathDetail({
                 推荐
               </span>
             )}
-            <span
-              className={`rounded-full px-2 py-0.5 font-mono text-[10px] ring-1 ${toneCls.bg} ${toneCls.fg} ${toneCls.ring}`}
-            >
-              {path.probability_tone}
-            </span>
           </div>
           <p className="mt-2 text-sm leading-6 text-text-secondary">{path.tagline}</p>
 
@@ -471,19 +458,6 @@ function SelectedPathDetail({
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-surface-subtle p-3">
-            <h3 className="font-mono text-[10px] uppercase tracking-wider text-accent">
-              大一大二先做什么
-            </h3>
-            <ul className="mt-2 space-y-1.5">
-              {actionItems.map((item) => (
-                <li key={item} className="flex gap-2 text-xs leading-6 text-text-secondary">
-                  <span aria-hidden className={`mt-2 h-1 w-1 shrink-0 rounded-full bg-current ${toneCls.fg}`} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </FuturePanel>
@@ -800,16 +774,18 @@ function buildRecommendationReasons(path: FuturePath, output: FutureStructuredOu
 }
 
 function buildStudentGuide(path: FuturePath) {
-  const adviceParts = extractActionItems(path.advice);
+  // firstSteps 优先从时间线推导，避免与 DecisionSummary 的 extractActionItems 重复
+  const timelineFirst = path.timeline?.[0];
+  const firstStepsFromTimeline = timelineFirst
+    ? [timelineFirst.text, ...(timelineFirst.key_events ?? [])].filter(Boolean).join("；")
+    : "";
   return {
-    fit: adviceParts[0] || path.tagline || "适合想先看清这条志愿后续走法的学生。",
+    fit: path.tagline || "适合想先看清这条志愿后续走法的学生。",
     firstSteps:
-      adviceParts[1] ||
-      path.timeline?.[0]?.key_events?.[0] ||
-      path.timeline?.[0]?.text ||
+      firstStepsFromTimeline ||
       "大一大二先把基础课、绩点和一次真实体验做起来。",
     pitfall:
-      path.key_risks?.[0] || adviceParts[2] || "只凭想象判断专业，不去验证课程和就业真实情况。",
+      path.key_risks?.[0] || "只凭想象判断专业，不去验证课程和就业真实情况。",
     switchSignal:
       path.turning_points?.[0] || "如果大一结束后兴趣很低、课程吃力或拿不到有效反馈，就要考虑调整路线。",
   };
