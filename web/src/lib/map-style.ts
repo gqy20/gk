@@ -372,6 +372,17 @@ export function getProvincePalette(name: string): ProvincePalette {
   return PROVINCE_PALETTES[name] || fallbackProvincePalette(name);
 }
 
+export function getMapRegionPalette(
+  name: string,
+  level: "country" | "province" | "city",
+  parentProvince?: string | null,
+): ProvincePalette {
+  if (level !== "country" && parentProvince) {
+    return getProvincePalette(parentProvince);
+  }
+  return getProvincePalette(name);
+}
+
 function fallbackProvincePalette(name: string): ProvincePalette {
   let hash = 0;
   for (const char of name) {

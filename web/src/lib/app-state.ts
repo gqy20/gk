@@ -42,6 +42,7 @@ export const initialState: AppState = {
 export type AppAction =
   | { type: "SET_DATA"; payload: { schools: School[]; provinces: ProvinceData[] } | null }
   | { type: "SET_LOAD_ERROR"; payload: string | null }
+  | { type: "SET_PROVINCE"; payload: string | null }
   | { type: "SELECT_PROVINCE"; payload: string | null }
   | { type: "SELECT_SCHOOL"; payload: School | null }
   | { type: "SET_PREVIEW_SCHOOL"; payload: School | null }
@@ -63,6 +64,15 @@ export function appReducer(state: AppState, action: AppAction): AppState {
 
     case "SET_LOAD_ERROR":
       return { ...state, loadError: action.payload };
+
+    case "SET_PROVINCE":
+      return {
+        ...state,
+        selectedProvince: action.payload,
+        selectedSchool: null,
+        previewSchool: null,
+        compareOpen: false,
+      };
 
     case "SELECT_PROVINCE": {
       const province = action.payload;

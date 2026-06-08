@@ -7,6 +7,7 @@ import { IconCheck } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
+import { getProvincePalette } from "@/lib/map-style";
 
 // 滚动位置存储（跨导航保持）
 const SCROLL_STORAGE_KEY = "gk-province-scroll";
@@ -133,6 +134,7 @@ export default function ProvinceList({
       {displayProvinces.map((prov) => {
         const isSelected = selectedProvince === prov.name;
         const compactProvinceHeader = Boolean(selectedProvince);
+        const palette = getProvincePalette(prov.name);
 
         // 优先级排序: 985 > 211 > 双一流 > 普通; 同级按校名
         const sortedSchools = [...prov.schools].sort((a, b) => {
@@ -156,9 +158,10 @@ export default function ProvinceList({
                 "w-full px-3 text-left transition",
                 compactProvinceHeader ? "py-2.5" : "py-3",
                 isSelected
-                  ? "bg-brand-500/90 text-text-inverse"
+                  ? ""
                   : "bg-neutral-0/66 text-text-light hover:bg-accent-50/60",
               )}
+              style={isSelected ? { background: palette.selectedFill, color: palette.label } : undefined}
             >
               <div className="flex items-center gap-3">
                 <div className="min-w-0 flex-1">
@@ -180,7 +183,10 @@ export default function ProvinceList({
             </button>
 
             {(isSelected || !selectedProvince) && (
-              <div className="border-t border-border-light bg-accent-50/25">
+              <div
+                className="border-t border-border-light bg-accent-50/25"
+                style={isSelected ? { background: palette.halo } : undefined}
+              >
                 {sortedSchools.map((school, schoolIndex) => {
                   const isCompareSelected = compareSchools.some(
                     (s) => s.name === school.name,
@@ -211,8 +217,9 @@ export default function ProvinceList({
                         <span
                           className={cn(
                             "h-2.5 w-2.5 flex-shrink-0 rounded-full",
-                            school.status === "done" ? "bg-brand-400" : "bg-neutral-400",
+                            school.status === "done" ? "" : "bg-neutral-400",
                           )}
+                          style={school.status === "done" ? { background: palette.selectedFill } : undefined}
                         />
                         <span className="truncate font-medium">{school.name}</span>
                       </button>

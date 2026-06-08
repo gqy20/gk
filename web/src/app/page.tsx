@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import AppProvider, { useApp } from "@/components/AppProvider";
 import { Button } from "@/components/ui/Button";
@@ -37,6 +37,8 @@ export default function HomePage() {
 
 function Home() {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const {
     data,
     loadError,
@@ -56,6 +58,23 @@ function Home() {
     crawlSources,
     dispatch,
   } = useApp();
+  const provinceFromUrl = searchParams.get("province")?.trim() || null;
+
+  const setProvinceUrl = useCallback((province: string | null) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (province) {
+      params.set("province", province);
+    } else {
+      params.delete("province");
+    }
+    const queryString = params.toString();
+    router.replace(queryString ? `${pathname}?${queryString}` : pathname, { scroll: false });
+  }, [pathname, router, searchParams]);
+
+  const setProvince = useCallback((province: string | null) => {
+    dispatch({ type: "SET_PROVINCE", payload: province });
+    setProvinceUrl(province);
+  }, [dispatch, setProvinceUrl]);
 
   useEffect(() => {
     async function load() {
@@ -95,6 +114,11 @@ function Home() {
     }
     load();
   }, [dispatch]);
+
+  useEffect(() => {
+    if (provinceFromUrl === selectedProvince) return;
+    dispatch({ type: "SET_PROVINCE", payload: provinceFromUrl });
+  }, [dispatch, provinceFromUrl, selectedProvince]);
 
   if (!data) {
     return <HomePageSkeleton />;
@@ -183,7 +207,7 @@ function Home() {
             filter985={filter985}
             filter211={filter211}
             filterDoubleFirst={filterDoubleFirst}
-            onProvinceSelect={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
+            onProvinceSelect={setProvince}
             onSchoolPreview={(s) => dispatch({ type: "SET_PREVIEW_SCHOOL", payload: s })}
             onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
             onToggle985={() => dispatch({ type: "TOGGLE_FILTER", payload: "985" })}
@@ -266,7 +290,7 @@ function Home() {
                             size="sm"
                             onClick={() => {
                               if (selectedProvince) {
-                                dispatch({ type: "SELECT_PROVINCE", payload: null });
+                                setProvince(null);
                               }
                               if (hasActiveSearch || activeFilterCount > 0) {
                                 dispatch({ type: "RESET_FILTERS" });
@@ -288,7 +312,7 @@ function Home() {
                       selectedProvince={selectedProvince}
                       selectedSchool={selectedSchool}
                       compareSchools={compareSchools}
-                      onProvinceClick={(p) => dispatch({ type: "SELECT_PROVINCE", payload: p })}
+                      onProvinceClick={setProvince}
                       onSchoolClick={(s) => router.push(`/school/${encodeURIComponent(s.name)}`)}
                       onCompareToggle={(s) => dispatch({ type: "TOGGLE_COMPARE", payload: s })}
                     />

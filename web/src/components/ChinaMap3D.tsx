@@ -3,9 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { AnimatePresence, motion } from "framer-motion";
-import { colors } from "@/lib/theme";
 import type { ProvinceData, School } from "@/lib/data";
-import { SCHOOL_TIER_STYLES, getProvincePalette } from "@/lib/map-style";
+import { SCHOOL_TIER_STYLES, getMapRegionPalette } from "@/lib/map-style";
 import {
   INITIAL_DRILL_STATE,
   MAP_NAME_TO_PROVINCE,
@@ -132,11 +131,25 @@ const SHORT_PROVINCE_NAMES = new Map(
 const CHINA_BOUNDS: Bounds = [73, 17, 135.5, 54.5];
 const SCENE_WIDTH = 18;
 const PAPER_DEPTH = 0.18;
+const LOCAL_REGION_DEPTH = 0.11;
 const REGION_RAISE = 0.22;
 const SCHOOL_Y = 0.34;
 const HIDDEN_REGION_LABELS = new Set(["香港", "澳门", "香港特别行政区", "澳门特别行政区"]);
+const SCHOOL_SEAL_COLORS = {
+  "985": "#d85b50",
+  "211": "#c7953e",
+  doubleFirst: "#3f9a73",
+  normal: "#5da7b2",
+} as const;
 
 const reusableVector = new THREE.Vector3();
+
+type RgbaColor = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+};
 
 function mapProvinceName(province: string): string {
   return MAP_PROVINCE_NAMES[province] || province;
@@ -266,7 +279,7 @@ function shapesFromFeature(feature: GeoJsonFeature, projector: Projector) {
   return [];
 }
 
-function linePointsFromFeature(feature: GeoJsonFeature, projector: Projector) {
+function linePointsFromFeature(feature: GeoJsonFeature, projector: Projector, y = 0.04) {
   const geometry = feature.geometry;
   if (!geometry) return [];
   const polygons = geometry.type === "Polygon"
@@ -277,7 +290,7 @@ function linePointsFromFeature(feature: GeoJsonFeature, projector: Projector) {
     if (outer.length < 2) return [];
     return [outer.map((point) => {
       const projected = projector.project([point[0], point[1]]);
-      return new THREE.Vector3(projected.x, 0.04, projected.y);
+      return new THREE.Vector3(projected.x, y, projected.y);
     })];
   });
 }
@@ -288,6 +301,7 @@ function normalizeRegionFeature(
   selectedProvince: string | null,
   schools: School[],
   level: MapLevel,
+  parentProvince: string | null = null,
 ) {
   const countByProvince = new Map(provinces.map((province) => [province.name, province.count]));
   const mapName = String(feature.properties.name || "");
@@ -297,8 +311,8 @@ function normalizeRegionFeature(
     shortName,
     adcode: feature.properties.adcode == null ? null : String(feature.properties.adcode),
     count: level === "country" ? countByProvince.get(shortName) ?? 0 : countSchoolsInFeature(feature, schools),
-    selected: selectedProvince === shortName,
-    palette: getProvincePalette(shortName),
+    selected: level === "country" && selectedProvince === shortName,
+    palette: getMapRegionPalette(shortName, level, parentProvince),
   };
 }
 
@@ -353,16 +367,82 @@ function pointInRing(point: Position, ring: number[][]): boolean {
   return inside;
 }
 
+function hashString(value: string) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function seededRandom(seed: string) {
+  let state = hashString(seed) || 1;
+  return () => {
+    state = Math.imul(state ^ (state >>> 15), 1 | state);
+    state ^= state + Math.imul(state ^ (state >>> 7), 61 | state);
+    return ((state ^ (state >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function parseRgbaColor(color: string): RgbaColor {
+  const values = color.match(/[\d.]+/g)?.map(Number) ?? [];
+  if (color.startsWith("rgba") || color.startsWith("rgb")) {
+    return {
+      r: values[0] ?? 204,
+      g: values[1] ?? 226,
+      b: values[2] ?? 221,
+      a: values[3] ?? 1,
+    };
+  }
+
+  const parsed = new THREE.Color(color);
+  return {
+    r: Math.round(parsed.r * 255),
+    g: Math.round(parsed.g * 255),
+    b: Math.round(parsed.b * 255),
+    a: 1,
+  };
+}
+
+function rgbaString(color: RgbaColor, alpha = color.a) {
+  return `rgba(${Math.round(color.r)}, ${Math.round(color.g)}, ${Math.round(color.b)}, ${alpha})`;
+}
+
+function threeColorFromRgba(color: RgbaColor) {
+  return new THREE.Color(color.r / 255, color.g / 255, color.b / 255);
+}
+
+function mixColor(color: RgbaColor, target: RgbaColor, amount: number): RgbaColor {
+  return {
+    r: color.r + (target.r - color.r) * amount,
+    g: color.g + (target.g - color.g) * amount,
+    b: color.b + (target.b - color.b) * amount,
+    a: color.a + (target.a - color.a) * amount,
+  };
+}
+
+function mapSceneColors(level: MapLevel) {
+  return {
+    background: new THREE.Color("#cfe9e2"),
+    fog: new THREE.Color("#cfe9e2"),
+    sea: new THREE.Color("#fffaf0"),
+    seaOpacity: level === "country" ? 0.3 : 0.16,
+  };
+}
+
 function colorToMaterial(color: string, opacity = 0.9, lit = true) {
+  const parsedColor = parseRgbaColor(color);
+  const materialOpacity = opacity * parsedColor.a;
   const base = {
-    color: new THREE.Color(color),
-    transparent: opacity < 1,
-    opacity,
+    color: threeColorFromRgba(parsedColor),
+    transparent: materialOpacity < 1,
+    opacity: materialOpacity,
   };
   if (!lit) {
     return new THREE.MeshBasicMaterial({
       ...base,
-      depthWrite: opacity >= 1,
+      depthWrite: materialOpacity >= 1,
       polygonOffset: true,
       polygonOffsetFactor: 1,
       polygonOffsetUnits: 1,
@@ -375,6 +455,117 @@ function colorToMaterial(color: string, opacity = 0.9, lit = true) {
   });
 }
 
+function createProvinceWatercolorMaterial(color: string, seed: string, opacity = 0.92) {
+  const baseColor = parseRgbaColor(color);
+  const paperColor: RgbaColor = { r: 255, g: 250, b: 240, a: 1 };
+  const deepColor = mixColor(baseColor, { r: 45, g: 60, b: 54, a: 1 }, 0.12);
+  const paleColor = mixColor(baseColor, paperColor, 0.04);
+  const random = seededRandom(`province-watercolor:${seed}:${color}`);
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) return colorToMaterial(color, opacity, false);
+
+  ctx.fillStyle = rgbaString(paperColor);
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = rgbaString(baseColor, Math.min(baseColor.a + 0.14, 1));
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let index = 0; index < 7; index += 1) {
+    const x = random() * canvas.width;
+    const y = random() * canvas.height;
+    const radius = 110 + random() * 210;
+    const gradient = ctx.createRadialGradient(x, y, radius * 0.08, x, y, radius);
+    const washColor = random() > 0.36 ? paleColor : deepColor;
+    gradient.addColorStop(0, rgbaString(washColor, 0.34 + random() * 0.18));
+    gradient.addColorStop(0.62, rgbaString(washColor, 0.12 + random() * 0.08));
+    gradient.addColorStop(1, rgbaString(washColor, 0));
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  for (let index = 0; index < 34; index += 1) {
+    const y = random() * canvas.height;
+    const width = 90 + random() * 240;
+    const x = random() * canvas.width - width * 0.25;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate((random() - 0.5) * 0.38);
+    ctx.fillStyle = rgbaString(random() > 0.56 ? paperColor : deepColor, 0.028 + random() * 0.04);
+    ctx.fillRect(0, 0, width, 2 + random() * 8);
+    ctx.restore();
+  }
+
+  const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = image.data;
+  for (let index = 0; index < data.length; index += 4) {
+    const grain = (random() - 0.5) * 18;
+    const fiber = random() > 0.988 ? 22 : 0;
+    data[index] = Math.max(0, Math.min(255, data[index] + grain + fiber));
+    data[index + 1] = Math.max(0, Math.min(255, data[index + 1] + grain + fiber));
+    data[index + 2] = Math.max(0, Math.min(255, data[index + 2] + grain + fiber));
+  }
+  ctx.putImageData(image, 0, 0);
+
+  for (let index = 0; index < 46; index += 1) {
+    ctx.strokeStyle = rgbaString(paperColor, 0.03 + random() * 0.06);
+    ctx.lineWidth = 0.5 + random() * 1.6;
+    ctx.beginPath();
+    const x = random() * canvas.width;
+    const y = random() * canvas.height;
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(
+      x + (random() - 0.5) * 90,
+      y + 40 + random() * 70,
+      x + (random() - 0.5) * 120,
+      y + 90 + random() * 120,
+      x + (random() - 0.5) * 160,
+      y + 140 + random() * 170,
+    );
+    ctx.stroke();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+
+  const material = new THREE.MeshBasicMaterial({
+    map: texture,
+    transparent: true,
+    opacity,
+    depthWrite: opacity >= 1,
+    polygonOffset: true,
+    polygonOffsetFactor: 1,
+    polygonOffsetUnits: 1,
+  });
+  material.fog = false;
+  return material;
+}
+
+function applyWatercolorUv(geometry: THREE.BufferGeometry) {
+  geometry.computeBoundingBox();
+  const box = geometry.boundingBox;
+  const position = geometry.getAttribute("position");
+  if (!box || !position) return;
+
+  const width = Math.max(box.max.x - box.min.x, 0.0001);
+  const height = Math.max(box.max.z - box.min.z, 0.0001);
+  const uv = new Float32Array(position.count * 2);
+
+  for (let index = 0; index < position.count; index += 1) {
+    uv[index * 2] = (position.getX(index) - box.min.x) / width;
+    uv[index * 2 + 1] = (position.getZ(index) - box.min.z) / height;
+  }
+
+  geometry.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
+}
+
 function schoolTier(school: School) {
   if (school.is985) return "985";
   if (school.is211) return "211";
@@ -383,43 +574,199 @@ function schoolTier(school: School) {
 }
 
 function schoolColor(school: School, selectedProvince: string | null, highlighted: boolean): string {
-  if (!highlighted || (selectedProvince && school.province !== selectedProvince)) return colors.chart.schoolMuted;
-  if (school.is985) return colors.chart.school985;
-  if (school.is211) return colors.chart.school211;
-  if (school.isDoubleFirstClass) return colors.chart.schoolDoubleFirst;
-  return colors.chart.schoolNormal;
+  if (!highlighted || (selectedProvince && school.province !== selectedProvince)) return "rgba(117, 106, 86, 0.16)";
+  if (school.is985) return SCHOOL_SEAL_COLORS["985"];
+  if (school.is211) return SCHOOL_SEAL_COLORS["211"];
+  if (school.isDoubleFirstClass) return SCHOOL_SEAL_COLORS.doubleFirst;
+  return SCHOOL_SEAL_COLORS.normal;
 }
 
 function schoolScale(school: School, highlighted: boolean) {
   if (!highlighted) return 0.055;
-  if (school.is985) return 0.16;
-  if (school.is211) return 0.13;
-  if (school.isDoubleFirstClass) return 0.11;
-  return 0.085;
+  if (school.is985) return 0.18;
+  if (school.is211) return 0.15;
+  if (school.isDoubleFirstClass) return 0.12;
+  return 0.105;
 }
 
-function makeTextSprite(text: string, options: { fontSize?: number; color?: string; stroke?: string } = {}) {
+function drawIrregularCircle(
+  ctx: CanvasRenderingContext2D,
+  center: number,
+  radius: number,
+  random: () => number,
+) {
+  ctx.beginPath();
+  for (let index = 0; index < 32; index += 1) {
+    const angle = (index / 32) * Math.PI * 2;
+    const localRadius = radius * (0.92 + random() * 0.14);
+    const x = center + Math.cos(angle) * localRadius;
+    const y = center + Math.sin(angle) * localRadius;
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+}
+
+function drawIrregularPolygon(
+  ctx: CanvasRenderingContext2D,
+  points: Array<[number, number]>,
+  random: () => number,
+  jitter = 4,
+) {
+  ctx.beginPath();
+  points.forEach(([x, y], index) => {
+    const nextX = x + (random() - 0.5) * jitter;
+    const nextY = y + (random() - 0.5) * jitter;
+    if (index === 0) ctx.moveTo(nextX, nextY);
+    else ctx.lineTo(nextX, nextY);
+  });
+  ctx.closePath();
+}
+
+function createSchoolSealTexture(tier: string, color: string, seed: string) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 128;
+  canvas.height = 128;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+
+  const random = seededRandom(`school-seal:${tier}:${seed}`);
+  const baseColor = parseRgbaColor(color);
+  const brightColor = mixColor(baseColor, { r: 255, g: 248, b: 232, a: 1 }, tier === "normal" ? 0.1 : 0.06);
+  const center = canvas.width / 2;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.shadowColor = "rgba(55, 44, 31, 0.22)";
+  ctx.shadowBlur = 8;
+  ctx.shadowOffsetY = 3;
+  ctx.fillStyle = rgbaString(brightColor, tier === "normal" ? 0.82 : 0.88);
+
+  if (tier === "985") {
+    drawIrregularPolygon(ctx, [[34, 30], [96, 34], [92, 98], [30, 92]], random, 7);
+  } else if (tier === "211") {
+    drawIrregularCircle(ctx, center, 33, random);
+  } else if (tier === "doubleFirst") {
+    drawIrregularPolygon(ctx, [[64, 25], [101, 62], [65, 101], [27, 66]], random, 6);
+  } else {
+    drawIrregularCircle(ctx, center, 27, random);
+  }
+  ctx.fill();
+
+  ctx.shadowColor = "transparent";
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.strokeStyle = "rgba(0, 0, 0, 0.24)";
+  ctx.lineCap = "round";
+  for (let index = 0; index < (tier === "normal" ? 3 : 10); index += 1) {
+    const x = 28 + random() * 72;
+    const y = 28 + random() * 72;
+    ctx.lineWidth = 1 + random() * 2.4;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + (random() - 0.5) * 22, y + (random() - 0.5) * 22);
+    ctx.stroke();
+  }
+  for (let index = 0; index < (tier === "normal" ? 4 : 16); index += 1) {
+    ctx.beginPath();
+    ctx.arc(24 + random() * 80, 24 + random() * 80, 0.6 + random() * 2.4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalCompositeOperation = "source-over";
+
+  ctx.strokeStyle = "rgba(255, 248, 232, 0.86)";
+  ctx.lineWidth = tier === "normal" ? 3.5 : 4.5;
+  if (tier === "985") {
+    drawIrregularPolygon(ctx, [[34, 30], [96, 34], [92, 98], [30, 92]], random, 3);
+  } else if (tier === "211") {
+    drawIrregularCircle(ctx, center, 33, random);
+  } else if (tier === "doubleFirst") {
+    drawIrregularPolygon(ctx, [[64, 25], [101, 62], [65, 101], [27, 66]], random, 3);
+  } else {
+    drawIrregularCircle(ctx, center, 27, random);
+  }
+  ctx.stroke();
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
+function createSchoolSealMaterial(tier: string, color: string, seed: string, opacity: number) {
+  const texture = createSchoolSealTexture(tier, color, seed);
+  if (!texture) {
+    return new THREE.MeshBasicMaterial({
+      color: new THREE.Color(color),
+      transparent: opacity < 1,
+      opacity,
+      depthWrite: false,
+    });
+  }
+  return new THREE.MeshBasicMaterial({
+    map: texture,
+    transparent: true,
+    opacity,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  });
+}
+
+function SealLegendIcon({ tier }: { tier: "985" | "211" | "doubleFirst" | "normal" }) {
+  const shapeClass = tier === "985"
+    ? "rounded-[2px]"
+    : tier === "doubleFirst"
+      ? "rotate-45 rounded-[2px]"
+      : "rounded-full";
+  const sizeClass = tier === "normal" ? "h-2 w-2" : "h-2.5 w-2.5";
+
+  return (
+    <span
+      className={`inline-block shrink-0 border border-surface-elevated/80 shadow-sm shadow-neutral-900/10 ${sizeClass} ${shapeClass}`}
+      style={{ background: SCHOOL_SEAL_COLORS[tier] }}
+    />
+  );
+}
+
+function makeTextSprite(
+  text: string,
+  options: { fontSize?: number; color?: string; stroke?: string; vertical?: boolean } = {},
+) {
   const fontSize = options.fontSize ?? 44;
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   if (!ctx) return null;
-  ctx.font = `600 ${fontSize}px sans-serif`;
+  const fontFamily = `"Songti SC", "Noto Serif CJK SC", "STKaiti", "KaiTi", serif`;
+  ctx.font = `600 ${fontSize}px ${fontFamily}`;
+  const chars = Array.from(text);
+  const vertical = options.vertical && chars.length > 1;
   const metrics = ctx.measureText(text);
-  canvas.width = Math.ceil(metrics.width + 28);
-  canvas.height = Math.ceil(fontSize + 26);
-  ctx.font = `600 ${fontSize}px sans-serif`;
+  canvas.width = vertical ? Math.ceil(fontSize + 34) : Math.ceil(metrics.width + 36);
+  canvas.height = vertical ? Math.ceil(chars.length * fontSize * 1.04 + 34) : Math.ceil(fontSize + 30);
+  ctx.font = `600 ${fontSize}px ${fontFamily}`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.lineWidth = 6;
-  ctx.strokeStyle = options.stroke ?? "rgba(48, 62, 58, 0.34)";
-  ctx.fillStyle = options.color ?? "rgba(255,255,250,0.96)";
-  ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
-  ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+  ctx.shadowColor = "rgba(48, 58, 50, 0.20)";
+  ctx.shadowBlur = 5;
+  ctx.shadowOffsetY = 1;
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = options.stroke ?? "rgba(58, 74, 66, 0.30)";
+  ctx.fillStyle = options.color ?? "rgba(255,255,250,0.95)";
+
+  if (vertical) {
+    const startY = (canvas.height - (chars.length - 1) * fontSize * 1.04) / 2;
+    chars.forEach((char, index) => {
+      const y = startY + index * fontSize * 1.04;
+      ctx.strokeText(char, canvas.width / 2, y);
+      ctx.fillText(char, canvas.width / 2, y);
+    });
+  } else {
+    ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+  }
+
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   const material = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false });
   const sprite = new THREE.Sprite(material);
-  sprite.scale.set(canvas.width / 190, canvas.height / 190, 1);
+  sprite.scale.set(canvas.width / 198, canvas.height / 198, 1);
   return sprite;
 }
 
@@ -429,8 +776,12 @@ function disposeObject(object: THREE.Object3D) {
     if (mesh.geometry) mesh.geometry.dispose();
     const material = mesh.material;
     if (Array.isArray(material)) {
-      material.forEach((item) => item.dispose());
+      material.forEach((item) => {
+        if ("map" in item && item.map instanceof THREE.Texture) item.map.dispose();
+        item.dispose();
+      });
     } else if (material) {
+      if ("map" in material && material.map instanceof THREE.Texture) material.map.dispose();
       material.dispose();
     }
   });
@@ -490,6 +841,10 @@ export default function ChinaMap3D({
     drill.level === "country"
       ? selectedProvince
       : MAP_NAME_TO_PROVINCE[drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name] || selectedProvince;
+  const localProvince =
+    drill.level === "country"
+      ? selectedProvince
+      : MAP_NAME_TO_PROVINCE[drill.breadcrumbs[1]?.name] || shortProvinceName(drill.breadcrumbs[1]?.name) || currentProvince;
 
   const visibleSchools = useMemo(() => {
     if (drill.level === "country") return schools;
@@ -501,6 +856,23 @@ export default function ChinaMap3D({
     () => new Set(highlightedSchools.map((school) => school.name)),
     [highlightedSchools],
   );
+  const syncScenePalette = useCallback((level: MapLevel) => {
+    const scene = sceneRef.current;
+    const seaMaterial = seaMaterialRef.current;
+    const colorsForLevel = mapSceneColors(level);
+
+    if (scene) {
+      scene.background = colorsForLevel.background;
+      if (scene.fog instanceof THREE.Fog) {
+        scene.fog.color.copy(colorsForLevel.fog);
+      }
+    }
+    if (seaMaterial) {
+      seaMaterial.color.copy(colorsForLevel.sea);
+      seaMaterial.opacity = colorsForLevel.seaOpacity;
+      seaMaterial.needsUpdate = true;
+    }
+  }, []);
 
   const loadMapData = useCallback(async (adcode: string) => {
     const url = adcode === "100000" ? "/china.json" : `/maps/${adcode}.json`;
@@ -612,22 +984,28 @@ export default function ChinaMap3D({
     const projector = createProjector(level === "country" ? CHINA_BOUNDS : boundsFromGeoJson(data));
     projectorRef.current = projector;
     const parentProvince = drill.breadcrumbs[drill.breadcrumbs.length - 1]?.name;
-    const parentPalette = level === "country"
+    const regionProvince = level === "country"
       ? null
-      : getProvincePalette(MAP_NAME_TO_PROVINCE[parentProvince] || shortProvinceName(parentProvince) || currentProvince || "");
+      : localProvince || MAP_NAME_TO_PROVINCE[parentProvince] || shortProvinceName(parentProvince) || currentProvince;
 
     data.features.forEach((feature) => {
-      const meta = normalizeRegionFeature(feature, provinces, selectedProvince, visibleSchools, level);
+      const meta = normalizeRegionFeature(feature, provinces, selectedProvince, visibleSchools, level, regionProvince);
       const shapes = shapesFromFeature(feature, projector);
-      const outlinePoints = linePointsFromFeature(feature, projector);
+      const regionDepth = level === "country" ? PAPER_DEPTH : LOCAL_REGION_DEPTH;
+      const outlineY = regionDepth + 0.0015;
+      const outlinePoints = linePointsFromFeature(feature, projector, outlineY);
       if (shapes.length === 0 && outlinePoints.length === 0) return;
 
-      const palette = parentPalette ?? meta.palette;
-      const fillColor = meta.selected ? palette.selectedFill : palette.fill;
-      const topMaterial = colorToMaterial(fillColor, level === "country" ? 0.88 : 0.94, false);
-      const localBaseMaterial = level === "country"
-        ? null
-        : colorToMaterial("rgba(255, 250, 240, 0.74)", 0.74, false);
+      const palette = meta.palette;
+      const fillColor = level === "country"
+        ? meta.selected ? palette.selectedFill : palette.fill
+        : palette.selectedFill;
+      const topMaterial = createProvinceWatercolorMaterial(
+        fillColor,
+        `${level}:${meta.shortName}:${meta.mapName}`,
+        level === "country" ? 0.9 : 1,
+      );
+      const localBaseMaterial = null;
       const sideMaterial = colorToMaterial("rgba(82, 105, 98, 0.72)", 0.9);
       const group = new THREE.Group() as RegionMesh;
       group.userData = {
@@ -642,17 +1020,16 @@ export default function ChinaMap3D({
       };
 
       for (const shape of shapes) {
-        const geometry = level === "country"
-          ? new THREE.ExtrudeGeometry(shape, {
-              depth: PAPER_DEPTH,
-              bevelEnabled: true,
-              bevelThickness: 0.025,
-              bevelSize: 0.025,
-              bevelSegments: 1,
-              curveSegments: 2,
-            })
-          : new THREE.ShapeGeometry(shape);
+        const geometry = new THREE.ExtrudeGeometry(shape, {
+          depth: regionDepth,
+          bevelEnabled: true,
+          bevelThickness: level === "country" ? 0.025 : 0.016,
+          bevelSize: level === "country" ? 0.025 : 0.014,
+          bevelSegments: 1,
+          curveSegments: 2,
+        });
         geometry.rotateX(Math.PI / 2);
+        applyWatercolorUv(geometry);
         if (localBaseMaterial) {
           const baseMesh = new THREE.Mesh(geometry.clone(), localBaseMaterial);
           baseMesh.position.y = -0.012;
@@ -660,35 +1037,41 @@ export default function ChinaMap3D({
           baseMesh.userData = group.userData;
           group.add(baseMesh);
         }
-        const mesh = new THREE.Mesh(geometry, level === "country" ? [topMaterial, sideMaterial] : topMaterial);
-        mesh.castShadow = level === "country";
+        const mesh = new THREE.Mesh(geometry, [topMaterial, sideMaterial]);
+        mesh.castShadow = true;
         mesh.receiveShadow = true;
         mesh.userData = group.userData;
         group.add(mesh);
       }
 
-      if (level !== "country") {
-        for (const points of outlinePoints) {
-          const geometry = new THREE.BufferGeometry().setFromPoints(points);
-          const line = new THREE.Line(
-            geometry,
-            new THREE.LineBasicMaterial({ color: new THREE.Color(palette.edge), transparent: true, opacity: 0.68 }),
-          );
-          line.userData = group.userData;
-          group.add(line);
-        }
+      for (const points of outlinePoints) {
+        const shadowGeometry = new THREE.BufferGeometry().setFromPoints(points);
+        const shadowColor = parseRgbaColor(level === "country" ? "rgba(65, 82, 73, 0.44)" : palette.edge);
+        const shadowLine = new THREE.Line(
+          shadowGeometry,
+          new THREE.LineBasicMaterial({
+            color: threeColorFromRgba(shadowColor),
+            transparent: true,
+            opacity: (level === "country" ? 0.42 : 0.58) * shadowColor.a,
+          }),
+        );
+        shadowLine.userData = group.userData;
+        group.add(shadowLine);
+
       }
 
       const center = centroidFromFeature(feature);
       if (center && !HIDDEN_REGION_LABELS.has(meta.shortName) && !HIDDEN_REGION_LABELS.has(meta.mapName)) {
+        const shouldUseVerticalLabel = level === "country" && meta.shortName.length >= 2 && meta.shortName.length <= 3;
         const label = makeTextSprite(meta.shortName, {
-          fontSize: level === "country" ? 42 : 38,
-          color: level === "country" ? undefined : palette.label,
-          stroke: level === "country" ? undefined : palette.halo,
+          fontSize: level === "country" ? 38 : 36,
+          color: level === "country" ? "rgba(255, 255, 250, 0.92)" : palette.label,
+          stroke: level === "country" ? "rgba(54, 67, 59, 0.26)" : palette.halo,
+          vertical: shouldUseVerticalLabel,
         });
         if (label) {
           const position = projector.project(center);
-          label.position.set(position.x, (level === "country" ? PAPER_DEPTH : 0.02) + 0.09, position.y);
+          label.position.set(position.x, regionDepth + 0.09, position.y);
           label.renderOrder = 2;
           group.add(label);
         }
@@ -697,7 +1080,7 @@ export default function ChinaMap3D({
       mapGroup.add(group);
       regionMeshesRef.current.push(group);
     });
-  }, [provinces, selectedProvince, visibleSchools]);
+  }, [currentProvince, drill.breadcrumbs, localProvince, provinces, selectedProvince, visibleSchools]);
 
   const buildSchools = useCallback(() => {
     const mapGroup = mapGroupRef.current;
@@ -710,40 +1093,39 @@ export default function ChinaMap3D({
       const scale = schoolScale(school, highlighted);
       const tier = schoolTier(school);
       const position = projector.project(school.coord);
-      const color = new THREE.Color(schoolColor(school, selectedProvince, highlighted));
+      const markerColor = schoolColor(school, selectedProvince, highlighted);
 
-      const geometry = new THREE.CylinderGeometry(scale * 0.74, scale * 0.8, scale * 0.12, 28);
-      const material = new THREE.MeshStandardMaterial({
-        color,
-        roughness: 0.62,
-        metalness: 0,
-        transparent: !highlighted,
-        opacity: highlighted ? 1 : 0.18,
+      const hitGeometry = new THREE.CylinderGeometry(scale * 0.72, scale * 0.72, scale * 0.08, 16);
+      const hitMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(markerColor),
+        transparent: true,
+        opacity: highlighted ? 0.001 : 0.08,
       });
-      const marker = new THREE.Mesh(geometry, material) as unknown as SchoolMesh;
+      const marker = new THREE.Mesh(hitGeometry, hitMaterial) as unknown as SchoolMesh;
       marker.position.set(position.x, SCHOOL_Y, position.y);
-      marker.castShadow = true;
+      marker.castShadow = false;
       marker.userData = { kind: "school", school, tier, highlighted, baseScale: scale };
       mapGroup.add(marker);
       schoolMeshesRef.current.push(marker);
 
       if (highlighted) {
-        const ring = new THREE.Mesh(
-          new THREE.TorusGeometry(scale * 1.05, scale * 0.08, 8, 28),
-          new THREE.MeshBasicMaterial({ color: "rgba(255,250,240,0.98)" }),
+        const sealSize = scale * (tier === "985" ? 1.65 : tier === "211" ? 1.52 : tier === "doubleFirst" ? 1.44 : 1.26);
+        const seal = new THREE.Mesh(
+          new THREE.PlaneGeometry(sealSize, sealSize),
+          createSchoolSealMaterial(tier, markerColor, school.name, 0.96),
         );
-        ring.position.set(position.x, SCHOOL_Y + 0.01, position.y);
-        ring.rotation.x = Math.PI / 2;
-        mapGroup.add(ring);
+        seal.position.set(position.x, SCHOOL_Y + 0.084, position.y);
+        seal.rotation.x = -Math.PI / 2;
+        seal.rotation.z = (seededRandom(`school-seal-rotation:${school.name}`)() - 0.5) * 0.34;
+        seal.renderOrder = 3;
+        mapGroup.add(seal);
       }
     }
   }, [hasActiveMapFilters, highlightedSchoolNames, selectedProvince, visibleSchools]);
 
   const rebuildMap = useCallback((data: GeoJsonFeatureCollection, level: MapLevel) => {
     setMapReady(false);
-    if (seaMaterialRef.current) {
-      seaMaterialRef.current.opacity = level === "country" ? 0.3 : 0.16;
-    }
+    syncScenePalette(level);
     clearMapGroup();
     buildRegions(data, level);
     buildSchools();
@@ -752,7 +1134,7 @@ export default function ChinaMap3D({
       fitCameraToMap(level);
       renderScene();
     });
-  }, [buildRegions, buildSchools, clearMapGroup, fitCameraToMap, renderScene]);
+  }, [buildRegions, buildSchools, clearMapGroup, fitCameraToMap, renderScene, syncScenePalette]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -827,11 +1209,16 @@ export default function ChinaMap3D({
       mapGroupRef.current = null;
       seaMaterialRef.current = null;
     };
-  }, [clearMapGroup, resizeScene]);
+  }, [clearMapGroup, renderScene, resizeScene]);
 
   useEffect(() => {
     resizeScene();
   }, [drill.level, resizeScene]);
+
+  useEffect(() => {
+    syncScenePalette(drill.level);
+    renderScene();
+  }, [drill.level, renderScene, syncScenePalette]);
 
   useEffect(() => {
     let cancelled = false;
@@ -904,6 +1291,16 @@ export default function ChinaMap3D({
     }, 0);
     return () => window.clearTimeout(id);
   }, [drill.level, loadingDrill, resetToCountry, selectedProvince]);
+
+  useEffect(() => {
+    if (!selectedProvince || drill.level !== "country" || loadingDrill) return;
+    const adcode = getProvinceAdcode(selectedProvince);
+    if (!adcode) return;
+    const id = window.setTimeout(() => {
+      void drillDown(mapProvinceName(selectedProvince), adcode);
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [drill.level, drillDown, loadingDrill, selectedProvince]);
 
   const pickObject = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     const container = containerRef.current;
@@ -1080,7 +1477,7 @@ export default function ChinaMap3D({
           }}
           className={`inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none transition ${filter211 ? "bg-brand-50 text-brand-700" : "text-text-light-muted hover:bg-primary-soft"}`}
         >
-          <span className="inline-block h-2 w-2 shrink-0 rounded-full" style={{ background: colors.chart.school211 }} />
+          <SealLegendIcon tier="211" />
           211
         </button>
         <button
@@ -1091,7 +1488,7 @@ export default function ChinaMap3D({
           }}
           className={`inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none transition ${filter985 ? "bg-accent-50 text-accent-700" : "text-text-light-muted hover:bg-primary-soft"}`}
         >
-          <span className="inline-block h-2 w-2 shrink-0 rounded-full" style={{ background: colors.chart.school985 }} />
+          <SealLegendIcon tier="985" />
           985
         </button>
         <button
@@ -1102,11 +1499,11 @@ export default function ChinaMap3D({
           }}
           className={`inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none transition ${filterDoubleFirst ? "bg-primary-soft text-primary" : "text-text-light-muted hover:bg-primary-soft"}`}
         >
-          <span className="inline-block h-2 w-2 shrink-0 rounded-full" style={{ background: colors.chart.schoolDoubleFirst }} />
+          <SealLegendIcon tier="doubleFirst" />
           双一流
         </button>
         <span className="inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none text-text-light-muted">
-          <span className="inline-block h-2 w-2 shrink-0 rounded-full" style={{ background: colors.chart.schoolNormal }} />
+          <SealLegendIcon tier="normal" />
           普通高校
         </span>
       </div>

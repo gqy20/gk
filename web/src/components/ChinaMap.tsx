@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import maplibregl, {
   type GeoJSONSource,
@@ -13,7 +13,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { colors } from "@/lib/theme";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 import type { School, ProvinceData } from "@/lib/data";
-import { SCHOOL_TIER_STYLES, getProvincePalette } from "@/lib/map-style";
+import { SCHOOL_TIER_STYLES, getMapRegionPalette, getProvincePalette } from "@/lib/map-style";
 import {
   MAP_NAME_TO_PROVINCE,
   type MapLevel,
@@ -243,13 +243,14 @@ function normalizeMapData(
   selectedProvince: string | null,
   schools: School[] = [],
   level: MapLevel = "country",
+  parentProvince: string | null = null,
 ) {
   const countByProvince = new Map(provinces.map((province) => [province.name, province.count]));
 
   const features = data.features.map((feature) => {
     const mapName = String(feature.properties.name || "");
     const shortName = shortProvinceName(mapName) || mapName;
-    const palette = getProvincePalette(shortName);
+    const palette = getMapRegionPalette(shortName, level, parentProvince);
     return {
       ...feature,
       id: String(feature.properties.adcode || mapName),
@@ -267,7 +268,7 @@ function normalizeMapData(
         edgeColor: palette.edge,
         labelColor: palette.label,
         haloColor: palette.halo,
-        selected: selectedProvince === shortName,
+        selected: level === "country" && selectedProvince === shortName,
       },
     };
   });
@@ -494,8 +495,8 @@ export default function ChinaMap({
 
   const normalizedMapData = useMemo(() => {
     if (!mapData) return null;
-    return normalizeMapData(mapData, provinces, selectedProvince, visibleSchools, drill.level);
-  }, [drill.level, mapData, provinces, selectedProvince, visibleSchools]);
+    return normalizeMapData(mapData, provinces, selectedProvince, visibleSchools, drill.level, currentProvince);
+  }, [currentProvince, drill.level, mapData, provinces, selectedProvince, visibleSchools]);
 
   const labelData = useMemo(() => {
     if (!normalizedMapData) return null;
@@ -509,6 +510,10 @@ export default function ChinaMap({
   const initialSchoolData = useMemo(
     () => makeSchoolData(schools, null, highlightedSchoolNames, hasActiveMapFilters),
     [hasActiveMapFilters, highlightedSchoolNames, schools],
+  );
+  const stagePalette = useMemo(
+    () => currentProvince ? getProvincePalette(currentProvince) : null,
+    [currentProvince],
   );
 
   const loadMapData = useCallback(async (adcode: string) => {
@@ -1177,6 +1182,12 @@ export default function ChinaMap({
       className={`china-map-stage ${
         drill.level === "country" ? "china-map-stage-country" : "china-map-stage-local"
       } relative h-full w-full overflow-hidden`}
+      style={stagePalette ? {
+        "--map-local-fill": stagePalette.fill,
+        "--map-local-selected-fill": stagePalette.selectedFill,
+        "--map-local-hover-fill": stagePalette.hoverFill,
+        "--map-local-edge": stagePalette.edge,
+      } as CSSProperties : undefined}
       role="figure"
       aria-label={EMPTY_MESSAGES.map}
     >
