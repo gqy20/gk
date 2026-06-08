@@ -403,6 +403,88 @@ button:disabled {
     linear-gradient(180deg, rgba(255, 250, 240, 0.72), rgba(236, 226, 209, 0.48));
 }
 
+.home-topbar {
+  box-shadow: 0 10px 26px rgba(88, 74, 53, 0.12), inset 0 -1px 0 rgba(84, 76, 61, 0.08);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.58rem;
+}
+
+.brand-mark-frame {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.58rem;
+  background: rgba(255, 250, 240, 0.52);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.74) inset,
+    0 8px 18px rgba(47, 49, 43, 0.10);
+}
+
+.brand-title {
+  color: #26362f;
+  font-family: var(--font-noto-sc), "Source Han Sans SC", "PingFang SC", sans-serif;
+  font-size: 1.28rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 252, 244, 0.86), 0 8px 18px rgba(65, 53, 37, 0.10);
+  text-wrap: nowrap;
+}
+
+.brand-title::after {
+  display: block;
+  width: 58%;
+  height: 1px;
+  margin-top: 0.22rem;
+  content: "";
+  background: linear-gradient(90deg, rgba(63, 143, 155, 0.24), rgba(185, 133, 55, 0.12), transparent);
+}
+
+.brand-blessing {
+  height: 1.55rem;
+  padding: 0 0.58rem;
+  border: 1px solid rgba(185, 133, 55, 0.24);
+  border-radius: 0.34rem;
+  background: linear-gradient(180deg, rgba(255, 250, 240, 0.68), rgba(251, 241, 216, 0.58));
+  color: #76541f;
+  font-size: 0.68rem;
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.74) inset;
+}
+
+.home-nav-pill {
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.76rem;
+  border: 1px solid rgba(63, 143, 155, 0.24);
+  border-radius: 0.42rem;
+  background: rgba(232, 245, 242, 0.72);
+  color: #2f737d;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.home-nav-pill:hover {
+  border-color: rgba(63, 143, 155, 0.42);
+  background: rgba(207, 232, 228, 0.82);
+  color: #265d64;
+}
+
+@media (max-width: 640px) {
+  .brand-title {
+    font-size: 1.06rem;
+    letter-spacing: 0.015em;
+  }
+}
+
 .paper-card {
   border-color: rgba(84, 76, 61, 0.16);
   background:

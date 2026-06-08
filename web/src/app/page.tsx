@@ -178,18 +178,21 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="paper-shell relative z-20 px-3 py-2 shadow-[0_16px_36px_rgba(235,227,211,0.38)] sm:px-4">
+      <header className="paper-shell home-topbar relative z-20 px-3 py-2 sm:px-4">
         <div className="flex min-w-0 items-center justify-between gap-3">
-          <div className="min-w-0 flex items-center gap-2.5">
-            <Image
-              src="/logo.svg"
-              alt=""
-              className="h-8 w-8 shrink-0 rounded-md ring-1 ring-border/80"
-              width={28}
-              height={28}
-            />
-            <div className="min-w-0">
-              <h1 className="min-w-0 truncate text-[19px] font-semibold leading-tight text-text sm:text-[21px]">
+          <div className="brand-lockup min-w-0">
+            <span className="brand-mark-frame" aria-hidden="true">
+              <Image
+                src="/logo.svg"
+                alt=""
+                className="h-7 w-7 shrink-0 rounded-md"
+                width={28}
+                height={28}
+                priority
+              />
+            </span>
+            <div className="min-w-0 leading-none">
+              <h1 className="brand-title min-w-0 truncate">
                 中国高校信息地图
               </h1>
             </div>
@@ -205,13 +208,13 @@ function Home() {
             />
             <a
               href="/majors"
-              className="hidden shrink-0 items-center gap-1.5 rounded-md border border-primary/25 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary transition-all hover:border-primary/50 hover:bg-primary/20 lg:inline-flex"
+              className="home-nav-pill hidden lg:inline-flex"
             >
               专业库
             </a>
             <a
               href="/future"
-              className="hidden shrink-0 items-center rounded-md border border-brand-500/25 bg-brand-50 px-3 py-1.5 text-xs font-medium text-brand-600 transition-all hover:border-brand-500/45 hover:bg-brand-100 lg:inline-flex"
+              className="home-nav-pill hidden lg:inline-flex"
             >
               未来路径
             </a>

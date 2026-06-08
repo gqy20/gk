@@ -2,7 +2,6 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const DECOR = {
-  apple: "/decor/selected/noto-apple.svg",
   certificate: "/decor/selected/certificate-uxwing.svg",
   orange: "/decor/selected/noto-orange.svg",
   scroll: "/decor/selected/noto-scroll.svg",
@@ -33,13 +32,12 @@ export function HeaderBlessing({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "hidden shrink-0 items-center gap-1.5 rounded-md border border-accent/30 bg-accent-50/55 px-2.5 py-1 text-[11px] font-medium text-accent-700 shadow-sm shadow-accent-800/5 md:inline-flex",
+        "brand-blessing hidden shrink-0 items-center gap-1.5 md:inline-flex",
         className,
       )}
       title="金榜题名，平安上岸"
     >
-      <DecorIcon src={DECOR.orange} alt="" className="h-4 w-4" />
-      <DecorIcon src={DECOR.apple} alt="" className="h-4 w-4" />
+      <DecorIcon src={DECOR.orange} alt="" className="h-3.5 w-3.5" />
       <span className="whitespace-nowrap">金榜题名</span>
     </div>
   );
@@ -70,7 +68,6 @@ export function ResultBlessing({ className }: { className?: string }) {
     >
       <DecorIcon src={DECOR.scroll} alt="" className="h-6 w-6" />
       <DecorIcon src={DECOR.orange} alt="" className="h-5 w-5" />
-      <DecorIcon src={DECOR.apple} alt="" className="h-5 w-5" />
     </div>
   );
 }

@@ -142,6 +142,13 @@ const PAPER_DEPTH = 0.18;
 const LOCAL_REGION_DEPTH = 0.11;
 const REGION_RAISE = 0.22;
 const SCHOOL_Y = 0.34;
+const MIN_CAMERA_ZOOM = 1;
+const MAX_CAMERA_ZOOM_BY_LEVEL: Record<MapLevel, number> = {
+  country: 3.2,
+  province: 4.6,
+  city: 5.6,
+};
+const CAMERA_ZOOM_STEP = 1.22;
 const HIDDEN_REGION_LABELS = new Set(["香港", "澳门", "香港特别行政区", "澳门特别行政区"]);
 const SCHOOL_SEAL_COLORS = {
   "985": "#d85b50",
@@ -469,6 +476,7 @@ function createProvinceWatercolorMaterial(color: string, seed: string, opacity =
   const deepColor = mixColor(baseColor, { r: 45, g: 60, b: 54, a: 1 }, 0.12);
   const paleColor = mixColor(baseColor, paperColor, 0.04);
   const random = seededRandom(`province-watercolor:${seed}:${color}`);
+  const localTexture = seed.startsWith("province:") || seed.startsWith("city:");
   const canvas = document.createElement("canvas");
   canvas.width = 512;
   canvas.height = 512;
@@ -482,14 +490,15 @@ function createProvinceWatercolorMaterial(color: string, seed: string, opacity =
   ctx.fillStyle = rgbaString(baseColor, Math.min(baseColor.a + 0.14, 1));
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  for (let index = 0; index < 7; index += 1) {
+  const washCount = localTexture ? 18 : 7;
+  for (let index = 0; index < washCount; index += 1) {
     const x = random() * canvas.width;
     const y = random() * canvas.height;
-    const radius = 110 + random() * 210;
+    const radius = localTexture ? 26 + random() * 76 : 110 + random() * 210;
     const gradient = ctx.createRadialGradient(x, y, radius * 0.08, x, y, radius);
     const washColor = random() > 0.36 ? paleColor : deepColor;
-    gradient.addColorStop(0, rgbaString(washColor, 0.34 + random() * 0.18));
-    gradient.addColorStop(0.62, rgbaString(washColor, 0.12 + random() * 0.08));
+    gradient.addColorStop(0, rgbaString(washColor, localTexture ? 0.055 + random() * 0.035 : 0.34 + random() * 0.18));
+    gradient.addColorStop(0.62, rgbaString(washColor, localTexture ? 0.018 + random() * 0.025 : 0.12 + random() * 0.08));
     gradient.addColorStop(1, rgbaString(washColor, 0));
     ctx.fillStyle = gradient;
     ctx.beginPath();
@@ -497,15 +506,15 @@ function createProvinceWatercolorMaterial(color: string, seed: string, opacity =
     ctx.fill();
   }
 
-  for (let index = 0; index < 34; index += 1) {
+  for (let index = 0; index < 28; index += 1) {
     const y = random() * canvas.height;
-    const width = 90 + random() * 240;
-    const x = random() * canvas.width - width * 0.25;
+    const width = 18 + random() * 48;
+    const x = random() * canvas.width;
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate((random() - 0.5) * 0.38);
     ctx.fillStyle = rgbaString(random() > 0.56 ? paperColor : deepColor, 0.028 + random() * 0.04);
-    ctx.fillRect(0, 0, width, 2 + random() * 8);
+    ctx.fillRect(0, 0, width, 1 + random() * 2.4);
     ctx.restore();
   }
 
@@ -520,20 +529,21 @@ function createProvinceWatercolorMaterial(color: string, seed: string, opacity =
   }
   ctx.putImageData(image, 0, 0);
 
-  for (let index = 0; index < 46; index += 1) {
-    ctx.strokeStyle = rgbaString(paperColor, 0.03 + random() * 0.06);
-    ctx.lineWidth = 0.5 + random() * 1.6;
+  for (let index = 0; index < 58; index += 1) {
+    ctx.strokeStyle = rgbaString(paperColor, 0.018 + random() * 0.028);
+    ctx.lineWidth = 0.35 + random() * 0.75;
     ctx.beginPath();
     const x = random() * canvas.width;
     const y = random() * canvas.height;
     ctx.moveTo(x, y);
+    const length = 10 + random() * 34;
     ctx.bezierCurveTo(
-      x + (random() - 0.5) * 90,
-      y + 40 + random() * 70,
-      x + (random() - 0.5) * 120,
-      y + 90 + random() * 120,
-      x + (random() - 0.5) * 160,
-      y + 140 + random() * 170,
+      x + (random() - 0.5) * 18,
+      y + length * 0.32,
+      x + (random() - 0.5) * 24,
+      y + length * 0.68,
+      x + (random() - 0.5) * 28,
+      y + length,
     );
     ctx.stroke();
   }
@@ -595,6 +605,11 @@ function schoolScale(school: School, highlighted: boolean) {
   if (school.is211) return 0.15;
   if (school.isDoubleFirstClass) return 0.12;
   return 0.105;
+}
+
+function clampCameraZoom(zoom: number, level: MapLevel) {
+  const maxZoom = MAX_CAMERA_ZOOM_BY_LEVEL[level];
+  return Math.min(Math.max(zoom, MIN_CAMERA_ZOOM), maxZoom);
 }
 
 function drawIrregularCircle(
@@ -839,12 +854,14 @@ export default function ChinaMap3D({
   const projectorRef = useRef<Projector>(createProjector(CHINA_BOUNDS));
   const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hoveredRegionRef = useRef<RegionMesh | null>(null);
+  const cameraZoomRef = useRef(MIN_CAMERA_ZOOM);
 
   const [mapReady, setMapReady] = useState(false);
   const [loadingDrill, setLoadingDrill] = useState(false);
   const [mapData, setMapData] = useState<GeoJsonFeatureCollection | null>(null);
   const [drill, setDrill] = useState<DrillState>(INITIAL_DRILL_STATE);
   const [hoverInfo, setHoverInfo] = useState<MapHoverInfo | null>(null);
+  const [cameraZoom, setCameraZoom] = useState(MIN_CAMERA_ZOOM);
 
   const currentProvince =
     drill.level === "country"
@@ -897,6 +914,22 @@ export default function ChinaMap3D({
     if (!renderer || !scene || !camera) return;
     renderer.render(scene, camera);
   }, []);
+
+  const applyCameraZoom = useCallback((nextZoom: number, level = drill.level) => {
+    const zoom = clampCameraZoom(nextZoom, level);
+    cameraZoomRef.current = zoom;
+    setCameraZoom(zoom);
+
+    const camera = cameraRef.current;
+    if (!camera) return;
+    camera.zoom = zoom;
+    camera.updateProjectionMatrix();
+    renderScene();
+  }, [drill.level, renderScene]);
+
+  const resetCameraZoom = useCallback((level = drill.level) => {
+    applyCameraZoom(MIN_CAMERA_ZOOM, level);
+  }, [applyCameraZoom, drill.level]);
 
   const fitCameraToMap = useCallback((level: MapLevel) => {
     const container = containerRef.current;
@@ -960,6 +993,7 @@ export default function ChinaMap3D({
     camera.right = viewCenter.x + fitWidth / 2;
     camera.top = viewCenter.y + fitHeight / 2;
     camera.bottom = viewCenter.y - fitHeight / 2;
+    camera.zoom = clampCameraZoom(cameraZoomRef.current, level);
     camera.updateProjectionMatrix();
   }, []);
 
@@ -1022,11 +1056,9 @@ export default function ChinaMap3D({
       const fillColor = level === "country"
         ? meta.selected ? palette.selectedFill : palette.fill
         : palette.selectedFill;
-      const topMaterial = createProvinceWatercolorMaterial(
-        fillColor,
-        `${level}:${meta.shortName}:${meta.mapName}`,
-        level === "country" ? 0.9 : 1,
-      );
+      const topMaterial = level === "country"
+        ? createProvinceWatercolorMaterial(fillColor, `${level}:${meta.shortName}:${meta.mapName}`, 0.9)
+        : colorToMaterial(fillColor, 1, false);
       const localBaseMaterial = null;
       const sideMaterial = colorToMaterial("rgba(82, 105, 98, 0.72)", 0.9);
       const group = new THREE.Group() as RegionMesh;
@@ -1337,6 +1369,7 @@ export default function ChinaMap3D({
     try {
       const data = await loadMapData(adcode);
       const targetLevel: MapLevel = drill.level === "country" ? "province" : "city";
+      resetCameraZoom(targetLevel);
       setMapData(data);
       setDrill((current) => ({
         level: targetLevel,
@@ -1354,13 +1387,14 @@ export default function ChinaMap3D({
       setLoadingDrill(false);
       onTransitionChange?.(false);
     }
-  }, [drill.level, loadMapData, onProvinceSelect, onTransitionChange]);
+  }, [drill.level, loadMapData, onProvinceSelect, onTransitionChange, resetCameraZoom]);
 
   const resetToCountry = useCallback(async () => {
     setLoadingDrill(true);
     onTransitionChange?.(true);
     try {
       const data = await loadMapData("100000");
+      resetCameraZoom("country");
       setMapData(data);
       setDrill(INITIAL_DRILL_STATE);
       onProvinceSelect(null);
@@ -1371,7 +1405,7 @@ export default function ChinaMap3D({
       setLoadingDrill(false);
       onTransitionChange?.(false);
     }
-  }, [loadMapData, onProvinceSelect, onSchoolPreview, onTransitionChange]);
+  }, [loadMapData, onProvinceSelect, onSchoolPreview, onTransitionChange, resetCameraZoom]);
 
   useEffect(() => {
     if (selectedProvince || drill.level === "country" || loadingDrill) return;
@@ -1505,6 +1539,21 @@ export default function ChinaMap3D({
     onSchoolClick(object.userData.school as School);
   }, [onSchoolClick, pickObject]);
 
+  const zoomBy = useCallback((direction: 1 | -1) => {
+    const factor = direction > 0 ? CAMERA_ZOOM_STEP : 1 / CAMERA_ZOOM_STEP;
+    applyCameraZoom(cameraZoomRef.current * factor);
+  }, [applyCameraZoom]);
+
+  const handleWheel = useCallback((event: React.WheelEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    zoomBy(event.deltaY < 0 ? 1 : -1);
+  }, [zoomBy]);
+
+  const maxCameraZoom = MAX_CAMERA_ZOOM_BY_LEVEL[drill.level];
+  const canZoomIn = cameraZoom < maxCameraZoom - 0.01;
+  const canZoomOut = cameraZoom > MIN_CAMERA_ZOOM + 0.01;
+  const zoomLabel = `${Math.round(cameraZoom * 100)}%`;
+
   return (
     <div
       className={`china-map-stage ${
@@ -1516,6 +1565,7 @@ export default function ChinaMap3D({
       onPointerLeave={handlePointerLeave}
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
+      onWheel={handleWheel}
     >
       <div ref={containerRef} className="china-map-three absolute inset-0 z-20" />
       <div className="china-map-veil" />
@@ -1602,6 +1652,40 @@ export default function ChinaMap3D({
           切换地图中
         </div>
       )}
+
+      <div
+        className="absolute bottom-4 right-4 z-40 flex items-center overflow-hidden rounded-md border border-border/70 bg-surface/86 shadow-lg shadow-neutral-900/10 backdrop-blur-md"
+        aria-label="地图缩放"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          aria-label="缩小地图"
+          disabled={!canZoomOut}
+          onClick={() => zoomBy(-1)}
+          className="grid h-9 w-9 place-items-center border-r border-border/60 text-base font-semibold text-text transition hover:bg-primary-soft disabled:cursor-not-allowed disabled:text-text-light-muted/45 disabled:hover:bg-transparent"
+        >
+          -
+        </button>
+        <button
+          type="button"
+          aria-label={`重置地图缩放，当前 ${zoomLabel}`}
+          disabled={!canZoomOut}
+          onClick={() => resetCameraZoom()}
+          className="h-9 min-w-14 border-r border-border/60 px-2 text-[12px] font-semibold tabular-nums text-text-light-muted transition hover:bg-primary-soft disabled:cursor-not-allowed disabled:text-text-light-muted/45 disabled:hover:bg-transparent"
+        >
+          {zoomLabel}
+        </button>
+        <button
+          type="button"
+          aria-label="放大地图"
+          disabled={!canZoomIn}
+          onClick={() => zoomBy(1)}
+          className="grid h-9 w-9 place-items-center text-base font-semibold text-text transition hover:bg-primary-soft disabled:cursor-not-allowed disabled:text-text-light-muted/45 disabled:hover:bg-transparent"
+        >
+          +
+        </button>
+      </div>
 
       <AnimatePresence>
         {previewSchool && (
