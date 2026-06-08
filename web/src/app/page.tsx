@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import AppProvider, { useApp } from "@/components/AppProvider";
 import { Button } from "@/components/ui/Button";
 import { HomePageSkeleton } from "@/components/ui/Skeleton";
-import ChinaMap from "@/components/ChinaMap";
+import ChinaMap3D from "@/components/ChinaMap3D";
 import CompareBar from "@/components/CompareBar";
 import ComparePanel from "@/components/ComparePanel";
 import FilterBar from "@/components/FilterBar";
@@ -173,7 +173,7 @@ function Home() {
         }`}
       >
         <section aria-label="高校地图" className="paper-card home-map-card relative min-h-0 overflow-hidden rounded-lg before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-4 before:bg-gradient-to-b before:from-[rgba(247,241,228,0.28)] before:to-transparent">
-          <ChinaMap
+          <ChinaMap3D
             schools={data.schools}
             highlightedSchools={filteredSchools}
             provinces={filteredProvinces}
@@ -257,11 +257,6 @@ function Home() {
                           <div className="text-sm font-semibold text-text-light">
                             {selectedProvince ?? "筛选结果"}
                           </div>
-                          {!selectedProvince && (
-                            <div className="mt-0.5 text-xs text-text-light-muted">
-                              {filteredSchools.length} 所高校
-                            </div>
-                          )}
                         </div>
                         <PanelBlessing className="hidden max-w-[188px] sm:flex" />
                         {(selectedProvince || hasActiveSearch || activeFilterCount > 0) && (

@@ -36,11 +36,11 @@ export function HeaderBlessing({ className }: { className?: string }) {
         "hidden shrink-0 items-center gap-1.5 rounded-md border border-accent/30 bg-accent-50/55 px-2.5 py-1 text-[11px] font-medium text-accent-700 shadow-sm shadow-accent-800/5 md:inline-flex",
         className,
       )}
-      title="一举高橙，平安上岸"
+      title="金榜题名，平安上岸"
     >
       <DecorIcon src={DECOR.orange} alt="" className="h-4 w-4" />
       <DecorIcon src={DECOR.apple} alt="" className="h-4 w-4" />
-      <span className="whitespace-nowrap">一举高橙</span>
+      <span className="whitespace-nowrap">金榜题名</span>
     </div>
   );
 }
