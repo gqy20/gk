@@ -5,8 +5,9 @@ import path from "path";
 // ── 配置 ──────────────────────────────────────────────
 const LOG_LEVEL = (process.env.LOG_LEVEL || "info") as pino.Level;
 const LOG_DIR = process.env.LOG_DIR || path.resolve(process.cwd(), "..", "logs");
+const IS_VERCEL = process.env.VERCEL === "1";
 const LOG_TO_CONSOLE = process.env.LOG_CONSOLE !== "0";
-const LOG_TO_FILE = process.env.LOG_FILE !== "0";
+const LOG_TO_FILE = process.env.LOG_FILE === "1" || (!IS_VERCEL && process.env.LOG_FILE !== "0");
 
 // ── 时间戳文件名（与 Python 端 crawl_*.log 风格对齐） ─
 function getLogFilePath(): string {
@@ -29,10 +30,21 @@ function getRootLogger(): pino.Logger {
   }
 
   if (LOG_TO_FILE) {
-    streams.push({
-      level: LOG_LEVEL,
-      stream: fs.createWriteStream(getLogFilePath(), { flags: "a" }),
-    });
+    try {
+      streams.push({
+        level: LOG_LEVEL,
+        stream: fs.createWriteStream(getLogFilePath(), { flags: "a" }),
+      });
+    } catch (error) {
+      console.warn(
+        JSON.stringify({
+          level: "WARN",
+          module: "logger",
+          msg: "File logging disabled",
+          err: error instanceof Error ? error.message : String(error),
+        }),
+      );
+    }
   }
 
   _rootLogger = pino(
