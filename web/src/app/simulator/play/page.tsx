@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FutureShell } from "../../future/FutureShell";
 import { GameCard } from "./GameCard";
 import { ResultPanel } from "./ResultPanel";
-import { ProgressBar } from "./ProgressBar";
+import { HistorySidebar } from "./HistorySidebar";
 import { EndingScreen } from "./EndingScreen";
 import { getSimulatorSession, simulateStep } from "@/lib/future/simulator-client";
 import type { SimulateSession, SimulateStepResult, SimulatorEnding } from "@/lib/future/simulator-types";
@@ -30,6 +30,9 @@ function PlayShell() {
 }
 
 type Phase = "loading" | "choosing" | "result" | "ending" | "error";
+
+/** 结果展示后自动过渡到下一轮的延迟（ms） */
+const AUTO_ADVANCE_DELAY = 2200;
 
 function PlayContent() {
   const router = useRouter();
@@ -60,11 +63,9 @@ function PlayContent() {
         setSession(data);
 
         if (data.status === "ended") {
-          // 已结束的游戏，直接展示结局
           setPhase("ending");
           setEnding(data.ending);
         } else if (data.currentScene) {
-          // 有当前场景 → 选择阶段
           setPhase("choosing");
         } else {
           setError("游戏状态异常");
@@ -95,11 +96,16 @@ function PlayContent() {
       setLastResult(result);
 
       if (endingData) {
-        // 游戏结束
+        // 游戏结束 → 稍作延迟展示结局（让用户先看到最后一轮结果）
         setEnding(endingData);
-        setTimeout(() => setPhase("ending"), 800); // 先展示结果再切结局
+        setTimeout(() => setPhase("ending"), 1200);
       } else {
+        // 有结果 → 先展示结果，然后自动过渡到下一轮选择
         setPhase("result");
+        setTimeout(() => {
+          setLastResult(null);
+          setPhase("choosing");
+        }, AUTO_ADVANCE_DELAY);
       }
     } catch (err) {
       console.error("[simulator] Step failed:", err);
@@ -107,19 +113,6 @@ function PlayContent() {
       setPhase("error");
     }
   }, [session, sessionId]);
-
-  // 从结果进入下一轮选择
-  const handleNextRound = useCallback(() => {
-    if (!session) return;
-    setLastResult(null);
-    setPhase("choosing");
-  }, [session]);
-
-  // 回退到某一步（MVP 简化版：只支持 UI 层回退提示）
-  const handleUndo = useCallback((round: number) => {
-    // MVP 不实现真正的服务端回退，仅给用户反馈
-    console.log(`[simulator] Undo requested for round ${round} — not implemented in MVP`);
-  }, []);
 
   // 重新开始
   const handleRestart = useCallback(() => {
@@ -177,7 +170,7 @@ function PlayContent() {
     );
   }
 
-  // ── 主界面 ───────────────────────────────────────
+  // ── 主界面：左右分栏布局 ───────────────────────
 
   return (
     <FutureShell
@@ -186,72 +179,66 @@ function PlayContent() {
       backLabel="退出"
       mainClassName="pb-8"
     >
-      <div className="mx-auto max-w-2xl space-y-4">
-        {/* 进度条 + 历史时间轴 */}
+      <div className="flex gap-5">
+        {/* ── 左侧：历史记录侧边栏 ──────────── */}
         {session && (
-          <ProgressBar session={session} onUndo={handleUndo} />
+          <HistorySidebar
+            session={session}
+            currentResult={lastResult}
+            currentPhase={phase}
+          />
         )}
 
-        {/* 动态内容区 */}
-        <AnimatePresence mode="wait">
-          {phase === "choosing" && session?.currentScene && (
-            <motion.div
-              key={`round-${session.currentScene.round}`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <GameCard
-                scene={session.currentScene}
-                currentRound={session.currentRound}
-                totalRounds={session.totalRounds}
-                onSelect={handleSelect}
-              />
-            </motion.div>
-          )}
+        {/* ── 右侧：主内容区 ───────────────── */}
+        <div className="min-w-0 flex-1">
+          <AnimatePresence mode="wait">
+            {phase === "choosing" && session?.currentScene && (
+              <motion.div
+                key={`round-${session.currentScene.round}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <GameCard
+                  scene={session.currentScene}
+                  currentRound={session.currentRound}
+                  totalRounds={session.totalRounds}
+                  onSelect={handleSelect}
+                />
+              </motion.div>
+            )}
 
-          {phase === "result" && lastResult && (
-            <motion.div
-              key="result"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-4"
-            >
-              <ResultPanel result={lastResult} />
+            {phase === "result" && lastResult && (
+              <motion.div
+                key="result"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ResultPanel result={lastResult} />
+              </motion.div>
+            )}
 
-              <div className="flex justify-center">
-                <button
-                  type="button"
-                  onClick={handleNextRound}
-                  className="inline-flex items-center gap-2 rounded-xl border border-accent/30 bg-accent/8 px-6 py-2.5 text-sm font-medium text-accent transition hover:border-accent/50 hover:bg-accent/15"
-                >
-                  继续下一步
-                  <span aria-hidden>→</span>
-                </button>
-              </div>
-            </motion.div>
-          )}
-
-          {phase === "ending" && ending && session && (
-            <motion.div
-              key="ending"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <EndingScreen
-                ending={ending}
-                history={session.history}
-                school={session.profile.school}
-                onRestart={handleRestart}
-                onBack={handleBack}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+            {phase === "ending" && ending && session && (
+              <motion.div
+                key="ending"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <EndingScreen
+                  ending={ending}
+                  history={session.history}
+                  school={session.profile.school}
+                  onRestart={handleRestart}
+                  onBack={handleBack}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </FutureShell>
   );
