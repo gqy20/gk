@@ -18,8 +18,8 @@ export default function FilterBar({
   const hasActiveControls = query.trim().length > 0 || activeFilterCount > 0;
 
   return (
-    <div className="flex min-w-0 items-center gap-2">
-      <label className="group flex h-10 w-[min(42vw,360px)] min-w-[150px] items-center gap-2 rounded-lg border border-border/70 bg-neutral-0/82 px-3 shadow-sm shadow-neutral-900/5 backdrop-blur-md transition focus-within:border-primary/55 focus-within:bg-neutral-0 focus-within:shadow-[0_0_0_3px_rgba(63,143,155,0.10)] sm:w-[320px] sm:min-w-[190px] lg:w-[360px]">
+    <div className="flex w-full min-w-0 items-center gap-2 sm:w-auto">
+      <label className="group flex h-10 w-full min-w-0 items-center gap-2 rounded-lg border border-border/70 bg-neutral-0/82 px-3 shadow-sm shadow-neutral-900/5 backdrop-blur-md transition focus-within:border-primary/55 focus-within:bg-neutral-0 focus-within:shadow-[0_0_0_3px_rgba(63,143,155,0.10)] sm:w-[320px] sm:min-w-[190px] lg:w-[360px]">
         <IconSearch className="text-text-placeholder transition group-focus-within:text-primary" size={15} />
         <input
           value={query}

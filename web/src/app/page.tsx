@@ -179,8 +179,8 @@ function Home() {
       </div>
 
       <header className="paper-shell home-topbar relative z-20 px-3 py-2 sm:px-4">
-        <div className="flex min-w-0 items-center justify-between gap-3">
-          <div className="brand-lockup min-w-0">
+        <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+          <div className="brand-lockup min-w-0 self-start">
             <span className="brand-mark-frame" aria-hidden="true">
               <Image
                 src="/logo.svg"
@@ -199,7 +199,7 @@ function Home() {
             <HeaderBlessing />
           </div>
 
-          <div className="flex min-w-0 flex-1 items-center justify-end gap-2.5">
+          <div className="flex w-full min-w-0 flex-1 items-center justify-end gap-2.5 sm:w-auto">
             <FilterBar
               query={query}
               activeFilterCount={activeFilterCount}
@@ -225,6 +225,18 @@ function Home() {
               大学模拟器
             </a>
           </div>
+
+          <nav className="grid grid-cols-3 gap-2 lg:hidden" aria-label="关键功能">
+            <a href="/majors" className="home-mobile-action">
+              专业库
+            </a>
+            <a href="/future" className="home-mobile-action">
+              未来路径
+            </a>
+            <a href="/simulator" className="home-mobile-action">
+              大学模拟器
+            </a>
+          </nav>
         </div>
       </header>
 

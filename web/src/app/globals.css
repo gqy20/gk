@@ -478,6 +478,29 @@ button:disabled {
   color: #265d64;
 }
 
+.home-mobile-action {
+  display: inline-flex;
+  min-width: 0;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(63, 143, 155, 0.22);
+  border-radius: 0.5rem;
+  background: rgba(232, 245, 242, 0.72);
+  color: #2f737d;
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.68) inset;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.home-mobile-action:active {
+  border-color: rgba(63, 143, 155, 0.42);
+  background: rgba(207, 232, 228, 0.88);
+  color: #265d64;
+}
+
 @media (max-width: 640px) {
   .brand-title {
     font-size: 1.06rem;

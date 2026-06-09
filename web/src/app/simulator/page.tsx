@@ -119,119 +119,137 @@ function SimulatorPageContent() {
   return (
     <FutureShell
       title="大学人生模拟器"
-      subtitle={`每一步都是你的选择。${totalRounds} 轮决策，看看你会走出怎样的大学生活。`}
       backHref="/"
       backLabel="返回"
       mainClassName="pb-10 pt-5"
+      contentMaxClassName="max-w-[1600px]"
     >
-      <div className="mx-auto max-w-2xl space-y-5">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <FuturePanel className="p-5 sm:p-6">
-            <SectionHeading title="你的大学设定" description="选择你想模拟的学校和专业，这会影响场景内容。" />
-            <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
-              <label className="block space-y-2 text-xs font-medium text-text-secondary">
-                <span>目标学校</span>
-                <span className="relative block">
-                  <select
-                    value={targetSchool}
-                    onChange={(e) => {
-                      const name = e.target.value;
-                      setTargetSchool(name);
-                      // 自动填充学校所在城市
-                      const found = schools.find((s) => s.name === name);
-                      setTargetCity(found?.province || "");
-                    }}
-                    className={selectClassName()}
-                  >
-                    <option value="">选择学校（或保持默认）</option>
-                    {schools.map((s) => (
-                      <option key={s.name} value={s.name}>{s.name}</option>
-                    ))}
-                  </select>
-                </span>
-              </label>
-
-              <label className="block space-y-2 text-xs font-medium text-text-secondary">
-                <span>专业方向</span>
-                <span className="relative block">
-                  <select
-                    value={targetMajor}
-                    onChange={(e) => setTargetMajor(e.target.value)}
-                    className={selectClassName()}
-                  >
-                    <option value="">选择专业（可选）</option>
-                    {majorOptions.map((m) => (
-                      <option key={m} value={m}>{m}</option>
-                    ))}
-                  </select>
-                </span>
-              </label>
-
-              <label className="block space-y-2 text-xs font-medium text-text-secondary md:col-span-2">
-                <span>性别设定</span>
-                <span className="relative block">
-                  <select
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
-                    className={selectClassName()}
-                  >
-                    <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
-                    <option value="male">男生</option>
-                    <option value="female">女生</option>
-                  </select>
-                </span>
-              </label>
-            </div>
-          </FuturePanel>
-
-          <FuturePanel className="p-5 sm:p-6">
-            <SectionHeading title="你的性格" description="这些标签会让场景和选项更贴合你。" />
-            <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
-              <label className="block space-y-2 text-xs font-medium text-text-secondary">
-                <span>性格标签</span>
-                <input
-                  value={personalityTags}
-                  onChange={(e) => setPersonalityTags(e.target.value)}
-                  placeholder="用空格分隔，如：理性 好奇 内向"
-                  className={inputClassName()}
-                />
-              </label>
-              <label className="block space-y-2 text-xs font-medium text-text-secondary">
-                <span>兴趣方向</span>
-                <input
-                  value={interests}
-                  onChange={(e) => setInterests(e.target.value)}
-                  placeholder="用空格分隔，如：计算机 社交 运动"
-                  className={inputClassName()}
-                />
-              </label>
-            </div>
-
-            <div className="mt-4 rounded-xl bg-neutral-0/45 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-medium text-text-secondary">冒险倾向</span>
-                <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
+      <div className="mx-auto">
+        <form onSubmit={handleSubmit} className="grid items-start gap-6 xl:grid-cols-[260px_minmax(0,1fr)_380px]">
+          <FuturePanel as="aside" className="space-y-4 p-5 xl:sticky xl:top-20">
+            <p className="max-w-[24rem] text-sm leading-7 text-text-secondary">
+              每一步都是你的选择。{totalRounds} 轮决策，看看你会走出怎样的大学生活。
+            </p>
+            <div className="divide-y divide-border/70 border-t border-border/70">
+              <div className="flex items-baseline justify-between gap-4 py-3">
+                <span className="text-[11px] leading-4 text-text-muted">轮决策</span>
+                <span className="font-mono text-lg font-semibold text-text">{totalRounds}</span>
               </div>
-              <input
-                type="range"
-                min={1}
-                max={10}
-                value={riskTolerance}
-                onChange={(e) => setRiskTolerance(Number(e.target.value))}
-                className="simulator-risk-slider mt-3 w-full"
-              />
-              <div className="mt-2 flex justify-between text-[11px] text-text-muted">
-                <span>稳健谨慎</span>
-                <span>均衡</span>
-                <span>冒险探索</span>
+              <div className="flex items-baseline justify-between gap-4 py-3">
+                <span className="text-[11px] leading-4 text-text-muted">每轮选择</span>
+                <span className="font-mono text-lg font-semibold text-text">3</span>
               </div>
             </div>
           </FuturePanel>
+
+          <div className="space-y-5">
+            <FuturePanel className="p-5 sm:p-6">
+              <SectionHeading title="你的大学设定" description="选择你想模拟的学校和专业，这会影响场景内容。" />
+              <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
+                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                  <span>目标学校</span>
+                  <span className="relative block">
+                    <select
+                      value={targetSchool}
+                      onChange={(e) => {
+                        const name = e.target.value;
+                        setTargetSchool(name);
+                        // 自动填充学校所在城市
+                        const found = schools.find((s) => s.name === name);
+                        setTargetCity(found?.province || "");
+                      }}
+                      className={selectClassName()}
+                    >
+                      <option value="">选择学校（或保持默认）</option>
+                      {schools.map((s) => (
+                        <option key={s.name} value={s.name}>{s.name}</option>
+                      ))}
+                    </select>
+                  </span>
+                </label>
+
+                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                  <span>专业方向</span>
+                  <span className="relative block">
+                    <select
+                      value={targetMajor}
+                      onChange={(e) => setTargetMajor(e.target.value)}
+                      className={selectClassName()}
+                    >
+                      <option value="">选择专业（可选）</option>
+                      {majorOptions.map((m) => (
+                        <option key={m} value={m}>{m}</option>
+                      ))}
+                    </select>
+                  </span>
+                </label>
+
+                <label className="block space-y-2 text-xs font-medium text-text-secondary md:col-span-2">
+                  <span>性别设定</span>
+                  <span className="relative block">
+                    <select
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
+                      className={selectClassName()}
+                    >
+                      <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
+                      <option value="male">男生</option>
+                      <option value="female">女生</option>
+                    </select>
+                  </span>
+                </label>
+              </div>
+            </FuturePanel>
+
+            <FuturePanel className="p-5 sm:p-6">
+              <SectionHeading title="你的性格" description="这些标签会让场景和选项更贴合你。" />
+              <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
+                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                  <span>性格标签</span>
+                  <input
+                    value={personalityTags}
+                    onChange={(e) => setPersonalityTags(e.target.value)}
+                    placeholder="用空格分隔，如：理性 好奇 内向"
+                    className={inputClassName()}
+                  />
+                </label>
+                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                  <span>兴趣方向</span>
+                  <input
+                    value={interests}
+                    onChange={(e) => setInterests(e.target.value)}
+                    placeholder="用空格分隔，如：计算机 社交 运动"
+                    className={inputClassName()}
+                  />
+                </label>
+              </div>
+
+              <div className="mt-4 rounded-xl bg-neutral-0/45 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-medium text-text-secondary">冒险倾向</span>
+                  <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
+                </div>
+                <input
+                  type="range"
+                  min={1}
+                  max={10}
+                  value={riskTolerance}
+                  onChange={(e) => setRiskTolerance(Number(e.target.value))}
+                  className="simulator-risk-slider mt-3 w-full"
+                />
+                <div className="mt-2 flex justify-between text-[11px] text-text-muted">
+                  <span>稳健谨慎</span>
+                  <span>均衡</span>
+                  <span>冒险探索</span>
+                </div>
+              </div>
+            </FuturePanel>
+          </div>
 
           {/* ── 轮数选择 ── */}
-          <FuturePanel className="p-5 sm:p-6">
+          <FuturePanel className="p-5 sm:p-6 xl:sticky xl:top-20">
             <SectionHeading title="模拟轮数" description="选择你想体验的决策深度。轮数越多，故事越丰富。" />
-            <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-1">
               {([
                 { value: 3 as const, label: "3 轮", desc: "快速体验", detail: "入学→适应→起步，约 2 分钟" },
                 { value: 8 as const, label: "8 轮", desc: "标准模式 ⭐", detail: "完整四年脉络：入学到毕业" },
@@ -282,7 +300,7 @@ function SimulatorPageContent() {
             </div>
           </FuturePanel>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)]">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)] sm:px-6 xl:col-span-2 xl:col-start-2">
             <p className="max-w-2xl text-xs leading-5 text-text-secondary">
               共 {totalRounds} 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
             </p>
@@ -297,7 +315,7 @@ function SimulatorPageContent() {
           </div>
 
           {error && (
-            <p className="rounded-lg border border-danger-300/40 bg-danger-soft px-3 py-2 text-xs text-danger">{error}</p>
+            <p className="rounded-lg border border-danger-300/40 bg-danger-soft px-3 py-2 text-xs text-danger xl:col-span-2 xl:col-start-2">{error}</p>
           )}
         </form>
       </div>

@@ -83,13 +83,13 @@ function PlayContent() {
         } else if (data.currentScene) {
           setPhase("choosing");
         } else {
-          setError("游戏状态异常");
+          setError("模拟状态异常");
           setPhase("error");
         }
       } catch (err) {
         if (cancelled) return;
         console.error("[simulator] Failed to load session:", err);
-        setError(err instanceof Error ? err.message : "加载游戏失败");
+        setError(err instanceof Error ? err.message : "加载模拟失败");
         setPhase("error");
       }
     }
@@ -207,7 +207,7 @@ function PlayContent() {
             </span>
           </div>
           <p className="text-sm text-text-muted animate-pulse">
-            正在加载游戏…
+            正在加载…
           </p>
         </div>
       </FutureShell>
@@ -224,9 +224,9 @@ function PlayContent() {
           <div className="text-4xl">🎮</div>
           <p className="text-sm text-text-secondary text-center max-w-xs leading-relaxed">
             {!sessionId
-              ? "缺少游戏会话，请重新开始一局。"
+              ? "缺少模拟会话，请重新开始一局。"
               : isSessionLost
-              ? "游戏会话已过期（可能服务器重启了）。别担心，重新开始一局就好！"
+              ? "模拟会话已过期（可能服务器重启了）。别担心，重新开始一局就好！"
               : (error || "发生了错误")}
           </p>
           <button
@@ -245,7 +245,7 @@ function PlayContent() {
 
   return (
     <FutureShell
-      title={session?.profile.school ? `${session.profile.school} · 人生模拟` : "大学人生模拟器"}
+      title={session?.profile.school ? `${session.profile.school} · 大学人生模拟` : "大学人生模拟器"}
       backHref="/simulator"
       backLabel="退出"
       mainClassName="pb-8"
@@ -323,6 +323,7 @@ function PlayContent() {
                   ending={ending}
                   history={session.history}
                   school={session.profile.school}
+                  totalRounds={session.totalRounds}
                   onRestart={handleRestart}
                   onBack={handleBack}
                 />

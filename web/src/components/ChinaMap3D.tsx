@@ -985,14 +985,18 @@ export default function ChinaMap3D({
       boundsHeight = Math.abs(southEast.y - northWest.y);
     }
 
-    const padding = level === "country" ? 1.06 : 1.16;
+    const isMobileViewport = rect.width < 640;
+    const padding = level === "country"
+      ? isMobileViewport ? 0.82 : 1.06
+      : isMobileViewport ? 1.02 : 1.16;
     const fitHeight = Math.max(boundsHeight * padding, (boundsWidth * padding) / Math.max(aspect, 0.1), 3.8);
     const fitWidth = fitHeight * aspect;
+    const mobileYOffset = isMobileViewport && level === "country" ? fitHeight * 0.12 : 0;
 
     camera.left = viewCenter.x - fitWidth / 2;
     camera.right = viewCenter.x + fitWidth / 2;
-    camera.top = viewCenter.y + fitHeight / 2;
-    camera.bottom = viewCenter.y - fitHeight / 2;
+    camera.top = viewCenter.y - mobileYOffset + fitHeight / 2;
+    camera.bottom = viewCenter.y - mobileYOffset - fitHeight / 2;
     camera.zoom = clampCameraZoom(cameraZoomRef.current, level);
     camera.updateProjectionMatrix();
   }, []);
@@ -1607,14 +1611,14 @@ export default function ChinaMap3D({
         </motion.div>
       )}
 
-      <div className="absolute bottom-4 left-4 z-40 flex flex-wrap gap-2 rounded-md border border-border/70 bg-surface/82 p-2 shadow-lg shadow-neutral-900/10 backdrop-blur-md">
+      <div className="absolute inset-x-3 bottom-[4.35rem] z-40 flex flex-wrap gap-1.5 rounded-md border border-border/70 bg-surface/82 p-1.5 shadow-lg shadow-neutral-900/10 backdrop-blur-md sm:inset-x-auto sm:bottom-4 sm:left-4 sm:gap-2 sm:p-2">
         <button
           type="button"
           onClick={(event) => {
             event.stopPropagation();
             onToggle211();
           }}
-          className={`inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none transition ${filter211 ? "bg-brand-50 text-brand-700" : "text-text-light-muted hover:bg-primary-soft"}`}
+          className={`inline-flex h-7 flex-1 items-center justify-center gap-1.5 rounded px-2 text-[12px] font-medium leading-none transition sm:flex-none sm:justify-start sm:px-2.5 sm:text-[13px] ${filter211 ? "bg-brand-50 text-brand-700" : "text-text-light-muted hover:bg-primary-soft"}`}
         >
           <SealLegendIcon tier="211" />
           211
@@ -1625,7 +1629,7 @@ export default function ChinaMap3D({
             event.stopPropagation();
             onToggle985();
           }}
-          className={`inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none transition ${filter985 ? "bg-accent-50 text-accent-700" : "text-text-light-muted hover:bg-primary-soft"}`}
+          className={`inline-flex h-7 flex-1 items-center justify-center gap-1.5 rounded px-2 text-[12px] font-medium leading-none transition sm:flex-none sm:justify-start sm:px-2.5 sm:text-[13px] ${filter985 ? "bg-accent-50 text-accent-700" : "text-text-light-muted hover:bg-primary-soft"}`}
         >
           <SealLegendIcon tier="985" />
           985
@@ -1636,12 +1640,12 @@ export default function ChinaMap3D({
             event.stopPropagation();
             onToggleDoubleFirst();
           }}
-          className={`inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none transition ${filterDoubleFirst ? "bg-primary-soft text-primary" : "text-text-light-muted hover:bg-primary-soft"}`}
+          className={`inline-flex h-7 flex-[1.35] items-center justify-center gap-1.5 rounded px-2 text-[12px] font-medium leading-none transition sm:flex-none sm:justify-start sm:px-2.5 sm:text-[13px] ${filterDoubleFirst ? "bg-primary-soft text-primary" : "text-text-light-muted hover:bg-primary-soft"}`}
         >
           <SealLegendIcon tier="doubleFirst" />
           双一流
         </button>
-        <span className="inline-flex h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none text-text-light-muted">
+        <span className="hidden h-7 items-center gap-1.5 rounded px-2.5 text-[13px] font-medium leading-none text-text-light-muted sm:inline-flex">
           <SealLegendIcon tier="normal" />
           普通高校
         </span>
@@ -1654,7 +1658,7 @@ export default function ChinaMap3D({
       )}
 
       <div
-        className="absolute bottom-4 right-4 z-40 flex items-center overflow-hidden rounded-md border border-border/70 bg-surface/86 shadow-lg shadow-neutral-900/10 backdrop-blur-md"
+        className="absolute bottom-3 right-3 z-40 flex items-center overflow-hidden rounded-md border border-border/70 bg-surface/86 shadow-lg shadow-neutral-900/10 backdrop-blur-md sm:bottom-4 sm:right-4"
         aria-label="地图缩放"
         onClick={(event) => event.stopPropagation()}
       >
@@ -1672,7 +1676,7 @@ export default function ChinaMap3D({
           aria-label={`重置地图缩放，当前 ${zoomLabel}`}
           disabled={!canZoomOut}
           onClick={() => resetCameraZoom()}
-          className="h-9 min-w-14 border-r border-border/60 px-2 text-[12px] font-semibold tabular-nums text-text-light-muted transition hover:bg-primary-soft disabled:cursor-not-allowed disabled:text-text-light-muted/45 disabled:hover:bg-transparent"
+          className="hidden h-9 min-w-14 border-r border-border/60 px-2 text-[12px] font-semibold tabular-nums text-text-light-muted transition hover:bg-primary-soft disabled:cursor-not-allowed disabled:text-text-light-muted/45 disabled:hover:bg-transparent sm:block"
         >
           {zoomLabel}
         </button>

@@ -8,25 +8,29 @@ interface EndingScreenProps {
   ending: SimulatorEnding;
   history: SimulateHistoryEntry[];
   school: string;
+  totalRounds: number;
   onRestart: () => void;
   onBack: () => void;
 }
 
 type EndingTab = "profile" | "turning" | "history";
 
-const TABS: Array<{ id: EndingTab; label: string; helper: string }> = [
-  { id: "profile", label: "人设画像", helper: "结局总结" },
-  { id: "turning", label: "关键转折", helper: "决定性选择" },
-  { id: "history", label: "完整轨迹", helper: "8 轮记录" },
-];
+function buildTabs(totalRounds: number): Array<{ id: EndingTab; label: string; helper: string }> {
+  return [
+    { id: "profile", label: "人设画像", helper: "结局总结" },
+    { id: "turning", label: "关键转折", helper: "决定性选择" },
+    { id: "history", label: "完整轨迹", helper: `${totalRounds} 轮记录` },
+  ];
+}
 
 /**
  * 结局总结 — 大学人设卡
  *
  * 顶部保留结局揭晓，详细内容通过 tab 切换，避免结果页纵向堆叠。
  */
-export function EndingScreen({ ending, history, school, onRestart, onBack }: EndingScreenProps) {
+export function EndingScreen({ ending, history, school, totalRounds, onRestart, onBack }: EndingScreenProps) {
   const [activeTab, setActiveTab] = useState<EndingTab>("profile");
+  const tabs = buildTabs(totalRounds);
 
   return (
     <motion.div
@@ -45,7 +49,7 @@ export function EndingScreen({ ending, history, school, onRestart, onBack }: End
               transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
               className="mb-2 text-xs font-medium text-accent"
             >
-              {school} · 四年轨迹 · 大学人设卡
+              {school} · 大学轨迹 · 大学人设卡
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
@@ -88,7 +92,7 @@ export function EndingScreen({ ending, history, school, onRestart, onBack }: End
       <section className="overflow-hidden rounded-2xl border border-border bg-surface-elevated shadow-[0_12px_30px_-26px_rgba(17,24,32,0.42)]">
         <div className="border-b border-border/70 bg-surface-subtle/70 p-2">
           <div className="grid gap-1 sm:grid-cols-3" role="tablist" aria-label="结局内容">
-            {TABS.map((tab) => (
+            {tabs.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
