@@ -101,6 +101,8 @@ export interface SimulateHistoryEntry {
 export interface SimulateProfile {
   school: string;
   major?: string;
+  /** 性别设定，仅用于宿舍/室友等强性别场景；未指定时避免生成性别化室友细节 */
+  gender?: "male" | "female" | "unspecified";
   /** 省份（如"北京""湖北"） */
   province?: string;
   /** 城市 */

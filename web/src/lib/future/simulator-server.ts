@@ -5,10 +5,17 @@
  * 无 DATABASE_URL 时降级为内存存储。
  */
 
-import { AnthropicProvider } from "./anthropic";
+import { AnthropicProvider, type StreamEvent, type StreamEventCallback } from "./anthropic";
+import type { GenerateStructuredResult } from "./anthropic";
 import { getPostgresPool } from "./pg-client";
 import { SimulatorPostgresRepository, SIMULATOR_SCHEMA_SQL } from "./simulator-repository";
 import { simulateStepTool, generateEndingTool } from "./simulator-schema";
+import {
+  buildSystemPrompt,
+  buildUserPromptForRound,
+  buildEndingPrompt,
+  getEndingSystemPrompt,
+} from "./simulator-prompts";
 import { createLogger } from "./logger";
 import type {
   SimulateSession,
@@ -63,16 +70,13 @@ class MemorySimulatorRepo implements ISimulatorRepo {
     return this.sessions.get(sessionId) ?? null;
   }
 
-  async advanceStep(_sessionId: string, params: {
+  async advanceStep(_sessionId: string, _params: {
     newRound: number;
     historyEntry: SimulateHistoryEntry;
     nextScene: Record<string, unknown> | null;
     isFinal: boolean;
     ending?: Record<string, unknown>;
-  }): Promise<void> {
-    // 内存模式不通过此方法更新，由调用方直接操作 session 对象后 set 回 Map
-    // （保持与旧代码兼容的简化路径）
-  }
+  }): Promise<void> {}
 
   async markError(_sessionId: string, _error: string): Promise<void> {}
 
@@ -106,88 +110,7 @@ function getRepo(): ISimulatorRepo | MemorySimulatorRepo {
   }
 }
 
-// ── Prompt 构建工具 ────────────────────────────────
-
-function buildSystemPrompt(profile: SimulateStartInput["profile"], round: number, totalRounds: number): string {
-  // 构建学校上下文段落
-  const schoolContextLines: string[] = [];
-  if (profile.schoolTier) schoolContextLines.push(`学校层次：${profile.schoolTier}`);
-  if (profile.schoolType) schoolContextLines.push(`学校类型：${profile.schoolType}`);
-  if (profile.province) schoolContextLines.push(`所在省份：${profile.province}`);
-  if (profile.city) schoolContextLines.push(`所在城市：${profile.city}`);
-
-  return `你是一个沉浸式大学人生模拟器的叙事引擎。用户正在体验一所中国大学的四年生活。当前时间是 2026 年。
-
-## 用户档案
-- 学校：${profile.school}${schoolContextLines.length > 0 ? `\n${schoolContextLines.map((l) => `- ${l}`).join("\n")}` : ""}
-${profile.major ? `- 专业方向：${profile.major}` : ""}
-- 性格标签：${profile.personalityTags.join("、") || "未指定"}
-- 兴趣方向：${profile.interests.join("、") || "未指定"}
-- 风险偏好：${profile.riskTolerance}/10
-
-## 当前进度
-第 ${round} / ${totalRounds} 轮
-
-## 叙事规则
-1. 用第二人称"你"叙述，营造代入感
-2. 场景要真实、具体，符合 2026 年中国大学校园生活（宿舍/食堂/图书馆/教室/社团/实习等），可以适当融入当下热点和时代特征
-3. **根据学校的省份、城市、类型、层次来定制场景细节**：
-   - 不同城市的消费水平、气候、交通方式会影响日常描述（如北京地铁 vs 武汉公交 vs 成都骑行）
-   - 学校类型影响校园氛围（师范类偏文静/教育氛围浓厚，理工类偏实验室/项目导向，综合类多元活跃）
-   - 学校层次影响竞争强度和资源描述（985/211 提及更多科研机会和内卷氛围，普通双一流更接地气）
-   - 南北方差异（供暖、饮食、开学时间）要体现在场景中
-4. 3个选项要有明显不同的性格倾向（如：外向社交 vs 内向专注 vs 观望试探）
-5. 选项不要有明显的"正确答案"，每个选择都有合理的利弊
-6. 场景随回合推进而变化：
-   - 前几轮（1-3）：入学适应、认识人、选课、社团
-   - 中间轮（4-6）：学业压力、人际关系、第一次实习/项目
-   - 后面轮（7-8）：考研/就业抉择、毕业季、回顾总结
-7. outcome 的 effects 要简洁有力（如"绩点+1""认识了学长""错过了一次聚会"）
-8. 保持中文输出`;
-}
-
-function buildUserPromptForRound(
-  profile: SimulateStartInput["profile"],
-  history: SimulateHistoryEntry[],
-  previousChoiceLabel?: string,
-): string {
-  if (history.length === 0) {
-    return `请生成第1轮场景。这是大学生活的开始——通常是入学报到或刚到学校的第一周。
-
-请直接开始叙述，不需要任何开场白。`;
-  }
-
-  const lastEntry = history[history.length - 1]!;
-  return `## 决策历史
-${history.map((h) => `**第${h.round}轮 — ${h.scene_title}**
-选择了：${h.choiceLabel}
-结果：${h.outcome_narrative}
-影响：${h.outcome_effects.join("、")}`).join("\n\n")}
-
-## 用户上一轮的选择
-用户在第 ${lastEntry.round} 轮选择了：${previousChoiceLabel || lastEntry.choiceLabel}
-
-请先给出这个选择的推演结果（outcome），然后生成下一轮的场景和3个新选择。保持叙事连贯性，让之前的选择对当前场景产生合理的影响。`;
-}
-
-function buildEndingPrompt(
-  profile: SimulateStartInput["profile"],
-  history: SimulateHistoryEntry[],
-): string {
-  const contextParts = [profile.school];
-  if (profile.schoolTier) contextParts.push(profile.schoolTier);
-  if (profile.schoolType) contextParts.push(profile.schoolType);
-  if (profile.province) contextParts.push(profile.province);
-  if (profile.major) contextParts.push(profile.major);
-
-  return `## 用户档案
-- 学校：${contextParts.join(" · ")}
-
-## 完整决策历史（共 ${history.length} 轮）
-${history.map((h) => `第${h.round}轮 [${h.scene_title}] → 选了「${h.choiceLabel}」→ ${h.outcome_effects.join(",")}`).join("\n")}
-
-请根据以上所有决策，生成这个人大学四年的最终人设卡。要让人感觉每个决策都影响了最终结果。结合学校的地域、类型、层次特点来评价这个人的大学生活。`;
-}
+// ── 类型守卫 ────────────────────────────────────────
 
 function isSimulatorChoice(value: unknown): value is SimulateStepResult["choices"][number] {
   if (!value || typeof value !== "object") return false;
@@ -252,6 +175,7 @@ export async function handleCreateSimulatorSession(
   input: SimulateStartInput,
   options: SimulatorServerOptions = {},
 ): Promise<SimulateSession> {
+  const t0 = Date.now();
   const provider = getProvider(options);
   const totalRounds = input.totalRounds ?? 8;
   const repo = getRepo();
@@ -267,9 +191,10 @@ export async function handleCreateSimulatorSession(
     user: userPrompt,
     tool: simulateStepTool,
     temperature: 0.85,
-    maxTokens: 2048,
+    maxTokens: 12288,
     timeoutMs: 60_000,
   });
+
   const stepResult = normalizeStepResult(rawStep, 1, 1 >= totalRounds);
 
   const initialScene = {
@@ -284,7 +209,7 @@ export async function handleCreateSimulatorSession(
   const session = await repo.getSession(sessionId);
   if (!session) throw new Error("Failed to retrieve created session");
 
-  log.info({ sessionId }, "Simulator session created with round 1");
+  log.info({ sessionId, elapsed: Date.now() - t0 }, "Simulator session created with round 1");
   return session;
 }
 
@@ -294,6 +219,7 @@ export async function handleSimulateStep(
   choiceId: string,
   options: SimulatorServerOptions = {},
 ): Promise<{ session: SimulateSession; result: SimulateStepResult; ending?: SimulatorEnding }> {
+  const t0 = Date.now();
   const repo = getRepo();
   let session = await repo.getSession(sessionId);
 
@@ -323,82 +249,123 @@ export async function handleSimulateStep(
   const systemPrompt = buildSystemPrompt(session.profile, nextRound + 1, session.totalRounds);
   const userPrompt = buildUserPromptForRound(session.profile, session.history, chosenChoice.label);
 
-  const { data: rawStep } = await provider.generateStructured<typeof simulateStepTool>({
-    system: systemPrompt,
-    user: userPrompt,
-    tool: simulateStepTool,
-    temperature: 0.85,
-    maxTokens: 2048,
-    timeoutMs: 60_000,
-  });
-  const stepResult = normalizeStepResult(rawStep, nextRound + 1, nextRound + 1 >= session.totalRounds);
-
-  // 构建历史记录
+  // 构建历史记录（在 LLM 调用前准备好）
   const historyEntry: SimulateHistoryEntry = {
     round: nextRound,
     scene_title: session.currentScene.scene_title,
     choiceId,
     choiceLabel: chosenChoice.label,
-    outcome_narrative: stepResult.outcome?.narrative || "",
-    outcome_effects: stepResult.outcome?.effects || [],
+    outcome_narrative: "", // 稍后由 LLM 填充
+    outcome_effects: [],   // 稍后由 LLM 填充
   };
 
-  // 如果是最后一轮，同时生成结局
   let ending: SimulatorEnding | null = null;
   let endingRaw: Record<string, unknown> | undefined;
+  let stepResult: SimulateStepResult;
+
   if (isFinal) {
+    // 最终轮：场景生成 + 结局生成 并行执行
     const updatedHistory = [...session.history, historyEntry];
     const endingPrompt = buildEndingPrompt(session.profile, updatedHistory);
-    const { data: rawEnding } = await provider.generateStructured<typeof generateEndingTool>({
-      system: "你是一个善于总结和洞察的大学人生观察者。根据完整的决策历史，为用户生成一个真实、贴切、不鸡汤的大学人设卡。",
-      user: endingPrompt,
-      tool: generateEndingTool,
-      temperature: 0.7,
-      maxTokens: 2048,
-      timeoutMs: 60_000,
-    });
-    ending = rawEnding as unknown as SimulatorEnding;
-    endingRaw = rawEnding as unknown as Record<string, unknown>;
-  }
 
-  // 持久化到 DB（或内存）
-  const nextScene = isFinal ? null : {
-    ...stepResult,
-    round: nextRound + 1,
-    is_final: nextRound + 1 >= session.totalRounds,
-  };
+    const [stepResultRaw, endingRawData] = await Promise.all([
+      provider.generateStructured<typeof simulateStepTool>({
+        system: systemPrompt,
+        user: userPrompt,
+        tool: simulateStepTool,
+        temperature: 0.85,
+        maxTokens: 12288,
+        timeoutMs: 60_000,
+        traceId: sessionId,
+      }),
+      provider.generateStructured<typeof generateEndingTool>({
+        system: getEndingSystemPrompt(),
+        user: endingPrompt,
+        tool: generateEndingTool,
+        temperature: 0.7,
+        maxTokens: 12288,
+        timeoutMs: 60_000,
+        traceId: `${sessionId}:ending`,
+      }),
+    ]);
 
-  if ("advanceStep" in repo) {
-    // PostgreSQL 模式
-    await repo.advanceStep(sessionId, {
-      newRound: nextRound,
-      historyEntry,
-      nextScene,
-      isFinal,
-      ending: endingRaw,
-    });
+    // 更新 historyEntry 的 outcome 信息
+    stepResult = normalizeStepResult(stepResultRaw.data, nextRound + 1, true);
+    historyEntry.outcome_narrative = stepResult.outcome?.narrative || "";
+    historyEntry.outcome_effects = stepResult.outcome?.effects || [];
+
+    ending = endingRawData.data as unknown as SimulatorEnding;
+    endingRaw = endingRawData.data as unknown as Record<string, unknown>;
+
+    // 持久化到 DB（或内存）
+    if ("advanceStep" in repo) {
+      await repo.advanceStep(sessionId, {
+        newRound: nextRound,
+        historyEntry,
+        nextScene: null, // 最终轮没有下一场景
+        isFinal: true,
+        ending: endingRaw,
+      });
+    } else {
+      (repo as MemorySimulatorRepo).put({
+        ...session,
+        currentRound: nextRound,
+        status: "ended",
+        history: [...session.history, historyEntry],
+        currentScene: null as unknown as SimulateSession["currentScene"],
+        ending,
+        updatedAt: new Date().toISOString(),
+      });
+    }
   } else {
-    // 内存降级模式
-    (repo as MemorySimulatorRepo).put({
-      ...session,
-      currentRound: nextRound,
-      status: isFinal ? "ended" : "playing",
-      history: [...session.history, historyEntry],
-      currentScene: nextScene as unknown as SimulateSession["currentScene"],
-      ending,
-      updatedAt: new Date().toISOString(),
+    // 非最终轮：只生成场景
+    const { data: rawStep } = await provider.generateStructured<typeof simulateStepTool>({
+      system: systemPrompt,
+      user: userPrompt,
+      tool: simulateStepTool,
+      temperature: 0.85,
+      maxTokens: 12288,
+      timeoutMs: 60_000,
+      traceId: sessionId,
     });
+
+    stepResult = normalizeStepResult(rawStep, nextRound + 1, nextRound + 1 >= session.totalRounds);
+
+    // 更新 historyEntry 的 outcome 信息
+    historyEntry.outcome_narrative = stepResult.outcome?.narrative || "";
+    historyEntry.outcome_effects = stepResult.outcome?.effects || [];
+
+    // 持久化到 DB（或内存）
+    const nextScene = {
+      ...stepResult,
+      round: nextRound + 1,
+      is_final: nextRound + 1 >= session.totalRounds,
+    };
+
+    if ("advanceStep" in repo) {
+      await repo.advanceStep(sessionId, {
+        newRound: nextRound,
+        historyEntry,
+        nextScene,
+        isFinal: false,
+      });
+    } else {
+      (repo as MemorySimulatorRepo).put({
+        ...session,
+        currentRound: nextRound,
+        status: "playing",
+        history: [...session.history, historyEntry],
+        currentScene: nextScene as unknown as SimulateSession["currentScene"],
+        ending: null,
+        updatedAt: new Date().toISOString(),
+      });
+    }
   }
 
   // 读回最新状态
   session = await repo.getSession(sessionId);
 
-  log.info({
-    sessionId,
-    round: nextRound,
-    isFinal,
-    status: session?.status,
-  }, "Step processed");
+  log.info({ sessionId, round: nextRound, isFinal, status: session?.status, elapsed: Date.now() - t0 }, "Step processed");
 
   return {
     session: session!,
@@ -422,3 +389,246 @@ export async function handleGetSimulatorSession(
   }
   return session;
 }
+
+// ── 流式推演步骤 ─────────────────────────────────
+
+/**
+ * 流式推演步骤 — 返回 AsyncGenerator<StreamEvent>
+ *
+ * 通过 callback→generator 桥接模式消费 provider 的流式事件，
+ * 中间事件（thinking/text）直接 yield 给 Route 层转发给前端，
+ * 最终完成时 yield { type: "done", result }。
+ */
+export async function* handleSimulateStepStream(
+  sessionId: string,
+  choiceId: string,
+  options: SimulatorServerOptions = {},
+): AsyncGenerator<StreamEvent, void, undefined> {
+  const t0 = Date.now();
+  const repo = getRepo();
+
+  // ── 前置校验（与 handleSimulateStep 一致）────────
+  let session = await repo.getSession(sessionId);
+  if (!session) {
+    yield { type: "error", error: `Session not found: ${sessionId}` };
+    return;
+  }
+  if (session.status !== "playing") {
+    yield { type: "error", error: `Session is not playing: ${session.status}` };
+    return;
+  }
+  if (!session.currentScene) {
+    yield { type: "error", error: "No current scene available" };
+    return;
+  }
+
+  const provider = getProvider(options);
+  const nextRound = session.currentRound + 1;
+  const isFinal = nextRound >= session.totalRounds;
+
+  const chosenChoice = session.currentScene.choices.find((c) => c.id === choiceId);
+  if (!chosenChoice) {
+    yield { type: "error", error: `Invalid choiceId: ${choiceId}` };
+    return;
+  }
+
+  log.info({ sessionId, choiceId, round: nextRound, isFinal }, "Processing simulator step (stream)");
+
+  const systemPrompt = buildSystemPrompt(session.profile, nextRound + 1, session.totalRounds);
+  const userPrompt = buildUserPromptForRound(session.profile, session.history, chosenChoice.label);
+
+  const historyEntry: SimulateHistoryEntry = {
+    round: nextRound,
+    scene_title: session.currentScene.scene_title,
+    choiceId,
+    choiceLabel: chosenChoice.label,
+    outcome_narrative: "",
+    outcome_effects: [],
+  };
+
+  // ── callback → generator 桥接 ──────────────────────
+  const eventQueue: StreamEvent[] = [];
+  let resolveWaiter: (() => void) | null = null;
+  let streamDone = false;
+  // 用 as any 绕过 TS 对异步赋值的控制流收窄（while 循环后 TS 会错误地推断为 never）
+  let streamError: Error | null = null as Error | null;
+  let finalResult: GenerateStructuredResult<SimulateStepResult> | null = null as GenerateStructuredResult<SimulateStepResult> | null;
+
+  const onEvent: StreamEventCallback = (event: StreamEvent): void => {
+    eventQueue.push(event);
+    if (resolveWaiter) {
+      resolveWaiter();
+      resolveWaiter = null;
+    }
+  };
+
+  // 启动流式 LLM 调用（不 await，后台运行）
+  const streamPromise = provider.generateStructuredStream<typeof simulateStepTool>({
+    system: systemPrompt,
+    user: userPrompt,
+    tool: simulateStepTool,
+    temperature: 0.85,
+    maxTokens: 12288,
+    timeoutMs: 60_000,
+    traceId: sessionId,
+    onEvent,
+  }).then((result) => {
+    finalResult = result as unknown as GenerateStructuredResult<SimulateStepResult>;
+    streamDone = true;
+    if (resolveWaiter) {
+      resolveWaiter();
+      resolveWaiter = null;
+    }
+  }).catch((err) => {
+    streamError = err instanceof Error ? err : new Error(String(err));
+    streamDone = true;
+    if (resolveWaiter) {
+      resolveWaiter();
+      resolveWaiter = null;
+    }
+  });
+
+  // ── 从队列中取出事件，yield 给消费者 ───────────
+  try {
+    while (!streamDone || eventQueue.length > 0) {
+      if (eventQueue.length > 0) {
+        const event = eventQueue.shift()!;
+
+        // 过滤掉 provider 层的裸 done（只有 usage，没有 result）
+        // server 层会在循环结束后构造带 result 的真正 done
+        if (event.type === "done" && !("result" in event)) {
+          continue;
+        }
+
+        yield event;
+      } else if (!streamDone) {
+        await new Promise<void>((resolve) => {
+          resolveWaiter = resolve;
+        });
+      }
+    }
+
+    if (streamError) {
+      const errMsg = streamError instanceof Error ? streamError.message : String(streamError);
+      yield { type: "error", error: errMsg, fallback: true };
+      return;
+    }
+
+    if (!finalResult) {
+      yield { type: "error", error: "Stream ended without result", fallback: true };
+      return;
+    }
+
+    // ── 最终轮：生成结局（非流式）───────────────────
+    let ending: SimulatorEnding | null = null;
+    let endingRaw: Record<string, unknown> | undefined;
+
+    if (isFinal) {
+      yield { type: "text_start", textContent: "" };
+      yield { type: "text_delta", textContent: "正在生成你的大学人设卡..." };
+
+      const updatedHistory = [...session.history, historyEntry];
+      const endingPrompt = buildEndingPrompt(session.profile, updatedHistory);
+
+      try {
+        const endingResult = await provider.generateStructured<typeof generateEndingTool>({
+          system: getEndingSystemPrompt(),
+          user: endingPrompt,
+          tool: generateEndingTool,
+          temperature: 0.7,
+          maxTokens: 12288,
+          timeoutMs: 60_000,
+          traceId: `${sessionId}:ending`,
+        });
+        ending = endingResult.data as unknown as SimulatorEnding;
+        endingRaw = endingResult.data as unknown as Record<string, unknown>;
+      } catch (err) {
+        log.error({ err: String(err) }, "Ending generation failed in stream mode");
+      }
+    }
+
+    // ── normalize + 持久化 ─────────────────────────
+    const stepResult = normalizeStepResult(finalResult.data, nextRound, isFinal);
+    historyEntry.outcome_narrative = stepResult.outcome?.narrative || "";
+    historyEntry.outcome_effects = stepResult.outcome?.effects || [];
+
+    if (isFinal) {
+      if ("advanceStep" in repo) {
+        await repo.advanceStep(sessionId, {
+          newRound: nextRound,
+          historyEntry,
+          nextScene: null,
+          isFinal: true,
+          ending: endingRaw,
+        });
+      } else {
+        (repo as MemorySimulatorRepo).put({
+          ...session,
+          currentRound: nextRound,
+          status: "ended",
+          history: [...session.history, historyEntry],
+          currentScene: null as unknown as SimulateSession["currentScene"],
+          ending,
+          updatedAt: new Date().toISOString(),
+        });
+      }
+    } else {
+      const nextScene = {
+        ...stepResult,
+        round: nextRound + 1,
+        is_final: nextRound + 1 >= session.totalRounds,
+      };
+      if ("advanceStep" in repo) {
+        await repo.advanceStep(sessionId, {
+          newRound: nextRound,
+          historyEntry,
+          nextScene,
+          isFinal: false,
+        });
+      } else {
+        (repo as MemorySimulatorRepo).put({
+          ...session,
+          currentRound: nextRound,
+          status: "playing",
+          history: [...session.history, historyEntry],
+          currentScene: nextScene as unknown as SimulateSession["currentScene"],
+          ending: null,
+          updatedAt: new Date().toISOString(),
+        });
+      }
+    }
+
+    // 读回最新状态
+    session = await repo.getSession(sessionId);
+
+    // ── yield 最终结果 ─────────────────────────────
+    yield {
+      type: "done",
+      result: {
+        session: session!,
+        result: {
+          ...stepResult,
+          round: nextRound,
+          is_final: isFinal,
+        },
+        ...(ending ? { ending } : {}),
+      } as Record<string, unknown>,
+      usage: {
+        inputTokens: finalResult.usage.inputTokens ?? 0,
+        outputTokens: finalResult.usage.outputTokens ?? 0,
+      },
+    };
+
+    log.info({ sessionId, round: nextRound, isFinal, elapsed: Date.now() - t0 }, "Stream step completed");
+  } catch (err) {
+    yield {
+      type: "error",
+      error: err instanceof Error ? err.message : "Stream processing failed",
+      fallback: true,
+    };
+  } finally {
+    // 确保即使 generator 被取消，stream promise 也不会泄漏
+    void streamPromise;
+  }
+}
+

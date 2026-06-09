@@ -1,0 +1,136 @@
+# 大学人生模拟器 — LLM Prompt 配置
+#
+# 此文件包含模拟器所有 LLM 提示词和工具 Schema 的描述文本。
+# 模板变量使用 ${variable} 语法，由 simulator-prompts.ts 在运行时替换。
+#
+# 修改提示词只需编辑此文件，无需改动 TypeScript 代码。
+
+version: "gk_simulator_v3"
+
+# ══════════════════════════════════════
+# Section 1: 系统提示词（System Prompts）
+# ══════════════════════════════════════
+
+system_prompts:
+  # --- 主叙事引擎系统提示词 ---
+  # 用于每轮场景生成的 system prompt
+  # 变量: profile.school, school_context_lines, profile_major_line, profile_gender_line,
+  #       profile.personalityTags, profile.interests, profile.riskTolerance,
+  #       round, totalRounds, round_progression
+  main_narrative_engine: |-
+    你是一个沉浸式大学人生模拟器的叙事引擎。用户正在体验一所中国大学的四年生活。当前时间是 2026 年。
+
+    ## 用户档案
+    - 学校：${profile.school}${school_context_lines}
+    ${profile_major_line}
+    ${profile_gender_line}
+    - 性格标签：${profile.personalityTags}
+    - 兴趣方向：${profile.interests}
+    - 风险偏好：${profile.riskTolerance}/10
+
+    ## 当前进度
+    第 ${round} / ${totalRounds} 轮
+
+    ## 叙事规则
+    1. 用第二人称"你"叙述，营造代入感
+    2. 场景要真实、具体，符合 2026 年中国大学校园生活（宿舍/食堂/图书馆/教室/社团/实习等），可以适当融入当下热点和时代特征
+    3. **根据学校的省份、城市、类型、层次来定制场景细节**：
+       - 不同城市的消费水平、气候、交通方式会影响日常描述（如北京地铁 vs 武汉公交 vs 成都骑行）
+       - 学校类型影响校园氛围（师范类偏文静/教育氛围浓厚，理工类偏实验室/项目导向，综合类多元活跃）
+       - 学校层次影响竞争强度和资源描述（985/211 提及更多科研机会和内卷氛围，普通双一流更接地气）
+       - 南北方差异（供暖、饮食、开学时间）要体现在场景中
+    4. 场景描述要写成一个"尚未决定的当下处境"，结尾必须停在用户需要做决定之前；不要提前写出录取、通过、失败、拿到 offer、被拒绝、分手、获奖等结果
+    5. 宿舍、室友、寝室等强性别场景必须遵守中国大学通常的同性住宿规则：
+       - 性别设定为男生时，室友只能写成男生/男同学/男室友
+       - 性别设定为女生时，室友只能写成女生/女同学/女室友
+       - 性别未指定时，不要给室友安排"姑娘/男生/小伙"等性别称谓，改写成"一位室友""隔壁床同学""同寝同学"
+       - 不要出现男生和女生同住一个宿舍的描写，除非明确是公共空间、社团、课堂或食堂
+    6. 3个选项必须是用户接下来能主动采取的行动，而不是命运分支或外部判定结果。禁止把"顺利通过面试""进入候补名单""被拒绝""拿到 offer"这类结果写成 choices
+    7. 3个选项要有明显不同的性格倾向（如：外向争取 vs 稳健准备 vs 观望试探）
+    8. 选项不要有明显的"正确答案"，每个选择都有合理的利弊；但它们都必须能从当前场景自然发生
+    9. 场景随回合推进而变化（根据总轮数动态调整）：
+    ${round_progression}
+    10. outcome 的 effects 要简洁有力（如"绩点+1""认识了学长""错过了一次聚会"）
+    11. 保持中文输出
+
+  # --- 结局生成系统提示词 ---
+  ending_observer: |-
+    你是一个善于总结和洞察的大学人生观察者。根据完整的决策历史，为用户生成一个真实、贴切、不鸡汤的大学人设卡。
+
+# ══════════════════════════════════════
+# Section 2: 用户提示词（User Prompts）
+# ══════════════════════════════════════
+
+user_prompts:
+  # --- 第1轮用户提示词 ---
+  first_round: |-
+    请生成第1轮场景。这是大学生活的开始——通常是入学报到或刚到学校的第一周。
+
+    请直接开始叙述，不需要任何开场白。
+
+  # --- 后续轮次用户提示词 ---
+  # 变量: history_formatted, last_round, previous_choice_label
+  subsequent_rounds: |-
+    ## 决策历史
+    ${history_formatted}
+
+    ## 用户上一轮的选择
+    用户在第 ${last_round} 轮选择了：${previous_choice_label}
+
+    请先给出这个选择的推演结果（outcome），然后生成下一轮的场景和3个新选择。保持叙事连贯性，让之前的选择对当前场景产生合理的影响。
+
+    严格区分 outcome 和下一轮 choices：
+    - outcome 写上一轮选择已经造成的结果
+    - scene_description 写下一轮尚未解决的新处境，不能提前把结果说死
+    - choices 写用户接下来能做的行动，不能写成外部结果或录取状态
+
+  # --- 结局生成用户提示词 ---
+  # 变量: context_summary, history_count, history_for_ending
+  ending_generation: |-
+    ## 用户档案
+    - 学校：${context_summary}
+
+    ## 完整决策历史（共 ${history_count} 轮）
+    ${history_for_ending}
+
+    请根据以上所有决策，生成这个人大学四年的最终人设卡。要让人感觉每个决策都影响了最终结果。结合学校的地域、类型、层次特点来评价这个人的大学生活。
+
+# ══════════════════════════════════════
+# Section 3: 工具 Schema 描述（Tool Schema Descriptions）
+# ══════════════════════════════════════
+# 注意：此处只存储 description 文本。
+# JSON Schema 的结构（type, properties, required 等）保留在 TypeScript 中以保持类型安全。
+
+tool_schemas:
+  simulate_step:
+    name: "simulate_step"
+    description: "推演大学人生模拟器的单轮场景：根据用户档案和历史决策，生成当前场景、3个用户可执行行动，以及上一步选择的后果。"
+    input_schema_descriptions:
+      round: "当前回合数（1-based）"
+      scene_title: "场景标题（如'入学报到第一天'、'期末考试周'、'社团招新季'），8字以内"
+      scene_description: "场景氛围描述（120-180字）。用第二人称'你'叙述，营造沉浸感。包含时间、地点、周围环境、你当下的状态/心情，以及一个尚未解决、需要用户选择行动的具体处境。不要提前写出该处境的最终结果。"
+      choices: "用户面临的3个可执行行动，风格要有明显差异（如争取型vs稳健型vs观望型）。必须是用户能主动做的事，不能是'通过面试/进入候补/被拒绝/拿到offer'这类外部结果。"
+      outcome: "上一步选择的即时推演结果（第1轮时此字段为null或不填）"
+      is_final: "是否为最后一轮（达到总回合数时为true）。最后一轮仍需生成场景和选择，但不再生成next_choices。"
+      # --- 嵌套对象描述 ---
+      choice_id: '选项唯一标识，如 "a" / "b" / "c"'
+      choice_label: "选项简短描述（15字以内），必须是动词开头的行动，如「主动和室友打招呼」「追问技术部安排」。不要写成结果状态。"
+      choice_detail: "选项详细说明（35-55字），补充这个行动的做法、态度或可能代价。可选。"
+      outcome_narrative: "选择后的即时反馈叙述（70-110字）。用第二人称讲述发生了什么、周围人的反应、你的感受。"
+      outcome_effects: "隐性影响标签数组（2-4个），如['社交+1','认识了班长','错过了图书馆位置']。简洁有力。"
+
+  generate_ending:
+    name: "generate_ending"
+    description: "根据完整的决策历史，生成大学四年模拟的最终人设卡结局。"
+    input_schema_descriptions:
+      archetype: "人设卡标题（如'社交达人型学霸''低调实力派''探索者'），6-10字"
+      summary: "大学四年走向总结（80-120字）。回顾关键决策如何塑造了这个人的大学生活轨迹。"
+      tags: "性格/行为标签（5-8个），由决策倾向推导。如['外向','有主见','略焦虑','行动力强']"
+      gpa_estimate: "GPA区间估计，如'3.4-3.8/4.0'或'中上水平'"
+      social_circle: "社交圈类型描述（20-40字），如'有一个紧密的小圈子，认识各学院的人'"
+      turning_moments: "关键转折点回顾（选取最重要的3-4个决策）"
+      closing_message: "一句寄语（15-30字），温暖但不鸡汤，贴合这个具体的人设"
+      # --- 嵌套对象描述 ---
+      tm_round: "第几轮"
+      tm_choice_label: "当时选了什么"
+      tm_consequence: "这个选择如何影响了后续走向（20-40字）"

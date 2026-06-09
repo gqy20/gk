@@ -12,11 +12,13 @@
     "test": "vitest",
     "test:run": "vitest run",
     "data:generate": "tsx scripts/generate-data.ts",
-    "future:api": "tsx ../server/future-api.ts"
+    "future:api": "tsx ../server/future-api.ts",
+    "simulator:api": "tsx ../server/simulator-api.ts"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "framer-motion": "^12.38.0",
+    "js-yaml": "^4.2.0",
     "maplibre-gl": "^5.24.0",
     "next": "16.2.3",
     "pg": "^8.21.0",

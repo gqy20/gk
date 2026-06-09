@@ -25,6 +25,12 @@ const clog = {
 };
 
 function apiUrl(path: string) {
+  // 优先使用独立 Node.js 服务地址（通过 SIMULATOR_API_URL 配置）
+  const baseUrl = process.env.NEXT_PUBLIC_SIMULATOR_API_URL;
+  if (baseUrl) {
+    return `${baseUrl.replace(/\/+$/, "")}${path}`;
+  }
+  // 未配置时回退到 Next.js API Routes
   return path;
 }
 
@@ -77,4 +83,156 @@ export async function getSimulatorSession(sessionId: string): Promise<SimulateSe
     throw new SimulatorApiError(await res.text());
   }
   return res.json() as Promise<SimulateSession>;
+}
+
+// ── 流式调用 ──────────────────────────────────────
+
+/** 流式推演步骤的回调接口 */
+export interface SimulateStepStreamCallbacks {
+  /** 收到 thinking_start 事件 */
+  onThinkingStart?: () => void;
+  /** 收到 thinking_delta 事件 */
+  onThinkingDelta?: (tokens: number) => void;
+  /** 收到 text_delta 事件（叙述性文字增量） */
+  onTextDelta?: (fullText: string) => void;
+  /** 收到 tool_use_start 事件（即将返回 JSON） */
+  onToolUseStart?: () => void;
+  /** 流完成，收到最终结果 */
+  onDone: (result: { session: SimulateSession; result: SimulateStepResult; ending?: SimulatorEnding }) => void;
+  /** 流出错 */
+  onError?: (error: string, canFallback: boolean) => void;
+}
+
+/**
+ * 流式提交选择 → 消费 SSE 流
+ *
+ * @returns true=流式成功完成, false=失败(需降级到非流式)
+ */
+export async function simulateStepStream(
+  sessionId: string,
+  choiceId: string,
+  callbacks: SimulateStepStreamCallbacks,
+): Promise<boolean> {
+  clog.debug("POST /api/simulator/:sessionId (stream)", { sessionId, choiceId });
+
+  try {
+    const res = await fetch(
+      apiUrl(`/api/simulator/${encodeURIComponent(sessionId)}?stream=true`),
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Accept: "text/event-stream",
+        },
+        body: JSON.stringify({ choiceId }),
+      },
+    );
+
+    if (!res.ok) {
+      const errText = await res.text();
+      clog.warn("POST stream failed (HTTP)", { status: res.status, error: errText.slice(0, 200) });
+      callbacks.onError?.(errText, true);
+      return false;
+    }
+
+    // 检查响应是否真的是 SSE（服务端可能降级到非流式）
+    const contentType = res.headers.get("content-type") || "";
+    if (!contentType.includes("text/event-stream")) {
+      clog.warn("Response is not SSE, falling back to JSON parse");
+      try {
+        const data = (await res.json()) as {
+          session: SimulateSession;
+          result: SimulateStepResult;
+          ending?: SimulatorEnding;
+        };
+        callbacks.onDone(data);
+        return true;
+      } catch {
+        callbacks.onError?.("Failed to parse non-stream response", true);
+        return false;
+      }
+    }
+
+    // 消费 SSE 流
+    const body = res.body;
+    if (!body) {
+      callbacks.onError?.("Response body is null", true);
+      return false;
+    }
+
+    const reader = body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let receivedFinalResult = false;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop() || "";
+
+      for (const line of lines) {
+        if (!line.startsWith("data: ")) continue;
+        const dataStr = line.slice(6).trim();
+        if (!dataStr || dataStr === "[DONE]") continue;
+
+        let event: Record<string, unknown>;
+        try {
+          event = JSON.parse(dataStr);
+        } catch {
+          continue;
+        }
+
+        switch (event.type) {
+          case "thinking_start":
+            callbacks.onThinkingStart?.();
+            break;
+          case "thinking_delta":
+            callbacks.onThinkingDelta?.((event.thinkingTokens as number) ?? 0);
+            break;
+          case "text_start":
+            // text_start 的 textContent 为空，无需特别处理
+            break;
+          case "text_delta":
+            callbacks.onTextDelta?.((event.textContent as string) ?? "");
+            break;
+          case "tool_use_start":
+            callbacks.onToolUseStart?.();
+            break;
+          case "done":
+            if (event.result) {
+              receivedFinalResult = true;
+              callbacks.onDone(event.result as {
+                session: SimulateSession;
+                result: SimulateStepResult;
+                ending?: SimulatorEnding;
+              });
+              return true;
+            }
+            // Some providers emit a transport-level done before the server has
+            // persisted and returned the business result. Ignore it and keep
+            // reading until we receive the final done with result.
+            break;
+          case "error":
+            callbacks.onError?.(
+              (event.error as string) ?? "Unknown stream error",
+              (event.fallback as boolean) ?? false,
+            );
+            return false;
+        }
+      }
+    }
+
+    // 正常读完流但没有收到 done 事件
+    clog.warn("Stream ended without final result", { receivedFinalResult });
+    callbacks.onError?.("Stream ended without final result", true);
+    return false;
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    clog.error("POST stream exception", { error: msg });
+    callbacks.onError?.(msg, true);
+    return false;
+  }
 }

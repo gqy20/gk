@@ -19,5 +19,13 @@ done < <(ip -4 addr show 2>/dev/null | grep 'inet ')
 echo "   💻  http://localhost:${PORT}"
 echo ""
 
+# 显式加载 .env 并 export，确保 .env 值优先级高于 Shell 已有变量
+# （Next.js 默认行为：.env 不覆盖已存在的环境变量）
+if [ -f .env ]; then
+  set -a
+  source .env
+  set +a
+fi
+
 export WATCHPACK_POLLING=true
 exec next dev --webpack --hostname 0.0.0.0 -p "$PORT"

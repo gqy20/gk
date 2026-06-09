@@ -2,6 +2,7 @@
 
 import { FormEvent, Suspense, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
 import type { School } from "@/lib/data";
@@ -32,9 +33,11 @@ function SimulatorPageContent() {
   const [targetSchool, setTargetSchool] = useState("");
   const [targetCity, setTargetCity] = useState("");
   const [targetMajor, setTargetMajor] = useState("");
+  const [gender, setGender] = useState<"male" | "female" | "unspecified">("unspecified");
   const [personalityTags, setPersonalityTags] = useState("理性 好奇");
   const [interests, setInterests] = useState("计算机 社交 阅读");
   const [riskTolerance, setRiskTolerance] = useState(5);
+  const [totalRounds, setTotalRounds] = useState<3 | 8 | 20 | 50>(8);
   const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -94,6 +97,7 @@ function SimulatorPageContent() {
         profile: {
           school: targetSchool || "一所双一流大学",
           major: targetMajor || undefined,
+          gender,
           province: schoolContext.province,
           city: targetCity || undefined,
           schoolTier: schoolContext.schoolTier,
@@ -102,7 +106,7 @@ function SimulatorPageContent() {
           interests: splitTags(interests),
           riskTolerance,
         },
-        totalRounds: 8,
+        totalRounds,
       });
       router.push(`/simulator/play?sessionId=${encodeURIComponent(session.sessionId)}`);
     } catch (err) {
@@ -115,7 +119,7 @@ function SimulatorPageContent() {
   return (
     <FutureShell
       title="大学人生模拟器"
-      subtitle="每一步都是你的选择。8 轮决策，看看你会走出怎样的大学生活。"
+      subtitle={`每一步都是你的选择。${totalRounds} 轮决策，看看你会走出怎样的大学生活。`}
       backHref="/"
       backLabel="返回"
       mainClassName="pb-10 pt-5"
@@ -159,6 +163,21 @@ function SimulatorPageContent() {
                     {majorOptions.map((m) => (
                       <option key={m} value={m}>{m}</option>
                     ))}
+                  </select>
+                </span>
+              </label>
+
+              <label className="block space-y-2 text-xs font-medium text-text-secondary md:col-span-2">
+                <span>性别设定</span>
+                <span className="relative block">
+                  <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
+                    className={selectClassName()}
+                  >
+                    <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
+                    <option value="male">男生</option>
+                    <option value="female">女生</option>
                   </select>
                 </span>
               </label>
@@ -209,9 +228,63 @@ function SimulatorPageContent() {
             </div>
           </FuturePanel>
 
+          {/* ── 轮数选择 ── */}
+          <FuturePanel className="p-5 sm:p-6">
+            <SectionHeading title="模拟轮数" description="选择你想体验的决策深度。轮数越多，故事越丰富。" />
+            <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+              {([
+                { value: 3 as const, label: "3 轮", desc: "快速体验", detail: "入学→适应→起步，约 2 分钟" },
+                { value: 8 as const, label: "8 轮", desc: "标准模式 ⭐", detail: "完整四年脉络：入学到毕业" },
+                { value: 20 as const, label: "20 轮", desc: "深度沉浸", detail: "细腻刻画每个学期关键节点" },
+                { value: 50 as const, label: "50 轮", desc: "史诗模式", detail: "周级别的微观推演，约 15 分钟" },
+              ] as const).map((opt) => {
+                const isSelected = totalRounds === opt.value;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setTotalRounds(opt.value)}
+                    className={`group relative rounded-xl border p-3.5 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 ${
+                      isSelected
+                        ? "border-primary/40 bg-primary/[0.08] ring-1 ring-primary/20 shadow-[0_6px_20px_-10px_rgba(63,143,155,0.35)]"
+                        : "border-border bg-neutral-0/70 hover:border-text-muted/40 hover:bg-surface-elevated"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className={`text-sm font-semibold ${isSelected ? "text-primary" : "text-text"}`}>
+                        {opt.label}
+                      </span>
+                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors ${
+                        isSelected
+                          ? "bg-primary/15 text-primary"
+                          : "bg-neutral-900/6 text-text-muted group-hover:bg-neutral-900/9"
+                      }`}>
+                        {opt.desc}
+                      </span>
+                    </div>
+                    <p className={`mt-1.5 text-[11px] leading-relaxed ${isSelected ? "text-primary/80" : "text-text-muted"}`}>
+                      {opt.detail}
+                    </p>
+                    {isSelected && (
+                      <motion.span
+                        layoutId="round-check"
+                        className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[11px] text-text-inverse"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                      >
+                        ✓
+                      </motion.span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </FuturePanel>
+
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)]">
             <p className="max-w-2xl text-xs leading-5 text-text-secondary">
-              共 8 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
+              共 {totalRounds} 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
             </p>
             <Button
               type="submit"
