@@ -73,6 +73,7 @@ export function SchoolLogo({
       {state === "loading" && (
         <span className="absolute inset-0 animate-pulse rounded-full bg-neutral-200/40" />
       )}
+      {/* eslint-disable-next-line @next/next/no-img-element -- local logo files need jpg/png fallback handled by onError. */}
       <img
         src={urls[urlIndex]}
         alt={`${school.name} 校徽`}

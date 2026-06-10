@@ -1,4 +1,3 @@
-import type { futurePathsTool } from "./schema";
 import { createLogger } from "./logger";
 
 const log = createLogger("anthropic");

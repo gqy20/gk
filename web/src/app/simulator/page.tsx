@@ -2,7 +2,6 @@
 
 import { FormEvent, Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -10,6 +9,7 @@ import { NativeSelect } from "@/components/ui/NativeSelect";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
 import type { School } from "@/lib/data";
 import { FuturePanel, FutureShell, SectionHeading } from "../future/FutureShell";
+import { RoundSelector, type SimulatorRoundCount } from "./RoundSelector";
 
 function splitTags(value: string) {
   return value.split(/[，,\s]+/).map((item) => item.trim()).filter(Boolean);
@@ -131,7 +131,7 @@ function SimulatorPageContent() {
   const [personalityTags, setPersonalityTags] = useState("理性 好奇");
   const [interests, setInterests] = useState("计算机 社交 阅读");
   const [riskTolerance, setRiskTolerance] = useState(5);
-  const [totalRounds, setTotalRounds] = useState<3 | 8 | 20 | 50>(8);
+  const [totalRounds, setTotalRounds] = useState<SimulatorRoundCount>(8);
   const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -343,51 +343,7 @@ function SimulatorPageContent() {
 
             <FuturePanel className="p-5 sm:p-6 2xl:sticky 2xl:top-24">
               <SectionHeading title="模拟轮数" description="选择你想体验的决策深度。" />
-              <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4 2xl:grid-cols-1">
-                {([
-                  { value: 3 as const, label: "3 轮", desc: "快速体验", detail: "入学、适应、起步，约 2 分钟" },
-                  { value: 8 as const, label: "8 轮", desc: "标准模式", detail: "完整四年脉络：入学到毕业" },
-                  { value: 20 as const, label: "20 轮", desc: "深度沉浸", detail: "覆盖每个学期的关键节点" },
-                  { value: 50 as const, label: "50 轮", desc: "长期推演", detail: "周级别微观推演，约 15 分钟" },
-                ] as const).map((opt) => {
-                  const isSelected = totalRounds === opt.value;
-                  return (
-                    <button
-                      key={opt.value}
-                      type="button"
-                      onClick={() => setTotalRounds(opt.value)}
-                      className={`group relative flex min-h-[104px] flex-col rounded-xl border p-3.5 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 ${
-                        isSelected
-                          ? "border-primary/45 bg-primary/[0.08] ring-1 ring-primary/20"
-                          : "border-border bg-neutral-0/70 hover:border-primary/30 hover:bg-surface-elevated"
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <span className={`text-sm font-semibold ${isSelected ? "text-primary" : "text-text"}`}>
-                          {opt.label}
-                        </span>
-                        {isSelected && (
-                          <motion.span
-                            layoutId="round-check"
-                            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] text-text-inverse"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                          >
-                            ✓
-                          </motion.span>
-                        )}
-                      </div>
-                      <span className={`mt-2 text-xs font-medium ${isSelected ? "text-primary" : "text-text-secondary"}`}>
-                        {opt.desc}
-                      </span>
-                      <span className={`mt-1 text-[11px] leading-5 ${isSelected ? "text-primary/80" : "text-text-muted"}`}>
-                        {opt.detail}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              <RoundSelector value={totalRounds} onChange={setTotalRounds} />
             </FuturePanel>
 
             <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)] sm:px-6 2xl:col-span-2">

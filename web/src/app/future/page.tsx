@@ -308,9 +308,7 @@ function FuturePageContent() {
             <SectionHeading title="输出会包含" />
             <div className="mt-4 grid gap-2 text-xs leading-5 text-text-secondary">
               {["推荐先按哪条路线走", "几种大学四年走法", "大一大二行动清单", "最容易踩的坑", "什么时候该换路"].map((item) => (
-                <div key={item} className="rounded-lg border border-border bg-surface-subtle px-3 py-2">
-                  {item}
-                </div>
+                <InfoRow key={item} value={item} />
               ))}
             </div>
           </FuturePanel>
@@ -343,19 +341,18 @@ function TabBar({ value, onChange }: { value: "form" | "history"; onChange: (v: 
       ] as const).map((item) => {
         const active = value === item.key;
         return (
-          <button
+          <Button
             key={item.key}
             type="button"
             onClick={() => onChange(item.key)}
             aria-pressed={active}
-            className={`rounded-full px-3.5 py-1 font-mono text-[11px] uppercase tracking-[0.18em] transition ${
-              active
-                ? "bg-accent/15 text-accent shadow-[0_0_0_1px_rgba(37,111,143,0.22)_inset]"
-                : "text-text-muted hover:text-text"
-            }`}
+            variant="ghost"
+            size="sm"
+            active={active}
+            className="h-7 rounded-full px-3.5 font-mono text-[11px] uppercase tracking-[0.18em]"
           >
             {item.label}
-          </button>
+          </Button>
         );
       })}
     </div>
@@ -381,13 +378,14 @@ function HistoryList({
     return (
       <FuturePanel className="p-5">
         <p className="text-sm text-warning">拉取历史失败：{error}</p>
-        <button
+        <Button
           type="button"
           onClick={onReload}
-          className="mt-3 rounded-lg border border-border bg-surface-subtle px-3 py-1.5 text-xs text-text-secondary hover:border-accent/40 hover:text-accent"
+          size="sm"
+          className="mt-3"
         >
           重试
-        </button>
+        </Button>
       </FuturePanel>
     );
   }
@@ -515,9 +513,17 @@ function FormStep({
 
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-black/10 pb-2 last:border-b-0 last:pb-0">
+    <div className="flex items-center justify-between gap-4 rounded-lg border border-border/70 bg-surface-subtle/60 px-3 py-2">
       <span className="text-xs text-text-muted">{label}</span>
       <span className="min-w-0 truncate text-sm font-medium text-text">{value}</span>
+    </div>
+  );
+}
+
+function InfoRow({ value }: { value: string }) {
+  return (
+    <div className="rounded-lg border border-border/70 bg-surface-subtle/60 px-3 py-2">
+      {value}
     </div>
   );
 }
