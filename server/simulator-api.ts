@@ -71,6 +71,11 @@ loadEnv("../.env");
 
 const port = Number(process.env.SIMULATOR_API_PORT || 8602);
 
+interface SimulatorStepBody {
+  choiceId?: string;
+  round?: number;
+}
+
 const server = createServer(async (req, res) => {
   const url = new URL(
     req.url || "/",
@@ -130,14 +135,18 @@ const server = createServer(async (req, res) => {
     try {
       const sessionId = decodeURIComponent(getSessionMatch[1]);
       const body = await readJson(req);
-      const { choiceId } = body as { choiceId?: string };
+      const { choiceId, round } = body as SimulatorStepBody;
 
       if (!choiceId?.trim()) {
         sendJson(res, 400, { error: "choiceId is required" });
         return;
       }
+      if (!Number.isInteger(round) || round < 1) {
+        sendJson(res, 400, { error: "round is required" });
+        return;
+      }
 
-      const result = await handleSimulateStep(sessionId, choiceId);
+      const result = await handleSimulateStep(sessionId, choiceId, round);
       sendJson(res, 200, result);
     } catch (error) {
       sendJson(res, 500, {

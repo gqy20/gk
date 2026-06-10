@@ -58,12 +58,13 @@ export async function createSimulatorSession(input: SimulateStartInput): Promise
 export async function simulateStep(
   sessionId: string,
   choiceId: string,
+  round: number,
 ): Promise<{ session: SimulateSession; result: SimulateStepResult; ending?: SimulatorEnding }> {
-  clog.debug("POST /api/simulator/:sessionId", { sessionId, choiceId });
+  clog.debug("POST /api/simulator/:sessionId", { sessionId, choiceId, round });
   const res = await fetch(apiUrl(`/api/simulator/${encodeURIComponent(sessionId)}`), {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ choiceId }),
+    body: JSON.stringify({ choiceId, round }),
   });
 
   if (!res.ok) {
@@ -87,10 +88,11 @@ export async function getSimulatorSession(sessionId: string): Promise<SimulateSe
 
 export function recoverStepResultFromSession(
   session: SimulateSession,
-  choiceId?: string,
+  choiceId: string,
+  round: number,
 ): SimulateStepResult | null {
   const entry = session.history.at(-1);
-  if (!entry || (choiceId && entry.choiceId !== choiceId)) {
+  if (!entry || entry.choiceId !== choiceId || entry.round !== round) {
     return null;
   }
 
@@ -144,9 +146,10 @@ export interface SimulateStepStreamCallbacks {
 export async function simulateStepStream(
   sessionId: string,
   choiceId: string,
+  round: number,
   callbacks: SimulateStepStreamCallbacks,
 ): Promise<boolean> {
-  clog.debug("POST /api/simulator/:sessionId (stream)", { sessionId, choiceId });
+  clog.debug("POST /api/simulator/:sessionId (stream)", { sessionId, choiceId, round });
 
   try {
     const res = await fetch(
@@ -157,7 +160,7 @@ export async function simulateStepStream(
           "content-type": "application/json",
           Accept: "text/event-stream",
         },
-        body: JSON.stringify({ choiceId }),
+        body: JSON.stringify({ choiceId, round }),
       },
     );
 

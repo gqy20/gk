@@ -174,9 +174,10 @@ function normalizeStepResult(rawStep: unknown, fallbackRound: number, isFinal: b
 function recoverStepResultFromSession(
   session: SimulateSession,
   choiceId: string,
+  round: number,
 ): SimulateStepResult | null {
   const entry = session.history.at(-1);
-  if (!entry || entry.choiceId !== choiceId) {
+  if (!entry || entry.choiceId !== choiceId || entry.round !== round) {
     return null;
   }
 
@@ -273,6 +274,7 @@ export async function handleCreateSimulatorSession(
 export async function handleSimulateStep(
   sessionId: string,
   choiceId: string,
+  round: number,
   options: SimulatorServerOptions = {},
 ): Promise<{ session: SimulateSession; result: SimulateStepResult; ending?: SimulatorEnding }> {
   const t0 = Date.now();
@@ -283,7 +285,7 @@ export async function handleSimulateStep(
     throw new Error(`Session not found: ${sessionId}`);
   }
 
-  const recoveredResult = recoverStepResultFromSession(session, choiceId);
+  const recoveredResult = recoverStepResultFromSession(session, choiceId, round);
   if (recoveredResult) {
     log.info({ sessionId, choiceId, round: recoveredResult.round }, "Returning idempotent simulator step");
     return {
@@ -469,6 +471,7 @@ export async function handleGetSimulatorSession(
 export async function* handleSimulateStepStream(
   sessionId: string,
   choiceId: string,
+  round: number,
   options: SimulatorServerOptions = {},
 ): AsyncGenerator<StreamEvent, void, undefined> {
   const t0 = Date.now();
@@ -481,7 +484,7 @@ export async function* handleSimulateStepStream(
     return;
   }
 
-  const recoveredResult = recoverStepResultFromSession(session, choiceId);
+  const recoveredResult = recoverStepResultFromSession(session, choiceId, round);
   if (recoveredResult) {
     log.info({ sessionId, choiceId, round: recoveredResult.round }, "Returning idempotent simulator stream step");
     yield {

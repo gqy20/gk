@@ -105,12 +105,13 @@ function PlayContent() {
 
   // 处理选择
   const handleSelect = useCallback(async (choiceId: string) => {
-    if (!session || !sessionId) return;
+    if (!session?.currentScene || !sessionId) return;
 
     const roundBeforeSubmit = session.currentRound;
+    const submittedRound = session.currentScene.round;
     setPhase("loading");
     setLoadingStartTime(Date.now());
-    setLoadingRound((session?.currentRound ?? session?.history.length ?? 0) + 1);
+    setLoadingRound(submittedRound);
 
     // 重置流式状态
     setStreamPhase("waiting");
@@ -119,7 +120,7 @@ function PlayContent() {
 
     try {
       // ── 优先尝试流式调用 ──
-      const streamOk = await simulateStepStream(sessionId, choiceId, {
+      const streamOk = await simulateStepStream(sessionId, choiceId, submittedRound, {
         onThinkingStart: () => setStreamPhase("thinking"),
         onThinkingDelta: (tokens) => {
           setThinkingTokens(tokens);
@@ -153,7 +154,7 @@ function PlayContent() {
       if (!streamOk) {
         console.info("[simulator] Stream failed, reconciling session before fallback");
         const reconciledSession = await getSimulatorSession(sessionId);
-        const recoveredResult = recoverStepResultFromSession(reconciledSession, choiceId);
+        const recoveredResult = recoverStepResultFromSession(reconciledSession, choiceId, submittedRound);
 
         if (reconciledSession.currentRound > roundBeforeSubmit && recoveredResult) {
           setSession(reconciledSession);
@@ -168,7 +169,7 @@ function PlayContent() {
         }
 
         console.info("[simulator] Session was not advanced, falling back to non-streaming");
-        const { session: updatedSession, result, ending: endingData } = await simulateStep(sessionId, choiceId);
+        const { session: updatedSession, result, ending: endingData } = await simulateStep(sessionId, choiceId, submittedRound);
 
         setSession(updatedSession);
         setLastResult(result);

@@ -36,10 +36,13 @@ export async function POST(
   const t0 = Date.now();
   try {
     const { sessionId } = await params;
-    const body = (await request.json()) as { choiceId: string };
+    const body = (await request.json()) as { choiceId: string; round: number };
 
     if (!body.choiceId?.trim()) {
       return NextResponse.json({ error: "choiceId is required" }, { status: 400 });
+    }
+    if (!Number.isInteger(body.round) || body.round < 1) {
+      return NextResponse.json({ error: "round is required" }, { status: 400 });
     }
 
     // ── 判断是否请求流式模式 ──
@@ -59,6 +62,7 @@ export async function POST(
             const eventGenerator = handleSimulateStepStream(
               sessionId,
               body.choiceId,
+              body.round,
             );
 
             for await (const event of eventGenerator) {
@@ -107,7 +111,7 @@ export async function POST(
 
     // ── 非流式响应（原有逻辑不变）──
     log.info({ sessionId, choiceId: body.choiceId }, "POST step");
-    const result = await handleSimulateStep(sessionId, body.choiceId);
+    const result = await handleSimulateStep(sessionId, body.choiceId, body.round);
     log.info({ sessionId, elapsed: Date.now() - t0 }, "POST step — done");
     return NextResponse.json(result);
   } catch (error) {
