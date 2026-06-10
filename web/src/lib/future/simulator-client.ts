@@ -85,6 +85,39 @@ export async function getSimulatorSession(sessionId: string): Promise<SimulateSe
   return res.json() as Promise<SimulateSession>;
 }
 
+export function recoverStepResultFromSession(
+  session: SimulateSession,
+  choiceId?: string,
+): SimulateStepResult | null {
+  const entry = session.history.at(-1);
+  if (!entry || (choiceId && entry.choiceId !== choiceId)) {
+    return null;
+  }
+
+  const chosenChoice = {
+    id: entry.choiceId,
+    label: entry.choiceLabel,
+  };
+  const nextChoices = session.currentScene?.choices.filter((choice) => choice.id !== entry.choiceId) ?? [];
+  const choices = [
+    chosenChoice,
+    nextChoices[0] ?? chosenChoice,
+    nextChoices[1] ?? nextChoices[0] ?? chosenChoice,
+  ] as SimulateStepResult["choices"];
+
+  return {
+    round: entry.round,
+    scene_title: entry.scene_title,
+    scene_description: entry.outcome_narrative,
+    choices,
+    outcome: {
+      narrative: entry.outcome_narrative,
+      effects: entry.outcome_effects,
+    },
+    is_final: session.status === "ended",
+  };
+}
+
 // ── 流式调用 ──────────────────────────────────────
 
 /** 流式推演步骤的回调接口 */
@@ -165,6 +198,55 @@ export async function simulateStepStream(
     let buffer = "";
     let receivedFinalResult = false;
 
+    const processLine = (line: string): boolean => {
+      if (!line.startsWith("data: ")) return false;
+      const dataStr = line.slice(6).trim();
+      if (!dataStr || dataStr === "[DONE]") return false;
+
+      let event: Record<string, unknown>;
+      try {
+        event = JSON.parse(dataStr);
+      } catch {
+        return false;
+      }
+
+      switch (event.type) {
+        case "thinking_start":
+          callbacks.onThinkingStart?.();
+          break;
+        case "thinking_delta":
+          callbacks.onThinkingDelta?.((event.thinkingTokens as number) ?? 0);
+          break;
+        case "text_start":
+          break;
+        case "text_delta":
+          callbacks.onTextDelta?.((event.textContent as string) ?? "");
+          break;
+        case "tool_use_start":
+          callbacks.onToolUseStart?.();
+          break;
+        case "done":
+          if (event.result) {
+            receivedFinalResult = true;
+            callbacks.onDone(event.result as {
+              session: SimulateSession;
+              result: SimulateStepResult;
+              ending?: SimulatorEnding;
+            });
+            return true;
+          }
+          break;
+        case "error":
+          callbacks.onError?.(
+            (event.error as string) ?? "Unknown stream error",
+            (event.fallback as boolean) ?? false,
+          );
+          return true;
+      }
+
+      return false;
+    };
+
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -174,54 +256,21 @@ export async function simulateStepStream(
       buffer = lines.pop() || "";
 
       for (const line of lines) {
-        if (!line.startsWith("data: ")) continue;
-        const dataStr = line.slice(6).trim();
-        if (!dataStr || dataStr === "[DONE]") continue;
-
-        let event: Record<string, unknown>;
-        try {
-          event = JSON.parse(dataStr);
-        } catch {
-          continue;
-        }
-
-        switch (event.type) {
-          case "thinking_start":
-            callbacks.onThinkingStart?.();
-            break;
-          case "thinking_delta":
-            callbacks.onThinkingDelta?.((event.thinkingTokens as number) ?? 0);
-            break;
-          case "text_start":
-            // text_start 的 textContent 为空，无需特别处理
-            break;
-          case "text_delta":
-            callbacks.onTextDelta?.((event.textContent as string) ?? "");
-            break;
-          case "tool_use_start":
-            callbacks.onToolUseStart?.();
-            break;
-          case "done":
-            if (event.result) {
-              receivedFinalResult = true;
-              callbacks.onDone(event.result as {
-                session: SimulateSession;
-                result: SimulateStepResult;
-                ending?: SimulatorEnding;
-              });
-              return true;
-            }
-            // Some providers emit a transport-level done before the server has
-            // persisted and returned the business result. Ignore it and keep
-            // reading until we receive the final done with result.
-            break;
-          case "error":
-            callbacks.onError?.(
-              (event.error as string) ?? "Unknown stream error",
-              (event.fallback as boolean) ?? false,
-            );
+        if (processLine(line)) {
+          if (receivedFinalResult) {
+            return true;
+          }
+          if (!receivedFinalResult) {
             return false;
+          }
         }
+      }
+    }
+
+    buffer += decoder.decode();
+    for (const line of buffer.split("\n")) {
+      if (processLine(line)) {
+        return receivedFinalResult;
       }
     }
 

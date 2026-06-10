@@ -9,7 +9,12 @@ import { ResultPanel } from "./ResultPanel";
 import { HistorySidebar } from "./HistorySidebar";
 import { EndingScreen } from "./EndingScreen";
 import { ThinkingPanel, type StreamPhase } from "./ThinkingPanel";
-import { getSimulatorSession, simulateStep, simulateStepStream } from "@/lib/future/simulator-client";
+import {
+  getSimulatorSession,
+  recoverStepResultFromSession,
+  simulateStep,
+  simulateStepStream,
+} from "@/lib/future/simulator-client";
 import type { SimulateSession, SimulateStepResult, SimulatorEnding } from "@/lib/future/simulator-types";
 
 export default function SimulatorPlayPage() {
@@ -102,6 +107,7 @@ function PlayContent() {
   const handleSelect = useCallback(async (choiceId: string) => {
     if (!session || !sessionId) return;
 
+    const roundBeforeSubmit = session.currentRound;
     setPhase("loading");
     setLoadingStartTime(Date.now());
     setLoadingRound((session?.currentRound ?? session?.history.length ?? 0) + 1);
@@ -145,7 +151,23 @@ function PlayContent() {
 
       // 流式失败 → 自动降级到非流式
       if (!streamOk) {
-        console.info("[simulator] Stream failed, falling back to non-streaming");
+        console.info("[simulator] Stream failed, reconciling session before fallback");
+        const reconciledSession = await getSimulatorSession(sessionId);
+        const recoveredResult = recoverStepResultFromSession(reconciledSession, choiceId);
+
+        if (reconciledSession.currentRound > roundBeforeSubmit && recoveredResult) {
+          setSession(reconciledSession);
+          setLastResult(recoveredResult);
+
+          if (reconciledSession.ending) {
+            setPendingEnding(reconciledSession.ending);
+          }
+
+          setPhase("result");
+          return;
+        }
+
+        console.info("[simulator] Session was not advanced, falling back to non-streaming");
         const { session: updatedSession, result, ending: endingData } = await simulateStep(sessionId, choiceId);
 
         setSession(updatedSession);
@@ -275,9 +297,9 @@ function PlayContent() {
               >
                 <GameCard
                   scene={session.currentScene}
-                  currentRound={session.currentRound}
+                  currentRound={session.currentScene.round}
                   totalRounds={session.totalRounds}
-                  isFirstRound={session.currentRound === 1 && session.history.length === 0}
+                  isFirstRound={session.currentScene.round === 1 && session.history.length === 0}
                   onSelect={handleSelect}
                 />
               </motion.div>

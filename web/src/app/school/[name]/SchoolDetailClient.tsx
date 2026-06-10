@@ -17,7 +17,7 @@ export default function SchoolDetailClient({ school }: Props) {
   const router = useRouter();
   const [crawlSources, setCrawlSources] = useState<CrawlSourcesMap | null>(null);
   const [mobileView, setMobileView] = useState<MobileView>("detail");
-  const futureHref = `/future?school=${encodeURIComponent(school.name)}&province=${encodeURIComponent(school.province)}`;
+  const simulatorHref = `/simulator?school=${encodeURIComponent(school.name)}&province=${encodeURIComponent(school.province)}`;
 
   useEffect(() => {
     async function loadCrawlData() {
@@ -48,7 +48,7 @@ export default function SchoolDetailClient({ school }: Props) {
           <SchoolPanel
             school={school}
             onClose={() => router.push("/")}
-            futureHref={futureHref}
+            simulatorHref={simulatorHref}
             crawlSources={crawlSources}
           />
         </aside>

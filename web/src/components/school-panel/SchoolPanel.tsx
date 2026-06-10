@@ -14,7 +14,7 @@ import type { CrawlSourcesMap, SourceItem } from "@/lib/crawl-data";
 interface SchoolPanelProps {
   school: School | null;
   onClose?: () => void;
-  futureHref?: string;
+  simulatorHref?: string;
   crawlSources?: CrawlSourcesMap | null;
 }
 
@@ -31,7 +31,7 @@ function getDetailCount(detail: UniversityInfo | undefined, key: string): number
 export default function SchoolPanel({
   school,
   onClose,
-  futureHref,
+  simulatorHref,
   crawlSources,
 }: SchoolPanelProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
@@ -105,6 +105,8 @@ export default function SchoolPanel({
 
   const isOverview = activeTab === "overview";
   const resourceCategory = activeResourceCategory || resourceTabs[0]?.key || null;
+  const resolvedSimulatorHref = simulatorHref
+    ?? `/simulator?school=${encodeURIComponent(school.name)}&province=${encodeURIComponent(school.province)}`;
 
   function handleResourceSelect(category: ResourceTabKey) {
     setActiveResourceCategory(category);
@@ -116,7 +118,7 @@ export default function SchoolPanel({
       <SchoolHeader
         school={school}
         onClose={onClose}
-        futureHref={futureHref}
+        simulatorHref={resolvedSimulatorHref}
       />
       <TabNav
         tabs={tabs}

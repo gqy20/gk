@@ -70,15 +70,38 @@ class MemorySimulatorRepo implements ISimulatorRepo {
     return this.sessions.get(sessionId) ?? null;
   }
 
-  async advanceStep(_sessionId: string, _params: {
+  async advanceStep(sessionId: string, params: {
     newRound: number;
     historyEntry: SimulateHistoryEntry;
     nextScene: Record<string, unknown> | null;
     isFinal: boolean;
     ending?: Record<string, unknown>;
-  }): Promise<void> {}
+  }): Promise<void> {
+    const current = this.sessions.get(sessionId);
+    if (!current) throw new Error(`Session not found: ${sessionId}`);
 
-  async markError(_sessionId: string, _error: string): Promise<void> {}
+    this.sessions.set(sessionId, {
+      ...current,
+      currentRound: params.newRound,
+      status: params.isFinal ? "ended" : "playing",
+      history: [...current.history, params.historyEntry],
+      currentScene: params.nextScene as SimulateSession["currentScene"],
+      ending: (params.ending ?? null) as SimulateSession["ending"],
+      updatedAt: new Date().toISOString(),
+    });
+  }
+
+  async markError(sessionId: string, error: string): Promise<void> {
+    const current = this.sessions.get(sessionId);
+    if (!current) return;
+
+    this.sessions.set(sessionId, {
+      ...current,
+      status: "error",
+      error,
+      updatedAt: new Date().toISOString(),
+    });
+  }
 
   /** 直接写入/读取 session 对象（内存模式专用） */
   put(session: SimulateSession) { this.sessions.set(session.sessionId, session); }
@@ -145,6 +168,39 @@ function normalizeStepResult(rawStep: unknown, fallbackRound: number, isFinal: b
     scene_description: step.scene_description,
     choices: choices as SimulateStepResult["choices"],
     is_final: isFinal,
+  };
+}
+
+function recoverStepResultFromSession(
+  session: SimulateSession,
+  choiceId: string,
+): SimulateStepResult | null {
+  const entry = session.history.at(-1);
+  if (!entry || entry.choiceId !== choiceId) {
+    return null;
+  }
+
+  const chosenChoice = {
+    id: entry.choiceId,
+    label: entry.choiceLabel,
+  };
+  const nextChoices = session.currentScene?.choices.filter((choice) => choice.id !== entry.choiceId) ?? [];
+  const choices = [
+    chosenChoice,
+    nextChoices[0] ?? chosenChoice,
+    nextChoices[1] ?? nextChoices[0] ?? chosenChoice,
+  ] as SimulateStepResult["choices"];
+
+  return {
+    round: entry.round,
+    scene_title: entry.scene_title,
+    scene_description: entry.outcome_narrative,
+    choices,
+    outcome: {
+      narrative: entry.outcome_narrative,
+      effects: entry.outcome_effects,
+    },
+    is_final: session.status === "ended",
   };
 }
 
@@ -226,6 +282,17 @@ export async function handleSimulateStep(
   if (!session) {
     throw new Error(`Session not found: ${sessionId}`);
   }
+
+  const recoveredResult = recoverStepResultFromSession(session, choiceId);
+  if (recoveredResult) {
+    log.info({ sessionId, choiceId, round: recoveredResult.round }, "Returning idempotent simulator step");
+    return {
+      session,
+      result: recoveredResult,
+      ...(session.ending ? { ending: session.ending } : {}),
+    };
+  }
+
   if (session.status !== "playing") {
     throw new Error(`Session is not playing: ${session.status}`);
   }
@@ -413,6 +480,21 @@ export async function* handleSimulateStepStream(
     yield { type: "error", error: `Session not found: ${sessionId}` };
     return;
   }
+
+  const recoveredResult = recoverStepResultFromSession(session, choiceId);
+  if (recoveredResult) {
+    log.info({ sessionId, choiceId, round: recoveredResult.round }, "Returning idempotent simulator stream step");
+    yield {
+      type: "done",
+      result: {
+        session,
+        result: recoveredResult,
+        ...(session.ending ? { ending: session.ending } : {}),
+      } as Record<string, unknown>,
+    };
+    return;
+  }
+
   if (session.status !== "playing") {
     yield { type: "error", error: `Session is not playing: ${session.status}` };
     return;
@@ -631,4 +713,3 @@ export async function* handleSimulateStepStream(
     void streamPromise;
   }
 }
-

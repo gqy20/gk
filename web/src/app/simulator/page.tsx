@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, Suspense, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
@@ -10,6 +10,92 @@ import { FuturePanel, FutureShell, SectionHeading } from "../future/FutureShell"
 
 function splitTags(value: string) {
   return value.split(/[，,\s]+/).map((item) => item.trim()).filter(Boolean);
+}
+
+const FIRST_TIER_CITIES = new Set(["北京", "上海", "广州", "深圳"]);
+const NEW_FIRST_TIER_CITIES = new Set([
+  "成都",
+  "杭州",
+  "重庆",
+  "武汉",
+  "苏州",
+  "西安",
+  "南京",
+  "长沙",
+  "郑州",
+  "天津",
+  "合肥",
+  "青岛",
+  "东莞",
+  "宁波",
+  "佛山",
+]);
+const SECOND_TIER_CITIES = new Set([
+  "济南",
+  "无锡",
+  "沈阳",
+  "昆明",
+  "福州",
+  "厦门",
+  "温州",
+  "石家庄",
+  "大连",
+  "哈尔滨",
+  "金华",
+  "泉州",
+  "南宁",
+  "长春",
+  "常州",
+  "南昌",
+  "南通",
+  "贵阳",
+  "嘉兴",
+  "徐州",
+  "惠州",
+  "太原",
+  "烟台",
+  "临沂",
+  "保定",
+  "台州",
+  "绍兴",
+  "珠海",
+  "洛阳",
+  "潍坊",
+]);
+const CITY_NAMES = [
+  ...FIRST_TIER_CITIES,
+  ...NEW_FIRST_TIER_CITIES,
+  ...SECOND_TIER_CITIES,
+];
+
+function normalizeCityName(value: string) {
+  return value.trim().replace(/市$/, "");
+}
+
+function extractSchoolCity(school: School | null) {
+  if (!school) return "";
+  if (["北京", "上海", "天津", "重庆"].includes(school.province)) {
+    return school.province;
+  }
+
+  const locationText = [
+    school.detail?.basic_info?.location,
+    school.detail?.basic_info?.address,
+  ].filter(Boolean).join(" ");
+
+  const knownCity = CITY_NAMES.find((city) => locationText.includes(city));
+  if (knownCity) return knownCity;
+
+  const cityMatch = locationText.match(/([\u4e00-\u9fa5]{2,8})市/);
+  return cityMatch ? cityMatch[1] : "";
+}
+
+function getCityTier(city: string) {
+  const normalized = normalizeCityName(city);
+  if (FIRST_TIER_CITIES.has(normalized)) return "一线城市";
+  if (NEW_FIRST_TIER_CITIES.has(normalized)) return "新一线城市";
+  if (SECOND_TIER_CITIES.has(normalized)) return "二线城市";
+  return "其他城市";
 }
 
 export default function SimulatorPage() {
@@ -30,9 +116,14 @@ function SimulatorShell() {
 
 function SimulatorPageContent() {
   const router = useRouter();
-  const [targetSchool, setTargetSchool] = useState("");
-  const [targetCity, setTargetCity] = useState("");
-  const [targetMajor, setTargetMajor] = useState("");
+  const searchParams = useSearchParams();
+  const initialSchool = searchParams.get("school") || "";
+  const initialProvince = searchParams.get("province") || "";
+  const initialCity = searchParams.get("city") || "";
+  const initialMajor = searchParams.get("major") || "";
+  const [targetSchool, setTargetSchool] = useState(initialSchool);
+  const [targetCity, setTargetCity] = useState(initialCity);
+  const [targetMajor, setTargetMajor] = useState(initialMajor);
   const [gender, setGender] = useState<"male" | "female" | "unspecified">("unspecified");
   const [personalityTags, setPersonalityTags] = useState("理性 好奇");
   const [interests, setInterests] = useState("计算机 社交 阅读");
@@ -64,6 +155,7 @@ function SimulatorPageContent() {
     () => schools.find((s) => s.name === targetSchool) || null,
     [schools, targetSchool],
   );
+  const effectiveCity = targetCity || extractSchoolCity(selectedSchoolData) || initialProvince || selectedSchoolData?.province || "";
   const schoolContext = useMemo(() => {
     if (!selectedSchoolData) return {};
     const tiers: string[] = [];
@@ -80,13 +172,11 @@ function SimulatorPageContent() {
     else if (collegeNames.some((n) => /理工|工学|计算机/.test(n)) && !collegeNames.some((n) => /文|法|哲|史/.test(n))) inferredType = "理工";
     return {
       province: selectedSchoolData.province,
-      cityTier: ["北京", "上海", "广州", "深圳"].includes(targetCity || "") ? "一线城市"
-        : ["成都", "杭州", "南京", "武汉", "西安", "重庆", "天津", "苏州"].includes(targetCity || "") ? "新一线/强二线"
-        : "其他城市",
+      cityTier: getCityTier(effectiveCity),
       schoolTier: tiers.length > 0 ? tiers.join("+") : undefined,
       schoolType: inferredType,
     };
-  }, [selectedSchoolData, targetCity]);
+  }, [effectiveCity, selectedSchoolData]);
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -99,7 +189,7 @@ function SimulatorPageContent() {
           major: targetMajor || undefined,
           gender,
           province: schoolContext.province,
-          city: targetCity || undefined,
+          city: effectiveCity || undefined,
           schoolTier: schoolContext.schoolTier,
           schoolType: schoolContext.schoolType,
           personalityTags: splitTags(personalityTags),
@@ -156,7 +246,7 @@ function SimulatorPageContent() {
                         setTargetSchool(name);
                         // 自动填充学校所在城市
                         const found = schools.find((s) => s.name === name);
-                        setTargetCity(found?.province || "");
+                        setTargetCity(extractSchoolCity(found || null));
                       }}
                       className={selectClassName()}
                     >
