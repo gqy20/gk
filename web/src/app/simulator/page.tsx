@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { NativeSelect } from "@/components/ui/NativeSelect";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/Select";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
 import type { School } from "@/lib/data";
 import { FuturePanel, FutureShell, SectionHeading } from "../future/FutureShell";
@@ -247,54 +247,37 @@ function SimulatorPageContent() {
               <FuturePanel className="p-5 sm:p-6">
                 <SectionHeading title="你的大学设定" description="选择你想模拟的学校和专业，这会影响场景内容。" />
                 <div className="mt-5 grid gap-x-5 gap-y-4 md:grid-cols-2">
-                  <Label>
-                    <span>目标学校</span>
-                    <span className="relative block">
-                      <NativeSelect
-                        value={targetSchool}
-                        onChange={(e) => {
-                          const name = e.target.value;
-                          setTargetSchool(name);
-                          const found = schools.find((s) => s.name === name);
-                          setTargetCity(extractSchoolCity(found || null));
-                        }}
-                      >
-                        <option value="">选择学校（或保持默认）</option>
-                        {schools.map((s) => (
-                          <option key={s.name} value={s.name}>{s.name}</option>
-                        ))}
-                      </NativeSelect>
-                    </span>
-                  </Label>
+                  <ChoiceSelect
+                    label="目标学校"
+                    value={targetSchool}
+                    placeholder="选择学校（或保持默认）"
+                    options={schools.map((s) => s.name)}
+                    onChange={(name) => {
+                      setTargetSchool(name);
+                      const found = schools.find((s) => s.name === name);
+                      setTargetCity(extractSchoolCity(found || null));
+                    }}
+                  />
 
-                  <Label>
-                    <span>专业方向</span>
-                    <span className="relative block">
-                      <NativeSelect
-                        value={targetMajor}
-                        onChange={(e) => setTargetMajor(e.target.value)}
-                      >
-                        <option value="">选择专业（可选）</option>
-                        {majorOptions.map((m) => (
-                          <option key={m} value={m}>{m}</option>
-                        ))}
-                      </NativeSelect>
-                    </span>
-                  </Label>
+                  <ChoiceSelect
+                    label="专业方向"
+                    value={targetMajor}
+                    placeholder="选择专业（可选）"
+                    options={majorOptions}
+                    onChange={setTargetMajor}
+                  />
 
-                  <Label className="md:col-span-2">
-                    <span>性别设定</span>
-                    <span className="relative block">
-                      <NativeSelect
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
-                      >
-                        <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
-                        <option value="male">男生</option>
-                        <option value="female">女生</option>
-                      </NativeSelect>
-                    </span>
-                  </Label>
+                  <ChoiceSelect
+                    label="性别设定"
+                    value={gender}
+                    className="md:col-span-2"
+                    options={[
+                      { value: "unspecified", label: "不指定，宿舍场景避免性别化描写" },
+                      { value: "male", label: "男生" },
+                      { value: "female", label: "女生" },
+                    ]}
+                    onChange={(nextValue) => setGender(nextValue as "male" | "female" | "unspecified")}
+                  />
                 </div>
               </FuturePanel>
 
@@ -377,4 +360,57 @@ function SetupMetric({ label, value }: { label: string; value: string }) {
       <span className="text-sm font-semibold text-text">{value}</span>
     </div>
   );
+}
+
+function ChoiceSelect({
+  label,
+  value,
+  onChange,
+  options,
+  placeholder = "请选择",
+  className,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: Array<string | { value: string; label: string }>;
+  placeholder?: string;
+  className?: string;
+}) {
+  const emptyValue = "__empty";
+  const normalizedOptions = value && !options.some((option) => getOptionValue(option) === value)
+    ? [value, ...options]
+    : options;
+  const selectedOption = normalizedOptions.find((option) => getOptionValue(option) === value);
+  const displayValue = selectedOption ? getOptionLabel(selectedOption) : placeholder;
+
+  return (
+    <Label className={className}>
+      <span>{label}</span>
+      <Select
+        value={value || emptyValue}
+        onValueChange={(nextValue) => onChange(nextValue === emptyValue ? "" : nextValue)}
+      >
+        <SelectTrigger>
+          <span className={value ? "truncate" : "truncate text-text-placeholder"}>{displayValue}</span>
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value={emptyValue}>{placeholder}</SelectItem>
+          {normalizedOptions.map((option) => (
+            <SelectItem key={getOptionValue(option)} value={getOptionValue(option)}>
+              {getOptionLabel(option)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </Label>
+  );
+}
+
+function getOptionValue(option: string | { value: string; label: string }) {
+  return typeof option === "string" ? option : option.value;
+}
+
+function getOptionLabel(option: string | { value: string; label: string }) {
+  return typeof option === "string" ? option : option.label;
 }

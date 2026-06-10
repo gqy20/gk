@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { NativeSelect } from "@/components/ui/NativeSelect";
+import { Select as SelectRoot, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
 import { createFutureRunFromClient, fetchFutureRunsFromClient } from "@/lib/future/client";
 import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
@@ -564,23 +564,24 @@ function Select({
   options: string[];
   placeholder?: string;
 }) {
+  const emptyValue = "__empty";
   return (
     <Label>
       <span className="block">{label}</span>
-      <span className="relative block">
-        <NativeSelect
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-        >
-          {placeholder && <option value="">{placeholder}</option>}
+      <SelectRoot
+        value={value || emptyValue}
+        onValueChange={(nextValue) => onChange(nextValue === emptyValue ? "" : nextValue)}
+      >
+        <SelectTrigger>
+          <SelectValue placeholder={placeholder ?? "请选择"} />
+        </SelectTrigger>
+        <SelectContent>
+          {placeholder && <SelectItem value={emptyValue}>{placeholder}</SelectItem>}
           {options.map((option) => (
-            <option key={option} value={option}>{option}</option>
+            <SelectItem key={option} value={option}>{option}</SelectItem>
           ))}
-        </NativeSelect>
-        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
-          ▾
-        </span>
-      </span>
+        </SelectContent>
+      </SelectRoot>
     </Label>
   );
 }
@@ -601,24 +602,25 @@ function OptionSelect({
   placeholder?: string;
 }) {
   const normalizedOptions = value && !options.includes(value) ? [value, ...options] : options;
+  const emptyValue = "__empty";
   return (
     <Label>
       <span className="block">{label}</span>
-      <span className="relative block">
-        <NativeSelect
-          required={required}
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-        >
-          <option value="">{placeholder}</option>
+      <SelectRoot
+        required={required}
+        value={value || emptyValue}
+        onValueChange={(nextValue) => onChange(nextValue === emptyValue ? "" : nextValue)}
+      >
+        <SelectTrigger>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value={emptyValue}>{placeholder}</SelectItem>
           {normalizedOptions.map((option) => (
-            <option key={option} value={option}>{option}</option>
+            <SelectItem key={option} value={option}>{option}</SelectItem>
           ))}
-        </NativeSelect>
-        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
-          ▾
-        </span>
-      </span>
+        </SelectContent>
+      </SelectRoot>
     </Label>
   );
 }
