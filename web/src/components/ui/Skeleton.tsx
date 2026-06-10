@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 export function Skeleton({
   className = "",
 }: {
@@ -5,7 +7,7 @@ export function Skeleton({
 }) {
   return (
     <div
-      className={`animate-pulse rounded-lg bg-neutral-300/30 ${className}`}
+      className={cn("animate-pulse rounded-lg bg-neutral-300/30", className)}
     />
   );
 }

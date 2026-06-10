@@ -4,6 +4,9 @@ import { FormEvent, Suspense, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { NativeSelect } from "@/components/ui/NativeSelect";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
 import type { School } from "@/lib/data";
 import { FuturePanel, FutureShell, SectionHeading } from "../future/FutureShell";
@@ -236,10 +239,10 @@ function SimulatorPageContent() {
             <FuturePanel className="p-5 sm:p-6">
               <SectionHeading title="你的大学设定" description="选择你想模拟的学校和专业，这会影响场景内容。" />
               <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
-                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                <Label>
                   <span>目标学校</span>
                   <span className="relative block">
-                    <select
+                    <NativeSelect
                       value={targetSchool}
                       onChange={(e) => {
                         const name = e.target.value;
@@ -248,70 +251,65 @@ function SimulatorPageContent() {
                         const found = schools.find((s) => s.name === name);
                         setTargetCity(extractSchoolCity(found || null));
                       }}
-                      className={selectClassName()}
                     >
                       <option value="">选择学校（或保持默认）</option>
                       {schools.map((s) => (
                         <option key={s.name} value={s.name}>{s.name}</option>
                       ))}
-                    </select>
+                    </NativeSelect>
                   </span>
-                </label>
+                </Label>
 
-                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                <Label>
                   <span>专业方向</span>
                   <span className="relative block">
-                    <select
+                    <NativeSelect
                       value={targetMajor}
                       onChange={(e) => setTargetMajor(e.target.value)}
-                      className={selectClassName()}
                     >
                       <option value="">选择专业（可选）</option>
                       {majorOptions.map((m) => (
                         <option key={m} value={m}>{m}</option>
                       ))}
-                    </select>
+                    </NativeSelect>
                   </span>
-                </label>
+                </Label>
 
-                <label className="block space-y-2 text-xs font-medium text-text-secondary md:col-span-2">
+                <Label className="md:col-span-2">
                   <span>性别设定</span>
                   <span className="relative block">
-                    <select
+                    <NativeSelect
                       value={gender}
                       onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
-                      className={selectClassName()}
                     >
                       <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
                       <option value="male">男生</option>
                       <option value="female">女生</option>
-                    </select>
+                    </NativeSelect>
                   </span>
-                </label>
+                </Label>
               </div>
             </FuturePanel>
 
             <FuturePanel className="p-5 sm:p-6">
               <SectionHeading title="你的性格" description="这些标签会让场景和选项更贴合你。" />
               <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
-                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                <Label>
                   <span>性格标签</span>
-                  <input
+                  <Input
                     value={personalityTags}
                     onChange={(e) => setPersonalityTags(e.target.value)}
                     placeholder="用空格分隔，如：理性 好奇 内向"
-                    className={inputClassName()}
                   />
-                </label>
-                <label className="block space-y-2 text-xs font-medium text-text-secondary">
+                </Label>
+                <Label>
                   <span>兴趣方向</span>
-                  <input
+                  <Input
                     value={interests}
                     onChange={(e) => setInterests(e.target.value)}
                     placeholder="用空格分隔，如：计算机 社交 运动"
-                    className={inputClassName()}
                   />
-                </label>
+                </Label>
               </div>
 
               <div className="mt-4 rounded-xl bg-neutral-0/45 p-4">
@@ -411,20 +409,4 @@ function SimulatorPageContent() {
       </div>
     </FutureShell>
   );
-}
-
-function inputClassName() {
-  return `w-full rounded-xl border border-border bg-neutral-0/70 px-4 h-12 text-sm text-text
-          shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]
-          outline-none transition duration-150 placeholder:text-text-placeholder
-          hover:border-border-subtle focus:border-accent/60 focus:bg-surface-elevated
-          focus:ring-2 focus:ring-accent/15`;
-}
-
-function selectClassName() {
-  return `w-full appearance-none rounded-xl border border-border bg-neutral-0/70 px-4 pr-10 h-12 text-sm text-text
-          shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]
-          outline-none transition duration-150
-          hover:border-border-subtle focus:border-accent/60 focus:bg-surface-elevated
-          focus:ring-2 focus:ring-accent/15`;
 }

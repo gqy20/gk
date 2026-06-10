@@ -1,86 +1,171 @@
 import { motion } from "framer-motion";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
-type ButtonSize = "sm" | "md" | "lg";
-type ButtonTheme = "dark" | "light";
+const buttonVariants = cva(
+  [
+    "inline-flex items-center justify-center gap-2 rounded-md border font-medium",
+    "transition-colors duration-150 shadow-sm shadow-white/30",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
+    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-35",
+  ],
+  {
+    variants: {
+      variant: {
+        primary: "",
+        secondary: "",
+        ghost: "border-transparent shadow-none",
+        danger: "",
+      },
+      size: {
+        sm: "h-8 px-3 text-xs",
+        md: "h-9 px-4 text-xs",
+        lg: "h-11 px-5 text-sm",
+      },
+      theme: {
+        dark: "",
+        light: "",
+      },
+      active: {
+        true: "",
+        false: "",
+      },
+    },
+    compoundVariants: [
+      {
+        theme: "dark",
+        variant: "primary",
+        active: false,
+        className: "border-brand-600/35 bg-brand-500 text-text-inverse hover:bg-brand-600",
+      },
+      {
+        theme: "dark",
+        variant: "secondary",
+        active: false,
+        className: "border-border bg-neutral-0/82 text-text-secondary hover:border-primary/50 hover:bg-brand-50 hover:text-primary",
+      },
+      {
+        theme: "dark",
+        variant: "ghost",
+        active: false,
+        className: "text-text-secondary hover:bg-surface-subtle hover:text-text",
+      },
+      {
+        theme: "dark",
+        variant: "danger",
+        active: false,
+        className: "border-border bg-neutral-0/82 text-text-secondary hover:border-danger-200/60 hover:bg-danger-soft hover:text-danger",
+      },
+      {
+        theme: "light",
+        variant: "primary",
+        active: false,
+        className: "border-brand-600/35 bg-brand-500 text-text-inverse hover:bg-brand-600",
+      },
+      {
+        theme: "light",
+        variant: "secondary",
+        active: false,
+        className: "border-border-light bg-neutral-0/82 text-text-light hover:border-brand-400/50 hover:bg-success-soft",
+      },
+      {
+        theme: "light",
+        variant: "ghost",
+        active: false,
+        className: "text-text-light hover:bg-surface-light-subtle hover:text-brand-500",
+      },
+      {
+        theme: "light",
+        variant: "danger",
+        active: false,
+        className: "border-border-light bg-neutral-0/82 text-text-light hover:border-danger-200/40 hover:bg-danger-soft hover:text-danger-500",
+      },
+      {
+        theme: "dark",
+        variant: "primary",
+        active: true,
+        className: "border-primary bg-primary text-text-inverse",
+      },
+      {
+        theme: "dark",
+        variant: "secondary",
+        active: true,
+        className: "border-primary/50 bg-brand-50 text-primary",
+      },
+      {
+        theme: "dark",
+        variant: "ghost",
+        active: true,
+        className: "bg-surface-subtle text-text",
+      },
+      {
+        theme: "dark",
+        variant: "danger",
+        active: true,
+        className: "border-danger-200/60 bg-danger-soft text-danger",
+      },
+      {
+        theme: "light",
+        variant: "primary",
+        active: true,
+        className: "border-brand-500 bg-brand-500 text-text-inverse",
+      },
+      {
+        theme: "light",
+        variant: "secondary",
+        active: true,
+        className: "border-brand-400/50 bg-success-soft text-brand-500",
+      },
+      {
+        theme: "light",
+        variant: "ghost",
+        active: true,
+        className: "bg-surface-light-subtle text-brand-500",
+      },
+      {
+        theme: "light",
+        variant: "danger",
+        active: true,
+        className: "border-danger-200/40 text-danger-400",
+      },
+    ],
+    defaultVariants: {
+      variant: "secondary",
+      size: "md",
+      theme: "dark",
+      active: false,
+    },
+  },
+);
 
-interface ButtonProps extends ComponentPropsWithoutRef<typeof motion.button> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  theme?: ButtonTheme;
+interface ButtonProps
+  extends Omit<ComponentPropsWithoutRef<typeof motion.button>, "children">,
+    VariantProps<typeof buttonVariants> {
   isActive?: boolean;
+  children: ReactNode;
 }
-
-const variantStyles: Record<
-  ButtonTheme,
-  Record<ButtonVariant, string>
-> = {
-  dark: {
-    primary:
-      "border-brand-600/35 bg-brand-500 text-text-inverse hover:bg-brand-600",
-    secondary:
-      "border-border bg-neutral-0/82 text-text-secondary hover:border-primary/50 hover:bg-brand-50 hover:text-primary",
-    ghost: "border-transparent text-text-secondary hover:text-text hover:bg-surface-subtle",
-    danger:
-      "border-border bg-neutral-0/82 text-text-secondary hover:border-danger-200/60 hover:bg-danger-soft hover:text-danger",
-  },
-  light: {
-    primary:
-      "border-brand-600/35 bg-brand-500 text-text-inverse hover:bg-brand-600 disabled:opacity-40",
-    secondary:
-      "border-border-light bg-neutral-0/82 text-text-light hover:border-brand-400/50 hover:bg-success-soft",
-    ghost: "border-transparent text-text-light hover:text-brand-500 hover:bg-surface-light-subtle",
-    danger:
-      "border-border-light bg-neutral-0/82 text-text-light hover:border-danger-200/40 hover:bg-danger-soft hover:text-danger-500",
-  },
-};
-
-const activeStyles: Record<ButtonTheme, Record<ButtonVariant, string>> = {
-  dark: {
-    primary: "border-primary bg-primary text-text-inverse",
-    secondary: "border-primary/50 bg-brand-50 text-primary",
-    ghost: "bg-surface-subtle text-text",
-    danger: "border-danger-200/60 bg-danger-soft text-danger",
-  },
-  light: {
-    primary: "border-brand-500 bg-brand-500 text-text-inverse",
-    secondary: "border-brand-400/50 bg-success-soft text-brand-500",
-    ghost: "bg-surface-light-subtle text-brand-500",
-    danger: "border-danger-200/40 text-danger-400",
-  },
-};
-
-const sizeStyles: Record<ButtonSize, string> = {
-  sm: "h-8 px-3 text-xs font-medium",
-  md: "h-9 px-4 text-xs font-medium",
-  lg: "h-11 px-5 text-sm font-medium",
-};
 
 export function Button({
   className,
-  variant = "secondary",
-  size = "md",
-  theme = "dark",
-  isActive = false,
+  variant,
+  size,
+  theme,
+  active,
+  isActive,
   disabled,
   children,
   ...props
 }: ButtonProps) {
+  const pressed = active ?? isActive ?? false;
+
   return (
     <motion.button
       type="button"
       disabled={disabled}
       whileHover={disabled ? undefined : { scale: 1.03 }}
       whileTap={disabled ? undefined : { scale: 0.97 }}
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-md border transition shadow-sm shadow-white/30",
-        "disabled:cursor-not-allowed disabled:opacity-35",
-        sizeStyles[size],
-        isActive ? activeStyles[theme][variant] : variantStyles[theme][variant],
-        className,
-      )}
+      className={cn(buttonVariants({ variant, size, theme, active: pressed }), className)}
       {...props}
     >
       {children}
