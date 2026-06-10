@@ -3,6 +3,10 @@
 import { FormEvent, Suspense, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import { NativeSelect } from "@/components/ui/NativeSelect";
+import { Textarea } from "@/components/ui/Textarea";
 import { createFutureRunFromClient, fetchFutureRunsFromClient } from "@/lib/future/client";
 import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
 import type { School } from "@/lib/data";
@@ -241,7 +245,7 @@ function FuturePageContent() {
           <FuturePanel className="p-5 sm:p-6">
             <FormStep number="03" title="你最担心什么" description="这些顾虑会决定路线更偏成绩、就业、探索还是转向预案。">
               <div className="grid items-start gap-8 xl:grid-cols-[340px_minmax(0,1fr)]">
-                <label className="block rounded-xl bg-neutral-0/45 p-4 text-xs font-medium text-text-secondary">
+                <Label className="rounded-xl bg-neutral-0/45 p-4">
                   <span className="flex items-center justify-between gap-3">
                     <span>风险偏好</span>
                     <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
@@ -259,15 +263,15 @@ function FuturePageContent() {
                     <span>均衡</span>
                     <span>冒险</span>
                   </div>
-                </label>
-                <label className="block space-y-3 text-xs font-medium text-text-secondary">
+                </Label>
+                <Label className="space-y-3">
                   <span className="block">担心/期待</span>
-                  <textarea
+                  <Textarea
                     value={goals}
                     onChange={(event) => setGoals(event.target.value)}
-                    className={inputClassName("min-h-32 resize-y py-3 leading-6")}
+                    className="min-h-32 resize-y"
                   />
-                </label>
+                </Label>
               </div>
             </FormStep>
           </FuturePanel>
@@ -530,15 +534,14 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <label className="block space-y-2 text-xs font-medium text-text-secondary">
+    <Label>
       <span className="block">{label}</span>
-      <input
+      <Input
         required={required}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={inputClassName()}
       />
-    </label>
+    </Label>
   );
 }
 
@@ -556,24 +559,23 @@ function Select({
   placeholder?: string;
 }) {
   return (
-    <label className="block space-y-2 text-xs font-medium text-text-secondary">
+    <Label>
       <span className="block">{label}</span>
       <span className="relative block">
-        <select
+        <NativeSelect
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className={selectClassName()}
         >
           {placeholder && <option value="">{placeholder}</option>}
           {options.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
-        </select>
+        </NativeSelect>
         <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
           ▾
         </span>
       </span>
-    </label>
+    </Label>
   );
 }
 
@@ -594,42 +596,25 @@ function OptionSelect({
 }) {
   const normalizedOptions = value && !options.includes(value) ? [value, ...options] : options;
   return (
-    <label className="block space-y-2 text-xs font-medium text-text-secondary">
+    <Label>
       <span className="block">{label}</span>
       <span className="relative block">
-        <select
+        <NativeSelect
           required={required}
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          className={selectClassName()}
         >
           <option value="">{placeholder}</option>
           {normalizedOptions.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
-        </select>
+        </NativeSelect>
         <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-text-muted">
           ▾
         </span>
       </span>
-    </label>
+    </Label>
   );
-}
-
-function inputClassName(extra = "") {
-  return `w-full rounded-xl border border-border bg-neutral-0/70 px-4 text-sm text-text
-          shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]
-          outline-none transition duration-150 placeholder:text-text-placeholder
-          hover:border-border-subtle focus:border-accent/60 focus:bg-surface-elevated
-          focus:ring-2 focus:ring-accent/15 ${extra || "h-12"}`;
-}
-
-function selectClassName(extra = "") {
-  return `w-full appearance-none rounded-xl border border-border bg-neutral-0/70 px-4 pr-10 text-sm text-text
-          shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]
-          outline-none transition duration-150
-          hover:border-border-subtle focus:border-accent/60 focus:bg-surface-elevated
-          focus:ring-2 focus:ring-accent/15 ${extra || "h-12"}`;
 }
 
 function extractCity(school: School) {

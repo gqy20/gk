@@ -1,4 +1,6 @@
 import type { ReactNode, ElementType } from "react";
+import { Panel } from "@/components/ui/Panel";
+import { cn } from "@/lib/utils";
 import { TONE, type ToneKey } from "./_tone";
 
 export function FutureShell({
@@ -95,19 +97,10 @@ export function FuturePanel({
   as?: ElementType;
 }) {
   const ringClass = tone === "neutral" ? "" : `${TONE[tone].ring} ring-1`;
-  const Component: ElementType = as ?? "section";
   return (
-    <Component
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated
-                  shadow-[0_1px_0_0_rgba(255,255,255,0.7)_inset,0_18px_40px_-28px_rgba(17,24,32,0.35)]
-                  transition hover:border-border-subtle ${ringClass} ${className}`}
-    >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/80 to-transparent"
-      />
+    <Panel as={as} className={cn(ringClass, className)}>
       {children}
-    </Component>
+    </Panel>
   );
 }
 
