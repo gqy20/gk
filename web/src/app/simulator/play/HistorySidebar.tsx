@@ -27,7 +27,7 @@ export function HistorySidebar({ session, currentResult, currentPhase, loadingRo
 
   return (
     <aside className="hidden lg:block">
-      <div className="sticky top-4 flex max-h-[calc(100vh-88px)] flex-col overflow-hidden rounded-2xl border border-border bg-surface-elevated/90 shadow-[0_12px_32px_-28px_rgba(17,24,32,0.5)] backdrop-blur-sm">
+      <div className="sticky top-24 flex max-h-[calc(100vh-112px)] flex-col overflow-hidden rounded-2xl border border-border bg-surface-elevated/90 shadow-[0_12px_32px_-28px_rgba(17,24,32,0.5)] backdrop-blur-sm">
         {/* 头部：进度 */}
         <div className="shrink-0 border-b border-border/60 px-4 py-3">
           <div className="flex items-center justify-between gap-3">

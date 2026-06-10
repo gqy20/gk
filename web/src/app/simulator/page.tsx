@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, Suspense, useMemo, useState } from "react";
+import { FormEvent, Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
@@ -136,12 +136,21 @@ function SimulatorPageContent() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // 加载学校列表
-  useMemo(() => {
+  useEffect(() => {
+    let cancelled = false;
+
     fetch("/data/schools.json")
       .then((res) => res.json())
-      .then((data) => setSchools(data.schools || []))
-      .catch(() => setSchools([]));
+      .then((data) => {
+        if (!cancelled) setSchools(data.schools || []);
+      })
+      .catch(() => {
+        if (!cancelled) setSchools([]);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const majorOptions = useMemo(() => {
@@ -217,196 +226,199 @@ function SimulatorPageContent() {
       mainClassName="pb-10 pt-5"
       contentMaxClassName="max-w-[1600px]"
     >
-      <div className="mx-auto">
-        <form onSubmit={handleSubmit} className="grid items-start gap-6 xl:grid-cols-[260px_minmax(0,1fr)_380px]">
-          <FuturePanel as="aside" className="space-y-4 p-5 xl:sticky xl:top-20">
-            <p className="max-w-[24rem] text-sm leading-7 text-text-secondary">
-              每一步都是你的选择。{totalRounds} 轮决策，看看你会走出怎样的大学生活。
-            </p>
-            <div className="divide-y divide-border/70 border-t border-border/70">
-              <div className="flex items-baseline justify-between gap-4 py-3">
-                <span className="text-[11px] leading-4 text-text-muted">轮决策</span>
-                <span className="font-mono text-lg font-semibold text-text">{totalRounds}</span>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 py-3">
-                <span className="text-[11px] leading-4 text-text-muted">每轮选择</span>
-                <span className="font-mono text-lg font-semibold text-text">3</span>
-              </div>
+      <div className="mx-auto max-w-[1480px]">
+        <form onSubmit={handleSubmit} className="grid items-start gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
+          <FuturePanel as="aside" className="space-y-5 p-5 xl:sticky xl:top-24">
+            <div>
+              <SectionHeading title="模拟前设置" description={`用 ${totalRounds} 轮选择看见一段更具体的大学四年。`} />
+              <p className="mt-4 text-sm leading-7 text-text-secondary">
+                先确认学校、专业和个人偏好。开始后，每一轮只需要选一个最像你的做法。
+              </p>
+            </div>
+            <div className="grid gap-2 border-t border-border/70 pt-4">
+              <SetupMetric label="当前轮数" value={`${totalRounds} 轮`} />
+              <SetupMetric label="每轮选择" value="3 个" />
+              <SetupMetric label="城市层级" value={effectiveCity ? getCityTier(effectiveCity) : "待推断"} />
             </div>
           </FuturePanel>
 
-          <div className="space-y-5">
-            <FuturePanel className="p-5 sm:p-6">
-              <SectionHeading title="你的大学设定" description="选择你想模拟的学校和专业，这会影响场景内容。" />
-              <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
-                <Label>
-                  <span>目标学校</span>
-                  <span className="relative block">
-                    <NativeSelect
-                      value={targetSchool}
-                      onChange={(e) => {
-                        const name = e.target.value;
-                        setTargetSchool(name);
-                        // 自动填充学校所在城市
-                        const found = schools.find((s) => s.name === name);
-                        setTargetCity(extractSchoolCity(found || null));
-                      }}
-                    >
-                      <option value="">选择学校（或保持默认）</option>
-                      {schools.map((s) => (
-                        <option key={s.name} value={s.name}>{s.name}</option>
-                      ))}
-                    </NativeSelect>
-                  </span>
-                </Label>
+          <div className="grid min-w-0 gap-5 2xl:grid-cols-[minmax(0,1fr)_360px]">
+            <div className="min-w-0 space-y-5">
+              <FuturePanel className="p-5 sm:p-6">
+                <SectionHeading title="你的大学设定" description="选择你想模拟的学校和专业，这会影响场景内容。" />
+                <div className="mt-5 grid gap-x-5 gap-y-4 md:grid-cols-2">
+                  <Label>
+                    <span>目标学校</span>
+                    <span className="relative block">
+                      <NativeSelect
+                        value={targetSchool}
+                        onChange={(e) => {
+                          const name = e.target.value;
+                          setTargetSchool(name);
+                          const found = schools.find((s) => s.name === name);
+                          setTargetCity(extractSchoolCity(found || null));
+                        }}
+                      >
+                        <option value="">选择学校（或保持默认）</option>
+                        {schools.map((s) => (
+                          <option key={s.name} value={s.name}>{s.name}</option>
+                        ))}
+                      </NativeSelect>
+                    </span>
+                  </Label>
 
-                <Label>
-                  <span>专业方向</span>
-                  <span className="relative block">
-                    <NativeSelect
-                      value={targetMajor}
-                      onChange={(e) => setTargetMajor(e.target.value)}
-                    >
-                      <option value="">选择专业（可选）</option>
-                      {majorOptions.map((m) => (
-                        <option key={m} value={m}>{m}</option>
-                      ))}
-                    </NativeSelect>
-                  </span>
-                </Label>
+                  <Label>
+                    <span>专业方向</span>
+                    <span className="relative block">
+                      <NativeSelect
+                        value={targetMajor}
+                        onChange={(e) => setTargetMajor(e.target.value)}
+                      >
+                        <option value="">选择专业（可选）</option>
+                        {majorOptions.map((m) => (
+                          <option key={m} value={m}>{m}</option>
+                        ))}
+                      </NativeSelect>
+                    </span>
+                  </Label>
 
-                <Label className="md:col-span-2">
-                  <span>性别设定</span>
-                  <span className="relative block">
-                    <NativeSelect
-                      value={gender}
-                      onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
-                    >
-                      <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
-                      <option value="male">男生</option>
-                      <option value="female">女生</option>
-                    </NativeSelect>
-                  </span>
-                </Label>
-              </div>
-            </FuturePanel>
-
-            <FuturePanel className="p-5 sm:p-6">
-              <SectionHeading title="你的性格" description="这些标签会让场景和选项更贴合你。" />
-              <div className="mt-4 grid gap-x-5 gap-y-4 md:grid-cols-2">
-                <Label>
-                  <span>性格标签</span>
-                  <Input
-                    value={personalityTags}
-                    onChange={(e) => setPersonalityTags(e.target.value)}
-                    placeholder="用空格分隔，如：理性 好奇 内向"
-                  />
-                </Label>
-                <Label>
-                  <span>兴趣方向</span>
-                  <Input
-                    value={interests}
-                    onChange={(e) => setInterests(e.target.value)}
-                    placeholder="用空格分隔，如：计算机 社交 运动"
-                  />
-                </Label>
-              </div>
-
-              <div className="mt-4 rounded-xl bg-neutral-0/45 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-medium text-text-secondary">冒险倾向</span>
-                  <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
+                  <Label className="md:col-span-2">
+                    <span>性别设定</span>
+                    <span className="relative block">
+                      <NativeSelect
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value as "male" | "female" | "unspecified")}
+                      >
+                        <option value="unspecified">不指定，宿舍场景避免性别化描写</option>
+                        <option value="male">男生</option>
+                        <option value="female">女生</option>
+                      </NativeSelect>
+                    </span>
+                  </Label>
                 </div>
-                <input
-                  type="range"
-                  min={1}
-                  max={10}
-                  value={riskTolerance}
-                  onChange={(e) => setRiskTolerance(Number(e.target.value))}
-                  className="simulator-risk-slider mt-3 w-full"
-                />
-                <div className="mt-2 flex justify-between text-[11px] text-text-muted">
-                  <span>稳健谨慎</span>
-                  <span>均衡</span>
-                  <span>冒险探索</span>
-                </div>
-              </div>
-            </FuturePanel>
-          </div>
+              </FuturePanel>
 
-          {/* ── 轮数选择 ── */}
-          <FuturePanel className="p-5 sm:p-6 xl:sticky xl:top-20">
-            <SectionHeading title="模拟轮数" description="选择你想体验的决策深度。轮数越多，故事越丰富。" />
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 xl:grid-cols-1">
-              {([
-                { value: 3 as const, label: "3 轮", desc: "快速体验", detail: "入学→适应→起步，约 2 分钟" },
-                { value: 8 as const, label: "8 轮", desc: "标准模式 ⭐", detail: "完整四年脉络：入学到毕业" },
-                { value: 20 as const, label: "20 轮", desc: "深度沉浸", detail: "细腻刻画每个学期关键节点" },
-                { value: 50 as const, label: "50 轮", desc: "史诗模式", detail: "周级别的微观推演，约 15 分钟" },
-              ] as const).map((opt) => {
-                const isSelected = totalRounds === opt.value;
-                return (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => setTotalRounds(opt.value)}
-                    className={`group relative rounded-xl border p-3.5 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 ${
-                      isSelected
-                        ? "border-primary/40 bg-primary/[0.08] ring-1 ring-primary/20 shadow-[0_6px_20px_-10px_rgba(63,143,155,0.35)]"
-                        : "border-border bg-neutral-0/70 hover:border-text-muted/40 hover:bg-surface-elevated"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className={`text-sm font-semibold ${isSelected ? "text-primary" : "text-text"}`}>
-                        {opt.label}
-                      </span>
-                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors ${
+              <FuturePanel className="p-5 sm:p-6">
+                <SectionHeading title="你的性格" description="这些标签会让场景和选项更贴合你。" />
+                <div className="mt-5 grid gap-x-5 gap-y-4 md:grid-cols-2">
+                  <Label>
+                    <span>性格标签</span>
+                    <Input
+                      value={personalityTags}
+                      onChange={(e) => setPersonalityTags(e.target.value)}
+                      placeholder="用空格分隔，如：理性 好奇 内向"
+                    />
+                  </Label>
+                  <Label>
+                    <span>兴趣方向</span>
+                    <Input
+                      value={interests}
+                      onChange={(e) => setInterests(e.target.value)}
+                      placeholder="用空格分隔，如：计算机 社交 运动"
+                    />
+                  </Label>
+                </div>
+
+                <Label className="mt-5 rounded-xl bg-neutral-0/45 p-4">
+                  <span className="flex items-center justify-between gap-3">
+                    <span>冒险倾向</span>
+                    <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
+                  </span>
+                  <input
+                    type="range"
+                    min={1}
+                    max={10}
+                    value={riskTolerance}
+                    onChange={(e) => setRiskTolerance(Number(e.target.value))}
+                    className="future-risk-slider mt-4 w-full"
+                  />
+                  <span className="mt-3 flex justify-between text-[11px] text-text-muted">
+                    <span>稳健谨慎</span>
+                    <span>均衡</span>
+                    <span>冒险探索</span>
+                  </span>
+                </Label>
+              </FuturePanel>
+            </div>
+
+            <FuturePanel className="p-5 sm:p-6 2xl:sticky 2xl:top-24">
+              <SectionHeading title="模拟轮数" description="选择你想体验的决策深度。" />
+              <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4 2xl:grid-cols-1">
+                {([
+                  { value: 3 as const, label: "3 轮", desc: "快速体验", detail: "入学、适应、起步，约 2 分钟" },
+                  { value: 8 as const, label: "8 轮", desc: "标准模式", detail: "完整四年脉络：入学到毕业" },
+                  { value: 20 as const, label: "20 轮", desc: "深度沉浸", detail: "覆盖每个学期的关键节点" },
+                  { value: 50 as const, label: "50 轮", desc: "长期推演", detail: "周级别微观推演，约 15 分钟" },
+                ] as const).map((opt) => {
+                  const isSelected = totalRounds === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => setTotalRounds(opt.value)}
+                      className={`group relative flex min-h-[104px] flex-col rounded-xl border p-3.5 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 ${
                         isSelected
-                          ? "bg-primary/15 text-primary"
-                          : "bg-neutral-900/6 text-text-muted group-hover:bg-neutral-900/9"
-                      }`}>
+                          ? "border-primary/45 bg-primary/[0.08] ring-1 ring-primary/20"
+                          : "border-border bg-neutral-0/70 hover:border-primary/30 hover:bg-surface-elevated"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <span className={`text-sm font-semibold ${isSelected ? "text-primary" : "text-text"}`}>
+                          {opt.label}
+                        </span>
+                        {isSelected && (
+                          <motion.span
+                            layoutId="round-check"
+                            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] text-text-inverse"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                          >
+                            ✓
+                          </motion.span>
+                        )}
+                      </div>
+                      <span className={`mt-2 text-xs font-medium ${isSelected ? "text-primary" : "text-text-secondary"}`}>
                         {opt.desc}
                       </span>
-                    </div>
-                    <p className={`mt-1.5 text-[11px] leading-relaxed ${isSelected ? "text-primary/80" : "text-text-muted"}`}>
-                      {opt.detail}
-                    </p>
-                    {isSelected && (
-                      <motion.span
-                        layoutId="round-check"
-                        className="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[11px] text-text-inverse"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                      >
-                        ✓
-                      </motion.span>
-                    )}
-                  </button>
-                );
-              })}
+                      <span className={`mt-1 text-[11px] leading-5 ${isSelected ? "text-primary/80" : "text-text-muted"}`}>
+                        {opt.detail}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </FuturePanel>
+
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)] sm:px-6 2xl:col-span-2">
+              <p className="max-w-2xl text-xs leading-5 text-text-secondary">
+                共 {totalRounds} 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
+              </p>
+              <Button
+                type="submit"
+                disabled={submitting}
+                theme="light"
+                variant="primary"
+              >
+                {submitting ? "正在准备…" : "开始模拟"}
+              </Button>
             </div>
-          </FuturePanel>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)] sm:px-6 xl:col-span-2 xl:col-start-2">
-            <p className="max-w-2xl text-xs leading-5 text-text-secondary">
-              共 {totalRounds} 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
-            </p>
-            <Button
-              type="submit"
-              disabled={submitting}
-              theme="light"
-              variant="primary"
-            >
-              {submitting ? "正在准备…" : "开始模拟"}
-            </Button>
+            {error && (
+              <p className="rounded-lg border border-danger-300/40 bg-danger-soft px-3 py-2 text-xs text-danger 2xl:col-span-2">{error}</p>
+            )}
           </div>
-
-          {error && (
-            <p className="rounded-lg border border-danger-300/40 bg-danger-soft px-3 py-2 text-xs text-danger xl:col-span-2 xl:col-start-2">{error}</p>
-          )}
         </form>
       </div>
     </FutureShell>
+  );
+}
+
+function SetupMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between gap-4 rounded-lg border border-border/70 bg-surface-subtle/60 px-3 py-2.5">
+      <span className="text-[11px] leading-4 text-text-muted">{label}</span>
+      <span className="text-sm font-semibold text-text">{value}</span>
+    </div>
   );
 }

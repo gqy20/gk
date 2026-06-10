@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Panel } from "@/components/ui/Panel";
 import type { SimulatorChoice, SimulateStepResult } from "@/lib/future/simulator-types";
 
 interface GameCardProps {
@@ -34,7 +35,7 @@ export function GameCard({ scene, currentRound, totalRounds, disabled, isFirstRo
   }
 
   return (
-    <section className="mx-auto max-w-[1180px]">
+    <section className="mx-auto max-w-[1120px]">
       {/* 首轮欢迎横幅 */}
       {isFirstRound && (
         <motion.div
@@ -51,70 +52,72 @@ export function GameCard({ scene, currentRound, totalRounds, disabled, isFirstRo
         </motion.div>
       )}
 
-      {/* 场景头部 */}
-      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <div className="mb-2 flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-primary/25 bg-primary/8 px-2.5 py-1 text-[11px] font-medium text-primary">
-              第 {currentRound} 轮
-            </span>
-            <span className="text-xs text-text-muted">
-              共 {totalRounds} 轮 · 这一刻会写进你的大学四年
-            </span>
+      <Panel className="p-5 sm:p-6">
+        {/* 场景头部 */}
+        <div className="flex flex-col gap-4 border-b border-border/70 pb-5 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
+            <div className="mb-2 flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-primary/25 bg-primary/8 px-2.5 py-1 text-[11px] font-medium text-primary">
+                第 {currentRound} 轮
+              </span>
+              <span className="text-xs text-text-muted">
+                共 {totalRounds} 轮
+              </span>
+            </div>
+            <h2 className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
+              {scene.scene_title}
+            </h2>
           </div>
-          <h2 className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
-            {scene.scene_title}
-          </h2>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-text-muted">
-          <span className="h-2 w-2 rounded-full bg-accent" />
-          先读情境，再选一个最像你的做法
-        </div>
-      </div>
-
-      {/* 场景描述（文字区域限制最大宽度，保证可读性） */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="rounded-2xl border border-border bg-surface-elevated p-5 leading-8 text-[15px] text-text-secondary shadow-[0_8px_24px_-20px_rgba(17,24,32,0.45)] sm:p-6 sm:text-base"
-      >
-        {scene.scene_description}
-      </motion.div>
-
-      {/* 3 张选项卡牌 */}
-      <div className="mt-5 rounded-2xl border border-border/80 bg-surface-subtle/65 p-3 shadow-[0_12px_32px_-26px_rgba(17,24,32,0.45)] sm:p-4">
-        <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h3 className="text-sm font-semibold text-text">选择你的行动</h3>
-            <p className="mt-0.5 text-xs text-text-muted">
-              每个选择都会改变下一轮的人际、课程和节奏。
-            </p>
+          <div className="flex shrink-0 items-center gap-2 rounded-lg border border-border/70 bg-surface-subtle px-3 py-2 text-xs text-text-muted">
+            <span className="h-2 w-2 rounded-full bg-accent" />
+            先读情境，再选行动
           </div>
-          {selectedChoice && (
-            <motion.span
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xs font-medium text-accent"
-            >
-              已选择：{selectedChoice.label}
-            </motion.span>
-          )}
         </div>
 
-        <div className="grid gap-3 lg:grid-cols-3">
-          {scene.choices.map((choice, i) => (
-            <ChoiceCard
-              key={choice.id}
-              choice={choice}
-              index={i}
-              isSelected={selectedId === choice.id}
-              isDisabled={disabled || !!selectedId}
-              onClick={() => handleSelect(choice.id)}
-            />
-          ))}
+        {/* 场景描述（文字区域限制最大宽度，保证可读性） */}
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="mt-5 max-w-[74ch] text-[15px] leading-8 text-text-secondary sm:text-base"
+        >
+          {scene.scene_description}
+        </motion.p>
+
+        {/* 3 张选项卡牌 */}
+        <div className="mt-6 border-t border-border/70 pt-5">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h3 className="text-sm font-semibold text-text">选择你的行动</h3>
+              <p className="mt-0.5 text-xs text-text-muted">
+                每个选择都会改变下一轮的人际、课程和节奏。
+              </p>
+            </div>
+            {selectedChoice && (
+              <motion.span
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-xs font-medium text-accent"
+              >
+                已选择：{selectedChoice.label}
+              </motion.span>
+            )}
+          </div>
+
+          <div className="grid gap-3 lg:grid-cols-3">
+            {scene.choices.map((choice, i) => (
+              <ChoiceCard
+                key={choice.id}
+                choice={choice}
+                index={i}
+                isSelected={selectedId === choice.id}
+                isDisabled={disabled || !!selectedId}
+                onClick={() => handleSelect(choice.id)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </Panel>
     </section>
   );
 }
@@ -149,10 +152,10 @@ function ChoiceCard({
       onClick={onClick}
       disabled={isDisabled}
       aria-pressed={isSelected}
-      className={`group relative flex min-h-[150px] w-full flex-col rounded-xl border bg-surface-elevated p-4 text-left
-                  transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40
+      className={`group relative flex min-h-[160px] w-full flex-col rounded-xl border bg-surface-subtle/70 p-4 text-left
+                  transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40
                   ${toneClasses[index % toneClasses.length]}
-                  ${isSelected ? "scale-[1.01] border-accent/70 bg-accent-50/55 shadow-[0_10px_24px_-18px_rgba(104,73,29,0.65)]" : "border-border shadow-[0_1px_0_rgba(255,255,255,0.75)]"}
+                  ${isSelected ? "border-accent/70 bg-accent-50/55 ring-1 ring-accent/20" : "border-border"}
                   ${isDisabled && !isSelected ? "cursor-not-allowed opacity-45" : "cursor-pointer"}
                 `}
     >
