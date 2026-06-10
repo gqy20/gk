@@ -223,12 +223,12 @@ function SimulatorPageContent() {
       title="大学人生模拟器"
       backHref="/"
       backLabel="返回"
-      mainClassName="pb-10 pt-5"
+      mainClassName="pb-10"
       contentMaxClassName="max-w-[1600px]"
     >
       <div className="mx-auto max-w-[1480px]">
         <form onSubmit={handleSubmit} className="grid items-start gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
-          <FuturePanel as="aside" className="space-y-5 p-5 xl:sticky xl:top-24">
+          <FuturePanel as="aside" className="space-y-5 p-5 xl:sticky xl:top-[4.5rem]">
             <div>
               <SectionHeading title="模拟前设置" description={`用 ${totalRounds} 轮选择看见一段更具体的大学四年。`} />
               <p className="mt-4 text-sm leading-7 text-text-secondary">
@@ -341,12 +341,12 @@ function SimulatorPageContent() {
               </FuturePanel>
             </div>
 
-            <FuturePanel className="p-5 sm:p-6 2xl:sticky 2xl:top-24">
+            <FuturePanel className="p-5 sm:p-6 2xl:sticky 2xl:top-[4.5rem]">
               <SectionHeading title="模拟轮数" description="选择你想体验的决策深度。" />
               <RoundSelector value={totalRounds} onChange={setTotalRounds} />
             </FuturePanel>
 
-            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)] sm:px-6 2xl:col-span-2">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)] sm:px-6 2xl:col-span-2">
               <p className="max-w-2xl text-xs leading-5 text-text-secondary">
                 共 {totalRounds} 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
               </p>

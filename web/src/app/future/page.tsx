@@ -276,7 +276,7 @@ function FuturePageContent() {
             </FormStep>
           </FuturePanel>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_18px_40px_-32px_rgba(17,24,32,0.35)]">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)]">
             <p className="max-w-2xl text-xs leading-5 text-text-secondary">
               默认生成 3 条大学路线：一条偏稳、一条偏实践、一条保留试错或转向空间。
             </p>
@@ -295,13 +295,13 @@ function FuturePageContent() {
         <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
           <FuturePanel className="p-5 sm:p-6">
             <SectionHeading title="本次预演摘要" description="提交前先确认要预演的是不是这次志愿。" />
-            <div className="mt-4 space-y-3 text-sm">
+            <dl className="mt-4 divide-y divide-border/70 border-y border-border/70 text-sm">
               <SummaryRow label="学校" value={targetSchool || "未填写"} />
               <SummaryRow label="专业" value={targetMajor || "未指定"} />
               <SummaryRow label="城市" value={targetCity || "未指定"} />
               <SummaryRow label="学生" value={`${studentProvince || "未指定"} · ${subjectTrack} · ${scoreBand}`} />
               <SummaryRow label="偏好" value={`${riskTolerance}/10 · ${familySupport}支持`} />
-            </div>
+            </dl>
           </FuturePanel>
 
           <FuturePanel className="p-5 sm:p-6">
@@ -513,9 +513,9 @@ function FormStep({
 
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-lg border border-border/70 bg-surface-subtle/60 px-3 py-2">
-      <span className="text-xs text-text-muted">{label}</span>
-      <span className="min-w-0 truncate text-sm font-medium text-text">{value}</span>
+    <div className="grid grid-cols-[4.5rem_minmax(0,1fr)] items-center gap-4 py-2.5">
+      <dt className="text-xs text-text-muted">{label}</dt>
+      <dd className="min-w-0 truncate text-right text-sm font-medium text-text">{value}</dd>
     </div>
   );
 }
@@ -626,7 +626,7 @@ function OptionSelect({
 function extractCity(school: School) {
   const location = school.detail?.basic_info?.location || school.detail?.basic_info?.address || "";
   const directCity = location.match(/([^省自治区\s，,：:]{2,8}市)/)?.[1];
-  if (directCity) return directCity.replace(/市$/, "");
+  if (directCity) return cleanCityName(directCity);
   const provinceCityMap: Record<string, string> = {
     北京: "北京",
     上海: "上海",
@@ -636,4 +636,12 @@ function extractCity(school: School) {
     澳门: "澳门",
   };
   return provinceCityMap[school.province] || school.province;
+}
+
+function cleanCityName(value: string) {
+  return value
+    .trim()
+    .replace(/市$/, "")
+    .replace(/^(位于|在)/, "")
+    .replace(/^州(?=延吉$)/, "");
 }

@@ -5,7 +5,7 @@ import type { ElementType, ReactNode } from "react";
 const panelVariants = cva(
   [
     "group relative overflow-hidden rounded-2xl border border-border bg-surface-elevated",
-    "shadow-[0_1px_0_0_rgba(255,255,255,0.7)_inset,0_18px_40px_-28px_rgba(17,24,32,0.35)]",
+    "shadow-[0_1px_0_0_rgba(255,255,255,0.72)_inset,0_10px_24px_-22px_rgba(17,24,32,0.28)]",
     "transition",
   ],
   {
