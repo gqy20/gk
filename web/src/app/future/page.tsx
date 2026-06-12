@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, Suspense, useEffect, useMemo, useState, type ReactNode } from "react";
+import { FormEvent, Suspense, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -14,6 +14,7 @@ import { PROVINCE_COORDS } from "@/lib/provinces";
 import { FuturePanel, FutureShell, SectionHeading } from "./FutureShell";
 import { FutureLoading } from "./FutureLoading";
 import { TONE, type ToneKey } from "./_tone";
+import { useGsapScrollReveal } from "@/lib/animation/useGsapScrollReveal";
 
 function splitTags(value: string) {
   return value
@@ -65,7 +66,10 @@ function FuturePageContent() {
   const [historyItems, setHistoryItems] = useState<FutureRunListItem[] | null>(null);
   const [historyError, setHistoryError] = useState<string | null>(null);
   const [historyLoading, setHistoryLoading] = useState(false);
+  const scrollRootRef = useRef<HTMLDivElement>(null);
   const provinceOptions = useMemo(() => Object.keys(PROVINCE_COORDS), []);
+
+  useGsapScrollReveal(scrollRootRef, [tab, historyItems?.length]);
 
   useEffect(() => {
     let cancelled = false;
@@ -195,88 +199,94 @@ function FuturePageContent() {
       mainClassName="pb-10 pt-5"
     >
       {tab === "form" && (
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px] 2xl:grid-cols-[minmax(0,1fr)_420px]">
+      <div ref={scrollRootRef} className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px] 2xl:grid-cols-[minmax(0,1fr)_420px]">
         <form onSubmit={handleSubmit} className="space-y-4">
-          <FuturePanel className="p-5 sm:p-6">
-            <FormStep number="01" title="你正在考虑的志愿" description="先填这次想预演的学校、专业和城市。">
-              <div className="grid gap-x-5 gap-y-4 lg:grid-cols-3">
-                <OptionSelect
-                  label="目标学校"
-                  value={targetSchool}
-                  onChange={(value) => {
-                    setTargetSchool(value);
-                    const school = schools.find((item) => item.name === value);
-                    const nextCity = school ? extractCity(school) : "";
-                    if (nextCity) setTargetCity(nextCity);
-                  }}
-                  options={schools.map((item) => item.name)}
-                  required
-                />
-                <OptionSelect
-                  label="目标专业"
-                  value={targetMajor}
-                  onChange={setTargetMajor}
-                  options={majorOptions}
-                  placeholder={selectedSchool ? "选择专业/学科方向" : "先选择学校"}
-                />
-                <OptionSelect
-                  label="目标城市"
-                  value={targetCity}
-                  onChange={setTargetCity}
-                  options={cityOptions}
-                />
-              </div>
-            </FormStep>
-          </FuturePanel>
-
-          <FuturePanel className="p-5 sm:p-6">
-            <FormStep number="02" title="你的情况" description="不用写得很完美，重点是让几条大学路线更贴近你。">
-              <div className="grid gap-x-5 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
-                <Select label="生源省份" value={studentProvince} onChange={setStudentProvince} options={provinceOptions} placeholder="请选择生源省份" />
-                <Select label="选科/方向" value={subjectTrack} onChange={setSubjectTrack} options={["物理", "历史", "理科", "文科", "综合"]} />
-                <Select label="分数段" value={scoreBand} onChange={setScoreBand} options={["顶尖", "较高", "中上", "中等", "压线"]} />
-                <Field label="性格标签" value={personalityTags} onChange={setPersonalityTags} />
-                <Field label="兴趣方向" value={interests} onChange={setInterests} />
-                <Select label="家庭支持" value={familySupport} onChange={setFamilySupport} options={["低", "中低", "中", "中高", "高"]} />
-              </div>
-            </FormStep>
-          </FuturePanel>
-
-          <FuturePanel className="p-5 sm:p-6">
-            <FormStep number="03" title="你最担心什么" description="这些顾虑会决定路线更偏成绩、就业、探索还是转向预案。">
-              <div className="grid items-start gap-8 xl:grid-cols-[340px_minmax(0,1fr)]">
-                <Label className="rounded-xl bg-neutral-0/45 p-4">
-                  <span className="flex items-center justify-between gap-3">
-                    <span>风险偏好</span>
-                    <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
-                  </span>
-                  <input
-                    type="range"
-                    min={1}
-                    max={10}
-                    value={riskTolerance}
-                    onChange={(event) => setRiskTolerance(Number(event.target.value))}
-                    className="future-risk-slider mt-4 w-full"
+          <div data-scroll-reveal>
+            <FuturePanel className="p-5 sm:p-6">
+              <FormStep number="01" title="你正在考虑的志愿" description="先填这次想预演的学校、专业和城市。">
+                <div className="grid gap-x-5 gap-y-4 lg:grid-cols-3">
+                  <OptionSelect
+                    label="目标学校"
+                    value={targetSchool}
+                    onChange={(value) => {
+                      setTargetSchool(value);
+                      const school = schools.find((item) => item.name === value);
+                      const nextCity = school ? extractCity(school) : "";
+                      if (nextCity) setTargetCity(nextCity);
+                    }}
+                    options={schools.map((item) => item.name)}
+                    required
                   />
-                  <div className="mt-3 flex justify-between text-[11px] text-text-muted">
-                    <span>稳健</span>
-                    <span>均衡</span>
-                    <span>冒险</span>
-                  </div>
-                </Label>
-                <Label className="space-y-3">
-                  <span className="block">担心/期待</span>
-                  <Textarea
-                    value={goals}
-                    onChange={(event) => setGoals(event.target.value)}
-                    className="min-h-32 resize-y"
+                  <OptionSelect
+                    label="目标专业"
+                    value={targetMajor}
+                    onChange={setTargetMajor}
+                    options={majorOptions}
+                    placeholder={selectedSchool ? "选择专业/学科方向" : "先选择学校"}
                   />
-                </Label>
-              </div>
-            </FormStep>
-          </FuturePanel>
+                  <OptionSelect
+                    label="目标城市"
+                    value={targetCity}
+                    onChange={setTargetCity}
+                    options={cityOptions}
+                  />
+                </div>
+              </FormStep>
+            </FuturePanel>
+          </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)]">
+          <div data-scroll-reveal>
+            <FuturePanel className="p-5 sm:p-6">
+              <FormStep number="02" title="你的情况" description="不用写得很完美，重点是让几条大学路线更贴近你。">
+                <div className="grid gap-x-5 gap-y-4 md:grid-cols-2 xl:grid-cols-3">
+                  <Select label="生源省份" value={studentProvince} onChange={setStudentProvince} options={provinceOptions} placeholder="请选择生源省份" />
+                  <Select label="选科/方向" value={subjectTrack} onChange={setSubjectTrack} options={["物理", "历史", "理科", "文科", "综合"]} />
+                  <Select label="分数段" value={scoreBand} onChange={setScoreBand} options={["顶尖", "较高", "中上", "中等", "压线"]} />
+                  <Field label="性格标签" value={personalityTags} onChange={setPersonalityTags} />
+                  <Field label="兴趣方向" value={interests} onChange={setInterests} />
+                  <Select label="家庭支持" value={familySupport} onChange={setFamilySupport} options={["低", "中低", "中", "中高", "高"]} />
+                </div>
+              </FormStep>
+            </FuturePanel>
+          </div>
+
+          <div data-scroll-reveal>
+            <FuturePanel className="p-5 sm:p-6">
+              <FormStep number="03" title="你最担心什么" description="这些顾虑会决定路线更偏成绩、就业、探索还是转向预案。">
+                <div className="grid items-start gap-8 xl:grid-cols-[340px_minmax(0,1fr)]">
+                  <Label className="rounded-xl bg-neutral-0/45 p-4">
+                    <span className="flex items-center justify-between gap-3">
+                      <span>风险偏好</span>
+                      <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
+                    </span>
+                    <input
+                      type="range"
+                      min={1}
+                      max={10}
+                      value={riskTolerance}
+                      onChange={(event) => setRiskTolerance(Number(event.target.value))}
+                      className="future-risk-slider mt-4 w-full"
+                    />
+                    <div className="mt-3 flex justify-between text-[11px] text-text-muted">
+                      <span>稳健</span>
+                      <span>均衡</span>
+                      <span>冒险</span>
+                    </div>
+                  </Label>
+                  <Label className="space-y-3">
+                    <span className="block">担心/期待</span>
+                    <Textarea
+                      value={goals}
+                      onChange={(event) => setGoals(event.target.value)}
+                      className="min-h-32 resize-y"
+                    />
+                  </Label>
+                </div>
+              </FormStep>
+            </FuturePanel>
+          </div>
+
+          <div data-scroll-reveal className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)]">
             <p className="max-w-2xl text-xs leading-5 text-text-secondary">
               默认生成 3 条大学路线：一条偏稳、一条偏实践、一条保留试错或转向空间。
             </p>
@@ -293,25 +303,29 @@ function FuturePageContent() {
         </form>
 
         <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
-          <FuturePanel className="p-5 sm:p-6">
-            <SectionHeading title="本次预演摘要" description="提交前先确认要预演的是不是这次志愿。" />
-            <dl className="mt-4 divide-y divide-border/70 border-y border-border/70 text-sm">
-              <SummaryRow label="学校" value={targetSchool || "未填写"} />
-              <SummaryRow label="专业" value={targetMajor || "未指定"} />
-              <SummaryRow label="城市" value={targetCity || "未指定"} />
-              <SummaryRow label="学生" value={`${studentProvince || "未指定"} · ${subjectTrack} · ${scoreBand}`} />
-              <SummaryRow label="偏好" value={`${riskTolerance}/10 · ${familySupport}支持`} />
-            </dl>
-          </FuturePanel>
+          <div data-scroll-reveal data-scroll-y="10">
+            <FuturePanel className="p-5 sm:p-6">
+              <SectionHeading title="本次预演摘要" description="提交前先确认要预演的是不是这次志愿。" />
+              <dl className="mt-4 divide-y divide-border/70 border-y border-border/70 text-sm">
+                <SummaryRow label="学校" value={targetSchool || "未填写"} />
+                <SummaryRow label="专业" value={targetMajor || "未指定"} />
+                <SummaryRow label="城市" value={targetCity || "未指定"} />
+                <SummaryRow label="学生" value={`${studentProvince || "未指定"} · ${subjectTrack} · ${scoreBand}`} />
+                <SummaryRow label="偏好" value={`${riskTolerance}/10 · ${familySupport}支持`} />
+              </dl>
+            </FuturePanel>
+          </div>
 
-          <FuturePanel className="p-5 sm:p-6">
-            <SectionHeading title="输出会包含" />
-            <div className="mt-4 grid gap-2 text-xs leading-5 text-text-secondary">
-              {["推荐先按哪条路线走", "几种大学四年走法", "大一大二行动清单", "最容易踩的坑", "什么时候该换路"].map((item) => (
-                <InfoRow key={item} value={item} />
-              ))}
-            </div>
-          </FuturePanel>
+          <div data-scroll-reveal data-scroll-y="10">
+            <FuturePanel className="p-5 sm:p-6">
+              <SectionHeading title="输出会包含" />
+              <div className="mt-4 grid gap-2 text-xs leading-5 text-text-secondary">
+                {["推荐先按哪条路线走", "几种大学四年走法", "大一大二行动清单", "最容易踩的坑", "什么时候该换路"].map((item) => (
+                  <InfoRow key={item} value={item} />
+                ))}
+              </div>
+            </FuturePanel>
+          </div>
         </aside>
       </div>
       )}

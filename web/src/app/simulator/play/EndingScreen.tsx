@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { gsap, prefersReducedMotion } from "@/lib/animation/gsap";
 import type { SimulatorEnding, SimulateHistoryEntry } from "@/lib/future/simulator-types";
 
 interface EndingScreenProps {
@@ -30,43 +31,72 @@ function buildTabs(totalRounds: number): Array<{ id: EndingTab; label: string; h
  */
 export function EndingScreen({ ending, history, school, totalRounds, onRestart, onBack }: EndingScreenProps) {
   const [activeTab, setActiveTab] = useState<EndingTab>("profile");
+  const rootRef = useRef<HTMLDivElement>(null);
   const tabs = buildTabs(totalRounds);
 
+  useEffect(() => {
+    if (!rootRef.current || prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({ defaults: { ease: "power4.out" } })
+        .from(rootRef.current, {
+          opacity: 0,
+          y: 18,
+          scale: 0.985,
+          duration: 0.46,
+        })
+        .from("[data-ending='cover-copy']", {
+          opacity: 0,
+          y: 12,
+          duration: 0.34,
+          stagger: 0.075,
+        }, "-=0.2")
+        .from("[data-ending='metric']", {
+          opacity: 0,
+          y: 10,
+          scale: 0.98,
+          duration: 0.28,
+          stagger: 0.055,
+        }, "-=0.22")
+        .from("[data-ending='tag']", {
+          opacity: 0,
+          y: 6,
+          duration: 0.18,
+          stagger: 0.025,
+        }, "-=0.1");
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.97, y: 16 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      ref={rootRef}
       className="mx-auto max-w-[1180px] space-y-4"
     >
       {/* 结局封面 */}
       <section className="overflow-hidden rounded-2xl border border-border bg-surface-elevated shadow-[0_18px_40px_-28px_rgba(17,24,32,0.35)]">
         <div className="grid gap-5 border-b border-border bg-gradient-to-br from-brand-50/55 via-surface-elevated to-accent-50/35 px-5 py-6 sm:px-7 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
           <div className="min-w-0">
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
+            <div
+              data-ending="cover-copy"
               className="mb-2 text-xs font-medium text-accent"
             >
               {school} · 大学轨迹 · 大学人设卡
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            </div>
+            <h2
+              data-ending="cover-copy"
               className="text-2xl font-bold tracking-tight text-text sm:text-4xl"
             >
               {ending.archetype}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+            </h2>
+            <p
+              data-ending="cover-copy"
               className="mt-3 max-w-3xl text-sm leading-7 text-text-secondary sm:text-base"
             >
               {ending.summary}
-            </motion.p>
+            </p>
           </div>
 
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
@@ -80,6 +110,7 @@ export function EndingScreen({ ending, history, school, totalRounds, onRestart, 
             {ending.tags.map((tag) => (
               <span
                 key={tag}
+                data-ending="tag"
                 className="rounded-full border border-brand-200/40 bg-brand-50/50 px-3 py-1 text-xs font-medium text-brand-700"
               >
                 {tag}
@@ -140,7 +171,7 @@ export function EndingScreen({ ending, history, school, totalRounds, onRestart, 
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -229,7 +260,7 @@ function HistoryTab({ history }: { history: SimulateHistoryEntry[] }) {
 
 function MetricCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-border bg-surface-elevated/85 p-3">
+    <div data-ending="metric" className="rounded-xl border border-border bg-surface-elevated/85 p-3">
       <div className="text-[11px] font-medium text-text-muted">{label}</div>
       <div className="mt-1 text-sm font-semibold leading-5 text-text">{value}</div>
     </div>

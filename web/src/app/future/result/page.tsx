@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState, useCallback, type ReactNode } from "react";
+import { Suspense, useEffect, useRef, useState, useCallback, type ReactNode } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ResultBlessing } from "@/components/GaokaoBlessing";
@@ -9,6 +9,7 @@ import type { FuturePath, FutureRunResult, FutureStructuredOutput } from "@/lib/
 import { FuturePanel, FutureShell } from "../FutureShell";
 import { FutureLoading, FutureLoadingFallback } from "../FutureLoading";
 import { TONE, RADAR_VIEW, toneOf, buildRadarPoints, type ToneKey } from "../_tone";
+import { useGsapScrollReveal } from "@/lib/animation/useGsapScrollReveal";
 import {
   findRecommendedPath,
   clipText,
@@ -37,6 +38,7 @@ function FutureResultContent() {
   const [error, setError] = useState<string | null>(null);
   const [cancelled, setCancelled] = useState(false);
   const [userSelectedMode, setUserSelectedMode] = useState(false);
+  const scrollRootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!runId) {
@@ -122,6 +124,8 @@ function FutureResultContent() {
     setSelectedMode(mode);
   }, []);
 
+  useGsapScrollReveal(scrollRootRef, [output?.paths.length, selectedMode, isGenerating]);
+
   return (
     <FutureShell
       title={output?.title || "大学四年预演结果"}
@@ -140,6 +144,7 @@ function FutureResultContent() {
       }
       mainClassName="pb-8"
     >
+      <div ref={scrollRootRef} className="space-y-4">
         {displayError && (
           <div className="rounded-lg border border-danger-300/40 bg-danger-soft p-4 text-sm text-danger">
             {displayError}
@@ -204,6 +209,7 @@ function FutureResultContent() {
             </motion.div>
           </motion.div>
         )}
+      </div>
     </FutureShell>
   );
 }
@@ -306,7 +312,8 @@ function DecisionSummary({
   const toneCls = TONE[tone];
 
   return (
-    <FuturePanel tone={tone} className="p-4 sm:p-5">
+    <div data-scroll-reveal>
+      <FuturePanel tone={tone} className="p-4 sm:p-5">
       <ResultBlessing />
       <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.56fr)]">
         <div className="min-w-0">
@@ -345,7 +352,8 @@ function DecisionSummary({
           </ul>
         </div>
       </div>
-    </FuturePanel>
+      </FuturePanel>
+    </div>
   );
 }
 
@@ -361,11 +369,12 @@ function SelectedPathDetail({
   const studentGuide = buildStudentGuide(path);
 
   return (
-    <FuturePanel
-      tone={tone}
-      className="p-4 sm:p-5"
-      as="article"
-    >
+    <div data-scroll-reveal data-scroll-y="14">
+      <FuturePanel
+        tone={tone}
+        className="p-4 sm:p-5"
+        as="article"
+      >
       <div
         id={`path-panel-${path.index}`}
         role="tabpanel"
@@ -417,18 +426,25 @@ function SelectedPathDetail({
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-surface-subtle p-3">
+          <div data-scroll-reveal data-scroll-y="8" className="rounded-xl border border-border bg-surface-subtle p-3">
             <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
               大学四年节奏
             </div>
             <div className="mt-3 grid gap-3 lg:grid-cols-3">
               {path.timeline.map((item, i) => (
-                <TimelineRow key={item.stage} item={item} index={i} />
+                <div
+                  key={item.stage}
+                  data-scroll-reveal
+                  data-scroll-y="10"
+                  data-scroll-delay={String(Math.min(i * 0.06, 0.18))}
+                >
+                  <TimelineRow item={item} index={i} />
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div data-scroll-reveal data-scroll-y="8" className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-danger-300/25 bg-danger-500/[0.05] p-3">
               <h3 className="font-mono text-[10px] uppercase tracking-wider text-danger-300">
                 最容易踩的坑
@@ -460,7 +476,8 @@ function SelectedPathDetail({
 
         </div>
       </div>
-    </FuturePanel>
+      </FuturePanel>
+    </div>
   );
 }
 
@@ -491,7 +508,8 @@ function ComparisonPage({
   recommendedPath: FuturePath | null;
 }) {
   return (
-    <FuturePanel className="p-4 sm:p-5">
+    <div data-scroll-reveal>
+      <FuturePanel className="p-4 sm:p-5">
       <div id="path-panel-compare" className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
@@ -508,7 +526,8 @@ function ComparisonPage({
       <div className="mt-4">
         <ComparisonTableContent output={output} recommendedPath={recommendedPath} />
       </div>
-    </FuturePanel>
+      </FuturePanel>
+    </div>
   );
 }
 

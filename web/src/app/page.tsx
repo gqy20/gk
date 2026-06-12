@@ -14,6 +14,7 @@ import FilterBar from "@/components/FilterBar";
 import { HeaderBlessing, PanelBlessing } from "@/components/GaokaoBlessing";
 import ProvinceList from "@/components/ProvinceList";
 import SchoolPanel from "@/components/school-panel/SchoolPanel";
+import { gsap, prefersReducedMotion } from "@/lib/animation/gsap";
 
 const panelVariants = {
   initial: { x: 24, y: 8, opacity: 0, scale: 0.98 },
@@ -59,6 +60,8 @@ function Home() {
     crawlSources,
     dispatch,
   } = useApp();
+  const homeRootRef = useRef<HTMLDivElement>(null);
+  const introPlayedRef = useRef(false);
   const [mapTransitioning, setMapTransitioning] = useState(false);
   const [transitionProvince, setTransitionProvince] = useState<string | null>(null);
   const provinceFromUrl = searchParams.get("province")?.trim() || null;
@@ -148,6 +151,56 @@ function Home() {
     dispatch({ type: "SET_PROVINCE", payload: provinceFromUrl });
   }, [dispatch, provinceFromUrl, selectedProvince, setProvinceUrl]);
 
+  useEffect(() => {
+    if (!data || introPlayedRef.current || prefersReducedMotion()) return;
+    introPlayedRef.current = true;
+
+    const ctx = gsap.context(() => {
+      const topbar = gsap.utils.toArray("[data-gsap='topbar']");
+      const navItems = gsap.utils.toArray("[data-gsap='nav-item']");
+      const map = gsap.utils.toArray("[data-gsap='map']");
+      const sidePanel = gsap.utils.toArray("[data-gsap='side-panel']");
+      const timeline = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      if (topbar.length) {
+        timeline.from(topbar, {
+          y: -12,
+          opacity: 0,
+          duration: 0.36,
+        });
+      }
+
+      if (navItems.length) {
+        timeline.from(navItems, {
+          y: -6,
+          opacity: 0,
+          duration: 0.22,
+          stagger: 0.035,
+        }, "-=0.18");
+      }
+
+      if (map.length) {
+        timeline.from(map, {
+          scale: 0.985,
+          opacity: 0,
+          filter: "blur(8px)",
+          duration: 0.58,
+          clearProps: "filter",
+        }, "-=0.12");
+      }
+
+      if (sidePanel.length) {
+        timeline.from(sidePanel, {
+          x: 18,
+          opacity: 0,
+          duration: 0.28,
+        }, "-=0.34");
+      }
+    }, homeRootRef);
+
+    return () => ctx.revert();
+  }, [data]);
+
   if (!data) {
     return <HomePageSkeleton />;
   }
@@ -165,7 +218,7 @@ function Home() {
   const shouldReserveSidePanel = mapTransitioning || hasSidePanelContent;
 
   return (
-    <div className="ink-wash-bg relative flex h-screen min-h-screen flex-col overflow-hidden text-text">
+    <div ref={homeRootRef} className="ink-wash-bg relative flex h-screen min-h-screen flex-col overflow-hidden text-text">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_18%_20%,rgba(82,115,105,0.10),transparent_22%),radial-gradient(circle_at_86%_76%,rgba(68,150,166,0.12),transparent_24%),repeating-linear-gradient(97deg,rgba(83,72,56,0.035)_0_1px,transparent_1px_18px)]"
@@ -178,7 +231,7 @@ function Home() {
             : "显示全国高校"}
       </div>
 
-      <header className="paper-shell home-topbar relative z-20 px-3 py-2 sm:px-4">
+      <header data-gsap="topbar" className="paper-shell home-topbar relative z-20 px-3 py-2 sm:px-4">
         <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
           <div className="brand-lockup min-w-0 self-start">
             <span className="brand-mark-frame" aria-hidden="true">
@@ -208,18 +261,21 @@ function Home() {
             />
             <a
               href="/majors"
+              data-gsap="nav-item"
               className="home-nav-pill hidden lg:inline-flex"
             >
               专业库
             </a>
             <a
               href="/future"
+              data-gsap="nav-item"
               className="home-nav-pill hidden lg:inline-flex"
             >
               未来路径
             </a>
             <a
               href="/simulator"
+              data-gsap="nav-item"
               className="home-nav-pill hidden lg:inline-flex"
             >
               大学模拟器
@@ -227,13 +283,13 @@ function Home() {
           </div>
 
           <nav className="grid grid-cols-3 gap-2 lg:hidden" aria-label="关键功能">
-            <a href="/majors" className="home-mobile-action">
+            <a href="/majors" data-gsap="nav-item" className="home-mobile-action">
               专业库
             </a>
-            <a href="/future" className="home-mobile-action">
+            <a href="/future" data-gsap="nav-item" className="home-mobile-action">
               未来路径
             </a>
-            <a href="/simulator" className="home-mobile-action">
+            <a href="/simulator" data-gsap="nav-item" className="home-mobile-action">
               大学模拟器
             </a>
           </nav>
@@ -247,7 +303,7 @@ function Home() {
             : "grid-rows-1"
         }`}
       >
-        <section aria-label="高校地图" className="paper-card home-map-card relative min-h-0 overflow-hidden rounded-lg before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-4 before:bg-gradient-to-b before:from-[rgba(247,241,228,0.28)] before:to-transparent">
+        <section data-gsap="map" aria-label="高校地图" className="paper-card home-map-card relative min-h-0 overflow-hidden rounded-lg before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-4 before:bg-gradient-to-b before:from-[rgba(247,241,228,0.28)] before:to-transparent">
           <ChinaMap3D
             schools={data.schools}
             highlightedSchools={filteredSchools}
@@ -274,6 +330,7 @@ function Home() {
           {hasSidePanelContent && (
             <motion.aside
               key="side-panel"
+              data-gsap="side-panel"
               aria-label="高校列表与详情"
               className="paper-card relative flex min-h-0 flex-col overflow-hidden rounded-lg border text-text"
               variants={panelVariants}
