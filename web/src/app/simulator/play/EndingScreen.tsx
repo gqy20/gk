@@ -1,15 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap, prefersReducedMotion } from "@/lib/animation/gsap";
-import type { SimulatorEnding, SimulateHistoryEntry } from "@/lib/future/simulator-types";
+import type { SimulatorEnding, SimulateHistoryEntry, SimulateSession } from "@/lib/future/simulator-types";
+import { ShareDialog, type ShareStatus } from "./ShareDialog";
+import { createSimulatorShare } from "@/lib/future/simulator-client";
 
 interface EndingScreenProps {
   ending: SimulatorEnding;
   history: SimulateHistoryEntry[];
   school: string;
   totalRounds: number;
+  session: SimulateSession;
   onRestart: () => void;
   onBack: () => void;
 }
@@ -29,10 +32,39 @@ function buildTabs(totalRounds: number): Array<{ id: EndingTab; label: string; h
  *
  * 顶部保留结局揭晓，详细内容通过 tab 切换，避免结果页纵向堆叠。
  */
-export function EndingScreen({ ending, history, school, totalRounds, onRestart, onBack }: EndingScreenProps) {
+export function EndingScreen({ ending, history, school, totalRounds, session, onRestart, onBack }: EndingScreenProps) {
   const [activeTab, setActiveTab] = useState<EndingTab>("profile");
+  const [shareOpen, setShareOpen] = useState(false);
+  const [shareStatus, setShareStatus] = useState<ShareStatus>("creating");
+  const [shareId, setShareId] = useState<string | null>(null);
+  const [shareError, setShareError] = useState("");
   const rootRef = useRef<HTMLDivElement>(null);
   const tabs = buildTabs(totalRounds);
+
+  const handleOpenShare = useCallback(async () => {
+    setShareOpen(true);
+    setShareStatus("creating");
+    setShareId(null);
+    setShareError("");
+    try {
+      const r = await createSimulatorShare({
+        sessionId: session.sessionId,
+        school: session.profile.school,
+        major: session.profile.major,
+        ending,
+      });
+      setShareId(r.shareId);
+      setShareStatus("ready");
+    } catch (err) {
+      setShareError(err instanceof Error ? err.message : "创建分享失败");
+      setShareStatus("error");
+    }
+  }, [session.sessionId, session.profile.school, session.profile.major, ending]);
+
+  const handleCloseShare = useCallback(() => {
+    setShareOpen(false);
+    // 保留 shareId 以便用户重新打开不重复创建；状态由下一次 handleOpenShare 重置
+  }, []);
 
   useEffect(() => {
     if (!rootRef.current || prefersReducedMotion()) return;
@@ -157,6 +189,19 @@ export function EndingScreen({ ending, history, school, totalRounds, onRestart, 
         <div className="flex shrink-0 flex-wrap gap-2">
           <button
             type="button"
+            onClick={handleOpenShare}
+            className="inline-flex items-center gap-1.5 rounded-xl border border-accent/30 bg-accent/8 px-4 py-2.5 text-sm font-medium text-accent transition hover:border-accent/50 hover:bg-accent/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35"
+          >
+            <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <circle cx="14" cy="5" r="2.4" />
+              <circle cx="5.5" cy="10" r="2.4" />
+              <circle cx="14" cy="15" r="2.4" />
+              <path d="M7.5 8.7l4-2.4M7.5 11.3l4 2.4" strokeLinecap="round" />
+            </svg>
+            分享人设卡
+          </button>
+          <button
+            type="button"
             onClick={onRestart}
             className="rounded-xl border border-accent/35 bg-accent px-5 py-2.5 text-sm font-medium text-text-inverse transition hover:bg-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35"
           >
@@ -171,6 +216,16 @@ export function EndingScreen({ ending, history, school, totalRounds, onRestart, 
           </button>
         </div>
       </div>
+
+      <ShareDialog
+        open={shareOpen}
+        status={shareStatus}
+        shareId={shareId}
+        errorMsg={shareError}
+        session={session}
+        ending={ending}
+        onClose={handleCloseShare}
+      />
     </div>
   );
 }

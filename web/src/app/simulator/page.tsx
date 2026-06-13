@@ -16,6 +16,88 @@ function splitTags(value: string) {
   return value.split(/[，,\s]+/).map((item) => item.trim()).filter(Boolean);
 }
 
+/** 一键开玩的预设档案：覆盖 985/211、理工/综合/财经、文/理/工医典型组合 */
+interface PresetProfile {
+  id: string;
+  badge: string;
+  school: string;
+  major: string;
+  gender: "male" | "female" | "unspecified";
+  personalityTags: string;
+  interests: string;
+  risk: number;
+  tagline: string;
+}
+
+const PRESETS: PresetProfile[] = [
+  {
+    id: "tech-explorer",
+    badge: "小镇学霸型",
+    school: "武汉大学",
+    major: "计算机",
+    gender: "male",
+    personalityTags: "理性 好奇",
+    interests: "计算机 社交 阅读",
+    risk: 5,
+    tagline: "小镇出身，985 理工，期待在大城市找到自己的位置",
+  },
+  {
+    id: "media-explorer",
+    badge: "文艺探索型",
+    school: "复旦大学",
+    major: "新闻传播",
+    gender: "female",
+    personalityTags: "外向 表达欲强",
+    interests: "写作 摄影 社交",
+    risk: 7,
+    tagline: "985 综合大平台，新闻系，想做不一样的内容",
+  },
+  {
+    id: "engineering-competitor",
+    badge: "工科竞赛型",
+    school: "哈尔滨工业大学",
+    major: "自动化",
+    gender: "male",
+    personalityTags: "踏实 勤奋",
+    interests: "工程 物理 篮球",
+    risk: 4,
+    tagline: "C9 理工强校，工科实验班出身，准备打竞赛",
+  },
+  {
+    id: "medicine-deep",
+    badge: "医学深耕型",
+    school: "中山大学",
+    major: "临床医学",
+    gender: "female",
+    personalityTags: "细致 抗压",
+    interests: "生物 公益 跑步",
+    risk: 3,
+    tagline: "八年制临床，目标明确，节奏稳",
+  },
+  {
+    id: "finance-practitioner",
+    badge: "财经实践型",
+    school: "上海财经大学",
+    major: "金融学",
+    gender: "male",
+    personalityTags: "精明 进取",
+    interests: "金融 投资 社交",
+    risk: 8,
+    tagline: "财经强校，市场化氛围浓，准备冲投行/咨询",
+  },
+  {
+    id: "humanities-free",
+    badge: "人文自由型",
+    school: "南京大学",
+    major: "汉语言文学",
+    gender: "unspecified",
+    personalityTags: "内敛 求知",
+    interests: "文学 哲学 写作",
+    risk: 4,
+    tagline: "985 文科强校，慢节奏，喜欢安静读书和思考",
+  },
+];
+
 const FIRST_TIER_CITIES = new Set(["北京", "上海", "广州", "深圳"]);
 const NEW_FIRST_TIER_CITIES = new Set([
   "成都",
@@ -136,9 +218,14 @@ function SimulatorPageContent() {
   const [schools, setSchools] = useState<School[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [submitStartedAt, setSubmitStartedAt] = useState<number | null>(null);
   const scrollRootRef = useRef<HTMLDivElement>(null);
 
   useGsapScrollReveal(scrollRootRef, []);
+
+  useEffect(() => {
+    router.prefetch("/simulator/play");
+  }, [router]);
 
   useEffect(() => {
     let cancelled = false;
@@ -196,7 +283,9 @@ function SimulatorPageContent() {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    if (submitting) return;
     setSubmitting(true);
+    setSubmitStartedAt(Date.now());
     setError(null);
     try {
       const session = await createSimulatorSession({
@@ -216,10 +305,38 @@ function SimulatorPageContent() {
       });
       router.push(`/simulator/play?sessionId=${encodeURIComponent(session.sessionId)}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "创建游戏失败");
-    } finally {
+      setError(formatSimulatorStartError(err));
       setSubmitting(false);
+      setSubmitStartedAt(null);
     }
+  }
+
+  /** 一键应用预设档案（不立刻开始，让用户先看到表单被填充） */
+  function applyPreset(preset: PresetProfile) {
+    setTargetSchool(preset.school);
+    setTargetMajor(preset.major);
+    setGender(preset.gender);
+    setPersonalityTags(preset.personalityTags);
+    setInterests(preset.interests);
+    setRiskTolerance(preset.risk);
+    const found = schools.find((s) => s.name === preset.school);
+    setTargetCity(extractSchoolCity(found || null));
+    setError(null);
+    // 滚动到下方表单，让用户看到填充结果
+    requestAnimationFrame(() => {
+      document.getElementById("simulator-setup-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  /** 一键应用 + 立刻开玩（适合完全信任 preset 的老用户） */
+  async function startWithPreset(preset: PresetProfile) {
+    if (submitting) return;
+    applyPreset(preset);
+    // 等 React 把 state 落地再提交
+    setTimeout(() => {
+      const form = document.getElementById("simulator-setup-form") as HTMLFormElement | null;
+      form?.requestSubmit();
+    }, 80);
   }
 
   return (
@@ -230,8 +347,45 @@ function SimulatorPageContent() {
       mainClassName="pb-10"
       contentMaxClassName="max-w-[1600px]"
     >
-      <div ref={scrollRootRef} className="mx-auto max-w-[1480px]">
-        <form onSubmit={handleSubmit} className="grid items-start gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
+      <div ref={scrollRootRef} className="mx-auto max-w-[1480px] space-y-6">
+        {/* 顶部 Hero + 快速开始 preset */}
+        <div data-scroll-reveal>
+          <FuturePanel className="overflow-hidden p-0">
+            <div className="grid gap-5 bg-gradient-to-br from-brand-50/55 via-surface-elevated to-accent-50/35 px-5 py-6 sm:px-7 sm:py-7">
+              <div>
+                <p className="text-xs font-medium text-accent">大学人生模拟器</p>
+                <h1 className="mt-1.5 text-2xl font-bold tracking-tight text-text sm:text-3xl">
+                  选一所学校，8 轮选择，看看你四年后会变成什么样
+                </h1>
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-text-secondary">
+                  基于你的学校、专业、性格和风险偏好，由 AI 推演一段真实的中国大学生活，最终生成一张「大学人设卡」。
+                </p>
+              </div>
+            </div>
+
+            <div className="border-t border-border bg-surface-elevated/85 px-5 py-5 sm:px-7 sm:py-6">
+              <div className="flex items-end justify-between gap-3">
+                <SectionHeading
+                  title="快速开始"
+                  description="先选一个典型画像，一键填充下方面单；想自定义就跳过。"
+                />
+                <span className="hidden text-[11px] text-text-muted sm:block">点击卡片 → 一键开玩</span>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {PRESETS.map((preset) => (
+                  <PresetCard
+                    key={preset.id}
+                    preset={preset}
+                    onApply={() => applyPreset(preset)}
+                    onStart={() => startWithPreset(preset)}
+                  />
+                ))}
+              </div>
+            </div>
+          </FuturePanel>
+        </div>
+
+        <form id="simulator-setup-form" onSubmit={handleSubmit} className="grid items-start gap-5 xl:grid-cols-[280px_minmax(0,1fr)]">
           <div data-scroll-reveal data-scroll-y="10" className="xl:sticky xl:top-[4.5rem]">
             <FuturePanel as="aside" className="space-y-5 p-5">
               <div>
@@ -341,7 +495,7 @@ function SimulatorPageContent() {
               </FuturePanel>
             </div>
 
-            <div data-scroll-reveal className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)] sm:px-6 2xl:col-span-2">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)] sm:px-6 2xl:col-span-2">
               <p className="max-w-2xl text-xs leading-5 text-text-secondary">
                 共 {totalRounds} 轮决策，每轮 3 个选择，最终生成你的「大学人设卡」。
               </p>
@@ -350,10 +504,27 @@ function SimulatorPageContent() {
                 disabled={submitting}
                 theme="light"
                 variant="primary"
+                className="min-w-[7.5rem]"
+                aria-busy={submitting}
               >
-                {submitting ? "正在准备…" : "开始模拟"}
+                {submitting ? (
+                  <>
+                    <span aria-hidden className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/35 border-t-white" />
+                    正在准备
+                  </>
+                ) : (
+                  "开始模拟"
+                )}
               </Button>
             </div>
+
+            {submitting && (
+              <PreparingSimulatorPanel
+                startedAt={submitStartedAt}
+                school={targetSchool || "目标学校"}
+                major={targetMajor || "专业方向"}
+              />
+            )}
 
             {error && (
               <p className="rounded-lg border border-danger-300/40 bg-danger-soft px-3 py-2 text-xs text-danger 2xl:col-span-2">{error}</p>
@@ -362,6 +533,105 @@ function SimulatorPageContent() {
         </form>
       </div>
     </FutureShell>
+  );
+}
+
+function formatSimulatorStartError(err: unknown) {
+  const message = err instanceof Error ? err.message : "";
+  if (/api key|invalid_api_key|incorrect api key/i.test(message)) {
+    return "AI 服务配置暂时不可用，请检查服务密钥后再试。";
+  }
+  if (/timeout|timed out|network/i.test(message)) {
+    return "生成第一轮场景超时了，请稍后重试。";
+  }
+  if (message.trim()) {
+    return "创建模拟失败，请稍后重试。";
+  }
+  return "创建模拟失败，请稍后重试。";
+}
+
+function PreparingSimulatorPanel({
+  startedAt,
+  school,
+  major,
+}: {
+  startedAt: number | null;
+  school: string;
+  major: string;
+}) {
+  const [elapsed, setElapsed] = useState(0);
+
+  useEffect(() => {
+    if (!startedAt) return;
+    const timer = window.setInterval(() => {
+      setElapsed(Date.now() - startedAt);
+    }, 500);
+    return () => window.clearInterval(timer);
+  }, [startedAt]);
+
+  const seconds = Math.floor(elapsed / 1000);
+  const progress = Math.min(88, Math.round((1 - Math.exp(-elapsed / 18_000)) * 92));
+  const activeStep = seconds < 3 ? 0 : seconds < 10 ? 1 : 2;
+  const steps = [
+    "整理学校、专业和个人偏好",
+    "生成第一轮大学生活场景",
+    "准备 3 个可选择的做法",
+  ];
+
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="overflow-hidden rounded-2xl border border-accent/20 bg-accent/6 p-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)] sm:p-5 2xl:col-span-2"
+    >
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-text">正在准备第一轮模拟</p>
+          <p className="mt-1 text-xs leading-5 text-text-secondary">
+            已等待 {seconds}s，正在根据 {school} 和 {major} 生成开局场景。
+          </p>
+        </div>
+        <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-surface-elevated px-3 py-1.5 text-xs font-medium text-accent">
+          <span aria-hidden className="relative flex h-2 w-2">
+            <span className="absolute inset-0 animate-ping rounded-full bg-accent/60" />
+            <span className="relative h-2 w-2 rounded-full bg-accent" />
+          </span>
+          生成中
+        </span>
+      </div>
+
+      <div className="mt-4 h-2 overflow-hidden rounded-full bg-surface-elevated">
+        <div
+          className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        {steps.map((step, index) => {
+          const done = index < activeStep;
+          const active = index === activeStep;
+          return (
+            <div
+              key={step}
+              className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs ${
+                done || active
+                  ? "border-accent/20 bg-surface-elevated text-text-secondary"
+                  : "border-border/70 bg-surface-subtle/50 text-text-muted"
+              }`}
+            >
+              <span
+                aria-hidden
+                className={`h-2 w-2 shrink-0 rounded-full ${
+                  done ? "bg-accent" : active ? "animate-pulse bg-accent" : "bg-text-muted/30"
+                }`}
+              />
+              <span className="min-w-0 leading-5">{step}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -425,4 +695,52 @@ function getOptionValue(option: string | { value: string; label: string }) {
 
 function getOptionLabel(option: string | { value: string; label: string }) {
   return typeof option === "string" ? option : option.label;
+}
+
+function PresetCard({
+  preset,
+  onApply,
+  onStart,
+}: {
+  preset: PresetProfile;
+  onApply: () => void;
+  onStart: () => void;
+}) {
+  return (
+    <div className="group relative flex flex-col gap-2 rounded-xl border border-border bg-neutral-0/55 p-3.5 transition hover:border-primary/30 hover:bg-surface-elevated">
+      <div className="flex items-center justify-between gap-2">
+        <span className="inline-flex items-center rounded-full border border-primary/25 bg-primary/8 px-2 py-0.5 text-[11px] font-medium text-primary">
+          {preset.badge}
+        </span>
+        <span className="text-[10px] text-text-muted">风险 {preset.risk}/10</span>
+      </div>
+      <p className="text-sm font-semibold text-text">
+        {preset.school} · {preset.major}
+      </p>
+      <p className="text-[11px] leading-5 text-text-secondary">{preset.tagline}</p>
+      <div className="mt-1 flex flex-wrap gap-1">
+        {splitTags(preset.personalityTags).slice(0, 2).map((t) => (
+          <span key={t} className="rounded-md border border-border/70 bg-neutral-900/3 px-1.5 py-0.5 text-[10px] text-text-muted">
+            {t}
+          </span>
+        ))}
+      </div>
+      <div className="mt-1 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={onStart}
+          className="flex-1 rounded-lg border border-accent/35 bg-accent px-3 py-1.5 text-xs font-medium text-text-inverse transition hover:bg-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/35"
+        >
+          一键开玩
+        </button>
+        <button
+          type="button"
+          onClick={onApply}
+          className="rounded-lg border border-border bg-surface-elevated px-3 py-1.5 text-xs font-medium text-text-muted transition hover:border-accent/40 hover:text-text-secondary"
+        >
+          填到下方面单
+        </button>
+      </div>
+    </div>
+  );
 }

@@ -86,6 +86,42 @@ export async function getSimulatorSession(sessionId: string): Promise<SimulateSe
   return res.json() as Promise<SimulateSession>;
 }
 
+// ── 分享人设卡 ─────────────────────────────────────
+
+/** 创建分享：返回 shareId（用于拼分享链接） */
+export async function createSimulatorShare(input: {
+  sessionId: string;
+  school: string;
+  major?: string;
+  ending: SimulatorEnding;
+}): Promise<{ shareId: string }> {
+  const res = await fetch(apiUrl("/api/simulator/share"), {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  if (!res.ok) {
+    throw new SimulatorApiError(await res.text());
+  }
+  return res.json() as Promise<{ shareId: string }>;
+}
+
+/** 获取分享记录（公开页用） */
+export async function getSimulatorShare(shareId: string): Promise<{
+  shareId: string;
+  sessionId: string;
+  school: string;
+  major?: string;
+  ending: SimulatorEnding;
+  createdAt: string;
+}> {
+  const res = await fetch(apiUrl(`/api/simulator/share/${encodeURIComponent(shareId)}`));
+  if (!res.ok) {
+    throw new SimulatorApiError(await res.text());
+  }
+  return res.json();
+}
+
 export function recoverStepResultFromSession(
   session: SimulateSession,
   choiceId: string,
@@ -151,6 +187,11 @@ export async function simulateStepStream(
 ): Promise<boolean> {
   clog.debug("POST /api/simulator/:sessionId (stream)", { sessionId, choiceId, round });
 
+  const controller = new AbortController();
+  const timeout = globalThis.setTimeout(() => {
+    controller.abort();
+  }, 75_000);
+
   try {
     const res = await fetch(
       apiUrl(`/api/simulator/${encodeURIComponent(sessionId)}?stream=true`),
@@ -161,6 +202,7 @@ export async function simulateStepStream(
           Accept: "text/event-stream",
         },
         body: JSON.stringify({ choiceId, round }),
+        signal: controller.signal,
       },
     );
 
@@ -284,7 +326,14 @@ export async function simulateStepStream(
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     clog.error("POST stream exception", { error: msg });
-    callbacks.onError?.(msg, true);
+    callbacks.onError?.(
+      err instanceof DOMException && err.name === "AbortError"
+        ? "Stream timed out before final result"
+        : msg,
+      true,
+    );
     return false;
+  } finally {
+    globalThis.clearTimeout(timeout);
   }
 }

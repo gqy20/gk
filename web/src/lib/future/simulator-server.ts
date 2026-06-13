@@ -6,9 +6,9 @@
  */
 
 import { AnthropicProvider, type StreamEvent, type StreamEventCallback } from "./anthropic";
-import type { GenerateStructuredResult } from "./anthropic";
+import type { GenerateStructuredInput, GenerateStructuredResult } from "./anthropic";
 import { getPostgresPool } from "./pg-client";
-import { SimulatorPostgresRepository, SIMULATOR_SCHEMA_SQL } from "./simulator-repository";
+import { SimulatorPostgresRepository, SIMULATOR_SCHEMA_SQL, type SimulatorShareRecord } from "./simulator-repository";
 import { simulateStepTool, generateEndingTool } from "./simulator-schema";
 import {
   buildSystemPrompt,
@@ -27,6 +27,68 @@ import type {
 
 const log = createLogger("simulator-server");
 
+// ── LLM 调用重试包装 ──────────────────────────────
+
+/**
+ * 对 generateStructured 做重试包装，处理"并发压力下 thinking 失控"
+ * 导致 missing tool_use / max_tokens 截断 / JSON 解析失败这三类失败。
+ *
+ * 策略：
+ * - attempt 1：原始参数
+ * - attempt 2：相同参数再试一次（瞬时网络/调度问题最常见）
+ * - attempt 3：温度降低 + maxTokens 翻倍（减少 thinking 长度抖动）
+ *
+ * 仅对可恢复错误重试；4xx/认证错误立即抛出。
+ */
+async function generateStructuredWithRetry<T extends import("./anthropic").StructuredToolShape>(
+  provider: AnthropicProvider,
+  args: GenerateStructuredInput<T>,
+): Promise<GenerateStructuredResult<unknown>> {
+  const baseMax = args.maxTokens ?? 4096;
+  const baseTemp = args.temperature ?? 0.75;
+
+  const attempts: Array<{ label: string; maxTokens: number; temperature: number }> = [
+    { label: "primary", maxTokens: baseMax, temperature: baseTemp },
+    { label: "retry-same", maxTokens: baseMax, temperature: baseTemp },
+    { label: "retry-loose", maxTokens: Math.min(baseMax * 2, 16384), temperature: Math.max(0.3, baseTemp - 0.3) },
+  ];
+
+  let lastErr: Error | null = null;
+  for (let i = 0; i < attempts.length; i++) {
+    const a = attempts[i]!;
+    try {
+      const result = await provider.generateStructured<T>({
+        ...args,
+        maxTokens: a.maxTokens,
+        temperature: a.temperature,
+      });
+      if (i > 0) {
+        log.info({ tool: args.tool.name, attempt: a.label, maxTokens: a.maxTokens, temperature: a.temperature }, "generateStructuredWithRetry: recovered on retry");
+      }
+      return result as GenerateStructuredResult<unknown>;
+    } catch (err) {
+      lastErr = err instanceof Error ? err : new Error(String(err));
+      const msg = lastErr.message;
+      // 仅对"thinking 失控/截断"类错误重试；4xx 客户端错误立即抛出
+      const isRetryable =
+        /missing tool_use|max_tokens|Failed to parse streamed tool_use JSON/i.test(msg);
+      // 4xx 客户端错误（401/403/422/429 等）重试也不会成功；其余错误立即抛出
+      const isClientError = /\b(4\d\d)\b/.test(msg);
+      if (!isRetryable || isClientError) {
+        throw lastErr;
+      }
+      log.warn({
+        tool: args.tool.name,
+        attempt: a.label,
+        error: msg.slice(0, 200),
+        nextMaxTokens: attempts[i + 1]?.maxTokens,
+        nextTemperature: attempts[i + 1]?.temperature,
+      }, "generateStructuredWithRetry: failed, will retry with adjusted params");
+    }
+  }
+  throw lastErr ?? new Error("generateStructuredWithRetry: exhausted attempts");
+}
+
 // ── Repository 工厂：PostgreSQL > 内存降级 ─────────
 
 interface ISimulatorRepo {
@@ -40,6 +102,13 @@ interface ISimulatorRepo {
     ending?: Record<string, unknown>;
   }): Promise<void>;
   markError(sessionId: string, error: string): Promise<void>;
+  createShare(params: {
+    sessionId: string;
+    school: string;
+    major?: string;
+    ending: Record<string, unknown>;
+  }): Promise<string>;
+  getShare(shareId: string): Promise<SimulatorShareRecord | null>;
 }
 
 /** 内存降级实现（无 DATABASE_URL 时使用） */
@@ -103,34 +172,69 @@ class MemorySimulatorRepo implements ISimulatorRepo {
     });
   }
 
+  private shares = new Map<string, SimulatorShareRecord>();
+
+  async createShare(params: {
+    sessionId: string;
+    school: string;
+    major?: string;
+    ending: Record<string, unknown>;
+  }): Promise<string> {
+    const id = `shr_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+    const record: SimulatorShareRecord = {
+      shareId: id,
+      sessionId: params.sessionId,
+      school: params.school,
+      major: params.major,
+      ending: params.ending,
+      createdAt: new Date().toISOString(),
+    };
+    this.shares.set(id, record);
+    return id;
+  }
+
+  async getShare(shareId: string): Promise<SimulatorShareRecord | null> {
+    return this.shares.get(shareId) ?? null;
+  }
+
   /** 直接写入/读取 session 对象（内存模式专用） */
   put(session: SimulateSession) { this.sessions.set(session.sessionId, session); }
   get(sessionId: string) { return this.sessions.get(sessionId); }
 }
 
 let repoInstance: ISimulatorRepo | MemorySimulatorRepo | null = null;
+let repoInitPromise: Promise<ISimulatorRepo | MemorySimulatorRepo> | null = null;
 
-function getRepo(): ISimulatorRepo | MemorySimulatorRepo {
+async function getRepo(): Promise<ISimulatorRepo | MemorySimulatorRepo> {
   if (repoInstance) return repoInstance;
+  if (repoInitPromise) return repoInitPromise;
 
-  try {
-    const db = getPostgresPool();
-    const pgRepo = new SimulatorPostgresRepository(db);
+  repoInitPromise = (async () => {
+    try {
+      const db = getPostgresPool();
+      const pgRepo = new SimulatorPostgresRepository(db);
 
-    // 确保表存在
-    db.query(SIMULATOR_SCHEMA_SQL).catch((err) => {
-      log.error({ err: String(err) }, "Failed to ensure simulator_sessions table");
-    });
+      // 先 await 建表（避免与 createShare 抢跑）
+      try {
+        await db.query(SIMULATOR_SCHEMA_SQL);
+        log.info("Simulator tables ensured (simulator_sessions + simulator_shares)");
+      } catch (err) {
+        log.error({ err: String(err) }, "Failed to ensure simulator tables");
+        throw err; // 让上层走内存降级
+      }
 
-    repoInstance = pgRepo;
-    log.info("Using PostgreSQL repository for simulator");
-    return pgRepo;
-  } catch {
-    // 无 DATABASE_URL → 降级到内存
-    repoInstance = new MemorySimulatorRepo();
-    log.warn("No DATABASE_URL, falling back to in-memory simulator storage");
-    return repoInstance;
-  }
+      repoInstance = pgRepo;
+      log.info("Using PostgreSQL repository for simulator");
+      return pgRepo;
+    } catch {
+      // 无 DATABASE_URL / 建表失败 → 降级到内存
+      repoInstance = new MemorySimulatorRepo();
+      log.warn("Falling back to in-memory simulator storage (no DB or schema init failed)");
+      return repoInstance;
+    }
+  })();
+
+  return repoInitPromise;
 }
 
 // ── 类型守卫 ────────────────────────────────────────
@@ -235,7 +339,7 @@ export async function handleCreateSimulatorSession(
   const t0 = Date.now();
   const provider = getProvider(options);
   const totalRounds = input.totalRounds ?? 8;
-  const repo = getRepo();
+  const repo = await getRepo();
 
   log.info({ school: input.profile.school, totalRounds }, "Creating simulator session");
 
@@ -243,7 +347,7 @@ export async function handleCreateSimulatorSession(
   const systemPrompt = buildSystemPrompt(input.profile, 1, totalRounds);
   const userPrompt = buildUserPromptForRound(input.profile, []);
 
-  const { data: rawStep } = await provider.generateStructured<typeof simulateStepTool>({
+  const { data: rawStep } = await generateStructuredWithRetry<typeof simulateStepTool>(provider, {
     system: systemPrompt,
     user: userPrompt,
     tool: simulateStepTool,
@@ -278,7 +382,7 @@ export async function handleSimulateStep(
   options: SimulatorServerOptions = {},
 ): Promise<{ session: SimulateSession; result: SimulateStepResult; ending?: SimulatorEnding }> {
   const t0 = Date.now();
-  const repo = getRepo();
+  const repo = await getRepo();
   let session = await repo.getSession(sessionId);
 
   if (!session) {
@@ -316,7 +420,7 @@ export async function handleSimulateStep(
 
   // 调用 LLM 推演
   const systemPrompt = buildSystemPrompt(session.profile, nextRound + 1, session.totalRounds);
-  const userPrompt = buildUserPromptForRound(session.profile, session.history, chosenChoice.label);
+  const userPrompt = buildUserPromptForRound(session.profile, session.history, chosenChoice.label, session.totalRounds);
 
   // 构建历史记录（在 LLM 调用前准备好）
   const historyEntry: SimulateHistoryEntry = {
@@ -338,7 +442,7 @@ export async function handleSimulateStep(
     const endingPrompt = buildEndingPrompt(session.profile, updatedHistory);
 
     const [stepResultRaw, endingRawData] = await Promise.all([
-      provider.generateStructured<typeof simulateStepTool>({
+      generateStructuredWithRetry<typeof simulateStepTool>(provider, {
         system: systemPrompt,
         user: userPrompt,
         tool: simulateStepTool,
@@ -347,7 +451,7 @@ export async function handleSimulateStep(
         timeoutMs: 60_000,
         traceId: sessionId,
       }),
-      provider.generateStructured<typeof generateEndingTool>({
+      generateStructuredWithRetry<typeof generateEndingTool>(provider, {
         system: getEndingSystemPrompt(),
         user: endingPrompt,
         tool: generateEndingTool,
@@ -388,7 +492,7 @@ export async function handleSimulateStep(
     }
   } else {
     // 非最终轮：只生成场景
-    const { data: rawStep } = await provider.generateStructured<typeof simulateStepTool>({
+    const { data: rawStep } = await generateStructuredWithRetry<typeof simulateStepTool>(provider, {
       system: systemPrompt,
       user: userPrompt,
       tool: simulateStepTool,
@@ -451,12 +555,53 @@ export async function handleSimulateStep(
 export async function handleGetSimulatorSession(
   sessionId: string,
 ): Promise<SimulateSession> {
-  const repo = getRepo();
+  const repo = await getRepo();
   const session = await repo.getSession(sessionId);
   if (!session) {
     throw new Error(`Session not found: ${sessionId}`);
   }
   return session;
+}
+
+// ── 分享人设卡 ─────────────────────────────────────
+
+/** 输入：来源 sessionId + ending；返回新生成的 shareId */
+export async function handleCreateShare(params: {
+  sessionId: string;
+  school: string;
+  major?: string;
+  ending: Record<string, unknown>;
+}): Promise<{ shareId: string }> {
+  const repo = await getRepo();
+  // 校验：源 session 必须存在，避免被任意人写入
+  const session = await repo.getSession(params.sessionId);
+  if (!session) {
+    throw new Error(`Session not found: ${params.sessionId}`);
+  }
+  // 校验：ending 至少有 archetype 字段
+  if (!params.ending || typeof params.ending !== "object" || !("archetype" in params.ending)) {
+    throw new Error("Invalid ending payload: archetype is required");
+  }
+  const shareId = await repo.createShare({
+    sessionId: params.sessionId,
+    school: params.school,
+    major: params.major,
+    ending: params.ending,
+  });
+  log.info({ shareId, sessionId: params.sessionId }, "Share created");
+  return { shareId };
+}
+
+/** 公开页：根据 shareId 获取 */
+export async function handleGetShare(
+  shareId: string,
+): Promise<SimulatorShareRecord> {
+  const repo = await getRepo();
+  const share = await repo.getShare(shareId);
+  if (!share) {
+    throw new Error(`Share not found: ${shareId}`);
+  }
+  return share;
 }
 
 // ── 流式推演步骤 ─────────────────────────────────
@@ -475,7 +620,7 @@ export async function* handleSimulateStepStream(
   options: SimulatorServerOptions = {},
 ): AsyncGenerator<StreamEvent, void, undefined> {
   const t0 = Date.now();
-  const repo = getRepo();
+  const repo = await getRepo();
 
   // ── 前置校验（与 handleSimulateStep 一致）────────
   let session = await repo.getSession(sessionId);
@@ -520,7 +665,7 @@ export async function* handleSimulateStepStream(
   log.info({ sessionId, choiceId, round: nextRound, isFinal }, "Processing simulator step (stream)");
 
   const systemPrompt = buildSystemPrompt(session.profile, nextRound + 1, session.totalRounds);
-  const userPrompt = buildUserPromptForRound(session.profile, session.history, chosenChoice.label);
+  const userPrompt = buildUserPromptForRound(session.profile, session.history, chosenChoice.label, session.totalRounds);
 
   const historyEntry: SimulateHistoryEntry = {
     round: nextRound,
@@ -616,7 +761,7 @@ export async function* handleSimulateStepStream(
       const endingPrompt = buildEndingPrompt(session.profile, updatedHistory);
 
       try {
-        const endingResult = await provider.generateStructured<typeof generateEndingTool>({
+        const endingResult = await generateStructuredWithRetry<typeof generateEndingTool>(provider, {
           system: getEndingSystemPrompt(),
           user: endingPrompt,
           tool: generateEndingTool,

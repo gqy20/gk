@@ -47,6 +47,13 @@ function PlayShell() {
 
 type Phase = "loading" | "choosing" | "result" | "ending" | "error";
 
+interface PendingStep {
+  choiceId: string;
+  submittedRound: number;
+  roundBeforeSubmit: number;
+  startedAt: number;
+}
+
 function PlayContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -62,6 +69,7 @@ function PlayContent() {
   const [error, setError] = useState<string | null>(null);
   const [loadingStartTime, setLoadingStartTime] = useState<number>(0);
   const [loadingRound, setLoadingRound] = useState<number>(1);
+  const [pendingStep, setPendingStep] = useState<PendingStep | null>(null);
 
   // ── 流式状态 ──
   const [streamPhase, setStreamPhase] = useState<StreamPhase>("waiting");
@@ -103,15 +111,86 @@ function PlayContent() {
     return () => { cancelled = true; };
   }, [sessionId]);
 
+  // 长推演请求可能已经写入服务端，但 SSE 最终 done 事件没有抵达浏览器。
+  // loading 期间轮询 session，发现轮次推进后直接恢复到结果页。
+  useEffect(() => {
+    if (phase !== "loading" || !sessionId || !pendingStep) return;
+
+    const step = pendingStep;
+    let cancelled = false;
+    let inFlight = false;
+
+    async function reconcile() {
+      if (inFlight) return;
+      inFlight = true;
+      try {
+        const reconciledSession = await getSimulatorSession(sessionId);
+        if (cancelled) return;
+
+        const recoveredResult = recoverStepResultFromSession(
+          reconciledSession,
+          step.choiceId,
+          step.submittedRound,
+        );
+
+        if (reconciledSession.currentRound > step.roundBeforeSubmit && recoveredResult) {
+          setSession(reconciledSession);
+          setLastResult(recoveredResult);
+          if (reconciledSession.ending) {
+            setPendingEnding(reconciledSession.ending);
+          }
+          setPendingStep(null);
+          setStreamPhase("complete");
+          setPhase("result");
+          return;
+        }
+
+        if (reconciledSession.status === "ended" && reconciledSession.ending) {
+          setSession(reconciledSession);
+          setEnding(reconciledSession.ending);
+          setPendingStep(null);
+          setStreamPhase("complete");
+          setPhase("ending");
+          return;
+        }
+
+        if (Date.now() - step.startedAt > 150_000) {
+          setError("推演等待时间过长，请重新选择一次。");
+          setPendingStep(null);
+          setPhase("error");
+        }
+      } catch (err) {
+        console.warn("[simulator] Failed to reconcile loading session:", err);
+      } finally {
+        inFlight = false;
+      }
+    }
+
+    const initialTimer = window.setTimeout(reconcile, 2_500);
+    const interval = window.setInterval(reconcile, 3_500);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(initialTimer);
+      window.clearInterval(interval);
+    };
+  }, [pendingStep, phase, sessionId]);
+
   // 处理选择
   const handleSelect = useCallback(async (choiceId: string) => {
     if (!session?.currentScene || !sessionId) return;
 
     const roundBeforeSubmit = session.currentRound;
     const submittedRound = session.currentScene.round;
+    const nextPendingStep = {
+      choiceId,
+      submittedRound,
+      roundBeforeSubmit,
+      startedAt: Date.now(),
+    };
     setPhase("loading");
     setLoadingStartTime(Date.now());
     setLoadingRound(submittedRound);
+    setPendingStep(nextPendingStep);
 
     // 重置流式状态
     setStreamPhase("waiting");
@@ -119,6 +198,7 @@ function PlayContent() {
     setStreamNarrative("");
 
     try {
+      let streamTimedOut = false;
       // ── 优先尝试流式调用 ──
       const streamOk = await simulateStepStream(sessionId, choiceId, submittedRound, {
         onThinkingStart: () => setStreamPhase("thinking"),
@@ -135,6 +215,7 @@ function PlayContent() {
           setStreamPhase("complete");
           setSession(data.session);
           setLastResult(data.result);
+          setPendingStep(null);
 
           if (data.ending) {
             // 最终轮：不自动跳转结局，先展示结果让用户消化
@@ -146,6 +227,7 @@ function PlayContent() {
           }
         },
         onError: (_error, canFallback) => {
+          streamTimedOut = /timed out|timeout/i.test(_error);
           console.warn("[simulator] Stream error:", _error, "fallback:", canFallback);
         },
       });
@@ -159,6 +241,7 @@ function PlayContent() {
         if (reconciledSession.currentRound > roundBeforeSubmit && recoveredResult) {
           setSession(reconciledSession);
           setLastResult(recoveredResult);
+          setPendingStep(null);
 
           if (reconciledSession.ending) {
             setPendingEnding(reconciledSession.ending);
@@ -168,11 +251,17 @@ function PlayContent() {
           return;
         }
 
+        if (streamTimedOut) {
+          console.info("[simulator] Stream timed out; keeping polling recovery active");
+          return;
+        }
+
         console.info("[simulator] Session was not advanced, falling back to non-streaming");
         const { session: updatedSession, result, ending: endingData } = await simulateStep(sessionId, choiceId, submittedRound);
 
         setSession(updatedSession);
         setLastResult(result);
+        setPendingStep(null);
 
         if (endingData) {
           setPendingEnding(endingData);
@@ -184,6 +273,7 @@ function PlayContent() {
     } catch (err) {
       console.error("[simulator] Step failed:", err);
       setError(err instanceof Error ? err.message : "推演失败");
+      setPendingStep(null);
       setPhase("error");
     }
   }, [session, sessionId]);
@@ -191,6 +281,7 @@ function PlayContent() {
   // 用户手动确认：普通轮次进入下一轮选择
   const handleContinue = useCallback(() => {
     setLastResult(null);
+    setPendingStep(null);
     setPhase("choosing");
   }, []);
 
@@ -347,6 +438,7 @@ function PlayContent() {
                   history={session.history}
                   school={session.profile.school}
                   totalRounds={session.totalRounds}
+                  session={session}
                   onRestart={handleRestart}
                   onBack={handleBack}
                 />

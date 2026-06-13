@@ -31,7 +31,29 @@ create table if not exists simulator_sessions (
 );
 
 create index if not exists simulator_sessions_created_at_idx on simulator_sessions(created_at desc);
+
+create table if not exists simulator_shares (
+  id text primary key,
+  session_id text not null,
+  school text not null,
+  major text,
+  ending_json jsonb not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists simulator_shares_session_id_idx on simulator_shares(session_id);
+create index if not exists simulator_shares_created_at_idx on simulator_shares(created_at desc);
 `;
+
+/** 分享人设卡的轻量数据（公开页只需要这些） */
+export interface SimulatorShareRecord {
+  shareId: string;
+  sessionId: string;
+  school: string;
+  major?: string;
+  ending: Record<string, unknown>;
+  createdAt: string;
+}
 
 function stringifyJson(value: unknown): string {
   return JSON.stringify(value);
@@ -150,5 +172,43 @@ export class SimulatorPostgresRepository {
       [sessionId, error],
     );
     log.warn({ sessionId, error }, "Session marked as error");
+  }
+
+  /** 创建分享记录（从已有 session 复制 ending + profile 的轻量快照） */
+  async createShare(params: {
+    sessionId: string;
+    school: string;
+    major?: string;
+    ending: Record<string, unknown>;
+  }): Promise<string> {
+    const id = `shr_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+    await this.db.query(
+      `insert into simulator_shares (id, session_id, school, major, ending_json)
+       values ($1, $2, $3, $4, $5::jsonb)`,
+      [id, params.sessionId, params.school, params.major ?? null, stringifyJson(params.ending)],
+    );
+    log.info({ shareId: id, sessionId: params.sessionId }, "Share created");
+    return id;
+  }
+
+  /** 通过 shareId 获取分享记录 */
+  async getShare(shareId: string): Promise<SimulatorShareRecord | null> {
+    const result = await this.db.query(
+      "select * from simulator_shares where id = $1 limit 1",
+      [shareId],
+    );
+    const row = result.rows[0];
+    if (!row) {
+      log.warn({ shareId }, "Share not found");
+      return null;
+    }
+    return {
+      shareId: String(row.id),
+      sessionId: String(row.session_id),
+      school: String(row.school),
+      major: row.major ? String(row.major) : undefined,
+      ending: parseJson<Record<string, unknown>>(row.ending_json),
+      createdAt: row.created_at ? String(row.created_at) : "",
+    };
   }
 }
