@@ -6,6 +6,7 @@ import MajorCategoryNav from "@/components/majors/MajorCategoryNav";
 import MajorTreeBrowser from "@/components/majors/MajorTreeBrowser";
 import MajorList from "@/components/majors/MajorList";
 import MajorSearchBar from "@/components/majors/MajorSearchBar";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from "@/components/ui/Select";
 import type { MajorsData, MajorCategory } from "@/types/majors";
 import { EMPTY_MESSAGES } from "@/lib/constants";
 
@@ -111,38 +112,45 @@ export default function MajorsPage() {
           {/* 移动端：门类选择条 */}
           {activeCategory && (
             <div className="shrink-0 border-b border-border px-3 py-2 sm:hidden">
-              <select
+              <Select
                 value={selectedClassKey || selectedMenlei || ""}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  if (!val) {
+                onValueChange={(value) => {
+                  if (value === "all") {
                     handleSelectMenlei(null);
                     return;
                   }
-                  // 判断是专业类 key（长度 > 4，如 "10500203"）还是门类 key
                   const matchedClass = activeCategory.门类
                     .flatMap((m) => m.专业类.map((c) => ({ ...c, menleiKey: m.key })))
-                    .find((c) => c.key === val);
+                    .find((c) => c.key === value);
                   if (matchedClass) {
                     handleSelectClass(matchedClass.key, matchedClass.menleiKey);
                   } else {
-                    // 门级选择
-                    handleSelectMenlei(val);
+                    handleSelectMenlei(value);
                   }
                 }}
-                className="w-full rounded-lg border border-border bg-surface-subtle px-3 py-1.5 text-xs text-text outline-none focus:border-primary/50"
               >
-                <option value="">全部门类</option>
-                {activeCategory.门类.map((m) => (
-                  <optgroup key={m.key} label={`${m.name} (${m.major_count})`}>
-                    {m.专业类.map((cls) => (
-                      <option key={cls.key} value={cls.key}>
-                        {cls.name} ({cls.专业.length})
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
+                <SelectTrigger aria-label="选择专业分类" className="h-10 rounded-lg bg-surface-elevated text-xs">
+                  <MobileCategoryValue
+                    category={activeCategory}
+                    selectedMenlei={selectedMenlei}
+                    selectedClassKey={selectedClassKey}
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">全部门类</SelectItem>
+                  {activeCategory.门类.map((m) => (
+                    <SelectGroup key={m.key}>
+                      <SelectLabel>{m.name} ({m.major_count})</SelectLabel>
+                      <SelectItem value={m.key}>全部 {m.name}</SelectItem>
+                      {m.专业类.map((cls) => (
+                        <SelectItem key={cls.key} value={cls.key}>
+                          {formatMajorClassName(cls.name, m.name)} ({cls.专业.length})
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           )}
 
@@ -164,4 +172,42 @@ export default function MajorsPage() {
       </main>
     </div>
   );
+}
+
+function MobileCategoryValue({
+  category,
+  selectedMenlei,
+  selectedClassKey,
+}: {
+  category: MajorCategory;
+  selectedMenlei: string | null;
+  selectedClassKey: string | null;
+}) {
+  if (!selectedMenlei && !selectedClassKey) {
+    return <span className="truncate text-text-placeholder">全部门类</span>;
+  }
+
+  for (const menlei of category.门类) {
+    if (selectedClassKey) {
+      const cls = menlei.专业类.find((item) => item.key === selectedClassKey);
+      if (cls) {
+        return (
+          <span className="truncate">
+            {formatMajorClassName(cls.name, menlei.name)} ({cls.专业.length})
+          </span>
+        );
+      }
+    }
+    if (selectedMenlei === menlei.key) {
+      return <span className="truncate">全部 {menlei.name}</span>;
+    }
+  }
+
+  return <span className="truncate text-text-placeholder">全部门类</span>;
+}
+
+function formatMajorClassName(name: string, fallbackCategory: string) {
+  const trimmed = name.trim();
+  if (!trimmed || trimmed === "-") return `${fallbackCategory}类`;
+  return trimmed;
 }
