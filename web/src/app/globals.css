@@ -623,6 +623,126 @@ button:disabled {
   }
 }
 
+/* ═══════════════════════════════════════════
+   Scroll-Driven Storytelling Styles
+   ═══════════════════════════════════════════ */
+
+/* Story root container — 暗色背景，覆盖全屏 */
+[data-story-root] {
+  position: relative;
+  background: #0c1210;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Phase sections 基础样式 */
+[data-story-phase] {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  pointer-events: none; /* 让滚动事件穿透到 ScrollTrigger */
+}
+
+[data-story-phase] > * {
+  pointer-events: auto;
+}
+
+/* ── Hero ── */
+.story-title {
+  font-family: var(--font-noto-sc), "Source Han Sans SC", "PingFang SC", sans-serif;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.story-subtitle {
+  letter-spacing: 0.06em;
+}
+
+.story-desc {
+  letter-spacing: 0.03em;
+}
+
+/* ── Tier Cards (Phase 2) ── */
+.tier-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.4s ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ── Feature Cards (Phase 3) ── */
+.feature-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ── CTA Button (Phase 4) ── */
+.story-cta-button {
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+.story-cta-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.story-cta-button:hover::before {
+  opacity: 1;
+}
+
+/* ── Progress Dots ── */
+.story-progress-dots {
+  user-select: none;
+}
+
+/* ── Skip Button ── */
+.story-skip-btn {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.story-skip-btn:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Story mode 下隐藏 body 默认背景 ── */
+body:has([data-story-root]) {
+  background: #0c1210 !important;
+}
+
+/* ── Mobile responsive for story phases ── */
+@media (max-width: 640px) {
+  .story-title {
+    font-size: 1.85rem !important;
+    letter-spacing: 0.03em;
+  }
+
+  .story-subtitle {
+    font-size: 0.875rem;
+  }
+
+  [data-story-phase="layers"] .tier-card {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -631,6 +751,11 @@ button:disabled {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* Reduced motion: 直接隐藏叙事，让页面回退到 dashboard */
+  [data-story-root] {
+    display: none;
   }
 }
 
