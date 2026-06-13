@@ -116,15 +116,31 @@ function buildRoundProgression(totalRounds: number): string {
   }
 
   if (totalRounds <= 12) {
-    // 标准模式：四段式（适配 8-12 轮）
+    // 标准模式：8 轮细粒度时间锚点（适配 8-12 轮）。
+    // 关键修复：把"哪一轮=哪个时间窗口"写死，避免模型把 8 轮压成 8 个月。
+    // 当前 8 轮对应：大一上 4 轮 + 大一下 2 轮 + 大二 1 轮 + 大三 1 轮。
+    // 若 totalRounds=8 直接用 8 轮细粒度表；9-12 轮在第 7-8 轮后加毕业尾声补位。
+    if (totalRounds === 8) {
+      return [
+        `       - **第 1 轮（9 月·入学第一周）**：报到、宿舍初见、新生班会`,
+        `       - **第 2 轮（9 月底~10 月初·社团招新周）**：百团大战、第一次选课、兴趣试探`,
+        `       - **第 3 轮（10 月中·学业与社团撞期）**：第一次月考/小测、社团任务进入日常、室友/同学关系定型`,
+        `       - **第 4 轮（11 月·期中考试前后）**：第一次大考、人际小摩擦或加深、寒冬前的小决策`,
+        `       - **第 5 轮（次年 3 月·大一下开学）**：新学期定位、分流/方向初步选择、寒假后的节奏调整`,
+        `       - **第 6 轮（次年 5-6 月·大一下期末）**：期末季、暑期规划（实习/科研/竞赛/旅行）`,
+        `       - **第 7 轮（大二上 10 月·专业深入）**：核心专业课、初步科研/竞赛/学生组织角色`,
+        `       - **第 8 轮（大三 9-10 月·方向定型）**：保研/考研/就业的第一次明确岔路口、关键 mentor 关系`,
+      ].join("\n");
+    }
+    // 9-12 轮的通用回退
     const q1 = Math.ceil(totalRounds * 0.25);
     const q2 = Math.ceil(totalRounds * 0.5);
     const q3 = Math.ceil(totalRounds * 0.75);
     return [
-      `       - 入学适应期（第 1-${q1} 轮）：报到、选课、社团招新、宿舍生活、认识新朋友`,
+      `       - 入学适应期（第 1-${q1} 轮）：9 月报到、社团招新、宿舍生活、认识新朋友`,
       `       - 学业深入期（第 ${q1 + 1}-${q2} 轮）：期中考试、课程项目、第一次小组作业、图书馆日常`,
-      `       - 关键转折期（第 ${q2 + 1}-${q3} 轮）：实习/科研机会、人际冲突或深化、社团领导力、暑期规划`,
-      `       - 毕业收尾期（第 ${q3 + 1}-${totalRounds} 轮）：考研/就业抉择、毕业论文、告别校园、四年回顾`,
+      `       - 关键转折期（第 ${q2 + 1}-${q3} 轮）：大一下到大二，方向初定、暑期关键决策`,
+      `       - 毕业收尾期（第 ${q3 + 1}-${totalRounds} 轮）：大三到毕业去向明确前的关键节点`,
     ].join("\n");
   }
 
@@ -229,6 +245,7 @@ export function buildUserPromptForRound(
   profile: SimulateStartInput["profile"],
   history: SimulateHistoryEntry[],
   previousChoiceLabel?: string,
+  totalRounds?: number,
 ): string {
   const cfg = loadConfig();
 
@@ -237,6 +254,8 @@ export function buildUserPromptForRound(
   }
 
   const lastEntry = history[history.length - 1]!;
+  // 下一轮 = 上一轮 + 1；如果调用方传入 totalRounds，则用于模板提示
+  const nextRound = lastEntry.round + 1;
 
   // 格式化决策历史（与原逻辑一致）
   const historyFormatted = history
@@ -249,6 +268,8 @@ export function buildUserPromptForRound(
   return renderTemplate(cfg.user_prompts.subsequent_rounds, {
     history_formatted: historyFormatted,
     last_round: lastEntry.round,
+    next_round: nextRound,
+    totalRounds: totalRounds ?? (history.length + 1),
     previous_choice_label: previousChoiceLabel || lastEntry.choiceLabel,
   });
 }
