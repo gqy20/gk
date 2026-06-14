@@ -176,13 +176,15 @@ function Home() {
 
   useEffect(() => {
     if (!data || introPlayedRef.current || prefersReducedMotion()) return;
+    const homeRoot = homeRootRef.current;
+    if (!homeRoot) return;
     introPlayedRef.current = true;
 
     const ctx = gsap.context(() => {
-      const topbar = gsap.utils.toArray("[data-gsap='topbar']");
-      const navItems = gsap.utils.toArray("[data-gsap='nav-item']");
-      const map = gsap.utils.toArray("[data-gsap='map']");
-      const sidePanel = gsap.utils.toArray("[data-gsap='side-panel']");
+      const topbar = gsap.utils.toArray<HTMLElement>("[data-gsap='topbar']");
+      const navItems = gsap.utils.toArray<HTMLElement>("[data-gsap='nav-item']");
+      const map = gsap.utils.toArray<HTMLElement>("[data-gsap='map']");
+      const sidePanel = gsap.utils.toArray<HTMLElement>("[data-gsap='side-panel']");
       const timeline = gsap.timeline({ defaults: { ease: "power4.out" } });
 
       if (topbar.length) {
@@ -219,7 +221,7 @@ function Home() {
           duration: 0.28,
         }, "-=0.34");
       }
-    }, homeRootRef);
+    }, homeRoot);
 
     return () => ctx.revert();
   }, [data]);

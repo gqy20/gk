@@ -40,9 +40,9 @@ export default function DetailSection({
     const colleges = items as CollegeItem[];
     return (
       <div className="space-y-2">
-        {colleges.map((college) => (
+        {colleges.map((college, index) => (
           <div
-            key={college.name}
+            key={`${college.name || college.url || "college"}-${index}`}
             className="rounded-md border border-border-light bg-neutral-0/72 p-3 text-xs"
           >
             {college.url ? (
@@ -165,7 +165,7 @@ export default function DetailSection({
             <div className="mt-2 flex flex-wrap gap-1.5">
               {item.attachments.map((attachment, attachmentIndex) => (
                 <a
-                  key={attachment}
+                  key={`${attachment || "attachment"}-${attachmentIndex}`}
                   href={attachment}
                   target="_blank"
                   rel="noopener noreferrer"

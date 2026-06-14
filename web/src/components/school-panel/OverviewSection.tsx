@@ -71,9 +71,9 @@ export default function OverviewSection({
         <section>
           <SectionTitle label={`学院列表 ${detail.colleges.length}`} />
           <div className="mt-2 flex flex-wrap gap-1.5">
-            {detail.colleges.slice(0, 18).map((college) => (
+            {detail.colleges.slice(0, 18).map((college, index) => (
               <span
-                key={college.name}
+                key={`${college.name || college.url || "college"}-${index}`}
                 className="rounded-sm border border-border-light bg-neutral-0/72 px-2.5 py-1 text-[11px] text-text-light"
               >
                 {college.name}

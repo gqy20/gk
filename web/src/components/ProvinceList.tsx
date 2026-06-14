@@ -110,7 +110,7 @@ export default function ProvinceList({
       className="paper-shell min-h-0 flex-1 overflow-y-auto p-3"
       key={selectedProvince ?? "all"}
     >
-      {displayProvinces.map((prov) => {
+      {displayProvinces.map((prov, provinceIndex) => {
         const isSelected = selectedProvince === prov.name;
         const compactProvinceHeader = Boolean(selectedProvince);
         const palette = getProvincePalette(prov.name);
@@ -125,7 +125,7 @@ export default function ProvinceList({
 
         return (
           <div
-            key={prov.name}
+            key={`${prov.name || "province"}-${provinceIndex}`}
             className="mb-3 overflow-hidden rounded-md border border-border-light bg-neutral-0/72 shadow-sm shadow-neutral-900/5"
           >
             <button
@@ -165,7 +165,7 @@ export default function ProvinceList({
                 className="border-t border-border-light bg-accent-50/25"
                 style={isSelected ? { background: palette.halo } : undefined}
               >
-                {sortedSchools.map((school) => {
+                {sortedSchools.map((school, schoolIndex) => {
                   const isCompareSelected = compareSchools.some(
                     (s) => s.name === school.name,
                   );
@@ -175,7 +175,7 @@ export default function ProvinceList({
 
                   return (
                     <div
-                      key={school.name}
+                      key={`${school.name || school.url || "school"}-${schoolIndex}`}
                       className={cn(
                         "flex cursor-pointer items-center gap-2 border-b border-border-light-subtle px-3 py-2 text-xs transition last:border-b-0 sm:px-4 sm:py-2.5",
                         isSchoolSelected

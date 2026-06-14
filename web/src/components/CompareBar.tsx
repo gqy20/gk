@@ -18,9 +18,9 @@ export default function CompareBar({ schools, onRemove, onCompare, onClear }: Co
     <div className="border-t border-border-light bg-accent-50/45 px-4 py-3">
       <div className="flex items-center gap-3">
         <div className="flex min-w-0 flex-1 flex-wrap gap-1.5">
-          {schools.map((school) => (
+          {schools.map((school, index) => (
             <span
-              key={school.name}
+              key={`${school.name || school.url || "school"}-${index}`}
               className="inline-flex items-center gap-1 rounded-md border border-border-light bg-neutral-0/72 px-2 py-0.5 text-xs text-text-light"
             >
               <span className="max-w-[100px] truncate">{school.name}</span>

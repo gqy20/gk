@@ -48,9 +48,9 @@ export default function ComparePanel({ schools, onClose, onRemove }: ComparePane
 
       <div className="min-h-0 flex-1 overflow-y-auto p-4">
         <div className="flex gap-3 overflow-x-auto pb-2">
-          {schools.map((school) => (
+          {schools.map((school, index) => (
             <div
-              key={school.name}
+              key={`${school.name || school.url || "school"}-${index}`}
               className="flex w-[200px] shrink-0 flex-col rounded-md border border-border-light bg-neutral-0/74 shadow-sm shadow-neutral-900/5"
             >
               <div className="border-b border-border-light bg-accent-50/45 px-3 py-3">

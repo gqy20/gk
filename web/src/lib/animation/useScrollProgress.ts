@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { registerScrollTrigger } from "./gsap";
+import { useLayoutEffect, useState } from "react";
 
 interface UseScrollProgressOptions {
   /** ScrollTrigger 要 pin 的容器元素 */
@@ -17,81 +16,48 @@ interface UseScrollProgressOptions {
 }
 
 /**
- * 基于 GSAP ScrollTrigger 的滚动进度 Hook。
- *
- * 创建一个 pinned 的滚动容器，将滚动距离映射为 0..1 的 progress 值。
- * 适用于滚动驱动叙事、相机动画等场景。
+ * 基于原生滚动的进度 Hook。
+ * CSS sticky 负责固定画面，这里只把滚动距离映射为 0..1。
  */
 export function useScrollProgress({
   pinRef,
   scrubHeight = 5000,
   onProgress,
-  onComplete,
   disabled = false,
 }: UseScrollProgressOptions): number {
   const [progress, setProgress] = useState(0);
-  const ctxRef = useRef<gsap.Context | null>(null);
 
-  useEffect(() => {
-    if (disabled || !pinRef.current) {
-      setProgress(1);
-      onComplete?.();
-      return;
-    }
-
-    const ScrollTrigger = registerScrollTrigger();
-    if (!ScrollTrigger) {
-      setProgress(1);
-      onComplete?.();
-      return;
-    }
-
+  useLayoutEffect(() => {
     const el = pinRef.current;
-    if (!el) return;
+    if (disabled || !el) return;
 
-    // 动态导入 gsap + ScrollTrigger（避免 SSR 问题）
-    let cleanup: (() => void) | undefined;
-
-    const init = async () => {
-      try {
-        const gsapMod = await import("gsap");
-        const { ScrollTrigger: ST } = await import("gsap/ScrollTrigger");
-        gsapMod.default.registerPlugin(ST);
-
-        const ctx = gsapMod.default.context(() => {
-          ST.create({
-            trigger: el,
-            start: "top top",
-            end: `+=${scrubHeight}`,
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            onUpdate: (self) => {
-              const p = self.progress;
-              setProgress(p);
-              onProgress?.(p);
-            },
-            onLeave: () => onComplete?.(),
-            onLeaveBack: () => {},
-          });
-        }, el);
-
-        ctxRef.current = ctx;
-        cleanup = () => ctx.revert();
-      } catch {
-        setProgress(1);
-        onComplete?.();
-      }
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const start = el.offsetTop;
+      const raw = (window.scrollY - start) / Math.max(scrubHeight, 1);
+      const nextProgress = Math.min(1, Math.max(0, raw));
+      setProgress(nextProgress);
+      onProgress?.(nextProgress);
     };
 
-    init();
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
 
     return () => {
-      cleanup?.();
-      ctxRef.current = null;
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [disabled, scrubHeight, onProgress, onComplete, pinRef]);
+  }, [disabled, scrubHeight, onProgress, pinRef]);
 
   return progress;
 }

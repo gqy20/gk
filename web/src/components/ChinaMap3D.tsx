@@ -875,7 +875,6 @@ function ChinaMap3DInner(
     onTransitionChange,
     // Story mode props
     storyMode = false,
-    storyProgress: _storyProgress,
     storyCameraTarget,
     visibleTiers,
     mapOpacity,
@@ -903,6 +902,7 @@ function ChinaMap3DInner(
   const [drill, setDrill] = useState<DrillState>(INITIAL_DRILL_STATE);
   const [hoverInfo, setHoverInfo] = useState<MapHoverInfo | null>(null);
   const [cameraZoom, setCameraZoom] = useState(MIN_CAMERA_ZOOM);
+  const [webglUnavailable, setWebglUnavailable] = useState(false);
 
   // ── Story mode: 持续渲染循环 ──
   const rafIdRef = useRef<number | null>(null);
@@ -977,7 +977,8 @@ function ChinaMap3DInner(
           overwrite: "auto",
         });
         if (seal) {
-          gsapMod.default.to(seal, {
+          const sealMaterial = Array.isArray(seal.material) ? seal.material[0] : seal.material;
+          gsapMod.default.to(sealMaterial, {
             opacity: isVisible ? (seal.userData?.baseOpacity ?? 0.96) : 0,
             duration: 0.5,
             ease: "power2.out",
@@ -987,7 +988,11 @@ function ChinaMap3DInner(
       } catch {
         // GSAP 不可用时直接赋值降级
         marker.scale.set(targetScale * 0.72, targetScale * 0.08, targetScale * 0.72);
-        if (seal) seal.visible = isVisible;
+        if (seal) {
+          const sealMaterial = Array.isArray(seal.material) ? seal.material[0] : seal.material;
+          sealMaterial.opacity = isVisible ? (seal.userData?.baseOpacity ?? 0.96) : 0;
+          sealMaterial.needsUpdate = true;
+        }
       }
     }
   }, [visibleTiers, mapReady, storyMode]);
@@ -1122,7 +1127,7 @@ function ChinaMap3DInner(
       if (enabled) startRenderLoop();
       else stopRenderLoop();
     },
-  }), [renderScene, applyCameraZoom]);
+  }), [renderScene, applyCameraZoom, startRenderLoop, stopRenderLoop]);
 
   const fitCameraToMap = useCallback((level: MapLevel) => {
     const container = containerRef.current;
@@ -1392,7 +1397,7 @@ function ChinaMap3DInner(
         new THREE.PlaneGeometry(1, 1),
         createSchoolSealMaterial(tier, markerColor, school.name, 0.96),
       );
-      (seal as unknown as SchoolVisualMesh).userData = { kind: "schoolVisual" };
+      (seal as unknown as SchoolVisualMesh).userData = { kind: "schoolVisual", baseOpacity: 0.96 };
       seal.position.set(position.x, SCHOOL_Y + 0.084, position.y);
       seal.rotation.x = -Math.PI / 2;
       seal.rotation.z = (seededRandom(`school-seal-rotation:${school.name}`)() - 0.5) * 0.34;
@@ -1441,9 +1446,17 @@ function ChinaMap3DInner(
     scene.background = new THREE.Color("#cfe9e2");
     scene.fog = new THREE.Fog("#cfe9e2", 20, 38);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (error) {
+      console.warn("ChinaMap3D WebGL renderer unavailable", error);
+      queueMicrotask(() => setWebglUnavailable(true));
+      return;
+    }
+    queueMicrotask(() => setWebglUnavailable(false));
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.type = THREE.PCFShadowMap;
     container.appendChild(renderer.domElement);
 
     const camera = new THREE.OrthographicCamera(-10, 10, 6, -6, 0.1, 80);
@@ -1499,12 +1512,15 @@ function ChinaMap3DInner(
       observer.disconnect();
       clearMapGroup();
       renderer.dispose();
-      renderer.domElement.remove();
+      if (renderer.domElement.parentNode === container) {
+        container.removeChild(renderer.domElement);
+      }
       rendererRef.current = null;
       sceneRef.current = null;
       cameraRef.current = null;
       mapGroupRef.current = null;
       seaMaterialRef.current = null;
+      setWebglUnavailable(false);
     };
   }, [clearMapGroup, renderScene, resizeScene]);
 
@@ -1691,7 +1707,7 @@ function ChinaMap3DInner(
       container.style.cursor = "pointer";
       renderScene();
     }
-  }, [pickObject, renderScene]);
+  }, [pickObject, renderScene, storyMode]);
 
   const handlePointerLeave = useCallback(() => {
     if (storyMode) return; // 叙事模式下禁用
@@ -1702,7 +1718,7 @@ function ChinaMap3DInner(
     setHoverInfo(null);
     if (containerRef.current) containerRef.current.style.cursor = "";
     renderScene();
-  }, [renderScene]);
+  }, [renderScene, storyMode]);
 
   const handleClick = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (storyMode) return; // 叙事模式下禁用点击
@@ -1727,7 +1743,7 @@ function ChinaMap3DInner(
         if (province && adcode) void drillDown(mapProvinceName(province), adcode);
       }
     }
-  }, [drill.level, drillDown, onSchoolPreview, pickObject]);
+  }, [drill.level, drillDown, onSchoolPreview, pickObject, storyMode]);
 
   const handleDoubleClick = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (storyMode) return; // 叙事模式下禁用双击
@@ -1738,7 +1754,7 @@ function ChinaMap3DInner(
       clickTimer.current = null;
     }
     onSchoolClick(object.userData.school as School);
-  }, [onSchoolClick, pickObject]);
+  }, [onSchoolClick, pickObject, storyMode]);
 
   const zoomBy = useCallback((direction: 1 | -1) => {
     const factor = direction > 0 ? CAMERA_ZOOM_STEP : 1 / CAMERA_ZOOM_STEP;
@@ -1749,7 +1765,7 @@ function ChinaMap3DInner(
     if (storyMode) return; // 叙事模式下禁用滚轮缩放
     event.preventDefault();
     zoomBy(event.deltaY < 0 ? 1 : -1);
-  }, [zoomBy]);
+  }, [storyMode, zoomBy]);
 
   const maxCameraZoom = MAX_CAMERA_ZOOM_BY_LEVEL[drill.level];
   const canZoomIn = cameraZoom < maxCameraZoom - 0.01;
@@ -1770,6 +1786,9 @@ function ChinaMap3DInner(
       onWheel={storyMode ? undefined : handleWheel}
     >
       <div ref={containerRef} className={`china-map-three absolute inset-0 z-20 ${storyMode ? "pointer-events-none" : ""}`} />
+      {webglUnavailable && (
+        <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_42%,rgba(72,154,171,0.26),transparent_38%),linear-gradient(180deg,rgba(7,22,35,0.95),rgba(2,7,13,0.98))]" />
+      )}
       {!storyMode && <div className="china-map-veil" />}
 
       <AnimatePresence>

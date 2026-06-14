@@ -23,6 +23,12 @@ function splitTags(value: string) {
     .filter(Boolean);
 }
 
+function uniqueNonEmptyOptions(options: string[]) {
+  return Array.from(
+    new Set(options.map((option) => option.trim()).filter(Boolean)),
+  );
+}
+
 export default function FuturePage() {
   return (
     <Suspense fallback={<FuturePageShell />}>
@@ -579,6 +585,7 @@ function Select({
   placeholder?: string;
 }) {
   const emptyValue = "__empty";
+  const normalizedOptions = uniqueNonEmptyOptions(options);
   return (
     <Label>
       <span className="block">{label}</span>
@@ -591,7 +598,7 @@ function Select({
         </SelectTrigger>
         <SelectContent>
           {placeholder && <SelectItem value={emptyValue}>{placeholder}</SelectItem>}
-          {options.map((option) => (
+          {normalizedOptions.map((option) => (
             <SelectItem key={option} value={option}>{option}</SelectItem>
           ))}
         </SelectContent>
@@ -615,7 +622,10 @@ function OptionSelect({
   required?: boolean;
   placeholder?: string;
 }) {
-  const normalizedOptions = value && !options.includes(value) ? [value, ...options] : options;
+  const uniqueOptions = uniqueNonEmptyOptions(options);
+  const normalizedOptions = value.trim() && !uniqueOptions.includes(value.trim())
+    ? [value.trim(), ...uniqueOptions]
+    : uniqueOptions;
   const emptyValue = "__empty";
   return (
     <Label>

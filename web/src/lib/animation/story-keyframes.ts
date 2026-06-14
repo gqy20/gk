@@ -131,15 +131,67 @@ export function getVisibleTiers(progress: number): TierName[] {
 export interface StoryPhaseDef {
   id: string;
   label: string;
+  navLabel: string;
+  title: string;
+  description: string;
+  metric: string;
+  actionLabel?: string;
   start: number; // 全局进度起点
   end: number;   // 全局进度终点
 }
 
 export const STORY_PHASES: readonly StoryPhaseDef[] = [
-  { id: "hero", label: "开场", start: 0, end: 0.22 },
-  { id: "layers", label: "分层展示", start: 0.22, end: 0.47 },
-  { id: "features", label: "功能预览", start: 0.47, end: 0.75 },
-  { id: "cta", label: "行动召唤", start: 0.75, end: 1.0 },
+  {
+    id: "hero",
+    label: "开场",
+    navLabel: "全景",
+    title: "先看清这张高校地图",
+    description: "把 148 所高校放回真实的城市和省份里，先判断距离、层级和选择密度。",
+    metric: "148 所高校",
+    start: 0,
+    end: 0.2,
+  },
+  {
+    id: "tiers",
+    label: "高校层级",
+    navLabel: "层级",
+    title: "985、211、双一流分层点亮",
+    description: "不是只看标签，而是看这些学校在全国哪里集中，和你能接受的城市距离有多远。",
+    metric: "4 类标记",
+    start: 0.2,
+    end: 0.4,
+  },
+  {
+    id: "regions",
+    label: "地域分布",
+    navLabel: "区域",
+    title: "学校扎堆的地方，机会也更密",
+    description: "镜头推向高校更密集的区域，帮助你快速比较同城、同省和跨省选择。",
+    metric: "34 个省份",
+    start: 0.4,
+    end: 0.6,
+  },
+  {
+    id: "details",
+    label: "信息维度",
+    navLabel: "资料",
+    title: "别只看校名，继续看大学四年怎么过",
+    description: "录取、转专业、学院、就业、宿舍和校园周边，会一起影响这个志愿是否适合你。",
+    metric: "13 类资料",
+    start: 0.6,
+    end: 0.8,
+  },
+  {
+    id: "future",
+    label: "未来预演",
+    navLabel: "预演",
+    title: "把一个志愿拆成几种大学走法",
+    description: "选定学校和专业后，再看大一到大四可能怎么安排、哪里需要提前准备。",
+    metric: "3 条路线",
+    actionLabel: "进入地图探索",
+    start: 0.8,
+    end: 1.0,
+  },
 ] as const;
 
 /**
