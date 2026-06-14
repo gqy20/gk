@@ -1,0 +1,345 @@
+{
+  "name": "中国石油大学（北京）",
+  "province": "北京",
+  "url": "https://www.cup.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.246464,
+    40.218641
+  ],
+  "status": "done",
+  "detail": {
+    "university": "中国石油大学（北京）",
+    "official_url": "https://www.cup.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "中国石油大学（北京）2025年本科招生章程",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_cms/frontViewArticle.html?id=9b2d78b7bdf941c2bd4d26c829bd3bc6",
+        "summary": "教育部直属全国重点大学，双一流建设高校。校本部地址北京市昌平区府学路18号，另有克拉玛依校区。不设置预留计划，调档比例100%。按分数优先、遵循志愿、专业不设级差原则录取。校本部理工科专业学费5200-5500元/学年，经管类专业5000元/学年。",
+        "attachments": [],
+        "publish_date": "2025-05-29",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "中国石油大学（北京）2024年本科招生章程",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_cms/frontViewArticle.html?id=912492b6ab064e2c81eb588431320497",
+        "summary": "2024年本科招生章程，含录取原则、收费标准等。",
+        "attachments": [],
+        "publish_date": "2024-05-24",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "2025年分省分专业招生计划（北京）",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_web/zsjh.html",
+        "summary": "2025年北京综合改革普通类本科普通批计划招生150人。主要专业：石油工程8人、化学工程与工艺7人、油气储运工程6人、机械类6人、计算机科学与技术6人、安全工程6人、工商管理类7人、勘查技术与工程7人、海洋油气工程7人等。招生计划覆盖全国31个省份。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "2025年各省招生计划查询",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_web/zsjh.html",
+        "summary": "提供按省份、年份、科类查询的分专业招生计划，覆盖2025-2019年数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "2025年各省历年录取分数线（北京）",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_web/lnfs.html",
+        "summary": "2025年北京综合改革普通类：不限专业组最低616分（排名8526）、思想政治专业组最低616分（排名8526）、物理专业组最低608分（排名10111）、物理+化学专业组最低604分（排名10979）。各专业最低分604-623分。能源经济（双学位）最低617分最高626分，英语最低616分，勘查技术与工程最低623分。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于开展2025年本科生转专业工作的通知",
+        "url": "https://cup.edu.cn/jwc/zsyzc/a8f0ea9109744bc6b61571885096b174.htm",
+        "summary": "2025年转专业申请对象为2023级、2024级在校普通本科生，不含正在休学/保留学籍和特殊招生形式录取的学生。每人只能申请一个专业。工作流程：4月14-21日各学院制定实施细则→4月22-30日学生申请→5月6-26日学院考核与公示→5月27-31日教务处复核与公示。转专业后从夏季短学期开始执行转入专业培养方案，此前取得学分符合要求的予以认可。在校期间只允许转一次专业。",
+        "attachments": [
+          "https://cup.edu.cn/jwc/docs/2025-04/7db8f683f9ec426facfeb0989e3822c6.pdf",
+          "https://cup.edu.cn/jwc/docs/2025-04/3571e1090a9d41a0b4f36a399965b193.xls"
+        ],
+        "publish_date": "2025-04-11",
+        "source_department": "教务处（本科生院）"
+      },
+      {
+        "title": "中国石油大学（北京）本科生转专业实施办法（修订）",
+        "url": "https://www.cup.edu.cn/jwc/xjgl/zzy/105217.htm",
+        "summary": "《中国石油大学（北京）本科生转专业实施办法（修订）》，经2019年第15次校长办公会审议通过，自2019年9月1日起施行。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处（本科生院）"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "中国石油大学（北京）2026年本科招生专业（类）",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_cms/frontViewArticle.html?id=52654335cbf84dc4949cb61e1f5cd7dd",
+        "summary": "2026年本科招生专业实行部分大类招生：机械类（含机械设计制造及其自动化、机器人工程）、经济学类（含能源经济、金融学）、工商管理类（含财务管理、会计学）。大类招生专业分流前学费按大类最低学费标准收取，分流后按实际专业学费执行。",
+        "attachments": [],
+        "publish_date": "2026-04-01",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "本科生学分制学籍管理条例（培养计划与学分条款）",
+        "url": "https://www.cup.edu.cn/openinfo/xxgklm/xsglfw/9313826.htm",
+        "summary": "培养计划根据各专业人才培养目标制定，包括专业代码和名称、培养目标、主干学科、主要课程、学制与授予学位、毕业合格标准及学分要求。理论课每16学时计1学分，实践教学每周计1学分。标准学制四年，在校学习年限3-6年。",
+        "attachments": [],
+        "publish_date": "2019-10-14",
+        "source_department": "信息公开专栏"
+      },
+      {
+        "title": "本科生院关于培养方案说明",
+        "url": "https://cup.edu.cn/jwc/jwtz/a10c3ffacb8e405f9633c81ed18041a6.htm",
+        "summary": "选课前需认真阅读所学专业培养方案和学分要求，检查必修课程和选修模块完成情况。2021级和2022级本科生以纸质版培养方案为准。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生院"
+      },
+      {
+        "title": "石油工程学院本科生培养",
+        "url": "https://cup.edu.cn/oil/rcpy/bkspy/index.htm",
+        "summary": "石油工程专业培养方案和海洋油气专业培养方案，含课程体系和学分要求。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "石油工程学院"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "转专业、辅修及微专业",
+        "url": "https://bkzs.cup.edu.cn/static/front/cup/basic/html_cms/frontViewArticle.html?id=8b61ca4b8bc042bc8aeb3b8841f41aac",
+        "summary": "学校设置部分本科专业为辅修专业、双学士学位专业。学生完成主修专业学习的同时可选修辅修或双学士学位，取得规定学分后获得辅修专业结业证书或双学士学位证书。建设“双学士学位+辅修学位+微专业”多元培养项目，支持学生“1+N”多专业学习。另有创新创业辅修微专业。",
+        "attachments": [],
+        "publish_date": "2025-04-29",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "本科生学分制学籍管理条例（辅修/双学位条款）",
+        "url": "https://www.cup.edu.cn/openinfo/xxgklm/xsglfw/9313826.htm",
+        "summary": "本科生学分制学籍管理条例第七条：学校设置部分本科专业为辅修专业、双学士学位专业。学生在完成主修专业学习要求的同时，可以选择修读辅修专业或双学士学位专业，取得要求的学分后可以获得辅修专业结业证书或双学士学位证书。",
+        "attachments": [],
+        "publish_date": "2019-10-14",
+        "source_department": "信息公开专栏"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "中国石油大学（北京）2024届毕业生就业质量年度报告",
+        "url": "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf",
+        "summary": "2024届毕业生就业质量报告PDF。2024届共有本科毕业生2257人，实际毕业2155人，毕业率95.48%。学位授予率99.86%。主要就业去向包括中国石油、中国石化、中国海油等能源央企。",
+        "attachments": [
+          "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf"
+        ],
+        "publish_date": "2025-04-12",
+        "source_department": ""
+      },
+      {
+        "title": "中国石油大学（北京）2023-2024学年本科教学质量报告",
+        "url": "https://wenku.baidu.com/view/588d7941376c1eb91a37f111f18583d048640f50.html",
+        "summary": "2023-2024学年本科教学质量报告，含就业与深造数据。2024届本科毕业生2257人，实际毕业2155人，毕业率95.48%，学位授予率99.86%。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "关于做好推荐2024届优秀本科毕业生免试攻读研究生工作的通知",
+        "url": "https://www.cup.edu.cn/pub/jwc/zsyzc/d5db0e4c7d2845369a84df39327a2659.htm",
+        "summary": "推免基本条件：思想品德合格、未受纪律处分、所有课程合格、前三年必修课优良率≥50%、综合测评排名前50%。综合成绩=前三年必修课加权平均成绩70%+综合测评10%+综合评价和学术专长20%。需2名本学科研究生导师推荐。推免类别含普通推免、本研一体化专项、研究生支教团、创新创业人才专项等。时间安排为每年9月下旬。",
+        "attachments": [
+          "https://www.cup.edu.cn/pub/jwc/docs/2023-09/f2c1cc9881594c59b24c9123b2ac44d2.docx",
+          "https://www.cup.edu.cn/pub/jwc/docs/2023-09/0a59ed637f084e05b292c716fa5cfd54.docx",
+          "https://www.cup.edu.cn/pub/jwc/docs/2023-09/bdda599765014044a07105fdca469616.docx"
+        ],
+        "publish_date": "2023-09-21",
+        "source_department": "教务处（本科生院）"
+      },
+      {
+        "title": "人工智能学院2026届优秀本科毕业生推荐免试攻读研究生实施办法",
+        "url": "https://www.cup.edu.cn/cupai/tzgg/0eb5d42435914506b6cdc8bd3524aa30.htm",
+        "summary": "人工智能学院2026届推免实施办法，含具体申请条件、综合评价方式和时间安排。学院于9月6日前公示拟推荐名单。",
+        "attachments": [],
+        "publish_date": "2025-08-23",
+        "source_department": "人工智能学院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "中国石油大学（北京）国家级科技创新平台",
+        "url": "http://www.cup.edu.cn/kjc/ptjdgb/kxyjcxptgb/46438dc0a35a455294d9d79d6d27bf76.htm",
+        "summary": "国家级平台包括：重质油全国重点实验室（依托化学工程与环境学院等）、油气资源与工程全国重点实验室（依托地球科学学院等）、深层地热富集机理与高效开发全国重点实验室（共建）。另有国家工程实验室分室/国家工程研究中心共建5个、国家能源重点实验室共建1个、国家能源研发中心共建5个、国家技术创新中心2个。",
+        "attachments": [],
+        "publish_date": "2021-03-04",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "中国石油大学（北京）省部级及行业科技创新平台",
+        "url": "http://www.cup.edu.cn/kjc/ptjdgb/kxyjcxptgb/2225990f169945dcb2f33f7b5d45835d.htm",
+        "summary": "省部级平台共52个，包括：国际合作联合实验室1个（非常规油气）、教育部重点实验室1个（石油工程）、教育部工程研究中心4个、北京市重点实验室9个、中石油重点实验室/研究室20个等。",
+        "attachments": [],
+        "publish_date": "2021-03-04",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "重质油全国重点实验室",
+        "url": "http://www.cup.edu.cn/heavyoil/",
+        "summary": "依托化学工程与环境学院、理学院、新能源与材料学院，主任徐春明，1995年成立。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "油气资源与工程全国重点实验室",
+        "url": "https://www.cup.edu.cn/prplab/",
+        "summary": "依托地球科学学院、地球物理学院、石油工程学院、非常规油气科学技术研究院，主任李根生，2007年成立。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学技术研究院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "地球科学学院",
+        "url": "http://www.cup.edu.cn/geosci",
+        "disciplines": [
+          "地质学",
+          "地质资源与地质工程"
+        ]
+      },
+      {
+        "name": "石油工程学院",
+        "url": "http://www.cup.edu.cn/oil/",
+        "disciplines": [
+          "石油与天然气工程",
+          "力学"
+        ]
+      },
+      {
+        "name": "化学工程与环境学院",
+        "url": "http://www.cup.edu.cn/chem/",
+        "disciplines": [
+          "化学工程与技术",
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "机械与储运工程学院",
+        "url": "http://www.cup.edu.cn/mte/",
+        "disciplines": [
+          "机械工程",
+          "动力工程及工程热物理",
+          "石油与天然气工程"
+        ]
+      },
+      {
+        "name": "地球物理学院",
+        "url": "http://www.cup.edu.cn/geophysics/",
+        "disciplines": [
+          "地球物理学",
+          "地质资源与地质工程"
+        ]
+      },
+      {
+        "name": "安全与海洋工程学院",
+        "url": "http://www.cup.edu.cn/safety/",
+        "disciplines": [
+          "安全科学与工程",
+          "船舶与海洋工程"
+        ]
+      },
+      {
+        "name": "新能源与材料学院",
+        "url": "http://www.cup.edu.cn/cnem/",
+        "disciplines": [
+          "材料科学与工程",
+          "动力工程及工程热物理"
+        ]
+      },
+      {
+        "name": "人工智能学院",
+        "url": "http://www.cup.edu.cn/cise/",
+        "disciplines": [
+          "计算机科学与技术",
+          "控制科学与工程",
+          "信息与通信工程"
+        ]
+      },
+      {
+        "name": "理学院",
+        "url": "http://www.cup.edu.cn/science/",
+        "disciplines": [
+          "数学",
+          "物理学",
+          "化学"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "http://www.cup.edu.cn/sba/",
+        "disciplines": [
+          "应用经济学",
+          "工商管理",
+          "管理科学与工程"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://www.cup.edu.cn/rwsk/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://www.cup.edu.cn/dfl/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "教育学院",
+        "url": "https://www.cup.edu.cn/tiyubu/sydh/index.htm",
+        "disciplines": [
+          "教育学"
+        ]
+      },
+      {
+        "name": "未来能源学院",
+        "url": "",
+        "disciplines": [
+          "石油与天然气工程",
+          "动力工程及工程热物理"
+        ]
+      },
+      {
+        "name": "塔尔萨国际能源学院",
+        "url": "https://www.cup.edu.cn/iec/",
+        "disciplines": [
+          "石油与天然气工程",
+          "化学工程与技术",
+          "应用经济学"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "1. transfer_announcement（转专业公示）：教务处发布转专业工作通知但拟录取名单公示在各学院网站，未找到统一的校级公示页。2. major_streaming（大类分流规则）：大类招生的专业（机械类、经济学类、工商管理类）分流规则未找到专门的校级文件，仅在招生章程中提及分流前统一按最低学费标准收取。3. 就业质量报告PDF链接来自第三方平台gk100，非官网直接链接。4. student_experiences（学生经验）未找到可靠的非官方来源，根据规范不在missing_categories中记录。",
+    "missing_categories": [
+      "transfer_announcement"
+    ]
+  }
+}

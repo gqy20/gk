@@ -1,0 +1,657 @@
+{
+  "name": "天津大学",
+  "province": "天津",
+  "url": "https://www.tju.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    117.320416,
+    38.999522
+  ],
+  "status": "done",
+  "detail": {
+    "university": "天津大学",
+    "official_url": "https://www.tju.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "天津大学2026年强基计划招生简章",
+        "url": "https://zs.tju.edu.cn/info/1116/3829.htm",
+        "summary": "2026年强基计划招生专业包括数学与应用数学、应用物理学、应用化学、生物科学、工程力学、合成生物学、能源与动力工程、船舶与海洋工程8个专业。报名时间4月10日至30日，综合成绩=高考成绩×85%+面试成绩×15%。对高考单科成绩特别优秀者可破格入围。",
+        "attachments": [],
+        "publish_date": "2026-04-07",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "天津大学2026年保送生招生简章",
+        "url": "https://zs.tju.edu.cn/info/1116/4079.htm",
+        "summary": "招收高中阶段入选中学生学科奥林匹克竞赛国家集训队成员的应届普通高中毕业生，原则上录取至与学生特长相关的基础学科专业。",
+        "attachments": [],
+        "publish_date": "2026-04-14",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "天津大学2025年本科招生章程",
+        "url": "https://www.gaokao.cn/school/60/sturule",
+        "summary": "天津大学本科招生章程总则，涵盖学校全称、校址（卫津路校区/北洋园校区）、招生计划编制原则、录取规则、体检要求等。高考改革省份选考科目要求物理和化学为主。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生招生办公室"
+      }
+    ],
+    "enrollment_plan": [],
+    "historical_admission": [],
+    "transfer_policy": [
+      {
+        "title": "天津大学本科生主修专业确认、转专业及个性化培养实施办法",
+        "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_19369c1e2f084952",
+        "summary": "2026年3月9日起施行。核心亮点：(1)主修专业确认按大类内“遵循志愿”原则分批次进行，学生可在大类内任选专业；(2)转出不限制，申请转出不受绩点、排名、名额限制；(3)非毕业年级均可申请，大一大二大三都有机会，大学期间共6次机会；(4)支持填报两个专业志愿。该办法适用于2026级及以后入学的全日制本科生。",
+        "attachments": [],
+        "publish_date": "2026-03-09",
+        "source_department": "教务处"
+      },
+      {
+        "title": "天津大学转专业工作（北洋维基整理）",
+        "url": "https://wiki.tjubot.cn/major-changing/general",
+        "summary": "全日制本科新生入学后有5次调整专业机会：大一下学期和大二下学期可申请转专业；入学后可经选拔进入未来技术学院；可跨学院进入拔尖班学习；大类分流时多次确认主修专业。转专业遵循“转出无门槛，转入有要求”原则。接收学院制定实施细则，组织笔试/面试等考核。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "天津大学2026级本科生大类分流100%专业任选",
+        "url": "https://so.html5.qq.com/page/real/search_news?docid=70000021_19369c1e2f084952",
+        "summary": "根据《天津大学本科生主修专业确认、转专业及个性化培养实施办法》，2026级及以后入学的全日制本科生，主修专业确认按照大类内“遵循志愿”原则分批次进行，学生可在分类内任选专业。这意味着大类分流后100%按学生志愿分配专业。",
+        "attachments": [],
+        "publish_date": "2026-03-22",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "合成生物学培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/3949.htm",
+        "summary": "合成生物学强基计划培养方案，依托合成生物与生物制造学院培养。",
+        "attachments": [
+          "https://zs.tju.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1463726025&wbfileid=6D8223995CE57C0E27D55D7938D74194"
+        ],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "数学与应用数学培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/3959.htm",
+        "summary": "数学与应用数学强基计划培养方案，依托数学学院和人工智能学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "工程力学培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/3969.htm",
+        "summary": "工程力学强基计划培养方案，依托机械工程学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "应用化学培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/3979.htm",
+        "summary": "应用化学强基计划培养方案，依托理学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "应用物理学培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/3989.htm",
+        "summary": "应用物理学强基计划培养方案，依托理学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "生物科学培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/4019.htm",
+        "summary": "生物科学强基计划培养方案，依托生命科学学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "能源与动力工程培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/3999.htm",
+        "summary": "能源与动力工程强基计划培养方案，依托机械工程学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "船舶与海洋工程培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/4009.htm",
+        "summary": "船舶与海洋工程强基计划培养方案，依托建筑工程学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "数学与应用数学（智能科学）培养方案（2026强基计划）",
+        "url": "https://zs.tju.edu.cn/info/1116/4029.htm",
+        "summary": "数学与应用数学（智能科学）强基计划培养方案，依托人工智能学院培养。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "天津大学本科人才培养方案管理办法（试行）",
+        "url": "http://ee.tju.edu.cn/toModule.do?prefix=/News&page=/newsDetail.do?infoid=41185",
+        "summary": "学校发布的本科人才培养方案管理办法，规范培养方案的制定、修订和执行流程。",
+        "attachments": [],
+        "publish_date": "2021-03-19",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "天津大学本科生主辅修制度实施办法（修订版）",
+        "url": "http://ee.tju.edu.cn/OA/schFileDetail.do?todo=Display&msgid=4090&searchKeyword=&curPage=1",
+        "summary": "天津大学本科生主辅修制度实施办法的修订版本，规定了主修专业确认、辅修专业申请条件、学分要求、证书类型等。",
+        "attachments": [],
+        "publish_date": "2021-02-04",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "天津大学2023-2024学年本科教学质量报告",
+        "url": "https://xxgkw.tju.edu.cn/xwgb1/index.htm",
+        "summary": "截至2024年8月31日，2024届本科生毕业去向落实率89.48%。55.21%选择国内升学（2499人），7.42%出国深造（336人）。国内升学中保研1569人，占比34.67%。直接就业1215人，占比26.84%，主要流向中国建筑集团、国家电网等大型企业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "信息公开网"
+      },
+      {
+        "title": "天津大学本科招生网-深造就业",
+        "url": "https://zs.tju.edu.cn/ym21/wdtd/szjy.htm",
+        "summary": "包含领航计划与微专业协同推进、未来战略领军人才培养新政、新工科领军工程计划、就业情况总览等内容。",
+        "attachments": [],
+        "publish_date": "2025-06-04",
+        "source_department": "本科生招生办公室"
+      }
+    ],
+    "postgrad_recommend": [],
+    "competition_research": [
+      {
+        "title": "精密测试技术及仪器全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77482.htm",
+        "summary": "围绕\"制造强国\"、\"质量强国\"国家战略，瞄准智能制造背景下精密测量需求，开展高端装备数字化制造精密测量仪器及体系、极端服役多参数在线测量技术等研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "先进内燃动力全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77472.htm",
+        "summary": "前身为内燃机燃烧学国家重点实验室，1986年创建，我国内燃机领域第一个国家重点实验室。2015年以来获国家级科技奖6项。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "水利工程智能建设与运维全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77462.htm",
+        "summary": "2023年获批建设，核心技术在我国90%以上200m级高坝工程中应用，获国家科技奖励18项。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "先进医用材料与医疗器械全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77492.htm",
+        "summary": "面向国家重大战略需求，聚焦先进医用材料与医疗器械研发，推动医学与材料科学、生物学等交叉融合。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "合成生物技术全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77512.htm",
+        "summary": "以\"合成生命、设计生命\"为使命，致力于基因组设计合成、人工细胞设计构建等研究，突破工业菌株、工业酶等瓶颈。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "化学工程与低碳技术全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77572.htm",
+        "summary": "聚焦微化工技术与流动化学过程、化工反应和分离过程强化、低碳智能化工制造系统三个方向。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "智能传感功能材料全国重点实验室",
+        "url": "https://www.tju.edu.cn/info/1058/77502.htm",
+        "summary": "面向智能传感器灵敏度、选择性和稳定性等关键科学问题，重点开展电磁波传感功能材料、生化传感功能材料研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "精馏技术国家工程研究中心",
+        "url": "https://www.tju.edu.cn/info/1059/77612.htm",
+        "summary": "开发新型高效精馏工艺和设备，建立精馏过程控制和诊断方法，研发过程模拟与放大技术。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究"
+      },
+      {
+        "title": "天津大学学生竞赛",
+        "url": "http://oaa.tju.edu.cn/cxsj/xsjs.htm",
+        "summary": "包含挑战杯、全国大学生机械创新设计大赛、全国三维数字化创新设计大赛、全国周培源大学生力学竞赛、外教社杯翻译竞赛、外语学科竞赛等多项学科竞赛。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "天津大学实验教学示范中心",
+        "url": "http://oaa.tju.edu.cn/cxsj/syjxsfzx.htm",
+        "summary": "学校设有多个国家级和市级实验教学示范中心，为学生提供实践创新能力培养平台。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "机械工程学院",
+        "url": "https://www.tju.edu.cn/info/1044/1252.htm",
+        "disciplines": [
+          "机械工程",
+          "力学",
+          "动力工程及工程热物理"
+        ]
+      },
+      {
+        "name": "精密仪器与光电子工程学院",
+        "url": "https://www.tju.edu.cn/info/1044/1251.htm",
+        "disciplines": [
+          "仪器科学与技术",
+          "光学工程",
+          "生物医学工程"
+        ]
+      },
+      {
+        "name": "电气自动化与信息工程学院",
+        "url": "https://www.tju.edu.cn/info/1044/1250.htm",
+        "disciplines": [
+          "电气工程",
+          "控制科学与工程",
+          "信息与通信工程"
+        ]
+      },
+      {
+        "name": "微电子学院",
+        "url": "https://www.tju.edu.cn/info/1044/1249.htm",
+        "disciplines": [
+          "电子科学与技术",
+          "集成电路工程"
+        ]
+      },
+      {
+        "name": "计算机科学与技术学院",
+        "url": "https://www.tju.edu.cn/info/1044/1234.htm",
+        "disciplines": [
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "网络安全学院",
+        "url": "https://www.tju.edu.cn/info/1044/82252.htm",
+        "disciplines": [
+          "网络空间安全"
+        ]
+      },
+      {
+        "name": "人工智能学院",
+        "url": "https://www.tju.edu.cn/info/1044/9356.htm",
+        "disciplines": [
+          "人工智能"
+        ]
+      },
+      {
+        "name": "软件学院",
+        "url": "https://www.tju.edu.cn/info/1044/10147.htm",
+        "disciplines": [
+          "软件工程"
+        ]
+      },
+      {
+        "name": "建筑工程学院",
+        "url": "https://www.tju.edu.cn/info/1044/1248.htm",
+        "disciplines": [
+          "土木工程",
+          "水利工程",
+          "船舶与海洋工程"
+        ]
+      },
+      {
+        "name": "建筑学院",
+        "url": "https://www.tju.edu.cn/info/1044/1247.htm",
+        "disciplines": [
+          "建筑学",
+          "城乡规划学",
+          "风景园林学"
+        ]
+      },
+      {
+        "name": "化工学院",
+        "url": "https://www.tju.edu.cn/info/1044/1246.htm",
+        "disciplines": [
+          "化学工程与技术",
+          "生物工程"
+        ]
+      },
+      {
+        "name": "合成生物与生物制造学院",
+        "url": "https://www.tju.edu.cn/info/1044/10194.htm",
+        "disciplines": [
+          "合成生物学",
+          "生物制造"
+        ]
+      },
+      {
+        "name": "材料科学与工程学院",
+        "url": "https://www.tju.edu.cn/info/1044/1245.htm",
+        "disciplines": [
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "环境科学与工程学院",
+        "url": "https://www.tju.edu.cn/info/1044/1235.htm",
+        "disciplines": [
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "管理与经济学部",
+        "url": "https://www.tju.edu.cn/info/1044/1244.htm",
+        "disciplines": [
+          "管理科学与工程",
+          "工商管理",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "人文艺术学院",
+        "url": "https://www.tju.edu.cn/info/1044/6722.htm",
+        "disciplines": [
+          "中国语言文学",
+          "艺术学"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "https://www.tju.edu.cn/info/1044/1239.htm",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "法学院、纪检监察学院",
+        "url": "https://www.tju.edu.cn/info/1044/75652.htm",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://www.tju.edu.cn/info/1044/1233.htm",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "理学院",
+        "url": "https://www.tju.edu.cn/info/1044/1241.htm",
+        "disciplines": [
+          "物理学",
+          "化学"
+        ]
+      },
+      {
+        "name": "数学学院",
+        "url": "https://www.tju.edu.cn/info/1044/1240.htm",
+        "disciplines": [
+          "数学"
+        ]
+      },
+      {
+        "name": "医学院",
+        "url": "https://www.tju.edu.cn/info/1044/2166.htm",
+        "disciplines": [
+          "医学",
+          "生物医学工程"
+        ]
+      },
+      {
+        "name": "药物科学与技术学院",
+        "url": "https://www.tju.edu.cn/info/1044/1236.htm",
+        "disciplines": [
+          "药学"
+        ]
+      },
+      {
+        "name": "生命科学学院",
+        "url": "https://www.tju.edu.cn/info/1044/1232.htm",
+        "disciplines": [
+          "生物学"
+        ]
+      },
+      {
+        "name": "卫生应急学院",
+        "url": "https://www.tju.edu.cn/info/1044/9357.htm",
+        "disciplines": [
+          "公共卫生与预防医学"
+        ]
+      },
+      {
+        "name": "海洋科学与技术学院",
+        "url": "https://www.tju.edu.cn/info/1044/1231.htm",
+        "disciplines": [
+          "海洋科学"
+        ]
+      },
+      {
+        "name": "地球系统科学学院",
+        "url": "https://www.tju.edu.cn/info/1044/1227.htm",
+        "disciplines": [
+          "大气科学",
+          "地理学"
+        ]
+      },
+      {
+        "name": "能源学院",
+        "url": "https://www.tju.edu.cn/info/1044/84282.htm",
+        "disciplines": [
+          "动力工程及工程热物理",
+          "新能源科学"
+        ]
+      },
+      {
+        "name": "未来技术学院",
+        "url": "https://www.tju.edu.cn/info/1044/82262.htm",
+        "disciplines": [
+          "智能制造",
+          "储能科学与工程"
+        ]
+      },
+      {
+        "name": "宣怀学院",
+        "url": "https://www.tju.edu.cn/info/1044/1243.htm",
+        "disciplines": [
+          "创新创业"
+        ]
+      },
+      {
+        "name": "国家卓越工程师学院、国际工程师学院",
+        "url": "https://www.tju.edu.cn/info/1044/75642.htm",
+        "disciplines": [
+          "工程"
+        ]
+      },
+      {
+        "name": "教育学院",
+        "url": "https://www.tju.edu.cn/info/1044/1237.htm",
+        "disciplines": [
+          "教育学"
+        ]
+      },
+      {
+        "name": "国际教育学院",
+        "url": "https://www.tju.edu.cn/info/1044/1230.htm",
+        "disciplines": [
+          "汉语国际教育"
+        ]
+      },
+      {
+        "name": "新媒体与传播学院",
+        "url": "https://www.tju.edu.cn/info/1044/2167.htm",
+        "disciplines": [
+          "新闻传播学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业难度与经验",
+        "content": "天津大学转专业遵循“转出无门槛，转入有要求”原则。全日制本科生在大一下学期和大二下学期分别有一次申请转专业的机会。接收学院会组织笔试和面试，部分学院会参考高等数学和大学英语的统测成绩。各学院接收名额原则上不超过原专业规模的10%。强基计划、外语类保送生、艺术类专业等特殊招生类型不可转专业。",
+        "source_type": "论坛/社区（北洋维基）",
+        "source_url": "https://wiki.tjubot.cn/major-changing/general"
+      },
+      {
+        "topic": "就业与深造情况",
+        "content": "2024届本科生毕业去向落实率89.48%，55.21%选择国内升学（其中保研占比34.67%），7.42%出国深造。就业主要流向京津冀地区，38%在天津、24%在北京。直接就业占26.84%，主要去向包括中国建筑集团、国家电网等央企和大型民企。",
+        "source_type": "第三方教育网站",
+        "source_url": "https://www.wordmao.com/gk/44078.html"
+      }
+    ],
+    "notes": "1. 招生计划与历年录取数据通常通过各省考试院或高考志愿填报系统查询，天津大学本科招生网未直接公开分省分专业计划表和历年分数线。2. 保研/推免实施办法通常由研究生院或教务处发布，本次未在公开页面中检索到。3. 转专业公示通常在天大办公网（内网）发布，外网不可访问。4. 就业质量报告PDF通常通过信息公开网发布，本次获取到的是教学质报中的就业数据摘要。5. 学院列表中“智能与计算学部”下属四个学院已拆分为独立学院条目输出；“医学部”下属四个学院也已拆分；“分子+”系列研究院未计入（非学院层级）。",
+    "missing_categories": [
+      "enrollment_plan",
+      "historical_admission",
+      "transfer_announcement",
+      "postgrad_recommend"
+    ],
+    "basic_info": {
+      "location": "天津 详细地址：北洋园校区：天津市津南区雅观路135号 天津大学行政服务中心A116室 邮编：300354 卫津路校区：天津市南开区卫津路92号 天津大学第九教学楼223室 邮编：300072",
+      "address": "北洋园校区：天津市津南区雅观路135号 天津大学行政服务中心A116室 邮编：300354 卫津路校区：天津市南开区卫津路92号 天津大学第九教学楼223室 邮编：300072",
+      "phone": "022-60316985",
+      "website": "https://www.tju.edu.cn/",
+      "enrollment_website": "http://zs.tju.edu.cn/",
+      "attributes": [
+        "985",
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 建筑学专业",
+        "url": "",
+        "summary": "**建筑学专业**\nQ: 建筑学专业为什么要纳入历史类社会科学实验班大类？多少人要被分流去建筑学？\nA: 同学你好，我校招生大类设置综合研判各专业的相关性、以及考生的专业需求性，合理安排。建筑学分流更详细的政策建议直接电话咨询：022-60316985",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 预科",
+        "url": "",
+        "summary": "**预科**\nQ: 请问预科读完一年后按成绩分专业可选的专业有哪些谢谢\nA: 同学你好，我校预科班各省学生的专业确定需要要公布的各省专业范围内进行选择，范围与名额逐年变化，如需更详细的介绍，请致电022-60316985.",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 预科",
+        "url": "",
+        "summary": "**预科**\nQ: 请问预科读完一年后按成绩分专业可选的专业有哪些谢谢\nA: 同学你好，我校预科班各省学生的专业确定需要要公布的各省专业范围内进行选择，范围与名额逐年变化，如需更详细的介绍，请致电022-60316985.",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 扩招",
+        "url": "",
+        "summary": "**扩招**\nQ: 今年在湖北物理组有扩招计划吗\nA: 同学你好，我校于湖北省物理组招生计划较2024年名额增加，鼓励报考！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 你好老师 云南省物理类省排12809 有机会报该校吗？有国家专项\nA: 同学你好，国家专项排名位次每年波动较大，建议直接电话咨询022-60316985，获取更为针对性的招生报考建议。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "工程管理",
+        "score": 4.8,
+        "votes": 627
+      },
+      {
+        "title": "工商管理",
+        "score": 4.7,
+        "votes": 872
+      },
+      {
+        "title": "计算机网络技术",
+        "score": 4.7,
+        "votes": 392
+      },
+      {
+        "title": "土木工程",
+        "score": 4.7,
+        "votes": 1227
+      },
+      {
+        "title": "财务管理",
+        "score": 4.7,
+        "votes": 459
+      },
+      {
+        "title": "工程造价",
+        "score": 4.7,
+        "votes": 367
+      },
+      {
+        "title": "电气工程及其自动化",
+        "score": 4.6,
+        "votes": 719
+      },
+      {
+        "title": "金融学",
+        "score": 4.5,
+        "votes": 168
+      },
+      {
+        "title": "光电信息科学与工程",
+        "score": 4.5,
+        "votes": 43
+      },
+      {
+        "title": "建筑环境与能源应用工程",
+        "score": 4.5,
+        "votes": 30
+      }
+    ]
+  }
+}

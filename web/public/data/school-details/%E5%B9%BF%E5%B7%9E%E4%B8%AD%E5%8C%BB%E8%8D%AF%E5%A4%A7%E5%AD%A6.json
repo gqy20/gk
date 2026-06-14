@@ -1,0 +1,527 @@
+{
+  "name": "广州中医药大学",
+  "province": "广东",
+  "url": "https://www.gzucm.edu.cn",
+  "is985": false,
+  "is211": false,
+  "isDoubleFirstClass": true,
+  "coord": [
+    113.404515,
+    23.058255
+  ],
+  "status": "done",
+  "detail": {
+    "university": "广州中医药大学",
+    "official_url": "https://www.gzucm.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "广州中医药大学2025年夏季高考招生章程",
+        "url": "https://xsc.gzucm.edu.cn/info/1037/5629.htm",
+        "summary": "涵盖学校概况（双一流公办高校）、招生计划（预留不超过1%）、录取规则（分数优先）、体检标准（色弱色盲不可报考中医学等医学类专业）、收费标准（医学类7660元/学年，住宿费1800元/学年）、资助政策等。咨询电话：020-39357999。",
+        "attachments": [],
+        "publish_date": "2025-06-10",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "广州中医药大学2024年夏季高考招生章程",
+        "url": "https://xsc.gzucm.edu.cn/info/1037/4299.htm",
+        "summary": "2024年本科招生章程，包含学校概况、招生计划、录取规则、体检标准、收费标准等内容。",
+        "attachments": [],
+        "publish_date": "2024-05-16",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "广州中医药大学2023年夏季高考招生章程",
+        "url": "https://xsc.gzucm.edu.cn/info/1037/3569.htm",
+        "summary": "2023年本科招生章程。",
+        "attachments": [],
+        "publish_date": "2023-05-30",
+        "source_department": "学生处（招生办公室）"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "2025年广州中医药大学本科分省分专业计划",
+        "url": "https://xsc.gzucm.edu.cn/info/1038/5759.htm",
+        "summary": "2025年本科分省分专业招生计划，含各省各专业具体招生人数。",
+        "attachments": [],
+        "publish_date": "2025-06-25",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2024年广州中医药大学本科分省分专业计划",
+        "url": "https://xsc.gzucm.edu.cn/info/1038/4369.htm",
+        "summary": "2024年本科分省分专业招生计划。",
+        "attachments": [],
+        "publish_date": "2024-06-24",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2023年广州中医药大学本科分省分专业计划",
+        "url": "https://xsc.gzucm.edu.cn/info/1038/3579.htm",
+        "summary": "2023年本科分省分专业招生计划。",
+        "attachments": [],
+        "publish_date": "2023-06-19",
+        "source_department": "学生处（招生办公室）"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "2024年各省份本科招生录取分数",
+        "url": "https://xsc.gzucm.edu.cn/info/1039/5749.htm",
+        "summary": "2024年各省本科招生录取最低分数线及位次数据。",
+        "attachments": [],
+        "publish_date": "2025-06-25",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2023年各省份本科招生录取分数",
+        "url": "https://xsc.gzucm.edu.cn/info/1039/4269.htm",
+        "summary": "2023年各省本科招生录取最低分数线。",
+        "attachments": [],
+        "publish_date": "2024-04-17",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2023年广东省各专业录取分数",
+        "url": "https://xsc.gzucm.edu.cn/info/1039/4129.htm",
+        "summary": "2023年广东省各专业录取最低分数。",
+        "attachments": [],
+        "publish_date": "2023-12-29",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2022年各省份本科招生录取分数",
+        "url": "https://xsc.gzucm.edu.cn/info/1039/3499.htm",
+        "summary": "2022年各省本科招生录取最低分数线。",
+        "attachments": [],
+        "publish_date": "2023-04-29",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2022年广东省各专业录取分数",
+        "url": "https://xsc.gzucm.edu.cn/info/1039/3509.htm",
+        "summary": "2022年广东省各专业录取最低分数。",
+        "attachments": [],
+        "publish_date": "2023-04-28",
+        "source_department": "学生处（招生办公室）"
+      },
+      {
+        "title": "2021年各省份本科招生录取分数",
+        "url": "https://xsc.gzucm.edu.cn/info/1039/3116.htm",
+        "summary": "2021年各省本科招生录取最低分数线。",
+        "attachments": [],
+        "publish_date": "2022-06-08",
+        "source_department": "学生处（招生办公室）"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于印发《广州中医药大学本科学生转专业管理实施办法（2021年7月修订）》的通知",
+        "url": "https://jwc.gzucm.edu.cn/info/1291/8411.htm",
+        "summary": "转专业管理实施办法：每年转专业总人数不超过一年级在校学生总人数（不含定向生和体育类学生）的5%；申请转入中医学、针灸推拿学、中西医临床医学、临床医学等专业需符合当年高考考试科目要求；一年级转专业学生转入同年级学习。",
+        "attachments": [
+          "https://jwc.gzucm.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2050944949&wbfileid=16146610"
+        ],
+        "publish_date": "2026-04-16",
+        "source_department": "教务部"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "2026年拟转专业学生名单公示",
+        "url": "https://jwc.gzucm.edu.cn/info/1006/8401.htm",
+        "summary": "2026年拟转专业学生名单公示，含PDF和Excel附件。",
+        "attachments": [
+          "https://jwc.gzucm.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2050944949&wbfileid=16146601",
+          "https://jwc.gzucm.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2050944949&wbfileid=16146602"
+        ],
+        "publish_date": "2026-04-16",
+        "source_department": "教务部"
+      },
+      {
+        "title": "关于同意闫墨楠等108位同学转专业的通知",
+        "url": "https://jwc.gzucm.edu.cn/info/1006/8421.htm",
+        "summary": "2026年批准108位同学转专业的正式通知。",
+        "attachments": [],
+        "publish_date": "2026-04-27",
+        "source_department": "教务部"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "中药学院召开2024级中药学类专业分流宣讲会",
+        "url": "https://cctm.gzucm.edu.cn/info/1011/27671.htm",
+        "summary": "中药学类实施大类招生，一年级后分流到中药学和中药资源与开发2个专业。中药学专业下设中药班、药品经营与管理班、广中医-澳科大联合培养卓越班三个方向。分流时间在第二学年，根据学生兴趣和双向选择原则分流。",
+        "attachments": [],
+        "publish_date": "2025-04-18",
+        "source_department": "中药学院"
+      },
+      {
+        "title": "中药学院举办2023级中药学类专业分流宣讲会",
+        "url": "https://cctm.gzucm.edu.cn/info/1047/21651.htm",
+        "summary": "中药学类大二分流宣讲会，涉及中药学和中药资源与开发专业方向选择。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中药学院"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "广州中医药大学关于制订（修订）全日制本科专业人才培养方案的指导意见",
+        "url": "https://jwc.gzucm.edu.cn/info/1311/6431.htm",
+        "summary": "本科专业人才培养方案制订的指导意见，包含课程体系、学分要求、毕业标准等框架性规定。各学院具体培养方案由此文件指导制定。",
+        "attachments": [],
+        "publish_date": "2024-10-31",
+        "source_department": "教务部"
+      },
+      {
+        "title": "广州中医药大学中医经典知识等级考试实施办法（暂行）",
+        "url": "https://jwc.gzucm.edu.cn/info/1311/6461.htm",
+        "summary": "中医经典知识等级考试实施办法，是培养方案的重要组成部分。",
+        "attachments": [],
+        "publish_date": "2024-10-31",
+        "source_department": "教务部"
+      }
+    ],
+    "minor_program": [],
+    "employment_report": [
+      {
+        "title": "广州中医药大学毕业生就业质量年度报告（2024年）",
+        "url": "https://pdf.gk100.com/employment/report/2024/20250412/d2a1654b4c327b97.pdf",
+        "summary": "广州中医药大学2024年毕业生就业质量年度报告PDF，涵盖就业率、去向分布、薪资等信息。来源为第三方高考信息平台收录的官方报告。",
+        "attachments": [
+          "https://pdf.gk100.com/employment/report/2024/20250412/d2a1654b4c327b97.pdf"
+        ],
+        "publish_date": "2025-04-12",
+        "source_department": "学生处（就业指导中心）"
+      },
+      {
+        "title": "广州中医药大学2016届毕业生就业质量年度报告",
+        "url": "https://xxgk.gzucm.edu.cn/info/1511/6901.htm",
+        "summary": "信息公开网公布的2016届毕业生就业质量年度报告。",
+        "attachments": [],
+        "publish_date": "2017-10-29",
+        "source_department": "信息公开网"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "关于印发《广州中医药大学推荐优秀应届本科毕业生免试攻读硕士学位研究生工作管理办法》的通知",
+        "url": "https://jwc.gzucm.edu.cn/info/1291/8261.htm",
+        "summary": "推免工作管理办法，涵盖遴选条件、名额分配、工作流程和时间安排。2026年1月发布最新版本。",
+        "attachments": [
+          "https://jwc.gzucm.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2050944949&wbfileid=16141042"
+        ],
+        "publish_date": "2026-01-07",
+        "source_department": "教务部"
+      },
+      {
+        "title": "广州中医药大学推荐优秀应届本科毕业生免试攻读硕士学位研究生工作管理办法（修订）",
+        "url": "https://jwc.gzucm.edu.cn/info/1291/6281.htm",
+        "summary": "推免工作管理办法的修订版本，2024年10月发布。",
+        "attachments": [],
+        "publish_date": "2024-10-31",
+        "source_department": "教务部"
+      },
+      {
+        "title": "广州中医药大学优秀应届本科毕业生推荐免试攻读硕士学位研究生申请表",
+        "url": "https://jwc.gzucm.edu.cn/info/1351/7781.htm",
+        "summary": "推免申请表下载。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务部"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "中医证候全国重点实验室（首家中医类全国重点实验室）",
+        "url": "https://zhsys.gdhtcm.com/",
+        "summary": "2023年3月获批建设的全国唯一中医类全国重点实验室，由中国工程院院士刘良担任主任。聚焦辨证论治理论，开展多学科交叉融合创新研究。依托广州中医药大学、中国中医科学院西苑医院等单位共建。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中医证候全国重点实验室"
+      },
+      {
+        "title": "首家中医类全国重点实验室正式启动",
+        "url": "https://www.gzucm.edu.cn/info/1091/89101.htm",
+        "summary": "2023年9月15日中医证候全国重点实验室正式启动的新闻报道。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学校新闻中心"
+      },
+      {
+        "title": "广州中医药大学科研单位列表",
+        "url": "https://www.gzucm.edu.cn/jgsz/kydw.htm",
+        "summary": "学校共设12个科研单位：科技创新中心、临床药理研究所、青蒿研究中心、脾胃研究所、中药资源研究与工程中心、中医药数理工程研究、国际中医药转化医学研究、华南针灸研究中心、岭南医学研究中心、药用植物生理生态研究所、肿瘤研究所等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学校官网"
+      },
+      {
+        "title": "国家级科研平台（10个）",
+        "url": "https://www.gzucm.edu.cn/info/1111/93631.htm",
+        "summary": "广州中医药大学拥有10个国家级科研平台，含中医证候全国重点实验室等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学校官网"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "马克思主义学院",
+        "url": "https://mksxy.gzucm.edu.cn",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "基础医学院",
+        "url": "https://jcyxy.gzucm.edu.cn/",
+        "disciplines": [
+          "中医学",
+          "中西医结合"
+        ]
+      },
+      {
+        "name": "中药学院",
+        "url": "https://cctm.gzucm.edu.cn",
+        "disciplines": [
+          "中药学",
+          "药学"
+        ]
+      },
+      {
+        "name": "针灸康复临床医学院",
+        "url": "https://zhenkang.gzucm.edu.cn/",
+        "disciplines": [
+          "针灸推拿学",
+          "康复医学与理疗学"
+        ]
+      },
+      {
+        "name": "第一临床医学院",
+        "url": "https://dylc.gzucm.edu.cn",
+        "disciplines": [
+          "中医学",
+          "临床医学"
+        ]
+      },
+      {
+        "name": "第二临床医学院",
+        "url": "https://delc.gzucm.edu.cn",
+        "disciplines": [
+          "中医学",
+          "临床医学"
+        ]
+      },
+      {
+        "name": "第三临床医学院",
+        "url": "https://dslc.gzucm.edu.cn",
+        "disciplines": [
+          "中医学",
+          "临床医学"
+        ]
+      },
+      {
+        "name": "第四临床医学院",
+        "url": "https://dslcyxy.gzucm.edu.cn/",
+        "disciplines": [
+          "中医学",
+          "临床医学"
+        ]
+      },
+      {
+        "name": "护理学院",
+        "url": "https://hlxy.gzucm.edu.cn/index.htm",
+        "disciplines": [
+          "护理学"
+        ]
+      },
+      {
+        "name": "公共卫生与管理学院",
+        "url": "https://sphm.gzucm.edu.cn/",
+        "disciplines": [
+          "公共卫生与预防医学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "医学信息工程学院",
+        "url": "https://ygxy.gzucm.edu.cn",
+        "disciplines": [
+          "生物医学工程",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "体育健康学院",
+        "url": "https://tyjk.gzucm.edu.cn",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "国际学院",
+        "url": "https://studyoverseas.gzucm.edu.cn/",
+        "disciplines": [
+          "中医学",
+          "中药学"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "https://wgyxy.gzucm.edu.cn",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "国学院",
+        "url": "https://guoxue.gzucm.edu.cn/",
+        "disciplines": [
+          "中国史",
+          "哲学"
+        ]
+      },
+      {
+        "name": "深圳临床医学院",
+        "url": "https://szlcyxy.gzucm.edu.cn/",
+        "disciplines": [
+          "中医学",
+          "临床医学"
+        ]
+      },
+      {
+        "name": "深圳特色学院",
+        "url": "https://gri.gzucm.edu.cn",
+        "disciplines": [
+          "中医学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业经验分享",
+        "content": "有学生分享通过转专业政策成功从护理学转入中医学专业的经验，涉及转专业流程、专业介绍和个人感受。转专业总人数控制在一年级在校生5%以内，需符合转入专业高考科目要求。",
+        "source_type": "百度贴吧",
+        "source_url": "https://tieba.baidu.com/p/7854181503"
+      },
+      {
+        "topic": "中药学类专业分流政策",
+        "content": "中药学类实施大类招生，经过一年基础培养后，二年级根据兴趣和双向选择原则分流到中药学和中药资源与开发2个专业。中药学专业还可分流到中药班、药品经营与管理班、广中医-澳科大联合培养卓越班。",
+        "source_type": "百度贴吧",
+        "source_url": "https://tieba.baidu.com/p/9073702016"
+      }
+    ],
+    "notes": "1. 辅修/双学位/微专业：学校学籍管理实施细则中有\"辅修与攻读双学位\"章节提及，但未找到专门的政策文件或通知公告页面，归类为未找到。2. 就业质量报告：信息公开网仅公开到2016届报告，2024年报告从第三方平台获取。3. 学院列表中\"继续教育学院\"为成人教育性质、\"佛山临床医学院\"无独立官网链接，未单独列出。4. 官网有10个国家级科研平台（含中医证候全国重点实验室），但具体完整列表需进一步查询。5. 历年录取数据覆盖2019-2024年，共6年。6. 招生计划覆盖2018-2025年，共8年。",
+    "missing_categories": [
+      "minor_program"
+    ],
+    "basic_info": {
+      "location": "广东 详细地址：广东省广州市番禺区大学城外环东路232号广州中医药大学",
+      "address": "广东省广州市番禺区大学城外环东路232号广州中医药大学",
+      "phone": "020-39357999",
+      "website": "https://www.gzucm.edu.cn/",
+      "enrollment_website": "https://xsc.gzucm.edu.cn/bkzs1/xszn1.htm",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 保研",
+        "url": "",
+        "summary": "**保研**\nQ: 老师您好！中医骨伤专业可不可以保研？保研率是多少呢？\nA: 可以保研，医学类保研率13%左右",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 中医职业医师资格",
+        "url": "",
+        "summary": "**中医职业医师资格**\nQ: 针灸推拿学专业能否考中医职业医师资格证书？\nA: 可以的",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 转专业",
+        "url": "",
+        "summary": "**转专业**\nQ: 请问中医骨伤学专业可不可以申请转入中医学专业？\nA: 可以的",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 报考",
+        "url": "",
+        "summary": "**报考**\nQ: 江苏文科550报考中医类有希望吗\nA: 该分数报考中医学可能有所不足，建议冲一下",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 咨询应用心理学专业的报考要求",
+        "url": "",
+        "summary": "**咨询应用心理学专业的报考要求**\nQ: 广东省物理方向568分省排名57300，报考贵校应用心理学的投档成功的概率高吗？请问贵校的该专业报考报考要求是什么？选科有要求吗？招生人数是多少？谢谢\nA: 有较大的投档概率，色盲色弱及单色识别不全限报，选科不限，广东物理招生45人",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "针灸推拿学",
+        "score": 4.1,
+        "votes": 359
+      },
+      {
+        "title": "护理",
+        "score": 4.1,
+        "votes": 504
+      },
+      {
+        "title": "针灸推拿",
+        "score": 4.1,
+        "votes": 245
+      },
+      {
+        "title": "药学",
+        "score": 4,
+        "votes": 383
+      },
+      {
+        "title": "应用心理学",
+        "score": 3.8,
+        "votes": 181
+      },
+      {
+        "title": "中药学",
+        "score": 3.8,
+        "votes": 662
+      },
+      {
+        "title": "护理学",
+        "score": 3.7,
+        "votes": 428
+      },
+      {
+        "title": "体育教育",
+        "score": 3.6,
+        "votes": 187
+      },
+      {
+        "title": "医学信息工程",
+        "score": 3.6,
+        "votes": 61
+      },
+      {
+        "title": "中医学",
+        "score": 3.5,
+        "votes": 1806
+      }
+    ]
+  }
+}

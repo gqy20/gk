@@ -1,0 +1,691 @@
+{
+  "name": "厦门大学",
+  "province": "福建",
+  "url": "https://www.xmu.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    118.095545,
+    24.439837
+  ],
+  "status": "done",
+  "detail": {
+    "university": "厦门大学",
+    "official_url": "https://www.xmu.edu.cn",
+    "crawl_time": "2026-05-03T01:55:00Z",
+    "admission_guide": [
+      {
+        "title": "厦门大学2025年本科招生专业大类设置方案",
+        "url": "https://zs.xmu.edu.cn/info/1042/33322.htm",
+        "summary": "厦门大学2025年本科招生共设32个招生大类/专业，涵盖人文科学试验班、新闻传播学类、外国语言文学类、法学、经济学类、统计学类、会计学、计算机类、电子信息类、工科试验班等。含多个双学士学位项目（如英语+法学、金融学+数据科学与大数据技术、会计学+人工智能等）。含教育部基础学科拔尖计划2.0基地和强基计划专业。",
+        "attachments": [],
+        "publish_date": "2025-06-18",
+        "source_department": "招生与考试办公室"
+      },
+      {
+        "title": "厦门大学2026年强基计划招生简章",
+        "url": "https://zs.xmu.edu.cn/info/1172/35792.htm",
+        "summary": "2026年强基计划招生涵盖数学类、物理学、化学类、历史学、哲学、海洋科学、生物科学类（生物学）、生物科学类（生态学）、药学（生物医药）、物理学（电子科学）、信息与计算科学（智能科学）等专业方向。",
+        "attachments": [],
+        "publish_date": "2026-04-08",
+        "source_department": "招生与考试办公室"
+      },
+      {
+        "title": "厦门大学2026年本科生外语类保送生招生简章",
+        "url": "https://zs.xmu.edu.cn/info/1048/35322.htm",
+        "summary": "面向具有推荐保送生资格的外国语中学招收英语、日语、法语、俄语、德语等外语类专业学生。",
+        "attachments": [],
+        "publish_date": "2025-12-31",
+        "source_department": "招生与考试办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "厦门大学2025年本预科（含预科转本科）招生计划",
+        "url": "https://zs.xmu.edu.cn/info/1044/33312.htm",
+        "summary": "公布2025年分省分专业招生计划数，包含本科和预科转本科计划。",
+        "attachments": [],
+        "publish_date": "2025-06-18",
+        "source_department": "招生与考试办公室"
+      },
+      {
+        "title": "厦门大学本科招生计划及往年录取情况查询",
+        "url": "https://zs.xmu.edu.cn/zsdt/",
+        "summary": "分省报考指南入口，可查询各省份招生计划和历年录取分数线。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生与考试办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "厦门大学历年录取数据查询系统",
+        "url": "https://zsdata.xmu.edu.cn/public/zsdata/lqxx/#/lnfs",
+        "summary": "厦门大学招生数据查询系统，可按省份、科类、年份查询历年各专业录取分数线、位次等信息。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生与考试办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于2025-2026学年第二学期转专业工作安排的通知",
+        "url": "https://jwc.xmu.edu.cn/detail-v2.jsp?urltype=news.NewsContentUrl&wbtreeid=1911&wbnewsid=68802",
+        "summary": "2026年4月发布的转专业工作通知，包含申请条件、流程和时间安排（该页面限制校内访问）。",
+        "attachments": [],
+        "publish_date": "2026-04-01",
+        "source_department": "教务处"
+      },
+      {
+        "title": "厦门大学本科生转专业申请审批表",
+        "url": "https://jwc.xmu.edu.cn/info/2311/58611.htm",
+        "summary": "厦门大学本科生转专业申请审批表下载页面。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "厦门大学教务处学籍学务通知公告",
+        "url": "https://jwc.xmu.edu.cn/tzgg/xjxw.htm",
+        "summary": "教务处学籍学务栏目发布转专业相关公示信息，包含拟录取名单等（部分内容限制校内访问）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "厦门大学2025年本科招生专业大类设置方案（含分流专业）",
+        "url": "https://zs.xmu.edu.cn/info/1042/33322.htm",
+        "summary": "详细列出了32个招生大类对应的分流专业、授予学位、所在学院等信息。例如人文科学试验班分流为汉语言文学、历史学、考古学、哲学、戏剧影视文学；经济学类分流为金融学、财政学、税收学、国际经济与贸易、经济学等。大类分流一般在大一或大二进行，具体分流方案由各学院制定。",
+        "attachments": [],
+        "publish_date": "2025-06-18",
+        "source_department": "招生与考试办公室"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "关于2021级培养方案修订的补充通知",
+        "url": "https://jwc.xmu.edu.cn/info/1931/49831.htm",
+        "summary": "2021级本科培养方案修订通知，涉及思想政治理论课与课程思政、德智体美劳全面培养教育体系等内容。各专业具体培养方案一般在各学院官网发布。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "厦门大学信息公开-教学质量信息",
+        "url": "https://gk.xmu.edu.cn/xxgkml/jxzlxx.htm",
+        "summary": "信息公开网教学质量信息栏目，包含本科教学质量报告、专业设置、课程体系等信息。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "信息公开网"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "关于2026年双学位教育（主辅修制）工作安排的通知",
+        "url": "https://jwc.xmu.edu.cn/info/1911/68702.htm",
+        "summary": "2026年双学位教育（主辅修制）工作安排，本科学生在学有余力情况下可跨专业大类辅修另一个本科专业，完成规定课程和毕业论文，总学分不低于45学分。",
+        "attachments": [],
+        "publish_date": "2026-03-18",
+        "source_department": "教务处"
+      },
+      {
+        "title": "厦门大学2026年辅修专业录取名单公示暨注册选课工作通知",
+        "url": "https://jwc.xmu.edu.cn/info/1911/68852.htm",
+        "summary": "2026年辅修专业录取名单公示及注册选课安排。",
+        "attachments": [],
+        "publish_date": "2026-04-10",
+        "source_department": "教务处"
+      },
+      {
+        "title": "厦大经济学院、王亚南经济研究院、邹至庄经济研究院2026年辅修学位招生简章",
+        "url": "https://jwc.xmu.edu.cn/info/1911/68742.htm",
+        "summary": "经济学类辅修学位招生简章，面向非经济学类专业本科生。",
+        "attachments": [],
+        "publish_date": "2026-03-19",
+        "source_department": "教务处/经济学院"
+      },
+      {
+        "title": "厦门大学邹至庄经济研究院人工智能经济学、数据科学与大数据技术辅修专业招生简章",
+        "url": "https://jwc.xmu.edu.cn/info/1911/68712.htm",
+        "summary": "人工智能经济学和数据科学与大数据技术两个辅修专业招生简章。",
+        "attachments": [],
+        "publish_date": "2026-03-19",
+        "source_department": "教务处/邹至庄经济研究院"
+      },
+      {
+        "title": "厦门大学2025-2026学年春季学期微专业拟录取公示名单",
+        "url": "https://jwc.xmu.edu.cn/info/1911/68682.htm",
+        "summary": "微专业拟录取名单公示。",
+        "attachments": [],
+        "publish_date": "2026-03-10",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "厦门大学2024届毕业生就业质量年度报告",
+        "url": "https://gk.xmu.edu.cn/info/1061/35852.htm",
+        "summary": "厦门大学2024届毕业生就业质量年度报告。据公开信息，2024届毕业生合计9881人，泛体制内就业占比约66.2%，其中766人进入机关，390人为省级以上选调生，1738人进入事业单位，1425人进入国企。",
+        "attachments": [],
+        "publish_date": "2025-05-06",
+        "source_department": "学生就业创业指导中心"
+      },
+      {
+        "title": "厦门大学信息公开网-高校毕业生就业质量年度报告",
+        "url": "https://gk.xmu.edu.cn/xxgkml/jxzlxx/gxbysjyzlndbg.htm",
+        "summary": "信息公开网就业报告栏目，包含2021-2024届历年毕业生就业质量年度报告。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "信息公开网"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "厦门大学接收2026年推荐免试研究生工作办法",
+        "url": "https://zs.xmu.edu.cn/info/1055/34532.htm",
+        "summary": "接收推免生包括免试攻读硕士和直博。申请条件：应届本科毕业生、获得教育部推免资格、通过院系考核。申请流程：厦门大学推免生管理系统预报名→教育部推免系统正式报名→院系材料初审→考核→录取公示。监督电话：0592-2186219。",
+        "attachments": [],
+        "publish_date": "2025-09-15",
+        "source_department": "招生与考试办公室"
+      },
+      {
+        "title": "厦门大学接收2025年推荐免试研究生工作办法",
+        "url": "https://zs.xmu.edu.cn/info/1055/30931.htm",
+        "summary": "2025年推免生接收工作办法。",
+        "attachments": [],
+        "publish_date": "2024-09-27",
+        "source_department": "招生与考试办公室"
+      },
+      {
+        "title": "关于做好2024年推荐优秀应届本科毕业生免试攻读研究生工作的通知",
+        "url": "https://yz.chsi.com.cn/kyzx/yxzc/202307/20230711/2293106231.html",
+        "summary": "教育部学信网发布的厦门大学2024年推免工作通知，规定推免条件以本科阶段学业综合成绩为基础遴选指标。",
+        "attachments": [],
+        "publish_date": "2023-07-11",
+        "source_department": "招生与考试办公室"
+      },
+      {
+        "title": "厦门大学推荐优秀应届本科毕业生免试攻读研究生实施办法",
+        "url": "https://cdn.zizzs.com/zixunzhan/1753167695076附件5.厦大教〔2025〕66号.pdf",
+        "summary": "厦大教〔2025〕66号文件，规定推免条件以本科阶段学业综合成绩为最基础遴选指标，不得专门组织遴选考试，外语条件要求通过四六级或专业四级。",
+        "attachments": [
+          "https://cdn.zizzs.com/zixunzhan/1753167695076附件5.厦大教〔2025〕66号.pdf"
+        ],
+        "publish_date": "",
+        "source_department": "厦门大学"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "厦大本科生团队斩获国际遗传工程机器大赛（iGEM）第15枚金奖",
+        "url": "https://jwc.xmu.edu.cn/info/2421/68322.htm",
+        "summary": "厦门大学本科生团队在iGEM国际遗传工程机器大赛中累计获得15枚金奖。",
+        "attachments": [],
+        "publish_date": "2025-11-11",
+        "source_department": "教务处"
+      },
+      {
+        "title": "中国国际大学生创新大赛（2025）东南亚区域赛",
+        "url": "https://jwc.xmu.edu.cn/info/2421/67732.htm",
+        "summary": "厦门大学主办中国国际大学生创新大赛（2025）东南亚区域赛暨中国—马来西亚青年创新大赛。",
+        "attachments": [],
+        "publish_date": "2025-07-25",
+        "source_department": "教务处"
+      },
+      {
+        "title": "厦门大学国家级和省部级重点实验室/科研平台",
+        "url": "https://www.xmu.edu.cn/xsky/yjjg.htm",
+        "summary": "厦门大学拥有多个国家级科研平台：细胞应激生物学国家重点实验室、分子疫苗学和分子诊断学国家重点实验室、近海海洋环境科学国家重点实验室、表界面化学全国重点实验室等；教育部重点实验室包括谱学分析与仪器、计量经济学、水声通信与海洋信息技术、滨海湿地生态系统等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "厦门大学"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "中国语言文学系",
+        "url": "https://chinese.xmu.edu.cn",
+        "disciplines": [
+          "中国语言文学"
+        ]
+      },
+      {
+        "name": "历史与文化遗产学院",
+        "url": "https://history.xmu.edu.cn",
+        "disciplines": [
+          "历史学",
+          "考古学"
+        ]
+      },
+      {
+        "name": "哲学系",
+        "url": "https://phi.xmu.edu.cn",
+        "disciplines": [
+          "哲学"
+        ]
+      },
+      {
+        "name": "新闻传播学院",
+        "url": "http://comm.xmu.edu.cn",
+        "disciplines": [
+          "新闻传播学"
+        ]
+      },
+      {
+        "name": "外文学院",
+        "url": "https://cflc.xmu.edu.cn",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "艺术学院",
+        "url": "https://art.xmu.edu.cn",
+        "disciplines": [
+          "美术学",
+          "音乐与舞蹈学",
+          "设计学"
+        ]
+      },
+      {
+        "name": "国际中文教育学院/海外教育学院",
+        "url": "http://oec.xmu.edu.cn",
+        "disciplines": [
+          "汉语国际教育"
+        ]
+      },
+      {
+        "name": "国际学院",
+        "url": "https://liuxue.xmu.edu.cn/",
+        "disciplines": []
+      },
+      {
+        "name": "创意与创新学院",
+        "url": "https://ici.xmu.edu.cn/",
+        "disciplines": [
+          "设计学"
+        ]
+      },
+      {
+        "name": "电影学院",
+        "url": "http://film.xmu.edu.cn/",
+        "disciplines": [
+          "戏剧与影视学"
+        ]
+      },
+      {
+        "name": "经济学院",
+        "url": "https://soe.xmu.edu.cn",
+        "disciplines": [
+          "理论经济学",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "王亚南经济研究院",
+        "url": "http://wise.xmu.edu.cn",
+        "disciplines": [
+          "理论经济学",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "邹至庄经济研究院",
+        "url": "https://chow.xmu.edu.cn",
+        "disciplines": [
+          "理论经济学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "管理学院",
+        "url": "https://sm.xmu.edu.cn",
+        "disciplines": [
+          "工商管理",
+          "管理科学与工程"
+        ]
+      },
+      {
+        "name": "财务管理与会计研究院",
+        "url": "http://ifas.xmu.edu.cn/",
+        "disciplines": [
+          "会计学",
+          "财务管理"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "https://law.xmu.edu.cn/",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "知识产权研究院",
+        "url": "http://www.iprixmu.com/",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "公共事务学院",
+        "url": "https://spa.xmu.edu.cn/",
+        "disciplines": [
+          "政治学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "公共政策研究院",
+        "url": "http://spp.xmu.edu.cn/",
+        "disciplines": [
+          "公共管理",
+          "心理学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://marx.xmu.edu.cn/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "国际关系学院/南洋研究院",
+        "url": "https://guoguan.xmu.edu.cn/",
+        "disciplines": [
+          "政治学"
+        ]
+      },
+      {
+        "name": "教育研究院",
+        "url": "https://ihe.xmu.edu.cn/",
+        "disciplines": [
+          "教育学"
+        ]
+      },
+      {
+        "name": "台湾研究院",
+        "url": "https://gifts.xmu.edu.cn/",
+        "disciplines": [
+          "政治学",
+          "台湾研究"
+        ]
+      },
+      {
+        "name": "体育教学部",
+        "url": "https://tyjxb.xmu.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "南海研究院",
+        "url": "https://scsi.xmu.edu.cn/",
+        "disciplines": [
+          "法学",
+          "海洋科学"
+        ]
+      },
+      {
+        "name": "社会与人类学院",
+        "url": "https://ssa.xmu.edu.cn/",
+        "disciplines": [
+          "社会学",
+          "人类学",
+          "社会工作"
+        ]
+      },
+      {
+        "name": "数学科学学院",
+        "url": "http://math.xmu.edu.cn/",
+        "disciplines": [
+          "数学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "物理科学与技术学院",
+        "url": "https://cpst.xmu.edu.cn/",
+        "disciplines": [
+          "物理学",
+          "天文学",
+          "电子科学与技术"
+        ]
+      },
+      {
+        "name": "化学化工学院",
+        "url": "https://chem.xmu.edu.cn/",
+        "disciplines": [
+          "化学",
+          "化学工程与技术"
+        ]
+      },
+      {
+        "name": "信息学院",
+        "url": "https://informatics.xmu.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "软件工程",
+          "信息与通信工程"
+        ]
+      },
+      {
+        "name": "电子科学与技术学院",
+        "url": "https://ese.xmu.edu.cn/",
+        "disciplines": [
+          "电子科学与技术"
+        ]
+      },
+      {
+        "name": "材料学院",
+        "url": "https://cm.xmu.edu.cn/",
+        "disciplines": [
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "能源学院",
+        "url": "https://energy.xmu.edu.cn/",
+        "disciplines": [
+          "动力工程及工程热物理"
+        ]
+      },
+      {
+        "name": "航空航天学院",
+        "url": "https://saa.xmu.edu.cn/",
+        "disciplines": [
+          "航空宇航科学与技术",
+          "机械工程",
+          "控制科学与工程"
+        ]
+      },
+      {
+        "name": "建筑与土木工程学院",
+        "url": "https://archt.xmu.edu.cn/",
+        "disciplines": [
+          "建筑学",
+          "土木工程"
+        ]
+      },
+      {
+        "name": "生命科学学院",
+        "url": "https://life.xmu.edu.cn/",
+        "disciplines": [
+          "生物学"
+        ]
+      },
+      {
+        "name": "公共卫生学院",
+        "url": "https://sph.xmu.edu.cn/",
+        "disciplines": [
+          "公共卫生与预防医学"
+        ]
+      },
+      {
+        "name": "药学院",
+        "url": "https://pharm.xmu.edu.cn/",
+        "disciplines": [
+          "药学"
+        ]
+      },
+      {
+        "name": "医学院",
+        "url": "https://med.xmu.edu.cn/",
+        "disciplines": [
+          "临床医学",
+          "基础医学",
+          "口腔医学",
+          "中医学",
+          "护理学"
+        ]
+      },
+      {
+        "name": "海洋与地球学院",
+        "url": "http://coe.xmu.edu.cn/",
+        "disciplines": [
+          "海洋科学"
+        ]
+      },
+      {
+        "name": "环境与生态学院",
+        "url": "https://cee.xmu.edu.cn/",
+        "disciplines": [
+          "生态学",
+          "环境科学与工程"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "厦门大学双学位（辅修）介绍",
+        "content": "厦门大学双学位（辅修）要求总学分不低于45学分，需跨专业大类辅修。经济学类辅修较热门，竞争激烈。申请时间一般在每年3月左右，需满足主修专业GPA要求。",
+        "source_type": "知乎",
+        "source_url": "https://zhuanlan.zhihu.com/p/381202394"
+      },
+      {
+        "topic": "厦门大学转专业经验",
+        "content": "厦门大学每年有两次转专业机会（春季和秋季），申请条件因学院而异，一般要求大一GPA达到一定标准（通常3.0以上），部分热门专业有额外考核（笔试或面试）。部分学院接收名额有限，竞争较激烈。",
+        "source_type": "知乎/贴吧",
+        "source_url": ""
+      },
+      {
+        "topic": "厦门大学保研推免经验",
+        "content": "推免遴选以本科阶段学业综合成绩为最基础指标，不得专门组织笔试面试。外语条件一般要求通过英语四六级或专业四级。各学院有具体实施细则和名额分配。",
+        "source_type": "知乎",
+        "source_url": "https://www.gaodun.com/baoyan/1719368.html"
+      }
+    ],
+    "notes": "厦门大学教务处部分页面（如转专业具体实施办法、转专业公示名单）限制校内IP访问，无法从校外获取完整内容。招生章程（本科生招生章程总则）一般在阳光高考平台发布，2026年版本尚未公开。历年录取数据通过招生数据查询系统（https://zsdata.xmu.edu.cn）可在线查询。培养方案详情一般在各学院官网发布。大类分流具体规则由各学院制定，一般在大一或大二结束后根据学业成绩和志愿进行分流。",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "福建 详细地址：思明校区：福建省厦门市思明区思明南路422号 翔安校区：福建省厦门市翔安区翔安南路4221号 漳州校区：福建省漳州招商局经济技术开发区南滨大道300号 厦门大学马来西亚分校：马来西亚首都吉隆坡南郊雪兰莪州雪邦沙叻丁宜",
+      "address": "思明校区：福建省厦门市思明区思明南路422号 翔安校区：福建省厦门市翔安区翔安南路4221号 漳州校区：福建省漳州招商局经济技术开发区南滨大道300号 厦门大学马来西亚分校：马来西亚首都吉隆坡南郊雪兰莪州雪邦沙叻丁宜",
+      "phone": "0592-2188888",
+      "website": "https://www.xmu.edu.cn",
+      "enrollment_website": "https://zs.xmu.edu.cn",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 专业调剂",
+        "url": "",
+        "summary": "**专业调剂**\nQ: 你好，组内专业调剂填6个专业，会调剂到填的6个外的专业吗\nA: 考生，您好，如果填报的志愿无法满足，将会调剂到专业组内招生计划尚未完成的专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 四川录取",
+        "url": "",
+        "summary": "**四川录取**\nQ: 您好，我是四川政史地考生，今年考了628分，位次为1146。 请问能冲击贵校的民商法专业吗？ 如若分数不够，可否就读刑事法律专业？服从调剂是否会被退档？法学院在贵校的哪个校区？转专业的名额及其要求有哪些呢？专业保研率如何？\nA: 考生，您好，厦大本科只有法学专业，没有具体分方向",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 专业分流",
+        "url": "",
+        "summary": "**专业分流**\nQ: 人文科学实验班包含戏剧影视文学专业，该专业为艺术类专业，如何避免被分流到该专业？\nA: 考生，您好，大类分流参考依据有考生意愿、高考成绩、大一成绩",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 我是福建历政地考生，省排673，请问录取贵校的概率大吗\nA: 考生，您好，参考往年情况有机会录取。欢迎报考！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 老师您好，福建省考生历政地624分570名，想报考999组专业代码004经济学类（含双学士学位项目）含财政税收等被录取几率大吗？\nA: 考生，您好，有概率，欢迎报考！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "数学类",
+        "score": 4.9,
+        "votes": 23
+      },
+      {
+        "title": "经济学类",
+        "score": 4.9,
+        "votes": 43
+      },
+      {
+        "title": "法学类",
+        "score": 4.9,
+        "votes": 39
+      },
+      {
+        "title": "电子信息类",
+        "score": 4.8,
+        "votes": 30
+      },
+      {
+        "title": "计算机类",
+        "score": 4.7,
+        "votes": 30
+      },
+      {
+        "title": "经济统计学",
+        "score": 4.7,
+        "votes": 12
+      },
+      {
+        "title": "金融工程",
+        "score": 4.7,
+        "votes": 99
+      },
+      {
+        "title": "工商管理类",
+        "score": 4.7,
+        "votes": 48
+      },
+      {
+        "title": "财务管理",
+        "score": 4.7,
+        "votes": 143
+      },
+      {
+        "title": "保险学",
+        "score": 4.7,
+        "votes": 29
+      }
+    ]
+  }
+}

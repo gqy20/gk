@@ -1,0 +1,381 @@
+{
+  "name": "空军军医大学",
+  "province": "陕西",
+  "url": "https://www.fmmu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    108.939645,
+    34.343207
+  ],
+  "status": "done",
+  "detail": {
+    "university": "空军军医大学（第四军医大学）",
+    "official_url": "https://www.fmmu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "无军籍地方本科生招生章程（2025年）",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/info/1016/1692.htm",
+        "summary": "招收无军籍地方本科生，章程共四章18条，涵盖总则、组织机构、招生计划及录取、附则等内容。招生专业包括八年制基础医学、临床医学、航空航天医学、口腔医学；五年制临床医学、口腔医学、预防医学等。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生就业处"
+      },
+      {
+        "title": "生长军官本科学员招生简章（2025年）",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/info/1016/1691.htm",
+        "summary": "招收有军籍生长军官学员，招生对象为普通高中应届毕业生和在校生。享受免学费、住宿费，统一配发军装，每月1250-1650元津贴等待遇。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生就业处"
+      },
+      {
+        "title": "2023年博士研究生招生简章",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1027/3200.htm",
+        "summary": "空军军医大学2023年博士研究生招生简章，涵盖招生学科、专业、报考条件、选拔方式等内容。",
+        "attachments": [],
+        "publish_date": "2023",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "2023年硕士研究生招生简章",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1027/3124.htm",
+        "summary": "空军军医大学2023年硕士研究生招生简章，包含招生专业目录、报考条件、考试科目等信息。",
+        "attachments": [],
+        "publish_date": "2023",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "2023年地方推免生接收章程",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1027/3123.htm",
+        "summary": "接收地方院校推荐免试生攻读硕士学位研究生章程，涵盖接收条件、申请流程、复试安排等。",
+        "attachments": [],
+        "publish_date": "2023",
+        "source_department": "研究生院"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "无军籍地方本科生招生计划（2025年）",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/info/1018/1696.htm",
+        "summary": "无军籍地方本科生分省分专业招生计划，包含各省份招生专业、招生人数等具体数字。",
+        "attachments": [
+          "https://www.fmmu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1654676104&wbfileid=14897401"
+        ],
+        "publish_date": "2025",
+        "source_department": "招生就业处"
+      },
+      {
+        "title": "生长军官本科学员招生计划（2025年）",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/info/1017/1694.htm",
+        "summary": "生长军官学员分省分专业招生计划，包含招生专业、人数等具体数字。",
+        "attachments": [
+          "https://www.fmmu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1654676104&wbfileid=14897399"
+        ],
+        "publish_date": "2025",
+        "source_department": "招生就业处"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "2022-2024年本科学员录取分数线",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/info/1024/1693.htm",
+        "summary": "包含2022-2024年生长军官学员和无军籍地方本科生各省录取分数线、最低分、位次等数据。",
+        "attachments": [
+          "https://www.fmmu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1654676104&wbfileid=14897397"
+        ],
+        "publish_date": "2024",
+        "source_department": "招生就业处"
+      },
+      {
+        "title": "历年录取分数查询系统",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/cxjgsocre.jsp?urltype=tree.TreeTempUrl&wbtreeid=1013",
+        "summary": "提供历年录取分数线在线查询，包含分省分专业录取分数。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生就业处"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "新生入校后可调换专业吗？",
+        "url": "https://www.fmmu.edu.cn/zhaosheng/info/1022/1473.htm",
+        "summary": "按《录取通知书》确定的专业报到，入校后不能调整专业。军队院校执行严格的学籍管理规定。",
+        "attachments": [],
+        "publish_date": "2013-06-27",
+        "source_department": "招生就业处"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [],
+    "training_program": [
+      {
+        "title": "五年制临床医学专业人才培养方案",
+        "url": "https://www.fmmu.edu.cn/info/1540/4217.htm",
+        "summary": "培养目标：适应新时代中国特色国防卫生事业发展和军事斗争卫勤准备需要的专业人才。主干学科：基础医学、临床医学。采用'器官-系统-疾病'医学整合课程教学模式。",
+        "attachments": [],
+        "publish_date": "2018-09-16",
+        "source_department": "教务处"
+      },
+      {
+        "title": "五年制航空航天医学专业人才培养方案",
+        "url": "https://www.fmmu.edu.cn/info/1540/4218.htm",
+        "summary": "培养航空航天医学专业人才，课程涵盖航空航天医学基础、飞行人员健康维护、高空生理学等。",
+        "attachments": [],
+        "publish_date": "2018-09-16",
+        "source_department": "教务处"
+      },
+      {
+        "title": "五年制口腔医学专业人才培养方案",
+        "url": "https://www.fmmu.edu.cn/info/1540/4219.htm",
+        "summary": "培养口腔医学专业人才，主干学科包括基础医学、临床医学、口腔医学。",
+        "attachments": [],
+        "publish_date": "2018-09-16",
+        "source_department": "教务处"
+      },
+      {
+        "title": "四年制生物医学工程专业人才培养方案",
+        "url": "https://www.fmmu.edu.cn/info/1540/4215.htm",
+        "summary": "培养生物医学工程专业人才，课程涵盖电子技术、计算机科学、医学基础等。",
+        "attachments": [],
+        "publish_date": "2018-09-16",
+        "source_department": "教务处"
+      },
+      {
+        "title": "研究生培养方案总则（学术学位博士）",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1035/1084.htm",
+        "summary": "攻读学术学位博士研究生培养方案总则，涵盖培养目标、学习年限、课程设置、学分要求等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "研究生培养方案总则（学术学位硕士）",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1035/1087.htm",
+        "summary": "学术学位硕士研究生培养方案：学习年限3年，总学分36学分（公共必修13学分+专业必修≥10学分+选修≥5学分+实践5学分+学术活动≥3学分）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "专业学位硕士研究生培养方案",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1035/1089.htm",
+        "summary": "临床医学、口腔医学专业学位硕士研究生培养方案：学习年限3年，课程≥20学分，临床能力训练24个月二级学科轮转+9个月专科培训。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      }
+    ],
+    "minor_program": [],
+    "employment_report": [],
+    "postgrad_recommend": [
+      {
+        "title": "接收地方院校推荐免试生攻读硕士学位研究生办法",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1032/1085.htm",
+        "summary": "接收推免生办法：包含遴选条件、名额分配、申请流程、复试安排、时间线等详细内容。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "2023年地方推免生接收章程",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1027/3123.htm",
+        "summary": "2023年接收地方推免生章程，包含接收名额、申请条件、材料要求、复试安排等。",
+        "attachments": [],
+        "publish_date": "2023",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "推免生夏令营（暑期学校）招生简章",
+        "url": "https://www.fmmu.edu.cn/yjsy/info/1032/1092.htm",
+        "summary": "暑期夏令营招生简章，为优秀本科生提供提前了解学校、接触导师的机会。",
+        "attachments": [],
+        "publish_date": "2015",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "肿瘤生物学国家重点实验室",
+        "url": "",
+        "summary": "国家重点实验室，负责人樊代明院士，研究方向包括肿瘤生物学基础与临床研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研部"
+      },
+      {
+        "title": "口颌系统重建与再生全国重点实验室",
+        "url": "https://sklomrr.fmmu.edu.cn/",
+        "summary": "全国重点实验室，赵铱民院士任主任，聚焦口腔颌面部缺损修复与再生研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "口腔医院"
+      },
+      {
+        "title": "军事口腔医学国家重点实验室",
+        "url": "",
+        "summary": "军事医学特色国家重点实验室，研究军事口腔疾病防治。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研部"
+      },
+      {
+        "title": "消化系统疾病国家临床医学研究中心",
+        "url": "",
+        "summary": "国家临床医学研究中心，负责人樊代明院士。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "西京医院"
+      },
+      {
+        "title": "航空航天医学教育部重点实验室",
+        "url": "",
+        "summary": "教育部重点实验室，负责人常耀明，研究航空航天医学保障。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "航空航天医学系"
+      },
+      {
+        "title": "全国大学生生物医学工程创新设计竞赛",
+        "url": "",
+        "summary": "学校连续多年参赛获奖，2025年获一等奖2项、二等奖1项、三等奖5项；累计一等奖9项。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "军事生物医学工程学系"
+      },
+      {
+        "title": "全国大学生生命科学竞赛",
+        "url": "",
+        "summary": "2025年获全国一等奖，695所高校、21304支团队参赛。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "基础医学院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "基础医学院",
+        "url": "https://www.fmmu.edu.cn/jcb/",
+        "disciplines": [
+          "基础医学",
+          "生物学"
+        ]
+      },
+      {
+        "name": "航空航天医学系",
+        "url": "https://www.fmmu.edu.cn/hyx2020/",
+        "disciplines": [
+          "航空航天医学"
+        ]
+      },
+      {
+        "name": "军事预防医学系",
+        "url": "https://www.fmmu.edu.cn/preventive/",
+        "disciplines": [
+          "预防医学",
+          "军事预防医学"
+        ]
+      },
+      {
+        "name": "军事生物医学工程学系",
+        "url": "https://www.fmmu.edu.cn/bme1/",
+        "disciplines": [
+          "生物医学工程"
+        ]
+      },
+      {
+        "name": "药学系",
+        "url": "https://www.fmmu.edu.cn/yxy2020/",
+        "disciplines": [
+          "药学"
+        ]
+      },
+      {
+        "name": "军事医学心理学系",
+        "url": "https://www.fmmu.edu.cn/xlx/",
+        "disciplines": [
+          "心理学"
+        ]
+      },
+      {
+        "name": "护理系",
+        "url": "https://www.fmmu.edu.cn/hlx/",
+        "disciplines": [
+          "护理学"
+        ]
+      },
+      {
+        "name": "西京医院（第一附属医院）",
+        "url": "http://xjwww.fmmu.edu.cn/",
+        "disciplines": [
+          "临床医学"
+        ]
+      },
+      {
+        "name": "唐都医院（第二附属医院）",
+        "url": "https://tdwww.fmmu.edu.cn/",
+        "disciplines": [
+          "临床医学"
+        ]
+      },
+      {
+        "name": "口腔医院（第三附属医院）",
+        "url": "http://kqwww.fmmu.edu.cn/",
+        "disciplines": [
+          "口腔医学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "就读体验与军校生活",
+        "content": "在第四军医大学就读体验：每日早六点被号角唤醒，整洁内务要求，课余时间有体能训练。学校聚集顶尖院士学者亲自授课，讲座论坛每日都有。临床教学依托附属医院，是实习过几个医院里面最好的。适合追求稳定、愿意报效祖国的学生。",
+        "source_type": "百度知道",
+        "source_url": "https://zhidao.baidu.com/question/315719154876484044.html"
+      },
+      {
+        "topic": "口腔考研高分上岸经验分享",
+        "content": "第四军医大学口腔考研352口腔综合专硕上岸学姐经验分享：包含考情分析、备考时间规划、复习方法讲解、大纲重点讲解、初复试指导。",
+        "source_type": "B站",
+        "source_url": "https://www.bilibili.com/video/BV1fHEWzcE2V/"
+      },
+      {
+        "topic": "考研论坛精华经验汇总",
+        "content": "20考研之第四军医大学精华经验：包含历年复试真题及经验汇总、招生简章和专业目录、参考书目、复试分数线、报录比数据、校园生活介绍、导师介绍、学费奖助政策等。",
+        "source_type": "考研论坛",
+        "source_url": "https://bbs.kaoyan.com/t9683837p1"
+      },
+      {
+        "topic": "有军籍学员待遇与就业",
+        "content": "有军籍学员享受待遇：免学费住宿费、统一配发军装、每月1250-1650元津贴。毕业后计划分配至部队医疗、科研或管理岗位，就业率接近100%。无军籍毕业生三甲医院就业率68%，考研成功率超40%。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/47389660"
+      },
+      {
+        "topic": "转专业难度讨论",
+        "content": "知乎讨论：解放军第四军医大学转专业难度和具体流程。官方明确答复入校后不能调整专业，按录取通知书确定的专业报到。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/398239303"
+      }
+    ],
+    "notes": "1. 空军军医大学为军队院校，执行军队院校学员学籍管理规定，入校后不允许调整专业，因此无转专业政策和大类分流制度。\n2. 作为军事医学院校，未开设辅修/双学位/微专业项目。\n3. 就业质量报告因军队院校信息透明度限制，公开渠道难以获取。\n4. 八年制学生一、二年级在西安交通大学（无军籍）或国防科技大学（有军籍）进行医学预科教育。\n5. 本科专业共16个：八年制4个、五年制7个、四年制5个。\"",
+    "missing_categories": [
+      "transfer_announcement",
+      "major_streaming",
+      "minor_program",
+      "employment_report"
+    ],
+    "basic_info": {
+      "location": "陕西 详细地址：陕西省西安市新城区长乐西路169号",
+      "address": "陕西省西安市新城区长乐西路169号",
+      "phone": "029-84774157",
+      "website": "https://www.fmmu.edu.cn/",
+      "enrollment_website": "https://www.fmmu.edu.cn/zhaosheng/",
+      "attributes": [
+        "双一流"
+      ]
+    }
+  }
+}

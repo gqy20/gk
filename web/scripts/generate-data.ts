@@ -15,6 +15,8 @@ const PROJECT_ROOT = path.resolve(__dirname, "..");
 const CSV_PATH = path.join(PROJECT_ROOT, "..", "data", "92_list.csv");
 const OUTPUT_DIR = path.join(PROJECT_ROOT, "..", "data", "output");
 const DEST = path.join(__dirname, "..", "public", "data", "schools.json");
+const INDEX_DEST = path.join(__dirname, "..", "public", "data", "schools-index.json");
+const DETAIL_DEST_DIR = path.join(__dirname, "..", "public", "data", "school-details");
 const COORDS_CACHE = path.join(__dirname, "../data/schools-coords.json");
 
 // 阳光高考数据路径
@@ -148,6 +150,52 @@ function getDetailForSchool(
     if (detail) return detail;
   }
   return undefined;
+}
+
+function toIndexSchool(school: School): Omit<School, "detail"> {
+  return {
+    name: school.name,
+    province: school.province,
+    url: school.url,
+    is985: school.is985,
+    is211: school.is211,
+    isDoubleFirstClass: school.isDoubleFirstClass,
+    coord: school.coord,
+    status: school.status,
+  };
+}
+
+function writeHomeIndex(schools: School[]) {
+  const indexSchools = schools.map(toIndexSchool);
+  const output = {
+    schools: indexSchools,
+    provinces: groupByProvince(indexSchools),
+  };
+  fs.mkdirSync(path.dirname(INDEX_DEST), { recursive: true });
+  fs.writeFileSync(INDEX_DEST, JSON.stringify(output, null, 2), "utf-8");
+  const outputSizeKb = (Buffer.byteLength(JSON.stringify(output)) / 1024).toFixed(1);
+  console.log(`首页索引: ${INDEX_DEST} (${outputSizeKb} KB)`);
+}
+
+function writeSchoolDetails(schools: School[]) {
+  fs.rmSync(DETAIL_DEST_DIR, { recursive: true, force: true });
+  fs.mkdirSync(DETAIL_DEST_DIR, { recursive: true });
+
+  let count = 0;
+  let totalBytes = 0;
+  for (const school of schools) {
+    if (!school.detail) continue;
+    const fileName = `${encodeURIComponent(school.name)}.json`;
+    const output = { ...school };
+    const content = JSON.stringify(output, null, 2);
+    fs.writeFileSync(path.join(DETAIL_DEST_DIR, fileName), content, "utf-8");
+    totalBytes += Buffer.byteLength(content);
+    count += 1;
+  }
+
+  console.log(
+    `学校详情: ${DETAIL_DEST_DIR} (${count} files, ${(totalBytes / 1024).toFixed(1)} KB)`,
+  );
 }
 
 // ── 阳光高考基线数据 ──────────────────────────────────────
@@ -291,6 +339,15 @@ async function main() {
       console.warn(
         `未找到 ${OUTPUT_DIR} 详情源，保留现有 ${DEST}（已采集 ${existingDoneCount} 所）。`,
       );
+      try {
+        const raw = JSON.parse(fs.readFileSync(DEST, "utf-8")) as { schools?: School[] };
+        if (Array.isArray(raw.schools)) {
+          writeHomeIndex(raw.schools);
+          writeSchoolDetails(raw.schools);
+        }
+      } catch {
+        console.warn(`无法从现有 ${DEST} 生成首页索引。`);
+      }
       return;
     }
   }
@@ -344,6 +401,8 @@ async function main() {
   fs.writeFileSync(DEST, JSON.stringify(output, null, 2), "utf-8");
   const outputSizeKb = (Buffer.byteLength(JSON.stringify(output)) / 1024).toFixed(1);
   console.log(`输出: ${DEST} (${outputSizeKb} KB)`);
+  writeHomeIndex(schools);
+  writeSchoolDetails(schools);
   console.log("完成!");
 
   // 6. 导出 SQLite 采集数据

@@ -1,0 +1,584 @@
+{
+  "name": "上海中医药大学",
+  "province": "上海",
+  "url": "https://www.shutcm.edu.cn",
+  "is985": false,
+  "is211": false,
+  "isDoubleFirstClass": true,
+  "coord": [
+    121.590127,
+    31.194479
+  ],
+  "status": "done",
+  "detail": {
+    "university": "上海中医药大学",
+    "official_url": "https://www.shutcm.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "上海中医药大学2025年秋季高考招生章程",
+        "url": "https://xxgk.shutcm.edu.cn/2025/0922/c1534a169072/page.htm",
+        "summary": "2025年秋季统一高考招生章程，含院校全称、就读地址、层次（本科）、招生管理机构、招生计划分配原则、录取规则（分数优先遵循志愿、不设级差）、学费标准（医学类7400元/年、双一流学科8100元/年）、身体健康要求（色盲色弱不予录取）等。中医学（屠呦呦班）与中国中医科学院联合培养。",
+        "attachments": [],
+        "publish_date": "2025-09-22",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "上海中医药大学2025年春季招生章程",
+        "url": "https://xxgk.shutcm.edu.cn/2025/0922/c1528a169058/page.htm",
+        "summary": "2025年上海市普通高校春季考试招生章程。招生专业为中西医临床医学（35人）、康复物理治疗（30人）、康复作业治疗（15人），共80人。自主测试为面试（150分），总分=统一文化考试成绩（450分）+自主测试成绩。学费7400元/年，住宿费最高1200元/年。",
+        "attachments": [],
+        "publish_date": "2025-09-22",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "上海中医药大学2025年上海市综合评价录取改革试点招生简章",
+        "url": "https://xxgk.shutcm.edu.cn/2025/0922/c1342a169088/page.htm",
+        "summary": "综合评价批次招生简章，初审通过且高考成绩达到特殊类型招生控制分数线的考生可填报，按招生计划数1:1.5比例确定入围名单。",
+        "attachments": [],
+        "publish_date": "2025-09-22",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "上海中医药大学2026年招收攻读硕士学位研究生章程",
+        "url": "https://yjsy.shutcm.edu.cn/2025/1009/c1142a169347/page.htm",
+        "summary": "2026年硕士生招生规模暂定1127名左右（含推免生、退役大学生士兵计划、5+3一体化转段生等），全日制培养，学制三年。考试科目含思想政治理论、外国语及业务课。学费：基础学科非定向6500元/年，一般学科8000元/年，专业学位10000元/年。",
+        "attachments": [
+          "https://yjsy.shutcm.edu.cn/_upload/article/files/ae/d8/f2a15f9c414cad96c7598a614245/e3a2faaa-81b1-406f-9697-53fe3e36ee18.pdf",
+          "https://yjsy.shutcm.edu.cn/_upload/article/files/ae/d8/f2a15f9c414cad96c7598a614245/3ee989c8-abae-45b3-ae62-c84ab9d9f13b.pdf",
+          "https://yjsy.shutcm.edu.cn/_upload/article/files/ae/d8/f2a15f9c414cad96c7598a614245/402614d1-9b4d-4243-a871-a091854f531e.rar"
+        ],
+        "publish_date": "2025-10-09",
+        "source_department": "研究生院"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "上海中医药大学2025年秋季高考上海市招生计划",
+        "url": "https://xxgk.shutcm.edu.cn/2025/0922/c1534a169074/page.htm",
+        "summary": "2025年上海本地招生计划：综合评价批含中医学（屠呦呦班）4人、中医学（5+3一体化）15人、中医学（5+3一体化针灸推拿英语方向）6人；本科普通批含中医学（5+3一体化）24人、中医学（5+3一体化针灸推拿英语方向）12人、中医学（5+3一体化汇聚创新班）18人、中药学（创新班）8人、中医学（五年制）33人、中西医临床医学9人、针灸推拿学36人、预防医学21人、中药学47人、护理学78人、药学（中外合作办学）37人、公共事业管理19人等。",
+        "attachments": [],
+        "publish_date": "2025-09-22",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "上海中医药大学2025年秋季高考外省市招生计划",
+        "url": "https://xxgk.shutcm.edu.cn/2025/0922/c1534a169073/page.htm",
+        "summary": "2025年外省市招生计划覆盖北京、江苏、浙江、山东、福建、甘肃、河南、山西、天津、江西、湖南、安徽、贵州、广西、云南、四川、新疆等省份，含各专业招生人数及选考科目要求。中医学（屠呦呦班）9年制，与中国中医科学院联合培养。",
+        "attachments": [],
+        "publish_date": "2025-09-22",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "2025年春季招生计划",
+        "url": "https://xxgk.shutcm.edu.cn/2025/0922/c1528a169058/page.htm",
+        "summary": "春季考试招生专业：中西医临床医学35人、康复物理治疗30人、康复作业治疗15人，合计80人。无男女比例限制，色盲色弱者不予录取。",
+        "attachments": [],
+        "publish_date": "2025-09-22",
+        "source_department": "信息公开办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "上海中医药大学本科招生网-历年分数",
+        "url": "https://ygzs.shutcm.edu.cn/#/score",
+        "summary": "本科招生网提供历年分数查询功能，含各省份、各专业录取分数线和位次数据。该页面为SPA动态页面，具体分数线数据需在招生网内查询。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "上海中医药大学本科生转专业实施办法",
+        "url": "https://jwc.shutcm.edu.cn/2023/1228/c347a157626/page.htm",
+        "summary": "2023年12月发布的转专业实施办法，规定了转专业的基本条件、申请流程、审核程序和考核方式。各二级学院填写接受转专业学生计划表，教务处审核汇总后报主管校长审批。",
+        "attachments": [],
+        "publish_date": "2023-12-28",
+        "source_department": "教务处"
+      },
+      {
+        "title": "上海中医药大学本科生转专业规定（上中医2009教字15号）",
+        "url": "https://jwc.shutcm.edu.cn/_upload/article/files/df/71/ef7109b94dd3a58a6a04981260ec/2ac6c2a0-ba17-42fe-af16-281bceabe8b1.doc",
+        "summary": "2009年发布的转专业规定文件（Word格式），详细说明了转专业的申请条件、各院部接受转专业计划名额审核流程、学籍办理等内容。",
+        "attachments": [
+          "https://jwc.shutcm.edu.cn/_upload/article/files/df/71/ef7109b94dd3a58a6a04981260ec/2ac6c2a0-ba17-42fe-af16-281bceabe8b1.doc"
+        ],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "2022年康复医学院关于转专业拟录取学生名单的公示",
+        "url": "https://kf.shutcm.edu.cn/2022/0611/c3897a142019/page.htm",
+        "summary": "根据《上海中医药大学本科生转专业规定》，经学生申请、学院转专业工作小组初审及面试后，公示拟同意转入康复物理治疗专业的学生名单。",
+        "attachments": [
+          "https://kf.shutcm.edu.cn/_upload/article/files/be/88/f126c98b46568d65a343b8b9dded/8fae10a6-ca19-457d-8aa0-9481a75e1613.pdf"
+        ],
+        "publish_date": "2022-06-11",
+        "source_department": "康复医学院"
+      }
+    ],
+    "major_streaming": [],
+    "training_program": [
+      {
+        "title": "中药学专业（四年制）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/2025/1030/c655a169795/page.htm",
+        "summary": "中药学专业四年制本科人才培养方案2025版。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "中医学（五年制/5+3一体化）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/655/list.htm",
+        "summary": "教务处教学计划页面，共收录277条培养方案记录，涵盖中医学、中药学、护理学、康复治疗学、预防医学、药学、生物医学工程、智能医学工程、食品卫生与营养学、公共事业管理等全部本科专业2025版人才培养方案。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "护理学专业（四年制）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/2025/1030/c655a169809/page.htm",
+        "summary": "护理学专业四年制本科人才培养方案2025版。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "康复治疗学专业（四年制）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/2025/1030/c655a169796/page.htm",
+        "summary": "康复治疗学专业四年制本科人才培养方案2025版。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "预防医学专业（五年制）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/2025/1030/c655a169794/page.htm",
+        "summary": "预防医学专业五年制本科人才培养方案2025版。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "智能医学工程专业（四年制）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/2025/1030/c655a169811/page.htm",
+        "summary": "智能医学工程专业四年制本科人才培养方案2025版。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "生物医学工程专业（四年制）人才培养方案（2025版）",
+        "url": "https://jwc.shutcm.edu.cn/2025/1030/c655a169810/page.htm",
+        "summary": "生物医学工程专业四年制本科人才培养方案2025版。",
+        "attachments": [],
+        "publish_date": "2025-10-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "专业设置和专业介绍",
+        "url": "https://jwc.shutcm.edu.cn/_upload/article/files/f1/e7/75947b0d4f3488aaf1aeaf3c3bbc/82a101db-1f6f-400c-9856-1e5dabebfd20.docx",
+        "summary": "全校专业设置和专业介绍文件（Word格式），涵盖所有本科专业的基本信息。",
+        "attachments": [
+          "https://jwc.shutcm.edu.cn/_upload/article/files/f1/e7/75947b0d4f3488aaf1aeaf3c3bbc/82a101db-1f6f-400c-9856-1e5dabebfd20.docx"
+        ],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [],
+    "employment_report": [
+      {
+        "title": "上海中医药大学2023-2024学年本科教学质量报告",
+        "url": "https://xxgk.shutcm.edu.cn/_upload/article/files/62/92/acb021ce4ecaa048dd573af24b51/dca87353-44bc-4ad7-bf33-8893972eab17.pdf",
+        "summary": "2023-2024学年本科教学质量报告，含本科毕业去向落实率91.95%、硕士毕业去向落实率97.12%等就业数据。",
+        "attachments": [
+          "https://xxgk.shutcm.edu.cn/_upload/article/files/62/92/acb021ce4ecaa048dd573af24b51/dca87353-44bc-4ad7-bf33-8893972eab17.pdf"
+        ],
+        "publish_date": "2024-12",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "2023届毕业生就业质量年报",
+        "url": "https://xxgk.shutcm.edu.cn/2024/1008/c1559a162428/page.htm",
+        "summary": "2023届毕业生就业质量年度报告，含就业率、行业分布、薪资水平、深造情况等详细数据。",
+        "attachments": [],
+        "publish_date": "2024-02-01",
+        "source_department": "信息公开办公室"
+      },
+      {
+        "title": "上海中医药大学2022-2023学年教学质量报告",
+        "url": "https://xxgk.shutcm.edu.cn/2023/1221/c1442a157481/page.htm",
+        "summary": "2022-2023学年教学质量报告。",
+        "attachments": [],
+        "publish_date": "2023-12-21",
+        "source_department": "信息公开办公室"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "上海中医药大学2026年招收推荐免试攻读硕士学位研究生招生章程",
+        "url": "https://yjsy.shutcm.edu.cn/1118/list.htm",
+        "summary": "2026年推免硕士研究生招生章程，拟招收推免生人数不超过本年度招生总数的50%，以推免服务系统最终确认的录取人数为准。含推免生专业目录。",
+        "attachments": [
+          "https://static.kaoyan.cn/file/2025/09/17/84f311a68204ad31c8caffe04c00bc16.pdf"
+        ],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "上海中医药大学2025年推免硕士研究生拟录取名单公示",
+        "url": "https://yjsy.shutcm.edu.cn/2024/1016/c1143a162689/page.htm",
+        "summary": "2025年推免硕士研究生拟录取名单公示，公示期7日。如冇异议致电021-51322530。",
+        "attachments": [],
+        "publish_date": "2024-10-16",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "上海中医药大学中药学院2026年推免硕士研究生复试合格名单公示",
+        "url": "https://zyxy.shutcm.edu.cn/2025/0924/c2308a169163/page.htm",
+        "summary": "根据2026年推免硕士研究生招生复试工作办法，经考核后公示复试合格名单（第一批）。",
+        "attachments": [],
+        "publish_date": "2025-09-24",
+        "source_department": "中药学院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "经方与现代中药融合创新全国重点实验室",
+        "url": "https://www.shutcm.edu.cn/2024/0509/c7294a160092/page.htm",
+        "summary": "国家科学技术部批准设立的全国重点实验室，位于上海中医药大学。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "国家医学攻关产教融合创新平台",
+        "url": "https://www.shutcm.edu.cn/2024/0509/c7293a160086/page.htm",
+        "summary": "国家发展和改革委员会批准设立的国家级平台。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "中药标准化技术国家工程研究中心",
+        "url": "https://www.shutcm.edu.cn/2024/0509/c7293a160085/page.htm",
+        "summary": "国家发展和改革委员会批准设立的国家工程研究中心。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "气血理论医药基础研究创新中心",
+        "url": "https://www.shutcm.edu.cn/2024/0509/c6679a160087/page.htm",
+        "summary": "教育部医药基础研究创新中心。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "中药标准化省部共建教育部重点实验室",
+        "url": "https://www.shutcm.edu.cn/2022/1130/c6679a148442/page.htm",
+        "summary": "教育部重点实验室。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "肝肾疾病病证教育部重点实验室",
+        "url": "https://www.shutcm.edu.cn/2022/1130/c6679a148441/page.htm",
+        "summary": "教育部重点实验室。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "筋骨理论与治法教育部重点实验室",
+        "url": "https://www.shutcm.edu.cn/2022/1130/c6679a148440/page.htm",
+        "summary": "教育部重点实验室。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "上海市复方中药重点实验室",
+        "url": "https://www.shutcm.edu.cn/2022/1130/c6682a148452/page.htm",
+        "summary": "上海市科学技术委员会认定的市级重点实验室。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "上海市针灸临床医学研究中心",
+        "url": "https://www.shutcm.edu.cn/2022/1130/c6682a148447/page.htm",
+        "summary": "上海市临床医学研究中心。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "研究平台总览",
+        "url": "https://www.shutcm.edu.cn/6554/list.psp",
+        "summary": "上海中医药大学研究平台总览页，涵盖3个国家级平台（国家医学攻关产教融合创新平台、中药标准化技术国家工程研究中心、经方与现代中药融合创新全国重点实验室）、10个教育部平台、7个国家中医药管理局平台、12个上海市平台、5个教委平台及1个重点智库。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "中医学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147550",
+        "disciplines": [
+          "中医学"
+        ]
+      },
+      {
+        "name": "中西医结合学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147538",
+        "disciplines": [
+          "中西医结合"
+        ]
+      },
+      {
+        "name": "中药学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147549",
+        "disciplines": [
+          "中药学",
+          "药学"
+        ]
+      },
+      {
+        "name": "针灸推拿学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147548",
+        "disciplines": [
+          "针灸推拿学"
+        ]
+      },
+      {
+        "name": "护理学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147547",
+        "disciplines": [
+          "护理学"
+        ]
+      },
+      {
+        "name": "公共健康学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147546",
+        "disciplines": [
+          "公共卫生与预防医学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "康复医学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147545",
+        "disciplines": [
+          "医学技术",
+          "康复医学与理疗学"
+        ]
+      },
+      {
+        "name": "国际教育学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147544",
+        "disciplines": [
+          "中医学",
+          "中药学"
+        ]
+      },
+      {
+        "name": "继续教育学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147543",
+        "disciplines": [
+          "中医学",
+          "中药学",
+          "护理学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147542",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "中医药人工智能学院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=167712",
+        "disciplines": [
+          "生物医学工程",
+          "智能医学工程"
+        ]
+      },
+      {
+        "name": "科技人文研究院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147541",
+        "disciplines": [
+          "科学技术史",
+          "中医医史文献"
+        ]
+      },
+      {
+        "name": "交叉科学研究院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147540",
+        "disciplines": [
+          "中药学",
+          "药学",
+          "生物学"
+        ]
+      },
+      {
+        "name": "创新中药研究院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147539",
+        "disciplines": [
+          "中药学",
+          "药学"
+        ]
+      },
+      {
+        "name": "上海市中医药国际标准化研究院",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=170939",
+        "disciplines": [
+          "中药学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "体育部",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147537",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "外语教学中心",
+        "url": "https://www.shutcm.edu.cn/_redirect?siteId=2&columnId=6641&articleId=147536",
+        "disciplines": [
+          "外国语言文学",
+          "翻译"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业经验",
+        "content": "上海中医药大学转专业政策相对宽松，一般在第一学年末申请。需要通过转入学院的面试考核。热门专业如中医学、针灸推拿学竞争较大。建议提前了解各学院接受转专业名额和考核方式。",
+        "source_type": "综合网络信息",
+        "source_url": ""
+      }
+    ],
+    "notes": "1. 历年录取分数线数据存储在本科招生网SPA页面(ygzs.shutcm.edu.cn/#/score)中，由于SPA页面JS渲染限制未能直接提取具体分数数字，但确认该页面提供分省分专业分数线查询功能。2. 上海中医药大学按专业直接招生，不实行大类招生制度，因此无大类分流规则。3. 未找到学校官方发布的辅修/双学位/微专业相关规定。4. 就业质量报告以本科教学质量报告和信息公开年报形式发布，未找到独立的年度就业质量报告PDF。",
+    "missing_categories": [
+      "historical_admission",
+      "major_streaming",
+      "minor_program"
+    ],
+    "basic_info": {
+      "location": "上海 详细地址：上海浦东新区蔡伦路1200号",
+      "address": "上海浦东新区蔡伦路1200号",
+      "phone": "021-51322028",
+      "website": "https://www.shutcm.edu.cn/",
+      "enrollment_website": "https://ygzs.shutcm.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 提档退档",
+        "url": "",
+        "summary": "**提档退档**\nQ: 老师好，请问贵校对于浙江省招生提档比是1:1，还是105%？\nA: 1:1",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取几率",
+        "url": "",
+        "summary": "**录取几率**\nQ: 河南考生633分 排名16998 中医学5年 能录取吗\nA: 去年排位24309.欢迎报考！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取几率",
+        "url": "",
+        "summary": "**录取几率**\nQ: 河南考生633分理科\nA: 专业组1冲一下，专业组2比较稳。欢迎报考！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 提档退档",
+        "url": "",
+        "summary": "**提档退档**\nQ: 老师您好，作为浙江省的考生，我无法服从调剂，那么在体检合格且单科成绩均符合条件的情况下会不会有提档后退档的风险？\nA: 不会",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 老师你好 云南省物理类省排12809是否有机会被本校录取？可以就读那些专业呢？\nA: 专业组2比较稳，专业组1冲一下！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "针灸推拿学",
+        "score": 4.4,
+        "votes": 68
+      },
+      {
+        "title": "护理类",
+        "score": 4.3,
+        "votes": 20
+      },
+      {
+        "title": "中药学",
+        "score": 4.2,
+        "votes": 259
+      },
+      {
+        "title": "康复治疗学",
+        "score": 4,
+        "votes": 99
+      },
+      {
+        "title": "护理",
+        "score": 4,
+        "votes": 44
+      },
+      {
+        "title": "中医学",
+        "score": 3.6,
+        "votes": 397
+      },
+      {
+        "title": "中西医临床医学",
+        "score": 3.6,
+        "votes": 145
+      },
+      {
+        "title": "公共事业管理",
+        "score": 3.5,
+        "votes": 50
+      },
+      {
+        "title": "药学",
+        "score": 3.5,
+        "votes": 80
+      },
+      {
+        "title": "护理学",
+        "score": 3.2,
+        "votes": 256
+      }
+    ]
+  }
+}

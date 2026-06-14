@@ -1,0 +1,667 @@
+{
+  "name": "哈尔滨工业大学",
+  "province": "黑龙江",
+  "url": "https://www.hit.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    126.632371,
+    45.743605
+  ],
+  "status": "done",
+  "detail": {
+    "university": "哈尔滨工业大学",
+    "official_url": "https://www.hit.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "哈尔滨工业大学2025年本科招生章程",
+        "url": "https://zsb.hit.edu.cn/article/read/a69f9b9a74ed50f510cf43ea647ad8cb",
+        "summary": "哈尔滨工业大学2025年本科招生章程总则，包含招生原则、招生类型、录取规则等。",
+        "attachments": [
+          "https://zsb.hit.edu.cn/file/2026/01/5d59f9a3387aec231a38190243cfd5c0.pdf"
+        ],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "哈尔滨工业大学2026年强基计划招生简章",
+        "url": "https://zsb.hit.edu.cn/article/read/806b100342463d3a642abddb81fef880",
+        "summary": "2026年强基计划招生专业包括：智能装备与系统、工程力学、复合材料与工程（航天材料）、材料科学与工程（航天材料）、飞行器制造工程、储能科学与工程、核工程与核技术、数学类、应用物理学。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "哈尔滨工业大学2026年强基计划专业本科生培养方案汇总",
+        "url": "https://zsb.hit.edu.cn/article/category/93be5a9c1ba94233f727f81d8d610912",
+        "summary": "强基计划各专业培养方案汇总页面，包含培养目标、课程设置等详细信息。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "哈尔滨工业大学2025年分省招生计划查询",
+        "url": "https://zsb.hit.edu.cn/information/plan",
+        "summary": "分省分专业招生计划查询页面，可按省份查看各专业招生人数。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "哈尔滨工业大学2025年各省份招生计划汇总",
+        "url": "https://zsb.hit.edu.cn/information/summary",
+        "summary": "各省份招生专业和计划数汇总，提供详细的分省分专业数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "哈尔滨工业大学历年录取分数查询",
+        "url": "https://zsb.hit.edu.cn/information/score",
+        "summary": "各省份、各专业历年录取分数线查询，含最高分、最低分、平均分数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "哈尔滨工业大学录取结果查询",
+        "url": "https://zsb.hit.edu.cn/information/admission-query",
+        "summary": "录取结果在线查询系统，考生可查询本人录取状态。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "哈尔滨工业大学本科生转专业与转学管理办法",
+        "url": "https://jtxy.hit.edu.cn/_t772/2018/0424/c6058a205117/page.htm",
+        "summary": "文件编号哈工大本[2017]430号。转专业条件：第一学年学习成绩排名在学校规定比例内且所修课程第一次考核合格；可申请情形包括有突出特长、创业休学或入伍退役后因身体原因等。不得转专业情形：入学未满一学年或毕业前一年；以特殊招生形式录取的学生。办理时间：夏季学期。",
+        "attachments": [],
+        "publish_date": "2017年",
+        "source_department": "教务处"
+      },
+      {
+        "title": "哈尔滨工业大学（威海）转专业政策",
+        "url": "https://zsb.hitwh.edu.cn/home/article/details?id=557",
+        "summary": "威海校区转专业规定：专业类内选择专业可在本专业类内任选专业；转专业（集群/类）：转出无门槛，转入有要求，根据专业准入实施细则进行考核。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "威海校区招生办公室"
+      },
+      {
+        "title": "生命科学学院入学一年后专业准入实施细则",
+        "url": "https://life.hit.edu.cn/_upload/article/files/14/2c/a633ebde42c997c3d75b86214749/1b9ada80-2e69-407f-a8fb-50258affb6be.pdf",
+        "summary": "生命科学学院专业准入实施细则PDF文件，包含准入条件、考核方式等。",
+        "attachments": [
+          "https://life.hit.edu.cn/_upload/article/files/14/2c/a633ebde42c997c3d75b86214749/1b9ada80-2e69-407f-a8fb-50258affb6be.pdf"
+        ],
+        "publish_date": "",
+        "source_department": "生命科学学院"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "工科试验班（航天与自动化）专业集群2024级转专业（第一志愿）录取名单公示",
+        "url": "https://hitee.hit.edu.cn/2025/0706/c17101a373228/page.htm",
+        "summary": "根据《工科试验班（航天与自动化）专业集群准入实施细则》，经航天学院和电气工程及自动化学院考评专家组综合考评后确定拟录取名单。公示期2025年7月5-7日。",
+        "attachments": [],
+        "publish_date": "2025-07-05",
+        "source_department": "电气工程及自动化学院"
+      },
+      {
+        "title": "人文社科学部对2023级本科生转专业（第二志愿）拟录取名单公示",
+        "url": "https://rwskxb.hit.edu.cn/2024/0712/c20438a368140/page.htm",
+        "summary": "人文社科学部对第二志愿报名英语专业的学生进行考核后公示拟录取名单。公示对象：田则霖（第二志愿转入英语专业）。公示期2024年7月12-14日。",
+        "attachments": [],
+        "publish_date": "2024-07-12",
+        "source_department": "人文社科学部"
+      },
+      {
+        "title": "哈尔滨工业大学（深圳）2025年本科生专业准入工作通知",
+        "url": "http://due.hitsz.edu.cn/info/1058/6935.htm",
+        "summary": "2024级本科生转专业（集群/类）工作通知。重要时间节点：7月9-10日学生提交申请，7月14-16日学院考核，7月21日拟录取名单公示（5天）。",
+        "attachments": [],
+        "publish_date": "2025-07-04",
+        "source_department": "深圳校区教务部"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "专业集群内分流服务事项",
+        "url": "https://hituc.hit.edu.cn",
+        "summary": "专业集群内选择专业的办理流程：教务处发布通知→学生网上申报→学生所在专业集群学院审核录取→学院汇总公布录取学生名单→录取名单报送至教务处学籍交流中心。办理时间：夏季学期。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "招生专业分流说明",
+        "url": "https://zsb.hit.edu.cn/article/read/8521c82615a0a5159a337f0b111aef9e",
+        "summary": "包含三种分流方式：专业集群内选择专业、专业类内选择专业（方向）以及转专业（集群/类）的相关规定。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "威海校区各专业本科生培养方案",
+        "url": "http://due.hitsz.edu.cn/info/1029/2046.htm",
+        "summary": "威海校区各专业培养方案PDF文件，包含计算机科学与技术、通信工程、机械设计制造及其自动化、自动化、电气工程及其自动化、能源与动力工程、土木工程、环境工程、材料科学与工程、经济学、会计学（大数据方向）、建筑类、数据科学与大数据技术等专业。",
+        "attachments": [
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=8B99BAC4ADA67BA41C4FBDA1F69CA8E4",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=C1B343DC2A3FFCB3360CF56375579EE2",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=0A3ECEC292C7FA64929D2CF109B337F5",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=B35A80AC96E0332032D6D3C4B2DC95D6",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=B7E20E8D0472F2414F5D07BC386D9B0F",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=B930A4769AC79FCE8E16F985BF859858",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=54A8087AB380E72EA42AF682BE043014",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=CF07072D7B416D263EA3916952299A47",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=E95523705B7C0B02B5F8FB1F58BB369F",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=FFE534A511B26B8793293FFDE17558B1",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=7AAD3443FB8DC7CDE20925D2444DE39B",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=1D03C3EB49D8D9390B33189A12E179D2",
+          "http://due.hitsz.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1481660265&wbfileid=60C90A86E191D297BF85CD24F49864B0"
+        ],
+        "publish_date": "",
+        "source_department": "深圳校区教务部"
+      },
+      {
+        "title": "计算学部2022版培养方案",
+        "url": "https://computing.hit.edu.cn/21407/list.htm",
+        "summary": "计算学部2022版培养方案，包含计算机科学与技术、人工智能、软件工程、数据科学与大数据技术、网络空间安全、物联网工程、信息安全等专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "计算学部"
+      },
+      {
+        "title": "航天学院培养方案",
+        "url": "https://sa.hit.edu.cn/jxxx/list2.htm",
+        "summary": "航天学院各专业培养方案页面。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "航天学院"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "哈尔滨工业大学本科生辅修专业管理办法",
+        "url": "https://zsb.hit.edu.cn/file/2020/07/63749f39abf802b0acafa687e8eb5960.pdf",
+        "summary": "文件编号哈工大本〔2022〕99号。规定辅修专业设置、申请条件、学分要求等。",
+        "attachments": [
+          "https://zsb.hit.edu.cn/file/2020/07/63749f39abf802b0acafa687e8eb5960.pdf"
+        ],
+        "publish_date": "2022年",
+        "source_department": "教务处"
+      },
+      {
+        "title": "辅修专业培养方案汇编",
+        "url": "http://jwc.hit.edu.cn/_upload/article/files/62/11/973d6c324a1a92aa98f3ba8c9a9f/b69e1992-3c0c-4804-9d18-630199016039.pdf",
+        "summary": "各专业辅修培养方案汇总，学制三年，授予工学辅修学士学位。辅修专业20学分（不含毕业论文），辅修学位25学分。",
+        "attachments": [
+          "http://jwc.hit.edu.cn/_upload/article/files/62/11/973d6c324a1a92aa98f3ba8c9a9f/b69e1992-3c0c-4804-9d18-630199016039.pdf"
+        ],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "深圳校区关于开展2024年度本科生辅修专业设置工作的通知",
+        "url": "http://due.hitsz.edu.cn/info/1029/5572.htm",
+        "summary": "深圳校区辅修专业设置通知，包含辅修专业设置条件和申请流程。",
+        "attachments": [],
+        "publish_date": "2024年",
+        "source_department": "深圳校区教务部"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "哈尔滨工业大学2024届毕业生就业质量年度报告",
+        "url": "https://pdf.gk100.com/employment/report/2024/20250412/52c9d35a41904251.pdf",
+        "summary": "2024届毕业生总人数10285人（本科5911人，硕士4249人，博士125人）。近40%毕业生到国资委央企及世界500强企业就业。重点领域就业占比连续10年保持80%以上。航天就业人数增长119.46%，国防就业人数增长101.93%。",
+        "attachments": [
+          "https://pdf.gk100.com/employment/report/2024/20250412/52c9d35a41904251.pdf"
+        ],
+        "publish_date": "2024年",
+        "source_department": "学生工作部/就业指导中心"
+      },
+      {
+        "title": "哈尔滨工业大学2021届毕业生就业质量报告",
+        "url": "https://api21.yn5167.cn/upload/jyzlbg/20250508/哈尔滨工业大学2021届毕业生就业质量报告_1.pdf",
+        "summary": "2021届毕业生就业质量年度报告，包含就业率、就业去向、薪资水平等数据。",
+        "attachments": [
+          "https://api21.yn5167.cn/upload/jyzlbg/20250508/哈尔滨工业大学2021届毕业生就业质量报告_1.pdf"
+        ],
+        "publish_date": "2021年",
+        "source_department": "学生工作部/就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "哈尔滨工业大学2025年接收推荐免试研究生办法",
+        "url": "http://yzb.hit.edu.cn/",
+        "summary": "哈工大研究生招生网，发布推免生接收工作细则、各学院接收办法。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "各学院推免生接收工作细则（2025年）",
+        "url": "https://kaoyan.eol.cn/nnews/202507/t20250723_2682659.shtml",
+        "summary": "汇总各学院推免生接收工作细则：航天学院、物理学院、材料学院、能源学院、经管学院、仪器学院、电气学院、机电学院等。",
+        "attachments": [],
+        "publish_date": "2025年",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "哈尔滨工业大学（威海）推免接收工作细则",
+        "url": "http://today.hitwh.edu.cn/2025/0701/c1024a201864/page.htm",
+        "summary": "威海校区2025年推免生接收工作实施细则。",
+        "attachments": [],
+        "publish_date": "2025年",
+        "source_department": "威海校区"
+      },
+      {
+        "title": "哈尔滨工业大学（深圳）推免接收工作细则",
+        "url": "http://sem.hitsz.edu.cn/info/1070/2055.htm",
+        "summary": "深圳校区2025年推免生接收工作实施细则。",
+        "attachments": [],
+        "publish_date": "2025年",
+        "source_department": "深圳校区"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "机器人技术与系统全国重点实验室",
+        "url": "http://robot.hit.edu.cn/",
+        "summary": "研究机器人设计方法、智能感知、行为控制、人机交互与系统集成。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "机器人研究所"
+      },
+      {
+        "title": "材料结构精密焊接与连接全国重点实验室",
+        "url": "http://weld.hit.edu.cn/",
+        "summary": "研究先进焊接与连接技术，承办全国大学生焊接创新大赛。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "焊接研究所"
+      },
+      {
+        "title": "城乡水资源与水环境全国重点实验室",
+        "url": "http://waterlab.hit.edu.cn/",
+        "summary": "研究水资源开发利用、水环境保护与污染控制。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "环境学院"
+      },
+      {
+        "title": "哈尔滨工业大学科研平台列表",
+        "url": "http://www.hit.edu.cn/11577/list.htm",
+        "summary": "汇总学校各类科研平台：17个全国重点实验室、11个国家工程实验室/研究中心、国家级协同创新中心、国际合作基地等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学与工业技术研究院"
+      },
+      {
+        "title": "主要学科竞赛",
+        "url": "https://cxcy.huat.edu.cn/",
+        "summary": "主要学科竞赛包括：互联网+创新创业大赛、挑战杯、ACM-ICPC程序设计竞赛、全国大学生数学建模竞赛、机械创新设计大赛、电子设计竞赛、智能汽车竞赛、机器人大赛等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "创新创业教育学院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "航天学院",
+        "url": "http://sa.hit.edu.cn/",
+        "disciplines": [
+          "航空宇航科学与技术",
+          "控制科学与工程",
+          "力学"
+        ]
+      },
+      {
+        "name": "电子与信息工程学院",
+        "url": "http://seie.hit.edu.cn/",
+        "disciplines": [
+          "信息与通信工程",
+          "电子科学与技术"
+        ]
+      },
+      {
+        "name": "机电工程学院",
+        "url": "http://sme.hit.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "设计学"
+        ]
+      },
+      {
+        "name": "材料科学与工程学院",
+        "url": "http://mse.hit.edu.cn/",
+        "disciplines": [
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "能源科学与工程学院",
+        "url": "http://power.hit.edu.cn/",
+        "disciplines": [
+          "动力工程及工程热物理",
+          "核科学与技术"
+        ]
+      },
+      {
+        "name": "电气工程及自动化学院",
+        "url": "http://hitee.hit.edu.cn/",
+        "disciplines": [
+          "电气工程",
+          "控制科学与工程"
+        ]
+      },
+      {
+        "name": "仪器科学与工程学院",
+        "url": "http://ise.hit.edu.cn/",
+        "disciplines": [
+          "仪器科学与技术"
+        ]
+      },
+      {
+        "name": "数学学院",
+        "url": "http://math.hit.edu.cn/",
+        "disciplines": [
+          "数学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "物理学院",
+        "url": "http://physics.hit.edu.cn/",
+        "disciplines": [
+          "物理学",
+          "光学工程"
+        ]
+      },
+      {
+        "name": "经济与管理学院",
+        "url": "http://som.hit.edu.cn/",
+        "disciplines": [
+          "管理科学与工程",
+          "工商管理",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "商学院",
+        "url": "http://hbs.hit.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "管理学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://marx.hit.edu.cn/",
+        "disciplines": [
+          "马克思主义理论",
+          "哲学"
+        ]
+      },
+      {
+        "name": "土木工程学院",
+        "url": "http://civil.hit.edu.cn/",
+        "disciplines": [
+          "土木工程",
+          "力学"
+        ]
+      },
+      {
+        "name": "环境学院",
+        "url": "http://env.hit.edu.cn/",
+        "disciplines": [
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "建筑与设计学院",
+        "url": "http://arch.hit.edu.cn/",
+        "disciplines": [
+          "建筑学",
+          "城乡规划学",
+          "设计学"
+        ]
+      },
+      {
+        "name": "交通科学与工程学院",
+        "url": "http://jtxy.hit.edu.cn/",
+        "disciplines": [
+          "交通运输工程"
+        ]
+      },
+      {
+        "name": "计算机科学与技术学院",
+        "url": "http://computing.hit.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "软件工程"
+        ]
+      },
+      {
+        "name": "人工智能学院",
+        "url": "http://sai.hit.edu.cn/",
+        "disciplines": [
+          "人工智能",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "国家示范性软件学院",
+        "url": "http://software.hit.edu.cn/",
+        "disciplines": [
+          "软件工程",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "网络空间安全学院",
+        "url": "http://cys.hit.edu.cn/",
+        "disciplines": [
+          "网络空间安全"
+        ]
+      },
+      {
+        "name": "化工与化学学院",
+        "url": "http://chemeng.hit.edu.cn/",
+        "disciplines": [
+          "化学工程与技术",
+          "化学"
+        ]
+      },
+      {
+        "name": "医学与健康学院",
+        "url": "http://med.hit.edu.cn/",
+        "disciplines": [
+          "基础医学",
+          "临床医学",
+          "公共卫生与预防医学"
+        ]
+      },
+      {
+        "name": "生命科学与技术学院",
+        "url": "http://life.hit.edu.cn/",
+        "disciplines": [
+          "生物医学工程",
+          "生物学"
+        ]
+      },
+      {
+        "name": "未来技术学院",
+        "url": "http://future.hit.edu.cn/",
+        "disciplines": [
+          "智能科学与技术",
+          "机器人工程"
+        ]
+      },
+      {
+        "name": "体育部",
+        "url": "http://tyb.hit.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "哈工大转专业政策与流程",
+        "content": "转专业主要条件：第一学年学习成绩排名在学校规定比例内（一般前10%），且所修课程第一次考核合格。申请时间在第一学年夏季学期。考核流程：提交申请→参加拟转入院系考核→公示录取名单→学校审批→办理手续。注意：入学未满一学年或毕业前一年不得转专业；以特殊招生形式录取的学生不得转专业。",
+        "source_type": "知乎（非官方）",
+        "source_url": "https://zhuanlan.zhihu.com/p/1952749071686164906"
+      },
+      {
+        "topic": "哈工大深圳校区转专业攻略",
+        "content": "通过第二条件转专业的人数不计入每年的转专业名额，各专业接受人数限制只作用于走第一条件的同学。每个同学有且仅有一次转专业机会，即在大一学年结束的那一次。转专业申请无门槛限制，但转入有考核要求，需提前了解目标专业的准入标准。",
+        "source_type": "百度贴吧（非官方）",
+        "source_url": "https://tieba.baidu.com/p/6198565067"
+      },
+      {
+        "topic": "英语双学位辅修经验分享",
+        "content": "辅修时间一般为大三开始，修读时间3年。主要学习英语专业核心课程（除选修及二外，其余全部课程都需要学习）。辅修期间课业负担较重，需要合理安排时间。选择辅修前要充分考虑自身精力和专业兴趣，避免影响主专业学习。获得第二学位证书可增加就业竞争力。",
+        "source_type": "知乎（非官方）",
+        "source_url": "https://www.zhihu.com/question/395470539"
+      },
+      {
+        "topic": "自动化专业选课建议",
+        "content": "大三秋限选课包括数字图像处理；大三春限选课包括过程控制系统、数学规划、机器人学导论、DSP原理与应用、机器视觉等。研究生阶段课程本科生可跨选：最优估计、凸优化与最优控制、线性系统理论等。选课建议提前了解课程难度和考核方式。",
+        "source_type": "GitHub学生项目（非官方）",
+        "source_url": "https://4e182b7e.hitsz-open-auto-github-io.pages.dev/docs/senior-autumn/"
+      },
+      {
+        "topic": "控制科学与工程考研就业经验",
+        "content": "初试备考建议暑假两个月是复习黄金期，专业课课本课后习题要做4遍左右，历年真题有较高参考价值。复试包括电路原理、模电、数电、自动控制元件、控制原理等五门课程。初试成绩不理想不要放弃，复试逆袭每年都有机会。控制专业毕业生就业面广，可从事自动化、人工智能、航天等领域工作。",
+        "source_type": "考研论坛（非官方）",
+        "source_url": "https://www.500wok.com/hit/jingyan/5dc50222363de.html"
+      },
+      {
+        "topic": "建筑学考研复习经验",
+        "content": "哈工大建筑学专业竞争激烈，每年近千人报考，录取名额少，保送推免占一半。建筑快题设计是重点，需确定哈工大的建筑手绘风格。水晶石技法建筑设计手绘实例教程等书籍对了解工大风格有帮助。复试建议初试后尽早准备，参加模拟考试检验复习效果。",
+        "source_type": "考研论坛（非官方）",
+        "source_url": "https://www.500wok.com/hit/jingyan/30/551203/"
+      }
+    ],
+    "notes": "哈尔滨工业大学（本部+威海+深圳）信息汇总。已抓取全部13类信息，PDF附件已尽量提取完整链接。转专业公示包括本部和深圳校区。就业质量报告来自第三方整理版。学院列表不含分校和特殊机构（卓越工程师学院、创新创业学院等）。",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "黑龙江 详细地址：哈尔滨工业大学 哈尔滨市南岗区西大直街92号 邮政编码：150001 招生办咨询电话：0451-86414771、86414671、53985216 网址：https://zsb.hit.edu.cn 哈尔滨工业大学（威海） 山东省威海市文化西路2号 邮政编码：264209 招生办咨询电话：0631-5689455 （高考咨询期间开通）招生咨询电话：0631-5687057、5687067、5687150、5687175、5687710、5687836、5687896、5687908 网址：http://zsb.hitwh.edu.cn 哈尔滨工业大学（深圳） 广东省深圳市南山区桃源街道深圳大学城哈尔滨工业大学深圳校区 邮政编码：518055 招生办咨询电话：0755-26035891 网址：http://zsb.hitsz.edu.cn",
+      "address": "哈尔滨工业大学 哈尔滨市南岗区西大直街92号 邮政编码：150001 招生办咨询电话：0451-86414771、86414671、53985216 网址：https://zsb.hit.edu.cn 哈尔滨工业大学（威海） 山东省威海市文化西路2号 邮政编码：264209 招生办咨询电话：0631-5689455 （高考咨询期间开通）招生咨询电话：0631-5687057、5687067、5687150、5687175、5687710、5687836、5687896、5687908 网址：http://zsb.hitwh.edu.cn 哈尔滨工业大学（深圳） 广东省深圳市南山区桃源街道深圳大学城哈尔滨工业大学深圳校区 邮政编码：518055 招生办咨询电话：0755-26035891 网址：http://zsb.hitsz.edu.cn",
+      "phone": "0451-53985216",
+      "website": "https://www.hit.edu.cn/",
+      "enrollment_website": "https://zsb.hit.edu.cn/",
+      "attributes": [
+        "985",
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 重庆高校专项",
+        "url": "",
+        "summary": "**重庆高校专项**\nQ: 请问老师，贵校在重庆的高校专项招录什么时候可以看到结果？\nA: 请查看重庆录取时间，录取结束后会尽快发布",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 经济管理实验班",
+        "url": "",
+        "summary": "**经济管理实验班**\nQ: 历史类的经济管理实验班何时选择专业，是否任选？有无选拔考试等机制？\nA: 大类内包含专业学生任选，不设条件",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 工科试验班",
+        "url": "",
+        "summary": "**工科试验班**\nQ: 老师你好： 请问工科试验班--本硕博连读，河北省范围内，有没有超过高考重点线（特控线）分数150分以上，及数学、物理单科成绩分数达到满分90%的要求？\nA: 没有这样的要求。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 选考科目限制咨询",
+        "url": "",
+        "summary": "**选考科目限制咨询**\nQ: 老师，您好！我是西藏内高班考生，报考贵校理工科类相关专业，有没有选考科目限制（物理+化学）？\nA: 没有明确要求，但必须学物理。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 高校专项",
+        "url": "",
+        "summary": "**高校专项**\nQ: 河南考生报考高校专项计划，请问专业组和专业代码是什么？\nA: 查询河南填报志愿系统或网站",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "物理学类",
+        "score": 4.8,
+        "votes": 17
+      },
+      {
+        "title": "工程管理",
+        "score": 4.7,
+        "votes": 290
+      },
+      {
+        "title": "电磁场与无线技术",
+        "score": 4.7,
+        "votes": 58
+      },
+      {
+        "title": "工商管理",
+        "score": 4.6,
+        "votes": 139
+      },
+      {
+        "title": "建筑环境与能源应用工程",
+        "score": 4.6,
+        "votes": 38
+      },
+      {
+        "title": "电气工程及其自动化",
+        "score": 4.6,
+        "votes": 653
+      },
+      {
+        "title": "信息安全",
+        "score": 4.6,
+        "votes": 95
+      },
+      {
+        "title": "会计学",
+        "score": 4.6,
+        "votes": 269
+      },
+      {
+        "title": "给排水科学与工程",
+        "score": 4.6,
+        "votes": 142
+      },
+      {
+        "title": "遥感科学与技术",
+        "score": 4.6,
+        "votes": 40
+      }
+    ]
+  }
+}

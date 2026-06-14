@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/Label";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/Select";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
 import type { School } from "@/lib/data";
+import { fetchSchoolDetail, mergeSchoolDetail } from "@/lib/school-details";
 import { FuturePanel, FutureShell, SectionHeading } from "../future/FutureShell";
 import { RoundSelector, type SimulatorRoundCount } from "./RoundSelector";
 import { useGsapScrollReveal } from "@/lib/animation/useGsapScrollReveal";
@@ -230,7 +231,7 @@ function SimulatorPageContent() {
   useEffect(() => {
     let cancelled = false;
 
-    fetch("/data/schools.json")
+    fetch("/data/schools-index.json")
       .then((res) => res.json())
       .then((data) => {
         if (!cancelled) setSchools(data.schools || []);
@@ -258,6 +259,25 @@ function SimulatorPageContent() {
     () => schools.find((s) => s.name === targetSchool) || null,
     [schools, targetSchool],
   );
+
+  useEffect(() => {
+    if (!selectedSchoolData || selectedSchoolData.detail) return;
+    let cancelled = false;
+
+    fetchSchoolDetail(selectedSchoolData.name)
+      .then((detailSchool) => {
+        if (cancelled || !detailSchool) return;
+        setSchools((current) => mergeSchoolDetail(current, detailSchool));
+      })
+      .catch(() => {
+        // 详情只用于专业候选、城市推断和学校类型推断，失败不阻断模拟。
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedSchoolData]);
+
   const effectiveCity = targetCity || extractSchoolCity(selectedSchoolData) || initialProvince || selectedSchoolData?.province || "";
   const schoolContext = useMemo(() => {
     if (!selectedSchoolData) return {};

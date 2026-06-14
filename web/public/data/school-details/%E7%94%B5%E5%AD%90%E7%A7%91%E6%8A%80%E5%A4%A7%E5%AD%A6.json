@@ -1,0 +1,536 @@
+{
+  "name": "电子科技大学",
+  "province": "四川",
+  "url": "https://www.uestc.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    103.931862,
+    30.753589
+  ],
+  "status": "done",
+  "detail": {
+    "university": "电子科技大学",
+    "official_url": "https://www.uestc.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "电子科技大学2025年全日制普通本科招生章程",
+        "url": "https://zs.uestc.edu.cn/view/1914.html",
+        "summary": "总则、招生计划、录取规则、收费标准等。包含学校采用电子科技大学和电子科技大学（沙河校区）两个代码招生，教学地点详见招生专业目录。",
+        "attachments": [],
+        "publish_date": "2025-05-29",
+        "source_department": "电子科技大学本科招生网"
+      },
+      {
+        "title": "电子科技大学2026年强基计划招生简章",
+        "url": "https://zs.uestc.edu.cn/view/2098.html",
+        "summary": "强基计划招生专业包括信息与计算科学、数理基础科学、应用物理学，培养服务国家重大战略需求的拔尖创新人才。",
+        "attachments": [],
+        "publish_date": "2026-04-08",
+        "source_department": "电子科技大学本科招生网"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "电子科技大学2025年招生计划查询",
+        "url": "https://chaxun.uestc.edu.cn/public/zsdata/lqxx/#/",
+        "summary": "包含2025年分省分专业招生计划，涵盖电子科技大学和沙河校区。四川省物理类本科招生专业包括：电子信息类（成电英才计划）8人、电子信息类（信息与通信）60人、工科试验班（电子工程类）45人、集成电路设计与集成系统35人、计算机类35人等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "电子科技大学本科招生网"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "电子科技大学2025年录取分数线",
+        "url": "https://www.gk100.com/read_943164998449.htm",
+        "summary": "2025年电子科技大学在四川省本科历史类投档录取最低分613分，物理类投档录取最低分653分。广东省物理类投档录取最低分646分。",
+        "attachments": [],
+        "publish_date": "2026-03-09",
+        "source_department": "高考100网站"
+      },
+      {
+        "title": "电子科技大学2024年全国各省录取分数线与位次排名汇总",
+        "url": "https://www.dakao100.com/article_35529.html",
+        "summary": "2024年电子科技大学在北京最低录取分数线650分（位次3176），吉林物理类最低录取分数线634分（位次2565），历史类最低录取分数线597分（位次943）。",
+        "attachments": [],
+        "publish_date": "2025-07-25",
+        "source_department": "高考直通车"
+      },
+      {
+        "title": "电子科技大学历年录取分数线查询",
+        "url": "https://chaxun.uestc.edu.cn/public/zsdata/lqxx/#/lnfs",
+        "summary": "可查询各省市历年录取分数线，涵盖2022-2025年数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "电子科技大学本科招生网"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于公布2025年学院转专业实施细则的通知",
+        "url": "https://sise.uestc.edu.cn/info/1025/13240.htm",
+        "summary": "2025年转专业实施细则，包含清水河校区和沙河校区实施细则附件。学生申请时间：2025年3月29日至4月7日。附件包含各学院具体接收条件和考核方式。",
+        "attachments": [
+          "https://www.jwc.uestc.edu.cn/data/uestcfile/202503/%E9%99%84%E4%BB%B61%EF%BC%9A%E6%B8%85%E6%B0%B4%E6%B2%B3%E6%A0%A1%E5%8C%BA%E8%BD%AC%E4%B8%93%E4%B8%9A%E5%AE%9E%E6%96%BD%E7%BB%86%E5%88%99.rar",
+          "https://www.jwc.uestc.edu.cn/data/uestcfile/202503/%E9%99%84%E4%BB%B62%EF%BC%9A%E6%B2%99%E6%B2%B3%E6%A0%A1%E5%8C%BA%E8%BD%AC%E4%B8%93%E4%B8%9A%E5%AE%9E%E6%96%BD%E7%BB%86%E5%88%99.rar",
+          "https://www.jwc.uestc.edu.cn/data/uestcfile/202503/%E9%99%84%E4%BB%B63%EF%BC%9A%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E8%BD%AC%E4%B8%93%E4%B8%9A%E7%A8%8B%E5%BA%8F%E4%B8%80%E8%A7%88%E8%A1%A8.xlsx"
+        ],
+        "publish_date": "2025-03-21",
+        "source_department": "电子科技大学信息与软件工程学院"
+      },
+      {
+        "title": "光电科学与工程学院2024级本科生专业确认实施细则",
+        "url": "https://sose.uestc.edu.cn/info/1069/10192.htm",
+        "summary": "专业确认规则：按普通、特殊A类、B类分别录取；录取方式为志愿优先、遵从成绩、自主选择；第一学年结束后进行专业确认；智育成绩排名作为分流依据之一。",
+        "attachments": [
+          "https://sose.uestc.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2024923653&wbfileid=16444609",
+          "https://sose.uestc.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2024923653&wbfileid=16444610"
+        ],
+        "publish_date": "2025-04-30",
+        "source_department": "光电科学与工程学院"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "关于公布2025年学院转专业实施细则的通知",
+        "url": "https://sise.uestc.edu.cn/info/1025/13240.htm",
+        "summary": "公示各学院2025年转专业实施细则，包含附件下载地址。学生申请时间2025年3月29日至4月7日。",
+        "attachments": [],
+        "publish_date": "2025-03-21",
+        "source_department": "电子科技大学教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "光电科学与工程学院2024级本科生专业确认实施细则",
+        "url": "https://sose.uestc.edu.cn/info/1069/10192.htm",
+        "summary": "大类分流规则：按普通、特殊A类、B类分别录取；录取方式为志愿优先、遵从成绩、自主选择；第一学年结束后进行专业确认；智育成绩排名作为分流依据之一。",
+        "attachments": [
+          "https://sose.uestc.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2024923653&wbfileid=16444609",
+          "https://sose.uestc.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2024923653&wbfileid=16444610"
+        ],
+        "publish_date": "2025-04-30",
+        "source_department": "光电科学与工程学院"
+      },
+      {
+        "title": "电子科技大学专业大类分流条件",
+        "url": "https://zhidao.baidu.com/question/931996422329866419.html",
+        "summary": "高考成绩在本大类本省排名前15%的学生，第一学年所有课程成绩合格且表现良好，可在是大类内优先选择专业。第一学年成绩优异者也可优先选择专业。",
+        "attachments": [],
+        "publish_date": "2025-05-21",
+        "source_department": "百度知道"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "光电科学与工程学院培养方案",
+        "url": "https://sose.uestc.edu.cn/rcpy/bkspy1/pyfa.htm",
+        "summary": "包含各专业培养方案、课程设置、学分要求等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "光电科学与工程学院"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "电子科技大学2026年春季学期微专业招生简章",
+        "url": "https://sose.uestc.edu.cn/info/1069/10978.htm",
+        "summary": "2026年春季学期人工智能等3个微专业招生。微专业是非学历教育，不授予学位，不收取费用，完成课程并达到要求由学校统一发放微专业学习证明。课程成绩单独管理，不影响主修专业评奖评优和毕业资格。",
+        "attachments": [
+          "https://sose.uestc.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=2024923653&wbfileid=16731288"
+        ],
+        "publish_date": "2025-12-19",
+        "source_department": "光电科学与工程学院"
+      },
+      {
+        "title": "电子科技大学在读本科生双学位教育实施办法",
+        "url": "https://wenku.baidu.com/view/b78c0a10f41fb7360b4c2e3f5727a5e9846a2761.html",
+        "summary": "双学位教育实施办法：主修专业获得学位后可申请双学位；在规定学习时间内取得双学位专业培养方案规定的学分但未获主修学位，可申请辅修专业证书；双学位专业学分不足35学分可转为主修专业相应类别学分。",
+        "attachments": [],
+        "publish_date": "2010-07-13",
+        "source_department": "百度文库"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "电子科技大学2024届毕业生就业质量年度报告",
+        "url": "https://xxgkw.uestc.edu.cn/info/1078/6257.htm",
+        "summary": "2024届毕业生就业质量年度报告，包含就业率、深造情况、就业单位分布等详细信息。",
+        "attachments": [],
+        "publish_date": "2025-10-29",
+        "source_department": "电子科技大学信息公开网"
+      },
+      {
+        "title": "2023届毕业生就业质量年度报告",
+        "url": "https://xxgkw.uestc.edu.cn/info/1078/5869.htm",
+        "summary": "2023届毕业生就业质量年度报告。",
+        "attachments": [],
+        "publish_date": "2024-09-01",
+        "source_department": "电子科技大学信息公开网"
+      },
+      {
+        "title": "高校毕业生就业质量年度报告列表",
+        "url": "https://xxgkw.uestc.edu.cn/xxgkml/jxzlxx/gxbysjyzlndbg.htm",
+        "summary": "包含2016-2024届共11份就业质量年度报告下载链接，包括2024届、2023届、2022届等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "电子科技大学信息公开网"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "电子科技大学关于2026年接收优秀应届本科毕业生免试攻读研究生（含直博生）的通知",
+        "url": "https://yz.uestc.edu.cn/info/1081/5575.htm",
+        "summary": "2026年推免生接收通知：申请条件包括中华人民共和国公民、拥护中国共产党领导、品德良好、身体健康、获得推荐免试资格；复试考核包括外语测试（100分）和综合测试（200分）；学制：直博生5年，硕士一般3年；双一流高校推免硕士可获学业奖学金一等奖1万元或二等奖0.8万元。",
+        "attachments": [],
+        "publish_date": "2025-09-11",
+        "source_department": "电子科技大学研究生院"
+      },
+      {
+        "title": "电子科技大学2025届保研名额1473人",
+        "url": "https://zhuanlan.zhihu.com/p/5503291917",
+        "summary": "2025届推免数据：保研名额1473人，较上届增加83人。各学院发布2025年推荐优秀应届本科毕业生免试攻读硕士工作相关通知。",
+        "attachments": [],
+        "publish_date": "2024-09-01",
+        "source_department": "知乎专栏"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "电子薄膜与集成器件国家重点实验室",
+        "url": "https://baike.baidu.com/item/电子薄膜与集成器件国家重点实验室（电子科技大学）/9132577",
+        "summary": "依托电子科技大学，2006年7月经科技部批准建设。研究方向：磁电薄膜与微型器件、功率半导体器件及集成技术、电子聚合物与微结构传感器。拥有中科院院士1人、中国工程院院士1人、国家杰出青年基金获得者3人。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "百度百科"
+      },
+      {
+        "title": "电子科技大学省部重点实验室",
+        "url": "https://www.gx211.cn/collegemanage/content202_06.shtml",
+        "summary": "省部重点实验室包括：极高频复杂系统国防重点学科实验室、微波电真空器件重点实验室、光纤传感与通信教育部重点试验室、网络与数据安全四川省重点实验室、通信抗干扰国家重点实验室等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中国高校之窗"
+      },
+      {
+        "title": "2024年四川省大学生电子设计竞赛获奖",
+        "url": "https://www.jwc.uestc.edu.cn/",
+        "summary": "2024年四川省大学生电子设计竞赛总结暨颁奖典礼举行，电子科技大学学子获得多项奖励。",
+        "attachments": [],
+        "publish_date": "2024-09-20",
+        "source_department": "电子科技大学教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "英才实验学院（未来技术学院）",
+        "url": "http://www.yingcai.uestc.edu.cn/",
+        "disciplines": [
+          "电子信息类",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "信息与通信工程学院",
+        "url": "http://www.sice.uestc.edu.cn/",
+        "disciplines": [
+          "信息与通信工程",
+          "电子信息工程"
+        ]
+      },
+      {
+        "name": "电子科学与工程学院",
+        "url": "http://www.ese.uestc.edu.cn/",
+        "disciplines": [
+          "电子科学与技术",
+          "微电子科学与工程"
+        ]
+      },
+      {
+        "name": "材料与能源学院",
+        "url": "https://materials.uestc.edu.cn/",
+        "disciplines": [
+          "材料科学与工程",
+          "能源科学与工程"
+        ]
+      },
+      {
+        "name": "机械与电气工程学院",
+        "url": "http://www.smee.uestc.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "电气工程"
+        ]
+      },
+      {
+        "name": "光电科学与工程学院",
+        "url": "https://sose.uestc.edu.cn/",
+        "disciplines": [
+          "光学工程",
+          "光电信息科学与工程"
+        ]
+      },
+      {
+        "name": "自动化工程学院",
+        "url": "http://www.auto.uestc.edu.cn/",
+        "disciplines": [
+          "控制科学与工程",
+          "自动化"
+        ]
+      },
+      {
+        "name": "资源与环境学院",
+        "url": "https://www.sre.uestc.edu.cn/",
+        "disciplines": [
+          "资源与环境科学",
+          "遥感科学与技术"
+        ]
+      },
+      {
+        "name": "计算机科学与工程学院（网络空间安全学院）",
+        "url": "http://www.scse.uestc.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "网络空间安全"
+        ]
+      },
+      {
+        "name": "航空航天学院",
+        "url": "https://www.iaa.uestc.edu.cn/",
+        "disciplines": [
+          "航空宇航科学与技术",
+          "无人机"
+        ]
+      },
+      {
+        "name": "数学科学学院",
+        "url": "http://www.math.uestc.edu.cn/",
+        "disciplines": [
+          "数学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "物理学院",
+        "url": "http://www.sp.uestc.edu.cn/",
+        "disciplines": [
+          "物理学",
+          "电子信息类"
+        ]
+      },
+      {
+        "name": "生命科学与技术学院",
+        "url": "http://www.life.uestc.edu.cn/",
+        "disciplines": [
+          "生物医学工程",
+          "生物技术"
+        ]
+      },
+      {
+        "name": "经济与管理学院",
+        "url": "http://www.mgmt.uestc.edu.cn/",
+        "disciplines": [
+          "管理科学与工程",
+          "工商管理"
+        ]
+      },
+      {
+        "name": "公共管理学院",
+        "url": "https://spa.uestc.edu.cn/",
+        "disciplines": [
+          "公共管理",
+          "法学"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://www.fl.uestc.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "集成电路科学与工程学院（示范性微电子学院）",
+        "url": "https://icse.uestc.edu.cn/",
+        "disciplines": [
+          "集成电路科学与工程",
+          "微电子科学与工程"
+        ]
+      },
+      {
+        "name": "信息与软件工程学院（示范性软件学院）",
+        "url": "https://sise.uestc.edu.cn/",
+        "disciplines": [
+          "软件工程",
+          "网络工程"
+        ]
+      },
+      {
+        "name": "医学院",
+        "url": "http://www.med.uestc.edu.cn/",
+        "disciplines": [
+          "临床医学",
+          "基础医学"
+        ]
+      },
+      {
+        "name": "格拉斯哥学院",
+        "url": "http://www.gla.uestc.edu.cn/",
+        "disciplines": [
+          "电子信息类",
+          "计算机类"
+        ]
+      },
+      {
+        "name": "格拉斯哥海南学院",
+        "url": "https://gla-hn.uestc.edu.cn/",
+        "disciplines": [
+          "电子信息类"
+        ]
+      },
+      {
+        "name": "基础与前沿研究院",
+        "url": "http://www.iffs.uestc.edu.cn/",
+        "disciplines": [
+          "电子信息",
+          "材料科学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业难度与条件",
+        "content": "转出没有特别要求，一般不挂科就可以。转入需要看转入学院的安排：计院有加试上机考试，其他院一般是面试。热门学院转过去比较难，一般要求前10%-20%。院内转专业相对容易，英才学院或小院第一名、大院前5%会比较有机会。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/383666756"
+      },
+      {
+        "topic": "转专业流程与面试",
+        "content": "各接收学院确定拟接收转入学生名单，填写汇总表，经学院转专业工作领导小组组长签字后于4月20日前报教务处审核，教务处审核后在全校公示。转专业面试主要考察专业基础和学习动机，部分学院有上机考试。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/398238371"
+      },
+      {
+        "topic": "电子大类分流选择",
+        "content": "电子大类专业有五个方向：微电子科学与工程、电子科学与技术（固体电子）、电子科学与技术（物理电子）、电磁场与微波技术、电波传播与天线。成绩52%左右可以在这些方向中选择，分流时志愿优先、成绩优先。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/320856625"
+      },
+      {
+        "topic": "双学位体验",
+        "content": "双学位课比较多比较难，需要周末上课。常见的选择有工商管理、金融学、电子商务等专业。就业前景取决于个人学习情况和主专业配合度，复合型人才更有竞争力。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/26795889"
+      }
+    ],
+    "notes": "部分页面抓取超时（如教务处内网页面），已通过搜索结果补充信息。就业质量报告为PDF格式，需登录信息公开网下载。历年录取分数线可通过招生网查询系统查询。转专业实施细则及微专业招生简章包含在附件压缩包中。学院共22个，包括21个本科招生学院和1个基础与前沿研究院。学生经验分享均来自知乎非官方渠道。\"",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "四川 详细地址：成都市高新区（西区）西源大道2006号",
+      "address": "成都市高新区（西区）西源大道2006号",
+      "phone": "028-61831137/61831139",
+      "website": "https://www.uestc.edu.cn/",
+      "enrollment_website": "https://zs.uestc.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 中外合作",
+        "url": "",
+        "summary": "**中外合作**\nQ: 303组和303组电子信息中外合作办学1、毕业证是否会带中外合作或者中外交流字样 ？ 2、学习模式是4+0还是3+1 3、是第几年出国 ？ 4、中外合作是否享受保研政策？ 5、归属学院及授课语种是什么？ 6、中方和外方院校学费各是多少\nA: 毕业证不会有“中外合办”的字样。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 保专业",
+        "url": "",
+        "summary": "**保专业**\nQ: 福建有保专业政策吗\nA: 无",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 您好老师，山西政史地601分，位次1835，想报考法学专业，",
+        "url": "",
+        "summary": "**您好老师，山西政史地601分，位次1835，想报考法学专业，**\nQ: 您好老师，山西政史地601分，位次1835，想报考法学专业，可以给个建议吗？或者其他什么专业比较稳呢？谢谢老师！\nA: 请关注电子科大本科招生小程序，电子科技大学本科招生网官网或关注电子科大本科招生公众号进行查询，历年数据均公开。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 强基计划入校后可否转专业",
+        "url": "",
+        "summary": "**强基计划入校后可否转专业**\nQ: 转专业\nA: 本研衔接专业范围见各强基计划招生专业培养方案，研究生阶段转段具体招生专业和名额以转段当年学校公布的工作方案为准。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 咨询",
+        "url": "",
+        "summary": "**咨询**\nQ: 请问贵校招生办电话怎么一直打不通呀，有问题想咨询\nA: 您好，招生咨询热线：028-61831137,028-61831139。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "电磁场与无线技术",
+        "score": 4.7,
+        "votes": 248
+      },
+      {
+        "title": "网络工程",
+        "score": 4.6,
+        "votes": 218
+      },
+      {
+        "title": "探测制导与控制技术",
+        "score": 4.6,
+        "votes": 14
+      },
+      {
+        "title": "工商管理",
+        "score": 4.6,
+        "votes": 347
+      },
+      {
+        "title": "空间信息与数字技术",
+        "score": 4.6,
+        "votes": 14
+      },
+      {
+        "title": "信息对抗技术",
+        "score": 4.5,
+        "votes": 108
+      },
+      {
+        "title": "微电子科学与工程",
+        "score": 4.5,
+        "votes": 63
+      },
+      {
+        "title": "行政管理",
+        "score": 4.5,
+        "votes": 373
+      },
+      {
+        "title": "计算机科学与技术",
+        "score": 4.5,
+        "votes": 655
+      },
+      {
+        "title": "信息安全",
+        "score": 4.5,
+        "votes": 298
+      }
+    ]
+  }
+}

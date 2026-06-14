@@ -1,0 +1,314 @@
+{
+  "name": "中国地质大学（北京）",
+  "province": "北京",
+  "url": "https://www.cugb.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.350195,
+    39.993325
+  ],
+  "status": "done",
+  "detail": {
+    "university": "中国地质大学（北京）",
+    "official_url": "https://www.cugb.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "中国地质大学（北京）2025年普通本科招生章程",
+        "url": "https://zhsh.cugb.edu.cn/f/newsCenter/article/25379539dac743f99a64ee48be1b27a7",
+        "summary": "学校为教育部直属全国重点大学，国家“双一流”建设高校。提档比例一般控制在招生计划数的105%以内，专业志愿之间不设级差，遵循分数优先原则。学费标准：理工科5500元/年，英语翻译6000元/年，艺术类10000元/年，其余5000元/年。预留计划不超过1%。",
+        "attachments": [],
+        "publish_date": "2025-05-30",
+        "source_department": "教务处招生办公室"
+      },
+      {
+        "title": "中国地质大学（北京）2024年普通本科招生章程",
+        "url": "https://zhsh.cugb.edu.cn/f/newsCenter/article/3c96da392e00459c8aecaae924129475",
+        "summary": "2024年本科招生章程，包含总则、组织机构、招生计划、录取规则、附则等章节。",
+        "attachments": [],
+        "publish_date": "2024-05-24",
+        "source_department": "教务处招生办公室"
+      },
+      {
+        "title": "中国地质大学（北京）2025年考生体检要求",
+        "url": "https://zhsh.cugb.edu.cn/f/newsCenter/article/e491cffb7eed4ce3b5c5ba7ca3374bf0",
+        "summary": "各专业体检限制要求，包含色弱/色盲不予录取的具体专业清单。",
+        "attachments": [],
+        "publish_date": "2025-05-29",
+        "source_department": "教务处招生办公室"
+      },
+      {
+        "title": "中国地质大学（北京）2025年选考科目对照表（高考改革省份）",
+        "url": "https://zhsh.cugb.edu.cn/f/newsCenter/article/b0d9f0c3bbf246a4aa7f5176736df908",
+        "summary": "各专业在新高考改革省份的选考科目要求对照表。",
+        "attachments": [],
+        "publish_date": "2025-05-27",
+        "source_department": "教务处招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "分省分专业招生计划查询系统",
+        "url": "https://zhsh.cugb.edu.cn/static/front/cugb/basic/html_web/zsjh.html",
+        "summary": "2025年北京总计划123人（综合改革），含地质学类11人、材料类5人、地质类5人、计算机科学与技术3人、人工智能3人等，支持30个省份招生。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "历年分数查询系统",
+        "url": "https://zhsh.cugb.edu.cn/static/front/cugb/basic/html_web/lnfs.html",
+        "summary": "2025年北京录取分数：物理+化学组最低591分（位次13897），物理组最低608分（位次10111），不限组最低612分（位次9327）。热门专业如地质学（燕山书院创新班）616分，法学616分，计算机科学与技术604分，人工智能603分。支持查询2017-2025年数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "转专业审批表",
+        "url": "https://jwc.cugb.edu.cn/c/2018-11-13/685749.shtml",
+        "summary": "教务处提供转专业审批表，学籍异动包括休复学、转专业、延长修业年限、退学等类型。学籍管理文件汇编包含转专业具体实施细则。",
+        "attachments": [],
+        "publish_date": "2018-11-13",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2023级本科生学籍管理文件汇编",
+        "url": "https://jwc.cugb.edu.cn/c/2023-08-31/785924.shtml",
+        "summary": "2023级本科生学籍管理文件汇编，包含转专业、学籍异动等相关规定。",
+        "attachments": [],
+        "publish_date": "2023-08-31",
+        "source_department": "教务处"
+      },
+      {
+        "title": "中国地质大学（北京）本科生学籍管理实施细则",
+        "url": "https://jwc.cugb.edu.cn/c/2021-09-06/703123.shtml",
+        "summary": "本科生学籍管理实施细则（2017年7月修订），包含转专业相关条款。",
+        "attachments": [],
+        "publish_date": "2021-09-06",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "中国地质大学（北京）2025年大类招生专业",
+        "url": "https://zhsh.cugb.edu.cn/f/newsCenter/article/4c6dc8dae1814ac29df8905f9cb22343",
+        "summary": "地质学类（7个专业）大二结束后分流；材料类（5个专业）大二结束后分流；地质类（5个专业）大一结束后分流。",
+        "attachments": [],
+        "publish_date": "2025-05-26",
+        "source_department": "教务处招生办公室"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "本科培养方案（2025级）",
+        "url": "https://jwc.cugb.edu.cn/c/2025-07-01/829910.shtml",
+        "summary": "2025级本科培养方案，包含课程体系、学分要求等。",
+        "attachments": [],
+        "publish_date": "2025-07-01",
+        "source_department": "教务处"
+      },
+      {
+        "title": "本科培养方案（2024级）",
+        "url": "https://jwc.cugb.edu.cn/c/2024-07-02/806910.shtml",
+        "summary": "2024级本科培养方案。",
+        "attachments": [],
+        "publish_date": "2024-07-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "本科培养方案（2023级）",
+        "url": "https://jwc.cugb.edu.cn/c/2023-09-20/806904.shtml",
+        "summary": "2023级本科培养方案。",
+        "attachments": [],
+        "publish_date": "2023-09-20",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [],
+    "employment_report": [],
+    "postgrad_recommend": [
+      {
+        "title": "2019级本科生推荐免试攻读硕士学位研究生公示名单",
+        "url": "https://jwc.cugb.edu.cn/c/2022-09-20/760955.shtml",
+        "summary": "教务处负责推免工作，公示推荐免试攻读硕士学位研究生名单。",
+        "attachments": [],
+        "publish_date": "2022-09-20",
+        "source_department": "教务处"
+      },
+      {
+        "title": "应届本科生免试推荐硕士学位研究生申请表",
+        "url": "https://jwc.cugb.edu.cn/c/2015-10-23/685754.shtml",
+        "summary": "应届本科生免试推荐硕士学位研究生申请表下载。",
+        "attachments": [],
+        "publish_date": "2015-10-23",
+        "source_department": "教务处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "科技平台列表",
+        "url": "https://www.cugb.edu.cn/kjpt.jhtml",
+        "summary": "学校拥有46个科技平台，包括3个全国重点实验室（地质过程与成矿预测、地质微生物与环境、深部探测与成像）、深时数字地球前沿科学中心、4个教育部重点实验室、多个自然资源部重点实验室等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学研究处"
+      },
+      {
+        "title": "中国地质大学（北京）大学生学科竞赛认定目录（2023版）",
+        "url": "https://jwc.cugb.edu.cn/c/2024-05-11/803297.shtml",
+        "summary": "包含地质技能竞赛、数学建模竞赛、英语词汇比赛、结构设计大赛等多项学科竞赛认定目录。",
+        "attachments": [],
+        "publish_date": "2024-05-11",
+        "source_department": "教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "地球科学与资源学院",
+        "url": "https://sesr.cugb.edu.cn/",
+        "disciplines": [
+          "地质学",
+          "地球化学",
+          "资源勘查工程"
+        ]
+      },
+      {
+        "name": "工程技术学院",
+        "url": "https://set.cugb.edu.cn/",
+        "disciplines": [
+          "地质工程",
+          "土木工程",
+          "安全科学与工程"
+        ]
+      },
+      {
+        "name": "材料科学与工程学院",
+        "url": "https://smst.cugb.edu.cn/",
+        "disciplines": [
+          "材料科学与工程",
+          "材料化学",
+          "材料物理"
+        ]
+      },
+      {
+        "name": "人工智能学院",
+        "url": "https://sai.cugb.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "人工智能",
+          "软件工程",
+          "数据科学与大数据技术",
+          "电子信息工程",
+          "电气工程"
+        ]
+      },
+      {
+        "name": "水资源与环境学院",
+        "url": "https://swre.cugb.edu.cn/",
+        "disciplines": [
+          "水文与水资源工程",
+          "环境工程",
+          "地下水科学与工程"
+        ]
+      },
+      {
+        "name": "能源学院",
+        "url": "https://ser.cugb.edu.cn/",
+        "disciplines": [
+          "石油工程",
+          "资源勘查工程",
+          "新能源科学与工程"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "https://sem.cugb.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "会计学",
+          "经济学",
+          "信息管理与信息系统"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://sfl.cugb.edu.cn/",
+        "disciplines": [
+          "英语",
+          "翻译"
+        ]
+      },
+      {
+        "name": "珠宝学院",
+        "url": "https://sg.cugb.edu.cn/",
+        "disciplines": [
+          "宝石及材料工艺学",
+          "设计学"
+        ]
+      },
+      {
+        "name": "地球物理与信息技术学院",
+        "url": "https://sgit.cugb.edu.cn/",
+        "disciplines": [
+          "地球物理学",
+          "勘查技术与工程",
+          "测控技术与仪器"
+        ]
+      },
+      {
+        "name": "海洋学院",
+        "url": "https://sos.cugb.edu.cn/",
+        "disciplines": [
+          "海洋科学",
+          "海洋资源与环境"
+        ]
+      },
+      {
+        "name": "土地科学技术学院",
+        "url": "https://slst.cugb.edu.cn/",
+        "disciplines": [
+          "土地资源管理",
+          "测绘科学与技术",
+          "遥感科学与技术"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://sm.cugb.edu.cn/",
+        "disciplines": [
+          "法学",
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "数理学院",
+        "url": "https://ss.cugb.edu.cn/",
+        "disciplines": [
+          "数学",
+          "物理学"
+        ]
+      },
+      {
+        "name": "体育学院",
+        "url": "https://dpe.cugb.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "1. 就业质量报告：就业信息网设置了就业质量报告栏目（https://jiuye.cugb.edu.cn/News/zdylist.html?cateid=eed07178-677d-c6a9-330c-413bd1ea50e8），但页面内容为空，可能需要登录后查看或尚未发布。2. 转专业公示：未在教务处公开页面找到转专业拟录取名单公示页。3. 辅修/双学位/微专业：教务处官网未找到专门的辅修或双学位政策文件。4. 学校正在建设雄安新校区，将按最新政策执行相关部署。5. 学院共15个教学单位（不含继续教育学院）。",
+    "missing_categories": [
+      "transfer_announcement",
+      "minor_program",
+      "employment_report"
+    ]
+  }
+}

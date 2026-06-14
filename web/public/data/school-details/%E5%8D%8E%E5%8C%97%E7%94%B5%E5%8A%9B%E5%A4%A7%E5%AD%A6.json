@@ -1,0 +1,576 @@
+{
+  "name": "华北电力大学",
+  "province": "北京",
+  "url": "https://www.ncepu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.310446,
+    40.089821
+  ],
+  "status": "done",
+  "detail": {
+    "university": "华北电力大学",
+    "official_url": "https://www.ncepu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "华北电力大学2025年普通本科招生章程",
+        "url": "https://goto.ncepu.edu.cn/zszc/a9eb1b695f49476ebdbc056013088dfc.htm",
+        "summary": "教育部直属大学，国家'双一流'建设高校，电气工程学科入选第二轮'双一流'建设学科。学校设北京校部和保定校区，两地实行实质性一体化管理。",
+        "attachments": [],
+        "publish_date": "2025-05-30",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "华北电力大学2024年中外合作办学项目招生简章（电气工程及其自动化专业）",
+        "url": "https://goto.ncepu.edu.cn/zszc/4af38f9896cf4685bca8889fac347481.htm",
+        "summary": "合作方：英国斯莱斯克莱德大学、英国曼彻斯特大学。招生规模120人（北京校部和保定校区各60人）。学制：'2+2'或'4+0'。学费：70,000元人民币/学年。",
+        "attachments": [],
+        "publish_date": "2024-06-01",
+        "source_department": "国际教育学院"
+      },
+      {
+        "title": "华北电力大学2025年高校专项计划招生简章",
+        "url": "https://goto.ncepu.edu.cn/zszc/5a66fc1ffae346c78df0db18f090072c.htm",
+        "summary": "面向农村和原贫困地区学生的专项招生计划",
+        "attachments": [],
+        "publish_date": "2025-03-31",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "华北电力大学（保定）2025年艺术类专业招生简章",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/zszc/05e5181e4ef341af94ff2549ad879513.htm",
+        "summary": "艺术类专业（设计学类/产品设计）招生简章",
+        "attachments": [],
+        "publish_date": "2025-06-12",
+        "source_department": "保定校区招生办"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "华北电力大学北京校部2025年分省招生计划",
+        "url": "https://goto.ncepu.edu.cn/zsjh/index.htm",
+        "summary": "2025年北京校部各省份分专业招生计划，可按省份、年份、科类查询",
+        "attachments": [],
+        "publish_date": "2025-06-01",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "华北电力大学保定校区2025年分省招生计划",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/zsjh/3d30f5d523d04379abaad983a2e83ff9.htm",
+        "summary": "2025年保定校区分省招生计划表，包含各专业招生人数",
+        "attachments": [
+          "https://zhaosheng.ncepu.edu.cn/zs/images/2025-06/2028aae69b994ba690c01fd935b43f4e.png",
+          "https://zhaosheng.ncepu.edu.cn/zs/images/2025-06/f15607325d8e4a8b82ef6f32350d746c.png"
+        ],
+        "publish_date": "2025-06-01",
+        "source_department": "保定校区招生办"
+      },
+      {
+        "title": "华北电力大学保定校区2024年分省招生计划",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/zsjh/b04ffae145b6498aa59592ae10961a51.htm",
+        "summary": "2024年保定校区分省招生计划表",
+        "attachments": [],
+        "publish_date": "2024-06-01",
+        "source_department": "保定校区招生办"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "保定校区2025年浙江省录取分数统计",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/lqfs/04ffd72081a74e8f8e11b51d3942f5ba.htm",
+        "summary": "2025年浙江省录取：电气工程659/654/652，能源与动力643/641/639，计算机648/644/641（最高/平均/最低分）",
+        "attachments": [],
+        "publish_date": "2025-07-01",
+        "source_department": "保定校区招生办"
+      },
+      {
+        "title": "保定校区2025年山西省录取分数统计",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/lqfs/d165190a202a42e1814ce337450bbbde.htm",
+        "summary": "2025年山西省理工类：电气629/625/620，能源619/618/617，计算机620/617/615；文史类：法学602/600/597",
+        "attachments": [],
+        "publish_date": "2025-07-01",
+        "source_department": "保定校区招生办"
+      },
+      {
+        "title": "2023-2025年少数民族预科班录取分数",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/lqfs/77ff7c4510d64320a25c6dffdff9ad9f.htm",
+        "summary": "近三年少数民族预科班各省录取分数线统计",
+        "attachments": [
+          "https://zhaosheng.ncepu.edu.cn/zs/images/2025-11/d1040c3131b040d2ac31f9b8c35d6022.png"
+        ],
+        "publish_date": "2025-11-01",
+        "source_department": "保定校区招生办"
+      },
+      {
+        "title": "2023-2025年艺术类（设计学类/产品设计）专业录取分数",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/lqfs/f9b382fbb7a34dada70d39a30a040c5c.htm",
+        "summary": "近三年艺术类专业录取分数统计",
+        "attachments": [],
+        "publish_date": "2025-07-01",
+        "source_department": "保定校区招生办"
+      },
+      {
+        "title": "保定校区2025年高校专项计划录取分数",
+        "url": "https://zhaosheng.ncepu.edu.cn/zs/lqfs/b63f1bea2ab244f58e5c28a69e52b116.htm",
+        "summary": "2025年高校专项计划各省录取分数",
+        "attachments": [],
+        "publish_date": "2025-08-01",
+        "source_department": "保定校区招生办"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "华北电力大学本科生转专业和大类专业分流实施细则",
+        "url": "https://dme.ncepu.edu.cn/xsgz/gzzd/f3da10fa065b4630961bb8e7ae4137a0.htm",
+        "summary": "华电校教〔2021〕3号。基本原则：公平、公正、公开。不得转专业情形：艺术类、外语保送、国防生、已有转专业经历者等。优秀本科生要求：第一学年累计平均学分绩80分及以上，具体排名要求因专业而异（3%-30%）。",
+        "attachments": [
+          "https://dme.ncepu.edu.cn/docs/2025-07/54e493c8280845c99d8b8bd101d28bb1.pdf",
+          "https://dme.ncepu.edu.cn/docs/2025-07/7f3a471b63984217aa39a9d25a07c1d5.docx",
+          "https://dme.ncepu.edu.cn/docs/2025-07/dc76a8c9c2ec4e9f81a9e366d8880993.docx",
+          "https://dme.ncepu.edu.cn/docs/2025-07/0810bbd4f05e45e89fb93330f5f60446.rar"
+        ],
+        "publish_date": "2021-01-01",
+        "source_department": "教务处"
+      },
+      {
+        "title": "电气工程及其自动化专业接收转专业条件（电力工程系）",
+        "url": "https://electric.ncepu.edu.cn/",
+        "summary": "大类前3%（含）或电子信息类前10%（含）可申请转入电气工程及其自动化专业",
+        "attachments": [],
+        "publish_date": "2024-09-01",
+        "source_department": "电气与电子工程学院"
+      },
+      {
+        "title": "新能源学院2024级转专业通知",
+        "url": "https://xnyxy.ncepu.edu.cn/tzgg/7eb2ca49f9f84e9d88ae0a9784ee96df.htm",
+        "summary": "时间安排：9月2日-9月11日申请，9月13日前资格初筛，9月13日-9月22日考核公示。考核方式：综合能力面试（满分100分，低于60分不予录取）。总成绩=学分绩×70%+面试成绩×30%。",
+        "attachments": [],
+        "publish_date": "2024-09-02",
+        "source_department": "新能源学院"
+      },
+      {
+        "title": "机械工程系转专业和大类专业分流实施细则",
+        "url": "https://dme.ncepu.edu.cn/xsgz/gzzd/f3da10fa065b4630961bb8e7ae4137a0.htm",
+        "summary": "前15%以内可申请转专业，具体条件和流程详见实施细则",
+        "attachments": [],
+        "publish_date": "2025-07-01",
+        "source_department": "机械工程系"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "环境科学与工程学院2023级大类分流结果公示",
+        "url": "https://cese.ncepu.edu.cn/tzgg/93c1a21077fa42b0a88329abf758201c.htm",
+        "summary": "公示应用化学、环境科学等专业分流结果",
+        "attachments": [],
+        "publish_date": "2023-09-01",
+        "source_department": "环境科学与工程学院"
+      },
+      {
+        "title": "2023级各专业接收转专业条件汇总",
+        "url": "https://www.sohu.com/a/908116179_121106842",
+        "summary": "搜狐转载：2023级北京校部和保定校区各专业接收转专业的具体条件汇总表",
+        "attachments": [],
+        "publish_date": "2023-09-01",
+        "source_department": "招生办"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "华北电力大学本科生转专业和大类专业分流实施细则",
+        "url": "https://dme.ncepu.edu.cn/xsgz/gzzd/f3da10fa065b4630961bb8e7ae4137a0.htm",
+        "summary": "大类分流时间：一年级结束后（第三学期）。分流依据：第一学年必修课程平均学分绩。志愿优先、择优选拔原则。",
+        "attachments": [
+          "https://dme.ncepu.edu.cn/docs/2025-07/54e493c8280845c99d8b8bd101d28bb1.pdf",
+          "https://dme.ncepu.edu.cn/docs/2025-07/dc76a8c9c2ec4e9f81a9e366d8880993.docx"
+        ],
+        "publish_date": "2021-01-01",
+        "source_department": "教务处"
+      },
+      {
+        "title": "环境科学与工程学院2023级大类分流规则",
+        "url": "https://cese.ncepu.edu.cn/tzgg/93c1a21077fa42b0a88329abf758201c.htm",
+        "summary": "以第一学年必修课程平均学分绩为基础，遵循志愿优先、择优选拔原则。当第一志愿人数超过专业接收总数时，按学分绩从高到低排序录取。",
+        "attachments": [],
+        "publish_date": "2023-09-01",
+        "source_department": "环境科学与工程学院"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "华北电力大学2017版本科培养方案",
+        "url": "https://jwc.ncepu.edu.cn/kxyj/xswd/index.htm",
+        "summary": "2017版本科培养方案文件",
+        "attachments": [],
+        "publish_date": "2017-09-01",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2025级研究生培养方案",
+        "url": "https://yjsy.ncepu.edu.cn/pyxx/pyfa/d73c3be2d4b74ad39731e7fd974ee737.htm",
+        "summary": "2025级博士、学术硕士、专业学位研究生培养方案PDF文件",
+        "attachments": [
+          "https://yjsy.ncepu.edu.cn/docs/2025-06/2025学术学位博士研究生培养方案.pdf",
+          "https://yjsy.ncepu.edu.cn/docs/2025-06/2025级学术学位硕士研究生培养方案.pdf",
+          "https://yjsy.ncepu.edu.cn/docs/2025-06/2025级专业学位研究生培养方案（合集）.pdf"
+        ],
+        "publish_date": "2025-06-27",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "2024级研究生培养方案",
+        "url": "https://yjsy.ncepu.edu.cn/pyxx/pyfa/65396826016f4e54b574b41b1fee8ad0.htm",
+        "summary": "2024级博士、学术硕士、专业学位研究生培养方案",
+        "attachments": [
+          "https://yjsy.ncepu.edu.cn/docs/2024-07/2024学术学位博士研究生培养方案.pdf",
+          "https://yjsy.ncepu.edu.cn/docs/2024-07/2024学术学位硕士研究生培养方案.pdf",
+          "https://yjsy.ncepu.edu.cn/docs/2024-07/2024专业学位博士培养方案.pdf",
+          "https://yjsy.ncepu.edu.cn/docs/2024-07/2024全日制专业学位硕士研究生培养方案.pdf",
+          "https://yjsy.ncepu.edu.cn/docs/2024-07/2024专业学位研究生校企联合培养专项培养方案（博士、硕士）.pdf"
+        ],
+        "publish_date": "2024-07-10",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "华北电力大学（保定）研究生培养方案",
+        "url": "https://gs.ncepu.edu.cn/tzgg/92a68fdaea784593b649288fdfa3d88d.htm",
+        "summary": "保定校区学术型研究生和专业学位研究生培养方案",
+        "attachments": [
+          "https://gs.ncepu.edu.cn/docs/2025-08/华北电力大学（保定校区）学术型研究生培养方案.pdf",
+          "https://gs.ncepu.edu.cn/docs/2025-08/华北电力大学（保定校区）专业学位研究生培养方案.pdf"
+        ],
+        "publish_date": "2025-08-31",
+        "source_department": "保定研究生院"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "本科学生辅修专业和辅修学位实施办法",
+        "url": "https://iei.ncepu.edu.cn/gjhzxm/jxgl/bkjxwjhglgd/adaba4dc89034ed88b6761f0d3dca0b1.htm",
+        "summary": "辅修专业约40学分，辅修学位约60学分（含毕业设计）。报名条件：累计平均学分绩原则上75分及以上，学有余力。申请时间：二年级第一学期开学后前两周内。证书类型：辅修专业证书或辅修学位证书。收费：按学分交费。",
+        "attachments": [
+          "https://business.ncepu.edu.cn/docs/20180508072051441329.doc"
+        ],
+        "publish_date": "2008-07-01",
+        "source_department": "国际教育学院/教务处"
+      },
+      {
+        "title": "经济与管理学院辅修专业实施办法",
+        "url": "https://business.ncepu.edu.cn/",
+        "summary": "经济与管理学院辅修专业和辅修学位的具体实施细节",
+        "attachments": [
+          "https://business.ncepu.edu.cn/docs/20180508072051441329.doc"
+        ],
+        "publish_date": "2018-05-08",
+        "source_department": "经济与管理学院"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "华北电力大学2021届毕业生就业质量年度报告",
+        "url": "https://xxgk.ncepu.edu.cn/jxzlxx/33bysjyzlbg/index.htm",
+        "summary": "2021届毕业生就业质量年度报告",
+        "attachments": [
+          "https://xxgk.ncepu.edu.cn/docs/2023-03/5127a77043c24de69855ef84d3e92258.pdf"
+        ],
+        "publish_date": "2023-03-01",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "华北电力大学2020届毕业生就业质量年度报告",
+        "url": "https://xxgk.ncepu.edu.cn/jxzlxx/33bysjyzlbg/index.htm",
+        "summary": "2020届毕业生就业质量年度报告",
+        "attachments": [
+          "https://xxgk.ncepu.edu.cn/docs/2021-09/9ea3bfffbb8a4042b56a018abf718c73.pdf"
+        ],
+        "publish_date": "2021-09-01",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "华北电力大学2019届毕业生就业质量年度报告",
+        "url": "https://xxgk.ncepu.edu.cn/jxzlxx/33bysjyzlbg/index.htm",
+        "summary": "2019届毕业生就业质量年度报告",
+        "attachments": [
+          "https://xxgk.ncepu.edu.cn/docs/2020-04/eb629491fdd24423b1fe4c4d13e656f0.pdf"
+        ],
+        "publish_date": "2020-04-01",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "华北电力大学2018届毕业生就业质量年度报告",
+        "url": "https://xxgk.ncepu.edu.cn/jxzlxx/33bysjyzlbg/index.htm",
+        "summary": "2018届毕业生就业质量年度报告",
+        "attachments": [
+          "https://xxgk.ncepu.edu.cn/docs/2018-12/41f81b0c5e96430aaca22d3d72215ed7.pdf"
+        ],
+        "publish_date": "2018-12-01",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "华北电力大学2017届毕业生就业质量年度报告",
+        "url": "https://xxgk.ncepu.edu.cn/jxzlxx/33bysjyzlbg/index.htm",
+        "summary": "2017届毕业生就业质量年度报告",
+        "attachments": [
+          "http://xxgk.ncepu.edu.cn/docs/2018-02/20180212113435839704.pdf"
+        ],
+        "publish_date": "2018-02-12",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "华北电力大学2015届毕业生就业质量年度报告",
+        "url": "https://xxgk.ncepu.edu.cn/jxzlxx/33bysjyzlbg/index.htm",
+        "summary": "2015届毕业生就业质量年度报告",
+        "attachments": [
+          "http://xxgk.ncepu.edu.cn/docs/2016-01/20160105145925028881.pdf"
+        ],
+        "publish_date": "2016-01-05",
+        "source_department": "就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "华北电力大学2026年接收推荐免试研究生办法",
+        "url": "https://yjsy.ncepu.edu.cn/zsxx/sszsxx/5af514caab5e4ce8b922fc575a6c1d66.htm",
+        "summary": "申请条件：拥护中国共产党、英语四级425分及以上（硕士）或六级425分（直博）；学术研究兴趣浓厚，诚实守信。申请程序：登录'全国推荐免试攻读研究生信息公开暨管理服务系统'填报志愿，招生代码10054。",
+        "attachments": [
+          "https://yjsy.ncepu.edu.cn/docs/2025-09/74708ff46eba420a9d4e81121df4ee80.doc",
+          "https://yjsy.ncepu.edu.cn/docs/2025-09/8e1be2784e684b85bd8986cb99d8ac9c.doc",
+          "https://yjsy.ncepu.edu.cn/docs/2025-09/885cd203b82d4b0f9843b363cd973341.doc",
+          "https://yjsy.ncepu.edu.cn/docs/2025-09/2666a1ae98914f2f89fb6bc57895c729.docx"
+        ],
+        "publish_date": "2025-09-01",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "新能源电力系统全国重点实验室",
+        "url": "https://laps.ncepu.edu.cn/",
+        "summary": "国家级科研平台，围绕新能源电力系统开展前沿研究",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "全国重点实验室"
+      },
+      {
+        "title": "新能源发电国家工程研究中心",
+        "url": "https://nercne.ncepu.edu.cn/",
+        "summary": "国家工程研究中心",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国家工程研究中心"
+      },
+      {
+        "title": "国家能源交通融合发展研究院",
+        "url": "https://cietid.ncepu.edu.cn/",
+        "summary": "国家能源交通融合发展研究院",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国家研究院"
+      },
+      {
+        "title": "学科竞赛目录（2024版）",
+        "url": "https://gczx.ncepu.edu.cn/xkjs/jsml/92e910ec67bc4354acc9567b0964ea07.htm",
+        "summary": "2024年度学科竞赛目录，包括'挑战杯'、'西门子杯'中国智能制造挑战赛、'互联网+'创新创业大赛等",
+        "attachments": [],
+        "publish_date": "2024-01-01",
+        "source_department": "工程训练与创新创业教育中心"
+      },
+      {
+        "title": "华北电力大学科研平台概况",
+        "url": "https://www.ncepu.edu.cn",
+        "summary": "现有1个全国重点实验室、1个国家工程研究中心、1个国家工程技术研究中心、1个国家产教融合创新平台、2个教育部重点实验室、2个教育部工程研究中心、54个省部级科技创新平台和研究基地",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "电气与电子工程学院",
+        "url": "https://electric.ncepu.edu.cn/",
+        "disciplines": [
+          "电气工程",
+          "电子信息工程",
+          "通信工程",
+          "电力系统自动化"
+        ]
+      },
+      {
+        "name": "能源动力与机械工程学院",
+        "url": "https://thermal.ncepu.edu.cn/",
+        "disciplines": [
+          "动力工程及工程热物理",
+          "机械工程",
+          "材料科学",
+          "储能科学",
+          "氢能科学"
+        ]
+      },
+      {
+        "name": "控制与计算机工程学院",
+        "url": "https://cce.ncepu.edu.cn/",
+        "disciplines": [
+          "控制科学与工程",
+          "计算机科学与技术",
+          "人工智能"
+        ]
+      },
+      {
+        "name": "经济与管理学院",
+        "url": "https://business.ncepu.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "公共管理",
+          "经济学",
+          "管理学"
+        ]
+      },
+      {
+        "name": "新能源学院",
+        "url": "https://xnyxy.ncepu.edu.cn/",
+        "disciplines": [
+          "风能",
+          "太阳能",
+          "生物质能",
+          "储能技术",
+          "氢能科学"
+        ]
+      },
+      {
+        "name": "核科学与工程学院",
+        "url": "https://snse.ncepu.edu.cn/",
+        "disciplines": [
+          "核科学与技术",
+          "辐射防护",
+          "核电站运行"
+        ]
+      },
+      {
+        "name": "环境科学与工程学院",
+        "url": "https://cese.ncepu.edu.cn/",
+        "disciplines": [
+          "环境科学与工程",
+          "化学工程",
+          "水处理"
+        ]
+      },
+      {
+        "name": "水利与水电工程学院",
+        "url": "https://hydro.ncepu.edu.cn/",
+        "disciplines": [
+          "水利工程",
+          "水电工程",
+          "水文学"
+        ]
+      },
+      {
+        "name": "数理学院",
+        "url": "https://slx.ncepu.edu.cn/",
+        "disciplines": [
+          "数学",
+          "物理",
+          "应用统计学"
+        ]
+      },
+      {
+        "name": "人文与社会科学学院",
+        "url": "https://law.ncepu.edu.cn/",
+        "disciplines": [
+          "法学",
+          "社会工作",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "https://sfl.ncepu.edu.cn/",
+        "disciplines": [
+          "英语",
+          "日语"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://mkszyxy.ncepu.edu.cn/",
+        "disciplines": [
+          "马克思主义理论",
+          "思想政治教育"
+        ]
+      },
+      {
+        "name": "国家卓越工程师学院",
+        "url": "https://ngce.ncepu.edu.cn/",
+        "disciplines": [
+          "能源电力领域卓越工程师培养"
+        ]
+      },
+      {
+        "name": "体育教学部",
+        "url": "https://ty.ncepu.edu.cn/",
+        "disciplines": [
+          "体育教育"
+        ]
+      },
+      {
+        "name": "国际教育学院",
+        "url": "https://iei.ncepu.edu.cn/",
+        "disciplines": [
+          "留学生教育",
+          "中外合作办学"
+        ]
+      },
+      {
+        "name": "继续教育学院",
+        "url": "https://jxjyxy.ncepu.edu.cn/",
+        "disciplines": [
+          "继续教育",
+          "社会培训"
+        ]
+      },
+      {
+        "name": "怀柔实验室学院",
+        "url": "https://hrsysxy.ncepu.edu.cn/",
+        "disciplines": [
+          "实验室科研人才培养"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "选课技巧与注意事项",
+        "content": "选课最实用的技巧是找个网快的地方操作。注意事项方面：一是考虑挂科问题，选课前要多跟师兄师姐打听各科目的老师情况；二是选修课能选的尽量先选上，到时候多了再退掉；三是如果准备冲击转专业，选修课不宜太多，要集中精力把成绩搞好。关于具体课程，有学长反映高数、物理等课程难度较大，需要谨慎选择。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/416072275"
+      },
+      {
+        "topic": "转专业难度与流程经验",
+        "content": "转专业政策每年可能有变化，但成绩排名是最重要的考量因素。以往跨院转专业通常要求成绩排名在3%左右，且只以成绩为标准评判。保定校区曾有学长成功转入电气专业并保送研究生。转专业并非想象中那么容易，竞争比较激烈，尤其是电气工程及其自动化这种王牌专业。想转专业的同学建议提前了解当年最新政策，提早准备。",
+        "source_type": "B站",
+        "source_url": "https://www.bilibili.com/video/BV1wssVehEk1/"
+      },
+      {
+        "topic": "自动化专业本科就业经验",
+        "content": "楼主是自动化专业毕业，分享的是非电力行业经验。在华电保定校区，自动化系内包含测控、自动化等多个方向。毕业两年后的经验之谈：就业、选择、人生规划方面需要提前规划。自动化专业就业面较广，但建议在校期间多积累项目经验和技能证书，这对于进入非电力行业的同学尤为重要。华电虽然以电力为特色，但自动化等专业在制造业、互联网等领域也有不错的发展机会。",
+        "source_type": "百度贴吧",
+        "source_url": "https://tieba.baidu.com/p/9015998013"
+      },
+      {
+        "topic": "电气本科就业与职业规划",
+        "content": "华电在能源与电力领域是行业内的王牌院校，电气工程及其自动化专业长期位居全国前列。学校与国家电网、南方电网、中电建等能源企业关系紧密，毕业生就业去向稳定。很多学生在毕业前就能拿到心仪的录用通知。就业方向主要包括电网公司、电力设计院、发电企业等。对于想进入电力行业或能源领域工作的学生来说，华电是非常有优势的选择。",
+        "source_type": "职朋校友圈",
+        "source_url": "https://www.showxue.com/dianping/1363/"
+      },
+      {
+        "topic": "本科四年规划建议",
+        "content": "华电学生整体比较务实，学习风气浓厚。本科四年需要提前思考规划：未来想做什么（升学/就业/体制内），升学又分保研、考研、留学等不同路径；就业又分央国企和民企外企等方向。转专业、国教、干部与社团、竞赛、入团入党等都是大学生活的重要组成部分。理工科课程要求严格，考试难度不低，需要保持良好的学习习惯。学校有两个校区，北京校区位置较好交通便利，保定校区环境宽敞绿化良好。",
+        "source_type": "NCEPUwiki",
+        "source_url": "https://wiki.ncepuinfo.cc/pages/undergraduatelife/"
+      }
+    ],
+    "notes": "华北电力大学是教育部直属的\"双一流\"建设高校，电气工程学科入选第二轮\"双一流\"建设学科。学校设北京校部和保定校区，两地实行实质性一体化管理。就业方向以能源电力行业为主，2024届毕业生88.7%就业率，46.93%深造率。转专业竞争较激烈，电气专业要求成绩排名前3%左右。学院列表共17个（含体育教学部、国际教育学院等教学单位）。",
+    "missing_categories": []
+  }
+}

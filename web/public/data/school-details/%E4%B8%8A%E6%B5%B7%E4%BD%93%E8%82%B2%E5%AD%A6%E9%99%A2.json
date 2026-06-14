@@ -1,0 +1,252 @@
+{
+  "name": "上海体育学院",
+  "province": "上海",
+  "url": "https://www.sus.edu.cn",
+  "is985": false,
+  "is211": false,
+  "isDoubleFirstClass": true,
+  "coord": [
+    121.525348,
+    31.31233
+  ],
+  "status": "done",
+  "detail": {
+    "university": "上海体育大学",
+    "official_url": "https://www.sus.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "上海体育大学2025年招生章程",
+        "url": "https://bkzs.sus.edu.cn/info/1057/1972.htm",
+        "summary": "2025年上海市普通高等学校全国统考招生章程，包含院校全称、就读校址、招生层次、办学类型、录取规则、收费标准等。实行大类招生：医学技术类（含运动人体科学、运动康复、康复治疗学、运动与公共健康）、工商管理类（含体育经济与管理、市场营销），第一学年末进行类内专业分流。",
+        "attachments": [],
+        "publish_date": "2025-05-07",
+        "source_department": "招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "上海体育大学2025年招生计划",
+        "url": "http://bkzs.sus.edu.cn/zsjh.htm",
+        "summary": "2025年上海市普通类招生计划207人，包括新闻学20人、英语10人（英语单科不低于110分）、工商管理类40人、医学技术类77人（物+化）、应用心理学15人、运动能力开发15人、数据科学与大数据技术30人。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "上海体育大学2025年上海录取分数",
+        "url": "http://bkzs.sus.edu.cn/lnfs.htm",
+        "summary": "2025年上海普通类录取分数：综合改革最低分489，最高分546。分专业录取分数：工商管理类496-511、数据科学与大数据技术493-506、新闻学516-544、医学技术类493-546、应用心理学489-519、英语509-522、运动能力开发489-521。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "上海体育学院本科生学籍管理规定",
+        "url": "https://jwc.sus.edu.cn/info/1154/3379.htm",
+        "summary": "规定学生在学习期间对其他专业有兴趣和专长的，可以申请转专业。各学院制定转专业实施细则，内容包括拟接收转专业学生的专业、名额、接收条件及考核办法等。艺术类专业录取的学生入学后不得转入非艺术类专业。体育类专业录取的学生入学后不得转入非体育类专业。",
+        "attachments": [
+          "https://jwc.sus.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1880277191&wbfileid=A2481F0A7501C49F0454E15A875FC67B"
+        ],
+        "publish_date": "2021-07-07",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "新闻与传播学院转专业录取名单公示",
+        "url": "https://xw.sus.edu.cn/info/1008/1864.htm",
+        "summary": "根据《上海体育大学本科生学籍管理规定》和《新闻与传播学院转专业录取方案》，经学生申请、学院审核、转专业工作小组笔试面试后，公示2025年转专业录取名单。公示期：2025年7月4日—7月10日。",
+        "attachments": [],
+        "publish_date": "2025-07-04",
+        "source_department": "新闻与传播学院"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "上海体育学院关于本科生大类招生专业分流工作的指导意见",
+        "url": "https://jwc.sus.edu.cn/info/1154/1828.htm",
+        "summary": "大类招生专业分流在第一学年第二学期末进行。分流依据综合成绩（学分加权成绩×90%+综合测评成绩×10%）。按志愿优先、成绩优先、特长优先原则分流。退役士兵优先、获得校级及以上荣誉者综合成绩相同时优先。受处分学生最后分流。专业分流确定后不得随意变更。",
+        "attachments": [],
+        "publish_date": "2019-12-23",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "2021版本科教学培养方案",
+        "url": "https://jwc.sus.edu.cn/info/1112/4021.htm",
+        "summary": "包含各专业培养目标、课程设置、学分要求、毕业标准等详细培养方案文件下载。",
+        "attachments": [
+          "https://jwc.sus.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1880277191&wbfileid=8538015ECA316B4B04E596833B6D8DB5"
+        ],
+        "publish_date": "2022-04-11",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "上海体育大学跨校选（辅）修",
+        "url": "https://jwc.sus.edu.cn/gzzd/jwgl/kxx_f_x.htm",
+        "summary": "学校开展跨校选课和辅修专业，学生可申请修读其他高校课程。学校提供辅修专业学习机会，具体辅修专业设置和学分要求以每学期开课目录为准。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "上海体育大学2023年毕业生就业质量年度报告",
+        "url": "https://xgb.sus.edu.cn/info/1083/2356.htm",
+        "summary": "全面反映2023届毕业生就业状况、就业工作进展、就业质量等情况的就业质量报告。",
+        "attachments": [
+          "https://xgb.sus.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1904087064&wbfileid=54D7BF121D1D78DA249452EF7BC5BEEF"
+        ],
+        "publish_date": "2024-04-07",
+        "source_department": "党委学生工作部"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "上海体育大学研究生院",
+        "url": "https://yjsc.sus.edu.cn/",
+        "summary": "研究生院负责研究生招生、培养、学位等工作，包含硕士生招生、博士生招生、体育硕士冠军班、港澳台研招等信息。推免相关政策可通过研究生院招生信息了解。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "上海体育大学科研平台",
+        "url": "https://www.sus.edu.cn/xsky/kypt1.htm",
+        "summary": "科研平台包括：乒乓球运动智能化研发中心、体育旅游与文化大数据研究中心、上海市学生体质健康研究中心、国家体育总局体育产业研究基地、国家体育总局运动认知评定与调控重点实验室、上海市人类运动能力开发与保障重点实验室、运动健身科技省部共建教育部重点实验室等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "中国乒乓球学院",
+        "url": "http://cttc.sus.edu.cn",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://mks.sus.edu.cn",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "体育教育学院",
+        "url": "https://tjxy.sus.edu.cn/",
+        "disciplines": [
+          "体育学",
+          "教育学"
+        ]
+      },
+      {
+        "name": "竞技运动学院",
+        "url": "https://jjyd.sus.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "武术学院",
+        "url": "http://wushu.sus.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "新闻与传播学院",
+        "url": "http://xw.sus.edu.cn/",
+        "disciplines": [
+          "新闻传播学"
+        ]
+      },
+      {
+        "name": "运动健康学院",
+        "url": "http://yk.sus.edu.cn/",
+        "disciplines": [
+          "体育学",
+          "医学技术"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "http://sem.sus.edu.cn/",
+        "disciplines": [
+          "管理学",
+          "工商管理"
+        ]
+      },
+      {
+        "name": "心理学院",
+        "url": "http://xlxy.sus.edu.cn",
+        "disciplines": [
+          "心理学"
+        ]
+      },
+      {
+        "name": "艺术学院",
+        "url": "https://ysxy.sus.edu.cn",
+        "disciplines": [
+          "艺术学"
+        ]
+      },
+      {
+        "name": "交叉学科研究院",
+        "url": "",
+        "disciplines": [
+          "交叉学科"
+        ]
+      },
+      {
+        "name": "智慧体育工程学院",
+        "url": "https://sise.sus.edu.cn",
+        "disciplines": [
+          "体育学",
+          "计算机科学与技术"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "考研经验",
+        "content": "2025上海体育大学新传考研经验分享：本科广播电视专业，一战383分上岸。备考历程从2023年末开始翻阅传播学概论到2024年底考试，最终成功被上体新传录取。",
+        "source_type": "知乎",
+        "source_url": "https://zhuanlan.zhihu.com/p/1903582935526933002"
+      },
+      {
+        "topic": "读研生活体验",
+        "content": "上海体育大学347读研生活分享：上岸院校为上海体育大学应用心理专业（专硕、全日制）。一张课表看学业，标注了哪些是体育相关专业的同学必须要修的课程，分享了校园学习生活体验。",
+        "source_type": "知乎",
+        "source_url": "https://zhuanlan.zhihu.com/p/2014358817828263506"
+      },
+      {
+        "topic": "考研跨考经验",
+        "content": "2025上海体育大学新传考研经验：德语专业，二战法学后决定跨考体育类新传。本科期间在体育类公司实习过，发现体育行业是自己真正喜欢的方向，最终395分上岸。",
+        "source_type": "知乎",
+        "source_url": "https://zhuanlan.zhihu.com/p/1895966271289401490"
+      },
+      {
+        "topic": "考研二战经验",
+        "content": "2024上海体育大学体育专业运动训练上岸经验贴：二战在职跨专业考研。第一次没过复试线，第二年踏实备考最终成功上岸，分享了备考心得和经验教训。",
+        "source_type": "知乎",
+        "source_url": "https://zhuanlan.zhihu.com/p/693090098"
+      }
+    ],
+    "notes": "转专业政策依据《上海体育大学本科生学籍管理规定》执行，艺术类和体育类专业学生不可转入非艺术/非体育类专业。转专业由各学院制定实施细则并组织考核。学院列表已按要求输出具体学院，未输出学部层级。就业质量报告、就业推荐信等PDF附件链接已提取。学生经验来自知乎非官方渠道，已标注来源类型。辅修专业、保研推免细则未能获取详细内容。\", \"missing_categories\">[\"minor_program\", \"postgrad_recommend\"]",
+    "missing_categories": []
+  }
+}

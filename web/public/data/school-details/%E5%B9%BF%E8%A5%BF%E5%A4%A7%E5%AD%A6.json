@@ -1,0 +1,547 @@
+{
+  "name": "广西大学",
+  "province": "广西",
+  "url": "https://www.gxu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    108.29116,
+    22.845135
+  ],
+  "status": "done",
+  "detail": {
+    "university": "广西大学",
+    "official_url": "https://www.gxu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "广西大学2025年本科招生章程",
+        "url": "https://zs.gxu.edu.cn/info/1234/2042.htm",
+        "summary": "广西大学2025年本科招生章程，涵盖总则、组织机构、计划与录取、新生入学等章节。学校为公办全日制'双一流'建设高校，按学分收取学费（文史法哲教育学类5500元/年、农学类5000元/年、理工管理经济学类6000元/年、艺术类12000元/年），平行志愿调档比例105%以内，不设专业级差，设有'君武学堂创新人才培养实验班'。",
+        "attachments": [],
+        "publish_date": "2025-06-09",
+        "source_department": "教务处（招生办公室）"
+      },
+      {
+        "title": "广西大学2024年本科招生章程",
+        "url": "https://zs.gxu.edu.cn/info/1234/1872.htm",
+        "summary": "广西大学2024年本科招生章程，包含招生计划、录取规则、体检标准等规定。",
+        "attachments": [],
+        "publish_date": "2024-05-11",
+        "source_department": "教务处（招生办公室）"
+      },
+      {
+        "title": "广西大学2023年本科招生章程",
+        "url": "https://zs.gxu.edu.cn/info/1234/1652.htm",
+        "summary": "广西大学2023年本科招生章程。",
+        "attachments": [],
+        "publish_date": "2023-05-13",
+        "source_department": "教务处（招生办公室）"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "广西大学招生计划查询",
+        "url": "https://zs.gxu.edu.cn/child/xinxichaxun.jsp?urltype=tree.TreeTempUrl&wbtreeid=1233",
+        "summary": "广西大学本科招生信息网提供在线查询分省分专业招生计划数据，支持按年份和省份查询各专业招生人数。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处（招生办公室）"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "广西大学录取分数查询",
+        "url": "https://zs.gxu.edu.cn/child/xinxichaxun.jsp?urltype=tree.TreeTempUrl&wbtreeid=1232",
+        "summary": "广西大学本科招生信息网提供历年各省录取分数线查询功能，支持按省份、年份查询各专业录取最低分和位次。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处（招生办公室）"
+      },
+      {
+        "title": "广西大学录取查询",
+        "url": "https://ddp.eol.cn/school/data1/index?key=f29Qh3coDnDh3soeDGAU&school_id=5372&t=1657765607",
+        "summary": "中国教育在线提供的广西大学历年录取分数线查询系统，可查询各省各年份录取数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中国教育在线"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "广西大学本科学生转专业实施办法（2022年修订）",
+        "url": "https://zs.gxu.edu.cn/info/1221/1613.htm",
+        "summary": "详细规定转专业条件、流程和限制。主要条件：（1）加权平均成绩专业排名前10%且≥85分可申请跨分专业；（2）可申请转入录取最低分不高于自己高考成绩的专业；（3）因病/退役等特殊情况可申请。每名学生在校期间可获得一次转专业机会（大类分流不计入），可填报不超过3个转入专业志愿。各专业转入转出人数累计不超过该专业当年招生数的10%。申请流程：学院公布考核方案→学生填写申请表→学院组织专业考核→公示→教务处审核→全校公示→学校审批。",
+        "attachments": [],
+        "publish_date": "2022-12-07",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于开展2024年普通本科生转专业工作的通知",
+        "url": "https://jwc.gxu.edu.cn/info/1221/3078.htm",
+        "summary": "2024年转专业工作通知，明确工作原则、时间安排和具体要求。各专业可转入转出人数累计不超过该专业当年招生录取学生数的10%。",
+        "attachments": [],
+        "publish_date": "2024-00-00",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "广西大学名单公示（含转专业公示）",
+        "url": "https://zs.gxu.edu.cn/child/xinxichaxun.jsp?urltype=tree.TreeTempUrl&wbtreeid=1230",
+        "summary": "广西大学招生信息网名单公示栏目，包含各类招生公示及转专业拟录取名单公示。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处（招生办公室）"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "广西大学大类招生专业分流管理办法（2022年修订）",
+        "url": "https://jwc.gxu.edu.cn/info/1402/1954.htm",
+        "summary": "西大教〔2022〕106号文件，规范大类招生专业分流管理。规定全面推进大类招生、专业分流培养的规则与流程，明确分流时间、成绩权重、志愿填报方式等。大类分流不计入转专业次数。",
+        "attachments": [],
+        "publish_date": "2022-00-00",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "广西大学2020版本科专业人才培养方案指导意见",
+        "url": "https://jwc.gxu.edu.cn/info/1353/1755.htm",
+        "summary": "指导性文件，规定2020版本科专业人才培养方案的制订原则、课程体系、学分要求等。当前在校本科生主要按此版方案执行。",
+        "attachments": [
+          "https://jwc.gxu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1962901410&wbfileid=11482800",
+          "https://jwc.gxu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1962901410&wbfileid=11482799"
+        ],
+        "publish_date": "2021-10-14",
+        "source_department": "教务处"
+      },
+      {
+        "title": "广西大学2017版本科专业培养计划指导意见",
+        "url": "https://jwc.gxu.edu.cn/info/1353/1756.htm",
+        "summary": "2017版本科专业培养计划指导意见。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "微专业、辅修专业和辅修学士学位招生简要信息",
+        "url": "https://jwc.gxu.edu.cn/info/1323/3261.htm",
+        "summary": "广西大学提供微专业、辅修专业和辅修学士学位三种人才培养模式。微专业设5-8门核心课程，12-20学分；辅修专业30-45学分；辅修学位45-60学分。入学后第二学期可报名，主修专业必修课累计挂科不超过2门。2024年开设81个微专业/辅修项目，涵盖人工智能与机器人、计算机科学与技术、英语、金融学、法学等。学分制收费，与主修专业缴费方式一致。",
+        "attachments": [],
+        "publish_date": "2024-07-12",
+        "source_department": "教务处"
+      },
+      {
+        "title": "微专业培养方案列表",
+        "url": "https://jwc.gxu.edu.cn/child/jxjsygl.jsp?urltype=tree.TreeTempUrl&wbtreeid=1537",
+        "summary": "教务处公布的各微专业培养方案，包括数字贸易、融媒体实务、短视频制作与创意传播、人工智能与创新药物、大数据人工智能与商务管理、智能审计、城乡数字治理、集成电路与先进探测、珊瑚礁科学与技术、智慧农业等10+个微专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "广西大学2025届毕业生就业质量年度报告",
+        "url": "https://gxu.gxbys.com/news/view/aid/311503/tag/tzgg",
+        "summary": "广西大学2025届毕业生就业质量年度报告，包含毕业生就业率、去向分布、薪资水平等数据。",
+        "attachments": [],
+        "publish_date": "2025-12-31",
+        "source_department": "学生工作处（就业指导中心）"
+      },
+      {
+        "title": "广西大学2024届毕业生就业质量年度报告",
+        "url": "https://dwxwgk.gxu.edu.cn/info/1108/8590.htm",
+        "summary": "2024届毕业生总人数10285人，毕业去向落实率86.11%。其中本科毕业生去向落实率82.79%，硕士90.49%，博士93.60%。含完整PDF报告附件。",
+        "attachments": [
+          "https://dwxwgk.gxu.edu.cn/info/1108/8590.htm"
+        ],
+        "publish_date": "2025-10-22",
+        "source_department": "学生工作处（就业指导中心）"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "广西大学推荐优秀应届本科毕业生免试攻读硕士学位研究生工作实施办法（2023年修订）",
+        "url": "https://jwc.gxu.edu.cn/info/1402/3299.htm",
+        "summary": "推免实施办法全文，规定推荐免试研究生的遴选条件、名额分配、排名规则和审核流程。文件为PDF格式。",
+        "attachments": [
+          "https://jwc.gxu.edu.cn/__local/5/5A/6A/DBD30EE9307DD9E72D4E2EE7EAC_92A4D1E0_885F4.pdf"
+        ],
+        "publish_date": "2024-09-04",
+        "source_department": "教务处"
+      },
+      {
+        "title": "推荐免试研究生专栏（含排名分数计算细则）",
+        "url": "https://jwc.gxu.edu.cn/info/1323/3297.htm",
+        "summary": "教务处推免专栏，包含推免实施办法链接和排名分数计算细则附件（.doc文件）。",
+        "attachments": [
+          "https://jwc.gxu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1962901410&wbfileid=14972472"
+        ],
+        "publish_date": "2024-09-04",
+        "source_department": "教务处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "广西大学科研机构",
+        "url": "https://www.gxu.edu.cn/info/1042/35777.htm",
+        "summary": "涵盖国家重点实验室2个（亚热带农业生物资源保护与利用、省部共建特色金属材料与组合结构全寿命安全），教育部重点实验室2个（工程防灾与结构安全、有色金属及材料加工新技术），教育部协同创新中心2个（蔗糖产业、中国—东盟区域发展），广西重点实验室20+个，广西工程技术研究中心8个，校级科研机构70+个等。",
+        "attachments": [],
+        "publish_date": "2024-05-30",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "博士后流动站",
+        "url": "https://www.gxu.edu.cn/kxyj1/bshldz1.htm",
+        "summary": "广西大学设有14个博士后科研流动站：生物学、畜牧学、土木工程、电气工程、作物学、化学工程与技术、轻工技术与工程、生态学、植物保护、应用经济学、物理学、数学、化学、机械工程。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人事处/研究生院"
+      },
+      {
+        "title": "亚热带农业生物资源保护与利用国家重点实验室",
+        "url": "https://sklcusa.gxu.edu.cn/",
+        "summary": "国家级重点实验室，聚焦亚热带农业生物资源保护与利用研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "亚热带农业生物资源保护与利用国家重点实验室"
+      },
+      {
+        "title": "省部共建特色金属材料与组合结构全寿命安全国家重点实验室",
+        "url": "https://sklfmcs.gxu.edu.cn/",
+        "summary": "省部共建国家重点实验室，研究方向为特色金属材料与组合结构全寿命安全。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "特色金属材料与组合结构全寿命安全国家重点实验室"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "机械工程学院",
+        "url": "https://me.gxu.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "机械设计制造及其自动化"
+        ]
+      },
+      {
+        "name": "电气工程学院",
+        "url": "https://dqgc.gxu.edu.cn/",
+        "disciplines": [
+          "电气工程",
+          "自动化"
+        ]
+      },
+      {
+        "name": "土木建筑工程学院",
+        "url": "https://tmjz.gxu.edu.cn/",
+        "disciplines": [
+          "土木工程",
+          "水利工程",
+          "建筑学"
+        ]
+      },
+      {
+        "name": "化学化工学院",
+        "url": "https://hxhgxy.gxu.edu.cn/",
+        "disciplines": [
+          "化学工程与技术",
+          "化学"
+        ]
+      },
+      {
+        "name": "资源环境与材料学院",
+        "url": "https://zyhjcl.gxu.edu.cn/",
+        "disciplines": [
+          "材料科学与工程",
+          "环境科学与工程",
+          "矿业工程"
+        ]
+      },
+      {
+        "name": "轻工与食品工程学院",
+        "url": "https://gxulif.gxu.edu.cn/",
+        "disciplines": [
+          "轻工技术与工程",
+          "食品科学与工程"
+        ]
+      },
+      {
+        "name": "计算机与电子信息学院",
+        "url": "https://scei.gxu.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "信息与通信工程",
+          "电子科学与技术"
+        ]
+      },
+      {
+        "name": "海洋学院",
+        "url": "https://ma.gxu.edu.cn/",
+        "disciplines": [
+          "海洋科学"
+        ]
+      },
+      {
+        "name": "生命科学与技术学院",
+        "url": "https://lst.gxu.edu.cn/",
+        "disciplines": [
+          "生物学",
+          "生物技术"
+        ]
+      },
+      {
+        "name": "农学院",
+        "url": "https://nxy.gxu.edu.cn/",
+        "disciplines": [
+          "作物学",
+          "植物保护",
+          "农业资源与环境"
+        ]
+      },
+      {
+        "name": "动物科学技术学院",
+        "url": "https://dky.gxu.edu.cn/",
+        "disciplines": [
+          "畜牧学",
+          "兽医学"
+        ]
+      },
+      {
+        "name": "林学院",
+        "url": "https://lxy.gxu.edu.cn/",
+        "disciplines": [
+          "林学",
+          "生态学"
+        ]
+      },
+      {
+        "name": "数学学院",
+        "url": "https://mi.gxu.edu.cn/",
+        "disciplines": [
+          "数学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "物理科学与工程技术学院",
+        "url": "https://physics.gxu.edu.cn/",
+        "disciplines": [
+          "物理学",
+          "电子科学与技术"
+        ]
+      },
+      {
+        "name": "文学院",
+        "url": "https://wxy.gxu.edu.cn/",
+        "disciplines": [
+          "中国语言文学",
+          "汉语国际教育"
+        ]
+      },
+      {
+        "name": "新闻与传播学院",
+        "url": "https://xwcb.gxu.edu.cn/",
+        "disciplines": [
+          "新闻传播学"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "https://fls.gxu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "艺术学院",
+        "url": "https://art.gxu.edu.cn/",
+        "disciplines": [
+          "美术学",
+          "艺术设计学"
+        ]
+      },
+      {
+        "name": "公共管理学院",
+        "url": "https://ggxy.gxu.edu.cn/",
+        "disciplines": [
+          "公共管理"
+        ]
+      },
+      {
+        "name": "工商管理学院",
+        "url": "https://bs.gxu.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "会计学",
+          "旅游管理"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "https://fxy.gxu.edu.cn/",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://my.gxu.edu.cn/",
+        "disciplines": [
+          "马克思主义理论",
+          "哲学"
+        ]
+      },
+      {
+        "name": "体育学院",
+        "url": "https://tyxy.gxu.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "医学院",
+        "url": "https://med.gxu.edu.cn/",
+        "disciplines": [
+          "药学",
+          "基础医学"
+        ]
+      },
+      {
+        "name": "中国—东盟经济学院／经济学院／中国—东盟金融合作学院",
+        "url": "https://sef.gxu.edu.cn",
+        "disciplines": [
+          "应用经济学",
+          "理论经济学",
+          "金融学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业难度和流程",
+        "content": "知乎用户分享广西大学转专业经验。各专业可转入转出人数累计不超过该专业当年招生录取学生数的10%。学生在校期间只能获得一次转专业机会，已转过专业的不能再申请。转专业需大一一学年成绩排名前10%且加权平均成绩≥85分，流程包括学院公布考核方案、学生填表、专业考核、公示等环节。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/398238072"
+      },
+      {
+        "topic": "转专业个人经验（材料→土木）",
+        "content": "知乎用户分享从材料专业转入土木工程专业的个人经历。转专业依据大一一学年成绩，原专业主要学习高等数学、大学物理、普通化学等基础课。需要提前了解转入专业的考核要求和面试准备。",
+        "source_type": "知乎专栏",
+        "source_url": "https://zhuanlan.zhihu.com/p/398705669"
+      }
+    ],
+    "notes": "1. 招生计划和历年录取数据为在线查询系统（JS动态页面），具体数字需通过查询工具交互获取。2. 就业信息网(jyy.gxu.edu.cn)存在校外访问限制（7:30-23:00开放），就业报告PDF通过党务校务公开平台获取。3. 培养方案详细课程体系在各学院官网公布，教务处提供指导性文件。4. 2026版培养方案正在修订中（2026年4月教务处召开研讨会）。5. 推免排名分数计算细则为Word附件，已提取下载链接。",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "广西 详细地址：通讯地址：南宁市大学东路100号 地址：广西大学办公北楼201室 邮编：530004 电话：0771-3232999",
+      "address": "通讯地址：南宁市大学东路100号 地址：广西大学办公北楼201室 邮编：530004 电话：0771-3232999",
+      "phone": "0771-3232999",
+      "website": "https://www.gxu.edu.cn/",
+      "enrollment_website": "https://zs.gxu.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 广西区内考生历政地组合，579分可以报考吗？",
+        "url": "",
+        "summary": "**广西区内考生历政地组合，579分可以报考吗？**\nQ: 我是广西区内的考生，历政地组合，有国家专项计划，总分是579，可以报考贵校的哪些专业？\nA: 你好，感谢关注广西大学。目前志愿填报仍在进行中，请考生结合广西大学招生信息网上公布的历年专业分数和位次进行填报。最终以招生录取结果为准，目前无法给予肯定回答。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 少数民族预科班",
+        "url": "",
+        "summary": "**少数民族预科班**\nQ: 如果到时候选择的专业不喜欢是否允许转专业呢\nA: 你好，感谢关注广西大学。预科期间不设专业。预科一年后考生通过考核，由综合成绩从高到低选择专业，高分同学优先选择。学生可选择专业以明年公布给考生的招生计划为准，大部分专业均可选择。进入大学学习后转专业具体要求及文件请看广西大学招生信息网-招生政策-广西大学本科学生转专业实施办法（2022年修订）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 转专业",
+        "url": "",
+        "summary": "**转专业**\nQ: 请问贵校转专业的一般要求是？\nA: 你好，感谢关注广西大学。转专业具体要求及文件请看广西大学招生信息网-招生政策-广西大学本科学生转专业实施办法（2022年修订）",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 免费少数民族预科班一年后可选择哪些专业",
+        "url": "",
+        "summary": "**免费少数民族预科班一年后可选择哪些专业**\nQ: 老师，免费少数民族预科班在一年的学习后在贵校可选择的专业是有限制的吗？还是所有的都可以选？如果有限制具体有哪些专业可选择？\nA: 您好，具体专业信息可以查看广西大学招生信息网（https://zs.gxu.edu.cn/）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 少数民族预科班",
+        "url": "",
+        "summary": "**少数民族预科班**\nQ: 老师你好，我问一下往年苗族在免费少数民族预科班中的最低录取分数线是多少\nA: 您好，往年录取分数可以查询广西大学招生信息网（https://zs.gxu.edu.cn/）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "电气类",
+        "score": 4.9,
+        "votes": 25
+      },
+      {
+        "title": "植物生产类",
+        "score": 4.8,
+        "votes": 10
+      },
+      {
+        "title": "机械类",
+        "score": 4.8,
+        "votes": 22
+      },
+      {
+        "title": "经济学",
+        "score": 4.8,
+        "votes": 17
+      },
+      {
+        "title": "安全工程",
+        "score": 4.4,
+        "votes": 58
+      },
+      {
+        "title": "植物保护",
+        "score": 4.4,
+        "votes": 33
+      },
+      {
+        "title": "机械电子工程",
+        "score": 4.4,
+        "votes": 16
+      },
+      {
+        "title": "食品质量与安全",
+        "score": 4.4,
+        "votes": 10
+      },
+      {
+        "title": "土木工程",
+        "score": 4.4,
+        "votes": 188
+      },
+      {
+        "title": "工商管理",
+        "score": 4.4,
+        "votes": 42
+      }
+    ]
+  }
+}

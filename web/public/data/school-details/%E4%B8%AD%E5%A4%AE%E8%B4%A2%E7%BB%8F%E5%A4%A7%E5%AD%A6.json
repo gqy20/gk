@@ -1,0 +1,514 @@
+{
+  "name": "中央财经大学",
+  "province": "北京",
+  "url": "https://www.cufe.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.342595,
+    39.95944
+  ],
+  "status": "done",
+  "detail": {
+    "university": "中央财经大学",
+    "official_url": "https://www.cufe.edu.cn",
+    "crawl_time": "2026-05-03T01:45:00+08:00",
+    "admission_guide": [
+      {
+        "title": "7.招生章程及特殊类型招生办法，分批次、分科类招生计划",
+        "url": "http://op.cufe.edu.cn/info/1149/15079.htm",
+        "summary": "中央财经大学信息公开栏目，包含招生章程、特殊类型招生办法、分批次分科类招生计划的入口链接。招生章程和招生计划页面均指向本科招生网（zs.cufe.edu.cn）的SPA系统。",
+        "attachments": [],
+        "publish_date": "2025-10-15",
+        "source_department": "学校办公室（信息公开）"
+      },
+      {
+        "title": "中央财经大学本科招生网-招生章程",
+        "url": "http://zs.cufe.edu.cn/static/front/cufe/basic/html_cms/frontList.html?id=8cad2a1310d045c08ae76dec6a648474",
+        "summary": "本科招生网招生章程列表页（SPA动态页面），包含各年度本科招生章程全文。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "中央财经大学本科招生网-特殊类型招生办法",
+        "url": "http://zs.cufe.edu.cn/static/front/cufe/basic/html_cms/frontList.html?id=ac1a6492627b4330bc963f53f6c4df9b",
+        "summary": "本科招生网特殊类型招生办法列表页（SPA动态页面），包含强基计划、保送生等特殊类型招生简章。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "中央财经大学本科招生网-分批次、分科类招生计划",
+        "url": "http://zs.cufe.edu.cn/static/front/cufe/basic/html_web/zsjh.html",
+        "summary": "本科招生网招生计划查询页面（SPA动态页面），可按省份和科类查询分省分专业招生计划数。该页面为JS动态渲染，无法通过静态抓取获取具体数字。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "9.考生个人录取信息查询渠道和办法，分批次、分科类录取人数和录取最低分",
+        "url": "http://op.cufe.edu.cn/info/1149/15076.htm",
+        "summary": "信息公开栏目，包含录取信息查询、分批次分科类录取人数、分批次分科类录取最低分的入口链接。历年录取分数线页面为SPA动态渲染，指向zs.cufe.edu.cn的lnfs.html。",
+        "attachments": [],
+        "publish_date": "2025-10-15",
+        "source_department": "学校办公室（信息公开）"
+      },
+      {
+        "title": "中央财经大学本科招生网-历年分数线",
+        "url": "http://zs.cufe.edu.cn/static/front/cufe/basic/html_web/lnfs.html",
+        "summary": "本科招生网历年录取分数线查询页面（SPA动态页面），可按省份查询各专业录取最低分和位次。该页面为JS动态渲染，无法通过静态抓取获取具体数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "教字〔2026〕37号 关于做好2026年本科生转专业工作的通知",
+        "url": "http://jwc.cufe.edu.cn/info/1101/7526.htm",
+        "summary": "2026年转专业工作通知：申请对象为2025级、2024级全日制本科生。不可申请者：特殊招生形式录取、休学/保留学籍、违纪处分未解除等。流程：4月3日前学院报送方案→4月14日前公布→4月15-22日学生报名（每人限一个专业）→4月24日前转出学院初审→5月15日前接收学院遴选→5月31日前教务处公示。面试专家组≥5人（高级职称≥3人）。参考文件：《中央财经大学全日制本科生转专业管理办法（修订）》（校发〔2020〕63号）。转专业后执行新专业培养方案，需补修未修课程，学费按新专业标准。",
+        "attachments": [
+          "http://jwc.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1934959889&wbfileid=95786DFA6EE10122CBED5C3136A1271E",
+          "http://jwc.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1934959889&wbfileid=10D36DF3B44343BA68F86C47769EC32A",
+          "http://jwc.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1934959889&wbfileid=343155063B5786CD73243E895A9323A3",
+          "http://jwc.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1934959889&wbfileid=FF8793B5AF8CABAA18BF5AC00A59F0F8",
+          "http://jwc.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1934959889&wbfileid=EDE76D2D86FD697020DDFB8D41FED774"
+        ],
+        "publish_date": "2026-03-26",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "2026年各学院（研究院）接收转专业学生工作方案",
+        "url": "http://jwc.cufe.edu.cn/info/1101/7552.htm",
+        "summary": "教务处公布2026年各学院（研究院）接收转专业学生工作方案，包含各学院拟接收专业、名额、考核办法等。学生可在4月15日8:00-4月22日10:00在教务系统提交转专业申请。附件为PDF全文。",
+        "attachments": [
+          "http://jwc.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1934959889&wbfileid=A590EDAD47BBC2060CAD74501AD7B872"
+        ],
+        "publish_date": "2026-04-13",
+        "source_department": "教务处"
+      }
+    ],
+    "major_streaming": [],
+    "training_program": [
+      {
+        "title": "中央财经大学本科生学分制培养方案总则（2025级）",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6979.htm",
+        "summary": "2025级本科生学分制培养方案总则，规定课程体系、学分要求、毕业标准等总体框架。附件为PDF全文。",
+        "attachments": [
+          "http://jwc.cufe.edu.cn/PDF-2025/2025jipeiyangfanganzongze.pdf"
+        ],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "财政税务学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6980.htm",
+        "summary": "财政税务学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "金融学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6982.htm",
+        "summary": "金融学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "会计学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6983.htm",
+        "summary": "会计学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "保险学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6984.htm",
+        "summary": "保险学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "统计与数学学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6985.htm",
+        "summary": "统计与数学学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "国际经济与贸易学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6986.htm",
+        "summary": "国际经济与贸易学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "经济学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6987.htm",
+        "summary": "经济学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "商学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6988.htm",
+        "summary": "商学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      },
+      {
+        "title": "管理科学与工程学院2025级本科生分专业培养方案",
+        "url": "http://jwc.cufe.edu.cn/info/1342/6989.htm",
+        "summary": "管理科学与工程学院2025级各专业本科生培养方案。",
+        "attachments": [],
+        "publish_date": "2025-09-02",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "2026年中央财经大学金融学、会计学辅修专业/辅修学士学位招生简章",
+        "url": "http://sce.cufe.edu.cn/info/1069/6058.htm",
+        "summary": "辅修专业设金融学和会计学两个方向，均为国家级一流本科专业建设点。招生对象：辅修专业面向在读全日制本科生及研究生（含校外）；辅修学士学位仅限我校2025级全日制本科生且主修与辅修不同学科门类。学分：辅修专业32学分，辅修学士学位46学分（含学位论文4学分）。学费：校内320元/学分，校外400元/学分。教学模式为在线课程+面授/直播混合教学。辅修专业学习3学期，辅修学士学位学习5学期。辅修结业条件为修满32学分；辅修学士学位授予需通过学科综合考试及学位论文答辩。",
+        "attachments": [],
+        "publish_date": "2025-08-11",
+        "source_department": "继续教育学院"
+      }
+    ],
+    "employment_report": [],
+    "postgrad_recommend": [
+      {
+        "title": "中央财经大学经济学院2025年接收推免生复试常规考核资格评定通过考生名单",
+        "url": "https://econ.cufe.edu.cn/info/1076/8194.htm",
+        "summary": "经济学院公布2025年接收推免生复试常规考核通过考生名单。推免流程包括资格审查、复试等环节。",
+        "attachments": [
+          "https://econ.cufe.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1790632748&wbfileid=DE0100791BBF1212D6BE07466EDA3511"
+        ],
+        "publish_date": "2024-09-21",
+        "source_department": "经济学院"
+      },
+      {
+        "title": "中央财经大学国际经济与贸易学院接收2026年推免生考核工作实施方案",
+        "url": "https://site.cufe.edu.cn/info/1118/14311.htm",
+        "summary": "国际经济与贸易学院2026年接收推免生考核实施方案，包含资格审查材料要求、复试安排等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国际经济与贸易学院"
+      },
+      {
+        "title": "中央财经大学中国经济与管理研究院接收2026级推免生名额分配",
+        "url": "https://cema.cufe.edu.cn/info/1025/2268.htm",
+        "summary": "中国经济与管理研究院2026年硕士推免名额分配：金融学9人、国民经济学9人；直博生：国民经济学1人。需提交《中央财经大学接收2026级优秀应届本科毕业生免试攻读研究生申请表》。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中国经济与管理研究院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "科研机构列表（教育部工程研究中心、教育部重点研究基地、校内科研机构）",
+        "url": "https://www.cufe.edu.cn/zzjg/kyjg.htm",
+        "summary": "中央财经大学拥有国家金融安全教育部工程研究中心、中国精算研究院（教育部人文社科重点研究基地）、北京财经研究基地、首都互联网经济发展研究基地（北京市哲学社会科学研究基地）等省部级科研平台。校内另设有60余个科研机构，涵盖人工智能研究院、中国互联网经济研究院、绿色金融国际研究院、国防经济与管理研究院等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学校官网"
+      },
+      {
+        "title": "学科竞赛通知（教务处文化素质教育中心）",
+        "url": "http://jwc.cufe.edu.cn/whszjj/xkjs1/jstz.htm",
+        "summary": "教务处学科竞赛通知页，涵盖北京高校数学建模校际联赛、行业研究大赛、一院一赛项目、全国大学生统计建模大赛、电子商务三创赛、蓝桥杯全国大学生软件和信息技术大赛、人工智能+创新大赛、CATTI杯全国翻译大赛、全国大学生市场调查与分析大赛、金融科技创新大赛、能源经济学术创意大赛等十余项学科竞赛。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "教字〔2026〕36号关于开展2026年中央财经大学一院一赛建设项目的通知",
+        "url": "http://jwc.cufe.edu.cn/info/1324/7521.htm",
+        "summary": "2026年一院一赛建设项目通知，各学院组织学科竞赛立项。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "财政税务学院",
+        "url": "http://spft.cufe.edu.cn/",
+        "disciplines": [
+          "财政学",
+          "税收学"
+        ]
+      },
+      {
+        "name": "金融学院",
+        "url": "http://sf.cufe.edu.cn/",
+        "disciplines": [
+          "金融学",
+          "金融工程",
+          "金融科技"
+        ]
+      },
+      {
+        "name": "会计学院",
+        "url": "http://soa.cufe.edu.cn/",
+        "disciplines": [
+          "会计学",
+          "财务管理"
+        ]
+      },
+      {
+        "name": "保险学院",
+        "url": "http://ins.cufe.edu.cn/",
+        "disciplines": [
+          "保险学",
+          "精算学"
+        ]
+      },
+      {
+        "name": "统计与数学学院",
+        "url": "http://sam.cufe.edu.cn/",
+        "disciplines": [
+          "统计学",
+          "应用统计学",
+          "经济统计学",
+          "数学与应用数学",
+          "信息与计算科学"
+        ]
+      },
+      {
+        "name": "国际经济与贸易学院",
+        "url": "http://site.cufe.edu.cn/",
+        "disciplines": [
+          "国际经济与贸易",
+          "贸易经济"
+        ]
+      },
+      {
+        "name": "经济学院",
+        "url": "http://econ.cufe.edu.cn/",
+        "disciplines": [
+          "经济学",
+          "国民经济管理"
+        ]
+      },
+      {
+        "name": "商学院",
+        "url": "https://bs.cufe.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "市场营销",
+          "人力资源管理",
+          "供应链管理"
+        ]
+      },
+      {
+        "name": "管理科学与工程学院",
+        "url": "http://mse.cufe.edu.cn/",
+        "disciplines": [
+          "管理科学",
+          "工程管理",
+          "房地产开发与管理"
+        ]
+      },
+      {
+        "name": "政府管理学院",
+        "url": "http://sg.cufe.edu.cn/",
+        "disciplines": [
+          "行政管理",
+          "公共事业管理",
+          "国际政治"
+        ]
+      },
+      {
+        "name": "体育经济与管理学院",
+        "url": "http://ssem.cufe.edu.cn/",
+        "disciplines": [
+          "体育经济与管理"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "社会与心理学院",
+        "url": "http://ssp.cufe.edu.cn/",
+        "disciplines": [
+          "社会学",
+          "应用心理学",
+          "社会工作"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://marxism.cufe.edu.cn/",
+        "disciplines": [
+          "思想政治教育"
+        ]
+      },
+      {
+        "name": "文化与传媒学院",
+        "url": "http://cc.cufe.edu.cn/",
+        "disciplines": [
+          "汉语言文学",
+          "新闻学",
+          "广告学",
+          "书法学",
+          "文化产业管理"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://sfs.cufe.edu.cn/",
+        "disciplines": [
+          "英语",
+          "日语",
+          "翻译"
+        ]
+      },
+      {
+        "name": "信息学院",
+        "url": "http://ie.cufe.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "信息安全",
+          "数据科学与大数据技术"
+        ]
+      },
+      {
+        "name": "创新发展学院",
+        "url": "http://sind.cufe.edu.cn/",
+        "disciplines": []
+      }
+    ],
+    "student_experiences": [],
+    "notes": "本科招生网（zs.cufe.edu.cn）采用SPA架构且返回HTTP错误码，无法通过静态抓取获取招生章程全文、招生计划具体数字和历年录取分数线数据。就业信息网（scc.cufe.edu.cn）也无法访问。大类分流规则未在教务处官网公开找到。学生经验分享未找到可靠的非官方来源。",
+    "missing_categories": [
+      "major_streaming",
+      "employment_report"
+    ],
+    "basic_info": {
+      "location": "北京 详细地址：学院南路校区地址：北京市海淀区学院南路39号 邮编：100081 沙河校区地址：北京市昌平区沙河高教园区 邮编：102206",
+      "address": "学院南路校区地址：北京市海淀区学院南路39号 邮编：100081 沙河校区地址：北京市昌平区沙河高教园区 邮编：102206",
+      "phone": "62288332",
+      "website": "https://www.cufe.edu.cn/",
+      "enrollment_website": "https://zs.cufe.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 法学",
+        "url": "",
+        "summary": "**法学**\nQ: 法学（含与会计学双学位，与工商管理双学位等4个专业）会计学与工商管理学必须辅修吗？不辅修可以吗？若辅修的话是否有数学课相关课程？不辅修会有什么影响？\nA: 你好，如不想读双学位项目可以选择读普通专业，不参与双学位选拔，欢迎报考中央财经大学！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 四川录取",
+        "url": "",
+        "summary": "**四川录取**\nQ: 您好，我是四川政史地考生，今年考了628分，位次为1146。 请问能冲击贵校的民商法专业吗？ 如若分数不够，可否就读刑事法律专业？服从调剂是否会被退档？法学院在贵校的哪个校区？转专业的名额及其要求有哪些呢？专业保研率如何？\nA: 你好，我校为中央财经大学，无民商法专业招生。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 四川录取",
+        "url": "",
+        "summary": "**四川录取**\nQ: 您好，我是四川政史地考生，今年考了628分，位次为1146。 请问能冲击贵校的民商法专业吗？ 如若分数不够，可否就读刑事法律专业？服从调剂是否会被退档？法学院在贵校的哪个校区？转专业的名额及其要求有哪些呢？专业保研率如何？\nA: 你好，我校为中央财经大学，无民商法专业招生。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 专业咨询",
+        "url": "",
+        "summary": "**专业咨询**\nQ: 文化产业管理；有哪些内容\nA: 你好，具体可向招生学院进行咨询，文化与传媒学院010-61776082.欢迎报考中央财经大学！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 青海物理组排名836能否被录取\nA: 你好，参看往年分数，被我校录取概率大，并且专业可选空间比较大。欢迎报考中央财经大学！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "财务管理",
+        "score": 4.9,
+        "votes": 19
+      },
+      {
+        "title": "金融学",
+        "score": 4.6,
+        "votes": 79
+      },
+      {
+        "title": "统计学",
+        "score": 4.5,
+        "votes": 16
+      },
+      {
+        "title": "金融工程",
+        "score": 4.5,
+        "votes": 42
+      },
+      {
+        "title": "税收学",
+        "score": 4.5,
+        "votes": 42
+      },
+      {
+        "title": "保险学",
+        "score": 4.4,
+        "votes": 32
+      },
+      {
+        "title": "数学与应用数学",
+        "score": 4.4,
+        "votes": 11
+      },
+      {
+        "title": "会计学",
+        "score": 4.4,
+        "votes": 80
+      },
+      {
+        "title": "工程管理",
+        "score": 4.3,
+        "votes": 15
+      },
+      {
+        "title": "广告学",
+        "score": 4.2,
+        "votes": 11
+      }
+    ]
+  }
+}

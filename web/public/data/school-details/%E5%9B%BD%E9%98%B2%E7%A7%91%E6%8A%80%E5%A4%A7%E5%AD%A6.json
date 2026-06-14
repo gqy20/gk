@@ -1,0 +1,301 @@
+{
+  "name": "国防科技大学",
+  "province": "湖南",
+  "url": "https://www.nudt.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    112.938882,
+    28.228304
+  ],
+  "status": "done",
+  "detail": {
+    "university": "国防科技大学",
+    "official_url": "https://www.nudt.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "国防科技大学无军籍地方本科生2025年度招生执行章程",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/zsjz/2c824b8a9b8844d2a1a910a432b95710.htm",
+        "summary": "国防科技大学无军籍地方本科生2025年度招生执行章程，包括总则、组织机构、招生计划、录取规则、收费标准等章节。2025年无军籍地方本科生在北京、辽宁、江西、山东、河南、湖南、四川、贵州、陕西等9省（直辖市）招生，安排在各省本科一批次录取。",
+        "attachments": [],
+        "publish_date": "2025-06-12",
+        "source_department": "国防科技大学招生工作办公室"
+      },
+      {
+        "title": "国防科技大学2026年强基计划招生简章",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/tzgg/c1924d44081f40d6ac14bb4ff80b2c02.htm",
+        "summary": "2026年强基计划招收数学与应用数学、物理学、飞行器动力工程3个专业。招生省份为北京、辽宁、江西、山东、河南、湖南、四川、贵州、陕西等9省（直辖市）。报名时间至4月30日，综合成绩=高考加权总成绩×85%+（校考笔试+面试）×N×15%。采用3+1+X本研衔接培养模式。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "国防科技大学招生工作办公室"
+      },
+      {
+        "title": "国防科技大学2025年强基计划招生简章",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/zsjz/1efc919417be4379a6b6e689745da05c.htm",
+        "summary": "2025年强基计划招生简章，报名时间为即日起至5月9日，登录强基计划报名平台报名。",
+        "attachments": [],
+        "publish_date": "2025-04-21",
+        "source_department": "国防科技大学招生工作办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "国防科技大学2025年招收普通高中毕业生计划（湖南省）",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/zsjh/index.htm",
+        "summary": "2025年湖南省生长军官本科学员计划包含外交学、国际事务与国际关系、多语种外语、数学与应用数学、物理学类、大气科学类、计算机科学与技术、电子信息工程、航空航天类等70余个专业方向。无军籍地方本科生计划含计算机类(11人)、电子信息类(23人)、航空航天类(12人)、自动化类(18人)、大气科学类(4人)、计算机科学与技术(天河拔尖班4人)、理论与应用力学(航天力学拔尖班3人)等，选考科目均为物理+化学。",
+        "attachments": [],
+        "publish_date": "2025-06",
+        "source_department": "国防科技大学招生工作办公室"
+      },
+      {
+        "title": "国防科技大学2025年招收普通高中毕业生计划（无军籍地方本科生）正式发布",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/c1e17c754749433f849ac7b25b2e551b.htm",
+        "summary": "2025年无军籍地方本科生在北京、辽宁、江西、山东、河南、湖南、四川、贵州、陕西等9省（直辖市）招生，按计算机类、电子信息类、航空航天类、自动化类、大气科学类等5个大类和计算机科学与技术（天河拔尖班）、理论与应用力学（航天力学拔尖班）2个特色班招生。",
+        "attachments": [],
+        "publish_date": "2025-06-13",
+        "source_department": "国防科技大学招生工作办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "国防科技大学近三年（2023-2025年）录取分数",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/lnfs/index.htm",
+        "summary": "湖南省录取数据：2025年生长军官学员物理+化学最高分676/最低分629，物理+不限最高分661/最低分634，历史+政治最高分625/最低分621；无军籍地方生最高分667/最低分645；强基计划最低674.47。2024年生长军官学员物理+化学最高分680/最低分623，历史+政治最高分629/最低分612；无军籍地方生最高分670/最低分644。2023年生长军官学员物理+不限最高分672/最低分627；无军籍地方生最高分666/最低分646。2022年数据也包含在内。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国防科技大学招生工作办公室"
+      },
+      {
+        "title": "国防科技大学2025年强基计划综合成绩录取线",
+        "url": "https://www.nudt.edu.cn/bkzs/tzgg/247c322e960242408d1592193f3709dd.htm",
+        "summary": "2024年强基计划7省份综合成绩录取线：辽宁省664.27、江西省649.95、山东省653.14、河南省686.33、湖南省674.47、四川省663.77、陕西省659.42。",
+        "attachments": [],
+        "publish_date": "2024-07-05",
+        "source_department": "国防科技大学招生工作办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "强基计划录取考生入学后本科阶段不允许转专业（摘自2026年强基计划招生简章）",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/tzgg/c1924d44081f40d6ac14bb4ff80b2c02.htm",
+        "summary": "根据2026年强基计划招生简章第五条第三款：强基计划录取考生入学后本科阶段不允许转专业。国防科技大学为军校，军人学员的转专业政策与地方高校不同，由军队统一管理，未发现公开的转专业实施办法。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "国防科技大学招生工作办公室"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "2025年招生计划中关于大类招生的说明（摘自招生计划页）",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/zsjh/index.htm",
+        "summary": "2025年，物理学类、航空航天类、大气科学类等3个专业大类实施大类招生培养。相关专业大类的生长军官本科学员入校后统一实施大类培养，第三学年前，结合入学后学业成绩、个人意愿以及各专业分流计划组织专业分流。但具体的分流规则文件未在官网公开。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国防科技大学招生工作办公室"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "国防科技大学2026年强基计划招生简章——培养方案",
+        "url": "https://www.nudt.edu.cn/bkzs/xxgk/tzgg/c1924d44081f40d6ac14bb4ff80b2c02.htm",
+        "summary": "强基班采用“3+1+X”本研衔接培养模式。本科基础学习阶段3年，本研衔接阶段1年，研究生阶段按研究生培养方案执行。第1、2学年末阶段性考核，第3学年末本研转段考核。总体转段率达85%以上。本研衔接后可进入系统科学、计算机科学与技术、信息与通信工程等学科交叉培养。配备学业导师，设立强基专项奖学金。",
+        "attachments": [],
+        "publish_date": "2026-04-09",
+        "source_department": "国防科技大学招生工作办公室"
+      }
+    ],
+    "minor_program": [],
+    "employment_report": [],
+    "postgrad_recommend": [
+      {
+        "title": "国防科技大学接收2025级应届本科毕业生推荐免试攻读硕士学位研究生方案",
+        "url": "https://yjszs.nudt.edu.cn/pubweb/homePageList/detailed.view?keyId=13804",
+        "summary": "根据年度工作安排，学校接收2025级应届本科毕业生推荐免试攻读硕士学位（含推荐免试直接攻读博士学位）研究生、参军入伍研究生。推免方案在研究生招生信息网发布，但该网站访问受限，具体推免条件、名额分配等信息未能完整获取。",
+        "attachments": [],
+        "publish_date": "2024-06-21",
+        "source_department": "国防科技大学研究生院"
+      },
+      {
+        "title": "电子科学学院2026级地方硕士研究生提前攻博招生工作方案",
+        "url": "http://yjszs.nudt.edu.cn/attached/file/20251222/20251222161629_349.pdf",
+        "summary": "根据《国防科技大学无军籍硕士研究生提前攻读博士学位实施办法（试行）》，课程学习成绩综合评定值在0（含）以上的地方硕士研究生可申请提前攻博。",
+        "attachments": [
+          "http://yjszs.nudt.edu.cn/attached/file/20251222/20251222161629_349.pdf"
+        ],
+        "publish_date": "2025-12-22",
+        "source_department": "国防科技大学电子科学学院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "电子科学学院科研平台",
+        "url": "https://www.nudt.edu.cn/yssz/dzkxxy/index.htm",
+        "summary": "国防科技大学电子科学学院设有ATR国防科技重点实验室、CEMEE国家重点实验室等十多个国家、军队、省级科研创新平台。主要科研方向包括先进信息材料与器件、认知通信、智能感知与精确打击、卫星导航与时空基准、电子对抗等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "电子科学学院"
+      },
+      {
+        "title": "物理学科科研平台",
+        "url": "https://www.nudt.edu.cn/bkzs/tzgg/bac6f202718f4e00b3d33af05c225b14.htm",
+        "summary": "国防科技大学物理学科建有1个国家985工程科技创新平台，6个军队/省部级重点实验室，联合共建“国民核生化灾害防护”和“高性能计算”2个国家重点实验室。“信息物理与高能量密度物理”军队重点实验室是军内唯一开展基础学科研究和人才培养的基地。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "理学院"
+      },
+      {
+        "title": "大数据与决策国家级重点实验室",
+        "url": "https://d2.nudt.edu.cn/tzs/",
+        "summary": "大数据与决策国家级重点实验室主办全国大数据与计算智能挑战赛，自2022年首次举办以来已连续成功举办四届，共吸引军内外八百余家单位的千余支队伍参赛。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国防科技大学"
+      },
+      {
+        "title": "智能无人竞赛获奖",
+        "url": "https://www.nudt.edu.cn/xwgg/hdss/5ee63fcb72c24e85b49ce136eaae48e0.htm",
+        "summary": "由国防科技大学无人车团队指导的7支参赛队，在智能控制领域竞赛中斩获5项全国一等奖、2项全国二等奖。学校连续二十年组队参加该赛事。",
+        "attachments": [],
+        "publish_date": "2025-08-23",
+        "source_department": "国防科技大学"
+      },
+      {
+        "title": "空天科学学院科研平台",
+        "url": "https://www.nudt.edu.cn/yssz/ktkxxy/index.htm",
+        "summary": "空天科学学院建有4个国家级科研平台，2个国家级实验教学中心，7个省部（军队）级教学科研平台，形成了以航空宇航科学与技术为龙头的学科布局。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "空天科学学院"
+      },
+      {
+        "title": "气象海洋学院科研平台",
+        "url": "https://www.nudt.edu.cn/yssz/qxhyxy/index.htm",
+        "summary": "气象海洋学院拥有2个全军重点实验室，5个全军研究中心，合建1个国防科技重点实验室。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "气象海洋学院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "理学院",
+        "url": "https://www.nudt.edu.cn/yssz/lxy/index.htm",
+        "disciplines": [
+          "数学",
+          "物理学",
+          "化学",
+          "系统科学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "计算机学院",
+        "url": "https://www.nudt.edu.cn/yssz/jsjxy/index.htm",
+        "disciplines": [
+          "计算机科学与技术",
+          "软件工程",
+          "网络空间安全"
+        ]
+      },
+      {
+        "name": "电子科学学院",
+        "url": "https://www.nudt.edu.cn/yssz/dzkxxy/index.htm",
+        "disciplines": [
+          "电子科学与技术",
+          "信息与通信工程",
+          "光学工程"
+        ]
+      },
+      {
+        "name": "前沿交叉学科学院",
+        "url": "https://www.nudt.edu.cn/yssz/qyjcxkxy/index.htm",
+        "disciplines": [
+          "物理学",
+          "光学工程",
+          "核科学与技术"
+        ]
+      },
+      {
+        "name": "智能科学学院",
+        "url": "https://www.nudt.edu.cn/yssz/znkxxy/index.htm",
+        "disciplines": [
+          "控制科学与工程",
+          "机械工程",
+          "仪器科学与技术"
+        ]
+      },
+      {
+        "name": "系统工程学院",
+        "url": "https://www.nudt.edu.cn/yssz/xtgcxy/index.htm",
+        "disciplines": [
+          "管理科学与工程",
+          "系统科学",
+          "军队指挥学"
+        ]
+      },
+      {
+        "name": "空天科学学院",
+        "url": "https://www.nudt.edu.cn/yssz/ktkxxy/index.htm",
+        "disciplines": [
+          "航空宇航科学与技术",
+          "力学",
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "https://www.nudt.edu.cn/yssz/gjgxxy/index.htm",
+        "disciplines": [
+          "外国语言文学",
+          "政治学"
+        ]
+      },
+      {
+        "name": "电子对抗学院",
+        "url": "https://www.nudt.edu.cn/yssz/dzdkxy/index.htm",
+        "disciplines": [
+          "信息与通信工程",
+          "网络空间安全",
+          "军队指挥学"
+        ]
+      },
+      {
+        "name": "气象海洋学院",
+        "url": "https://www.nudt.edu.cn/yssz/qxhyxy/index.htm",
+        "disciplines": [
+          "大气科学",
+          "海洋科学"
+        ]
+      },
+      {
+        "name": "军政基础教育学院",
+        "url": "https://www.nudt.edu.cn/yssz/jzjcjyxy/index.htm",
+        "disciplines": [
+          "马克思主义理论",
+          "军队政治工作学",
+          "军事训练学"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "国防科技大学为中央军委直属军队院校，具有特殊的办学性质。军人学员的转专业、辅修/双学位、就业质量报告等信息与地方高校不同：1）军人学员毕业后统一分配至部队任职，不发布公开的就业质量报告；2）强基计划明确录取后本科阶段不允许转专业，军人学员转专业政策由军队统一管理；3）军校学员一般不适用地方高校的辅修/双学位制度。研究生招生信息网(yjszs.nudt.edu.cn)访问受限，推免方案详情未能完整获取。普通专业培养方案未在官网公开，仅强基计划有详细培养方案说明。大类分流的具体规则文件未在官网公开。",
+    "missing_categories": [
+      "transfer_announcement",
+      "minor_program",
+      "employment_report"
+    ],
+    "basic_info": {
+      "location": "湖南 详细地址：通信地址：湖南省长沙市开福区德雅路109号国防科技大学招生办公室",
+      "address": "通信地址：湖南省长沙市开福区德雅路109号国防科技大学招生办公室",
+      "phone": "0731-86898899",
+      "website": "https://www.nudt.edu.cn/",
+      "enrollment_website": "https://www.nudt.edu.cn/bkzs/",
+      "attributes": [
+        "双一流"
+      ]
+    }
+  }
+}

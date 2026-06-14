@@ -1,0 +1,710 @@
+{
+  "name": "复旦大学",
+  "province": "上海",
+  "url": "https://www.fudan.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    121.502871,
+    31.297025
+  ],
+  "status": "done",
+  "detail": {
+    "university": "复旦大学",
+    "official_url": "https://www.fudan.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "复旦大学2025年招生章程",
+        "url": "https://gaokao.chsi.com.cn/zsgs/zhangcheng/listVerifedZszc--infoId-6689137739,method-view,schId-197.dhtml",
+        "summary": "复旦大学2025年本科招生章程，发布于学信网阳光高考平台，包含总则、招生计划、录取规则等章节。",
+        "attachments": [],
+        "publish_date": "2025-05-30",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2025年本科招生专业（类）目录",
+        "url": "https://ao.fudan.edu.cn/3c/85/c40766a736389/page.htm",
+        "summary": "2025年本科招生专业（类）目录，涵盖文理医工各学科门类的招生专业大类。",
+        "attachments": [],
+        "publish_date": "2025-06-21",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2024年招生章程",
+        "url": "https://gaokao.chsi.com.cn/zsgs/zhangcheng/listVerifedZszc--infoId-5482574281,method-view,schId-197.dhtml",
+        "summary": "复旦大学2024年本科招生章程，含总则、组织机构、招生计划、录取规则等。",
+        "attachments": [],
+        "publish_date": "2024-05-24",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2026年强基计划招生简章",
+        "url": "https://ao.fudan.edu.cn/d5/02/c36330a775426/page.htm",
+        "summary": "2026年强基计划招生简章，面向基础学科拔尖人才的选拔培养方案。",
+        "attachments": [],
+        "publish_date": "2026-04-08",
+        "source_department": "复旦大学招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "复旦大学2024年分专业分省招生计划",
+        "url": "https://ao.fudan.edu.cn/a6/0a/c36332a697866/page.htm",
+        "summary": "2024年分专业、分省份的本科招生计划表，包含各专业在各省的招生人数。",
+        "attachments": [],
+        "publish_date": "2024-08-30",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2023年分专业分省招生计划",
+        "url": "https://ao.fudan.edu.cn/a3/f7/c36332a697335/page.htm",
+        "summary": "2023年分专业、分省份的本科招生计划表。",
+        "attachments": [],
+        "publish_date": "2023-06-23",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2022年分专业分省招生计划",
+        "url": "https://ao.fudan.edu.cn/89/c9/c36332a494025/page.htm",
+        "summary": "2022年分专业、分省份的本科招生计划表。",
+        "attachments": [],
+        "publish_date": "2022-09-06",
+        "source_department": "复旦大学招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "复旦大学2025年分省录取分数",
+        "url": "https://ao.fudan.edu.cn/b7/a6/c36333a767910/page.htm",
+        "summary": "2025年各省录取分数线数据，包含各省份文理科/综合改革录取最低分。",
+        "attachments": [],
+        "publish_date": "2026-01-21",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2024年分省录取分数",
+        "url": "https://ao.fudan.edu.cn/a4/04/c36333a697348/page.htm",
+        "summary": "2024年各省录取分数线数据。",
+        "attachments": [],
+        "publish_date": "2024-08-30",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2023年分省录取分数",
+        "url": "https://ao.fudan.edu.cn/af/cb/c36333a634827/page.htm",
+        "summary": "2023年各省录取分数线数据。",
+        "attachments": [],
+        "publish_date": "2023-08-20",
+        "source_department": "复旦大学招生办公室"
+      },
+      {
+        "title": "复旦大学2022年分省录取分数",
+        "url": "https://ao.fudan.edu.cn/7c/b8/c36333a490680/page.htm",
+        "summary": "2022年各省录取分数线数据。",
+        "attachments": [],
+        "publish_date": "2022-07-22",
+        "source_department": "复旦大学招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "复旦大学本科生教学管理规定与实施办法汇编（2025版）",
+        "url": "https://jwc.fudan.edu.cn/5a/ac/c27268a744108/page.htm",
+        "summary": "2025版本科生教学管理规定汇编，包含转专业实施办法、学籍管理、成绩记载等全套教学管理规章。",
+        "attachments": [],
+        "publish_date": "2025-08-21",
+        "source_department": "复旦大学教务处（本科生院）"
+      },
+      {
+        "title": "复旦大学本科生转专业申请表",
+        "url": "https://jwc.fudan.edu.cn/f5/0f/c27269a455951/page.htm",
+        "summary": "本科生转专业申请表模板，可在教务处常用文档页面下载。",
+        "attachments": [],
+        "publish_date": "2022-08-26",
+        "source_department": "复旦大学教务处（本科生院）"
+      },
+      {
+        "title": "关于公布2026年春季学期转专业录取名单的通知",
+        "url": "https://jwc.fudan.edu.cn/d9/9a/c25325a776602/page.htm",
+        "summary": "2026年春季学期转专业录取名单已公布，包含转专业工作流程和录取结果。",
+        "attachments": [],
+        "publish_date": "2026-04-16",
+        "source_department": "复旦大学教务处（本科生院）"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "关于公布2026年春季学期转专业录取名单的通知",
+        "url": "https://jwc.fudan.edu.cn/d9/9a/c25325a776602/page.htm",
+        "summary": "2026年春季学期转专业拟录取名单公示。",
+        "attachments": [],
+        "publish_date": "2026-04-16",
+        "source_department": "复旦大学教务处（本科生院）"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "复旦大学关于2024级试验班学生大类培养与专业分流的实施方案",
+        "url": "https://jwc.fudan.edu.cn/8c/62/c27268a691298/page.htm",
+        "summary": "2024级试验班（自然科学试验班、技术科学试验班等）学生大类培养阶段与专业分流的具体实施方案，包括分流时间、成绩权重、志愿填报方式。",
+        "attachments": [],
+        "publish_date": "2024-09-05",
+        "source_department": "复旦大学教务处（本科生院）"
+      },
+      {
+        "title": "复旦大学关于2023-2024学年试验班学生大类培养与专业分流的实施方案",
+        "url": "https://jwc.fudan.edu.cn/cf/6d/c27268a511853/page.htm",
+        "summary": "2023-2024学年试验班大类培养与专业分流实施方案。",
+        "attachments": [],
+        "publish_date": "2023-08-25",
+        "source_department": "复旦大学教务处（本科生院）"
+      },
+      {
+        "title": "复旦大学关于2022-2023学年试验班学生大类培养与专业分流的实施方案",
+        "url": "https://jwc.fudan.edu.cn/ee/9d/c27268a454301/page.htm",
+        "summary": "2022-2023学年试验班大类培养与专业分流实施方案。",
+        "attachments": [],
+        "publish_date": "2022-07-28",
+        "source_department": "复旦大学教务处（本科生院）"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "复旦大学本科生教学管理规定与实施办法汇编（2025版）",
+        "url": "https://jwc.fudan.edu.cn/5a/ac/c27268a744108/page.htm",
+        "summary": "2025版教学管理规定汇编，涵盖培养方案、课程体系、学分要求、毕业标准等全套本科教学管理规章。",
+        "attachments": [],
+        "publish_date": "2025-08-21",
+        "source_department": "复旦大学教务处（本科生院）"
+      },
+      {
+        "title": "复旦大学本科生教学管理规定与实施办法汇编（2024版）",
+        "url": "https://jwc.fudan.edu.cn/83/a2/c27268a689058/page.htm",
+        "summary": "2024版教学管理规定汇编。",
+        "attachments": [],
+        "publish_date": "2024-08-26",
+        "source_department": "复旦大学教务处（本科生院）"
+      },
+      {
+        "title": "复旦大学专业培养",
+        "url": "https://jwc.fudan.edu.cn/9386/list.htm",
+        "summary": "教务处专业培养栏目，发布各专业培养方案、拔尖人才项目选拔通知等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "复旦大学教务处（本科生院）"
+      }
+    ],
+    "minor_program": [],
+    "employment_report": [
+      {
+        "title": "复旦大学毕业生就业质量报告（2024届）",
+        "url": "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf",
+        "summary": "复旦大学2024届毕业生就业质量报告PDF，包含就业率、去向分布、薪资等数据。来源于第三方就业信息平台。",
+        "attachments": [],
+        "publish_date": "2025-04-12",
+        "source_department": "复旦大学就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "复旦大学2024年招收优秀应届本科毕业生免试攻读研究生章程",
+        "url": "https://gsao.fudan.edu.cn/01/e6/c15015a524774/page.htm",
+        "summary": "2024年推免生招生章程，含遴选条件、名额分配、时间线、申请流程等。",
+        "attachments": [],
+        "publish_date": "2023-09-19",
+        "source_department": "复旦大学研究生招生办公室"
+      },
+      {
+        "title": "复旦大学2022年推荐优秀本科毕业生免试攻读研究生工作实施办法",
+        "url": "https://jwc.fudan.edu.cn/41/f3/c27268a410099/page.htm",
+        "summary": "推荐免试攻读研究生工作实施办法，含遴选条件、综合排名计算、名额分配等详细规定。",
+        "attachments": [],
+        "publish_date": "2021-09-10",
+        "source_department": "复旦大学教务处"
+      },
+      {
+        "title": "社政学院关于推荐2025届优秀本科毕业生免试攻读研究生的实施办法",
+        "url": "https://ssdpp.fudan.edu.cn/8d/93/c20786a691603/page.htm",
+        "summary": "社会发展与公共政策学院2025届推免实施办法，可作为各院系推免细则参考。",
+        "attachments": [],
+        "publish_date": "2024-09-09",
+        "source_department": "社会发展与公共政策学院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "复旦大学全国重点实验室",
+        "url": "https://www.fudan.edu.cn/gjzdsys/list.htm",
+        "summary": "复旦大学全国重点实验室列表页面，展示学校高水平科研平台。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "复旦大学"
+      },
+      {
+        "title": "复旦大学科研机构",
+        "url": "https://www.fudan.edu.cn/491/list.htm",
+        "summary": "全校科研机构汇总页面，包括全国重点实验室、教育部重点实验室、上海市重点实验室、前沿科学中心、集成攻关大平台、教育部人文社科基地、国家数学中心、国家临床医学研究中心等各级各类科研平台。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "复旦大学"
+      },
+      {
+        "title": "复旦大学教育部重点实验室",
+        "url": "https://www.fudan.edu.cn/jybzdsys/list.htm",
+        "summary": "教育部重点实验室列表。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "复旦大学"
+      },
+      {
+        "title": "复旦大学本科生学术研究资助计划（UROP）",
+        "url": "http://www.jwc.fudan.edu.cn/9425/list.htm",
+        "summary": "本科生学术研究资助计划（Undergraduate Research Opportunities Program），为本科生提供科研项目参与机会。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "复旦大学教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "中国语言文学系",
+        "url": "http://chinese.fudan.edu.cn/",
+        "disciplines": [
+          "中国语言文学"
+        ]
+      },
+      {
+        "name": "外国语言文学学院",
+        "url": "http://dfll.fudan.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "历史学系",
+        "url": "http://history.fudan.edu.cn/",
+        "disciplines": [
+          "中国史",
+          "世界史"
+        ]
+      },
+      {
+        "name": "旅游学系",
+        "url": "http://tourism.fudan.edu.cn/",
+        "disciplines": [
+          "旅游管理"
+        ]
+      },
+      {
+        "name": "文物与博物馆学系",
+        "url": "http://www.chm.fudan.edu.cn/",
+        "disciplines": [
+          "考古学",
+          "文物与博物馆学"
+        ]
+      },
+      {
+        "name": "哲学学院",
+        "url": "http://philosophy.fudan.edu.cn/",
+        "disciplines": [
+          "哲学"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "http://www.law.fudan.edu.cn/",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "国际关系与公共事务学院",
+        "url": "http://www.sirpa.fudan.edu.cn/",
+        "disciplines": [
+          "政治学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "社会发展与公共政策学院",
+        "url": "http://www.ssdpp.fudan.edu.cn/",
+        "disciplines": [
+          "社会学",
+          "心理学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "新闻学院",
+        "url": "https://xwxy.fudan.edu.cn/",
+        "disciplines": [
+          "新闻传播学"
+        ]
+      },
+      {
+        "name": "经济学院",
+        "url": "http://www.econ.fudan.edu.cn/",
+        "disciplines": [
+          "理论经济学",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "国际金融学院",
+        "url": "https://fisf.fudan.edu.cn/",
+        "disciplines": [
+          "应用经济学",
+          "金融学"
+        ]
+      },
+      {
+        "name": "管理学院",
+        "url": "http://www.fdsm.fudan.edu.cn/AboutUs/index.aspx",
+        "disciplines": [
+          "工商管理",
+          "管理科学与工程"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://som.fudan.edu.cn/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "国际文化交流学院",
+        "url": "http://www.ices.fudan.edu.cn/main.htm",
+        "disciplines": [
+          "汉语国际教育"
+        ]
+      },
+      {
+        "name": "数学科学学院",
+        "url": "http://math.fudan.edu.cn/",
+        "disciplines": [
+          "数学"
+        ]
+      },
+      {
+        "name": "物理学系",
+        "url": "http://phys.fudan.edu.cn/",
+        "disciplines": [
+          "物理学"
+        ]
+      },
+      {
+        "name": "现代物理研究所/核科学与技术系",
+        "url": "http://imp.fudan.edu.cn/",
+        "disciplines": [
+          "核科学与技术",
+          "物理学"
+        ]
+      },
+      {
+        "name": "化学系",
+        "url": "http://www.chemistry.fudan.edu.cn/",
+        "disciplines": [
+          "化学"
+        ]
+      },
+      {
+        "name": "高分子科学系",
+        "url": "http://polymer.fudan.edu.cn/",
+        "disciplines": [
+          "高分子化学与物理",
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "环境科学与工程系",
+        "url": "http://environment.fudan.edu.cn/",
+        "disciplines": [
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "大气与海洋科学系",
+        "url": "https://aos.fudan.edu.cn/",
+        "disciplines": [
+          "大气科学",
+          "海洋科学"
+        ]
+      },
+      {
+        "name": "微电子学院",
+        "url": "https://sme.fudan.edu.cn/",
+        "disciplines": [
+          "电子科学与技术",
+          "集成电路工程"
+        ]
+      },
+      {
+        "name": "航空航天系",
+        "url": "https://aero-mech.fudan.edu.cn/",
+        "disciplines": [
+          "航空宇航科学与技术",
+          "力学"
+        ]
+      },
+      {
+        "name": "生命科学学院",
+        "url": "http://life.fudan.edu.cn/",
+        "disciplines": [
+          "生物学",
+          "生态学"
+        ]
+      },
+      {
+        "name": "大数据学院",
+        "url": "http://www.sds.fudan.edu.cn/",
+        "disciplines": [
+          "统计学",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "集成电路与微纳电子创新学院",
+        "url": "https://icmne.fudan.edu.cn/",
+        "disciplines": [
+          "集成电路科学与工程",
+          "电子科学与技术"
+        ]
+      },
+      {
+        "name": "计算与智能创新学院",
+        "url": "https://ai.fudan.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "人工智能"
+        ]
+      },
+      {
+        "name": "生物医学工程与技术创新学院",
+        "url": "https://bme-college.fudan.edu.cn/",
+        "disciplines": [
+          "生物医学工程"
+        ]
+      },
+      {
+        "name": "智能机器人与先进制造创新学院",
+        "url": "https://ciram.fudan.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "控制科学与工程"
+        ]
+      },
+      {
+        "name": "智能材料与未来能源创新学院",
+        "url": "https://icome.fudan.edu.cn/",
+        "disciplines": [
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "未来信息创新学院",
+        "url": "https://fit.fudan.edu.cn/",
+        "disciplines": [
+          "信息与通信工程"
+        ]
+      },
+      {
+        "name": "基础医学院",
+        "url": "http://basicmed.fudan.edu.cn/",
+        "disciplines": [
+          "基础医学"
+        ]
+      },
+      {
+        "name": "中山临床医学院",
+        "url": "https://www.fudan.edu.cn/489/list.htm",
+        "disciplines": [
+          "临床医学"
+        ]
+      },
+      {
+        "name": "华山临床医学院",
+        "url": "https://www.fudan.edu.cn/489/list.htm",
+        "disciplines": [
+          "临床医学"
+        ]
+      },
+      {
+        "name": "公共卫生学院",
+        "url": "http://sph.fudan.edu.cn/",
+        "disciplines": [
+          "公共卫生与预防医学"
+        ]
+      },
+      {
+        "name": "药学院",
+        "url": "http://spfdu.fudan.edu.cn/",
+        "disciplines": [
+          "药学"
+        ]
+      },
+      {
+        "name": "护理学院",
+        "url": "http://nursing.fudan.edu.cn/",
+        "disciplines": [
+          "护理学"
+        ]
+      },
+      {
+        "name": "口腔医学院",
+        "url": "https://www.fudan.edu.cn/489/list.htm",
+        "disciplines": [
+          "口腔医学"
+        ]
+      },
+      {
+        "name": "法医学与法庭科学学院",
+        "url": "https://sfms.fudan.edu.cn/",
+        "disciplines": [
+          "法医学"
+        ]
+      },
+      {
+        "name": "卓越工程师学院",
+        "url": "https://www.fudan.edu.cn/489/list.htm",
+        "disciplines": [
+          "工程类专业"
+        ]
+      },
+      {
+        "name": "国际传播与全球领导力学院",
+        "url": "https://www.fudan.edu.cn/489/list.htm",
+        "disciplines": [
+          "新闻传播学",
+          "政治学"
+        ]
+      },
+      {
+        "name": "生物技术学院",
+        "url": "https://www.fudan.edu.cn/489/list.htm",
+        "disciplines": [
+          "生物学",
+          "生物工程"
+        ]
+      },
+      {
+        "name": "体育教学部",
+        "url": "http://www.fdty.fudan.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "1. 就业信息网（career.fudan.edu.cn）无法直接访问，就业质量报告来源于第三方就业信息平台PDF。2. 辅修/双学位/微专业的专门政策页面在教务处公开栏目中未找到，相关信息可能包含在《本科生教学管理规定与实施办法汇编》PDF内。3. 研究生招生网（gsao.fudan.edu.cn）连接被重置，推免信息来源于搜索结果和信息公开页面。4. 全国重点实验室页面内容为图片格式，未能提取具体实验室名称列表，但科研机构汇总页包含完整分类链接。",
+    "missing_categories": [
+      "minor_program"
+    ],
+    "basic_info": {
+      "location": "上海 详细地址：上海市杨浦区邯郸路220号",
+      "address": "上海市杨浦区邯郸路220号",
+      "phone": "021-55666668",
+      "website": "https://www.fudan.edu.cn/",
+      "enrollment_website": "https://www.ao.fudan.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 政策性加分",
+        "url": "",
+        "summary": "**政策性加分**\nQ: 少数民族内高班的考生报考贵校有政策加分吗?录取分数线是多少\nA: 按省招办规定执行。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 色弱",
+        "url": "",
+        "summary": "**色弱**\nQ: 考生有色弱，服从调剂后是否有退档风险\nA: 没有影响",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 国家专项",
+        "url": "",
+        "summary": "**国家专项**\nQ: 贵校近三年山西省国家专项的分数线是多少\nA: https://ao.fudan.edu.cn/a4/04/c36333a697348/page.htm",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 位次不够能不能报考",
+        "url": "",
+        "summary": "**位次不够能不能报考**\nQ: 总分670省排名900可以报考贵校吗\nA: 请询我校安徽招生宣传组https://ao.fudan.edu.cn/bd/35/c40946a507189/page.htm",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 专业大类分流及转专业",
+        "url": "",
+        "summary": "**专业大类分流及转专业**\nQ: 大类招生专业如何分流？分流到不喜欢的专业，可以转专业吗？转专业采取什么方式？\nA: 请询我校北京招生宣传组https://ao.fudan.edu.cn/bc/6d/c40946a506989/page.htm",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "历史学类",
+        "score": 4.9,
+        "votes": 12
+      },
+      {
+        "title": "哲学类",
+        "score": 4.8,
+        "votes": 13
+      },
+      {
+        "title": "经济学类",
+        "score": 4.7,
+        "votes": 28
+      },
+      {
+        "title": "历史学",
+        "score": 4.7,
+        "votes": 30
+      },
+      {
+        "title": "社会学",
+        "score": 4.7,
+        "votes": 28
+      },
+      {
+        "title": "数学类",
+        "score": 4.7,
+        "votes": 42
+      },
+      {
+        "title": "统计学",
+        "score": 4.7,
+        "votes": 15
+      },
+      {
+        "title": "通信工程",
+        "score": 4.6,
+        "votes": 19
+      },
+      {
+        "title": "广告学",
+        "score": 4.5,
+        "votes": 22
+      },
+      {
+        "title": "新闻传播学类",
+        "score": 4.5,
+        "votes": 13
+      }
+    ]
+  }
+}

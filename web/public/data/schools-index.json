@@ -1,0 +1,4040 @@
+{
+  "schools": [
+    {
+      "name": "北京大学",
+      "province": "北京",
+      "url": "https://www.pku.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.310454,
+        39.992734
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国人民大学",
+      "province": "北京",
+      "url": "https://www.ruc.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.312503,
+        39.971025
+      ],
+      "status": "done"
+    },
+    {
+      "name": "清华大学",
+      "province": "北京",
+      "url": "https://www.tsinghua.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.324038,
+        40.001054
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京交通大学",
+      "province": "北京",
+      "url": "https://www.bjtu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.342134,
+        39.951215
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京工业大学",
+      "province": "北京",
+      "url": "https://www.bjut.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.47861,
+        39.873377
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京航空航天大学",
+      "province": "北京",
+      "url": "https://www.buaa.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.350943,
+        39.980626
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京理工大学",
+      "province": "北京",
+      "url": "https://www.bit.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.315424,
+        39.960637
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京科技大学",
+      "province": "北京",
+      "url": "https://www.ustb.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.359725,
+        39.989025
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京化工大学",
+      "province": "北京",
+      "url": "https://www.buct.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.421037,
+        39.971765
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京邮电大学",
+      "province": "北京",
+      "url": "https://www.bupt.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.35794,
+        39.962097
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国农业大学",
+      "province": "北京",
+      "url": "https://www.cau.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.357004,
+        40.004588
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京林业大学",
+      "province": "北京",
+      "url": "https://www.bjfu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.345306,
+        40.003177
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京协和医学院",
+      "province": "北京",
+      "url": "https://www.pumc.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.198003,
+        39.944042
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京中医药大学",
+      "province": "北京",
+      "url": "https://www.bucm.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.427357,
+        39.97103
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京师范大学",
+      "province": "北京",
+      "url": "https://www.bnu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.366301,
+        39.961575
+      ],
+      "status": "done"
+    },
+    {
+      "name": "首都师范大学",
+      "province": "北京",
+      "url": "https://www.cnnu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.309197,
+        39.928663
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京外国语大学",
+      "province": "北京",
+      "url": "https://www.bfsu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.313211,
+        39.955501
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国传媒大学",
+      "province": "北京",
+      "url": "https://www.cuc.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.557391,
+        39.912312
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中央财经大学",
+      "province": "北京",
+      "url": "https://www.cufe.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.342595,
+        39.95944
+      ],
+      "status": "done"
+    },
+    {
+      "name": "对外经济贸易大学",
+      "province": "北京",
+      "url": "https://www.uibe.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.427068,
+        39.980739
+      ],
+      "status": "done"
+    },
+    {
+      "name": "外交学院",
+      "province": "北京",
+      "url": "https://www.cfau.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.344364,
+        39.929491
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国人民公安大学",
+      "province": "北京",
+      "url": "https://www.ppsuc.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.268839,
+        39.761062
+      ],
+      "status": "done"
+    },
+    {
+      "name": "北京体育大学",
+      "province": "北京",
+      "url": "https://www.bsu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.318897,
+        40.022829
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中央音乐学院",
+      "province": "北京",
+      "url": "https://www.ccom.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.359272,
+        39.90241
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国音乐学院",
+      "province": "北京",
+      "url": "https://www.ccmusic.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.379505,
+        39.991036
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中央美术学院",
+      "province": "北京",
+      "url": "https://www.cafa.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.463893,
+        39.983546
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中央戏剧学院",
+      "province": "北京",
+      "url": "https://www.chntheatre.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.373777,
+        40.102921
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中央民族大学",
+      "province": "北京",
+      "url": "https://www.muc.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.319678,
+        39.950688
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国政法大学",
+      "province": "北京",
+      "url": "https://www.cupl.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.24788,
+        40.223174
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华北电力大学",
+      "province": "北京",
+      "url": "https://www.ncepu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.310446,
+        40.089821
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国矿业大学（北京）",
+      "province": "北京",
+      "url": "https://www.cumtb.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.348374,
+        39.997542
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国石油大学（北京）",
+      "province": "北京",
+      "url": "https://www.cup.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.246464,
+        40.218641
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国地质大学（北京）",
+      "province": "北京",
+      "url": "https://www.cugb.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.350195,
+        39.993325
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国科学院大学",
+      "province": "北京",
+      "url": "https://www.ucas.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        116.25149,
+        39.910918
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南开大学",
+      "province": "天津",
+      "url": "https://www.nankai.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.167998,
+        39.103412
+      ],
+      "status": "done"
+    },
+    {
+      "name": "天津大学",
+      "province": "天津",
+      "url": "https://www.tju.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.320416,
+        38.999522
+      ],
+      "status": "done"
+    },
+    {
+      "name": "天津工业大学",
+      "province": "天津",
+      "url": "https://www.tiangong.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.113072,
+        39.065259
+      ],
+      "status": "done"
+    },
+    {
+      "name": "天津医科大学",
+      "province": "天津",
+      "url": "https://www.tmu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.184292,
+        39.107348
+      ],
+      "status": "done"
+    },
+    {
+      "name": "天津中医药大学",
+      "province": "天津",
+      "url": "https://www.tjutcm.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.079594,
+        38.947644
+      ],
+      "status": "done"
+    },
+    {
+      "name": "河北工业大学",
+      "province": "天津",
+      "url": "https://www.hebut.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.080328,
+        39.230155
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华北电力大学（保定）",
+      "province": "河北",
+      "url": "https://net.ncepu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        115.505173,
+        38.876531
+      ],
+      "status": "done"
+    },
+    {
+      "name": "山西大学",
+      "province": "山西",
+      "url": "https://www.sxu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.587733,
+        37.800166
+      ],
+      "status": "done"
+    },
+    {
+      "name": "太原理工大学",
+      "province": "山西",
+      "url": "https://www.tyut.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.522933,
+        37.861328
+      ],
+      "status": "done"
+    },
+    {
+      "name": "内蒙古大学",
+      "province": "内蒙古",
+      "url": "https://www.imu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        111.690532,
+        40.811563
+      ],
+      "status": "done"
+    },
+    {
+      "name": "大连理工大学",
+      "province": "辽宁",
+      "url": "https://www.dlut.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.528449,
+        38.880709
+      ],
+      "status": "done"
+    },
+    {
+      "name": "东北大学",
+      "province": "辽宁",
+      "url": "https://www.neu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        123.424703,
+        41.766665
+      ],
+      "status": "done"
+    },
+    {
+      "name": "辽宁大学",
+      "province": "辽宁",
+      "url": "https://www.lnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        123.405921,
+        41.83354
+      ],
+      "status": "done"
+    },
+    {
+      "name": "大连海事大学",
+      "province": "辽宁",
+      "url": "https://www.dlmu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.530213,
+        38.869794
+      ],
+      "status": "done"
+    },
+    {
+      "name": "吉林大学",
+      "province": "吉林",
+      "url": "https://www.jlu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        125.279415,
+        43.823157
+      ],
+      "status": "done"
+    },
+    {
+      "name": "延边大学",
+      "province": "吉林",
+      "url": "https://www.ybu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        129.488053,
+        42.910955
+      ],
+      "status": "done"
+    },
+    {
+      "name": "东北师范大学",
+      "province": "吉林",
+      "url": "https://www.nenu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        125.329884,
+        43.861745
+      ],
+      "status": "done"
+    },
+    {
+      "name": "哈尔滨工业大学",
+      "province": "黑龙江",
+      "url": "https://www.hit.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        126.632371,
+        45.743605
+      ],
+      "status": "done"
+    },
+    {
+      "name": "哈尔滨工程大学",
+      "province": "黑龙江",
+      "url": "https://www.hrbeu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        126.683235,
+        45.778633
+      ],
+      "status": "done"
+    },
+    {
+      "name": "东北农业大学",
+      "province": "黑龙江",
+      "url": "https://www.neau.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        126.72502,
+        45.752616
+      ],
+      "status": "done"
+    },
+    {
+      "name": "东北林业大学",
+      "province": "黑龙江",
+      "url": "https://www.nefu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        126.636857,
+        45.719679
+      ],
+      "status": "done"
+    },
+    {
+      "name": "复旦大学",
+      "province": "上海",
+      "url": "https://www.fudan.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.502871,
+        31.297025
+      ],
+      "status": "done"
+    },
+    {
+      "name": "同济大学",
+      "province": "上海",
+      "url": "https://www.tongji.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.501622,
+        31.283465
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海交通大学",
+      "province": "上海",
+      "url": "https://www.sjtu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.436248,
+        31.023988
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华东理工大学",
+      "province": "上海",
+      "url": "https://www.ecust.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.425017,
+        31.14314
+      ],
+      "status": "done"
+    },
+    {
+      "name": "东华大学",
+      "province": "上海",
+      "url": "https://www.dhu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.226438,
+        31.018129
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海海洋大学",
+      "province": "上海",
+      "url": "https://www.shou.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.89691,
+        30.882894
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海中医药大学",
+      "province": "上海",
+      "url": "https://www.shutcm.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.590127,
+        31.194479
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华东师范大学",
+      "province": "上海",
+      "url": "https://www.ecnu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.45372,
+        31.031449
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海外国语大学",
+      "province": "上海",
+      "url": "https://www.shisu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.225685,
+        31.047076
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海财经大学",
+      "province": "上海",
+      "url": "https://www.sufe.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.499032,
+        31.305858
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海体育学院",
+      "province": "上海",
+      "url": "https://www.sus.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.525348,
+        31.31233
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海音乐学院",
+      "province": "上海",
+      "url": "https://www.shcmusic.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.45438,
+        31.213434
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海大学",
+      "province": "上海",
+      "url": "https://www.shu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.393502,
+        31.316899
+      ],
+      "status": "done"
+    },
+    {
+      "name": "上海科技大学",
+      "province": "上海",
+      "url": "https://www.shanghaitech.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.595984,
+        31.17663
+      ],
+      "status": "done"
+    },
+    {
+      "name": "海军军医大学",
+      "province": "上海",
+      "url": "https://www.smmu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.529175,
+        31.304525
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京大学",
+      "province": "江苏",
+      "url": "https://www.nju.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.958562,
+        32.114471
+      ],
+      "status": "done"
+    },
+    {
+      "name": "苏州大学",
+      "province": "江苏",
+      "url": "https://www.suda.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        120.64848,
+        31.302574
+      ],
+      "status": "done"
+    },
+    {
+      "name": "东南大学",
+      "province": "江苏",
+      "url": "https://www.seu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.793545,
+        32.055049
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京航空航天大学",
+      "province": "江苏",
+      "url": "https://www.nuaa.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.819214,
+        32.03648
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京理工大学",
+      "province": "江苏",
+      "url": "https://www.njust.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.856883,
+        32.033995
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国矿业大学",
+      "province": "江苏",
+      "url": "https://www.cumt.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.144521,
+        34.215107
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京邮电大学",
+      "province": "江苏",
+      "url": "https://www.njupt.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.931191,
+        32.112742
+      ],
+      "status": "done"
+    },
+    {
+      "name": "河海大学",
+      "province": "江苏",
+      "url": "https://www.hhu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.757459,
+        32.053567
+      ],
+      "status": "done"
+    },
+    {
+      "name": "江南大学",
+      "province": "江苏",
+      "url": "https://www.jiangnan.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        120.311889,
+        31.491064
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京林业大学",
+      "province": "江苏",
+      "url": "https://www.njfu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.815181,
+        32.077893
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京信息工程大学",
+      "province": "江苏",
+      "url": "https://www.nuist.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.733059,
+        32.223352
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京农业大学",
+      "province": "江苏",
+      "url": "https://www.njau.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.84615,
+        32.03738
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京医科大学",
+      "province": "江苏",
+      "url": "https://www.njmu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.891576,
+        31.93848
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京中医药大学",
+      "province": "江苏",
+      "url": "https://www.njucm.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.946433,
+        32.102639
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国药科大学",
+      "province": "江苏",
+      "url": "https://www.cpu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.780338,
+        32.072899
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南京师范大学",
+      "province": "江苏",
+      "url": "https://www.njnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.911077,
+        32.103662
+      ],
+      "status": "done"
+    },
+    {
+      "name": "浙江大学",
+      "province": "浙江",
+      "url": "https://www.zju.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        120.090004,
+        30.29948
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国美术学院",
+      "province": "浙江",
+      "url": "https://www.caa.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        120.209903,
+        30.246566
+      ],
+      "status": "done"
+    },
+    {
+      "name": "宁波大学",
+      "province": "浙江",
+      "url": "https://www.nbu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        121.640642,
+        29.908019
+      ],
+      "status": "done"
+    },
+    {
+      "name": "安徽大学",
+      "province": "安徽",
+      "url": "https://www.ahu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.18488,
+        31.76754
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国科学技术大学",
+      "province": "安徽",
+      "url": "https://www.ustc.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.269882,
+        31.837084
+      ],
+      "status": "done"
+    },
+    {
+      "name": "合肥工业大学",
+      "province": "安徽",
+      "url": "https://www.hfut.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.294411,
+        31.845271
+      ],
+      "status": "done"
+    },
+    {
+      "name": "厦门大学",
+      "province": "福建",
+      "url": "https://www.xmu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        118.095545,
+        24.439837
+      ],
+      "status": "done"
+    },
+    {
+      "name": "福州大学",
+      "province": "福建",
+      "url": "https://www.fzu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        119.199539,
+        26.063827
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南昌大学",
+      "province": "江西",
+      "url": "https://www.ncu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        115.804087,
+        28.660479
+      ],
+      "status": "done"
+    },
+    {
+      "name": "山东大学",
+      "province": "山东",
+      "url": "https://www.sdu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        117.060678,
+        36.675572
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国海洋大学",
+      "province": "山东",
+      "url": "https://www.ouc.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        120.382665,
+        36.066938
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国石油大学（华东）",
+      "province": "山东",
+      "url": "https://www.upc.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        120.175343,
+        35.947774
+      ],
+      "status": "done"
+    },
+    {
+      "name": "郑州大学",
+      "province": "河南",
+      "url": "https://www.zzu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.53867,
+        34.815952
+      ],
+      "status": "done"
+    },
+    {
+      "name": "河南大学",
+      "province": "河南",
+      "url": "https://www.henu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.819123,
+        34.820703
+      ],
+      "status": "done"
+    },
+    {
+      "name": "武汉大学",
+      "province": "湖北",
+      "url": "https://www.whu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.36434,
+        30.53727
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华中科技大学",
+      "province": "湖北",
+      "url": "https://www.hust.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.415144,
+        30.514641
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中国地质大学（武汉）",
+      "province": "湖北",
+      "url": "https://www.cug.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.402056,
+        30.521054
+      ],
+      "status": "done"
+    },
+    {
+      "name": "武汉理工大学",
+      "province": "湖北",
+      "url": "https://www.whut.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.351588,
+        30.519863
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华中农业大学",
+      "province": "湖北",
+      "url": "https://www.hzau.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.338282,
+        30.475029
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华中师范大学",
+      "province": "湖北",
+      "url": "https://www.ccnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.363642,
+        30.514062
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中南财经政法大学",
+      "province": "湖北",
+      "url": "https://www.zuel.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.44296,
+        30.476644
+      ],
+      "status": "done"
+    },
+    {
+      "name": "湘潭大学",
+      "province": "湖南",
+      "url": "https://www.xtu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.864004,
+        27.885256
+      ],
+      "status": "done"
+    },
+    {
+      "name": "湖南大学",
+      "province": "湖南",
+      "url": "https://www.hnu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.945869,
+        28.178941
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中南大学",
+      "province": "湖南",
+      "url": "https://www.csu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.93061,
+        28.168544
+      ],
+      "status": "done"
+    },
+    {
+      "name": "湖南师范大学",
+      "province": "湖南",
+      "url": "https://www.hunnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.94865,
+        28.187366
+      ],
+      "status": "done"
+    },
+    {
+      "name": "国防科技大学",
+      "province": "湖南",
+      "url": "https://www.nudt.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        112.938882,
+        28.228304
+      ],
+      "status": "done"
+    },
+    {
+      "name": "中山大学",
+      "province": "广东",
+      "url": "https://www.sysu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.296798,
+        23.096091
+      ],
+      "status": "done"
+    },
+    {
+      "name": "暨南大学",
+      "province": "广东",
+      "url": "https://www.jnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.327597,
+        23.1308
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华南理工大学",
+      "province": "广东",
+      "url": "https://www.scut.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.345982,
+        23.152082
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华南农业大学",
+      "province": "广东",
+      "url": "https://www.scau.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.357553,
+        23.158017
+      ],
+      "status": "done"
+    },
+    {
+      "name": "广州医科大学",
+      "province": "广东",
+      "url": "https://www.gzhmu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.426049,
+        23.041571
+      ],
+      "status": "done"
+    },
+    {
+      "name": "广州中医药大学",
+      "province": "广东",
+      "url": "https://www.gzucm.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.404515,
+        23.058255
+      ],
+      "status": "done"
+    },
+    {
+      "name": "华南师范大学",
+      "province": "广东",
+      "url": "https://www.scnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        113.342994,
+        23.135034
+      ],
+      "status": "done"
+    },
+    {
+      "name": "南方科技大学",
+      "province": "广东",
+      "url": "https://www.sustech.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        114.000076,
+        22.599232
+      ],
+      "status": "done"
+    },
+    {
+      "name": "广西大学",
+      "province": "广西",
+      "url": "https://www.gxu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.29116,
+        22.845135
+      ],
+      "status": "done"
+    },
+    {
+      "name": "海南大学",
+      "province": "海南",
+      "url": "https://www.hainanu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        110.357872,
+        20.028633
+      ],
+      "status": "done"
+    },
+    {
+      "name": "重庆大学",
+      "province": "重庆",
+      "url": "https://www.cqu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        106.468812,
+        29.564912
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西南大学",
+      "province": "重庆",
+      "url": "https://www.swu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        106.4247,
+        29.820475
+      ],
+      "status": "done"
+    },
+    {
+      "name": "四川大学",
+      "province": "四川",
+      "url": "https://www.scu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        104.084176,
+        30.631245
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西南交通大学",
+      "province": "四川",
+      "url": "https://www.swjtu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        103.988292,
+        30.763885
+      ],
+      "status": "done"
+    },
+    {
+      "name": "电子科技大学",
+      "province": "四川",
+      "url": "https://www.uestc.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        103.931862,
+        30.753589
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西南石油大学",
+      "province": "四川",
+      "url": "https://www.swpu.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        104.185403,
+        30.826019
+      ],
+      "status": "done"
+    },
+    {
+      "name": "成都理工大学",
+      "province": "四川",
+      "url": "https://www.cdut.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        104.144264,
+        30.673962
+      ],
+      "status": "done"
+    },
+    {
+      "name": "四川农业大学",
+      "province": "四川",
+      "url": "https://www.sicau.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        103.862375,
+        30.70561
+      ],
+      "status": "done"
+    },
+    {
+      "name": "成都中医药大学",
+      "province": "四川",
+      "url": "https://www.cdtcm.edu.cn",
+      "is985": false,
+      "is211": false,
+      "isDoubleFirstClass": true,
+      "coord": [
+        103.806565,
+        30.685681
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西南财经大学",
+      "province": "四川",
+      "url": "https://www.swufe.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        103.821142,
+        30.681434
+      ],
+      "status": "done"
+    },
+    {
+      "name": "贵州大学",
+      "province": "贵州",
+      "url": "https://www.gzu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        106.67026,
+        26.409817
+      ],
+      "status": "done"
+    },
+    {
+      "name": "云南大学",
+      "province": "云南",
+      "url": "https://www.ynu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        102.857111,
+        24.826595
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西藏大学",
+      "province": "西藏",
+      "url": "https://www.utibet.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        91.146975,
+        29.644075
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西北大学",
+      "province": "陕西",
+      "url": "https://www.nwu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.931778,
+        34.234758
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西安交通大学",
+      "province": "陕西",
+      "url": "https://www.xjtu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.984378,
+        34.246556
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西北工业大学",
+      "province": "陕西",
+      "url": "https://www.nwpu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.914589,
+        34.243329
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西安电子科技大学",
+      "province": "陕西",
+      "url": "https://www.xidian.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.916553,
+        34.230124
+      ],
+      "status": "done"
+    },
+    {
+      "name": "长安大学",
+      "province": "陕西",
+      "url": "https://www.chd.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.955929,
+        34.231632
+      ],
+      "status": "done"
+    },
+    {
+      "name": "西北农林科技大学",
+      "province": "陕西",
+      "url": "https://www.nwsuaf.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.073175,
+        34.284467
+      ],
+      "status": "done"
+    },
+    {
+      "name": "陕西师范大学",
+      "province": "陕西",
+      "url": "https://www.snnu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.892365,
+        34.153037
+      ],
+      "status": "done"
+    },
+    {
+      "name": "空军军医大学",
+      "province": "陕西",
+      "url": "https://www.fmmu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        108.939645,
+        34.343207
+      ],
+      "status": "done"
+    },
+    {
+      "name": "兰州大学",
+      "province": "甘肃",
+      "url": "https://www.lzu.edu.cn",
+      "is985": true,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        103.859546,
+        36.046674
+      ],
+      "status": "done"
+    },
+    {
+      "name": "青海大学",
+      "province": "青海",
+      "url": "https://www.qhu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        101.749406,
+        36.728189
+      ],
+      "status": "done"
+    },
+    {
+      "name": "宁夏大学",
+      "province": "宁夏",
+      "url": "https://www.nxu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        106.143117,
+        38.503251
+      ],
+      "status": "done"
+    },
+    {
+      "name": "新疆大学",
+      "province": "新疆",
+      "url": "https://www.xju.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        87.583349,
+        43.82079
+      ],
+      "status": "done"
+    },
+    {
+      "name": "石河子大学",
+      "province": "新疆",
+      "url": "https://www.shzu.edu.cn",
+      "is985": false,
+      "is211": true,
+      "isDoubleFirstClass": true,
+      "coord": [
+        86.057313,
+        44.307031
+      ],
+      "status": "done"
+    }
+  ],
+  "provinces": [
+    {
+      "name": "北京",
+      "count": 34,
+      "schools": [
+        {
+          "name": "北京大学",
+          "province": "北京",
+          "url": "https://www.pku.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.310454,
+            39.992734
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国人民大学",
+          "province": "北京",
+          "url": "https://www.ruc.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.312503,
+            39.971025
+          ],
+          "status": "done"
+        },
+        {
+          "name": "清华大学",
+          "province": "北京",
+          "url": "https://www.tsinghua.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.324038,
+            40.001054
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京交通大学",
+          "province": "北京",
+          "url": "https://www.bjtu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.342134,
+            39.951215
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京工业大学",
+          "province": "北京",
+          "url": "https://www.bjut.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.47861,
+            39.873377
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京航空航天大学",
+          "province": "北京",
+          "url": "https://www.buaa.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.350943,
+            39.980626
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京理工大学",
+          "province": "北京",
+          "url": "https://www.bit.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.315424,
+            39.960637
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京科技大学",
+          "province": "北京",
+          "url": "https://www.ustb.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.359725,
+            39.989025
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京化工大学",
+          "province": "北京",
+          "url": "https://www.buct.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.421037,
+            39.971765
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京邮电大学",
+          "province": "北京",
+          "url": "https://www.bupt.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.35794,
+            39.962097
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国农业大学",
+          "province": "北京",
+          "url": "https://www.cau.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.357004,
+            40.004588
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京林业大学",
+          "province": "北京",
+          "url": "https://www.bjfu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.345306,
+            40.003177
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京协和医学院",
+          "province": "北京",
+          "url": "https://www.pumc.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.198003,
+            39.944042
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京中医药大学",
+          "province": "北京",
+          "url": "https://www.bucm.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.427357,
+            39.97103
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京师范大学",
+          "province": "北京",
+          "url": "https://www.bnu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.366301,
+            39.961575
+          ],
+          "status": "done"
+        },
+        {
+          "name": "首都师范大学",
+          "province": "北京",
+          "url": "https://www.cnnu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.309197,
+            39.928663
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京外国语大学",
+          "province": "北京",
+          "url": "https://www.bfsu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.313211,
+            39.955501
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国传媒大学",
+          "province": "北京",
+          "url": "https://www.cuc.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.557391,
+            39.912312
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中央财经大学",
+          "province": "北京",
+          "url": "https://www.cufe.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.342595,
+            39.95944
+          ],
+          "status": "done"
+        },
+        {
+          "name": "对外经济贸易大学",
+          "province": "北京",
+          "url": "https://www.uibe.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.427068,
+            39.980739
+          ],
+          "status": "done"
+        },
+        {
+          "name": "外交学院",
+          "province": "北京",
+          "url": "https://www.cfau.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.344364,
+            39.929491
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国人民公安大学",
+          "province": "北京",
+          "url": "https://www.ppsuc.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.268839,
+            39.761062
+          ],
+          "status": "done"
+        },
+        {
+          "name": "北京体育大学",
+          "province": "北京",
+          "url": "https://www.bsu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.318897,
+            40.022829
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中央音乐学院",
+          "province": "北京",
+          "url": "https://www.ccom.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.359272,
+            39.90241
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国音乐学院",
+          "province": "北京",
+          "url": "https://www.ccmusic.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.379505,
+            39.991036
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中央美术学院",
+          "province": "北京",
+          "url": "https://www.cafa.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.463893,
+            39.983546
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中央戏剧学院",
+          "province": "北京",
+          "url": "https://www.chntheatre.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.373777,
+            40.102921
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中央民族大学",
+          "province": "北京",
+          "url": "https://www.muc.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.319678,
+            39.950688
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国政法大学",
+          "province": "北京",
+          "url": "https://www.cupl.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.24788,
+            40.223174
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华北电力大学",
+          "province": "北京",
+          "url": "https://www.ncepu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.310446,
+            40.089821
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国矿业大学（北京）",
+          "province": "北京",
+          "url": "https://www.cumtb.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.348374,
+            39.997542
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国石油大学（北京）",
+          "province": "北京",
+          "url": "https://www.cup.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.246464,
+            40.218641
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国地质大学（北京）",
+          "province": "北京",
+          "url": "https://www.cugb.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.350195,
+            39.993325
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国科学院大学",
+          "province": "北京",
+          "url": "https://www.ucas.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            116.25149,
+            39.910918
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "江苏",
+      "count": 16,
+      "schools": [
+        {
+          "name": "南京大学",
+          "province": "江苏",
+          "url": "https://www.nju.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.958562,
+            32.114471
+          ],
+          "status": "done"
+        },
+        {
+          "name": "苏州大学",
+          "province": "江苏",
+          "url": "https://www.suda.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            120.64848,
+            31.302574
+          ],
+          "status": "done"
+        },
+        {
+          "name": "东南大学",
+          "province": "江苏",
+          "url": "https://www.seu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.793545,
+            32.055049
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京航空航天大学",
+          "province": "江苏",
+          "url": "https://www.nuaa.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.819214,
+            32.03648
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京理工大学",
+          "province": "江苏",
+          "url": "https://www.njust.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.856883,
+            32.033995
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国矿业大学",
+          "province": "江苏",
+          "url": "https://www.cumt.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.144521,
+            34.215107
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京邮电大学",
+          "province": "江苏",
+          "url": "https://www.njupt.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.931191,
+            32.112742
+          ],
+          "status": "done"
+        },
+        {
+          "name": "河海大学",
+          "province": "江苏",
+          "url": "https://www.hhu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.757459,
+            32.053567
+          ],
+          "status": "done"
+        },
+        {
+          "name": "江南大学",
+          "province": "江苏",
+          "url": "https://www.jiangnan.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            120.311889,
+            31.491064
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京林业大学",
+          "province": "江苏",
+          "url": "https://www.njfu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.815181,
+            32.077893
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京信息工程大学",
+          "province": "江苏",
+          "url": "https://www.nuist.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.733059,
+            32.223352
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京农业大学",
+          "province": "江苏",
+          "url": "https://www.njau.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.84615,
+            32.03738
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京医科大学",
+          "province": "江苏",
+          "url": "https://www.njmu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.891576,
+            31.93848
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京中医药大学",
+          "province": "江苏",
+          "url": "https://www.njucm.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.946433,
+            32.102639
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国药科大学",
+          "province": "江苏",
+          "url": "https://www.cpu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.780338,
+            32.072899
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南京师范大学",
+          "province": "江苏",
+          "url": "https://www.njnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.911077,
+            32.103662
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "上海",
+      "count": 15,
+      "schools": [
+        {
+          "name": "复旦大学",
+          "province": "上海",
+          "url": "https://www.fudan.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.502871,
+            31.297025
+          ],
+          "status": "done"
+        },
+        {
+          "name": "同济大学",
+          "province": "上海",
+          "url": "https://www.tongji.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.501622,
+            31.283465
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海交通大学",
+          "province": "上海",
+          "url": "https://www.sjtu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.436248,
+            31.023988
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华东理工大学",
+          "province": "上海",
+          "url": "https://www.ecust.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.425017,
+            31.14314
+          ],
+          "status": "done"
+        },
+        {
+          "name": "东华大学",
+          "province": "上海",
+          "url": "https://www.dhu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.226438,
+            31.018129
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海海洋大学",
+          "province": "上海",
+          "url": "https://www.shou.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.89691,
+            30.882894
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海中医药大学",
+          "province": "上海",
+          "url": "https://www.shutcm.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.590127,
+            31.194479
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华东师范大学",
+          "province": "上海",
+          "url": "https://www.ecnu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.45372,
+            31.031449
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海外国语大学",
+          "province": "上海",
+          "url": "https://www.shisu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.225685,
+            31.047076
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海财经大学",
+          "province": "上海",
+          "url": "https://www.sufe.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.499032,
+            31.305858
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海体育学院",
+          "province": "上海",
+          "url": "https://www.sus.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.525348,
+            31.31233
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海音乐学院",
+          "province": "上海",
+          "url": "https://www.shcmusic.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.45438,
+            31.213434
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海大学",
+          "province": "上海",
+          "url": "https://www.shu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.393502,
+            31.316899
+          ],
+          "status": "done"
+        },
+        {
+          "name": "上海科技大学",
+          "province": "上海",
+          "url": "https://www.shanghaitech.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.595984,
+            31.17663
+          ],
+          "status": "done"
+        },
+        {
+          "name": "海军军医大学",
+          "province": "上海",
+          "url": "https://www.smmu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.529175,
+            31.304525
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "广东",
+      "count": 8,
+      "schools": [
+        {
+          "name": "中山大学",
+          "province": "广东",
+          "url": "https://www.sysu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.296798,
+            23.096091
+          ],
+          "status": "done"
+        },
+        {
+          "name": "暨南大学",
+          "province": "广东",
+          "url": "https://www.jnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.327597,
+            23.1308
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华南理工大学",
+          "province": "广东",
+          "url": "https://www.scut.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.345982,
+            23.152082
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华南农业大学",
+          "province": "广东",
+          "url": "https://www.scau.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.357553,
+            23.158017
+          ],
+          "status": "done"
+        },
+        {
+          "name": "广州医科大学",
+          "province": "广东",
+          "url": "https://www.gzhmu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.426049,
+            23.041571
+          ],
+          "status": "done"
+        },
+        {
+          "name": "广州中医药大学",
+          "province": "广东",
+          "url": "https://www.gzucm.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.404515,
+            23.058255
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华南师范大学",
+          "province": "广东",
+          "url": "https://www.scnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.342994,
+            23.135034
+          ],
+          "status": "done"
+        },
+        {
+          "name": "南方科技大学",
+          "province": "广东",
+          "url": "https://www.sustech.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.000076,
+            22.599232
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "四川",
+      "count": 8,
+      "schools": [
+        {
+          "name": "四川大学",
+          "province": "四川",
+          "url": "https://www.scu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            104.084176,
+            30.631245
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西南交通大学",
+          "province": "四川",
+          "url": "https://www.swjtu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            103.988292,
+            30.763885
+          ],
+          "status": "done"
+        },
+        {
+          "name": "电子科技大学",
+          "province": "四川",
+          "url": "https://www.uestc.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            103.931862,
+            30.753589
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西南石油大学",
+          "province": "四川",
+          "url": "https://www.swpu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            104.185403,
+            30.826019
+          ],
+          "status": "done"
+        },
+        {
+          "name": "成都理工大学",
+          "province": "四川",
+          "url": "https://www.cdut.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            104.144264,
+            30.673962
+          ],
+          "status": "done"
+        },
+        {
+          "name": "四川农业大学",
+          "province": "四川",
+          "url": "https://www.sicau.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            103.862375,
+            30.70561
+          ],
+          "status": "done"
+        },
+        {
+          "name": "成都中医药大学",
+          "province": "四川",
+          "url": "https://www.cdtcm.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            103.806565,
+            30.685681
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西南财经大学",
+          "province": "四川",
+          "url": "https://www.swufe.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            103.821142,
+            30.681434
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "陕西",
+      "count": 8,
+      "schools": [
+        {
+          "name": "西北大学",
+          "province": "陕西",
+          "url": "https://www.nwu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.931778,
+            34.234758
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西安交通大学",
+          "province": "陕西",
+          "url": "https://www.xjtu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.984378,
+            34.246556
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西北工业大学",
+          "province": "陕西",
+          "url": "https://www.nwpu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.914589,
+            34.243329
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西安电子科技大学",
+          "province": "陕西",
+          "url": "https://www.xidian.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.916553,
+            34.230124
+          ],
+          "status": "done"
+        },
+        {
+          "name": "长安大学",
+          "province": "陕西",
+          "url": "https://www.chd.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.955929,
+            34.231632
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西北农林科技大学",
+          "province": "陕西",
+          "url": "https://www.nwsuaf.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.073175,
+            34.284467
+          ],
+          "status": "done"
+        },
+        {
+          "name": "陕西师范大学",
+          "province": "陕西",
+          "url": "https://www.snnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.892365,
+            34.153037
+          ],
+          "status": "done"
+        },
+        {
+          "name": "空军军医大学",
+          "province": "陕西",
+          "url": "https://www.fmmu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.939645,
+            34.343207
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "湖北",
+      "count": 7,
+      "schools": [
+        {
+          "name": "武汉大学",
+          "province": "湖北",
+          "url": "https://www.whu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.36434,
+            30.53727
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华中科技大学",
+          "province": "湖北",
+          "url": "https://www.hust.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.415144,
+            30.514641
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国地质大学（武汉）",
+          "province": "湖北",
+          "url": "https://www.cug.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.402056,
+            30.521054
+          ],
+          "status": "done"
+        },
+        {
+          "name": "武汉理工大学",
+          "province": "湖北",
+          "url": "https://www.whut.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.351588,
+            30.519863
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华中农业大学",
+          "province": "湖北",
+          "url": "https://www.hzau.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.338282,
+            30.475029
+          ],
+          "status": "done"
+        },
+        {
+          "name": "华中师范大学",
+          "province": "湖北",
+          "url": "https://www.ccnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.363642,
+            30.514062
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中南财经政法大学",
+          "province": "湖北",
+          "url": "https://www.zuel.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            114.44296,
+            30.476644
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "天津",
+      "count": 6,
+      "schools": [
+        {
+          "name": "南开大学",
+          "province": "天津",
+          "url": "https://www.nankai.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.167998,
+            39.103412
+          ],
+          "status": "done"
+        },
+        {
+          "name": "天津大学",
+          "province": "天津",
+          "url": "https://www.tju.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.320416,
+            38.999522
+          ],
+          "status": "done"
+        },
+        {
+          "name": "天津工业大学",
+          "province": "天津",
+          "url": "https://www.tiangong.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.113072,
+            39.065259
+          ],
+          "status": "done"
+        },
+        {
+          "name": "天津医科大学",
+          "province": "天津",
+          "url": "https://www.tmu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.184292,
+            39.107348
+          ],
+          "status": "done"
+        },
+        {
+          "name": "天津中医药大学",
+          "province": "天津",
+          "url": "https://www.tjutcm.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.079594,
+            38.947644
+          ],
+          "status": "done"
+        },
+        {
+          "name": "河北工业大学",
+          "province": "天津",
+          "url": "https://www.hebut.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.080328,
+            39.230155
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "湖南",
+      "count": 5,
+      "schools": [
+        {
+          "name": "湘潭大学",
+          "province": "湖南",
+          "url": "https://www.xtu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.864004,
+            27.885256
+          ],
+          "status": "done"
+        },
+        {
+          "name": "湖南大学",
+          "province": "湖南",
+          "url": "https://www.hnu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.945869,
+            28.178941
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中南大学",
+          "province": "湖南",
+          "url": "https://www.csu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.93061,
+            28.168544
+          ],
+          "status": "done"
+        },
+        {
+          "name": "湖南师范大学",
+          "province": "湖南",
+          "url": "https://www.hunnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.94865,
+            28.187366
+          ],
+          "status": "done"
+        },
+        {
+          "name": "国防科技大学",
+          "province": "湖南",
+          "url": "https://www.nudt.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.938882,
+            28.228304
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "辽宁",
+      "count": 4,
+      "schools": [
+        {
+          "name": "大连理工大学",
+          "province": "辽宁",
+          "url": "https://www.dlut.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.528449,
+            38.880709
+          ],
+          "status": "done"
+        },
+        {
+          "name": "东北大学",
+          "province": "辽宁",
+          "url": "https://www.neu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            123.424703,
+            41.766665
+          ],
+          "status": "done"
+        },
+        {
+          "name": "辽宁大学",
+          "province": "辽宁",
+          "url": "https://www.lnu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            123.405921,
+            41.83354
+          ],
+          "status": "done"
+        },
+        {
+          "name": "大连海事大学",
+          "province": "辽宁",
+          "url": "https://www.dlmu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.530213,
+            38.869794
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "黑龙江",
+      "count": 4,
+      "schools": [
+        {
+          "name": "哈尔滨工业大学",
+          "province": "黑龙江",
+          "url": "https://www.hit.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            126.632371,
+            45.743605
+          ],
+          "status": "done"
+        },
+        {
+          "name": "哈尔滨工程大学",
+          "province": "黑龙江",
+          "url": "https://www.hrbeu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            126.683235,
+            45.778633
+          ],
+          "status": "done"
+        },
+        {
+          "name": "东北农业大学",
+          "province": "黑龙江",
+          "url": "https://www.neau.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            126.72502,
+            45.752616
+          ],
+          "status": "done"
+        },
+        {
+          "name": "东北林业大学",
+          "province": "黑龙江",
+          "url": "https://www.nefu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            126.636857,
+            45.719679
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "吉林",
+      "count": 3,
+      "schools": [
+        {
+          "name": "吉林大学",
+          "province": "吉林",
+          "url": "https://www.jlu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            125.279415,
+            43.823157
+          ],
+          "status": "done"
+        },
+        {
+          "name": "延边大学",
+          "province": "吉林",
+          "url": "https://www.ybu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            129.488053,
+            42.910955
+          ],
+          "status": "done"
+        },
+        {
+          "name": "东北师范大学",
+          "province": "吉林",
+          "url": "https://www.nenu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            125.329884,
+            43.861745
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "浙江",
+      "count": 3,
+      "schools": [
+        {
+          "name": "浙江大学",
+          "province": "浙江",
+          "url": "https://www.zju.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            120.090004,
+            30.29948
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国美术学院",
+          "province": "浙江",
+          "url": "https://www.caa.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            120.209903,
+            30.246566
+          ],
+          "status": "done"
+        },
+        {
+          "name": "宁波大学",
+          "province": "浙江",
+          "url": "https://www.nbu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            121.640642,
+            29.908019
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "安徽",
+      "count": 3,
+      "schools": [
+        {
+          "name": "安徽大学",
+          "province": "安徽",
+          "url": "https://www.ahu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.18488,
+            31.76754
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国科学技术大学",
+          "province": "安徽",
+          "url": "https://www.ustc.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.269882,
+            31.837084
+          ],
+          "status": "done"
+        },
+        {
+          "name": "合肥工业大学",
+          "province": "安徽",
+          "url": "https://www.hfut.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.294411,
+            31.845271
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "山东",
+      "count": 3,
+      "schools": [
+        {
+          "name": "山东大学",
+          "province": "山东",
+          "url": "https://www.sdu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            117.060678,
+            36.675572
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国海洋大学",
+          "province": "山东",
+          "url": "https://www.ouc.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            120.382665,
+            36.066938
+          ],
+          "status": "done"
+        },
+        {
+          "name": "中国石油大学（华东）",
+          "province": "山东",
+          "url": "https://www.upc.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            120.175343,
+            35.947774
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "山西",
+      "count": 2,
+      "schools": [
+        {
+          "name": "山西大学",
+          "province": "山西",
+          "url": "https://www.sxu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.587733,
+            37.800166
+          ],
+          "status": "done"
+        },
+        {
+          "name": "太原理工大学",
+          "province": "山西",
+          "url": "https://www.tyut.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            112.522933,
+            37.861328
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "福建",
+      "count": 2,
+      "schools": [
+        {
+          "name": "厦门大学",
+          "province": "福建",
+          "url": "https://www.xmu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            118.095545,
+            24.439837
+          ],
+          "status": "done"
+        },
+        {
+          "name": "福州大学",
+          "province": "福建",
+          "url": "https://www.fzu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            119.199539,
+            26.063827
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "河南",
+      "count": 2,
+      "schools": [
+        {
+          "name": "郑州大学",
+          "province": "河南",
+          "url": "https://www.zzu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.53867,
+            34.815952
+          ],
+          "status": "done"
+        },
+        {
+          "name": "河南大学",
+          "province": "河南",
+          "url": "https://www.henu.edu.cn",
+          "is985": false,
+          "is211": false,
+          "isDoubleFirstClass": true,
+          "coord": [
+            113.819123,
+            34.820703
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "重庆",
+      "count": 2,
+      "schools": [
+        {
+          "name": "重庆大学",
+          "province": "重庆",
+          "url": "https://www.cqu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            106.468812,
+            29.564912
+          ],
+          "status": "done"
+        },
+        {
+          "name": "西南大学",
+          "province": "重庆",
+          "url": "https://www.swu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            106.4247,
+            29.820475
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "新疆",
+      "count": 2,
+      "schools": [
+        {
+          "name": "新疆大学",
+          "province": "新疆",
+          "url": "https://www.xju.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            87.583349,
+            43.82079
+          ],
+          "status": "done"
+        },
+        {
+          "name": "石河子大学",
+          "province": "新疆",
+          "url": "https://www.shzu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            86.057313,
+            44.307031
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "河北",
+      "count": 1,
+      "schools": [
+        {
+          "name": "华北电力大学（保定）",
+          "province": "河北",
+          "url": "https://net.ncepu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            115.505173,
+            38.876531
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "内蒙古",
+      "count": 1,
+      "schools": [
+        {
+          "name": "内蒙古大学",
+          "province": "内蒙古",
+          "url": "https://www.imu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            111.690532,
+            40.811563
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "江西",
+      "count": 1,
+      "schools": [
+        {
+          "name": "南昌大学",
+          "province": "江西",
+          "url": "https://www.ncu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            115.804087,
+            28.660479
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "广西",
+      "count": 1,
+      "schools": [
+        {
+          "name": "广西大学",
+          "province": "广西",
+          "url": "https://www.gxu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            108.29116,
+            22.845135
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "海南",
+      "count": 1,
+      "schools": [
+        {
+          "name": "海南大学",
+          "province": "海南",
+          "url": "https://www.hainanu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            110.357872,
+            20.028633
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "贵州",
+      "count": 1,
+      "schools": [
+        {
+          "name": "贵州大学",
+          "province": "贵州",
+          "url": "https://www.gzu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            106.67026,
+            26.409817
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "云南",
+      "count": 1,
+      "schools": [
+        {
+          "name": "云南大学",
+          "province": "云南",
+          "url": "https://www.ynu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            102.857111,
+            24.826595
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "西藏",
+      "count": 1,
+      "schools": [
+        {
+          "name": "西藏大学",
+          "province": "西藏",
+          "url": "https://www.utibet.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            91.146975,
+            29.644075
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "甘肃",
+      "count": 1,
+      "schools": [
+        {
+          "name": "兰州大学",
+          "province": "甘肃",
+          "url": "https://www.lzu.edu.cn",
+          "is985": true,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            103.859546,
+            36.046674
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "青海",
+      "count": 1,
+      "schools": [
+        {
+          "name": "青海大学",
+          "province": "青海",
+          "url": "https://www.qhu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            101.749406,
+            36.728189
+          ],
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "name": "宁夏",
+      "count": 1,
+      "schools": [
+        {
+          "name": "宁夏大学",
+          "province": "宁夏",
+          "url": "https://www.nxu.edu.cn",
+          "is985": false,
+          "is211": true,
+          "isDoubleFirstClass": true,
+          "coord": [
+            106.143117,
+            38.503251
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+{
+  "name": "南京林业大学",
+  "province": "江苏",
+  "url": "https://www.njfu.edu.cn",
+  "is985": false,
+  "is211": false,
+  "isDoubleFirstClass": true,
+  "coord": [
+    118.815181,
+    32.077893
+  ],
+  "status": "done",
+  "detail": {
+    "university": "南京林业大学",
+    "official_url": "https://www.njfu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "南京林业大学2025年本科生招生章程",
+        "url": "http://zsb.njfu.edu.cn/zszx/zszc/index.html",
+        "summary": "南京林业大学2025年本科生招生章程，含总则、组织机构、招生计划、录取规则等章节。学校标识码4132010298，设有南京新庄校区、南京白马校区和淮安校区。办学性质为公办普通高等学校。",
+        "attachments": [],
+        "publish_date": "2025-05",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "南京林业大学2026年综合评价招生简章",
+        "url": "https://zsb.njfu.edu.cn/zszx/zsjz/",
+        "summary": "南京林业大学2026年综合评价招生简章，综合评价招生计划390人。报名条件包括竞赛类、学业优秀类、思想品行类、创新潜质类四类。江苏省内开展综合评价招生改革试点。",
+        "attachments": [],
+        "publish_date": "2026-04",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "南京林业大学2024年招生章程",
+        "url": "http://zsb.njfu.edu.cn/zszx/zszc/index.html",
+        "summary": "南京林业大学2024年招生章程，国家首批双一流建设高校，江苏省高水平大学建设高峰计划A类建设高校。",
+        "attachments": [],
+        "publish_date": "2024-05",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "南京林业大学招生计划查询系统",
+        "url": "https://lqcx.njfu.edu.cn/page/data.html",
+        "summary": "南京林业大学招生计划查询系统，支持按省份、年份查询分省分专业招生计划数。为JS动态渲染页面。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "2025年招生计划增加，新增三个拔尖人才培养实验班",
+        "url": "https://new.qq.com/rain/a/20250622A06OW400",
+        "summary": "2025年南京林业大学招生计划增加，新增智慧林业、生态修复学、生物制药、机器人工程等新农科新工科专业，并新增三个拔尖人才培养实验班。",
+        "attachments": [],
+        "publish_date": "2025-06",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "南京林业大学历年分数查询系统",
+        "url": "https://lqcx.njfu.edu.cn/page/data.html",
+        "summary": "南京林业大学历年高考录取分数查询系统，支持按省份、年份、科类查询各专业录取最低分、最低位次等信息。为JS动态渲染页面，需浏览器交互查询。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "南京林业大学高考录取查询",
+        "url": "https://lqcx.njfu.edu.cn/page/enrollment-plan.html?flag=3",
+        "summary": "高考录取结果查询系统，可查询各年度各省份录取情况。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "南京林业大学本科学生转专业管理办法（修订）",
+        "url": "http://jwc.njfu.edu.cn/DFS/file/2020/01/03/20200103125630302ykmtxy.docx",
+        "summary": "南京林业大学本科学生转专业管理办法。基本原则：因材施教、尊重学生个性发展。转专业分A类专业和非A类专业：A类要求大一上无挂科且GPA≥3.0或班级前15%；非A类仅要求无挂科。A类专业由学校转专业工作领导小组确定。艺术类与非艺术类不可互转，淮安校区与南京校区不可互转。各专业转出人数控制在一年级本科生人数30%以内。考核方式：第一学期成绩70%+笔试20%+面试10%。",
+        "attachments": [
+          "http://jwc.njfu.edu.cn/DFS/file/2020/01/03/20200103125630302ykmtxy.docx"
+        ],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "南京林业大学关于开展2025年本科学生转专业工作的通知",
+        "url": "http://jwc.njfu.edu.cn/jwgl/jwtz/20250430/i338663.html",
+        "summary": "2025年转专业工作通知，含转专业范围及申请条件。全日制2024级本科学生可申请，A类专业要求第一学期GPA≥3.0或班级前15%（进一法），非A类仅要求无不及格记录。含附件：转专业管理办法（修订）、日程安排、转专业人数及考试科目一览表、各类申请汇总表等。",
+        "attachments": [],
+        "publish_date": "2025-04-30",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "关于公布南京林业大学优秀本科生转专业名单的通知",
+        "url": "http://jwc.njfu.edu.cn/c1814/20190111/i22551.html",
+        "summary": "南京林业大学2011年优秀本科生转专业名单，共批准122位2010级同学转入新专业学习。",
+        "attachments": [],
+        "publish_date": "2011-05-30",
+        "source_department": "教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "南京林业大学关于2024级本科学生专业分流工作的通知",
+        "url": "http://jwc.njfu.edu.cn/jwgl/jwtz/20250314/i335320.html",
+        "summary": "2024级本科学生专业分流工作通知。分流原则：学生只能在专业大类内选择就读专业，不得跨大类选择。分流遵循“志愿优先、绩点排序”原则，首先从第一志愿填报该专业的学生中选取，当同批次志愿选报某专业人数超出限额时，根据平均学分绩点由高到低录取。",
+        "attachments": [],
+        "publish_date": "2025-03-14",
+        "source_department": "教务处"
+      },
+      {
+        "title": "《本科人才培养方案（2020版）》本科专业大类设置方案",
+        "url": "http://jwc.njfu.edu.cn/jxyj/zyjs/20200403/i150696.html",
+        "summary": "2020版本科人才培养方案中的专业大类设置方案，涉及大类招生的专业分组和分流规划。",
+        "attachments": [],
+        "publish_date": "2020-04-03",
+        "source_department": "教务处"
+      },
+      {
+        "title": "南京林业大学关于2021级本科学生专业分流工作的通知",
+        "url": "http://jwc.njfu.edu.cn/jwgl/jwtz/20220311/i249208.html",
+        "summary": "2021级专业分流工作通知，含详细分流计划指标表。分流大类包括林学类、生物工程类、机械类、能源动力类、工商管理类等，各专业人数及班级数详列。",
+        "attachments": [],
+        "publish_date": "2022-03-11",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "南京林业大学教务处-培养方案",
+        "url": "http://jwc.njfu.edu.cn/jxyj/pyfa/",
+        "summary": "南京林业大学本科人才培养方案栏目，含各专业培养方案及课程体系。教务处负责本科人才培养方案的制定和修订。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "风景园林本科专业培养方案",
+        "url": "https://yuanlin.njfu.edu.cn/rcpy/bkspy/20230903/i281484.html",
+        "summary": "风景园林本科专业培养方案。学科门类工学，专业代码082803，授予工学士学位，学制四年。核心课程包括风景园林设计基本原理、规划设计过程和方法等。",
+        "attachments": [],
+        "publish_date": "2023-09",
+        "source_department": "风景园林学院"
+      },
+      {
+        "title": "材料科学与工程学院培养方案",
+        "url": "http://wood.njfu.edu.cn/rcpy/bk/pyfa/index.html",
+        "summary": "材料科学与工程学院各专业培养方案，包括木材科学与工程（国家级特色专业、江苏省品牌专业）、木材科学与工程（木结构建筑）等专业培养目标、主要课程及就业方向。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "材料科学与工程学院"
+      },
+      {
+        "title": "南京林业大学一流本科教育行动方案",
+        "url": "http://jwc.njfu.edu.cn/bcms/DFS/file/2021/03/01/202103010927411341gbfhh.doc",
+        "summary": "南林发〔2019〕5号文件，关于印发南京林业大学一流本科教育行动方案的通知，涵盖本科教育改革的总体思路和具体举措。",
+        "attachments": [
+          "http://jwc.njfu.edu.cn/bcms/DFS/file/2021/03/01/202103010927411341gbfhh.doc"
+        ],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "关于2023年度“微专业”招生的通知",
+        "url": "http://jwc.njfu.edu.cn/jwgl/jwtz/20231008/i285501.html",
+        "summary": "南京林业大学微专业招生通知。开设微专业包括：碳中和经济学（依托农林经济管理、应用经济学学科，核心课程含碳税/碳交易、碳市场、林业碳汇、碳中和等）、数字乡村设计等。招生范围为有相关前置课程基础的本科生。",
+        "attachments": [],
+        "publish_date": "2023-10-08",
+        "source_department": "教务处"
+      },
+      {
+        "title": "【招生简章】2024年数字乡村设计微专业",
+        "url": "http://art.njfu.edu.cn/xytz/20240120/i299017.html",
+        "summary": "艺术设计学院2024年数字乡村设计微专业招生简章。",
+        "attachments": [],
+        "publish_date": "2024-01-20",
+        "source_department": "艺术设计学院"
+      },
+      {
+        "title": "“无人机低空智能感知”微专业顺利开班",
+        "url": "https://tumu.njfu.edu.cn/",
+        "summary": "南京林业大学“无人机低空智能感知”微专业首届招生32人，覆盖新庄、白马、淮安三个校区，来自林草学院、材料学院、土木学院等8个学院16个专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "土木工程学院"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "南京林业大学2022-2023学年本科教学质量报告",
+        "url": "https://xxgk.njfu.edu.cn/jxzl/jxzlbg/20231211/i293861.html",
+        "summary": "截至2023年8月31日，毕业本科生初次就业率为82.77%（协议就业率79.05%）。包含毕业生就业结构、就业地区分布等信息。",
+        "attachments": [],
+        "publish_date": "2023-12",
+        "source_department": "信息公开网"
+      },
+      {
+        "title": "南京林业大学2021-2022学年本科教学质量报告",
+        "url": "https://xxgk.njfu.edu.cn/jxzl/jxzlbg/20221205/i265550.html",
+        "summary": "2022年本科毕业生6108名，截至2022年8月31日，初次就业率为80.24%（协议就业率79.13%）。",
+        "attachments": [],
+        "publish_date": "2022-12",
+        "source_department": "信息公开网"
+      },
+      {
+        "title": "南京林业大学就业信息服务平台",
+        "url": "http://njfu.91job.org.cn/",
+        "summary": "南京林业大学就业信息服务平台，提供校园招聘、宣讲会安排、就业政策等信息。毕业生签约地区流向以江苏为主（约55%），其次是上海、广东、浙江等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "南京林业大学2025年接收推荐免试攻读研究生（含直博生）章程",
+        "url": "https://yz.njfu.edu.cn/tzgg/20240924/i317553.html",
+        "summary": "接收条件：获得推荐免试资格的考生；思想政治及科研素质良好；无考试作弊和剽窃记录；无违法违纪处分记录。招收推免生规模不超过全日制硕士研究生招生计划的50%。博士点学院可招收直博生。考核形式以综合面试为主，复试成绩满分100分，低于60分不予录取。",
+        "attachments": [],
+        "publish_date": "2024-09-24",
+        "source_department": "研究生招生信息网"
+      },
+      {
+        "title": "国际教育学院2025年推荐优秀应届本科毕业生免试攻读研究生工作实施细则",
+        "url": "https://iec.njfu.edu.cn/tzgg/20240913/i313102.html",
+        "summary": "推免条件：平均学分绩点名列专业前茅、无不及格记录、非外语专业英语四级425分以上。2025年国际教育学院推免名额为2名。",
+        "attachments": [],
+        "publish_date": "2024-09-13",
+        "source_department": "国际教育学院"
+      },
+      {
+        "title": "南京林业大学推荐优秀应届本科毕业生免试攻读研究生实施办法",
+        "url": "https://gsnfu.njfu.edu.cn/",
+        "summary": "南京林业大学推免实施办法，由校研究生招生工作领导小组统一领导，校研究生院具体负责，各二级单位研究生招生工作领导小组具体落实。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "南京林业大学学科竞赛管理系统",
+        "url": "https://xkjs.njfu.edu.cn/ShowJingSaiXm.aspx?itemno=204&Type=JS",
+        "summary": "南京林业大学学科竞赛管理系统，管理各类学科竞赛项目的立项、实施和结题工作。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于做好2024年南京林业大学学科竞赛目录更新调整工作的通知",
+        "url": "http://jwc.njfu.edu.cn/sjjx/xkjs/20240529/i306112.html",
+        "summary": "学科竞赛目录实行每年动态调整，依据《南京林业大学学科竞赛组织管理办法（修订）》。竞赛项目包括全国大学生数学建模竞赛、挑战杯、互联网+创新创业大赛、全国大学生英语竞赛等。",
+        "attachments": [],
+        "publish_date": "2024-05-29",
+        "source_department": "教务处"
+      },
+      {
+        "title": "森林食物资源挖掘与利用全国重点实验室",
+        "url": "https://www.njfu.edu.cn/jxky/",
+        "summary": "由南京林业大学与浙江农林大学、中国林业科学研究院林产化学工业研究所共同组建的全国重点实验室，聚焦森林食物资源特征物质与健康效应、物质代谢机制与生物制造等方向。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科技处"
+      },
+      {
+        "title": "林木生物质低碳高效利用国家工程研究中心",
+        "url": "https://gczx.njfu.edu.cn/",
+        "summary": "机电产品包装生物质材料国家地方联合工程研究中心（林木生物质低碳高效利用国家工程研究中心），依托南京林业大学林业工程双一流学科建设。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科技处"
+      },
+      {
+        "title": "南京林业大学科研平台",
+        "url": "http://kjc.njfu.edu.cn/wjxz/kypt/index.html",
+        "summary": "南京林业大学科研平台建设管理页面，含科研平台组建申请表和提升建设工程专项资金申报表。主要平台包括林木遗传育种全国重点实验室等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科技处"
+      },
+      {
+        "title": "大学生创新训练计划",
+        "url": "http://jwc.njfu.edu.cn/sjjx/dxscxxljhxm/index.html",
+        "summary": "南京林业大学大学生创新训练计划项目管理，鼓励本科生参与科研创新活动。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "林草学院、水土保持学院",
+        "url": "https://linxue.njfu.edu.cn/",
+        "disciplines": [
+          "林学",
+          "水土保持与荒漠化防治",
+          "生态学"
+        ]
+      },
+      {
+        "name": "材料科学与工程学院",
+        "url": "http://wood.njfu.edu.cn/",
+        "disciplines": [
+          "林业工程",
+          "木材科学与技术",
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "化学工程学院",
+        "url": "https://hg.njfu.edu.cn/",
+        "disciplines": [
+          "化学工程与技术",
+          "生物工程"
+        ]
+      },
+      {
+        "name": "机械电子工程学院",
+        "url": "https://jidian.njfu.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "机械电子工程"
+        ]
+      },
+      {
+        "name": "土木工程学院",
+        "url": "https://tumu.njfu.edu.cn/",
+        "disciplines": [
+          "土木工程",
+          "测绘科学与技术"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "https://cem.njfu.edu.cn/",
+        "disciplines": [
+          "农林经济管理",
+          "工商管理",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "人文社会科学学院、生态文明传播学院",
+        "url": "https://renwen.njfu.edu.cn/",
+        "disciplines": [
+          "社会学",
+          "新闻传播学",
+          "中国语言文学"
+        ]
+      },
+      {
+        "name": "信息科学技术学院、人工智能学院",
+        "url": "https://it.njfu.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "信息与通信工程",
+          "软件工程"
+        ]
+      },
+      {
+        "name": "风景园林学院",
+        "url": "https://yuanlin.njfu.edu.cn/",
+        "disciplines": [
+          "风景园林学",
+          "城乡规划学"
+        ]
+      },
+      {
+        "name": "理学院",
+        "url": "https://cos.njfu.edu.cn/",
+        "disciplines": [
+          "数学",
+          "化学",
+          "物理学"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "https://waiyuan.njfu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "艺术设计学院",
+        "url": "https://art.njfu.edu.cn/",
+        "disciplines": [
+          "设计学",
+          "艺术学理论"
+        ]
+      },
+      {
+        "name": "家居与工业设计学院",
+        "url": "https://jiaju.njfu.edu.cn/",
+        "disciplines": [
+          "设计学",
+          "家具设计与工程"
+        ]
+      },
+      {
+        "name": "轻工与食品学院",
+        "url": "https://qg.njfu.edu.cn/",
+        "disciplines": [
+          "食品科学与工程",
+          "轻工技术与工程"
+        ]
+      },
+      {
+        "name": "汽车与交通工程学院",
+        "url": "https://jty.njfu.edu.cn/",
+        "disciplines": [
+          "交通运输工程",
+          "车辆工程"
+        ]
+      },
+      {
+        "name": "生态与环境学院",
+        "url": "https://cee.njfu.edu.cn/",
+        "disciplines": [
+          "生态学",
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://my.njfu.edu.cn/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "生命科学学院",
+        "url": "https://sky.njfu.edu.cn/",
+        "disciplines": [
+          "生物学"
+        ]
+      },
+      {
+        "name": "国际教育学院",
+        "url": "https://iec.njfu.edu.cn/",
+        "disciplines": []
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业难度",
+        "content": "南林转专业相对其他学校来说比较容易。在大一下学期申请转专业，非A类专业只要求大一上学期不挂科即可申请。A类专业（如会计学、金融工程、风景园林、城乡规划等）要求不挂科且绩点3.0以上。考核方式为第一学期成绩占70%、笔试20%、面试10%。整体来说非热门专业转专业成功率较高。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/486697825/answer/2119886479"
+      },
+      {
+        "topic": "转A类专业经验（风景园林）",
+        "content": "南林风景园林转专业考核：绩点占70%，转专业素描考试占20%，面试占10%。A类专业包括会计学、金融工程、园林、风景园林、城乡规划、家具设计与工程等。转入专业名额按现有班级最大容量35人或该专业一年级本科生人数的15%核定（取高值）。笔试单独得分低于60分直接淘汰。",
+        "source_type": "知乎",
+        "source_url": "https://zhuanlan.zhihu.com/p/103094748"
+      },
+      {
+        "topic": "转专业成功难度分析",
+        "content": "整体来讲南林转专业不是很难，主要看目标专业。净流入学院难度较大，其他学院难度较小。计算机科学与技术、软件工程等热门专业笔试考C语言，淘汰率一般大于50%。信息院其他只考高数的专业（如电子信息、电气等）笔试门槛较低，但绩点低于2.7慎入。金融会计笔试考高数，家具园林城规考素描。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/486697825/answer/2128265370"
+      }
+    ],
+    "notes": "1. 招生计划和历年录取数据在lqcx.njfu.edu.cn为JS动态渲染页面，无法直接提取具体数字，需通过浏览器交互查询。2. 就业质量报告自2021届起未单独发布，相关数据整合在本科教学质量报告中。3. 转专业公示名单因各学院分别公示，未找到校级统一汇总的近期公示页。4. 辅修/双学位信息较少，主要以微专业形式开设。",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "江苏 详细地址：江苏省南京市龙蟠路159号",
+      "address": "江苏省南京市龙蟠路159号",
+      "phone": "400-928-1115",
+      "website": "https://www.njfu.edu.cn/",
+      "enrollment_website": "https://zsb.njfu.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 帮我分析一下专业报考",
+        "url": "",
+        "summary": "**帮我分析一下专业报考**\nQ: 老师您好，我是江苏的一位考生，高考排次13710。南林我报了淮安校区，专业顺序是英语，旅游管理，社会工作，城乡规划，汉语言文字，风景园林，服从调剂。请问这样子安排是否合理？录取概率怎么样？\nA: 进档服从不退档",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 文转理专业有高中选科限制吗",
+        "url": "",
+        "summary": "**文转理专业有高中选科限制吗**\nQ: 文科生史政地，文科专业想转理工科专业可以吗？转专业有什么要求？几次机会？\nA: 部分专业限制，一次机会，入学后了解",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 江苏男孩，物化生 583分，报我们学校哪些专业有把握？谢谢老师！\nA: 10 11 12 14 15 17 18组都有机会",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 咨询",
+        "url": "",
+        "summary": "**咨询**\nQ: 江苏 590 报07专业组，希望大吗？\nA: 不好说",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 新疆考生472分位次11312",
+        "url": "",
+        "summary": "**新疆考生472分位次11312**\nQ: 报考园艺概率大吗\nA: 有希望",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "材料科学与工程",
+        "score": 5,
+        "votes": 11
+      },
+      {
+        "title": "给排水科学与工程",
+        "score": 4.8,
+        "votes": 12
+      },
+      {
+        "title": "机械设计制造及其自动化",
+        "score": 4.7,
+        "votes": 66
+      },
+      {
+        "title": "视觉传达设计",
+        "score": 4.7,
+        "votes": 10
+      },
+      {
+        "title": "测绘工程",
+        "score": 4.7,
+        "votes": 15
+      },
+      {
+        "title": "会计学",
+        "score": 4.6,
+        "votes": 39
+      },
+      {
+        "title": "环境科学",
+        "score": 4.4,
+        "votes": 14
+      },
+      {
+        "title": "车辆工程",
+        "score": 4.4,
+        "votes": 32
+      },
+      {
+        "title": "自动化",
+        "score": 4.4,
+        "votes": 27
+      },
+      {
+        "title": "园林",
+        "score": 4.4,
+        "votes": 92
+      }
+    ]
+  }
+}

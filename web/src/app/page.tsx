@@ -2,20 +2,29 @@
 
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import AppProvider, { useApp } from "@/components/AppProvider";
 import { Button } from "@/components/ui/Button";
 import { HomePageSkeleton } from "@/components/ui/Skeleton";
-import ChinaMap3D from "@/components/ChinaMap3D";
 import CompareBar from "@/components/CompareBar";
 import ComparePanel from "@/components/ComparePanel";
 import FilterBar from "@/components/FilterBar";
 import { HeaderBlessing, PanelBlessing } from "@/components/GaokaoBlessing";
 import ProvinceList from "@/components/ProvinceList";
 import SchoolPanel from "@/components/school-panel/SchoolPanel";
-import StoryContainer from "@/components/story/StoryContainer";
 import { gsap, prefersReducedMotion } from "@/lib/animation/gsap";
+
+const ChinaMap3D = dynamic(() => import("@/components/ChinaMap3D"), {
+  ssr: false,
+  loading: () => <MapLoadingFallback />,
+});
+
+const StoryContainer = dynamic(() => import("@/components/story/StoryContainer"), {
+  ssr: false,
+  loading: () => <HomePageSkeleton />,
+});
 
 /** sessionStorage key：标记用户是否已看过叙事 */
 const STORY_SEEN_KEY = "gk-story-seen";
@@ -31,6 +40,19 @@ const panelTransition = {
   stiffness: 320,
   damping: 30,
 };
+
+function MapLoadingFallback() {
+  return (
+    <div className="absolute inset-0 z-20 flex items-center justify-center bg-surface-map text-sm text-text-light-muted">
+      地图加载中
+    </div>
+  );
+}
+
+function shouldSkipStoryOnInitialVisit() {
+  if (typeof window === "undefined") return true;
+  return window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+}
 
 export default function HomePage() {
   return (
@@ -72,6 +94,10 @@ function Home() {
   // ── Story mode state ──
   const [storyComplete, setStoryComplete] = useState(() => {
     if (typeof window === "undefined") return true; // SSR 安全：默认跳过叙事
+    if (shouldSkipStoryOnInitialVisit()) {
+      sessionStorage.setItem(STORY_SEEN_KEY, "1");
+      return true;
+    }
     // 首次访问看叙事，回访者跳过（可手动重播）
     return sessionStorage.getItem(STORY_SEEN_KEY) === "1";
   });
@@ -120,7 +146,7 @@ function Home() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("/data/schools.json");
+        const res = await fetch("/data/schools-index.json");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         dispatch({ type: "SET_DATA", payload: json });

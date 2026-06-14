@@ -1,0 +1,565 @@
+{
+  "name": "东北农业大学",
+  "province": "黑龙江",
+  "url": "https://www.neau.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    126.72502,
+    45.752616
+  ],
+  "status": "done",
+  "detail": {
+    "university": "东北农业大学",
+    "official_url": "https://www.neau.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "东北农业大学2025年报考指南",
+        "url": "https://h5.360eol.com/Public/ebook/2025/dblydx2025/",
+        "summary": "东北农业大学2025年本科报考指南电子书，包含学校概况、专业介绍、招生政策等信息。",
+        "attachments": [],
+        "publish_date": "2025-06-08",
+        "source_department": "本科招生办"
+      },
+      {
+        "title": "东北农业大学2026年招收台湾地区高中毕业生简章",
+        "url": "https://zsb.neau.edu.cn/static/front/neau/basic/html_cms/frontViewArticle.html?id=59b85556976a4724a3081cff5d9b05f1",
+        "summary": "2026年招收台湾地区高中毕业生的招生简章。",
+        "attachments": [],
+        "publish_date": "2025-12-11",
+        "source_department": "本科招生办"
+      },
+      {
+        "title": "2025年拔尖人才培养班解读",
+        "url": "https://zsb.neau.edu.cn/static/front/neau/basic/html_cms/frontViewArticle.html?id=73ae5d81d11b498da15ff76c25d441ab",
+        "summary": "解读2025年拔尖人才培养班相关政策，涵盖农学、动物医学、食品科学与工程、农业机械化及其自动化、农林经济管理、生物科学（国家理科基地）等拔尖班。",
+        "attachments": [],
+        "publish_date": "2025-06-18",
+        "source_department": "本科招生办"
+      },
+      {
+        "title": "东北农业大学招生章程",
+        "url": "https://zsb.neau.edu.cn/static/front/neau/basic/html_cms/frontList.html?id=a00de5f87dd94f0e90889a686aafbe0e",
+        "summary": "东北农业大学本科招生章程列表页面，包含历年招生章程文件。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办"
+      },
+      {
+        "title": "东北农业大学收费标准",
+        "url": "https://zsb.neau.edu.cn/static/front/neau/basic/html_cms/frontViewArticle.html?id=4f030650c5c744a2a8811f5713594ba1",
+        "summary": "东北农业大学各专业学费及住宿费收费标准说明。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "东北农业大学本科招生计划查询系统",
+        "url": "https://zsb.neau.edu.cn/zsw/zsjh.html",
+        "summary": "本科招生计划在线查询系统，支持按省份（全国31个省市）、年份（2020-2025）、科类（物理类/历史类/艺术类）、类型（普通类/国家专项/中俄合作办学/中美121项目/地方专项/民族预科/中新实验班/广播电视编导）筛选，显示各专业组计划数、选考科目及学费。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "东北农业大学历年分数查询系统",
+        "url": "https://zsb.neau.edu.cn/zsw/lnfs.html",
+        "summary": "历年录取分数线在线查询系统，支持按省份、年份（2020-2025）、科类、类型筛选。2025年黑龙江物理类普通类：物理+化学1组最低589分/位次7902，物理+化学2组最低576分/位次10565，物理+化学3组最低544分/位次18397，物理+化学4组最低513分/位次27830，物理+生物组最低518分/位次26183，物理不限选科1组最低582分/位次9334，物理不限选科2组最低528分/位次23036。支持分年显示和三年统计对比。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办"
+      },
+      {
+        "title": "各省招生计划及录取分数查询",
+        "url": "https://zsb.neau.edu.cn/f/zsjhAndLqfs/%E9%BB%91%E9%BE%99%E6%B1%9F",
+        "summary": "按省份查询招生计划和历年录取分数，涵盖北京、天津、河北等31个省市。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "《东北农业大学学生转专业、转学管理实施细则》",
+        "url": "https://jwc.neau.edu.cn/info/1242/6083.htm",
+        "summary": "2024年9月修订发布的转专业、转学管理实施细则（东农教字〔2024〕34号），详细规定转专业申请条件、审批流程和时间窗口。",
+        "attachments": [
+          "https://jwc.neau.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1694649426&wbfileid=15112780"
+        ],
+        "publish_date": "2024-09-14",
+        "source_department": "本科生院（教务处）"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "转专业公示信息",
+        "url": "https://jwc.neau.edu.cn/jxyx1/jwxx.htm",
+        "summary": "教务处教学运行板块的教务信息栏目，转专业拟录取名单等相关公示通常在此发布。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生院（教务处）"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "《东北农业大学本科人才按类招生与培养实施办法（暂行）》",
+        "url": "https://jwc.neau.edu.cn/info/1242/3074.htm",
+        "summary": "规定按类招生与培养的实施办法：宽口径两段式培养模式，前一年半统一学习专业类基础平台课程，第3学期根据前2个学期纯智育学分绩排名进行专业选择，第4学期正式进入专业学习。各专业可接受学生人数上限为近三年招生数平均值的1.5倍，下限为30人。学生在校期间仅有一次在所属大类内选择专业的机会。",
+        "attachments": [],
+        "publish_date": "2020-12-16",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "关于2022级按类招生学生专业选择相关事宜的通知",
+        "url": "https://jwc.neau.edu.cn/info/1200/6169.htm",
+        "summary": "2022级按类招生学生专业选择工作通知，包括日程安排、填报要求及各学院专业选择细则。",
+        "attachments": [],
+        "publish_date": "2023-10-23",
+        "source_department": "本科生院（教务处）"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "东北农业大学2025版本科人才培养方案修订工作方案和安排的通知",
+        "url": "https://jwc.neau.edu.cn/info/1200/5815.htm",
+        "summary": "启动2025版本科人才培养方案修订工作，涉及课程体系、学分要求、毕业标准等全面更新。",
+        "attachments": [],
+        "publish_date": "2024-03-01",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "关于编写2021版本科人才培养方案内课程教学大纲的通知",
+        "url": "https://jwc.neau.edu.cn/info/1200/4593.htm",
+        "summary": "2021版本科人才培养方案课程教学大纲编写通知。",
+        "attachments": [],
+        "publish_date": "2021-12-30",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "东北农业大学调整人才培养方案申请表",
+        "url": "https://jwc.neau.edu.cn/info/1200/3340.htm",
+        "summary": "人才培养方案调整申请表格及流程说明。",
+        "attachments": [],
+        "publish_date": "2021-03-03",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "培养方案管理页面",
+        "url": "https://jwc.neau.edu.cn/jxgl1/pyfa.htm",
+        "summary": "教学管理栏目下的培养方案汇总页面，包含历年培养方案修订通知和相关文档。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生院（教务处）"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "《东北农业大学微专业管理办法》",
+        "url": "https://jwc.neau.edu.cn/info/1242/6884.htm",
+        "summary": "2025年9月发布的微专业管理办法，规定微专业的设立条件、学分要求、证书发放等。",
+        "attachments": [],
+        "publish_date": "2025-09-15",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "东北农业大学微专业培养方案制定说明",
+        "url": "https://jwc.neau.edu.cn/info/1200/4708.htm",
+        "summary": "微专业培养方案的制定说明，包括课程设置、学分分配等具体要求。",
+        "attachments": [],
+        "publish_date": "2022-03-23",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "东北农业大学辅修专业人才培养方案制定说明",
+        "url": "https://jwc.neau.edu.cn/info/1200/4709.htm",
+        "summary": "辅修专业人才培养方案的制定说明，涵盖辅修专业设置、学分要求、修读条件及证书类型。",
+        "attachments": [],
+        "publish_date": "2022-03-23",
+        "source_department": "本科生院（教务处）"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "东北农业大学2024届毕业生就业质量报告",
+        "url": "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf",
+        "summary": "2024届毕业生就业质量年度报告，包含毕业生规模、就业率、去向分布（升学、出国、签就业协议等）、薪资水平等信息。",
+        "attachments": [
+          "https://pdf.gk100.com/employment/report/2024/20250412/829cdd8222a81b01.pdf"
+        ],
+        "publish_date": "2025-04-12",
+        "source_department": "就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "东北农业大学2025年接收推免生章程",
+        "url": "https://graduate.neau.edu.cn/info/1146/3975.htm",
+        "summary": "2025年接收优秀应届本科毕业生免试攻读硕士研究生章程：仅全日制学术学位和专业学位学科接收推免生；学硕8000元/年、专硕9000元/年，学制3年；申请人须取得推免生资格并通过教育部推免服务系统报名；复试采用面试或笔试+面试方式，笔试成绩不超过总成绩70%。",
+        "attachments": [
+          "https://graduate.neau.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1652642497&wbfileid=15114875"
+        ],
+        "publish_date": "2024-09-27",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "东北农业大学2025年拟录取免试攻读硕士研究生名单公示",
+        "url": "https://yjs.neau.edu.cn/info/1146/3990.htm",
+        "summary": "2025年通过推免拟录取149名硕士研究生，涵盖农学院、园艺园林学院、动物科学技术学院、动物医学学院、工程学院、生命科学学院、食品学院、经济管理学院、文理学院、公共管理与法学院、电气与信息学院、艺术学院、植物保护学院等13个学院。",
+        "attachments": [],
+        "publish_date": "2024-10-21",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "东北农业大学2025年推荐优秀应届本科毕业生免试攻读研究生学生名单公示",
+        "url": "https://graduate.neau.edu.cn/info/1146/3974.htm",
+        "summary": "2025年获得推免资格的学生名单公示。",
+        "attachments": [],
+        "publish_date": "2024-09-26",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "国家级科研平台",
+        "url": "https://www.neau.edu.cn/kxyj/kypt/gjj.htm",
+        "summary": "5个国家级平台：智慧农场技术与系统全国重点实验室（依托单位之一）、国家乳业工程技术研究中心、国家大豆工程技术研究中心、寒地小浆果开发利用国家地方联合工程研究中心、国家生物育种产教融合创新平台（大豆生物育种领域）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "部委级科研平台",
+        "url": "https://www.neau.edu.cn/kxyj/kypt/bwj.htm",
+        "summary": "包括寒地黑土生境健康国际合作联合实验室、乳品科学教育部重点实验室、大豆生物学教育部重点实验室、寒地粮食作物种质创新与生理生态教育部重点实验室、北方寒区猪智能化繁育与养殖教育部工程研究中心，以及农业农村部多个重点实验室（大豆生物学与遗传育种、园艺作物生物学与种质创制、鸡遗传育种、农业水资源高效利用、生猪养殖设施工程、高效播种收获装备、东北智慧农业技术）和国家市场监督管理总局重点实验室（婴幼儿配方食品）等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "省级科研平台",
+        "url": "https://www.neau.edu.cn/kxyj/kypt/sj.htm",
+        "summary": "包含黑龙江省大豆生物学重点实验室等23个省科技厅重点实验室、3个省级国际合作平台、省发改委重点实验室和工程研究中心，以及哲学社会科学培育实验室等共计46个省级平台。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学技术研究院"
+      },
+      {
+        "title": "东北农业大学赛事成果",
+        "url": "https://jwc.neau.edu.cn/sxsx1/sscg.htm",
+        "summary": "学科竞赛成果汇总：第十届全国大学生物理实验竞赛（创新）获奖、2024年全国大学生数学建模竞赛获奖、2024年美国大学生数学建模竞赛特等奖提名奖等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生院（教务处）"
+      },
+      {
+        "title": "东北农业大学在第十届全国大学生物理实验竞赛（创新）上喜获佳绩",
+        "url": "https://www.neau.edu.cn/info/1041/26927.htm",
+        "summary": "第十届全国大学生物理实验竞赛（创新）获奖情况。",
+        "attachments": [],
+        "publish_date": "2024-12-02",
+        "source_department": "本科生院"
+      },
+      {
+        "title": "东北农业大学在2024年全国大学生数学建模竞赛上喜获佳绩",
+        "url": "https://www.neau.edu.cn/info/1041/26571.htm",
+        "summary": "2024年全国大学生数学建模竞赛获奖情况。",
+        "attachments": [],
+        "publish_date": "2024-11-15",
+        "source_department": "本科生院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "农学院",
+        "url": "https://nxy.neau.edu.cn/",
+        "disciplines": [
+          "农学",
+          "种子科学与工程",
+          "智慧农业",
+          "生物育种技术"
+        ]
+      },
+      {
+        "name": "园艺园林学院",
+        "url": "https://yyxy.neau.edu.cn/",
+        "disciplines": [
+          "园艺学",
+          "园林",
+          "风景园林",
+          "设施农业科学与工程"
+        ]
+      },
+      {
+        "name": "资源与环境学院",
+        "url": "https://zhxy.neau.edu.cn/",
+        "disciplines": [
+          "环境科学与工程",
+          "农业资源与环境",
+          "生态学",
+          "应用气象学"
+        ]
+      },
+      {
+        "name": "农业装备与能源工程学院",
+        "url": "https://gcxy.neau.edu.cn/",
+        "disciplines": [
+          "农业工程",
+          "机械工程",
+          "能源动力类",
+          "工业工程类"
+        ]
+      },
+      {
+        "name": "水利科学与工程学院",
+        "url": "https://slxy.neau.edu.cn/",
+        "disciplines": [
+          "农业水利工程",
+          "水利水电工程",
+          "土木工程",
+          "工程管理",
+          "水文与水资源工程"
+        ]
+      },
+      {
+        "name": "动物科学技术学院",
+        "url": "https://dwkxjsxy.neau.edu.cn/",
+        "disciplines": [
+          "畜牧学",
+          "草学",
+          "水产"
+        ]
+      },
+      {
+        "name": "动物医学学院",
+        "url": "https://dwyxxy.neau.edu.cn/",
+        "disciplines": [
+          "兽医学",
+          "动物药学"
+        ]
+      },
+      {
+        "name": "生命科学学院",
+        "url": "https://smkxxy.neau.edu.cn/",
+        "disciplines": [
+          "生物学",
+          "生物技术",
+          "生物科学",
+          "生物工程"
+        ]
+      },
+      {
+        "name": "食品学院",
+        "url": "https://spxy.neau.edu.cn/",
+        "disciplines": [
+          "食品科学与工程",
+          "食品质量与安全",
+          "粮食工程",
+          "乳品工程",
+          "食品营养与健康"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "https://jjglxy.neau.edu.cn/",
+        "disciplines": [
+          "农林经济管理",
+          "国际经济与贸易",
+          "工商管理",
+          "会计学",
+          "金融学",
+          "市场营销",
+          "保险学",
+          "人力资源管理"
+        ]
+      },
+      {
+        "name": "公共管理与法学院",
+        "url": "https://ggxy.neau.edu.cn/",
+        "disciplines": [
+          "公共管理",
+          "法学",
+          "土地资源管理",
+          "行政管理"
+        ]
+      },
+      {
+        "name": "化学与分子工程学院",
+        "url": "https://wlxy.neau.edu.cn/",
+        "disciplines": [
+          "化学",
+          "应用化学",
+          "化学生物学",
+          "统计学",
+          "数学",
+          "物理学",
+          "汉语国际教育",
+          "英语",
+          "俄语"
+        ]
+      },
+      {
+        "name": "智能科学与工程学院",
+        "url": "https://dqxx.neau.edu.cn/",
+        "disciplines": [
+          "电气工程",
+          "计算机科学与技术",
+          "物联网工程",
+          "数据科学与大数据技术"
+        ]
+      },
+      {
+        "name": "艺术学院",
+        "url": "https://ysxy.neau.edu.cn/",
+        "disciplines": [
+          "设计学",
+          "视觉传达设计",
+          "环境设计",
+          "广播电视编导",
+          "音乐表演"
+        ]
+      },
+      {
+        "name": "植物保护学院",
+        "url": "https://zbxy.neau.edu.cn/",
+        "disciplines": [
+          "植物保护"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://mks.neau.edu.cn/",
+        "disciplines": [
+          "马克思主义理论",
+          "思想政治教育"
+        ]
+      },
+      {
+        "name": "国际文化教育学院",
+        "url": "https://gjxy.neau.edu.cn/",
+        "disciplines": [
+          "汉语国际教育"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "东北农业大学生活体验",
+        "content": "东北农业大学校园环境较好，宿舍多为6人间，有独立卫浴（部分楼）。食堂口味偏东北菜系，价格实惠。学风整体良好，图书馆座位较紧张需要早起占座。冬季漫长寒冷需做好保暖准备。",
+        "source_type": "知乎/贴吧",
+        "source_url": ""
+      }
+    ],
+    "notes": "1. 招生计划为在线查询系统（JS动态渲染），需要通过浏览器交互选择省份/年份/科类/类型后才能查看具体数据，静态爬取无法获取具体计划数字。2. 转专业实施细则全文以PDF附件形式发布，详见attachments字段。3. 就业质量报告PDF来源于第三方平台gk100.com，学校就业信息网(neau.bysjy.com.cn)未直接公示PDF。4. 转专业公示信息通常发布在教务处教学运行-教务信息栏目，未找到专项公示页面。5. 学生经验信息来源有限，官方渠道无相关内容。",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "黑龙江 详细地址：地址：黑龙江省哈尔滨市香坊区长江路600号 邮编：150030 电话：0451-55190419",
+      "address": "地址：黑龙江省哈尔滨市香坊区长江路600号 邮编：150030 电话：0451-55190419",
+      "phone": "0451-55190419",
+      "website": "https://www.neau.edu.cn",
+      "enrollment_website": "https://zsb.neau.edu.cn",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 河南考生603，省位次四万一到四万二，被生物科学录取概率怎样？\nA: 有希望，但不保",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 转专业",
+        "url": "",
+        "summary": "**转专业**\nQ: 老师您好，请问贵校有几次转专业机会?学生转专业有什么成绩要求？是否要求高考成绩高于该专业当年最低录取线？谢谢\nA: 学校现有一次转专业机会，第一学期结束没有补考科目就可以提出转专业申请，考核由专业所在学院负责。具体要求及考核内容请参考《关于开展2024级本科生集中转专业的通知》https://jwc.neau.edu.cn/info/1003/6464.htm",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 志愿",
+        "url": "",
+        "summary": "**志愿**\nQ: 老师您好，安徽586，36743位。请问有希望录取吗\nA: 可以冲下试试",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取概率",
+        "url": "",
+        "summary": "**录取概率**\nQ: 河南文科565适合上哪些专业以及其录取概率\nA: 普通类专业希望不大，工商管理（中美121双学位项目），希望较大，报考前请认真阅读https://zsb.neau.edu.cn/static/mobile/front/neau/basic/html_cms/frontViewArticle.html?id=c887090194514ae1b0697e2983667c6b",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 调剂",
+        "url": "",
+        "summary": "**调剂**\nQ: 请问调剂是所报专业组内未满计划的调剂还是会被调剂到别的专业组里面计划未满的专业？如果我的志愿专业组在我投档之前名额都满了的话，我会被提档吗？\nA: 只能在投档的专业组内调剂，第二个问题不用考虑。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "食品科学与工程类",
+        "score": 5,
+        "votes": 21
+      },
+      {
+        "title": "人力资源管理",
+        "score": 4.7,
+        "votes": 112
+      },
+      {
+        "title": "市场营销",
+        "score": 4.7,
+        "votes": 47
+      },
+      {
+        "title": "农业电气化",
+        "score": 4.6,
+        "votes": 115
+      },
+      {
+        "title": "保险学",
+        "score": 4.6,
+        "votes": 31
+      },
+      {
+        "title": "统计学",
+        "score": 4.6,
+        "votes": 26
+      },
+      {
+        "title": "金融学",
+        "score": 4.6,
+        "votes": 374
+      },
+      {
+        "title": "机械类",
+        "score": 4.6,
+        "votes": 14
+      },
+      {
+        "title": "动物医学",
+        "score": 4.6,
+        "votes": 195
+      },
+      {
+        "title": "会计学",
+        "score": 4.6,
+        "votes": 449
+      }
+    ]
+  }
+}

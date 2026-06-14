@@ -1,0 +1,666 @@
+{
+  "name": "上海外国语大学",
+  "province": "上海",
+  "url": "https://www.shisu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    121.225685,
+    31.047076
+  ],
+  "status": "done",
+  "detail": {
+    "university": "上海外国语大学",
+    "official_url": "https://www.shisu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "2025年上海外国语大学本科招生章程",
+        "url": "http://zhaoban.shisu.edu.cn/00/44/c632a196676/page.htm",
+        "summary": "上海外国语大学2025年本科招生章程，含学校基本情况、招生计划、录取规则、学费标准等。学校为教育部直属全国重点大学、国家双一流建设高校。",
+        "attachments": [
+          "http://zhaoban.shisu.edu.cn/_upload/article/files/98/7e/284d360e45e38f043ed2f81602b9/ea92eb78-927a-4840-a968-605b95d33e78.pdf"
+        ],
+        "publish_date": "2025-05-23",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "2026年上海外国语大学保送生招生简章",
+        "url": "http://zhaoban.shisu.edu.cn/1a/69/c632a203369/page.htm",
+        "summary": "2026年继续招收保送生，选拔培养优秀外语人才。学校外国语言文学获评A+并列全国第一，深入推进多语种+办学战略和跨通融教育改革。",
+        "attachments": [],
+        "publish_date": "2025-12-25",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "2026年上海外国语大学一带一路上海市春季招生简章",
+        "url": "http://zhaoban.shisu.edu.cn/1a/15/c632a203285/page.htm",
+        "summary": "2026年春季招生阿拉伯语专业10人、朝鲜语专业10人，只招高考外语语种为英语的考生。",
+        "attachments": [],
+        "publish_date": "2025-12-22",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "2025年上海外国语大学上海市综合评价录取改革试点招生简章",
+        "url": "http://zhaoban.shisu.edu.cn/fe/32/c632a196146/page.htm",
+        "summary": "2025年上海市综合评价录取改革试点招生简章。",
+        "attachments": [],
+        "publish_date": "2025-05-12",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "2025年上海外国语大学高校专项计划招生简章",
+        "url": "http://zhaoban.shisu.edu.cn/f7/d7/c632a194519/page.htm",
+        "summary": "2025年高校专项计划招生简章，面向边远、贫困、民族等地区县以下高中招收勤奋好学、成绩优良的农村学生。",
+        "attachments": [],
+        "publish_date": "2025-03-31",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "2025年上海外国语大学第二学士学位招生简章",
+        "url": "http://zhaoban.shisu.edu.cn/01/5c/c632a196956/page.htm",
+        "summary": "2025年第二学士学位招生简章，含招生专业、报名条件、录取办法等。",
+        "attachments": [
+          "http://zhaoban.shisu.edu.cn/_upload/article/files/f1/bd/a4b1093b42f69c2f9c8f3a867648/e30c7c66-0615-4519-9709-0679337509a8.pdf"
+        ],
+        "publish_date": "2025-05-29",
+        "source_department": "招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "2025年上海综合改革普通类招生计划",
+        "url": "https://aopress.shisu.edu.cn/zsw/zsjh.html",
+        "summary": "2025年上海综合改革普通类共124人。英语（多元方向）8人、英语（教育）8人、德语（多元方向）6人、法语6人、西班牙语3人、翻译（多元方向）6人、商务英语6人、金融学8人、精算学8人、国际经济与贸易3人、国际经济与贸易（日语）2人、法学10人、外交学3人、外交学（双学位）1人、汉语国际教育2人、新闻传播学类10人、数据科学与大数据技术12人、管理科学与工程类10人、工商管理类6人、会计学6人。最终以教育部和各省公布为准。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "2025年上海综合改革普通类分专业录取分数",
+        "url": "https://aopress.shisu.edu.cn/zsw/lnfs.html",
+        "summary": "2025年上海综合改革普通类：最高580、平均569.8、最低565、控制线505。分专业最低分：新闻传播学类565、法学565、工商管理类565、管理科学与工程类565、汉语国际教育565、精算学566、国际经济与贸易（日语）566、金融学567、国际经济与贸易567、德语567、商务英语567、法语568、会计学569、翻译569、数据科学与大数据技术570、英语（教育）571、西班牙语571、外交学（双学位）572、外交学572、英语（多元方向）573。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于启动2025年度普通全日制本科生转专业工作的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/fc/3d/c6660a195645/page.htm",
+        "summary": "根据《上海外国语大学普通全日制本科生转专业实施办法》开展转专业工作。学生可填报第一、第二两个转专业志愿，由拟转入专业按填报志愿优先级顺序开展录取。工作流程：4月底系统申报→各院系确定拟转出名单并公示→教务处复核→各院系按考核选拔规则考核→校转专业工作领导小组公示名单→学分认定。",
+        "attachments": [],
+        "publish_date": "2025-04-28",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于启动2024年度普通全日制本科生转专业工作的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/c4/c5/c6660a181445/page.htm",
+        "summary": "2024年度本科生转专业工作通知，依据实施办法开展。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于启动2023年度普通全日制本科生转专业工作的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/8c/f1/c6660a167153/page.htm",
+        "summary": "2023年度本科生转专业工作通知。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "关于2025年度春季转专业拟录取学生名单的公示",
+        "url": "http://www.newoaa.shisu.edu.cn/04/90/c6660a197776/page.htm",
+        "summary": "2025年度春季转专业拟录取学生名单公示。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于2024年春季拟录取转专业学生名单的公示",
+        "url": "http://www.newoaa.shisu.edu.cn/cc/96/c6660a183446/page.htm",
+        "summary": "2024年春季拟录取转专业学生名单公示。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于2023年春季拟录取转专业学生名单的公示",
+        "url": "http://www.newoaa.shisu.edu.cn/99/e2/c6660a170466/page.htm",
+        "summary": "2023年春季拟录取转专业学生名单公示。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于2022年拟录取转专业学生名单的公示",
+        "url": "http://www.newoaa.shisu.edu.cn/75/dc/c6660a161244/page.htm",
+        "summary": "2022年拟录取转专业学生名单公示。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "新闻传播学类（卓越国际新闻传播人才计划）",
+        "url": "https://aopress.shisu.edu.cn/zsw/zsjh.html",
+        "summary": "上外部分专业按大类招生，如新闻传播学类（卓越国际新闻传播人才计划）、管理科学与工程类（卓越管理人才计划）、工商管理类（卓越管理人才计划）。大类分流具体规则未在官网公开，通常在入学后由学院另行公布。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      }
+    ],
+    "training_program": [
+      {
+        "title": "关于印发《上海外国语大学本科人才培养方案修订指导意见》的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/f8/60/c6301a129120/page.htm",
+        "summary": "本科人才培养方案修订指导意见，含课程体系、学分要求、毕业标准等总体框架。",
+        "attachments": [],
+        "publish_date": "2020-04-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于制（修）订2025级研究生培养方案的通知",
+        "url": "http://graduate.shisu.edu.cn/04/93/c9595a197779/page.htm",
+        "summary": "2025级研究生培养方案制修订通知，指导各学科制定研究生培养方案。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "上海外国语大学开展新一轮研究生培养方案全面修订工作",
+        "url": "http://graduate.shisu.edu.cn/90/3d/c9595a167997/page.htm",
+        "summary": "研究生培养方案全面修订工作说明。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "全英语授课硕士项目培养方案 比较教育学",
+        "url": "http://graduate.shisu.edu.cn/1d/29/c9595a138537/page.htm",
+        "summary": "全英语授课硕士项目培养方案，比较教育学专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "上海外国语大学本科专业分布情况一览表（2024年更新）",
+        "url": "http://www.newoaa.shisu.edu.cn/ce/97/c6654a118423/page.htm",
+        "summary": "2024年更新版本科专业分布情况一览表。",
+        "attachments": [],
+        "publish_date": "2023-06-21",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "上海外国语大学2026年春季学期松江校区辅修专业教学安排",
+        "url": "http://www.newoaa.shisu.edu.cn/20/3d/c6667a204861/page.htm",
+        "summary": "2026年春季学期松江校区辅修专业教学安排通知。",
+        "attachments": [],
+        "publish_date": "2026-03-09",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2026年春季学期上海外国语大学校内英语双学位双专业缴费通知",
+        "url": "http://www.newoaa.shisu.edu.cn/1b/e4/c6667a203748/page.htm",
+        "summary": "校内英语双学位双专业缴费通知。上外提供英语双学位/双专业项目供非英语专业学生修读。",
+        "attachments": [],
+        "publish_date": "2026-01-14",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2026年春季学期上海外国语大学松江校区跨校辅修开学及缴费通知",
+        "url": "http://www.newoaa.shisu.edu.cn/1b/e3/c6667a203747/page.htm",
+        "summary": "松江大学城跨校辅修开学及缴费通知，上外参与上海松江大学城跨校辅修项目。",
+        "attachments": [],
+        "publish_date": "2026-01-14",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2025年上海外国语大学松江校区跨校辅修专业拟录取名单公示",
+        "url": "http://www.newoaa.shisu.edu.cn/07/6c/c6667a198508/page.htm",
+        "summary": "2025年松江校区跨校辅修拟录取名单公示。",
+        "attachments": [],
+        "publish_date": "2025-06-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2025年上海外国语大学虹口校区跨校辅修专业拟录取名单公示",
+        "url": "http://www.newoaa.shisu.edu.cn/07/6d/c6667a198509/page.htm",
+        "summary": "2025年虹口校区跨校辅修拟录取名单公示。",
+        "attachments": [],
+        "publish_date": "2025-06-30",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "上海外国语大学2021届毕业生就业质量报告",
+        "url": "https://career.shisu.edu.cn/2022/01/07/22010710434057223.html",
+        "summary": "权威发布上海外国语大学2021届毕业生就业质量报告，全面分析毕业生就业特点及发展趋势。",
+        "attachments": [
+          "https://career.shisu.edu.cn/upload/20220107/22010710431245711689.pdf"
+        ],
+        "publish_date": "2022-01-07",
+        "source_department": "学生就业创业服务中心"
+      },
+      {
+        "title": "上海外国语大学2019届毕业生就业质量报告",
+        "url": "https://career.shisu.edu.cn/2020/01/15/20011516230981913.html",
+        "summary": "2019届毕业生就业质量报告，全面客观分析毕业生就业特点及发展趋势。",
+        "attachments": [
+          "http://career.shisu.edu.cn/upload/20200115/20011516223821010585.pdf"
+        ],
+        "publish_date": "2020-01-15",
+        "source_department": "学生就业创业服务中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "关于推荐2026年优秀本科应届毕业生免试攻读硕士学位研究生工作的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/0b/8d/c6661a199565/page.htm",
+        "summary": "2026年推免工作通知，推荐优秀本科应届毕业生免试攻读硕士学位研究生。",
+        "attachments": [],
+        "publish_date": "2025-09-03",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于推荐2024年优秀本科应届毕业生免试攻读硕士学位研究生工作的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/a7/83/c6661a173955/page.htm",
+        "summary": "2024年推免工作通知。",
+        "attachments": [],
+        "publish_date": "2023-09-15",
+        "source_department": "教务处"
+      },
+      {
+        "title": "上海外国语大学关于推荐2023届优秀本科毕业生免试攻读研究生拟推荐名单公示",
+        "url": "http://www.newoaa.shisu.edu.cn/6f/ee/c6661a159726/page.htm",
+        "summary": "2023届推免拟推荐名单公示。",
+        "attachments": [],
+        "publish_date": "2022-09-26",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于推荐2022年优秀本科应届毕业生免试攻读硕士学位研究生工作的通知",
+        "url": "http://www.newoaa.shisu.edu.cn/38/aa/c6661a145578/page.htm",
+        "summary": "2022年推免工作通知。",
+        "attachments": [],
+        "publish_date": "2021-09-10",
+        "source_department": "教务处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "脑机协同信息行为教育部重点实验室",
+        "url": "https://bmib.shisu.edu.cn",
+        "summary": "教育部重点实验室，开展脑机协同信息行为前沿研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研处"
+      },
+      {
+        "title": "脑机协同信息行为上海市重点实验室",
+        "url": "http://bi-ai.shisu.edu.cn",
+        "summary": "上海市重点实验室，聚焦脑机智能与信息行为交叉研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研处"
+      },
+      {
+        "title": "语言科学研究院",
+        "url": "https://ilas.shisu.edu.cn",
+        "summary": "上外语言科学研究院，开展语言学前沿研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "中阿改革发展研究中心",
+        "url": "http://carc.shisu.edu.cn",
+        "summary": "中阿改革发展研究中心，服务中阿改革发展与交流合作。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "上海全球治理与区域国别研究院",
+        "url": "http://saggas.shisu.edu.cn",
+        "summary": "全球治理与区域国别研究院，聚焦全球治理与区域国别研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "中国外语战略研究中心",
+        "url": "http://www.cclpps.shisu.edu.cn",
+        "summary": "国家语委科研机构，开展中国外语战略研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "语料库研究院",
+        "url": "http://corpus.shisu.edu.cn",
+        "summary": "语料库研究院，开展语料库语言学及应用研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "上外-科大讯飞智能口笔译联合实验室",
+        "url": "http://www.giit.shisu.edu.cn/laiti/laiti.html",
+        "summary": "上海外国语大学与科大讯飞联合建立的智能口笔译实验室，推动AI翻译技术发展。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "人工智能数据工程中心",
+        "url": "http://aidc.shisu.edu.cn",
+        "summary": "人工智能数据工程研究中心。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      },
+      {
+        "title": "中东研究所",
+        "url": "http://mideast.shisu.edu.cn",
+        "summary": "教育部区域和国别研究培育基地，开展中东地区研究。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": ""
+      }
+    ],
+    "colleges": [
+      {
+        "name": "卓越学院",
+        "url": "http://www.honors.shisu.edu.cn",
+        "disciplines": [
+          "外国语言文学",
+          "跨学科"
+        ]
+      },
+      {
+        "name": "英语学院",
+        "url": "https://ses.shisu.edu.cn",
+        "disciplines": [
+          "英语语言文学",
+          "翻译"
+        ]
+      },
+      {
+        "name": "东方语学院",
+        "url": "http://www.saas.shisu.edu.cn",
+        "disciplines": [
+          "阿拉伯语语言文学",
+          "日语语言文学",
+          "朝鲜语语言文学",
+          "波斯语语言文学",
+          "泰语",
+          "越南语",
+          "印尼语"
+        ]
+      },
+      {
+        "name": "西方语系",
+        "url": "http://www.selas.shisu.edu.cn",
+        "disciplines": [
+          "西班牙语语言文学",
+          "葡萄牙语",
+          "意大利语",
+          "希腊语",
+          "荷兰语"
+        ]
+      },
+      {
+        "name": "日本文化经济学院",
+        "url": "http://www.sjs.shisu.edu.cn",
+        "disciplines": [
+          "日语语言文学"
+        ]
+      },
+      {
+        "name": "俄罗斯东欧中亚学院",
+        "url": "http://www.sres.shisu.edu.cn",
+        "disciplines": [
+          "俄语语言文学",
+          "乌克兰语",
+          "哈萨克语",
+          "波兰语",
+          "捷克语",
+          "匈牙利语"
+        ]
+      },
+      {
+        "name": "法语系",
+        "url": "http://www.sffs.shisu.edu.cn",
+        "disciplines": [
+          "法语语言文学"
+        ]
+      },
+      {
+        "name": "德语系",
+        "url": "http://www.sgs.shisu.edu.cn",
+        "disciplines": [
+          "德语语言文学"
+        ]
+      },
+      {
+        "name": "新闻传播学院",
+        "url": "http://sjc.shisu.edu.cn",
+        "disciplines": [
+          "新闻传播学",
+          "广播电视学",
+          "广告学",
+          "网络与新媒体"
+        ]
+      },
+      {
+        "name": "国际教育学院",
+        "url": "http://soe.shisu.edu.cn",
+        "disciplines": [
+          "教育学",
+          "汉语国际教育"
+        ]
+      },
+      {
+        "name": "国际金融贸易学院",
+        "url": "https://sef.shisu.edu.cn",
+        "disciplines": [
+          "金融学",
+          "国际经济与贸易",
+          "经济学"
+        ]
+      },
+      {
+        "name": "国际工商管理学院",
+        "url": "https://sbm.shisu.edu.cn",
+        "disciplines": [
+          "工商管理",
+          "会计学",
+          "管理科学与工程",
+          "信息管理与信息系统"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "http://www.law.shisu.edu.cn",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "国际关系与公共事务学院",
+        "url": "http://www.sirpa.shisu.edu.cn",
+        "disciplines": [
+          "政治学",
+          "外交学",
+          "国际关系"
+        ]
+      },
+      {
+        "name": "语言科学研究院",
+        "url": "https://ilas.shisu.edu.cn",
+        "disciplines": [
+          "语言学",
+          "计算语言学"
+        ]
+      },
+      {
+        "name": "高级翻译学院",
+        "url": "http://www.giit.shisu.edu.cn",
+        "disciplines": [
+          "翻译学",
+          "口译",
+          "笔译"
+        ]
+      },
+      {
+        "name": "中文学院/国际文化交流学院",
+        "url": "http://www.scse.shisu.edu.cn",
+        "disciplines": [
+          "中国语言文学",
+          "汉语国际教育"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://www.fss.shisu.edu.cn",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "上外转专业经验",
+        "content": "上外转专业一般在每年4月底启动，学生可填报两个志愿。各院系有各自的考核选拔规则，通常包含笔试和面试。英语类专业竞争较激烈，非通用语种相对容易。转出需满足原院系转出条件，转入需通过目标院系考核。",
+        "source_type": "综合网络信息",
+        "source_url": ""
+      },
+      {
+        "topic": "上外保研推免经验",
+        "content": "上外推免一般在9月初启动，依据《上海外国语大学推荐优秀本科应届毕业生免试攻读硕士学位研究生工作实施办法》。主要考察学业成绩、竞赛获奖、科研成果等综合指标。外语类竞赛（如外研社杯）获奖是重要加分项。",
+        "source_type": "综合网络信息",
+        "source_url": ""
+      }
+    ],
+    "notes": "1. 大类分流规则未在官网公开专门文件，上外部分专业按大类招生（如新闻传播学类、管理科学与工程类、工商管理类），分流规则由各学院另行公布。2. 就业质量报告在就业创业服务网发布，近年报告（2022-2024届）PDF链接可能已更新但未被搜索引擎收录。3. 招生计划和历年分数系统为SPA动态渲染，数据通过交互筛选获取，已通过playwright提取。4. 学院列表不含继续教育学院、教育部出国留学人员培训部、海外合作学院、体育教学部等非学历教育或教学辅助单位。",
+    "missing_categories": [
+      "major_streaming"
+    ],
+    "basic_info": {
+      "location": "上海 详细地址：上海市松江区文翔路1550号",
+      "address": "上海市松江区文翔路1550号",
+      "phone": "021-55386006,55383668",
+      "website": "http://www.shisu.edu.cn/",
+      "enrollment_website": "https://admissions.shisu.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 录取概率",
+        "url": "",
+        "summary": "**录取概率**\nQ: 贵州省文史类1638 是否有望录贵校法学\nA: 分数不错，有希望，建议填第一志愿，感兴趣的专业往前填，如果组内志愿填满基本零调剂",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 选择了03专业组16、17专业",
+        "url": "",
+        "summary": "**选择了03专业组16、17专业**\nQ: 老师您好，3+2/3.5+1连读项目出国后费用是否与原收费不一样？\nA: 是的，会有国外学习生活费用，入校后会有介绍，根据自己需求自主选择，非强制",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 山东提前批",
+        "url": "",
+        "summary": "**山东提前批**\nQ: 本人603文科，位次23000，麻烦问下阿拉伯语，朝鲜语等还有其他小语种录取概率大吗，谢谢\nA: 分数不错，可以冲一下",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取问题",
+        "url": "",
+        "summary": "**录取问题**\nQ: 河南政史地位次1832-1923可以报本校的提前批或者普通批吗？录取概率大吗？\nA: 分数不错，希望很大，建议填第一志愿",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 请问四川今年的招生计划是多少？",
+        "url": "",
+        "summary": "**请问四川今年的招生计划是多少？**\nQ: 四川史地政584分能录取吗？\nA: 提前批6个计划，国家专项6个，本科批9个计划，你的分数可以冲一下，提前批和国家专项希望大一些",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "日语",
+        "score": 4.4,
+        "votes": 36
+      },
+      {
+        "title": "翻译",
+        "score": 4.4,
+        "votes": 30
+      },
+      {
+        "title": "法语",
+        "score": 4.4,
+        "votes": 23
+      },
+      {
+        "title": "英语",
+        "score": 4.4,
+        "votes": 90
+      },
+      {
+        "title": "西班牙语",
+        "score": 4.1,
+        "votes": 13
+      },
+      {
+        "title": "阿拉伯语",
+        "score": 4.1,
+        "votes": 19
+      },
+      {
+        "title": "俄语",
+        "score": 4.1,
+        "votes": 24
+      },
+      {
+        "title": "新闻学",
+        "score": 4,
+        "votes": 12
+      },
+      {
+        "title": "朝鲜语",
+        "score": 4,
+        "votes": 17
+      },
+      {
+        "title": "会计学",
+        "score": 4,
+        "votes": 19
+      }
+    ]
+  }
+}

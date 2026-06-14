@@ -1,0 +1,542 @@
+{
+  "name": "石河子大学",
+  "province": "新疆",
+  "url": "https://www.shzu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    86.057313,
+    44.307031
+  ],
+  "status": "done",
+  "detail": {
+    "university": "石河子大学",
+    "official_url": "https://www.shzu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "石河子大学2025年本专科招生章程",
+        "url": "https://zsb.shzu.edu.cn/14124/list.htm",
+        "summary": "学校标识码4165010759，国家公办全日制普通高等学校，国家双一流建设高校。面向全国31个省份招生，具有学士、硕士和博士学位授予权。顺序志愿调档比例不超过120%，平行志愿不超过105%。专业录取以分数优先为原则，不设专业志愿分数级差。学费标准：理工类农科3000元/年、理工类其他3500元/年、文科类3100元/年、医学类4000元/年、艺术类7800元/年、软件工程(NIIT)12000元/年。住宿费800-1000元/年。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "石河子大学招生办公室"
+      },
+      {
+        "title": "石河子大学2025年招生简章",
+        "url": "https://zsb.shzu.edu.cn/2025/0703/c14104a226567/page.htm",
+        "summary": "2025年本科招生简章，涵盖招生政策概述和专业介绍。",
+        "attachments": [],
+        "publish_date": "2025-07-03",
+        "source_department": "石河子大学招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "石河子大学2024年本科招生计划",
+        "url": "https://gaokao.chsi.com.cn/gkxx/zbzrft/zx/202406/20240618/2293298289.html",
+        "summary": "2024年石河子大学面向全国31个省（自治区、直辖市）招生，投放本科招生计划5930人，较2023年增加170人；新增智慧水利、生物育种科学、数字经济、哈萨克语4个本科专业和软件工程（NIIT）校企联合培养方向班。",
+        "attachments": [],
+        "publish_date": "2024-06-18",
+        "source_department": "石河子大学招生办公室"
+      },
+      {
+        "title": "2025年各省招生专业选考科目要求",
+        "url": "https://zsb.shzu.edu.cn/zszc/list.htm",
+        "summary": "发布了广东、青海、宁夏、山西、内蒙古、陕西、云南、河南、四川、贵州、黑龙江、吉林等省份2025年招生专业选考科目（3+1+2模式）要求。",
+        "attachments": [],
+        "publish_date": "2025-06-19",
+        "source_department": "石河子大学招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "石河子大学历年录取信息查询系统",
+        "url": "https://zsbxcx.shzu.edu.cn/InThePastThreeYearsAdmissionInfo",
+        "summary": "提供2022-2024年各省各专业录取分数线、最低分位次查询。支持按省份、年份、科类、计划类别筛选。例如2024年北京综合改革：经济学类最低513分(位次29317)、数字经济最低521分、临床医学最低535分、计算机类最低563分(位次18175)、口腔医学最低536分等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "石河子大学招生办公室"
+      },
+      {
+        "title": "历年录取数据查询（招生网）",
+        "url": "http://202.201.164.73/release-page/overyears?key=7d84af99e64a5d516ef68fd2",
+        "summary": "历年录取分数查询平台，可按省份、年份、科类等条件筛选查看详细录取数据。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "石河子大学招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于做好石河子大学2024-2025学年第一学期转专业工作的通知",
+        "url": "https://jwc.shzu.edu.cn/2024/0628/c12115a205019/page.htm",
+        "summary": "依据《石河子大学普通本科学生转专业管理办法》(石大校发〔2023〕2号)。转专业范围：普通本科在校学生。学生在学习期间对其他专业有兴趣和专长的可申请转专业。学业困难学生提出转专业申请应做到应转尽转。每学期开学后两周内完成，申请→转出学院审核→转入学院考核→公示→教务处审批。转入学院组织资格审核和考核，按公平公正公开原则择优录取。",
+        "attachments": [
+          "https://jwc.shzu.edu.cn/_upload/article/files/c5/47/aad7814c4d73bdcc3f4f0c986d59/5494d7c9-2bc4-4f7d-b24d-44cbdbb8fdab.xls",
+          "https://jwc.shzu.edu.cn/_upload/article/files/c5/47/aad7814c4d73bdcc3f4f0c986d59/e57ecc1c-8a2c-4ca1-a6a0-cb34546f094c.doc",
+          "https://jwc.shzu.edu.cn/_upload/article/files/c5/47/aad7814c4d73bdcc3f4f0c986d59/a4474f58-f66f-41fb-91fc-d4d252e5fd50.xlsx"
+        ],
+        "publish_date": "2024-06-28",
+        "source_department": "教务处"
+      },
+      {
+        "title": "转专业（本专科）申请审批表",
+        "url": "https://jwc.shzu.edu.cn/zzy_12132/list.htm",
+        "summary": "提供转专业申请审批表下载（学期开学第1周申请）。",
+        "attachments": [
+          "https://jwc.shzu.edu.cn/_upload/article/files/0a/4f/29a6c7ba4daf97e1795aa2c19037/8dd72b29-1503-45c6-a4f7-40cf23b72c28.doc"
+        ],
+        "publish_date": "",
+        "source_department": "教务处学籍管理科"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [],
+    "training_program": [
+      {
+        "title": "石河子大学各学院本科人才培养方案",
+        "url": "https://jwc.shzu.edu.cn/rcpy/list.htm",
+        "summary": "教务处网站分学院提供培养方案链接，涵盖经济与管理学院、法学院、外国语学院、文学艺术学院、商学院、体育学院、师范学院、生命科学学院、食品学院、医学院、药学院、农学院、动物科技学院、马克思主义学院、机械电气工程学院、水利建筑工程学院、信息科学与技术学院、化学化工学院、理学院共19个学院。以2022版本科人才培养方案为主。",
+        "attachments": [],
+        "publish_date": "2023-05-30",
+        "source_department": "教务处"
+      },
+      {
+        "title": "经济与管理学院2022版本科人才培养方案",
+        "url": "https://sem.shzu.edu.cn/rcpyfa/list.htm",
+        "summary": "经济与管理学院2022版本科人才培养方案，含各专业课程体系及学分要求。",
+        "attachments": [],
+        "publish_date": "2023-05-30",
+        "source_department": "经济与管理学院"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "关于开展2024年辅修专业招生工作的通知",
+        "url": "https://jwc.shzu.edu.cn/2024/0522/c12116a203009/page.htm",
+        "summary": "招生对象：2023级全日制普通本科生。招生专业：法学、英语、俄语、阿拉伯语。报名条件：无考试违纪作弊记录，主修专业第一年修满全部课程且无不及格记录，GPA≥2.0；只能修读一个辅修专业，原则上与主修专业属不同学科门类。辅修按学分收费，根据《石河子大学学分制收费管理办法》执行。",
+        "attachments": [
+          "https://jwc.shzu.edu.cn/_upload/article/files/84/62/bdc4c7f74b04ad6235cba6784373/d148f219-d2f2-46d5-97d7-e520e3db2b55.docx",
+          "https://jwc.shzu.edu.cn/_upload/article/files/84/62/bdc4c7f74b04ad6235cba6784373/aa70c748-1f06-4c70-8dbf-abb0a21928dc.docx"
+        ],
+        "publish_date": "2024-05-22",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "石河子大学2020届本专科毕业生就业质量年度报告",
+        "url": "http://scc.shzu.edu.cn/news/view/aid/327707/tag/",
+        "summary": "2020届本专科毕业生就业质量年度报告，由学校就业指导中心发布。",
+        "attachments": [],
+        "publish_date": "2021-01-19",
+        "source_department": "石河子大学就业指导中心"
+      },
+      {
+        "title": "石河子大学2022-2023学年本科教学质量报告（含就业数据）",
+        "url": "https://app.gaokaozhitongche.com/newsguide/h/wgwMrqEN",
+        "summary": "2022-2023学年本科教学质量报告，含就业率、升学人数等数据。报告数据截至2023年8月，就业率为初次就业率，年终就业率和升学人数会有明显提升。",
+        "attachments": [],
+        "publish_date": "2024-03-20",
+        "source_department": "石河子大学"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "石河子大学2026年推荐优秀应届本科毕业生免试攻读研究生实施办法",
+        "url": "https://yz.shzu.edu.cn/2025/0908/c6960a223350/page.htm",
+        "summary": "2026年推免实施办法，规定了推免生的遴选条件、名额分配、审核流程等。依据教育部和兵团教育局相关规定制定。",
+        "attachments": [],
+        "publish_date": "2025-09-08",
+        "source_department": "石河子大学研究生处"
+      },
+      {
+        "title": "石河子大学2026年接收优秀应届本科毕业生免试攻读研究生（含直博生）章程",
+        "url": "https://yz.shzu.edu.cn/2025/0916/c6960a223957/page.htm",
+        "summary": "2026年接收推免生（含直博生）章程，规定了接收条件、专业、复试录取等流程。",
+        "attachments": [],
+        "publish_date": "2025-09-08",
+        "source_department": "石河子大学研究生处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "石河子大学本科生学科竞赛组织管理办法（试行）",
+        "url": "https://jwc.shzu.edu.cn/xkjs/list.htm",
+        "summary": "石河子大学本科生学科竞赛组织管理办法（试行），规定了学科竞赛的认定、组织、奖励等管理规则。",
+        "attachments": [
+          "https://jwc.shzu.edu.cn/_upload/article/files/5b/08/a118b6d04a05a26088357ff74918/05649780-2bca-46e7-9b41-bb0e232c7e3a.pdf"
+        ],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "石河子大学科技创新平台名录（国家级、省部级共91个平台）",
+        "url": "https://www.shzu.edu.cn/6161/list.htm",
+        "summary": "学校拥有91个国家和省部级科技创新平台。包括：3个院士工作站（张献龙、李校堃、李天来）、2个国际科技合作基地、2个全国重点实验室新疆基地、2个教育部重点实验室、3个教育部工程研究中心、3个教育部协同创新中心、3个国家发改委工程实验室（工程研究中心）、2个农业农村部重点实验室、1个国家卫健委重点实验室、4个国家临床医学研究中心分中心、4个兵团2011协同创新中心、3个兵团工程实验室、19个兵团重点实验室、6个兵团技术创新中心、14个兵团临床医学研究中心、2个兵团工程技术研究中心、3个兵团国际科技合作基地、12个人文社科类平台。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "石河子大学"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "化学化工学院",
+        "url": "http://hgxy.shzu.edu.cn",
+        "disciplines": [
+          "化学工程与技术",
+          "化学",
+          "材料科学与工程",
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "机械电气工程学院",
+        "url": "http://jdxy.shzu.edu.cn",
+        "disciplines": [
+          "机械工程",
+          "农业工程",
+          "电子信息工程",
+          "工业工程"
+        ]
+      },
+      {
+        "name": "水利建筑工程学院",
+        "url": "http://sjxy.shzu.edu.cn",
+        "disciplines": [
+          "水利工程",
+          "土木工程",
+          "建筑学"
+        ]
+      },
+      {
+        "name": "食品学院",
+        "url": "http://spxy.shzu.edu.cn",
+        "disciplines": [
+          "食品科学与工程",
+          "食品质量与安全",
+          "葡萄与葡萄酒工程"
+        ]
+      },
+      {
+        "name": "信息科学与技术学院（网络空间安全学院）",
+        "url": "http://cs.shzu.edu.cn",
+        "disciplines": [
+          "计算机科学与技术",
+          "网络空间安全",
+          "软件工程",
+          "数据科学与大数据技术"
+        ]
+      },
+      {
+        "name": "农学院",
+        "url": "http://nxy.shzu.edu.cn",
+        "disciplines": [
+          "作物学",
+          "植物保护",
+          "园艺学",
+          "农业资源与环境",
+          "林学",
+          "园林",
+          "智慧农业"
+        ]
+      },
+      {
+        "name": "动物科技学院",
+        "url": "http://dkxy.shzu.edu.cn",
+        "disciplines": [
+          "畜牧学",
+          "兽医学"
+        ]
+      },
+      {
+        "name": "医学院",
+        "url": "http://yixy.shzu.edu.cn",
+        "disciplines": [
+          "基础医学",
+          "临床医学",
+          "护理学",
+          "预防医学",
+          "口腔医学",
+          "医学影像学",
+          "医学检验技术",
+          "康复治疗学"
+        ]
+      },
+      {
+        "name": "药学院",
+        "url": "http://yaoxy.shzu.edu.cn",
+        "disciplines": [
+          "药学",
+          "中药学",
+          "制药工程",
+          "临床药学"
+        ]
+      },
+      {
+        "name": "生命科学学院",
+        "url": "http://skxy.shzu.edu.cn",
+        "disciplines": [
+          "生物学",
+          "生物技术",
+          "生物育种科学"
+        ]
+      },
+      {
+        "name": "理学院",
+        "url": "http://lxy.shzu.edu.cn",
+        "disciplines": [
+          "数学",
+          "物理学",
+          "地理学",
+          "信息与计算科学"
+        ]
+      },
+      {
+        "name": "经济与管理学院",
+        "url": "http://sem.shzu.edu.cn",
+        "disciplines": [
+          "应用经济学",
+          "工商管理",
+          "管理科学与工程",
+          "理论经济学"
+        ]
+      },
+      {
+        "name": "师范学院",
+        "url": "http://sfxy.shzu.edu.cn",
+        "disciplines": [
+          "教育学",
+          "心理学",
+          "小学教育",
+          "学前教育"
+        ]
+      },
+      {
+        "name": "文学艺术学院（新闻传播学院）",
+        "url": "http://art.shzu.edu.cn",
+        "disciplines": [
+          "中国语言文学",
+          "新闻传播学",
+          "美术学",
+          "音乐与舞蹈学",
+          "设计学",
+          "历史学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://mksxy.shzu.edu.cn",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "http://zfxy.shzu.edu.cn",
+        "disciplines": [
+          "法学",
+          "政治学",
+          "社会学",
+          "应急管理"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://wyxy.shzu.edu.cn",
+        "disciplines": [
+          "外国语言文学",
+          "英语",
+          "俄语",
+          "波斯语"
+        ]
+      },
+      {
+        "name": "体育学院",
+        "url": "http://tyxy.shzu.edu.cn/",
+        "disciplines": [
+          "体育学",
+          "体育教育",
+          "运动训练"
+        ]
+      },
+      {
+        "name": "商学院",
+        "url": "",
+        "disciplines": [
+          "工商管理",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "继续教育学院",
+        "url": "http://sce.shzu.edu.cn/",
+        "disciplines": []
+      },
+      {
+        "name": "能源与材料学院",
+        "url": "https://ncxy.shzu.edu.cn/",
+        "disciplines": [
+          "电气工程",
+          "能源与动力工程",
+          "材料科学与工程",
+          "储能科学与工程"
+        ]
+      },
+      {
+        "name": "城市与环境学院",
+        "url": "",
+        "disciplines": [
+          "地理学",
+          "环境科学与工程",
+          "城乡规划学"
+        ]
+      },
+      {
+        "name": "公共卫生学院",
+        "url": "https://ggwsxy.shzu.edu.cn/",
+        "disciplines": [
+          "公共卫生与预防医学"
+        ]
+      },
+      {
+        "name": "临床医学院",
+        "url": "https://www.sdyfy.com.cn/edu/index.html",
+        "disciplines": [
+          "临床医学"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "石河子大学转专业经验",
+        "content": "据知乎用户分享，石河子大学转专业以面试为主，每学期有一次转专业机会（第一学期和第二学期均可申请）。各学院公布的拟接收转入人数不同，例如化学专业（师范类）接收转入人数约2人。转专业相对灵活，但热门专业竞争较大。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/1948904562292401786"
+      },
+      {
+        "topic": "石河子大学双学位/辅修经验",
+        "content": "据百度贴吧用户分享，石河子大学双学位需先取得第一学士学位，在规定时间内修完第二学士学位专业全部课程并取得学分。辅修专业如法学、英语、俄语、阿拉伯语，报名需满足GPA≥2.0且无不及格记录。辅修按学分收费。",
+        "source_type": "百度贴吧",
+        "source_url": "https://tieba.baidu.com/p/8666415563"
+      },
+      {
+        "topic": "石河子大学考研/保研经验",
+        "content": "据知乎用户分享，石河子大学具有保研资格，推免生可选择免试攻读硕士或直博。保研条件依据推免实施办法执行，主要参考学业成绩和综合素质。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/337231258"
+      }
+    ],
+    "notes": "1. 招生计划：仅找到2024年总计划5930人的信息，未找到2025年具体分省分专业计划表。2. 历年录取：学校提供了完善的线上查询系统（2022-2024年），但无法提取所有省份数据，已提供查询链接。3. 就业质量报告：学校就业网站仅公开了2020届报告，最新报告可能需登录查看或通过第三方平台获取。4. 转专业公示：各学院自行公示，教务处网站未集中展示。5. 大类分流：石河子大学招生专业多数为具体专业而非大类，未找到专门的大类分流规则文件。6. 培养方案：各学院培养方案分散在各学院网站，教务处提供链接汇总。",
+    "missing_categories": [
+      "transfer_announcement",
+      "major_streaming"
+    ],
+    "basic_info": {
+      "location": "新疆 详细地址：通讯地址 新疆石河子市北四路221号 石河子大学招生办公室 邮政编码：832003 咨询电话 日常咨询 0993-2092827 0993-2057933（传真） 志愿填报及录取期间咨询电话 0993-2092827 0993-2055960 0993-2055970 微信公众号、抖音、QQ 微信公众号&nbsp; 石河子大学本科招生 &nbsp; 石河子大学官方抖音账号 石河子大学本科招生 咨询QQ群 QQ群号：287255317",
+      "address": "通讯地址 新疆石河子市北四路221号 石河子大学招生办公室 邮政编码：832003 咨询电话 日常咨询 0993-2092827 0993-2057933（传真） 志愿填报及录取期间咨询电话 0993-2092827 0993-2055960 0993-2055970 微信公众号、抖音、QQ 微信公众号&nbsp; 石河子大学本科招生 &nbsp; 石河子大学官方抖音账号 石河子大学本科招生 咨询QQ群 QQ群号：287255317",
+      "phone": "0993-2092827",
+      "website": "https://www.shzu.edu.cn",
+      "enrollment_website": "https://zsb.shzu.edu.cn",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 2025招生会计学（创新拔尖班）有关问题咨询",
+        "url": "",
+        "summary": "**2025招生会计学（创新拔尖班）有关问题咨询**\nQ: 1、该专业对英语单课成绩有要求吗？ 2、该专业是否是英语授课？还是可以选择中文或英文？如果是英文授课听不懂怎么办？ 3、贵校的会计学（创新拔尖班）和会计学有啥区别？ 4、会计学（创新拔尖班）比会计学录取分数大概会高多少？ 谢谢！\nA: 1. 没有",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 专业调剂问题",
+        "url": "",
+        "summary": "**专业调剂问题**\nQ: 请问贵校在专业调剂时是否会将考生调剂到身体条件不允许的专业？\nA: 调剂专业的时候也会参照你的体检结果，不会将你调到体检不符合的专业",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 调剂",
+        "url": "",
+        "summary": "**调剂**\nQ: 如果提档成功，但所报专业招满，需要调剂的话会打电话通知考生告知其即将被调剂到某个专业吗\nA: 报考志愿时服从调剂，若专业志愿都不满足录取条件的会被自动调剂到其他未录满的专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取，转专业，退档",
+        "url": "",
+        "summary": "**录取，转专业，退档**\nQ: 你好，新疆文科 490 分位次 2314 服从调剂有被贵校录取的机会吗？请问贵校转专业有什么要求，服从调剂会被退档吗\nA: 1.分数详情请登录“石河子大学本科招生”官网查看历年分数及省排位进行参考 ！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 文科录取",
+        "url": "",
+        "summary": "**文科录取**\nQ: 陕西文科省排名30406，请问有望录取吗\nA: 分数详情请登录“石河子大学本科招生”官网查看历年分数及省排位进行参考 ！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "体育教育",
+        "score": 4.8,
+        "votes": 13
+      },
+      {
+        "title": "工商管理类",
+        "score": 4.7,
+        "votes": 23
+      },
+      {
+        "title": "口腔医学",
+        "score": 4.6,
+        "votes": 12
+      },
+      {
+        "title": "临床医学",
+        "score": 4.6,
+        "votes": 31
+      },
+      {
+        "title": "会计学",
+        "score": 4.5,
+        "votes": 158
+      },
+      {
+        "title": "经济统计学",
+        "score": 4.5,
+        "votes": 16
+      },
+      {
+        "title": "财务管理",
+        "score": 4.5,
+        "votes": 119
+      },
+      {
+        "title": "运动训练",
+        "score": 4.5,
+        "votes": 58
+      },
+      {
+        "title": "药学",
+        "score": 4.4,
+        "votes": 49
+      },
+      {
+        "title": "体育教育",
+        "score": 4.4,
+        "votes": 102
+      }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/Textarea";
 import { createFutureRunFromClient, fetchFutureRunsFromClient } from "@/lib/future/client";
 import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
 import type { School } from "@/lib/data";
+import { fetchSchoolDetail, mergeSchoolDetail } from "@/lib/school-details";
 import { PROVINCE_COORDS } from "@/lib/provinces";
 import { FuturePanel, FutureShell, SectionHeading } from "./FutureShell";
 import { FutureLoading } from "./FutureLoading";
@@ -81,7 +82,7 @@ function FuturePageContent() {
     let cancelled = false;
     async function loadSchools() {
       try {
-        const res = await fetch("/data/schools.json");
+        const res = await fetch("/data/schools-index.json");
         const raw = await res.json();
         if (!cancelled) setSchools(raw.schools || []);
       } catch {
@@ -124,6 +125,25 @@ function FuturePageContent() {
     () => schools.find((item) => item.name === targetSchool) || null,
     [schools, targetSchool],
   );
+
+  useEffect(() => {
+    if (!selectedSchool || selectedSchool.detail) return;
+    let cancelled = false;
+
+    fetchSchoolDetail(selectedSchool.name)
+      .then((detailSchool) => {
+        if (cancelled || !detailSchool) return;
+        setSchools((current) => mergeSchoolDetail(current, detailSchool));
+      })
+      .catch(() => {
+        // 详情只用于城市和专业候选，失败不阻断表单填写。
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedSchool]);
+
   const cityOptions = useMemo(() => {
     const values = schools.map((item) => extractCity(item)).filter(Boolean);
     return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b, "zh-Hans-CN"));

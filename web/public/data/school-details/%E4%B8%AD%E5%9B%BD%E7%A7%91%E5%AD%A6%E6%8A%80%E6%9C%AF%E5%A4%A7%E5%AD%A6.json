@@ -1,0 +1,480 @@
+{
+  "name": "中国科学技术大学",
+  "province": "安徽",
+  "url": "https://www.ustc.edu.cn",
+  "is985": true,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    117.269882,
+    31.837084
+  ],
+  "status": "done",
+  "detail": {
+    "university": "中国科学技术大学",
+    "official_url": "https://www.ustc.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "中国科学技术大学2026年强基计划招生简章",
+        "url": "https://zsb.ustc.edu.cn/2026/0410/c35547a726188/page.htm",
+        "summary": "2026年强基计划招生简章，招收数学类、物理学类、化学、生物科学类、理论与应用力学、核工程类、地球物理学、量子信息科学、能源与动力工程等专业。报名时间第一类4月30日截止，第二类4月26日截止。",
+        "attachments": [
+          "https://zsb.ustc.edu.cn/_upload/article/files/67/83/78ff82204c528dbb25b3fbe50a0c/216c7aa0-01a1-41a1-b250-aced57f18d1e.pdf",
+          "https://zsb.ustc.edu.cn/_upload/article/files/67/83/78ff82204c528dbb25b3fbe50a0c/092b94f7-7757-485d-b5e9-3ac3bada3c13.pdf"
+        ],
+        "publish_date": "2026-04-10",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "中国科学技术大学2025年本科招生章程",
+        "url": "https://zsb.ustc.edu.cn/2025/0603/c35550a686801/page.htm",
+        "summary": "本科招生章程总则，包含招生计划、录取规则、体检标准等。学费4800元/学年，住宿费1000元/学年。",
+        "attachments": [
+          "https://zsb.ustc.edu.cn/_upload/article/files/f1/1f/809063f447fb93337b19652e1da6/f55c02ed-e986-4429-b398-67bf6946e01d.pdf"
+        ],
+        "publish_date": "2025-06-03",
+        "source_department": "招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "中国科学技术大学本科招生计划",
+        "url": "https://zsfw.ustc.edu.cn/zsw/zsjh.html",
+        "summary": "本科分省分专业招生计划，具体招生人数以报名系统公布为准",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "中国科学技术大学历年录取查询",
+        "url": "https://zsfw.ustc.edu.cn/zsw/lnfs.html",
+        "summary": "历年分省录取分数线及位次查询，涵盖2022-2024年数据",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "关于启动2025年全校性专业选择及中期分流工作通知",
+        "url": "https://www.teach.ustc.edu.cn/notice/notice-teaching/19023.html",
+        "summary": "2025年专业选择及中期分流安排：4月22-27日学院上报遴选条件，5月24日-6月13日学生网上报名，7月公布最终结果。转院系申请获批后一学期内不再调整。",
+        "attachments": [],
+        "publish_date": "2025-04-22",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "关于启动2026年全校性专业选择及中期分流工作通知",
+        "url": "https://www.teach.ustc.edu.cn/notice/notice-teaching/19978.html",
+        "summary": "2026年专业选择及中期分流工作启动通知",
+        "attachments": [],
+        "publish_date": "2026-04-22",
+        "source_department": "教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "中科大转专业、分流、个性化修读指南",
+        "url": "https://erictianc.github.io/USTCGUIDE_mkdocs/学习/zhuan-zhuan-ye-fen-liu-ge-xing-hua/",
+        "summary": "转专业：大一期末可申请全校转专业，成绩要求GPA≥3.0（各院前70%），数院要求GPA≥3.6。分流：核学院、管理学院大一下学期分流，其他学院大二下学期分流。个性化：转院失败后可申请个性化修读方案。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学生学业指导中心"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "培养方案查询",
+        "url": "https://catalog.ustc.edu.cn/program",
+        "summary": "各专业培养方案查询，含课程体系、学分要求、毕业标准",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "本科学习指南（2025）",
+        "url": "https://www.teach.ustc.edu.cn/service/svc-student/19386.html",
+        "summary": "包含培养方案指引、教学管理规定、温馨提醒等内容",
+        "attachments": [
+          "https://www.teach.ustc.edu.cn/wp-content/uploads/2025/08/2025本科学习指南.pdf"
+        ],
+        "publish_date": "2025-08-21",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "中国科学技术大学个性化学习管理办法",
+        "url": "https://www.teach.ustc.edu.cn/wp-content/uploads/2024/08/2024学习指南.pdf",
+        "summary": "学校实行个性化修读方案，学生可申请调整培养方案到目标院系获取毕业证书",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "2023届毕业生就业质量年度报告",
+        "url": "https://xxgk.ustc.edu.cn/2024/1024/c37463a658224/page.htm",
+        "summary": "2023届毕业生就业质量报告，含毕业去向落实率、深造比例、就业流向等数据",
+        "attachments": [],
+        "publish_date": "2024-10-24",
+        "source_department": "就业信息网"
+      },
+      {
+        "title": "2022届毕业生就业质量年度报告",
+        "url": "https://xxgk.ustc.edu.cn/2024/1024/c37463a658225/page.htm",
+        "summary": "2022届毕业生就业质量报告",
+        "attachments": [],
+        "publish_date": "2024-10-24",
+        "source_department": "就业信息网"
+      },
+      {
+        "title": "毕业生就业质量年度报告汇总",
+        "url": "https://xxgk.ustc.edu.cn/gxbysjyzlndbg/list.htm",
+        "summary": "2019-2023届毕业生就业质量年度报告汇总页",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "信息公开网"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "中国科学技术大学2025年工程硕博士培养改革专项推免生预选拔招生简章",
+        "url": "https://yz.ustc.edu.cn/article/2734/182?num=-1",
+        "summary": "2025年工程硕博士专项推免生接收简章，招收电子信息、机械、材料与化工、资源与环境、能源动力、生物与医药等6个工程专业学位类别130人。报名条件：成绩前30%，工程技术领域有浓厚兴趣。",
+        "attachments": [],
+        "publish_date": "2024-09-02",
+        "source_department": "研究生院招生处"
+      },
+      {
+        "title": "推免专栏",
+        "url": "https://yz.ustc.edu.cn/",
+        "summary": "研究生招生在线推免专栏，含推免生接收办法及各类专项推免信息",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院招生处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "关于2026春季学期本科生竞赛成果申报及成绩选择的通知",
+        "url": "https://www.teach.ustc.edu.cn/notice/notice-teaching/20079.html",
+        "summary": "2026春季学期本科生学科竞赛成果申报通知",
+        "attachments": [],
+        "publish_date": "2026-04-29",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于2026年大学生创新训练计划项目申报的通知",
+        "url": "https://www.teach.ustc.edu.cn/notice/notice-teaching/20072.html",
+        "summary": "2026年大创计划项目申报通知",
+        "attachments": [],
+        "publish_date": "2026-04-29",
+        "source_department": "教务处"
+      },
+      {
+        "title": "创新实践基地",
+        "url": "https://ipb.ustc.edu.cn",
+        "summary": "学校创新实践基地，提供各类学科竞赛和创新创业项目指导",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "创新实践基地"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "少年班学院",
+        "url": "https://sgy.ustc.edu.cn/",
+        "disciplines": [
+          "理科试验班"
+        ]
+      },
+      {
+        "name": "数学科学学院",
+        "url": "https://math.ustc.edu.cn/",
+        "disciplines": [
+          "数学与应用数学",
+          "信息与计算科学",
+          "概率论与数理统计",
+          "计算数学"
+        ]
+      },
+      {
+        "name": "物理学院",
+        "url": "https://physics.ustc.edu.cn/",
+        "disciplines": [
+          "物理学",
+          "应用物理学",
+          "光学工程",
+          "天文学"
+        ]
+      },
+      {
+        "name": "化学与材料科学学院",
+        "url": "https://scms.ustc.edu.cn/",
+        "disciplines": [
+          "化学",
+          "材料科学与工程",
+          "高分子科学与工程"
+        ]
+      },
+      {
+        "name": "工程科学学院",
+        "url": "https://ses.ustc.edu.cn/",
+        "disciplines": [
+          "力学",
+          "机械设计制造及其自动化",
+          "热能与动力工程",
+          "安全工程"
+        ]
+      },
+      {
+        "name": "信息与智能学部",
+        "url": "https://iid.ustc.edu.cn/main.htm",
+        "disciplines": [
+          "电子信息工程",
+          "自动化",
+          "计算机科学与技术",
+          "人工智能",
+          "网络空间安全",
+          "软件工程",
+          "集成电路科学与工程"
+        ]
+      },
+      {
+        "name": "地球和空间科学学院",
+        "url": "https://ess.ustc.edu.cn/",
+        "disciplines": [
+          "地球物理学",
+          "地球化学",
+          "空间科学与技术"
+        ]
+      },
+      {
+        "name": "生命科学与医学部",
+        "url": "https://biomed.ustc.edu.cn/",
+        "disciplines": [
+          "生物科学",
+          "生物技术",
+          "基础医学",
+          "临床医学",
+          "生物医学工程"
+        ]
+      },
+      {
+        "name": "管理学院",
+        "url": "https://som.ustc.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "管理科学",
+          "统计学",
+          "金融学"
+        ]
+      },
+      {
+        "name": "公共管理学院",
+        "url": "https://sppm.ustc.edu.cn/",
+        "disciplines": [
+          "公共管理"
+        ]
+      },
+      {
+        "name": "人文与社会科学学院",
+        "url": "https://hsss.ustc.edu.cn/",
+        "disciplines": [
+          "科技史",
+          "科技传播",
+          "科技哲学",
+          "心理学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://marx.ustc.edu.cn/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "环境科学与工程系",
+        "url": "https://ese.ustc.edu.cn/",
+        "disciplines": [
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "核科学技术学院",
+        "url": "https://www.snst.ustc.edu.cn/",
+        "disciplines": [
+          "核科学与技术",
+          "核工程与核技术"
+        ]
+      },
+      {
+        "name": "未来技术学院",
+        "url": "http://set.ustc.edu.cn",
+        "disciplines": [
+          "前沿技术"
+        ]
+      },
+      {
+        "name": "国家卓越工程师学院",
+        "url": "https://see.ustc.edu.cn/",
+        "disciplines": [
+          "工程硕士"
+        ]
+      },
+      {
+        "name": "科技商学院",
+        "url": "https://fbs.ustc.edu.cn/",
+        "disciplines": [
+          "科技商务"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "中科大转专业难度",
+        "content": "中科大转专业相对自由，大一期末可申请全校转专业。绝大部分院系成绩要求GPA≥3.0（约各院前70%），少部分院系要求较高如数院GPA≥3.6。转专业需参加笔试面试，数院有笔试（数学分析和线性代数）。总体来说科大转专业成功率较高。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/539162518"
+      },
+      {
+        "topic": "中科大转专业成功率",
+        "content": "从个性化这条路看，在科大几乎可以选喜欢的任何专业。转专业成功率直逼100%。或许是妮可大一大二都在过分注重数理基础，为跨专业打下了基础。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/539162518"
+      },
+      {
+        "topic": "中科大专业分流规则",
+        "content": "核学院、管理学院大一下学期期末分流；网络空间安全学院、计算机学院等只有单一专业自动分流；其他学院大二下学期期末分流。少年班学院大一下学期期末安排选专业。",
+        "source_type": "非官方学生指南",
+        "source_url": "https://erictianc.github.io/USTCGUIDE_mkdocs/学习/zhuan-zhuan-ye-fen-liu-ge-xing-hua/"
+      },
+      {
+        "topic": "中科大选课建议",
+        "content": "选课前可参考学长学姐经验，关注课程难度和给分情况。教务系统开放时及时选课热门课程竞争激烈。学业指导中心提供专业选择指导服务。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/416074507"
+      },
+      {
+        "topic": "B站中科大转专业经验",
+        "content": "视频分享了转专业难度排行分析，建议关注目标学院的转入名额和竞争情况。提前了解目标专业的课程要求，做好学业规划。",
+        "source_type": "B站",
+        "source_url": "https://www.bilibili.com/video/BV1Rr421b7Ww/"
+      }
+    ],
+    "notes": "部分页面访问受限，知乎等平台存在访问限制。部分PDF附件可能需要进一步抓取具体内容。就业质量报告具体数据需下载PDF查看。辅修/双学位相关信息在学校个性化修读制度中体现，未找到独立的辅修专业设置文件。转专业公示信息分散在各学院，未找到统一的公示汇总页面。招生章程包含强基计划，少年班及创新试点班、综合评价等特殊类型招生。国家级科研平台包括国家同步辐射实验室、合肥微尺度物质科学国家研究中心等。\", \"missing_categories\">[\"minor_program\", \"transfer_announcement\"]",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "安徽 详细地址：安徽省合肥市金寨路96号",
+      "address": "安徽省合肥市金寨路96号",
+      "phone": "0551-63600096",
+      "website": "https://www.ustc.edu.cn/",
+      "enrollment_website": "https://zsb.ustc.edu.cn/main.htm",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 贵校是否今年首次在福建招生",
+        "url": "",
+        "summary": "**贵校是否今年首次在福建招生**\nQ: 招生人数多少\nA: 您好，我校今年并非首次在福建招生。招生计划可见我校本科招生官网：https://zsfw.ustc.edu.cn/zsw/zsjh.html",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 临床医学5年制",
+        "url": "",
+        "summary": "**临床医学5年制**\nQ: 今年在吉林省招生的临床医学5年制，保硕的概率是多大？英才班的特色是什么？中国科学院临床研究医院开展一体化培养具体是什么意思？\nA: 同学你好，关于临床医学的问题，可关注我校本科招生官网，网站上有相关的情况介绍：https://zsb.ustc.edu.cn/2025/0514/c39231a683940/page.htm",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 高校专项",
+        "url": "",
+        "summary": "**高校专项**\nQ: 请问高校专项山东录取分数线多少？\nA: 您好，我校高校专项今年首次取消校测并设置分省计划，并没有往年分数线可以参考。具体您可联系我校负责山东地区招生咨询的老师：",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 国家专项",
+        "url": "",
+        "summary": "**国家专项**\nQ: 贵校近三年山西省国家专项的分数线是多少\nA: 2024年我校国家专项录取最低分数为651分，2023年为628分，2022年为602分。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 江西物理组597分,排名9942，是否有机会录取贵校？",
+        "url": "",
+        "summary": "**江西物理组597分,排名9942，是否有机会录取贵校？**\nQ: 小孩学习物化生课程，喜欢生物与化学，得知贵校今年在江西首次招生，特别喜欢想报考贵校，不知贵校在江西的招生排名是否有机会？有哪些专业可以报的，有什么优势？谢谢老师！\nA: 您好，我校今年并不是首次在江西招生，参考往年我校在江西招生的分数情况，您的位次可能无法被我校录取。感谢您对我校的关注和支持，预祝您被心仪的学校录取！",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "地球物理学类",
+        "score": 4.9,
+        "votes": 16
+      },
+      {
+        "title": "天文学",
+        "score": 4.9,
+        "votes": 28
+      },
+      {
+        "title": "化学类",
+        "score": 4.8,
+        "votes": 17
+      },
+      {
+        "title": "安全工程",
+        "score": 4.8,
+        "votes": 18
+      },
+      {
+        "title": "理论与应用力学",
+        "score": 4.8,
+        "votes": 98
+      },
+      {
+        "title": "材料物理",
+        "score": 4.7,
+        "votes": 28
+      },
+      {
+        "title": "地球物理学",
+        "score": 4.7,
+        "votes": 83
+      },
+      {
+        "title": "数学与应用数学",
+        "score": 4.7,
+        "votes": 152
+      },
+      {
+        "title": "电子信息类",
+        "score": 4.7,
+        "votes": 15
+      },
+      {
+        "title": "大气科学",
+        "score": 4.7,
+        "votes": 20
+      }
+    ]
+  }
+}

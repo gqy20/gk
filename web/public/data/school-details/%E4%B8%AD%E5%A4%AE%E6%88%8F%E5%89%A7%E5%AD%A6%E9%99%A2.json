@@ -1,0 +1,536 @@
+{
+  "name": "中央戏剧学院",
+  "province": "北京",
+  "url": "https://www.chntheatre.edu.cn",
+  "is985": false,
+  "is211": false,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.373777,
+    40.102921
+  ],
+  "status": "done",
+  "detail": {
+    "university": "中央戏剧学院",
+    "official_url": "https://www.chntheatre.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "中央戏剧学院2025年本科招生章程",
+        "url": "http://zhaosheng.zhongxi.cn/zsxx/detail/14472.html",
+        "summary": "中央戏剧学院2025年本科招生章程，规定招生原则、录取规则、身体要求等",
+        "attachments": [],
+        "publish_date": "2024",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2024年本科招生章程",
+        "url": "http://zhaosheng.zhongxi.cn/zsxx/detail/14446.html",
+        "summary": "2024年本科招生章程，规定招生录取相关政策",
+        "attachments": [],
+        "publish_date": "2023",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2026年招收攻读硕士学位研究生简章",
+        "url": "http://chntheatre.edu.cn/Uploads/Cad/Picture/2025/09/30/中央戏剧学院2026年招收攻读硕士学位研究生简章(1).20250930161309.pdf",
+        "summary": "2026年硕士研究生招生简章，包含招生专业目录、学费标准、录取规则等",
+        "attachments": [
+          "http://chntheatre.edu.cn/Uploads/Cad/Picture/2025/09/30/中央戏剧学院2026年招收攻读硕士学位研究生简章(1).20250930161309.pdf"
+        ],
+        "publish_date": "2025-09-30",
+        "source_department": "研究生招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "中央戏剧学院2026年本科招生专业考试各招考方向与省统考子科类对应表",
+        "url": "http://zhaosheng.zhongxi.cn/zsxx/detail/14479.html",
+        "summary": "2026年本科招生专业考试各招考方向与省统考子科类对应表，包含31个省份的分省PDF",
+        "attachments": [
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2025/09/29/u68d9efc5861d2.pdf",
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2025/10/29/u69016f1149e7c.pdf"
+        ],
+        "publish_date": "2025",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2026年本科招生专业考试简章",
+        "url": "http://zhaosheng.zhongxi.cn/zsxx/detail/14480.html",
+        "summary": "2026年本科招生专业考试简章，包含报名方式、考试内容、录取规则等",
+        "attachments": [
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2026/02/01/u697ea1e618923.pdf",
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2026/01/31/u697e05889ad39.pdf"
+        ],
+        "publish_date": "2026-02-01",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2026年戏曲类省际联考专业本科招生简章",
+        "url": "http://zhaosheng.zhongxi.cn/zsxx/detail/14481.html",
+        "summary": "2026年戏曲类省际联考专业本科招生简章",
+        "attachments": [
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2026/02/01/u697ea20228959.pdf"
+        ],
+        "publish_date": "2026-02-01",
+        "source_department": "本科招生网"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "中央戏剧学院2025年本科录取规则、录取分数线",
+        "url": "http://zhaosheng.zhongxi.cn/xxgk/detail/14478.html",
+        "summary": "2025年本科录取分数线，包含31个省份各专业方向分数线。校考专业按专业排名录取，非校考专业按综合分或文化课成绩录取",
+        "attachments": [
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2025/08/04/u68907cceb86d0.pdf"
+        ],
+        "publish_date": "2025-08",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2024年本科录取规则、录取分数线",
+        "url": "http://zhaosheng.zhongxi.cn/xxgk/detail/14447.html",
+        "summary": "2024年本科录取分数线，包含31个省份各专业方向分数线",
+        "attachments": [
+          "https://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2024/07/27/u66a46ed3b2ae2.pdf"
+        ],
+        "publish_date": "2024-07",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2023年本科录取规则、录取分数线",
+        "url": "http://zhaosheng.zhongxi.cn/xxgk/detail/14426.html",
+        "summary": "2023年本科录取分数线，包含31个省份各专业方向分数线",
+        "attachments": [
+          "http://zhaosheng.zhongxi.cn/Uploads/Zhaosheng/Picture/2023/07/24/u64be5a507a1b0.pdf"
+        ],
+        "publish_date": "2023-07",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2022年本科录取分数线",
+        "url": "http://zhaosheng.zhongxi.cn/xxgk/detail/14412.html",
+        "summary": "2022年本科录取分数线",
+        "attachments": [],
+        "publish_date": "2022-07",
+        "source_department": "本科招生网"
+      },
+      {
+        "title": "中央戏剧学院2021年本科录取分数线",
+        "url": "http://zhaosheng.zhongxi.cn/xxgk/detail/14394.html",
+        "summary": "2021年本科录取分数线",
+        "attachments": [],
+        "publish_date": "2021-07",
+        "source_department": "本科招生网"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "中央戏剧学院本科生学籍管理实施细则（转专业条款）",
+        "url": "https://chntheatre.edu.cn/cn/entrance/xuesheng1/detail/10871.html",
+        "summary": "规定转专业申请时间：第二学年第一学期；申请条件：不得有违纪记录、无课程不达标或补考记录；申请流程：参加拟转入系组织的专业考试，考试合格并经学院同意后方可转入；已转过专业者不得再次申请",
+        "attachments": [],
+        "publish_date": "2018-04-28",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "中央戏剧学院大类招生/分流政策说明",
+        "url": "https://chntheatre.edu.cn",
+        "summary": "中央戏剧学院采用单独专业招生制度，不实施大类招生和大类分流。本科各专业（方向）均为直接招生，考生在高考志愿填报时即确定具体专业方向",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "中央戏剧学院专业及课程设置",
+        "url": "https://chntheatre.edu.cn/cn/Undergraduate/zhuanye.html",
+        "summary": "各系专业设置及培养方向简介，包含表演系、导演系、舞台美术系、戏剧文学系等15个教学系的专业介绍",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "中央戏剧学院专业及课程设置（第2页）",
+        "url": "https://chntheatre.edu.cn/cn/Undergraduate/zhuanye/p/2.html",
+        "summary": "音乐剧系、京剧系、歌剧系、舞剧系、戏剧教育系等专业介绍",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "中央戏剧学院本科生学籍管理实施细则（跨校辅修条款）",
+        "url": "https://chntheatre.edu.cn/cn/entrance/xuesheng1/detail/10871.html",
+        "summary": "根据学籍管理实施细则第十五条，学生可根据学院有关规定申请选修其他专业课程，可以申请跨校辅修专业或修读课程，可以参加学院认可的开放式网络课程学习",
+        "attachments": [],
+        "publish_date": "2018-04-28",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "中央戏剧学院2022届毕业生就业创业质量报告",
+        "url": "https://chntheatre.edu.cn/cn/entrance/zhiliang7/detail/20617.html",
+        "summary": "2022届毕业生就业创业质量年度报告",
+        "attachments": [
+          "https://chntheatre.edu.cn/uploads/allimg/2023/02/11/1676085631240744.pdf"
+        ],
+        "publish_date": "2023-02",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "中央戏剧学院2021届毕业生就业创业质量报告",
+        "url": "https://chntheatre.edu.cn/cn/entrance/zhiliang7/detail/14780.html",
+        "summary": "2021届毕业生就业创业质量报告",
+        "attachments": [],
+        "publish_date": "2022",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "中央戏剧学院2020届毕业生就业质量报告",
+        "url": "https://chntheatre.edu.cn/cn/entrance/zhiliang7/detail/14782.html",
+        "summary": "2020届毕业生就业质量报告",
+        "attachments": [],
+        "publish_date": "2021",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "中央戏剧学院2019届毕业生就业创业质量报告",
+        "url": "https://chntheatre.edu.cn/cn/entrance/zhiliang7/detail/14781.html",
+        "summary": "2019届毕业生就业创业质量报告",
+        "attachments": [],
+        "publish_date": "2020",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "中央戏剧学院2018届就业质量报告",
+        "url": "https://chntheatre.edu.cn/cn/entrance/zhiliang7/detail/14848.html",
+        "summary": "2018届就业质量报告",
+        "attachments": [],
+        "publish_date": "2019",
+        "source_department": "就业指导中心"
+      },
+      {
+        "title": "中央戏剧学院2017届毕业生就业质量报告",
+        "url": "https://chntheatre.edu.cn/cn/entrance/zhiliang7/detail/13078.html",
+        "summary": "2017届毕业生就业质量报告",
+        "attachments": [],
+        "publish_date": "2018",
+        "source_department": "就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "中央戏剧学院2026年接收推荐免试攻读硕士学位研究生工作办法",
+        "url": "https://chntheatre.edu.cn/cn/recruit/shuoshi/detail/24354.html",
+        "summary": "推免条件：中华人民共和国公民、拥护党的领导、品德良好、无违纪记录、已获得本科就读学校推荐免试资格、2026年入学前获得本科毕业证书和学士学位",
+        "attachments": [
+          "https://chntheatre.edu.cn/Uploads/Cad/Picture/2025/09/15/中央戏剧学院2026年接收推荐免试攻读硕士学位研究生工作办法.20250915100153.pdf",
+          "https://chntheatre.edu.cn/Uploads/Cad/Picture/2025/09/15/中央戏剧学院2026年接收（校外）推荐免试攻读硕士研究生招生目录.20250915100256.pdf"
+        ],
+        "publish_date": "2025-09-15",
+        "source_department": "研究生招生办公室"
+      },
+      {
+        "title": "数字戏剧系2025年接收推免生复试要求",
+        "url": "https://www.chinakaoyan.com/graduate/info/nid/574741/schoolID/120.shtml",
+        "summary": "复试方式：现场复试；内容：考生自我介绍（5分钟内）+评审小组提问；成绩合格线：70分",
+        "attachments": [],
+        "publish_date": "2024-09",
+        "source_department": "数字戏剧系"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "中国国际大学生创新大赛（2025）",
+        "url": "https://chntheatre.edu.cn/cn/Innovation/gonggao/detail/23941.html",
+        "summary": "教育部主办的创新创业大赛，学院组织学生参赛并获奖",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "创新创业中心"
+      },
+      {
+        "title": "第四届\"京彩大创\"北京大学生创新创业大赛",
+        "url": "https://chntheatre.edu.cn/cn/Innovation/gonggao/detail/23649.html",
+        "summary": "学院举办文化创意赛道决赛，学生获一等奖×2",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "创新创业中心"
+      },
+      {
+        "title": "中央戏剧学院2025年创新创业大赛",
+        "url": "https://chntheatre.edu.cn/cn/Innovation/dasai/detail/24013.html",
+        "summary": "2025年5月23日举办校级创新创业大赛决赛",
+        "attachments": [],
+        "publish_date": "2025-05",
+        "source_department": "创新创业中心"
+      },
+      {
+        "title": "传统戏剧数字化高精尖研究中心",
+        "url": "https://chntheatre.edu.cn/cn/xueshu/detail/20078.html",
+        "summary": "院级高精尖中心，研究领域：传统戏剧数字化及人机协同、智能数字表演、数字演员等；设施：动作捕捉实验室+表情捕捉实验室",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研处"
+      },
+      {
+        "title": "中国戏剧文化管理协同创新中心（总部）",
+        "url": "https://chntheatre.edu.cn/cn/xueshu/detail/11975.html",
+        "summary": "成立于2012年，以中央戏剧学院为牵头单位，国内十六家知名剧院团与研究机构为成员单位",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学术组织"
+      },
+      {
+        "title": "中国高等戏剧教育联盟（总部）",
+        "url": "https://chntheatre.edu.cn/cn/xueshu/detail/11986.html",
+        "summary": "中央戏剧学院担任总部，负责联盟日常运营",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学术组织"
+      },
+      {
+        "title": "亚洲戏剧教育研究中心（总部）",
+        "url": "https://chntheatre.edu.cn/cn/xueshu/detail/11985.html",
+        "summary": "中央戏剧学院担任亚洲戏剧教育研究中心总部",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "学术组织"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "表演系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/biaoyan.html",
+        "disciplines": [
+          "表演"
+        ]
+      },
+      {
+        "name": "导演系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/daoyan.html",
+        "disciplines": [
+          "戏剧影视导演"
+        ]
+      },
+      {
+        "name": "舞台美术系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/wutai.html",
+        "disciplines": [
+          "戏剧影视美术设计",
+          "戏剧学"
+        ]
+      },
+      {
+        "name": "戏剧文学系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/xiwen.html",
+        "disciplines": [
+          "戏剧影视文学",
+          "戏剧学"
+        ]
+      },
+      {
+        "name": "音乐剧系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/yinyue.html",
+        "disciplines": [
+          "音乐剧"
+        ]
+      },
+      {
+        "name": "京剧系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/jingju.html",
+        "disciplines": [
+          "表演"
+        ]
+      },
+      {
+        "name": "歌剧系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/geju.html",
+        "disciplines": [
+          "表演"
+        ]
+      },
+      {
+        "name": "舞剧系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/wuju.html",
+        "disciplines": [
+          "表演"
+        ]
+      },
+      {
+        "name": "戏剧教育系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/xijiao.html",
+        "disciplines": [
+          "戏剧教育"
+        ]
+      },
+      {
+        "name": "戏剧管理系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/xijuguanli.html",
+        "disciplines": [
+          "艺术管理"
+        ]
+      },
+      {
+        "name": "电影电视系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/dianying.html",
+        "disciplines": [
+          "戏剧影视导演",
+          "戏剧影视文学",
+          "播音与主持艺术"
+        ]
+      },
+      {
+        "name": "戏剧学系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/xijuxue.html",
+        "disciplines": [
+          "戏剧学"
+        ]
+      },
+      {
+        "name": "数字戏剧系",
+        "url": "https://chntheatre.edu.cn/cn/educationat/digidrama.html",
+        "disciplines": [
+          "数字媒体艺术",
+          "戏剧影视导演"
+        ]
+      },
+      {
+        "name": "思想政治理论课教学研究部",
+        "url": "https://chntheatre.edu.cn/cn/educationat/sixiang.html",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "人文学部",
+        "url": "https://chntheatre.edu.cn/cn/educationat/renwen.html",
+        "disciplines": [
+          "人文学科"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "考研经验分享",
+        "content": "由中戏学姐\"刘北方\"发布的视频，分享跨专业、跨学校、跨地区报考中央戏剧学院的成功经验。内容涵盖考研准备策略、初试复试技巧等实用信息。",
+        "source_type": "B站",
+        "source_url": "https://www.bilibili.com/video/BV1Pr421j78P/"
+      },
+      {
+        "topic": "戏剧教育系考研经验",
+        "content": "由北传新干线艺考发布，分享如何考入中央戏剧学院研究生，以及如何兼顾毕业大戏和考研两大任务。内容包含：考研时间规划、毕业大戏与备考平衡方法、专业课复习建议等。",
+        "source_type": "B站",
+        "source_url": "https://www.bilibili.com/video/BV1Vv411B7F1/"
+      },
+      {
+        "topic": "舞台美术系专业选择",
+        "content": "中央戏剧学院舞台美术系大二在读学生发布的直播答疑，包含：舞台美术系专业介绍、戏剧影视美术设计专业选择、高考集训经验分享、联考与校考时间分配建议。建议：结合自身兴趣与特长、考试难度、师资、校风与就业前景综合选择专业。",
+        "source_type": "B站",
+        "source_url": "https://www.bilibili.com/video/BV1eA411T7cT/"
+      },
+      {
+        "topic": "戏剧文学系就业经验",
+        "content": "校友乔远本科毕业于中央戏剧学院戏剧文学系，现已签约腾讯。核心建议：职业规划要\"逐步清晰\"，先定大领域目标再探索具体角色；戏文系学生两大关键能力：创作能力和市场敏感度；建议通过实习积累实战经验；培养市场思维，关注猫眼、灯塔、豆瓣等平台。",
+        "source_type": "上海戏剧学院官网（校友经验）",
+        "source_url": "https://xw.sta.edu.cn/c8/ed/c4253a116973/page.htm"
+      },
+      {
+        "topic": "艺考报考指南",
+        "content": "来自搜狐的艺考经验文章：中戏是所有艺术院校中最自律、氛围最好的学院；报考建议：限报3个专业，有能力的同学请报满；考试压力极大，建议调节好情绪及状态；一般学校考试在年前末尾，与很多学校撞车，建议合理分配考试时间。",
+        "source_type": "搜狐",
+        "source_url": "https://www.sohu.com/a/649441682_121447192"
+      }
+    ],
+    "notes": "中央戏剧学院是艺术类院校，招生以专业校考为主。各专业单独招生，不实施大类招生和大类分流。研究生推免主要通过专业考核，非统一推免。转专业公示页面未在官网找到独立页面。培养方案PDF文件未公开发布。辅修/双学位有学籍管理细则提及，但无独立政策文件。",
+    "missing_categories": [
+      "transfer_announcement",
+      "minor_program"
+    ],
+    "basic_info": {
+      "location": "北京 详细地址：东城校区地址：北京市东城区东棉花胡同39号 昌平校区地址：北京市昌平区宏福中路4号",
+      "address": "东城校区地址：北京市东城区东棉花胡同39号 昌平校区地址：北京市昌平区宏福中路4号",
+      "phone": "010-56620655、010-56620656",
+      "website": "https://chntheatre.edu.cn",
+      "enrollment_website": "http://zhaosheng.zhongxi.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 招生录取",
+        "url": "",
+        "summary": "**招生录取**\nQ: 山西考生美术类专业194.2，文化课405，综合分445，如何报考本校\nA: 影视摄影与制作专业使用对应科类省级统考成绩作为考生专业考试成绩，在考生高考文化课成绩和省级统考成绩均达到所在省（区、市）艺术类专业录取控制分数线基础上，依据考生高考文化课成绩和艺术类统考成绩综合分择优录取。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 北京提前批B美术与设计类",
+        "url": "",
+        "summary": "**北京提前批B美术与设计类**\nQ: 老师，请问北京提前批B段美术与设计类影视摄影与制作专业，综合分大概多少能录取？谢谢您\nA: 影视摄影与制作专业今年第一年招生，没有历史数据可以为您提供参考。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 高考志愿",
+        "url": "",
+        "summary": "**高考志愿**\nQ: 老师您好！湖北省历史方向4800位次报考戏剧学有希望吗？\nA: 考生你好，去年该专业在湖北录取最低分575分，今年的分数线取决于同批考生的整体水平及志愿填报情况，不能确定你的分数是否可以录取。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 请问老师，宁夏史政地考生539位次1123报考艺术管理，有希望录取吗？\nA: 考生你好，去年该专业没有招生计划，所以没有可以参考的录取分数线，今年的分数线取决于同批考生的整体水平及志愿填报情况，不能确定你的分数是否可以录取。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 报考咨询",
+        "url": "",
+        "summary": "**报考咨询**\nQ: 内蒙古表演（戏剧影视）专业课235.7 文化课386 综合分487.6，在贵校有可报考的专业吗？\nA: 请登录中央戏剧学院本科招生网查看相关专业的报考要求，如不清楚可拨打招生咨询电话010-56620655或010-56620656。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "戏剧学",
+        "score": 5,
+        "votes": 14
+      },
+      {
+        "title": "表演",
+        "score": 4.9,
+        "votes": 22
+      },
+      {
+        "title": "戏剧影视文学",
+        "score": 4.8,
+        "votes": 17
+      },
+      {
+        "title": "戏剧影视美术设计",
+        "score": 3.8,
+        "votes": 46
+      },
+      {
+        "title": "戏剧影视导演",
+        "score": 3.8,
+        "votes": 52
+      }
+    ]
+  }
+}

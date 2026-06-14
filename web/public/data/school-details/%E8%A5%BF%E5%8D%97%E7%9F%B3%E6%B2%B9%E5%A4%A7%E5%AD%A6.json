@@ -1,0 +1,437 @@
+{
+  "name": "西南石油大学",
+  "province": "四川",
+  "url": "https://www.swpu.edu.cn",
+  "is985": false,
+  "is211": false,
+  "isDoubleFirstClass": true,
+  "coord": [
+    104.185403,
+    30.826019
+  ],
+  "status": "done",
+  "detail": {
+    "university": "西南石油大学",
+    "official_url": "https://www.swpu.edu.cn",
+    "crawl_time": "2026-05-03",
+    "admission_guide": [
+      {
+        "title": "西南石油大学2026年高水平运动队招生简章",
+        "url": "http://zsb.swpu.edu.cn/",
+        "summary": "西南石油大学2026年高水平运动队招生简章，包含招生项目、报名条件、测试内容、录取规则等信息",
+        "attachments": [],
+        "publish_date": "2026-01-22",
+        "source_department": "西南石油大学本科招生信息网"
+      },
+      {
+        "title": "西南石油大学2025年本科报考指南",
+        "url": "http://zsb.swpu.edu.cn/",
+        "summary": "西南石油大学2025年本科报考指南及招生咨询方式汇总，包含学校简介、招生专业、录取规则、历年分数等信息",
+        "attachments": [],
+        "publish_date": "2025-06-22",
+        "source_department": "西南石油大学本科招生信息网"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "西南石油大学2024年招生计划",
+        "url": "http://zsb.swpu.edu.cn/",
+        "summary": "西南石油大学2024年招生计划7975人，相较2023年增加15人，招生专业71个，涵盖理学、工学、管理学、经济学等多个学科门类",
+        "attachments": [],
+        "publish_date": "2024-06-01",
+        "source_department": "西南石油大学本科招生信息网"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "历年分数查询",
+        "url": "http://zsb.swpu.edu.cn/",
+        "summary": "西南石油大学历年各省录取分数线查询系统入口，包含分省分专业录取分数数据",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "西南石油大学本科招生信息网"
+      },
+      {
+        "title": "2025年录取状态及分数线",
+        "url": "http://zsb.swpu.edu.cn/",
+        "summary": "2025年7月30日更新西南石油大学2025年本科招生录取状态及分数线",
+        "attachments": [],
+        "publish_date": "2025-07-30",
+        "source_department": "西南石油大学本科招生信息网"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "西南石油大学本科学生转专业实施办法",
+        "url": "https://www.swpu.edu.cn/dean/info/3180/12621.htm",
+        "summary": "规定学生在校期间有一次转专业机会，一年级和二年级均可申请。转专业以平行志愿模式选择不超过两个专业，根据考核成绩（4门课程期末考试+平均学分绩点）择优录取。艺术类、体育类专业学生不得转专业",
+        "attachments": [],
+        "publish_date": "2019-01-01",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "转专业结果公示",
+        "url": "https://www.swpu.edu.cn/dean/",
+        "summary": "转专业拟同意名单经主管校领导审批后在学校教务处网站公示五个工作日",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "西南石油大学本科学生大类培养专业分流指导意见",
+        "url": "https://www.swpu.edu.cn/dean/info/3180/12881.htm",
+        "summary": "大类培养期为2学期或3学期专业类，在培养方案第二学期或第三学期第8周前实施专业分流。分流依据为学生平均学分绩点排名（占比不少于70%），按平行志愿模式录取",
+        "attachments": [],
+        "publish_date": "2019-01-01",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "本科专业设置",
+        "url": "https://www.swpu.edu.cn/dean/bkgk/zysz.htm",
+        "summary": "西南石油大学74个专业具有本科招生资格，其中28个国家级一流本科专业建设点",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "西南石油大学本科学生辅修专业修读及辅修学士学位授予管理办法",
+        "url": "https://www.swpu.edu.cn/dean/info/3180/12681.htm",
+        "summary": "辅修专业申请条件：主修专业必修课和限选课均合格、平均学分绩点不低于2.50，且辅修专业与主修专业归属不同专业大类。学制50-70学分，每年春季学期申请",
+        "attachments": [],
+        "publish_date": "2024-05-09",
+        "source_department": "西南石油大学教务处"
+      },
+      {
+        "title": "西南石油大学本科微专业建设与管理办法",
+        "url": "https://www.swpu.edu.cn/dean/info/3180/12671.htm",
+        "summary": "微专业设置6-8门课程，总学分16-24学分，学制不超过2年。鼓励人工智能、大数据、碳中和、新能源等新兴领域开设微专业",
+        "attachments": [],
+        "publish_date": "2024-05-09",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "西南石油大学2022届毕业生就业质量年度报告",
+        "url": "https://jyzx.swpu.edu.cn/detail/news?id=798717&menu_id=21757&type_id=10240",
+        "summary": "西南石油大学2022届毕业生就业质量报告，包含就业率、就业去向、薪酬水平等数据",
+        "attachments": [
+          "http://js.bysjy.com.cn/default/quality_report/pdf.html?fileUrl=https://o.bysjy.com.cn/document/1676597339-2310.pdf"
+        ],
+        "publish_date": "2026-04-15",
+        "source_department": "西南石油大学就业指导中心"
+      },
+      {
+        "title": "西南石油大学2021届毕业生就业质量报告",
+        "url": "https://jyzx.swpu.edu.cn/detail/news?id=659037&menu_id=21757&type_id=10240",
+        "summary": "西南石油大学2021届毕业生就业质量报告",
+        "attachments": [],
+        "publish_date": "2026-04-15",
+        "source_department": "西南石油大学就业指导中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "西南石油大学推荐优秀应届本科毕业生免试攻读研究生工作管理办法（2024修订）",
+        "url": "https://www.swpu.edu.cn/dean/info/3180/12761.htm",
+        "summary": "遴选考核成绩包括推免平均学分绩点成绩（占比不低于80%）和综合能力考核成绩（占比不高于20%）。申请条件：所修课程首次考核成绩平均学分绩点排名居所在专业年级前40%，综合素质测评成绩排名居前40%",
+        "attachments": [],
+        "publish_date": "2024-09-05",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "油气藏地质及开发工程全国重点实验室",
+        "url": "https://www.swpu.edu.cn/lab/",
+        "summary": "西南石油大学与成都理工大学共建的全国重点实验室，研究方向包括油气藏地质、油气开发工程等，承担多项国家级科研项目",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "全国重点实验室"
+      },
+      {
+        "title": "学科竞赛管理办法及竞赛列表",
+        "url": "https://www.swpu.edu.cn/dean/sjjx/xkjs.htm",
+        "summary": "2021-2025年本科生获得省级及以上奖励11272项，其中国家级奖励3245项。主要竞赛包括：数学建模、计算机设计大赛、电子设计竞赛、化学实验竞赛等",
+        "attachments": [],
+        "publish_date": "2025-06-18",
+        "source_department": "西南石油大学教务处"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "石油与天然气工程学院",
+        "url": "http://www.swpu.edu.cn/sgy",
+        "disciplines": [
+          "石油工程",
+          "油气储运工程",
+          "海洋油气工程"
+        ]
+      },
+      {
+        "name": "地球科学与技术学院",
+        "url": "http://www.swpu.edu.cn/dky",
+        "disciplines": [
+          "资源勘查工程",
+          "勘查技术与工程",
+          "地质学"
+        ]
+      },
+      {
+        "name": "机电工程学院",
+        "url": "http://www.swpu.edu.cn/jdy",
+        "disciplines": [
+          "机械设计制造及其自动化",
+          "过程装备与控制工程",
+          "工业设计"
+        ]
+      },
+      {
+        "name": "化学化工学院",
+        "url": "http://www.swpu.edu.cn/hgy",
+        "disciplines": [
+          "化学工程与工艺",
+          "应用化学",
+          "环境工程"
+        ]
+      },
+      {
+        "name": "新能源与材料学院",
+        "url": "https://www.swpu.edu.cn/cly/",
+        "disciplines": [
+          "新能源材料与器件",
+          "高分子材料与工程",
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "计算机与软件学院",
+        "url": "http://www.swpu.edu.cn/scs",
+        "disciplines": [
+          "计算机科学与技术",
+          "软件工程"
+        ]
+      },
+      {
+        "name": "电气信息学院",
+        "url": "http://www.swpu.edu.cn/dxy",
+        "disciplines": [
+          "电气工程及其自动化",
+          "自动化",
+          "电子信息工程"
+        ]
+      },
+      {
+        "name": "土木工程与测绘学院",
+        "url": "http://www.swpu.edu.cn/tcy",
+        "disciplines": [
+          "土木工程",
+          "测绘工程",
+          "工程管理"
+        ]
+      },
+      {
+        "name": "理学院",
+        "url": "http://www.swpu.edu.cn/lxy",
+        "disciplines": [
+          "数学与应用数学",
+          "信息与计算科学",
+          "物理学"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "http://www.swpu.edu.cn/sem",
+        "disciplines": [
+          "工商管理",
+          "会计学",
+          "市场营销",
+          "经济学"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "http://www.swpu.edu.cn/wfy",
+        "disciplines": [
+          "法学",
+          "社会工作"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://www.swpu.edu.cn/szb",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://www.swpu.edu.cn/wyx",
+        "disciplines": [
+          "英语"
+        ]
+      },
+      {
+        "name": "体育学院",
+        "url": "http://www.swpu.edu.cn/tyx",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "艺术学院",
+        "url": "http://www.swpu.edu.cn/art",
+        "disciplines": [
+          "广播电视编导",
+          "播音与主持艺术",
+          "表演"
+        ]
+      }
+    ],
+    "student_experiences": [
+      {
+        "topic": "转专业难度",
+        "content": "西南石油大学转专业相比其他高校比较人性化，不像部分学校要求专业排名前几才能转，只要不挂科基本都可以转。每年11月份网上填报志愿，可以填两个专业志愿，类似高考报志愿，按转化分高低和志愿顺序安排专业。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/398238381"
+      },
+      {
+        "topic": "转专业政策评价",
+        "content": "西南石油大学转专业政策非常人性化，给了两次转专业机会。大一上学期不挂科基本都能转到想去的专业，热门专业努力也可以去到。还会给予一周的反悔期让学生充分考虑。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/604743389"
+      },
+      {
+        "topic": "就读体验",
+        "content": "西南石油大学是双一流高校，石油与天然气工程学科在第四轮学科评估中获评A+，位列全国第一。学校在油气领域有很强优势，中石油、中石化、中海油等企业认可度高，就业前景好。",
+        "source_type": "知乎",
+        "source_url": "https://www.zhihu.com/question/282353001"
+      },
+      {
+        "topic": "2023级转专业经验",
+        "content": "转专业需要综合考虑，明理三院（计算机、电气、经管）就业优势突出。建议想转专业的同学提前了解目标专业的转入限制条件，好好准备期末考试，成绩是转专业的重要参考。",
+        "source_type": "百度贴吧",
+        "source_url": "https://tieba.baidu.com/p/8734243173"
+      }
+    ],
+    "notes": "西南石油大学是教育部、四川省共建的双一流建设高校，石油与天然气工程学科A+。学校拥有全国重点实验室，就业质量较好，与中石油、中石化、中海油等企业有紧密合作。转专业政策较为宽松，辅修和微专业制度完善。保研率约9.22%。",
+    "missing_categories": [
+      "enrollment_plan",
+      "historical_admission",
+      "transfer_announcement",
+      "training_program"
+    ],
+    "basic_info": {
+      "location": "四川 详细地址：校区地址：四川省成都市新都区新都大道8号(成都校区) 四川省南充市顺庆区油院路二段1号（原油院路30号）(南充校区)",
+      "address": "校区地址：四川省成都市新都区新都大道8号(成都校区) 四川省南充市顺庆区油院路二段1号（原油院路30号）(南充校区)",
+      "phone": "028-83032224",
+      "website": "https://www.swpu.edu.cn",
+      "enrollment_website": "https://zsb.swpu.edu.cn",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 校区",
+        "url": "",
+        "summary": "**校区**\nQ: 想问一下怎么看自己报的专业是哪个校区的啊\nA: 我校在川招生的普通类121、122专业组是南充校区的，其他专业组是成都校区的",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 山西省大理考生位次27910，有没有可能上这的计算机类\nA: 可以冲一下，同时也考虑一下我校其他专业组",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 请问四川物化生分数598 等位分742报102 103",
+        "url": "",
+        "summary": "**请问四川物化生分数598 等位分742报102 103**\nQ: 好点的专业可以吗\nA: 有希望，欢迎报考西南石油大学",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 转专业",
+        "url": "",
+        "summary": "**转专业**\nQ: 贵校转出专业有门槛吗?\nA: 不能跨科类。不能跨校区。艺考类、体育 类、高水平运动队不能转专业。援疆定向未经新疆生产建设兵团同意不能转专业，四川省乡村振兴计划学生不能转专业",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 转专业名额",
+        "url": "",
+        "summary": "**转专业名额**\nQ: 请问转专业一次有几个名额，还是按比例呀？\nA: 各学院会根据学院实际确定各专业接受人数",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "会计学",
+        "score": 4.4,
+        "votes": 349
+      },
+      {
+        "title": "城市地下空间工程",
+        "score": 4.4,
+        "votes": 93
+      },
+      {
+        "title": "播音与主持艺术",
+        "score": 4.4,
+        "votes": 130
+      },
+      {
+        "title": "物联网工程",
+        "score": 4.3,
+        "votes": 48
+      },
+      {
+        "title": "油气储运工程",
+        "score": 4.3,
+        "votes": 790
+      },
+      {
+        "title": "表演",
+        "score": 4.3,
+        "votes": 48
+      },
+      {
+        "title": "电气工程及其自动化",
+        "score": 4.3,
+        "votes": 260
+      },
+      {
+        "title": "油气储运技术",
+        "score": 4.2,
+        "votes": 10
+      },
+      {
+        "title": "工商管理",
+        "score": 4.2,
+        "votes": 172
+      },
+      {
+        "title": "测控技术与仪器",
+        "score": 4.2,
+        "votes": 213
+      }
+    ]
+  }
+}

@@ -1,0 +1,469 @@
+{
+  "name": "中国药科大学",
+  "province": "江苏",
+  "url": "https://www.cpu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    118.780338,
+    32.072899
+  ],
+  "status": "done",
+  "detail": {
+    "university": "中国药科大学",
+    "official_url": "https://www.cpu.edu.cn",
+    "crawl_time": "2026-05-02",
+    "admission_guide": [
+      {
+        "title": "中国药科大学2025年普通本科招生章程",
+        "url": "http://zb.cpu.edu.cn/6d/ae/c9133a224686/page.htm",
+        "summary": "总则、招生计划、录取规则、收费标准等。投档比例105%以内，按分数优先录取，专业志愿间不设分数级差。色盲色弱考生不能录取到药学相关专业。",
+        "attachments": [],
+        "publish_date": "2025-05-30",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "中国药科大学2025年高校专项计划招生简章",
+        "url": "http://zb.cpu.edu.cn/f2/f4/c9133a127732/page.htm",
+        "summary": "高校专项计划招生报名审核通过名单公示",
+        "attachments": [],
+        "publish_date": "2025-05-01",
+        "source_department": "本科生招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "2025年各省招生计划",
+        "url": "http://zb.cpu.edu.cn/gszszn/list.htm",
+        "summary": "包含北京、上海、江苏、浙江等31个省份的详细分专业招生计划，包含专业名称、科类、学制、招生人数等",
+        "attachments": [],
+        "publish_date": "2025-06-23",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "2025年北京招生计划",
+        "url": "http://zb.cpu.edu.cn/2d/0b/c12765a208139/page.htm",
+        "summary": "2025年北京市分专业本科招生计划",
+        "attachments": [],
+        "publish_date": "2025-06-23",
+        "source_department": "本科生招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "历年录取分数查询",
+        "url": "http://zb.cpu.edu.cn/fs/list.htm",
+        "summary": "提供2024、2023、2022、2021、2020、2019年各省份、各专业录取分数查询，包含最高分、最低分、平均分和本一线",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生招生办公室"
+      },
+      {
+        "title": "2024年江苏省录取数据（示例）",
+        "url": "http://zb.cpu.edu.cn/fs/list.htm",
+        "summary": "药学类最高632分最低616分平均619分；临床药学最高626分最低623分；生物制药最高629分最低619分",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科生招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "中国药科大学全日制本科生转专业实施办法（2025年修订）",
+        "url": "http://jwc.cpu.edu.cn/71/fc/c891a225788/page.htm",
+        "summary": "三种转专业类型：跨大类转专业（一年级学生）、特殊情形转专业（兴趣专长/疾病/休学创业）、特色培养计划转专业。转入名额不超过专业招生人数10%，最多填报2个专业志愿，志愿优先按成绩录取",
+        "attachments": [],
+        "publish_date": "2025-07-09",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [
+      {
+        "title": "关于2025级本科生转专业正式报名名单公布的通知",
+        "url": "http://jwc.cpu.edu.cn/99/40/c885a235840/page.htm",
+        "summary": "2025级本科生转专业拟录取名单公示",
+        "attachments": [],
+        "publish_date": "2026-04-23",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于公布2025级本科生转专业学院考核安排的通知",
+        "url": "http://jwc.cpu.edu.cn/9b/41/c851a236353/page.htm",
+        "summary": "各学院转专业考核安排公告",
+        "attachments": [],
+        "publish_date": "2026-04-30",
+        "source_department": "教务处"
+      }
+    ],
+    "major_streaming": [
+      {
+        "title": "大类招生专业分流方案",
+        "url": "http://zb.cpu.edu.cn/6d/ae/c9133a224686/page.htm",
+        "summary": "实施大类招生的专业按专业类招生，入校后在第一学年第二个学期根据学校制定的大类招生专业分流方案进行专业分流，第二学年第一学期进入专业学习",
+        "attachments": [],
+        "publish_date": "2025-05-30",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "2025级人才培养方案",
+        "url": "http://jwc.cpu.edu.cn/80/55/c9725a229461/page.htm",
+        "summary": "包含各专业培养目标、课程设置、学分要求等详细培养方案",
+        "attachments": [],
+        "publish_date": "2025-10-20",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2024级人才培养方案",
+        "url": "http://jwc.cpu.edu.cn/8d/d4/c9725a232916/page.htm",
+        "summary": "2024级各专业人才培养方案",
+        "attachments": [],
+        "publish_date": "2026-02-10",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2023级教学一览",
+        "url": "http://jwc.cpu.edu.cn/8d/d3/c9725a232915/page.htm",
+        "summary": "2023级教学计划一览表",
+        "attachments": [],
+        "publish_date": "2026-03-03",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "双学位管理办法",
+        "url": "http://jwc.cpu.edu.cn/sxw/list.htm",
+        "summary": "工商管理双学位，学费100元/学分，总学分14.5学分，总学费1450元",
+        "attachments": [],
+        "publish_date": "2023-09-20",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "中国药科大学2023届毕业生就业质量报告",
+        "url": "https://zjc.cpu.edu.cn/3e/0c/c11267a212492/page.htm",
+        "summary": "2023届毕业生总体就业率95.02%，本科就业率94.18%，研究生就业率更高",
+        "attachments": [
+          "https://zjc.cpu.edu.cn/_upload/article/files/7b/02/d1cc577a411dbd7c0578697bd3af/5423fa37-2441-4f1c-826e-292e475a943e.pdf"
+        ],
+        "publish_date": "2024-10-31",
+        "source_department": "招生就业处"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "关于印发《中国药科大学推免生综合素质评价指导意见及竞赛名录》的通知",
+        "url": "http://jwc.cpu.edu.cn/86/dd/c11778a231133/page.htm",
+        "summary": "推免生综合素质评价指导意见及竞赛名录参考",
+        "attachments": [],
+        "publish_date": "2025-12-17",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2026届本科毕业生免试攻读研究生名单公示",
+        "url": "http://jwc.cpu.edu.cn/76/91/c11778a226961/page.htm",
+        "summary": "2026届推免生名单公示",
+        "attachments": [],
+        "publish_date": "2025-09-10",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2026届推免学生科研创新成果审核结果公示",
+        "url": "http://jwc.cpu.edu.cn/75/da/c11778a226778/page.htm",
+        "summary": "专利/论文等科研创新成果审核",
+        "attachments": [],
+        "publish_date": "2025-09-05",
+        "source_department": "教务处"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "第十二届全国大学生医学创新大赛推荐通知",
+        "url": "http://jwc.cpu.edu.cn/9a/b5/c940a236213/page.htm",
+        "summary": "学科竞赛通知",
+        "attachments": [],
+        "publish_date": "2026-04-28",
+        "source_department": "教务处"
+      },
+      {
+        "title": "第十一届全国大学生生命科学竞赛校内选拔结果",
+        "url": "http://jwc.cpu.edu.cn/97/ab/c940a235435/page.htm",
+        "summary": "学科竞赛通知",
+        "attachments": [],
+        "publish_date": "2026-04-14",
+        "source_department": "教务处"
+      },
+      {
+        "title": "多靶标天然药物全国重点实验室",
+        "url": "http://sklnm.cpu.edu.cn/",
+        "summary": "科技部批准建设的全国重点实验室",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "多靶标天然药物全国重点实验室"
+      },
+      {
+        "title": "国家新药筛选中心",
+        "url": "http://screen.cpu.edu.cn/",
+        "summary": "科技部批准的国家级科研平台",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国家新药筛选中心"
+      },
+      {
+        "title": "国家及省部级科研平台列表",
+        "url": "http://ist.cpu.edu.cn/kypt/gjjsbjpt.htm",
+        "summary": "包含23个国家及省部级科研平台，如全国重点实验室、国家部委科研平台、江苏省重点实验室等",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科学技术研究院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "药学院",
+        "url": "http://yxy.cpu.edu.cn/",
+        "disciplines": [
+          "药学",
+          "药物制剂",
+          "药物分析",
+          "药物化学"
+        ]
+      },
+      {
+        "name": "中药学院",
+        "url": "http://zyxy.cpu.edu.cn",
+        "disciplines": [
+          "中药学",
+          "中药资源与开发",
+          "中药制药"
+        ]
+      },
+      {
+        "name": "生命科学与技术学院",
+        "url": "http://sky.cpu.edu.cn",
+        "disciplines": [
+          "生物技术",
+          "生物制药",
+          "海洋药学"
+        ]
+      },
+      {
+        "name": "国际医药商学院",
+        "url": "http://sxy.cpu.edu.cn",
+        "disciplines": [
+          "药事管理",
+          "国际经济与贸易",
+          "工商管理",
+          "经济学",
+          "健康服务与管理"
+        ]
+      },
+      {
+        "name": "理学院",
+        "url": "http://lxy.cpu.edu.cn/",
+        "disciplines": [
+          "化学",
+          "数学",
+          "物理"
+        ]
+      },
+      {
+        "name": "工学院",
+        "url": "http://gxy.cpu.edu.cn/",
+        "disciplines": [
+          "制药工程",
+          "食品营养与健康",
+          "环境科学",
+          "化工与制药类"
+        ]
+      },
+      {
+        "name": "基础医学与临床药学学院",
+        "url": "http://bmcp.cpu.edu.cn/",
+        "disciplines": [
+          "临床药学",
+          "基础医学"
+        ]
+      },
+      {
+        "name": "多靶标天然药物全国重点实验室",
+        "url": "http://sklnm.cpu.edu.cn/",
+        "disciplines": [
+          "药学",
+          "中药学"
+        ]
+      },
+      {
+        "name": "生物药物学院",
+        "url": "http://swywxy.cpu.edu.cn/",
+        "disciplines": [
+          "生物药物",
+          "生物技术"
+        ]
+      },
+      {
+        "name": "孟目的学院",
+        "url": "http://mhc.cpu.edu.cn/",
+        "disciplines": [
+          "临床药学"
+        ]
+      },
+      {
+        "name": "现代制药产业学院",
+        "url": "https://cyxy.cpu.edu.cn/",
+        "disciplines": [
+          "制药工程",
+          "药学"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://wywy.cpu.edu.cn/",
+        "disciplines": [
+          "英语",
+          "日语"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://marxism.cpu.edu.cn",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "体育部",
+        "url": "http://tyb.cpu.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "继续教育学院",
+        "url": "http://www.zgyk.sccchina.net/",
+        "disciplines": [
+          "药学",
+          "中药学"
+        ]
+      },
+      {
+        "name": "国际教育学院",
+        "url": "http://gjc.cpu.edu.cn/",
+        "disciplines": [
+          "国际学生教育"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "成功抓取中国药科大学官方网站信息。部分页面存在DNS劫持问题（被重定向到广州医科大学），使用extract_url工具成功获取内容。转专业公示、培养方案PDF等附件信息需进一步获取具体下载链接。就业质量报告已找到PDF版本。\", \"missing_categories\": [\"student_experiences\"]",
+    "missing_categories": [],
+    "basic_info": {
+      "location": "江苏 详细地址：江苏省南京市鼓楼区中央路童家巷24号（玄武门校区） 江苏省南京市江宁区龙眠大道639号（江宁校区）",
+      "address": "江苏省南京市鼓楼区中央路童家巷24号（玄武门校区） 江苏省南京市江宁区龙眠大道639号（江宁校区）",
+      "phone": "025-83271319、83271422",
+      "website": "http://www.cpu.edu.cn/",
+      "enrollment_website": "http://zb.cpu.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 文科类专业",
+        "url": "",
+        "summary": "**文科类专业**\nQ: 请问在贵校就读文科类专业有出路吗？\nA: 我校文科类专业是药学+经管复合和外语复合类人才，学习管理和英语知识的同时，还能掌握一定的药学知识，有较高的技术壁垒，还是比较好就业的。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 老师你好 云南省物理类省排12809是否有机会被本校录取？克就读那些专业呢？\nA: 普通类冲一冲有希望。中外合作办学希望更大。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 四川考生",
+        "url": "",
+        "summary": "**四川考生**\nQ: 物化生位次38996有多大希望进少数民族预科的生物技术或者预科的中药学？谢谢\nA: 希望很大。比去年位次高不少。但预科计划少，建议把我校预科志愿靠前填报",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 广西录取分",
+        "url": "",
+        "summary": "**广西录取分**\nQ: 你好，广西物化生考生，544分，位次28502，有希望被贵校录取吗\nA: 比较悬。可冲试试看",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 西藏理科B类",
+        "url": "",
+        "summary": "**西藏理科B类**\nQ: 西藏考生，汉族，B类，理科，610分，150名。报贵校服从调剂，有没录取机会？\nA: 希望很大",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "药事管理",
+        "score": 4.6,
+        "votes": 33
+      },
+      {
+        "title": "药学类",
+        "score": 4.6,
+        "votes": 30
+      },
+      {
+        "title": "药品经营与管理",
+        "score": 4.5,
+        "votes": 13
+      },
+      {
+        "title": "药学",
+        "score": 4.4,
+        "votes": 202
+      },
+      {
+        "title": "药物化学",
+        "score": 4.4,
+        "votes": 51
+      },
+      {
+        "title": "临床药学",
+        "score": 4.4,
+        "votes": 31
+      },
+      {
+        "title": "制药工程",
+        "score": 4.4,
+        "votes": 53
+      },
+      {
+        "title": "药物制剂",
+        "score": 4.3,
+        "votes": 112
+      },
+      {
+        "title": "药物分析",
+        "score": 4.2,
+        "votes": 33
+      },
+      {
+        "title": "国际经济与贸易",
+        "score": 4.2,
+        "votes": 45
+      }
+    ]
+  }
+}

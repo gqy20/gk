@@ -1,0 +1,542 @@
+{
+  "name": "北京外国语大学",
+  "province": "北京",
+  "url": "https://www.bfsu.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.313211,
+    39.955501
+  ],
+  "status": "done",
+  "detail": {
+    "university": "北京外国语大学",
+    "official_url": "https://www.bfsu.edu.cn",
+    "crawl_time": "2026-05-02",
+    "admission_guide": [
+      {
+        "title": "北京外国语大学2025年本科招生章程",
+        "url": "https://joinus.bfsu.edu.cn/zszn.htm",
+        "summary": "北京外国语大学本科招生章程，包含招生原则、录取规则、身体条件要求等",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      },
+      {
+        "title": "北京外国语大学2026年博士研究生招生考试考生须知",
+        "url": "https://graduate.bfsu.edu.cn/info/1074/4106.htm",
+        "summary": "2026年博士研究生招生考试相关须知，包含考试安排、注意事项等",
+        "attachments": [],
+        "publish_date": "2025年",
+        "source_department": "研究生院"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "北京外国语大学2025年硕士研究生招生简章及专业目录",
+        "url": "https://yjszs.bfsu.edu.cn/#/directory/masterMainland/list",
+        "summary": "2025年硕士研究生招生简章及专业目录（需在线查看）",
+        "attachments": [],
+        "publish_date": "2025年",
+        "source_department": "研究生院"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "历年录取查询",
+        "url": "https://joinus.bfsu.edu.cn/lnfs.htm",
+        "summary": "提供历年各省录取分数线查询（需访问具体查询系统）",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "本科招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "转专业相关规定",
+        "url": "https://www.bfsu.edu.cn/rcpy/bksjy.htm",
+        "summary": "本科生转专业相关规定，具体政策请咨询教务处或各学院",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "大类招生与分流规则",
+        "url": "https://www.bfsu.edu.cn/rcpy/bksjy.htm",
+        "summary": "学校实施大类招生，具体分流规则请参考各学院具体实施方案",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "2023版北京外国语大学硕士、博士研究生培养方案",
+        "url": "https://graduate.bfsu.edu.cn/info/1057/2908.htm",
+        "summary": "2023版培养方案，包含各学科培养目标、学分要求、课程设置等，具体执行由各培养单位负责",
+        "attachments": [
+          "https://graduate.bfsu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1478762572&wbfileid=01A0F66D00E4347F93C95C2D3F585755",
+          "https://graduate.bfsu.edu.cn/system/_content/download.jsp?urltype=news.DownloadAttachUrl&owner=1478762572&wbfileid=83A415BC8FDE23AC2F98E4F70023C57F"
+        ],
+        "publish_date": "2023年",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "2018版北京外国语大学专业学位硕士研究生培养方案",
+        "url": "https://graduate.bfsu.edu.cn/info/1057/2425.htm",
+        "summary": "2018版专业学位硕士研究生培养方案",
+        "attachments": [],
+        "publish_date": "2018年",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "2018版北京外国语大学学术学位硕士研究生培养方案",
+        "url": "https://graduate.bfsu.edu.cn/info/1057/2424.htm",
+        "summary": "2018版学术学位硕士研究生培养方案",
+        "attachments": [],
+        "publish_date": "2018年",
+        "source_department": "研究生院"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "辅修/双学位相关规定",
+        "url": "https://www.bfsu.edu.cn/rcpy/bksjy.htm",
+        "summary": "本科生辅修、双学位相关规定，具体申请条件和学分要求请咨询教务处",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "北京外国语大学就业创业网",
+        "url": "https://jyzd.bfsu.edu.cn/",
+        "summary": "就业创业服务平台，提供就业信息、招聘会、实习基地等资源入口",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "就业创业中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "北京外国语大学2026年度推免生拟录取名单公示",
+        "url": "https://graduate.bfsu.edu.cn/info/1074/4016.htm",
+        "summary": "2026年度推免生拟录取名单公示，包含各学院拟录取专业、考生姓名等信息。公示时间10个工作日，如有异议联系010-88816246、010-88816562",
+        "attachments": [],
+        "publish_date": "2025年12月24日",
+        "source_department": "研究生院"
+      },
+      {
+        "title": "北京外国语大学2026年硕博连读研究生拟录取名单公示",
+        "url": "https://graduate.bfsu.edu.cn/info/1047/4196.htm",
+        "summary": "2026年硕博连读研究生拟录取名单公示",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "人工智能与人类语言重点实验室",
+        "url": "https://ai.bfsu.edu.cn/index.htm",
+        "summary": "学校重点实验室，聚焦人工智能与教育领域前沿，开展语言学习机理、AI语言教学、多语言语料库、多语自然语言处理和外语健脑强智研究",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人工智能与人类语言重点实验室"
+      },
+      {
+        "title": "中国外语与教育研究中心",
+        "url": "https://sinotefl.bfsu.edu.cn/",
+        "summary": "国家级外语教育研究平台",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中国外语与教育研究中心"
+      },
+      {
+        "title": "国家语言能力发展研究中心",
+        "url": "http://gynf.bfsu.edu.cn",
+        "summary": "国家语言能力发展研究机构",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国家语言能力发展研究中心"
+      },
+      {
+        "title": "国家翻译能力研究中心",
+        "url": "https://rectic.bfsu.edu.cn/",
+        "summary": "翻译能力研究机构",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "国家翻译能力研究中心"
+      },
+      {
+        "title": "中国外语教材研究中心",
+        "url": "http://www.bfsutextbook.cn/",
+        "summary": "外语教材研究机构",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "中国外语教材研究中心"
+      },
+      {
+        "title": "语言智能教学研究中心",
+        "url": "https://ai.bfsu.edu.cn/yjzx/znjx.htm",
+        "summary": "人工智能与语言教学交叉研究中心",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人工智能与人类语言重点实验室"
+      },
+      {
+        "title": "多语言脑科学研究中心",
+        "url": "https://ai.bfsu.edu.cn/yjzx/nkx.htm",
+        "summary": "多语言与脑科学交叉研究中心",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人工智能与人类语言重点实验室"
+      },
+      {
+        "title": "多语种语料库研究中心",
+        "url": "https://ai.bfsu.edu.cn/yjzx/ylk.htm",
+        "summary": "多语种语料库建设与研究中心",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人工智能与人类语言重点实验室"
+      },
+      {
+        "title": "多语自然语言处理研究中心",
+        "url": "https://ai.bfsu.edu.cn/yjzx/yycl.htm",
+        "summary": "多语自然语言处理技术研究中心",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人工智能与人类语言重点实验室"
+      },
+      {
+        "title": "外语健脑强智研究中心",
+        "url": "https://ai.bfsu.edu.cn/yjzx/jnqz.htm",
+        "summary": "外语学习与认知健康研究中心",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "人工智能与人类语言重点实验室"
+      },
+      {
+        "title": "外国文学研究所",
+        "url": "http://wxs.bfsu.edu.cn/",
+        "summary": "外国文学研究机构",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "外国文学研究所"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "英语学院",
+        "url": "http://seis.bfsu.edu.cn",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "俄语学院",
+        "url": "http://ru.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "欧洲语言文化学院",
+        "url": "http://europe.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "德语学院",
+        "url": "http://de.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "法语语言文化学院",
+        "url": "http://french.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "西班牙语葡萄牙语学院",
+        "url": "http://xpyx.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "日语学院（日本学研究中心）",
+        "url": "http://seis.bfsu.edu.cn/jxdw/ryxy_ryzx.htm",
+        "disciplines": [
+          "外国语言文学",
+          "日本学"
+        ]
+      },
+      {
+        "name": "阿拉伯学院",
+        "url": "http://arab.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "非洲学院",
+        "url": "http://af.bfsu.edu.cn",
+        "disciplines": [
+          "外国语言文学",
+          "非洲研究"
+        ]
+      },
+      {
+        "name": "亚洲学院",
+        "url": "https://asian.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学",
+          "亚洲研究"
+        ]
+      },
+      {
+        "name": "高级翻译学院",
+        "url": "http://gsti.bfsu.edu.cn/",
+        "disciplines": [
+          "翻译学",
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "中国语言文学学院",
+        "url": "http://iei.bfsu.edu.cn/",
+        "disciplines": [
+          "中国语言文学"
+        ]
+      },
+      {
+        "name": "国际商学院",
+        "url": "http://ibs.bfsu.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "经济学"
+        ]
+      },
+      {
+        "name": "国际关系学院",
+        "url": "http://sird.bfsu.edu.cn/",
+        "disciplines": [
+          "政治学",
+          "国际关系"
+        ]
+      },
+      {
+        "name": "法学院",
+        "url": "http://sl.bfsu.edu.cn/",
+        "disciplines": [
+          "法学"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "https://marxism.bfsu.edu.cn/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "专用英语学院",
+        "url": "http://sesp.bfsu.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "信息科学技术学院",
+        "url": "http://sist.bfsu.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "数据科学与大数据技术"
+        ]
+      },
+      {
+        "name": "国际新闻与传播学院（艺术研究院）",
+        "url": "http://sijc.bfsu.edu.cn/",
+        "disciplines": [
+          "新闻传播学",
+          "艺术学"
+        ]
+      },
+      {
+        "name": "教育学院",
+        "url": "https://gse.bfsu.edu.cn",
+        "disciplines": [
+          "教育学"
+        ]
+      },
+      {
+        "name": "北外学院",
+        "url": "https://bwxy.bfsu.edu.cn",
+        "disciplines": [
+          "多学科交叉"
+        ]
+      },
+      {
+        "name": "国际组织学院",
+        "url": "http://sio.bfsu.edu.cn",
+        "disciplines": [
+          "国际组织与全球治理"
+        ]
+      },
+      {
+        "name": "历史学院（全球史研究院）",
+        "url": "http://globalhistory.bfsu.edu.cn",
+        "disciplines": [
+          "历史学",
+          "世界史"
+        ]
+      },
+      {
+        "name": "继续教育学院",
+        "url": "https://www.bwpx.com/",
+        "disciplines": [
+          "继续教育"
+        ]
+      },
+      {
+        "name": "网络教育学院",
+        "url": "https://www.beiwaionline.com/index.htm",
+        "disciplines": [
+          "网络教育"
+        ]
+      },
+      {
+        "name": "孔子学院",
+        "url": "https://oci.bfsu.edu.cn/",
+        "disciplines": [
+          "汉语国际教育"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "部分页面（尤其是joinus.bfsu.edu.cn本科生招生网）存在反爬虫机制，无法直接获取详细内容。就业质量报告PDF未能找到公开下载链接。转专业政策、辅修/双学位政策的具体文件需要登录教务系统或联系教务处获取。",
+    "missing_categories": [
+      "transfer_policy",
+      "transfer_announcement",
+      "major_streaming",
+      "minor_program",
+      "employment_report",
+      "student_experiences"
+    ],
+    "basic_info": {
+      "location": "北京 详细地址：北京市海淀区西三环北路2号",
+      "address": "北京市海淀区西三环北路2号",
+      "phone": "010-88816254/6481",
+      "website": "https://www.bfsu.edu.cn",
+      "enrollment_website": "https://https://joinus.bfsu.edu.cn/",
+      "attributes": [
+        "211",
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 四川录取",
+        "url": "",
+        "summary": "**四川录取**\nQ: 您好，我是四川政史地考生，今年考了628分，位次为1146。 请问能冲击贵校的民商法专业吗？ 如若分数不够，可否就读刑事法律专业？服从调剂是否会被退档？法学院在贵校的哪个校区？转专业的名额及其要求有哪些呢？专业保研率如何？\nA: 报考分数请查询以下网址：<https://zhaosheng.bfsu.edu.cn/static/front/bfsu/basic/html_web/lnfs.html?20220331>",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 报考",
+        "url": "",
+        "summary": "**报考**\nQ: 您好，山东文科九千五百名报考贵校德语双学位录取几率大吗\nA: 可参照2024年的分数情况，网址为：<https://zhaosheng.bfsu.edu.cn/static/front/bfsu/basic/html_web/lnfs.html?20220331>",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取",
+        "url": "",
+        "summary": "**录取**\nQ: 老师，云南613分，位次6036，录取概率大吗？\nA: 可参照2024年的分数情况，网址为：[https://zhaosheng.bfsu.edu.cn/static/front/bfsu/basic/html_web/lnfs.html?20220331](https://zhaosheng.bfsu.edu.cn/static/front/bfsu/basic/html_web/lnfs.html?20220331)",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 外交学（中外合作办学）",
+        "url": "",
+        "summary": "**外交学（中外合作办学）**\nQ: 毕业证是否带有“中外合作”字样？强制出国吗？\nA: 完成学业并满足两校各自学位授予条件的学生，将获得北外颁发的中华人民共和国普通高等学校本科毕业证书和法学学士学位证书，以及英国基尔大学颁发的国际治理与公共政策（BA in International Governance and Public Policy）学士学位（落款注明本学位为北京外国语大学与英国基尔大学合作办学双学位项目颁发）。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 录取和调剂",
+        "url": "",
+        "summary": "**录取和调剂**\nQ: 老师您好，西藏B类考生文科561分，排名57，报考贵校能否有机会被录取？因在藏招生专业为法学、新闻类等，有机会转联合培养项目吗？期盼回复，感谢！\nA: 联培专业是不允许转入的，但可以申请转其他专业。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "工商管理",
+        "score": 4.8,
+        "votes": 207
+      },
+      {
+        "title": "会计学",
+        "score": 4.8,
+        "votes": 114
+      },
+      {
+        "title": "金融学",
+        "score": 4.7,
+        "votes": 92
+      },
+      {
+        "title": "电子商务",
+        "score": 4.6,
+        "votes": 14
+      },
+      {
+        "title": "英语",
+        "score": 4.6,
+        "votes": 68
+      },
+      {
+        "title": "国际经济与贸易",
+        "score": 4.5,
+        "votes": 31
+      },
+      {
+        "title": "泰语",
+        "score": 4.4,
+        "votes": 11
+      },
+      {
+        "title": "阿拉伯语",
+        "score": 4.2,
+        "votes": 31
+      },
+      {
+        "title": "俄语",
+        "score": 4.2,
+        "votes": 31
+      },
+      {
+        "title": "法学",
+        "score": 4,
+        "votes": 21
+      }
+    ]
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "name": "北京科技大学",
+  "province": "北京",
+  "url": "https://www.ustb.edu.cn",
+  "is985": false,
+  "is211": true,
+  "isDoubleFirstClass": true,
+  "coord": [
+    116.359725,
+    39.989025
+  ],
+  "status": "done",
+  "detail": {
+    "university": "北京科技大学",
+    "official_url": "https://www.ustb.edu.cn",
+    "crawl_time": "2026-05-02",
+    "admission_guide": [
+      {
+        "title": "北京科技大学2025年本科招生章程",
+        "url": "http://zhaosheng.ustb.edu.cn/xwgg/tzgg/fc4aa12fb8254e97b9ee7a405f57cb8b.htm",
+        "summary": "北京科技大学2025年普通本科招生章程，包含招生原则、录取规则、身体条件要求、学费标准等。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "高校招生\"30个不得\"\"十项禁令\"\"六不准\"\"十公开\"等纪律和规定",
+        "url": "http://zhaosheng.ustb.edu.cn/xwgg/tzgg/4d0db530a0e0487e8688874cbfab7f20.htm",
+        "summary": "教育部关于高校招生工作的纪律规定和信息公开要求。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      }
+    ],
+    "enrollment_plan": [
+      {
+        "title": "2025年分省分专业计划以及专业分组方案",
+        "url": "https://mp.weixin.qq.com/s/KMz3n12zTB4HFdCu1WT1bQ",
+        "summary": "2025年北京科技大学分省分专业招生计划及各省份招生专业分组方案。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "北京科技大学2026年各省高招咨询群",
+        "url": "http://zhaosheng.ustb.edu.cn/docs/2026-03/15621edaba434404bf807c4bd162196e.pdf",
+        "summary": "2026年各省高招咨询群联系方式及二维码。PDF附件包含具体咨询群信息。",
+        "attachments": [
+          "http://zhaosheng.ustb.edu.cn/docs/2026-03/15621edaba434404bf807c4bd162196e.pdf"
+        ],
+        "publish_date": "2026-03",
+        "source_department": "招生办公室"
+      }
+    ],
+    "historical_admission": [
+      {
+        "title": "历年分数查询系统",
+        "url": "https://zhaoshengyunzhi.ustb.edu.cn/zsw/lnfs.html",
+        "summary": "提供历年各省各专业录取分数查询，支持按省份和年份筛选。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "录取结果查询",
+        "url": "https://zhaoshengyunzhi.ustb.edu.cn/zsw/lqcx.html",
+        "summary": "考生录取结果在线查询系统。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "招生办公室"
+      },
+      {
+        "title": "近三年特殊类型录取情况（2023-2025）",
+        "url": "http://zhaosheng.ustb.edu.cn/xwgg/tzgg/b7c24b15233349deb41b9d832a1929f4.htm",
+        "summary": "2023-2025年艺术类、民族预科、新疆协作计划、内高班等特殊类型录取数据统计。",
+        "attachments": [],
+        "publish_date": "2025",
+        "source_department": "招生办公室"
+      }
+    ],
+    "transfer_policy": [
+      {
+        "title": "转专业政策与办理流程",
+        "url": "http://jwc.ustb.edu.cn/fylm/xs/xjjxjyd/zzy/index.htm",
+        "summary": "学生在学习期间对其他专业有兴趣和专长的，可以申请转专业。以特殊招生形式录取的学生，国家有相关规定或者录取前与学校有明确约定的，不得转专业。办理流程：1.学生登录\"本科教学网\"完成转专业志愿申报；2.学校进行资格初审；3.各学院成立考核小组，组织选拔考核；4.公示录取结果；5.完成学籍调整。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "北京科技大学本科生大类分专业和转专业指导意见（试行）",
+        "url": "http://jwc.ustb.edu.cn/fylm/xs/xjjxjyd/zzy/xgzcy/1267a6434e4a4793b373a44688e4af34.htm",
+        "summary": "校发【2017】9号文件，关于大类分专业和转专业的指导意见。",
+        "attachments": [],
+        "publish_date": "2017",
+        "source_department": "教务处"
+      },
+      {
+        "title": "北京科技大学本科生校内转专业办法",
+        "url": "http://jwc.ustb.edu.cn/fylm/xs/xjjxjyd/zzy/xgzcy/eed0731caa50423684470c668dd6434a.htm",
+        "summary": "校发【2010】103号，本科生校内转专业办法。",
+        "attachments": [],
+        "publish_date": "2010",
+        "source_department": "教务处"
+      }
+    ],
+    "transfer_announcement": [],
+    "major_streaming": [
+      {
+        "title": "大类分专业指导意见",
+        "url": "http://jwc.ustb.edu.cn/fylm/xs/xjjxjyd/zzy/xgzcy/0e2a277b9c5f43959dc2cd87660cf941.htm",
+        "summary": "校发【2017】9号，北京科技大学本科生大类分专业指导意见，包含大类分流时间、成绩权重计算、志愿填报方式等规则。",
+        "attachments": [],
+        "publish_date": "2017",
+        "source_department": "教务处"
+      }
+    ],
+    "training_program": [
+      {
+        "title": "培养方案与课程设置",
+        "url": "http://jwc.ustb.edu.cn/fylm/xs/pyfahkcsz/pyfa/index.htm",
+        "summary": "各专业培养方案及课程体系介绍，包含学分要求、毕业标准、学位授予条件等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      }
+    ],
+    "minor_program": [
+      {
+        "title": "辅修专业管理规定",
+        "url": "http://jwc.ustb.edu.cn/fylm/xs/sxwfxzy/index.htm",
+        "summary": "辅修专业报名条件、学分要求、证书类型等规定。学生在校期间可申请修读辅修专业，达到要求者颁发辅修证书。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "教务处"
+      },
+      {
+        "title": "2025级辅修专业录取结果公示",
+        "url": "http://jwc.ustb.edu.cn/tztg/index.htm",
+        "summary": "教通知【2026】68号，关于公布2025级辅修专业录取结果的通知。",
+        "attachments": [],
+        "publish_date": "2026",
+        "source_department": "教务处"
+      },
+      {
+        "title": "关于缴纳辅修专业学费的通知",
+        "url": "http://jwc.ustb.edu.cn/tztg/index.htm",
+        "summary": "教通知【2026】69号，关于2023、2024级学生缴纳修读辅修专业学费的通知。",
+        "attachments": [],
+        "publish_date": "2026",
+        "source_department": "教务处"
+      }
+    ],
+    "employment_report": [
+      {
+        "title": "北京科技大学就业信息网",
+        "url": "http://job.ustb.edu.cn/",
+        "summary": "就业信息发布平台，提供招聘信息、宣讲会信息、就业报告查询等服务。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "就业信息中心"
+      }
+    ],
+    "postgrad_recommend": [
+      {
+        "title": "研究生招生信息网 - 推免生预报名",
+        "url": "http://yzxc.ustb.edu.cn/",
+        "summary": "研究生招生信息网首页，提供夏令营报名、推免生预报名、招生简章查询等服务。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "研究生院"
+      }
+    ],
+    "competition_research": [
+      {
+        "title": "国家级科研基地",
+        "url": "https://research.ustb.edu.cn/kyjd/jdml/gjjjd/index.htm",
+        "summary": "国家级科研基地名录，包含全国重点实验室：新金属材料全国重点实验室(skl.ustb.edu.cn)、绿色低碳钢铁冶金全国重点实验室(sklam.ustb.edu.cn)；省部共建/共建基地：工业产品环境适应性全国重点实验室、核电安全技术与装备全国重点实验室、金属矿山高效开采与安全健康全国重点实验室、钢铁工业环境保护全国重点实验室、先进不锈钢全国重点实验室等。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "科研院"
+      }
+    ],
+    "colleges": [
+      {
+        "name": "资源与安全工程学院",
+        "url": "https://srse.ustb.edu.cn",
+        "disciplines": [
+          "安全科学与工程",
+          "矿业工程",
+          "地质资源与地质工程"
+        ]
+      },
+      {
+        "name": "未来城市学院",
+        "url": "https://sfc.ustb.edu.cn",
+        "disciplines": [
+          "材料科学与工程",
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "冶金与生态工程学院",
+        "url": "http://metall.ustb.edu.cn/",
+        "disciplines": [
+          "冶金工程",
+          "生态学"
+        ]
+      },
+      {
+        "name": "材料科学与工程学院",
+        "url": "http://mse.ustb.edu.cn/",
+        "disciplines": [
+          "材料科学与工程"
+        ]
+      },
+      {
+        "name": "机械工程学院",
+        "url": "http://me.ustb.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "动力工程及工程热物理"
+        ]
+      },
+      {
+        "name": "能源与环境工程学院",
+        "url": "http://seee.ustb.edu.cn/",
+        "disciplines": [
+          "动力工程及工程热物理",
+          "环境科学与工程"
+        ]
+      },
+      {
+        "name": "自动化学院",
+        "url": "http://saee.ustb.edu.cn/",
+        "disciplines": [
+          "控制科学与工程",
+          "电气工程"
+        ]
+      },
+      {
+        "name": "人工智能研究院",
+        "url": "http://ai.ustb.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "控制科学与工程"
+        ]
+      },
+      {
+        "name": "计算机与通信工程学院",
+        "url": "http://scce.ustb.edu.cn/",
+        "disciplines": [
+          "计算机科学与技术",
+          "信息与通信工程"
+        ]
+      },
+      {
+        "name": "数理学院",
+        "url": "http://shuli.ustb.edu.cn/",
+        "disciplines": [
+          "数学",
+          "物理学",
+          "统计学"
+        ]
+      },
+      {
+        "name": "化学与生物工程学院",
+        "url": "http://huasheng.ustb.edu.cn/",
+        "disciplines": [
+          "化学",
+          "生物学",
+          "化学工程与技术"
+        ]
+      },
+      {
+        "name": "经济管理学院",
+        "url": "http://sem.ustb.edu.cn/",
+        "disciplines": [
+          "管理科学与工程",
+          "工商管理",
+          "应用经济学"
+        ]
+      },
+      {
+        "name": "文法学院",
+        "url": "http://wenfa.ustb.edu.cn/",
+        "disciplines": [
+          "法学",
+          "社会学",
+          "公共管理"
+        ]
+      },
+      {
+        "name": "马克思主义学院",
+        "url": "http://marx.ustb.edu.cn/",
+        "disciplines": [
+          "马克思主义理论"
+        ]
+      },
+      {
+        "name": "外国语学院",
+        "url": "http://sfs.ustb.edu.cn/",
+        "disciplines": [
+          "外国语言文学"
+        ]
+      },
+      {
+        "name": "国家卓越工程师学院",
+        "url": "https://gcsxy.ustb.edu.cn/",
+        "disciplines": [
+          "工程管理",
+          "机械工程",
+          "材料工程"
+        ]
+      },
+      {
+        "name": "创新创业学院",
+        "url": "https://cy.ustb.edu.cn/",
+        "disciplines": [
+          "工商管理",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "体育学院",
+        "url": "https://tyb.ustb.edu.cn/",
+        "disciplines": [
+          "体育学"
+        ]
+      },
+      {
+        "name": "高精尖学院",
+        "url": "https://gjjxy.ustb.edu.cn/",
+        "disciplines": [
+          "材料科学与工程",
+          "计算机科学与技术"
+        ]
+      },
+      {
+        "name": "未来技术学院",
+        "url": "https://qy.ustb.edu.cn/",
+        "disciplines": [
+          "机械工程",
+          "控制科学与工程",
+          "计算机科学与技术"
+        ]
+      }
+    ],
+    "student_experiences": [],
+    "notes": "部分动态页面（就业报告、历年分数查询系统等）需要JS渲染，无法直接抓取具体内容；转专业公示名单通常在各学院内部系统公示，官网未公开完整名单；保研推免详细遴选办法需登录研究生院系统获取。",
+    "missing_categories": [
+      "transfer_announcement"
+    ],
+    "basic_info": {
+      "location": "北京 详细地址：北京市海淀区学院路30号北京科技大学招生办公室",
+      "address": "北京市海淀区学院路30号北京科技大学招生办公室",
+      "phone": "010-62325294",
+      "website": "https://www.ustb.edu.cn/",
+      "enrollment_website": "https://zhaosheng.ustb.edu.cn/",
+      "attributes": [
+        "双一流"
+      ]
+    },
+    "faq": [
+      {
+        "title": "Q&A: 提档退档",
+        "url": "",
+        "summary": "**提档退档**\nQ: 作为浙江省的考生，我无法服从调剂，那么在体检合格且单科成绩均符合条件的情况下会不会有提档后退档的风险？\nA: 考生体检合格后，提档不退档。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 山西考生物化生 591分 13109名可不可以报",
+        "url": "",
+        "summary": "**山西考生物化生 591分 13109名可不可以报**\nQ: 可以报哪些专业\nA: 咱们今年山西省理工类7500名左右有希望，孩子这个位次报考北科大有点悬，不过现在是平行志愿，可以报的数量多，可以把北科大放在第一志愿冲一下试试。进来了就是赚到。北科大实力强、保研率高、转专业容易，值得冲一下。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 报考",
+        "url": "",
+        "summary": "**报考**\nQ: 四川考生位次11400，有机会报考贵校吗？谢谢\nA: 四川省咱们学校今年理工类13000左右有希望，文史类3500左右有希望，这个位次报考北科大很合适，建议重点关注一下，按照考生的兴趣选择喜欢的专业方向。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 机械类分流",
+        "url": "",
+        "summary": "**机械类分流**\nQ: 想问一下贵校机械类的分流是怎么分的？以及转专业好转吗？\nA: 机械类分流到智能制造工程，机器人工程，机械工程，车辆工程，物理工程和工业设计几个专业。我校除了外国语言文学类在大一第一学期结束时分流到英语、日语和德语，其他所有大类专业均是大一学年结束时进行专业分流。 分专业时会充分尊重学生的专业志愿，结合学生大一学年的学习成绩和学生高考成绩。学院会提前向学生公布大类分专业办法，并做宣传介绍，通过多种方式进行专业咨询，解答学生的疑问，指导学生做好专业选择。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      },
+      {
+        "title": "Q&A: 专业方面问题",
+        "url": "",
+        "summary": "**专业方面问题**\nQ: 请问保专业吗\nA: 您好，我们招生专业多，大类里包含的小专业少，且均属于同意学科或相近学科，在扩大学生专业选择权的同时又确保了学习培养的连贯性，因此没有设置保专业政策。整体志愿满足率超过90%，万一被调剂，经过一年的学习还是觉得不喜欢，可以申请转专业，转专业对学习成绩排名和人数都没有限制。",
+        "attachments": [],
+        "publish_date": "",
+        "source_department": "阳光高考平台"
+      }
+    ],
+    "major_satisfaction": [
+      {
+        "title": "管理科学与工程类",
+        "score": 4.9,
+        "votes": 25
+      },
+      {
+        "title": "车辆工程",
+        "score": 4.7,
+        "votes": 69
+      },
+      {
+        "title": "工商管理",
+        "score": 4.6,
+        "votes": 304
+      },
+      {
+        "title": "会计学",
+        "score": 4.6,
+        "votes": 139
+      },
+      {
+        "title": "国际经济与贸易",
+        "score": 4.6,
+        "votes": 44
+      },
+      {
+        "title": "市场营销",
+        "score": 4.6,
+        "votes": 32
+      },
+      {
+        "title": "工商管理类",
+        "score": 4.5,
+        "votes": 46
+      },
+      {
+        "title": "物流工程",
+        "score": 4.5,
+        "votes": 64
+      },
+      {
+        "title": "能源与动力工程",
+        "score": 4.5,
+        "votes": 13
+      },
+      {
+        "title": "计算机科学与技术",
+        "score": 4.5,
+        "votes": 150
+      }
+    ]
+  }
+}
