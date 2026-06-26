@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useImperativeHandle, useMemo, forwardRef, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { AnimatePresence, motion } from "framer-motion";
 import type { ProvinceData, School } from "@/lib/data";
@@ -31,38 +31,6 @@ interface ChinaMap3DProps {
   onToggle211: () => void;
   onToggleDoubleFirst: () => void;
   onTransitionChange?: (transitioning: boolean) => void;
-
-  // ── Story Mode Props（全部 optional，向后兼容）──
-  /** 叙事模式：启用持续渲染 + 外部相机控制 */
-  storyMode?: boolean;
-  /** 0..1 滚动进度（由 StoryContainer 驱动） */
-  storyProgress?: number;
-  /** 外部相机目标（rAF 中 lerp 插值逼近） */
-  storyCameraTarget?: {
-    position: [number, number, number];
-    lookAt: [number, number, number];
-    zoom: number;
-  } | null;
-  /** 当前应可见的学校层级列表 */
-  visibleTiers?: ("985" | "211" | "doubleFirst" | "normal")[];
-  /** 地图组整体透明度 */
-  mapOpacity?: number;
-}
-
-/** 通过 forwardRef 暴露的命令式方法 */
-export interface ChinaMap3DHandle {
-  /** 强制渲染一帧 */
-  renderFrame(): void;
-  /** 获取当前相机状态 */
-  getCameraState(): { position: THREE.Vector3; zoom: number };
-  /** 直接设置 zoom（叙事模式可绕过 clamp） */
-  setZoom(zoom: number): void;
-  /** 直接设置相机位置 */
-  setCameraPosition(x: number, y: number, z: number): void;
-  /** 设置相机注视点 */
-  setLookAt(x: number, y: number, z: number): void;
-  /** 启用/禁用持续 rAF 渲染循环 */
-  setContinuousRender(enabled: boolean): void;
 }
 
 type Position = [number, number];
@@ -855,32 +823,24 @@ function screenPoint(
   };
 }
 
-function ChinaMap3DInner(
-  {
-    schools,
-    highlightedSchools,
-    provinces,
-    selectedProvince,
-    previewSchool,
-    hasActiveMapFilters,
-    filter985,
-    filter211,
-    filterDoubleFirst,
-    onProvinceSelect,
-    onSchoolPreview,
-    onSchoolClick,
-    onToggle985,
-    onToggle211,
-    onToggleDoubleFirst,
-    onTransitionChange,
-    // Story mode props
-    storyMode = false,
-    storyCameraTarget,
-    visibleTiers,
-    mapOpacity,
-  }: ChinaMap3DProps,
-  ref: React.ForwardedRef<ChinaMap3DHandle>,
-) {
+export default function ChinaMap3D({
+  schools,
+  highlightedSchools,
+  provinces,
+  selectedProvince,
+  previewSchool,
+  hasActiveMapFilters,
+  filter985,
+  filter211,
+  filterDoubleFirst,
+  onProvinceSelect,
+  onSchoolPreview,
+  onSchoolClick,
+  onToggle985,
+  onToggle211,
+  onToggleDoubleFirst,
+  onTransitionChange,
+}: ChinaMap3DProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -903,12 +863,6 @@ function ChinaMap3DInner(
   const [hoverInfo, setHoverInfo] = useState<MapHoverInfo | null>(null);
   const [cameraZoom, setCameraZoom] = useState(MIN_CAMERA_ZOOM);
   const [webglUnavailable, setWebglUnavailable] = useState(false);
-
-  // ── Story mode: 持续渲染循环 ──
-  const rafIdRef = useRef<number | null>(null);
-  const isRenderingRef = useRef(false);
-  // 用于 storyCameraTarget 的 lookAt 追踪（正交相机没有内置 lookAt target）
-  const lookAtTargetRef = useRef(new THREE.Vector3(0, 0, 0));
 
   const currentProvince =
     drill.level === "country"
@@ -954,49 +908,6 @@ function ChinaMap3DInner(
     return await response.json() as GeoJsonFeatureCollection;
   }, []);
 
-  // ── Story mode: visibleTiers 控制学校标记显隐 ──
-  useEffect(() => {
-    if (!visibleTiers || !mapReady || !storyMode) return;
-
-    for (const marker of schoolMeshesRef.current) {
-      const { tier, seal } = marker.userData;
-      const isVisible = visibleTiers.includes(tier as "985" | "211" | "doubleFirst" | "normal");
-      // 目标 scale：可见时用正常值，不可见时趋近于零
-      const targetScale = isVisible ? (marker.userData.baseScale ?? 1) : 0.001;
-
-      // 使用 GSAP 平滑过渡（已安装）
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        const gsapMod = require("gsap");
-        gsapMod.default.to(marker.scale, {
-          x: targetScale * 0.72,
-          y: targetScale * 0.08,
-          z: targetScale * 0.72,
-          duration: 0.5,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-        if (seal) {
-          const sealMaterial = Array.isArray(seal.material) ? seal.material[0] : seal.material;
-          gsapMod.default.to(sealMaterial, {
-            opacity: isVisible ? (seal.userData?.baseOpacity ?? 0.96) : 0,
-            duration: 0.5,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
-        }
-      } catch {
-        // GSAP 不可用时直接赋值降级
-        marker.scale.set(targetScale * 0.72, targetScale * 0.08, targetScale * 0.72);
-        if (seal) {
-          const sealMaterial = Array.isArray(seal.material) ? seal.material[0] : seal.material;
-          sealMaterial.opacity = isVisible ? (seal.userData?.baseOpacity ?? 0.96) : 0;
-          sealMaterial.needsUpdate = true;
-        }
-      }
-    }
-  }, [visibleTiers, mapReady, storyMode]);
-
   const renderScene = useCallback(() => {
     const renderer = rendererRef.current;
     const scene = sceneRef.current;
@@ -1004,82 +915,6 @@ function ChinaMap3DInner(
     if (!renderer || !scene || !camera) return;
     renderer.render(scene, camera);
   }, []);
-
-  // ── Story mode: 持续渲染循环（必须在 renderScene 之后声明）──
-  const startRenderLoop = useCallback(() => {
-    if (isRenderingRef.current) return;
-    isRenderingRef.current = true;
-
-    const loop = () => {
-      if (!isRenderingRef.current) return;
-
-      const cam = cameraRef.current;
-      // Story camera target interpolation (lerp)
-      if (storyCameraTarget && cam) {
-        const t = 0.06; // lerp factor per frame (~60fps smooth catch-up)
-        const target = storyCameraTarget;
-        cam.position.x += (target.position[0] - cam.position.x) * t;
-        cam.position.y += (target.position[1] - cam.position.y) * t;
-        cam.position.z += (target.position[2] - cam.position.z) * t;
-        lookAtTargetRef.current.set(
-          target.lookAt[0],
-          target.lookAt[1],
-          target.lookAt[2],
-        );
-        cam.lookAt(lookAtTargetRef.current);
-        // zoom needs separate handling
-        const currentZoom = cameraZoomRef.current;
-        const targetZoom = target.zoom;
-        const newZoom = currentZoom + (targetZoom - currentZoom) * t;
-        if (Math.abs(newZoom - currentZoom) > 0.0001) {
-          cameraZoomRef.current = newZoom;
-          cam.zoom = newZoom;
-          cam.updateProjectionMatrix();
-        }
-      }
-
-      // mapOpacity applied to mapGroup materials
-      if (mapGroupRef.current && mapOpacity !== undefined) {
-        mapGroupRef.current.traverse((child) => {
-          if (child instanceof THREE.Mesh && child.material) {
-            const mat = child.material;
-            if (Array.isArray(mat)) {
-              for (const m of mat) { m.opacity = mapOpacity; m.transparent = true; }
-            } else {
-              mat.opacity = mapOpacity;
-              mat.transparent = true;
-            }
-          }
-        });
-      }
-
-      renderScene();
-      rafIdRef.current = requestAnimationFrame(loop);
-    };
-    rafIdRef.current = requestAnimationFrame(loop);
-  }, [renderScene, storyCameraTarget, mapOpacity]);
-
-  const stopRenderLoop = useCallback(() => {
-    isRenderingRef.current = false;
-    if (rafIdRef.current !== null) {
-      cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = null;
-    }
-  }, []);
-
-  // ── Story mode: 持续渲染生命周期管理 ──
-  useEffect(() => {
-    if (storyMode) {
-      startRenderLoop();
-    } else {
-      stopRenderLoop();
-      requestAnimationFrame(renderScene);
-    }
-    return () => {
-      stopRenderLoop();
-    };
-  }, [storyMode, startRenderLoop, stopRenderLoop, renderScene]);
-
 
   const applyCameraZoom = useCallback((nextZoom: number, level = drill.level) => {
     const zoom = clampCameraZoom(nextZoom, level);
@@ -1096,38 +931,6 @@ function ChinaMap3DInner(
   const resetCameraZoom = useCallback((level = drill.level) => {
     applyCameraZoom(MIN_CAMERA_ZOOM, level);
   }, [applyCameraZoom, drill.level]);
-
-  // ── Imperative Handle：暴露命令式方法给父组件（必须在 renderScene/applyCameraZoom 之后声明）──
-  useImperativeHandle(ref, () => ({
-    renderFrame: renderScene,
-    getCameraState: () => {
-      const cam = cameraRef.current;
-      return {
-        position: cam?.position.clone() ?? new THREE.Vector3(),
-        zoom: cameraZoomRef.current,
-      };
-    },
-    setZoom: (zoom) => { applyCameraZoom(zoom); },
-    setCameraPosition: (x, y, z) => {
-      const cam = cameraRef.current;
-      if (cam) {
-        cam.position.set(x, y, z);
-        renderScene();
-      }
-    },
-    setLookAt: (x, y, z) => {
-      lookAtTargetRef.current.set(x, y, z);
-      const cam = cameraRef.current;
-      if (cam) {
-        cam.lookAt(lookAtTargetRef.current);
-        renderScene();
-      }
-    },
-    setContinuousRender: (enabled) => {
-      if (enabled) startRenderLoop();
-      else stopRenderLoop();
-    },
-  }), [renderScene, applyCameraZoom, startRenderLoop, stopRenderLoop]);
 
   const fitCameraToMap = useCallback((level: MapLevel) => {
     const container = containerRef.current;
@@ -1654,7 +1457,6 @@ function ChinaMap3DInner(
   }, []);
 
   const handlePointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    if (storyMode) return; // 叙事模式下禁用鼠标交互
     const object = pickObject(event);
     const container = containerRef.current;
     const camera = cameraRef.current;
@@ -1707,10 +1509,9 @@ function ChinaMap3DInner(
       container.style.cursor = "pointer";
       renderScene();
     }
-  }, [pickObject, renderScene, storyMode]);
+  }, [pickObject, renderScene]);
 
   const handlePointerLeave = useCallback(() => {
-    if (storyMode) return; // 叙事模式下禁用
     if (hoveredRegionRef.current) {
       hoveredRegionRef.current.position.y = hoveredRegionRef.current.userData.baseY;
       hoveredRegionRef.current = null;
@@ -1718,10 +1519,9 @@ function ChinaMap3DInner(
     setHoverInfo(null);
     if (containerRef.current) containerRef.current.style.cursor = "";
     renderScene();
-  }, [renderScene, storyMode]);
+  }, [renderScene]);
 
   const handleClick = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    if (storyMode) return; // 叙事模式下禁用点击
     const object = pickObject(event);
     if (!object) {
       onSchoolPreview(null);
@@ -1743,10 +1543,9 @@ function ChinaMap3DInner(
         if (province && adcode) void drillDown(mapProvinceName(province), adcode);
       }
     }
-  }, [drill.level, drillDown, onSchoolPreview, pickObject, storyMode]);
+  }, [drill.level, drillDown, onSchoolPreview, pickObject]);
 
   const handleDoubleClick = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    if (storyMode) return; // 叙事模式下禁用双击
     const object = pickObject(event);
     if (!object || object.userData.kind !== "school") return;
     if (clickTimer.current) {
@@ -1754,7 +1553,7 @@ function ChinaMap3DInner(
       clickTimer.current = null;
     }
     onSchoolClick(object.userData.school as School);
-  }, [onSchoolClick, pickObject, storyMode]);
+  }, [onSchoolClick, pickObject]);
 
   const zoomBy = useCallback((direction: 1 | -1) => {
     const factor = direction > 0 ? CAMERA_ZOOM_STEP : 1 / CAMERA_ZOOM_STEP;
@@ -1762,10 +1561,9 @@ function ChinaMap3DInner(
   }, [applyCameraZoom]);
 
   const handleWheel = useCallback((event: React.WheelEvent<HTMLDivElement>) => {
-    if (storyMode) return; // 叙事模式下禁用滚轮缩放
     event.preventDefault();
     zoomBy(event.deltaY < 0 ? 1 : -1);
-  }, [storyMode, zoomBy]);
+  }, [zoomBy]);
 
   const maxCameraZoom = MAX_CAMERA_ZOOM_BY_LEVEL[drill.level];
   const canZoomIn = cameraZoom < maxCameraZoom - 0.01;
@@ -1776,23 +1574,23 @@ function ChinaMap3DInner(
     <div
       className={`china-map-stage ${
         drill.level === "country" ? "china-map-stage-country" : "china-map-stage-local"
-      } ${storyMode ? "fixed inset-0 z-0" : "relative h-full w-full"} overflow-hidden`}
+      } relative h-full w-full overflow-hidden`}
       role="figure"
       aria-label="中国高校 3D 地图"
-      onPointerMove={storyMode ? undefined : handlePointerMove}
-      onPointerLeave={storyMode ? undefined : handlePointerLeave}
-      onClick={storyMode ? undefined : handleClick}
-      onDoubleClick={storyMode ? undefined : handleDoubleClick}
-      onWheel={storyMode ? undefined : handleWheel}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
+      onWheel={handleWheel}
     >
-      <div ref={containerRef} className={`china-map-three absolute inset-0 z-20 ${storyMode ? "pointer-events-none" : ""}`} />
+      <div ref={containerRef} className="china-map-three absolute inset-0 z-20" />
       {webglUnavailable && (
         <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_42%,rgba(72,154,171,0.26),transparent_38%),linear-gradient(180deg,rgba(7,22,35,0.95),rgba(2,7,13,0.98))]" />
       )}
-      {!storyMode && <div className="china-map-veil" />}
+      <div className="china-map-veil" />
 
       <AnimatePresence>
-        {!mapReady && !storyMode && (
+        {!mapReady && (
           <motion.div
             className="absolute inset-0 z-30 flex items-center justify-center text-sm text-text-light-muted"
             initial={{ opacity: 0 }}
@@ -1804,7 +1602,7 @@ function ChinaMap3DInner(
         )}
       </AnimatePresence>
 
-      {hoverInfo && !storyMode && (
+      {hoverInfo && (
         <motion.div
           className="pointer-events-none absolute z-40 rounded-md border border-border/70 bg-surface/92 px-3 py-2 text-xs text-text shadow-xl shadow-neutral-900/12 backdrop-blur-md"
           style={{ left: hoverInfo.x + 14, top: hoverInfo.y + 14 }}
@@ -1828,7 +1626,6 @@ function ChinaMap3DInner(
         </motion.div>
       )}
 
-      {!storyMode && (
       <div className="absolute inset-x-3 bottom-[4.35rem] z-40 flex flex-wrap gap-1.5 rounded-md border border-border/70 bg-surface/82 p-1.5 shadow-lg shadow-neutral-900/10 backdrop-blur-md sm:inset-x-auto sm:bottom-4 sm:left-4 sm:gap-2 sm:p-2">
         <button
           type="button"
@@ -1868,15 +1665,13 @@ function ChinaMap3DInner(
           普通高校
         </span>
       </div>
-      )}
 
-      {loadingDrill && !storyMode && (
+      {loadingDrill && (
         <div className="absolute right-4 top-4 z-40 rounded-md border border-border/70 bg-surface/82 px-3 py-1.5 text-xs text-text-light-muted shadow-lg backdrop-blur-md">
           切换地图中
         </div>
       )}
 
-      {!storyMode && (
       <div
         className="absolute bottom-3 right-3 z-40 flex items-center overflow-hidden rounded-md border border-border/70 bg-surface/86 shadow-lg shadow-neutral-900/10 backdrop-blur-md sm:bottom-4 sm:right-4"
         aria-label="地图缩放"
@@ -1910,10 +1705,9 @@ function ChinaMap3DInner(
           +
         </button>
       </div>
-      )}
 
       <AnimatePresence>
-        {previewSchool && !storyMode && (
+        {previewSchool && (
           <SchoolPopup
             key={previewSchool.name}
             school={previewSchool}
@@ -1924,7 +1718,3 @@ function ChinaMap3DInner(
     </div>
   );
 }
-
-/** forwardRef 包装：允许父组件通过 ref 调用命令式方法 */
-const ChinaMap3D = forwardRef(ChinaMap3DInner);
-export default ChinaMap3D;

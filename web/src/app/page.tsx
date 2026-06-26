@@ -21,14 +21,6 @@ const ChinaMap3D = dynamic(() => import("@/components/ChinaMap3D"), {
   loading: () => <MapLoadingFallback />,
 });
 
-const StoryContainer = dynamic(() => import("@/components/story/StoryContainer"), {
-  ssr: false,
-  loading: () => <HomePageSkeleton />,
-});
-
-/** sessionStorage key：标记用户是否已看过叙事 */
-const STORY_SEEN_KEY = "gk-story-seen";
-
 const panelVariants = {
   initial: { x: 24, y: 8, opacity: 0, scale: 0.98 },
   animate: { x: 0, y: 0, opacity: 1, scale: 1 },
@@ -47,11 +39,6 @@ function MapLoadingFallback() {
       地图加载中
     </div>
   );
-}
-
-function shouldSkipStoryOnInitialVisit() {
-  if (typeof window === "undefined") return true;
-  return window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
 }
 
 export default function HomePage() {
@@ -91,28 +78,6 @@ function Home() {
   const [mapTransitioning, setMapTransitioning] = useState(false);
   const [transitionProvince, setTransitionProvince] = useState<string | null>(null);
 
-  // ── Story mode state ──
-  const [storyComplete, setStoryComplete] = useState(() => {
-    if (typeof window === "undefined") return true; // SSR 安全：默认跳过叙事
-    if (shouldSkipStoryOnInitialVisit()) {
-      sessionStorage.setItem(STORY_SEEN_KEY, "1");
-      return true;
-    }
-    // 首次访问看叙事，回访者跳过（可手动重播）
-    return sessionStorage.getItem(STORY_SEEN_KEY) === "1";
-  });
-
-  /** 叙事完成回调：标记已看 + 切换到仪表盘 */
-  const handleStoryComplete = useCallback(() => {
-    sessionStorage.setItem(STORY_SEEN_KEY, "1");
-    setStoryComplete(true);
-  }, []);
-
-  /** 重播叙事 */
-  const handleReplayStory = useCallback(() => {
-    sessionStorage.removeItem(STORY_SEEN_KEY);
-    setStoryComplete(false);
-  }, []);
   const provinceFromUrl = searchParams.get("province")?.trim() || null;
   const pendingProvinceUrlRef = useRef<string | null | undefined>(undefined);
 
@@ -256,17 +221,6 @@ function Home() {
     return <HomePageSkeleton />;
   }
 
-  // ── 滚动叙事模式（首次访问）──
-  if (!storyComplete && !prefersReducedMotion()) {
-    return (
-      <StoryContainer
-        schools={data.schools}
-        provinces={data.provinces}
-        onComplete={handleStoryComplete}
-      />
-    );
-  }
-
   const hasActiveSearch = query.trim().length > 0;
   const visibleProvince = selectedProvince ?? transitionProvince;
   const hasSidePanelContent =
@@ -311,15 +265,6 @@ function Home() {
                 中国高校信息地图
               </h1>
             </div>
-            {/* 重播叙事链接 */}
-            <button
-              type="button"
-              onClick={handleReplayStory}
-              className="ml-2 hidden shrink-0 rounded-md border border-primary/20 bg-primary/5 px-2 py-0.5 text-[11px] font-medium text-primary transition-colors hover:border-primary/35 hover:bg-primary/10 sm:inline-flex"
-              aria-label="重播滚动介绍"
-            >
-              重播介绍
-            </button>
             <HeaderBlessing />
           </div>
 
