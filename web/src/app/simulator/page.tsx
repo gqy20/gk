@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/Select";
+import { IconChevronDown } from "@/components/ui/Icon";
 import { Slider } from "@/components/ui/Slider";
 import { TextField } from "@/components/ui/Field";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
@@ -222,6 +223,7 @@ function SimulatorPageContent() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitStartedAt, setSubmitStartedAt] = useState<number | null>(null);
+  const [quickStartOpen, setQuickStartOpen] = useState(false);
   const scrollRootRef = useRef<HTMLDivElement>(null);
 
   useGsapScrollReveal(scrollRootRef, []);
@@ -367,42 +369,65 @@ function SimulatorPageContent() {
       backHref="/"
       backLabel="返回"
       mainClassName="pb-10"
-      contentMaxClassName="max-w-[1600px]"
+      contentMaxClassName="max-w-none"
+      headerMaxClassName="max-w-none"
     >
-      <div ref={scrollRootRef} className="mx-auto max-w-[1480px] space-y-6">
-        {/* 顶部 Hero + 快速开始 preset */}
+      <div ref={scrollRootRef} className="space-y-6">
+        {/* 顶部 Hero + 可折叠的快速开始 preset */}
         <div data-scroll-reveal>
           <FuturePanel className="overflow-hidden p-0">
-            <div className="grid gap-5 bg-gradient-to-br from-brand-50/55 via-surface-elevated to-accent-50/35 px-5 py-6 sm:px-7 sm:py-7">
-              <div>
-                <p className="text-xs font-medium text-accent">大学人生模拟器</p>
-                <h1 className="mt-1.5 text-2xl font-bold tracking-tight text-text sm:text-3xl">
-                  选一所学校，8 轮选择，看看你四年后会变成什么样
-                </h1>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-text-secondary">
-                  基于你的学校、专业、性格和风险偏好，由 AI 推演一段真实的中国大学生活，最终生成一张「大学人设卡」。
-                </p>
-              </div>
+            {/* Hero 标题区 —— 始终可见 */}
+            <div className="bg-gradient-to-br from-brand-50/55 via-surface-elevated to-accent-50/35 px-5 py-5 sm:px-7 sm:py-6">
+              <p className="text-xs font-medium text-accent">大学人生模拟器</p>
+              <h1 className="mt-1.5 text-2xl font-bold tracking-tight text-text sm:text-3xl">
+                选一所学校，8 轮选择，看看你四年后会变成什么样
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm leading-7 text-text-secondary">
+                基于你的学校、专业、性格和风险偏好，由 AI 推演一段真实的中国大学生活，最终生成一张「大学人设卡」。
+              </p>
             </div>
 
-            <div className="border-t border-border bg-surface-elevated/85 px-5 py-5 sm:px-7 sm:py-6">
-              <div className="flex items-end justify-between gap-3">
-                <SectionHeading
-                  title="快速开始"
-                  description="先选一个典型画像，一键填充下方面单；想自定义就跳过。"
-                />
-                <span className="hidden text-[11px] text-text-muted sm:block">点击卡片 → 一键开玩</span>
-              </div>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {PRESETS.map((preset) => (
-                  <PresetCard
-                    key={preset.id}
-                    preset={preset}
-                    onApply={() => applyPreset(preset)}
-                    onStart={() => startWithPreset(preset)}
+            {/* 快速开始 —— 默认折叠 */}
+            <div className="border-t border-border bg-surface-elevated/85">
+              {/* 折叠/展开切换栏 */}
+              <button
+                type="button"
+                onClick={() => setQuickStartOpen((v) => !v)}
+                className="flex w-full items-center justify-between gap-3 px-5 py-3.5 text-left transition hover:bg-surface-subtle/60 sm:px-7"
+                aria-expanded={quickStartOpen}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="text-sm font-semibold text-text">快速开始</span>
+                  <span className="rounded-full border border-primary/25 bg-primary/8 px-2 py-0.5 text-[11px] font-medium text-primary">
+                    {PRESETS.length} 个预设
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {!quickStartOpen && (
+                    <span className="text-[11px] text-text-muted">选预设 → 一键开玩</span>
+                  )}
+                  <IconChevronDown
+                    size={14}
+                    className={`text-text-muted transition-transform duration-200 ${quickStartOpen ? "rotate-180" : ""}`}
                   />
-                ))}
-              </div>
+                </div>
+              </button>
+
+              {/* 展开的预设卡片网格 */}
+              {quickStartOpen && (
+                <div className="border-t border-border/70 px-5 pb-5 pt-4 sm:px-7">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {PRESETS.map((preset) => (
+                      <PresetCard
+                        key={preset.id}
+                        preset={preset}
+                        onApply={() => applyPreset(preset)}
+                        onStart={() => startWithPreset(preset)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </FuturePanel>
         </div>
