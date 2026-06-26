@@ -378,8 +378,7 @@ function SimulatorPageContent() {
           <FuturePanel className="overflow-hidden p-0">
             {/* Hero 标题区 —— 始终可见 */}
             <div className="bg-gradient-to-br from-brand-50/55 via-surface-elevated to-accent-50/35 px-5 py-5 sm:px-7 sm:py-6">
-              <p className="text-xs font-medium text-accent">大学人生模拟器</p>
-              <h1 className="mt-1.5 text-2xl font-bold tracking-tight text-text sm:text-3xl">
+              <h1 className="text-2xl font-bold tracking-tight text-text sm:text-3xl">
                 选一所学校，8 轮选择，看看你四年后会变成什么样
               </h1>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-text-secondary">
