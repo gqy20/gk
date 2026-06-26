@@ -745,14 +745,16 @@ function PresetCard({
   return (
     <div className="group relative flex flex-col gap-2 rounded-xl border border-border bg-neutral-0/55 p-3.5 transition hover:border-primary/30 hover:bg-surface-elevated">
       <div className="flex items-center justify-between gap-2">
-        <span className="inline-flex items-center rounded-full border border-primary/25 bg-primary/8 px-2 py-0.5 text-[11px] font-medium text-primary">
-          {preset.badge}
-        </span>
-        <span className="text-[10px] text-text-muted">风险 {preset.risk}/10</span>
+        <div className="min-w-0 flex items-center gap-2">
+          <span className="shrink-0 inline-flex items-center rounded-full border border-primary/25 bg-primary/8 px-2 py-0.5 text-[11px] font-medium text-primary">
+            {preset.badge}
+          </span>
+          <span className="truncate text-sm font-semibold text-text">
+            {preset.school} · {preset.major}
+          </span>
+        </div>
+        <span className="shrink-0 text-[10px] text-text-muted">风险 {preset.risk}/10</span>
       </div>
-      <p className="text-sm font-semibold text-text">
-        {preset.school} · {preset.major}
-      </p>
       <p className="text-[11px] leading-5 text-text-secondary">{preset.tagline}</p>
       <div className="mt-1 flex flex-wrap gap-1">
         {splitTags(preset.personalityTags).slice(0, 2).map((t) => (
