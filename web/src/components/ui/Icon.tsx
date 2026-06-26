@@ -3,6 +3,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  History,
   LoaderCircle,
   X,
   Search,
@@ -39,6 +40,10 @@ export function IconCheck({ className, size = 12 }: IconProps) {
 
 export function IconSearch({ className, size = 14 }: IconProps) {
   return <Search className={cn("shrink-0", className)} size={size} strokeWidth={ICON_STROKE_WIDTH} aria-hidden="true" />;
+}
+
+export function IconHistory({ className, size = 16 }: IconProps) {
+  return <History className={cn("shrink-0", className)} size={size} strokeWidth={ICON_STROKE_WIDTH} aria-hidden="true" />;
 }
 
 /**

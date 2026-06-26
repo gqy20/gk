@@ -9,6 +9,7 @@ import { Select as SelectRoot, SelectContent, SelectItem, SelectTrigger, SelectV
 import { Textarea } from "@/components/ui/Textarea";
 import { Slider } from "@/components/ui/Slider";
 import { TextField } from "@/components/ui/Field";
+import { IconHistory } from "@/components/ui/Icon";
 import { createFutureRunFromClient, fetchFutureRunsFromClient } from "@/lib/future/client";
 import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
 import type { School } from "@/lib/data";
@@ -319,8 +320,10 @@ function FuturePageContent() {
           </div>
 
           <div data-scroll-reveal className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-surface-elevated px-5 py-4 shadow-[0_10px_24px_-22px_rgba(17,24,32,0.28)]">
-            <p className="max-w-2xl text-xs leading-5 text-text-secondary">
-              默认生成 3 条大学路线：一条偏稳、一条偏实践、一条保留试错或转向空间。
+            <p className={`max-w-2xl text-xs leading-5 ${targetSchool.trim() ? "text-text-secondary" : "font-medium text-warning"}`}>
+              {targetSchool.trim()
+                ? "默认生成 3 条大学路线：一条偏稳、一条偏实践、一条保留试错或转向空间。"
+                : "请先在上方「目标学校」选择一所学校，才能开始预演。"}
             </p>
             <Button type="submit" loading={submitting} disabled={!targetSchool.trim()} theme="light" variant="primary">
               {submitting ? "生成中" : "开始预演"}
@@ -439,9 +442,11 @@ function HistoryList({
   if (!items || items.length === 0) {
     return (
       <FuturePanel className="p-8 text-center">
-        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">Empty</div>
-        <p className="mt-2 text-sm text-text-secondary">还没有预演记录</p>
-        <p className="mt-1 text-xs text-text-muted">完成一次预演后,历史会出现在这里。</p>
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-surface-subtle text-text-muted">
+          <IconHistory size={22} />
+        </span>
+        <p className="mt-3 text-sm font-medium text-text-secondary">还没有预演记录</p>
+        <p className="mt-1 text-xs text-text-muted">完成一次预演后，历史会出现在这里</p>
       </FuturePanel>
     );
   }
