@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { IconDualRingSpinner } from "@/components/ui/Icon";
 
 // ── 流式阶段类型 ──────────────────────────────────────
 
@@ -269,20 +270,11 @@ export function ThinkingPanel({
         <div className="flex items-center gap-3">
           {/* 旋转圆圈图标 / 完成勾选 */}
           <span aria-hidden className="relative flex h-6 w-6 items-center justify-center">
-            <svg
-              className={`h-6 w-6 ${streamPhase === "complete" ? "text-green-500" : "animate-spin text-accent"}`}
-              viewBox="0 0 24 24"
-              fill="none"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            >
-              <circle cx="12" cy="12" r="9" className="stroke-current opacity-20" />
-              {streamPhase === "complete" ? (
-                <path d="M8 12l2.5 2.5L16 9" className="stroke-current" />
-              ) : (
-                <path d="M12 3a9 9 0 0 1 6.36 2.64" className="stroke-current" />
-              )}
-            </svg>
+            <IconDualRingSpinner
+              size={24}
+              done={streamPhase === "complete"}
+              className={streamPhase === "complete" ? "text-green-500" : "text-accent"}
+            />
           </span>
 
           <div>

@@ -322,7 +322,7 @@ function FuturePageContent() {
             <p className="max-w-2xl text-xs leading-5 text-text-secondary">
               默认生成 3 条大学路线：一条偏稳、一条偏实践、一条保留试错或转向空间。
             </p>
-            <Button type="submit" disabled={submitting || !targetSchool.trim()} theme="light" variant="primary">
+            <Button type="submit" loading={submitting} disabled={!targetSchool.trim()} theme="light" variant="primary">
               {submitting ? "生成中" : "开始预演"}
             </Button>
           </div>

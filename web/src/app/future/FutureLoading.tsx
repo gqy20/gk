@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FuturePanel } from "./FutureShell";
+import { IconDualRingSpinner } from "@/components/ui/Icon";
 
 // ── 阶段定义 ──────────────────────────────────────────────
 const STAGES = [
@@ -199,24 +200,7 @@ export function FutureLoading({
       >
         {/* 动态图标：旋转圆环 */}
         <span aria-hidden className="relative flex h-5 w-5 items-center justify-center">
-          <svg
-            className="h-5 w-5 animate-spin text-accent"
-            viewBox="0 0 24 24"
-            fill="none"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="9"
-              className="stroke-current opacity-20"
-            />
-            <path
-              d="M12 3a9 9 0 0 1 6.36 2.64"
-              className="stroke-current"
-            />
-          </svg>
+          <IconDualRingSpinner size={20} className="text-accent" />
         </span>
 
         <span className="text-sm font-medium text-text-secondary">{message}</span>

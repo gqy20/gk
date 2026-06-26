@@ -536,20 +536,12 @@ function SimulatorPageContent() {
               </p>
               <Button
                 type="submit"
-                disabled={submitting}
+                loading={submitting}
                 theme="light"
                 variant="primary"
                 className="min-w-[7.5rem]"
-                aria-busy={submitting}
               >
-                {submitting ? (
-                  <>
-                    <span aria-hidden className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/35 border-t-white" />
-                    正在准备
-                  </>
-                ) : (
-                  "开始模拟"
-                )}
+                {submitting ? "正在准备" : "开始模拟"}
               </Button>
             </div>
 

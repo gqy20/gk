@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { IconSpinner } from "./Icon";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 const buttonVariants = cva(
@@ -143,6 +144,8 @@ interface ButtonProps
   extends Omit<ComponentPropsWithoutRef<typeof motion.button>, "children">,
     VariantProps<typeof buttonVariants> {
   isActive?: boolean;
+  /** 加载态：渲染 spinner 并禁用交互（同时隐含 disabled） */
+  loading?: boolean;
   children: ReactNode;
 }
 
@@ -153,21 +156,26 @@ export function Button({
   theme,
   active,
   isActive,
+  loading = false,
   disabled,
   children,
   ...props
 }: ButtonProps) {
   const pressed = active ?? isActive ?? false;
+  const isDisabled = disabled || loading;
+
+  const spinnerSize = size === "lg" ? 15 : size === "sm" ? 12 : 13;
 
   return (
     <motion.button
       type="button"
-      disabled={disabled}
-      whileHover={disabled ? undefined : { scale: 1.03 }}
-      whileTap={disabled ? undefined : { scale: 0.97 }}
+      disabled={isDisabled}
+      whileHover={isDisabled ? undefined : { scale: 1.03 }}
+      whileTap={isDisabled ? undefined : { scale: 0.97 }}
       className={cn(buttonVariants({ variant, size, theme, active: pressed }), className)}
       {...props}
     >
+      {loading && <IconSpinner size={spinnerSize} className="text-current" />}
       {children}
     </motion.button>
   );
