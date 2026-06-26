@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { IconClose } from "@/components/ui/Icon";
 import type { School } from "@/lib/data";
@@ -18,21 +19,30 @@ export default function CompareBar({ schools, onRemove, onCompare, onClear }: Co
     <div className="border-t border-border-light bg-accent-50/45 px-4 py-3">
       <div className="flex items-center gap-3">
         <div className="flex min-w-0 flex-1 flex-wrap gap-1.5">
-          {schools.map((school, index) => (
-            <span
-              key={`${school.name || school.url || "school"}-${index}`}
-              className="inline-flex items-center gap-1 rounded-md border border-border-light bg-neutral-0/72 px-2 py-0.5 text-xs text-text-light"
-            >
-              <span className="max-w-[100px] truncate">{school.name}</span>
-              <button
-                type="button"
-                onClick={() => onRemove(school)}
-                className="rounded-full p-0.5 text-danger-400 transition hover:bg-danger-soft"
+          <AnimatePresence initial={false} mode="popLayout">
+            {schools.map((school) => (
+              <motion.span
+                key={school.name || school.url}
+                layout
+                initial={{ opacity: 0, scale: 0.82 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.82 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                title={school.name}
+                className="inline-flex items-center gap-1 rounded-md border border-border-light bg-neutral-0/72 py-0.5 pl-2 pr-1 text-xs text-text-light"
               >
-                <IconClose size={12} />
-              </button>
-            </span>
-          ))}
+                <span className="max-w-[140px] truncate">{school.name}</span>
+                <button
+                  type="button"
+                  onClick={() => onRemove(school)}
+                  aria-label={`移除 ${school.name}`}
+                  className="-mr-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-danger-400 transition hover:bg-danger-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/30"
+                >
+                  <IconClose size={12} />
+                </button>
+              </motion.span>
+            ))}
+          </AnimatePresence>
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <Button theme="light" variant="danger" size="sm" onClick={onClear}>

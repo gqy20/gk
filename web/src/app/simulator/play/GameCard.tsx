@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Panel } from "@/components/ui/Panel";
+import { IconCheck } from "@/components/ui/Icon";
+import { cn } from "@/lib/utils";
 import type { SimulatorChoice, SimulateStepResult } from "@/lib/future/simulator-types";
 
 interface GameCardProps {
@@ -122,6 +124,16 @@ export function GameCard({ scene, currentRound, totalRounds, disabled, isFirstRo
   );
 }
 
+/**
+ * 选项配色按位置映射。prompt 约定 choices 固定顺序为
+ * [0]=稳健保守、[1]=均衡务实、[2]=争取冒险，颜色与之稳定绑定。
+ */
+const POSITION_TONE_CLASSES = [
+  "hover:border-brand-400/45 hover:bg-brand-50/65",   // 0 稳健 → brand 青
+  "hover:border-accent-400/45 hover:bg-accent-50/70", // 1 均衡 → accent 金
+  "hover:border-risk-400/45 hover:bg-risk-50/65",     // 2 冒险 → risk 紫
+];
+
 /** 单张选项卡牌 */
 function ChoiceCard({
   choice,
@@ -137,11 +149,6 @@ function ChoiceCard({
   onClick: () => void;
 }) {
   const optionLetter = String.fromCharCode(65 + index);
-  const toneClasses = [
-    "hover:border-brand-400/45 hover:bg-brand-50/65",
-    "hover:border-accent-400/45 hover:bg-accent-50/70",
-    "hover:border-risk-400/45 hover:bg-risk-50/65",
-  ];
 
   return (
     <motion.button
@@ -152,22 +159,25 @@ function ChoiceCard({
       onClick={onClick}
       disabled={isDisabled}
       aria-pressed={isSelected}
-      className={`group relative flex min-h-[160px] w-full flex-col rounded-xl border bg-surface-subtle/70 p-4 text-left
-                  transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40
-                  ${toneClasses[index % toneClasses.length]}
-                  ${isSelected ? "border-accent/70 bg-accent-50/55 ring-1 ring-accent/20" : "border-border"}
-                  ${isDisabled && !isSelected ? "cursor-not-allowed opacity-45" : "cursor-pointer"}
-                `}
+      className={cn(
+        "group relative flex min-h-[160px] w-full flex-col rounded-xl border bg-surface-subtle/70 p-4 text-left",
+        "transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+        // 选中态统一 accent 高亮；未选中时按 tone 语义配色
+        isSelected ? "border-accent/70 bg-accent-50/55 ring-1 ring-accent/20" : cn("border-border", POSITION_TONE_CLASSES[index % POSITION_TONE_CLASSES.length]),
+        isDisabled && !isSelected ? "cursor-not-allowed opacity-45" : "cursor-pointer",
+      )}
     >
       <div className="mb-3 flex items-start justify-between gap-3">
-        <span className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg font-mono text-[11px] font-semibold transition-colors ${
-          isSelected ? "bg-accent text-text-inverse" : "bg-neutral-900/6 text-text-muted group-hover:bg-neutral-900/9"
-        }`}>
+        <span className={cn(
+          "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg font-mono text-[11px] font-semibold transition-colors",
+          isSelected ? "bg-accent text-text-inverse" : "bg-neutral-900/6 text-text-muted group-hover:bg-neutral-900/9",
+        )}>
           {optionLetter}
         </span>
-        <span className={`mt-1 h-3 w-3 rounded-full border transition-colors ${
-          isSelected ? "border-accent bg-accent" : "border-border bg-surface-elevated group-hover:border-text-muted"
-        }`} />
+        <span className={cn(
+          "mt-1 h-3 w-3 rounded-full border transition-colors",
+          isSelected ? "border-accent bg-accent" : "border-border bg-surface-elevated group-hover:border-text-muted",
+        )} />
       </div>
 
       {/* 选项文字 */}
@@ -184,8 +194,8 @@ function ChoiceCard({
           animate={{ scale: 1 }}
           className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-medium text-accent"
         >
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[11px] text-text-inverse">
-            ✓
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-text-inverse">
+            <IconCheck size={11} />
           </span>
           正在推演这个选择
         </motion.div>
