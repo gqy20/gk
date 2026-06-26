@@ -551,45 +551,80 @@ button:disabled {
   display: none;
 }
 
-.future-risk-slider {
+/* ─── Slider 原语（替代旧 .future-risk-slider） ─── */
+.slider-input {
   appearance: none;
   height: 20px;
   background: transparent;
   cursor: pointer;
 }
 
-.future-risk-slider::-webkit-slider-runnable-track {
-  height: 4px;
+/* 空轨道（未填充部分） */
+.slider-input::-webkit-slider-runnable-track {
+  height: 5px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(63, 143, 155, 0.82), rgba(197, 154, 75, 0.48));
+  background: var(--color-neutral-200);
+  opacity: 0.55;
 }
 
-.future-risk-slider::-webkit-slider-thumb {
+.slider-input::-moz-range-track {
+  height: 5px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-neutral-200);
+  opacity: 0.55;
+}
+
+/* 拖拽 thumb */
+.slider-input::-webkit-slider-thumb {
   appearance: none;
   width: 18px;
   height: 18px;
-  margin-top: -7px;
-  border: 3px solid var(--color-surface-elevated);
+  margin-top: -6.5px; /* (thumb - track) / 2 = (18-5)/2 */
+  border: 2.5px solid var(--color-surface-elevated);
   border-radius: 999px;
   background: var(--color-primary);
-  box-shadow: 0 2px 8px rgba(42, 72, 80, 0.24);
+  box-shadow:
+    0 1px 3px rgba(42, 72, 80, 0.18),
+    0 2px 6px rgba(42, 72, 80, 0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
-.future-risk-slider::-moz-range-track {
-  height: 4px;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(63, 143, 155, 0.82), rgba(197, 154, 75, 0.48));
-}
-
-.future-risk-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border: 3px solid var(--color-surface-elevated);
+.slider-input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid var(--color-surface-elevated);
   border-radius: 999px;
   background: var(--color-primary);
-  box-shadow: 0 2px 8px rgba(42, 72, 80, 0.24);
+  box-shadow:
+    0 1px 3px rgba(42, 72, 80, 0.18),
+    0 2px 6px rgba(42, 72, 80, 0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.slider-input:hover::-webkit-slider-thumb,
+.slider-input:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.12);
+  box-shadow:
+    0 2px 5px rgba(42, 72, 80, 0.22),
+    0 4px 10px rgba(42, 72, 80, 0.15);
+}
+
+.slider-input:hover::-moz-range-thumb,
+.slider-input:focus-visible::-moz-range-thumb {
+  transform: scale(1.12);
+  box-shadow:
+    0 2px 5px rgba(42, 72, 80, 0.22),
+    0 4px 10px rgba(42, 72, 80, 0.15);
+}
+
+/* 兼容旧 class 名（过渡期） */
+.future-risk-slider {
+  appearance: none;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
 }
 
 .poi-scroll {

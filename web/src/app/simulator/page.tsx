@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/Select";
+import { Slider } from "@/components/ui/Slider";
+import { TextField } from "@/components/ui/Field";
 import { createSimulatorSession } from "@/lib/future/simulator-client";
 import type { School } from "@/lib/data";
 import { fetchSchoolDetail, mergeSchoolDetail } from "@/lib/school-details";
@@ -467,43 +469,33 @@ function SimulatorPageContent() {
                 <FuturePanel className="p-5 sm:p-6">
                   <SectionHeading title="你的性格" description="这些标签会让场景和选项更贴合你。" />
                   <div className="mt-5 grid gap-x-5 gap-y-4 md:grid-cols-2">
-                    <Label>
-                      <span>性格标签</span>
-                      <Input
-                        value={personalityTags}
-                        onChange={(e) => setPersonalityTags(e.target.value)}
-                        placeholder="用空格分隔，如：理性 好奇 内向"
-                      />
-                    </Label>
-                    <Label>
-                      <span>兴趣方向</span>
-                      <Input
-                        value={interests}
-                        onChange={(e) => setInterests(e.target.value)}
-                        placeholder="用空格分隔，如：计算机 社交 运动"
-                      />
-                    </Label>
+                    <TextField
+                      label="性格标签"
+                      value={personalityTags}
+                      onChange={(e) => setPersonalityTags(e.target.value)}
+                      placeholder="用空格分隔，如：理性 好奇 内向"
+                    />
+                    <TextField
+                      label="兴趣方向"
+                      value={interests}
+                      onChange={(e) => setInterests(e.target.value)}
+                      placeholder="用空格分隔，如：计算机 社交 运动"
+                    />
                   </div>
 
-                  <Label className="mt-5 rounded-xl bg-neutral-0/45 p-4">
-                    <span className="flex items-center justify-between gap-3">
-                      <span>冒险倾向</span>
-                      <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
-                    </span>
-                    <input
-                      type="range"
+                  <div className="mt-5 rounded-xl bg-neutral-0/45 p-4">
+                    <Slider
+                      aria-label="冒险倾向"
                       min={1}
                       max={10}
+                      step={1}
                       value={riskTolerance}
-                      onChange={(e) => setRiskTolerance(Number(e.target.value))}
-                      className="future-risk-slider mt-4 w-full"
+                      onChange={(v) => setRiskTolerance(v)}
+                      minLabel="稳健谨慎"
+                      midLabel="均衡"
+                      maxLabel="冒险探索"
                     />
-                    <span className="mt-3 flex justify-between text-[11px] text-text-muted">
-                      <span>稳健谨慎</span>
-                      <span>均衡</span>
-                      <span>冒险探索</span>
-                    </span>
-                  </Label>
+                  </div>
                 </FuturePanel>
               </div>
             </div>

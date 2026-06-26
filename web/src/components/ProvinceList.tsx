@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
-import { IconCheck } from "@/components/ui/Icon";
+import { Checkbox } from "@/components/ui/Checkbox";
 import { SchoolLogo } from "@/components/ui/SchoolLogo";
 import { cn } from "@/lib/utils";
 import { EMPTY_MESSAGES } from "@/lib/constants";
@@ -196,12 +196,10 @@ export default function ProvinceList({
                         <span className="truncate font-medium">{school.name}</span>
                       </button>
                       <span className="flex flex-shrink-0 items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (canToggle) onCompareToggle(school);
-                          }}
+                        <Checkbox
+                          checked={isCompareSelected}
                           disabled={!canToggle}
+                          onChange={() => onCompareToggle(school)}
                           title={
                             isCompareSelected
                               ? "取消对比"
@@ -209,18 +207,8 @@ export default function ProvinceList({
                                 ? "加入对比"
                                 : `已满 ${compareSchools.length} 所，先移除一个`
                           }
-                          aria-pressed={isCompareSelected}
-                          className={cn(
-                            "flex h-4 w-4 items-center justify-center rounded-full border-2 transition",
-                            isCompareSelected
-                              ? "border-brand-500 bg-brand-500 shadow-sm shadow-brand-500/20"
-                              : canToggle
-                                ? "border-dashed border-neutral-300 bg-neutral-0/80 hover:border-brand-400 hover:bg-success-soft"
-                                : "border-dashed border-neutral-200 bg-neutral-0/60 cursor-not-allowed opacity-40",
-                          )}
-                        >
-                          {isCompareSelected && <IconCheck size={12} className="text-text-inverse" />}
-                        </button>
+                          size="sm"
+                        />
                         <span className="flex gap-1">
                           {school.is985 && (
                             <Badge label="985" tone="red" size="sm" />

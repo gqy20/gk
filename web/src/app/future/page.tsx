@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Select as SelectRoot, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
+import { Slider } from "@/components/ui/Slider";
+import { TextField } from "@/components/ui/Field";
 import { createFutureRunFromClient, fetchFutureRunsFromClient } from "@/lib/future/client";
 import type { FutureRunInput, FutureRunListItem } from "@/lib/future/types";
 import type { School } from "@/lib/data";
@@ -268,8 +270,18 @@ function FuturePageContent() {
                   <Select label="生源省份" value={studentProvince} onChange={setStudentProvince} options={provinceOptions} placeholder="请选择生源省份" />
                   <Select label="选科/方向" value={subjectTrack} onChange={setSubjectTrack} options={["物理", "历史", "理科", "文科", "综合"]} />
                   <Select label="分数段" value={scoreBand} onChange={setScoreBand} options={["顶尖", "较高", "中上", "中等", "压线"]} />
-                  <Field label="性格标签" value={personalityTags} onChange={setPersonalityTags} />
-                  <Field label="兴趣方向" value={interests} onChange={setInterests} />
+                  <TextField
+                    label="性格标签"
+                    value={personalityTags}
+                    onChange={(e) => setPersonalityTags(e.target.value)}
+                    placeholder="用空格分隔，如：理性 好奇"
+                  />
+                  <TextField
+                    label="兴趣方向"
+                    value={interests}
+                    onChange={(e) => setInterests(e.target.value)}
+                    placeholder="用空格分隔，如：计算机 工程"
+                  />
                   <Select label="家庭支持" value={familySupport} onChange={setFamilySupport} options={["低", "中低", "中", "中高", "高"]} />
                 </div>
               </FormStep>
@@ -280,25 +292,19 @@ function FuturePageContent() {
             <FuturePanel className="p-5 sm:p-6">
               <FormStep number="03" title="你最担心什么" description="这些顾虑会决定路线更偏成绩、就业、探索还是转向预案。">
                 <div className="grid items-start gap-8 xl:grid-cols-[340px_minmax(0,1fr)]">
-                  <Label className="rounded-xl bg-neutral-0/45 p-4">
-                    <span className="flex items-center justify-between gap-3">
-                      <span>风险偏好</span>
-                      <span className="font-mono text-sm font-semibold text-text">{riskTolerance}/10</span>
-                    </span>
-                    <input
-                      type="range"
+                  <div className="rounded-xl bg-neutral-0/45 p-4">
+                    <Slider
+                      aria-label="风险偏好"
                       min={1}
                       max={10}
+                      step={1}
                       value={riskTolerance}
-                      onChange={(event) => setRiskTolerance(Number(event.target.value))}
-                      className="future-risk-slider mt-4 w-full"
+                      onChange={(v) => setRiskTolerance(v)}
+                      minLabel="稳健"
+                      midLabel="均衡"
+                      maxLabel="冒险"
                     />
-                    <div className="mt-3 flex justify-between text-[11px] text-text-muted">
-                      <span>稳健</span>
-                      <span>均衡</span>
-                      <span>冒险</span>
-                    </div>
-                  </Label>
+                  </div>
                   <Label className="space-y-3">
                     <span className="block">担心/期待</span>
                     <Textarea
@@ -565,29 +571,6 @@ function InfoRow({ value }: { value: string }) {
     <div className="rounded-lg border border-border/70 bg-surface-subtle/60 px-3 py-2">
       {value}
     </div>
-  );
-}
-
-function Field({
-  label,
-  value,
-  onChange,
-  required,
-}: {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  required?: boolean;
-}) {
-  return (
-    <Label>
-      <span className="block">{label}</span>
-      <Input
-        required={required}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
-    </Label>
   );
 }
 

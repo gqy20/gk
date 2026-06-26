@@ -10,5 +10,10 @@
 		"happy-dom": "^20.9.0",
 		"jsdom": "^29.1.1",
 		"vitest": "^4.1.8"
+	},
+	"dependencies": {
+		"@floating-ui/react": "^0.27.19",
+		"react-hook-form": "^7.80.0",
+		"valibot": "^1.4.1"
 	}
 }
