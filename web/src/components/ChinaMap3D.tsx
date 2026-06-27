@@ -864,6 +864,12 @@ export default function ChinaMap3D({
   const [cameraZoom, setCameraZoom] = useState(MIN_CAMERA_ZOOM);
   const [webglUnavailable, setWebglUnavailable] = useState(false);
 
+  // drill.level 的 ref 镜像 — 避免 useCallback 依赖 state 触发链式重渲染
+  const drillLevelRef = useRef(drill.level);
+  useEffect(() => {
+    drillLevelRef.current = drill.level;
+  }, [drill.level]);
+
   const currentProvince =
     drill.level === "country"
       ? selectedProvince
@@ -916,8 +922,9 @@ export default function ChinaMap3D({
     renderer.render(scene, camera);
   }, []);
 
-  const applyCameraZoom = useCallback((nextZoom: number, level = drill.level) => {
-    const zoom = clampCameraZoom(nextZoom, level);
+  const applyCameraZoom = useCallback((nextZoom: number, level?: MapLevel) => {
+    const useLevel = level ?? drillLevelRef.current;
+    const zoom = clampCameraZoom(nextZoom, useLevel);
     cameraZoomRef.current = zoom;
     setCameraZoom(zoom);
 
@@ -926,11 +933,11 @@ export default function ChinaMap3D({
     camera.zoom = zoom;
     camera.updateProjectionMatrix();
     renderScene();
-  }, [drill.level, renderScene]);
+  }, [renderScene]);
 
-  const resetCameraZoom = useCallback((level = drill.level) => {
+  const resetCameraZoom = useCallback((level?: MapLevel) => {
     applyCameraZoom(MIN_CAMERA_ZOOM, level);
-  }, [applyCameraZoom, drill.level]);
+  }, [applyCameraZoom]);
 
   const fitCameraToMap = useCallback((level: MapLevel) => {
     const container = containerRef.current;
