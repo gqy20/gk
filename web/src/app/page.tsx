@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { HomePageSkeleton } from "@/components/ui/Skeleton";
 import CompareBar from "@/components/CompareBar";
 import ComparePanel from "@/components/ComparePanel";
+import { useCompareDetailLoader } from "@/hooks/useCompareDetailLoader";
 import FilterBar from "@/components/FilterBar";
 import { HeaderBlessing, PanelBlessing } from "@/components/GaokaoBlessing";
 import ProvinceList from "@/components/ProvinceList";
@@ -71,12 +72,25 @@ function Home() {
     filteredProvinces,
     activeFilterCount,
     crawlSources,
+    compareDetailsLoading,
     dispatch,
   } = useApp();
   const homeRootRef = useRef<HTMLDivElement>(null);
   const introPlayedRef = useRef(false);
   const [mapTransitioning, setMapTransitioning] = useState(false);
   const [transitionProvince, setTransitionProvince] = useState<string | null>(null);
+
+  // 对比面板打开时，批量加载学校详情（解决 compareSchools 无 detail 导致全 0 的问题）
+  useCompareDetailLoader({
+    compareSchools,
+    compareOpen,
+    onLoadingChange: (loading) => {
+      dispatch({ type: "SET_COMPARE_DETAILS_LOADING", payload: loading });
+    },
+    onDetailMerged: (detailSchool) => {
+      dispatch({ type: "MERGE_COMPARE_SCHOOL_DETAIL", payload: detailSchool });
+    },
+  });
 
   const provinceFromUrl = searchParams.get("province")?.trim() || null;
   const pendingProvinceUrlRef = useRef<string | null | undefined>(undefined);
@@ -368,6 +382,7 @@ function Home() {
                   >
                     <ComparePanel
                       schools={compareSchools}
+                      loading={compareDetailsLoading}
                       onClose={() => dispatch({ type: "SET_COMPARE_OPEN", payload: false })}
                       onRemove={(s) => dispatch({ type: "REMOVE_COMPARE", payload: s })}
                     />

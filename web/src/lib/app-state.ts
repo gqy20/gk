@@ -1,5 +1,6 @@
 import type { School, ProvinceData } from "@/lib/data";
 import type { CrawlSourcesMap } from "@/lib/crawl-data";
+import { mergeSchoolDetail } from "@/lib/school-details";
 
 export interface AppState {
   data: { schools: School[]; provinces: ProvinceData[] } | null;
@@ -14,6 +15,7 @@ export interface AppState {
   compareSchools: School[];
   compareOpen: boolean;
   crawlSources: CrawlSourcesMap | null;
+  compareDetailsLoading: boolean;
 }
 
 export const initialState: AppState = {
@@ -29,6 +31,7 @@ export const initialState: AppState = {
   compareSchools: [],
   compareOpen: false,
   crawlSources: null,
+  compareDetailsLoading: false,
 };
 
 export type AppAction =
@@ -44,7 +47,9 @@ export type AppAction =
   | { type: "REMOVE_COMPARE"; payload: School }
   | { type: "CLEAR_COMPARE" }
   | { type: "SET_COMPARE_OPEN"; payload: boolean }
-  | { type: "SET_CRAWL_SOURCES"; payload: CrawlSourcesMap | null };
+  | { type: "SET_CRAWL_SOURCES"; payload: CrawlSourcesMap | null }
+  | { type: "SET_COMPARE_DETAILS_LOADING"; payload: boolean }
+  | { type: "MERGE_COMPARE_SCHOOL_DETAIL"; payload: School };
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -140,6 +145,20 @@ export function appReducer(state: AppState, action: AppAction): AppState {
 
     case "SET_CRAWL_SOURCES":
       return { ...state, crawlSources: action.payload };
+
+    case "SET_COMPARE_DETAILS_LOADING":
+      return { ...state, compareDetailsLoading: action.payload };
+
+    case "MERGE_COMPARE_SCHOOL_DETAIL": {
+      const detailSchool = action.payload;
+      const mergedData = state.data
+        ? { ...state.data, schools: mergeSchoolDetail(state.data.schools, detailSchool) }
+        : state.data;
+      const mergedCompare = state.compareSchools.map((s) =>
+        s.name === detailSchool.name ? { ...s, ...detailSchool } : s,
+      );
+      return { ...state, data: mergedData, compareSchools: mergedCompare };
+    }
 
     default:
       return state;
